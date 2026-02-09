@@ -1,0 +1,42 @@
+rubric_id: chat_quality
+version: v1
+title: Chat Quality (v1)
+owner: data-ai
+created_at: "2026-02-05"
+
+scale:
+  min: 1
+  max: 5
+
+decision_policy:
+  pass_if_overall_score_gte: 3.0
+  fail_if_any_dimension_lte: 2
+
+dimensions:
+  - name: relevance
+    description: "Answer addresses the user's request and stays on-topic."
+    anchors:
+      "1": "Unrelated or ignores the question."
+      "3": "Partially addresses the question."
+      "5": "Directly addresses the question with relevant detail."
+
+  - name: clarity
+    description: "Answer is understandable and well-structured."
+    anchors:
+      "1": "Confusing or incoherent."
+      "3": "Understandable but rough."
+      "5": "Clear, structured, easy to follow."
+
+  - name: correctness
+    description: "Answer is factually and logically consistent with the conversation context."
+    anchors:
+      "1": "Incorrect or misleading."
+      "3": "Mixed correctness or minor issues."
+      "5": "Correct and logically consistent."
+
+  - name: tone
+    description: "Answer is professional, respectful, and appropriate."
+    anchors:
+      "1": "Rude, unsafe, or inappropriate."
+      "3": "Neutral tone."
+      "5": "Polite, helpful, and aligned to context."

@@ -1,0 +1,27 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+
+# Poetry / virtualenv
+.venv/
+
+# Environment
+.env
+
+# Tooling
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# OS
+.DS_Store
+
+# Logs & artifacts
+logs/
+artifacts/
+
+# IDE
+.vscode/
+.idea/
