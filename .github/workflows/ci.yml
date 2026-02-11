@@ -1,24 +1,17 @@
 name: CI
 
 on:
-  pull_request:
   push:
     branches: ["master"]
-
-concurrency:
-  group: ci-${{ github.ref }}
-  cancel-in-progress: true
-
-permissions:
-  contents: read
+  pull_request:
+    branches: ["master"]
 
 jobs:
   test:
-    name: Lint • Typecheck • Test
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout code
+      - name: Checkout
         uses: actions/checkout@v4
 
       - name: Set up Python
@@ -26,33 +19,34 @@ jobs:
         with:
           python-version: "3.11"
 
-      # Use Poetry 2.x to match newer lockfile formats
       - name: Install Poetry
-        uses: snok/install-poetry@v1
-        with:
-          version: "2.0.1"
-          virtualenvs-create: true
-          virtualenvs-in-project: true
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install "poetry==2.0.1"
+          poetry --version
 
-      - name: Cache Poetry + virtualenv
+      - name: Configure Poetry
+        run: |
+          poetry config virtualenvs.in-project true
+
+      - name: Cache .venv
         uses: actions/cache@v4
         with:
-          path: |
-            .venv
-            ~/.cache/pypoetry
-          key: poetry-${{ runner.os }}-py3.11-${{ hashFiles('poetry.lock') }}
+          path: .venv
+          key: venv-${{ runner.os }}-${{ steps.setup-python.outputs.python-version }}-${{ hashFiles('poetry.lock') }}
 
       - name: Install dependencies
-        run: poetry install --no-interaction --no-root
+        run: |
+          poetry install --no-interaction --no-root
 
-      - name: Ruff lint
-        run: poetry run ruff check .
+      - name: Lint (ruff)
+        run: |
+          poetry run ruff check .
 
-      - name: Ruff format check
-        run: poetry run ruff format --check .
+      - name: Type-check (mypy)
+        run: |
+          poetry run mypy src
 
-      - name: Mypy typecheck
-        run: poetry run mypy src
-
-      - name: Run tests
-        run: poetry run pytest
+      - name: Tests (pytest)
+        run: |
+          poetry run pytest
