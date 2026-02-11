@@ -41,6 +41,7 @@ packages = [{ include = "llm_judge", from = "src" }]
 [tool.poetry.group.dev.dependencies]
 ruff = "^0.15.0"
 mypy = "^1.19.1"
+types-pyyaml = "^6.0.12.20250915"
 
 [tool.ruff]
 line-length = 100
