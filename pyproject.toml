@@ -38,6 +38,9 @@ authors = ["Your Name <you@example.com>"]
 packages = [{ include = "llm_judge", from = "src" }]
 
 
+[tool.poetry.group.dev.dependencies]
+ruff = "^0.15.0"
+
 [tool.ruff]
 line-length = 100
 target-version = "py311"
