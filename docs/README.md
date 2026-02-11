@@ -1,5 +1,7 @@
 # LLM Judge MVP
 
+![CI](https://github.com/arunpk82/llm-judge-mvp/actions/workflows/ci.yml/badge.svg)
+
 A lightweight **LLM-as-a-Judge** evaluation service that scores candidate answers against structured rubrics.
 
 This MVP is designed to provide:
