@@ -16,17 +16,19 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     build-essential \
   && rm -rf /var/lib/apt/lists/*
 
-RUN pip install --no-cache-dir "poetry==${POETRY_VERSION}" && poetry self add poetry-plugin-export
+# Poetry + export plugin (Poetry 2.x needs the plugin for `poetry export`)
+RUN pip install --no-cache-dir "poetry==${POETRY_VERSION}" \
+  && poetry self add poetry-plugin-export
 
-# Copy dependency files first
+# Copy dependency files first (for build cache)
 COPY pyproject.toml poetry.lock* ./
 
 # Export locked deps to requirements.txt (runtime install will be pip-based)
-RUN poetry export -f requirements.txt --output requirements.txt --without-hashes --without dev
-
-# Copy source needed to build wheel
-COPY src ./src
-COPY rubrics ./rubrics
+RUN poetry export \
+    -f requirements.txt \
+    --output requirements.txt \
+    --without-hashes \
+    --without dev
 
 ############################
 # Runtime stage
@@ -41,14 +43,19 @@ WORKDIR /app
 
 RUN useradd -m -u 10001 appuser
 
-# Install runtime deps only (no poetry in runtime)
+# Bring in locked runtime requirements
 COPY --from=builder /app/requirements.txt /app/requirements.txt
-RUN pip install --no-cache-dir -r /app/requirements.txt
 
+# Hardening: upgrade pip tooling + pin fixed versions to satisfy Trivy
+# (these vulnerabilities were coming from base/tooling, not your app deps)
+RUN python -m pip install --no-cache-dir --upgrade pip \
+  && python -m pip install --no-cache-dir --upgrade "wheel==0.46.2" "jaraco.context==6.1.0" \
+  && python -m pip install --no-cache-dir -r /app/requirements.txt \
+  && python -m pip check
 
 # Copy application code + rubrics
-COPY --from=builder /app/src /app/src
-COPY --from=builder /app/rubrics /app/rubrics
+COPY src ./src
+COPY rubrics ./rubrics
 
 USER appuser
 
