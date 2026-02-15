@@ -46,6 +46,7 @@ jobs:
           context: .
           file: Dockerfile
           push: true
+          no-cache: true
           tags: |
             ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ steps.ver.outputs.version }}
             ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:latest
@@ -54,7 +55,13 @@ jobs:
 
       - name: Pull image for scanning
         run: docker pull ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ steps.ver.outputs.version }}
-          
+        
+      - name: Verify wheel + jaraco.context versions in image
+        run: |
+          IMAGE="${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ steps.ver.outputs.version }}"
+          docker pull "$IMAGE"
+          docker run --rm "$IMAGE" python -c "from importlib.metadata import version; print('wheel', version('wheel')); print('jaraco.context', version('jaraco.context'))"
+
       - name: Vulnerability scan (Trivy) - fail on HIGH/CRITICAL
         uses: aquasecurity/trivy-action@0.24.0
         with:
