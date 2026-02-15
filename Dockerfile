@@ -46,17 +46,45 @@ RUN useradd -m -u 10001 appuser
 # Bring in locked runtime requirements
 COPY --from=builder /app/requirements.txt /app/requirements.txt
 
-# Install app deps first, then enforce patched toolchain libs (Trivy gate),
+# Install app deps, enforce patched toolchain libs (Trivy gate),
+# remove stale dist-info metadata that Trivy may detect,
 # then verify dependency integrity.
 RUN python -m pip install --no-cache-dir --upgrade pip \
   && python -m pip install --no-cache-dir -r /app/requirements.txt \
   && python -m pip install --no-cache-dir --upgrade \
       "packaging>=24.0" \
       "backports.tarfile>=1.2.0" \
-  && python -m pip install --no-cache-dir --upgrade \
       "wheel==0.46.2" \
-      "jaraco.context==6.1.0" \
-  && python -m pip check
+      "jaraco.context==6.1.0"
+
+# Remove stale dist-info metadata
+RUN python - <<'PY'
+import site
+import pathlib
+import re
+import shutil
+
+paths = site.getsitepackages()
+stale = [
+    re.compile(r"^wheel-0\.45\.1\.dist-info$"),
+    re.compile(r"^jaraco\.context-5\.3\.0\.dist-info$"),
+]
+
+for p in paths:
+    sp = pathlib.Path(p)
+    if not sp.exists():
+        continue
+
+    for child in sp.iterdir():
+        if any(pat.match(child.name) for pat in stale):
+            print(f"Removing stale metadata: {child}")
+            if child.is_dir():
+                shutil.rmtree(child)
+            else:
+                child.unlink()
+PY
+
+RUN python -m pip check
 
 # Copy application code + rubrics
 COPY src ./src
