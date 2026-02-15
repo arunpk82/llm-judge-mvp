@@ -50,7 +50,12 @@ COPY --from=builder /app/requirements.txt /app/requirements.txt
 # then verify dependency integrity.
 RUN python -m pip install --no-cache-dir --upgrade pip \
   && python -m pip install --no-cache-dir -r /app/requirements.txt \
-  && python -m pip install --no-cache-dir --upgrade --no-deps "wheel==0.46.2" "jaraco.context==6.1.0" \
+  && python -m pip install --no-cache-dir --upgrade \
+      "packaging>=24.0" \
+      "backports.tarfile>=1.2.0" \
+  && python -m pip install --no-cache-dir --upgrade \
+      "wheel==0.46.2" \
+      "jaraco.context==6.1.0" \
   && python -m pip check
 
 # Copy application code + rubrics
