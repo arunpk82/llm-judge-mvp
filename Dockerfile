@@ -46,14 +46,17 @@ RUN useradd -m -u 10001 appuser
 COPY --from=builder /app/requirements.txt /app/requirements.txt
 
 # Install deps + force patched versions + remove stale metadata + validate
+# Install deps + force patched versions
 RUN python -m pip install --no-cache-dir --upgrade pip \
   && python -m pip install --no-cache-dir -r /app/requirements.txt \
   && python -m pip install --no-cache-dir --upgrade \
       "packaging>=24.0" \
       "backports.tarfile>=1.2.0" \
       "wheel==0.46.2" \
-      "jaraco.context==6.1.0" \
-  && python - <<'PY'
+      "jaraco.context==6.1.0"
+
+# Remove stale dist-info that Trivy may still detect
+RUN python - <<'PY'
 import site, pathlib, shutil
 
 stale = {
@@ -71,8 +74,11 @@ for sp in map(pathlib.Path, site.getsitepackages()):
                 shutil.rmtree(child)
             else:
                 child.unlink()
-PY \
-  && python -m pip check
+PY
+
+# Validate environment consistency
+RUN python -m pip check
+
 
 COPY src ./src
 COPY rubrics ./rubrics
