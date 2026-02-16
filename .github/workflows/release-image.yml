@@ -11,15 +11,16 @@ permissions:
 
 concurrency:
   group: release-image-${{ github.ref }}
-  cancel-in-progress: false
+  cancel-in-progress: true
 
 env:
   REGISTRY: ghcr.io
   IMAGE_NAME: ${{ github.repository }}
 
 jobs:
-  build-and-push:
+  build-scan-push:
     runs-on: ubuntu-latest
+
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -38,37 +39,59 @@ jobs:
         id: ver
         run: |
           TAG="${GITHUB_REF_NAME}"
-          echo "version=${TAG#v}" >> $GITHUB_OUTPUT
+          echo "version=${TAG#v}" >> "$GITHUB_OUTPUT"
 
-      - name: Build & Push
+      # 1) Build and load locally so Trivy can scan from Docker daemon (no registry auth needed)
+      - name: Build (load) image for scan
+        uses: docker/build-push-action@v6
+        with:
+          context: .
+          file: Dockerfile
+          load: true
+          tags: llm-judge-mvp:ci
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+
+      - name: Verify wheel + jaraco.context versions (runtime truth)
+        run: |
+          docker run --rm llm-judge-mvp:ci python -c "from importlib.metadata import version; print('wheel', version('wheel')); print('jaraco.context', version('jaraco.context'))"
+
+      - name: Audit dist-info folders (guardrail for Trivy METADATA findings)
+        run: |
+          docker run --rm llm-judge-mvp:ci python - <<'PY'
+          import site, glob, os
+          sp = site.getsitepackages()[0]
+          hits = sorted([os.path.basename(x) for x in glob.glob(sp + "/*dist-info") if ("wheel" in x or "jaraco" in x)])
+          print("dist-info hits:", hits)
+          PY
+
+      # 2) Scan the LOCAL image (this is the key fix)
+      - name: Vulnerability scan (Trivy) - fail on HIGH/CRITICAL
+        uses: aquasecurity/trivy-action@0.24.0
+        with:
+          scan-type: image
+          image-ref: llm-judge-mvp:ci
+          format: table
+          exit-code: "1"
+          ignore-unfixed: true
+          vuln-type: "os,library"
+          severity: "HIGH,CRITICAL"
+          scanners: "vuln"
+
+      # 3) Only if scan passes, push release tags
+      - name: Build & Push (release)
         uses: docker/build-push-action@v6
         with:
           context: .
           file: Dockerfile
           push: true
-          no-cache: true
           tags: |
             ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ steps.ver.outputs.version }}
             ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:latest
           cache-from: type=gha
           cache-to: type=gha,mode=max
 
-      - name: Pull image for scanning
-        run: docker pull ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ steps.ver.outputs.version }}
-        
-      - name: Verify wheel + jaraco.context versions in image
+      - name: Print pushed image reference
         run: |
-          IMAGE="${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ steps.ver.outputs.version }}"
-          docker pull "$IMAGE"
-          docker run --rm "$IMAGE" python -c "from importlib.metadata import version; print('wheel', version('wheel')); print('jaraco.context', version('jaraco.context'))"
-
-      - name: Vulnerability scan (Trivy) - fail on HIGH/CRITICAL
-        uses: aquasecurity/trivy-action@0.24.0
-        with:
-          image-ref: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ steps.ver.outputs.version }}
-          format: table
-          exit-code: "1"
-          ignore-unfixed: true
-          vuln-type: "os,library"
-          severity: "HIGH,CRITICAL"
-
+          echo "Pushed: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ steps.ver.outputs.version }}"
+          echo "Also tagged: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:latest"
