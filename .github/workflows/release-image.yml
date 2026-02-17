@@ -41,7 +41,7 @@ jobs:
           TAG="${GITHUB_REF_NAME}"
           echo "version=${TAG#v}" >> "$GITHUB_OUTPUT"
 
-      # 1) Build and load locally so Trivy can scan from Docker daemon (no registry auth needed)
+      # Build and load locally so Trivy scans the daemon image
       - name: Build (load) image for scan
         uses: docker/build-push-action@v6
         with:
@@ -51,21 +51,56 @@ jobs:
           tags: llm-judge-mvp:ci
           cache-from: type=gha
           cache-to: type=gha,mode=max
+          build-args: |
+            AUDIT_SEED=${{ github.run_id }}
 
-      - name: Verify wheel + jaraco.context versions (runtime truth)
-        run: |
-          docker run --rm llm-judge-mvp:ci python -c "from importlib.metadata import version; print('wheel', version('wheel')); print('jaraco.context', version('jaraco.context'))"
-
-      - name: Audit dist-info folders (guardrail for Trivy METADATA findings)
+      # This prints the actual filesystem locations (what Trivy sees)
+      - name: Audit wheel + jaraco.context dist-info paths (post-build)
         run: |
           docker run --rm llm-judge-mvp:ci python - <<'PY'
-          import site, glob, os
-          sp = site.getsitepackages()[0]
-          hits = sorted([os.path.basename(x) for x in glob.glob(sp + "/*dist-info") if ("wheel" in x or "jaraco" in x)])
-          print("dist-info hits:", hits)
+          import sys, site
+          from pathlib import Path
+
+          def roots():
+            r = []
+            r += site.getsitepackages()
+            usp = site.getusersitepackages()
+            if usp:
+              r.append(usp)
+            for p in sys.path:
+              if p and ("site-packages" in p or "dist-packages" in p):
+                r.append(p)
+            out = []
+            for x in dict.fromkeys(r):
+              px = Path(x)
+              if px.exists():
+                out.append(px)
+            return out
+
+          def meta(dist):
+            m = dist/"METADATA"
+            if not m.exists():
+              return None, None
+            name = ver = None
+            for line in m.read_text(errors="ignore").splitlines():
+              if line.startswith("Name: "): name = line.split(":",1)[1].strip()
+              if line.startswith("Version: "): ver = line.split(":",1)[1].strip()
+              if name and ver: break
+            return name, ver
+
+          targets = {"wheel", "jaraco.context"}
+          print("AUDIT: roots:")
+          for r in roots():
+            print(" -", r)
+
+          print("\nAUDIT: dist-info hits:")
+          for r in roots():
+            for d in r.glob("*.dist-info"):
+              n,v = meta(d)
+              if n in targets:
+                print(f" - {n} {v} :: {d}")
           PY
 
-      # 2) Scan the LOCAL image (this is the key fix)
       - name: Vulnerability scan (Trivy) - fail on HIGH/CRITICAL
         uses: aquasecurity/trivy-action@0.24.0
         with:
@@ -78,7 +113,6 @@ jobs:
           severity: "HIGH,CRITICAL"
           scanners: "vuln"
 
-      # 3) Only if scan passes, push release tags
       - name: Build & Push (release)
         uses: docker/build-push-action@v6
         with:
@@ -90,6 +124,8 @@ jobs:
             ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:latest
           cache-from: type=gha
           cache-to: type=gha,mode=max
+          build-args: |
+            AUDIT_SEED=${{ github.run_id }}
 
       - name: Print pushed image reference
         run: |

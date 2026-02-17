@@ -20,6 +20,7 @@ RUN python -m pip install --no-cache-dir "poetry==2.1.1" \
 COPY pyproject.toml poetry.lock* ./
 RUN poetry export -f requirements.txt --output requirements.txt --without-hashes
 
+
 ############################
 # Runtime stage
 ############################
@@ -27,190 +28,133 @@ FROM python:3.11-slim AS runtime
 
 ENV PYTHONDONTWRITEBYTECODE=1 \
     PYTHONUNBUFFERED=1 \
+    # Make sure imports work when code is in /app/src
     PYTHONPATH=/app/src
 
 WORKDIR /app
+
 RUN useradd -m -u 10001 appuser
 
 COPY --from=builder /app/requirements.txt /app/requirements.txt
 
-# --- 1) Install app deps (baseline) ---
-RUN python -m pip install --no-cache-dir --upgrade pip \
- && python -m pip install --no-cache-dir -r /app/requirements.txt
+# Cache-buster for CI so the audit/cleanup layer can be forced to re-run
+ARG AUDIT_SEED=0
 
-# --- 2) Force patched versions + ensure required deps exist ---
-RUN python -m pip install --no-cache-dir --upgrade --force-reinstall \
+# 1) Install application deps
+# 2) Force patched versions
+# 3) Trace and remove stale dist-info by reading METADATA (what Trivy scans)
+RUN echo "AUDIT_SEED=${AUDIT_SEED}" \
+ && python -m pip install --no-cache-dir --upgrade pip \
+ && python -m pip install --no-cache-dir -r /app/requirements.txt \
+ && python -m pip install --no-cache-dir --upgrade --force-reinstall \
       "packaging>=24.0" \
       "backports.tarfile>=1.2.0" \
       "wheel==0.46.2" \
-      "jaraco.context==6.1.0"
-
-# --- 3) TRACE + CLEANUP stale dist-info across ALL python paths (Trivy focuses on METADATA) ---
-# BuildKit-safe: heredoc is its own RUN (no trailing "\" after PY terminator)
-RUN python - <<'PY'
-from __future__ import annotations
-
+      "jaraco.context==6.1.0" \
+ && python - <<'PY'
 import os
 import sys
 import site
-import sysconfig
 from pathlib import Path
-import shutil
-import importlib.metadata as md
 
-def banner(msg: str) -> None:
-    print("\n" + "=" * 88)
-    print(msg)
-    print("=" * 88)
+TARGET = {
+    "wheel": "0.46.2",
+    "jaraco.context": "6.1.0",
+}
 
-def existing_dirs(paths):
-    seen = set()
-    for p in paths:
-        if not p:
-            continue
-        try:
-            pp = Path(p)
-        except Exception:
-            continue
-        if pp.exists() and pp.is_dir():
-            rp = str(pp.resolve())
-            if rp not in seen:
-                seen.add(rp)
-                yield Path(rp)
+def candidate_dirs():
+    dirs = []
+    # include all known python package roots
+    dirs.extend(site.getsitepackages())
+    if site.getusersitepackages():
+        dirs.append(site.getusersitepackages())
+    # include sys.path entries that look like site-packages/dist-packages
+    for p in sys.path:
+        if p and ("site-packages" in p or "dist-packages" in p):
+            dirs.append(p)
+    # unique + existing
+    out = []
+    for d in dict.fromkeys(dirs):
+        dp = Path(d)
+        if dp.exists() and dp.is_dir():
+            out.append(dp)
+    return out
 
-def all_python_dirs():
-    candidates = []
-    # Common packaging dirs
-    try:
-        candidates += site.getsitepackages()
-    except Exception:
-        pass
-    try:
-        usp = site.getusersitepackages()
-        if usp:
-            candidates.append(usp)
-    except Exception:
-        pass
+def read_metadata(dist_info: Path):
+    meta = dist_info / "METADATA"
+    if not meta.exists():
+        return None, None
+    name = version = None
+    for line in meta.read_text(errors="ignore").splitlines():
+        if line.startswith("Name: "):
+            name = line.split(":", 1)[1].strip()
+        elif line.startswith("Version: "):
+            version = line.split(":", 1)[1].strip()
+        if name and version:
+            break
+    return name, version
 
-    # sysconfig locations
-    sp = sysconfig.get_paths()
-    for k in ("purelib", "platlib", "stdlib", "data"):
-        v = sp.get(k)
-        if v:
-            candidates.append(v)
+print("TRACE: python =", sys.version.replace("\n"," "))
+print("TRACE: sys.executable =", sys.executable)
+print("TRACE: package roots:")
+roots = candidate_dirs()
+for r in roots:
+    print("  -", r)
 
-    # sys.path (includes dist-packages on Debian)
-    candidates += [p for p in sys.path if isinstance(p, str)]
+hits = []
+for root in roots:
+    for dist in root.glob("*.dist-info"):
+        name, ver = read_metadata(dist)
+        if name in TARGET:
+            hits.append((name, ver, str(dist)))
 
-    # Filter to directories that are likely to hold installed dists
-    # but keep stdlib too (sometimes dist-info can end up there in broken images)
-    return list(existing_dirs(candidates))
+print("TRACE: dist-info hits (before cleanup):")
+for name, ver, path in sorted(hits):
+    print(f"  - {name} {ver} :: {path}")
 
-def print_dist(name: str):
-    try:
-        dist = md.distribution(name)
-    except md.PackageNotFoundError:
-        print(f"[dist] {name}: NOT INSTALLED (per importlib.metadata)")
-        return
+removed = []
+for name, ver, path in hits:
+    want = TARGET[name]
+    if ver and ver != want:
+        d = Path(path)
+        removed.append((name, ver, path))
+        # remove entire dist-info directory (this is what Trivy reads)
+        for child in d.rglob("*"):
+            if child.is_file():
+                child.unlink(missing_ok=True)
+        for child in sorted(d.rglob("*"), reverse=True):
+            if child.is_dir():
+                child.rmdir()
+        d.rmdir()
 
-    loc = None
-    try:
-        loc = str(dist.locate_file(""))
-    except Exception:
-        loc = "unknown"
-    print(f"[dist] {name}: version={dist.version} location={loc}")
-    # dist.files can be None depending on install type
-    if dist.files:
-        # print a few representative entries
-        sample = list(dist.files)[:10]
-        print(f"[dist] {name}: sample files:")
-        for f in sample:
-            print(f"  - {f}")
+print("TRACE: removed dist-info (stale/vulnerable):")
+for name, ver, path in sorted(removed):
+    print(f"  - REMOVED {name} {ver} :: {path}")
 
-def find_metadata_dirs():
-    # Known-problem stale metadata variants (dash/underscore normalization differs)
-    targets = {
-        "wheel-0.45.1.dist-info",
-        "jaraco.context-5.3.0.dist-info",
-        "jaraco_context-5.3.0.dist-info",
-    }
+# Re-scan after cleanup
+hits2 = []
+for root in roots:
+    for dist in root.glob("*.dist-info"):
+        name, ver = read_metadata(dist)
+        if name in TARGET:
+            hits2.append((name, ver, str(dist)))
 
-    hits = []
-    for base in all_python_dirs():
-        try:
-            for t in targets:
-                p = base / t
-                if p.exists():
-                    hits.append(p)
-        except Exception:
-            continue
-    return hits
+print("TRACE: dist-info hits (after cleanup):")
+for name, ver, path in sorted(hits2):
+    print(f"  - {name} {ver} :: {path}")
 
-def deep_find(patterns):
-    hits = []
-    for base in all_python_dirs():
-        # Avoid huge scans outside python dirs; we only iterate immediate children
-        try:
-            for child in base.iterdir():
-                n = child.name
-                if any(n == pat for pat in patterns):
-                    hits.append(child)
-        except Exception:
-            continue
-    return hits
+# Fail fast if stale metadata still exists (prevents wasting time in Trivy step)
+bad = [(n,v,p) for (n,v,p) in hits2 if v != TARGET[n]]
+if bad:
+    raise SystemExit("Stale dist-info still present: " + str(bad))
+PY \
+ && python -m pip check
 
-banner("TRACE (pre-clean) - Python runtime + dist locations")
-print("python:", sys.version.replace("\n"," "))
-print("executable:", sys.executable)
-print("sys.path:")
-for p in sys.path:
-    print(" -", p)
-
-banner("TRACE (pre-clean) - importlib.metadata view")
-print_dist("wheel")
-print_dist("jaraco.context")
-print_dist("packaging")
-print_dist("backports.tarfile")
-
-banner("TRACE (pre-clean) - filesystem metadata dirs that commonly trip Trivy")
-pre_hits = find_metadata_dirs()
-if not pre_hits:
-    print("No known stale dist-info dirs found (wheel 0.45.1 / jaraco_context 5.3.0).")
-else:
-    for h in pre_hits:
-        print("FOUND:", h)
-
-# Remove stale metadata dirs wherever they exist
-banner("CLEANUP - removing stale metadata dirs (if present)")
-removed = 0
-for h in pre_hits:
-    try:
-        if h.is_dir():
-            shutil.rmtree(h)
-        else:
-            h.unlink()
-        print("REMOVED:", h)
-        removed += 1
-    except Exception as e:
-        print("FAILED to remove:", h, "error:", repr(e))
-
-banner("TRACE (post-clean) - confirm stale metadata is gone")
-post_hits = find_metadata_dirs()
-if not post_hits:
-    print("OK: stale dist-info dirs are gone.")
-else:
-    for h in post_hits:
-        print("STILL PRESENT:", h)
-
-print(f"\nCleanup summary: removed={removed} remaining={len(post_hits)}")
-PY
-
-# --- 4) Integrity check (will fail the build if deps are inconsistent) ---
-RUN python -m pip check
-
+# Copy application code + rubrics
 COPY src ./src
 COPY rubrics ./rubrics
 
 USER appuser
 EXPOSE 8000
+
 CMD ["uvicorn", "llm_judge.main:app", "--host", "0.0.0.0", "--port", "8000"]
