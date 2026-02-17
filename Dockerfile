@@ -1,10 +1,41 @@
-# After installing requirements + forcing patched versions:
-# 1) purge pip caches/temp
-# 2) remove ANY stale wheel/jaraco.context dist-info anywhere on filesystem
-# 3) remove ANY wheel archives that embed vulnerable METADATA
-# 4) print proof
+# syntax=docker/dockerfile:1.7
 
+############################
+# Builder: export requirements
+############################
+FROM python:3.11-slim AS builder
+WORKDIR /app
+
+RUN apt-get update && apt-get install -y --no-install-recommends \
+      build-essential \
+    && rm -rf /var/lib/apt/lists/*
+
+RUN python -m pip install --no-cache-dir "poetry==2.1.1" \
+  && poetry self add poetry-plugin-export
+
+COPY pyproject.toml poetry.lock* ./
+RUN poetry export -f requirements.txt --output requirements.txt --without-hashes
+
+
+############################
+# Runtime: install + audit + run
+############################
+FROM python:3.11-slim AS runtime
+WORKDIR /app
+
+# cache-buster for CI debugging
+ARG AUDIT_SEED=0
+ENV PYTHONDONTWRITEBYTECODE=1 \
+    PYTHONUNBUFFERED=1 \
+    PYTHONPATH=/app/src
+
+RUN useradd -m -u 10001 appuser
+
+COPY --from=builder /app/requirements.txt /app/requirements.txt
+
+# Install dependencies + force patched versions + *prove* filesystem state for Trivy
 RUN set -eux; \
+    echo "AUDIT_SEED=${AUDIT_SEED}"; \
     python -m pip install --no-cache-dir --upgrade pip; \
     python -m pip install --no-cache-dir -r /app/requirements.txt; \
     python -m pip install --no-cache-dir --upgrade --force-reinstall \
@@ -13,121 +44,135 @@ RUN set -eux; \
       "wheel==0.46.2" \
       "jaraco.context==6.1.0"; \
     \
-    # Hard delete known cache locations (Trivy can see these)
+    # Remove common pip caches/temp artifacts that can carry stale wheels/sdists
     rm -rf /root/.cache/pip /tmp/pip-* /tmp/build /var/tmp/* || true; \
     \
+    # === TRIVY-TRACE: scan the filesystem for what Trivy scans (dist-info/METADATA) ===
     python - <<'PY'
-import os, sys, zipfile
+import sys, zipfile
 from pathlib import Path
 
 TARGET = {
-  "wheel": "0.46.2",
-  "jaraco.context": "6.1.0",
+    "wheel": "0.46.2",
+    "jaraco.context": "6.1.0",
 }
 
-def read_metadata_text(path: Path) -> str:
-  try:
-    return path.read_text(errors="ignore")
-  except Exception:
-    return ""
+def parse_name_ver(txt: str):
+    name = ver = None
+    for line in txt.splitlines():
+        if line.startswith("Name: "):
+            name = line.split(":", 1)[1].strip()
+        elif line.startswith("Version: "):
+            ver = line.split(":", 1)[1].strip()
+        if name and ver:
+            break
+    return name, ver
 
-def parse_name_ver(metadata_text: str):
-  name = ver = None
-  for line in metadata_text.splitlines():
-    if line.startswith("Name: "):
-      name = line.split(":",1)[1].strip()
-    elif line.startswith("Version: "):
-      ver = line.split(":",1)[1].strip()
-    if name and ver:
-      return name, ver
-  return name, ver
+def safe_read(p: Path) -> str:
+    try:
+        return p.read_text(errors="ignore")
+    except Exception:
+        return ""
 
 def remove_tree(p: Path):
-  if p.is_file():
-    p.unlink(missing_ok=True)
-    return
-  # dirs
-  for child in sorted(p.rglob("*"), reverse=True):
+    if p.is_file():
+        p.unlink(missing_ok=True)
+        return
+    for child in sorted(p.rglob("*"), reverse=True):
+        try:
+            if child.is_file():
+                child.unlink(missing_ok=True)
+            elif child.is_dir():
+                child.rmdir()
+        except Exception:
+            pass
     try:
-      if child.is_file():
-        child.unlink(missing_ok=True)
-      elif child.is_dir():
-        child.rmdir()
+        p.rmdir()
     except Exception:
-      pass
-  try:
-    p.rmdir()
-  except Exception:
-    pass
+        pass
 
 print("TRIVY-TRACE: python =", sys.version.replace("\n"," "))
 print("TRIVY-TRACE: executable =", sys.executable)
 
-# 1) filesystem-wide dist-info scan (not just sys.path)
-bad_distinfo = []
+# 1) dist-info scan (filesystem-wide)
+hits = []
 for dist in Path("/").rglob("*.dist-info"):
-  meta = dist / "METADATA"
-  if not meta.exists():
-    continue
-  name, ver = parse_name_ver(read_metadata_text(meta))
-  if name in TARGET and ver and ver != TARGET[name]:
-    bad_distinfo.append((name, ver, str(dist)))
+    meta = dist / "METADATA"
+    if not meta.exists():
+        continue
+    name, ver = parse_name_ver(safe_read(meta))
+    if name in TARGET:
+        hits.append((name, ver, str(dist)))
 
-print("TRIVY-TRACE: bad dist-info found:", len(bad_distinfo))
-for name, ver, p in bad_distinfo[:200]:
-  print(f"  - BAD dist-info {name} {ver} :: {p}")
+print("TRIVY-TRACE: dist-info hits (pre-clean):")
+for name, ver, path in sorted(hits):
+    print(f"  - {name} {ver} :: {path}")
 
-for _, _, p in bad_distinfo:
-  remove_tree(Path(p))
+# Remove stale dist-info dirs for our targets
+removed = []
+for name, ver, path in hits:
+    want = TARGET[name]
+    if ver and ver != want:
+        removed.append((name, ver, path))
+        remove_tree(Path(path))
 
-# 2) wheel archive scan (Trivy may flag METADATA inside artifacts)
+print("TRIVY-TRACE: removed stale dist-info:")
+for name, ver, path in sorted(removed):
+    print(f"  - REMOVED {name} {ver} :: {path}")
+
+# 2) wheel archive scan: remove any .whl embedding stale METADATA for targets
 bad_whls = []
 for whl in Path("/").rglob("*.whl"):
-  # avoid scanning huge locations if any show up; still safe in slim images
-  try:
-    with zipfile.ZipFile(whl) as z:
-      # METADATA usually lives under *.dist-info/METADATA
-      metas = [n for n in z.namelist() if n.endswith(".dist-info/METADATA")]
-      for m in metas:
-        txt = z.read(m).decode("utf-8", "ignore")
-        name, ver = parse_name_ver(txt)
-        if name in TARGET and ver and ver != TARGET[name]:
-          bad_whls.append((name, ver, str(whl)))
-          break
-  except Exception:
-    continue
+    try:
+        with zipfile.ZipFile(whl) as z:
+            metas = [n for n in z.namelist() if n.endswith(".dist-info/METADATA")]
+            for m in metas:
+                txt = z.read(m).decode("utf-8", "ignore")
+                name, ver = parse_name_ver(txt)
+                if name in TARGET and ver and ver != TARGET[name]:
+                    bad_whls.append((name, ver, str(whl)))
+                    break
+    except Exception:
+        continue
 
-print("TRIVY-TRACE: bad .whl artifacts found:", len(bad_whls))
-for name, ver, p in bad_whls[:200]:
-  print(f"  - BAD whl {name} {ver} :: {p}")
+print("TRIVY-TRACE: bad whl artifacts found:", len(bad_whls))
+for name, ver, path in bad_whls[:200]:
+    print(f"  - BAD whl {name} {ver} :: {path}")
 
 for _, _, p in bad_whls:
-  try:
-    Path(p).unlink(missing_ok=True)
-  except Exception:
-    pass
+    try:
+        Path(p).unlink(missing_ok=True)
+    except Exception:
+        pass
 
-# 3) show final authoritative state (runtime)
-import importlib.metadata as md
-print("TRIVY-TRACE: final versions via importlib.metadata:")
-for k in TARGET:
-  try:
-    print(f"  - {k} = {md.version(k)}")
-  except Exception as e:
-    print(f"  - {k} = <missing> ({e})")
-
-# 4) fail fast if anything still exists anywhere (dist-info)
-still_bad = []
+# 3) dist-info scan again (proof)
+hits2 = []
 for dist in Path("/").rglob("*.dist-info"):
-  meta = dist / "METADATA"
-  if not meta.exists():
-    continue
-  name, ver = parse_name_ver(read_metadata_text(meta))
-  if name in TARGET and ver and ver != TARGET[name]:
-    still_bad.append((name, ver, str(dist)))
+    meta = dist / "METADATA"
+    if not meta.exists():
+        continue
+    name, ver = parse_name_ver(safe_read(meta))
+    if name in TARGET:
+        hits2.append((name, ver, str(dist)))
 
-if still_bad:
-  raise SystemExit("TRIVY-TRACE: stale dist-info still present: " + str(still_bad[:20]))
+print("TRIVY-TRACE: dist-info hits (post-clean):")
+for name, ver, path in sorted(hits2):
+    print(f"  - {name} {ver} :: {path}")
 
-print("TRIVY-TRACE: OK - no stale METADATA remains anywhere on filesystem")
+bad2 = [(n,v,p) for (n,v,p) in hits2 if v and v != TARGET[n]]
+if bad2:
+    raise SystemExit("TRIVY-TRACE: stale dist-info still present: " + str(bad2[:20]))
+
+print("TRIVY-TRACE: OK - no stale METADATA remains for wheel/jaraco.context")
 PY
+    \
+    && python -m pip check
+
+# Copy app code + rubrics
+COPY src ./src
+COPY rubrics ./rubrics
+
+USER appuser
+EXPOSE 8000
+
+CMD ["uvicorn", "llm_judge.main:app", "--host", "0.0.0.0", "--port", "8000"]
