@@ -17,6 +17,7 @@ env:
   REGISTRY: ghcr.io
   IMAGE_NAME: ${{ github.repository }}
   LOCAL_CI_TAG: llm-judge-mvp:ci
+  TRIVY_VERSION: "0.53.0"
 
 jobs:
   build-scan-push:
@@ -31,6 +32,7 @@ jobs:
         with:
           driver: docker-container
           use: true
+          cleanup: true
 
       - name: Login to GHCR
         uses: docker/login-action@v3
@@ -42,10 +44,11 @@ jobs:
       - name: Extract version from tag
         id: ver
         run: |
+          set -euxo pipefail
           TAG="${GITHUB_REF_NAME}"
           echo "version=${TAG#v}" >> "$GITHUB_OUTPUT"
 
-      # Build ONCE and load into the local docker daemon (single-source-of-truth for scan + push)
+      # Build ONCE and load into local docker daemon (the image Trivy will scan)
       - name: Build (load) image for scan
         uses: docker/build-push-action@v6
         with:
@@ -53,7 +56,6 @@ jobs:
           file: Dockerfile
           load: true
           pull: true
-          # IMPORTANT: release builds should be deterministic; avoid “stale cache surprises”
           no-cache: true
           tags: ${{ env.LOCAL_CI_TAG }}
           build-args: |
@@ -62,102 +64,85 @@ jobs:
       - name: Show image identity (what we will scan + push)
         run: |
           set -euxo pipefail
-          docker image inspect ${{ env.LOCAL_CI_TAG }} --format 'ImageID={{.Id}} Created={{.Created}}'
+          docker image inspect ${{ env.LOCAL_CI_TAG }} --format 'ImageID={{.Id}} Created={{.Created}} RepoTags={{json .RepoTags}}'
 
-      # World-class audit: enumerate wheel/jaraco.context metadata across the ENTIRE filesystem,
-      # not only sys.path. This matches how scanners can behave.
-      - name: Audit wheel + jaraco.context (filesystem-wide METADATA)
+      # Sanity: what runtime Python sees
+      - name: Runtime sanity - pip / versions / dist-info list
         run: |
           set -euxo pipefail
-
-          docker run --rm ${{ env.LOCAL_CI_TAG }} python - <<'PY'
-          import os
-          import sys
-          from pathlib import Path
-
-          TARGET = {
-              "wheel": "0.46.2",
-              "jaraco.context": "6.1.0",
-          }
-
-          SKIP_PREFIXES = (
-              "/proc", "/sys", "/dev", "/run",
-              "/var/lib/docker", "/var/lib/containerd",
-              "/mnt", "/tmp",
-          )
-
-          def should_skip(path: str) -> bool:
-              return path.startswith(SKIP_PREFIXES)
-
-          def read_metadata(meta_path: Path):
-              # parse Name/Version from METADATA with minimal assumptions
-              name = ver = None
-              try:
-                  for line in meta_path.read_text(errors="ignore").splitlines():
-                      if line.startswith("Name: "):
-                          name = line.split(":", 1)[1].strip()
-                      elif line.startswith("Version: "):
-                          ver = line.split(":", 1)[1].strip()
-                      if name and ver:
-                          break
-              except Exception:
-                  return None, None
-              return name, ver
-
-          print("TRACE: python =", sys.version.replace("\n", " "))
-          print("TRACE: executable =", sys.executable)
-          print("TRACE: scanning filesystem for *.dist-info/METADATA for:", ", ".join(TARGET.keys()))
-          print("TRACE: skip prefixes:", SKIP_PREFIXES)
-          print()
-
-          hits = []
-          # Walk from filesystem root
-          for root, dirs, files in os.walk("/", topdown=True):
-              if should_skip(root):
-                  dirs[:] = []
-                  continue
-
-              # prune aggressively: if directory list contains skipped paths deeper, keep normal behavior
-              # keep dirs as-is; root-level skip already handles heavy areas
-
-              if not root.endswith(".dist-info"):
-                  continue
-
-              meta = Path(root) / "METADATA"
-              if not meta.exists():
-                  continue
-
-              name, ver = read_metadata(meta)
-              if name in TARGET:
-                  hits.append((name, ver, str(meta)))
-
-          hits_sorted = sorted(hits, key=lambda x: (x[0], x[1] or "", x[2]))
-
-          print("TRACE: METADATA hits (filesystem-wide):")
-          if not hits_sorted:
-              print("  (none found)  <-- this would be unexpected for wheel")
-          else:
-              for name, ver, meta in hits_sorted:
-                  print(f"  - {name} {ver} :: {meta}")
-
-          bad = [(n, v, m) for (n, v, m) in hits_sorted if v != TARGET[n]]
-          print()
-          if bad:
-              print("TRACE: BAD (stale/vulnerable) METADATA found:")
-              for n, v, m in bad:
-                  print(f"  - {n} {v} :: {m}")
-              raise SystemExit("FAIL: stale dist-info METADATA exists for wheel/jaraco.context")
-          else:
-              print("TRACE: OK - no stale METADATA exists for wheel/jaraco.context")
-          PY
-
-          echo "== pip show (sanity) =="
           docker run --rm ${{ env.LOCAL_CI_TAG }} sh -lc '
             python -V
             python -m pip --version
             python -m pip show wheel jaraco.context || true
+            python - <<PY
+import site, glob, os
+sp = site.getsitepackages()[0]
+hits = sorted(os.path.basename(p) for p in glob.glob(sp + "/*.dist-info") if ("wheel" in p or "jaraco" in p))
+print("site-packages:", sp)
+print("dist-info hits:", hits)
+PY
           '
 
+      # ✅ Forensics: run Trivy JSON locally to extract the PATH(s) Trivy is using
+      # This is the missing root-cause signal. It will tell us exactly where 0.45.1 / 5.3.0 is coming from.
+      - name: Trivy forensics (JSON) - print PkgPath for wheel/jaraco findings
+        run: |
+          set -euxo pipefail
+
+          docker run --rm \
+            -v /var/run/docker.sock:/var/run/docker.sock \
+            -v "${PWD}:/work" -w /work \
+            ghcr.io/aquasecurity/trivy:${{ env.TRIVY_VERSION }} \
+            image --scanners vuln --vuln-type os,library --severity HIGH,CRITICAL \
+            --ignore-unfixed --format json \
+            ${{ env.LOCAL_CI_TAG }} > trivy.json || true
+
+          python - <<'PY'
+import json
+
+with open("trivy.json","r",encoding="utf-8") as f:
+    data = json.load(f)
+
+targets = {"wheel", "jaraco.context"}
+hits = []
+
+for r in data.get("Results", []):
+    # focus on python packages section(s)
+    vulns = r.get("Vulnerabilities") or []
+    for v in vulns:
+        pkg = v.get("PkgName")
+        if pkg in targets:
+            hits.append({
+                "Target": r.get("Target"),
+                "Type": r.get("Type"),
+                "PkgName": pkg,
+                "InstalledVersion": v.get("InstalledVersion"),
+                "FixedVersion": v.get("FixedVersion"),
+                "VulnerabilityID": v.get("VulnerabilityID"),
+                "PkgPath": v.get("PkgPath"),
+                "PrimaryURL": v.get("PrimaryURL"),
+            })
+
+print("\n==== TRIVY FORENSICS (wheel / jaraco.context) ====")
+if not hits:
+    print("No wheel/jaraco findings in JSON (unexpected if table shows them).")
+else:
+    for h in hits:
+        print("-" * 72)
+        for k in ["PkgName","InstalledVersion","FixedVersion","VulnerabilityID","PkgPath","Type","Target","PrimaryURL"]:
+            print(f"{k}: {h.get(k)}")
+print("\n==== END FORENSICS ====\n")
+PY
+
+          # Keep the JSON as an artifact for offline inspection
+      - name: Upload trivy.json artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: trivy-json-${{ github.run_id }}-${{ github.run_attempt }}
+          path: trivy.json
+          if-no-files-found: error
+
+      # Enforcement scan (table) - fail on HIGH/CRITICAL
       - name: Vulnerability scan (Trivy) - fail on HIGH/CRITICAL
         uses: aquasecurity/trivy-action@0.24.0
         with:
