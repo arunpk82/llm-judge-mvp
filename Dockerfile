@@ -165,8 +165,8 @@ if bad2:
 
 print("TRIVY-TRACE: OK - no stale METADATA remains for wheel/jaraco.context")
 PY
-    \
-    && python -m pip check
+
+RUN python -m pip check
 
 # Copy app code + rubrics
 COPY src ./src
