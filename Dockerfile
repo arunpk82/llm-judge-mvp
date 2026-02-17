@@ -26,35 +26,37 @@ RUN poetry export -f requirements.txt --output requirements.txt --without-hashes
 ############################
 FROM python:3.11-slim AS runtime
 
+# Cache-buster for CI so the “fix” layer actually reruns when needed
+ARG AUDIT_SEED=0
+
 ENV PYTHONDONTWRITEBYTECODE=1 \
     PYTHONUNBUFFERED=1 \
-    # Make sure imports work when code is in /app/src
+    # Make sure /app/src is importable (fixes ModuleNotFoundError: llm_judge)
     PYTHONPATH=/app/src
 
 WORKDIR /app
 
+# Create non-root user
 RUN useradd -m -u 10001 appuser
 
 COPY --from=builder /app/requirements.txt /app/requirements.txt
 
-# Cache-buster for CI so the audit/cleanup layer can be forced to re-run
-ARG AUDIT_SEED=0
+# 1) Install app deps
+RUN python -m pip install --no-cache-dir --upgrade pip \
+    && python -m pip install --no-cache-dir -r /app/requirements.txt
 
-# 1) Install application deps
-# 2) Force patched versions
-# 3) Trace and remove stale dist-info by reading METADATA (what Trivy scans)
-RUN echo "AUDIT_SEED=${AUDIT_SEED}" \
- && python -m pip install --no-cache-dir --upgrade pip \
- && python -m pip install --no-cache-dir -r /app/requirements.txt \
- && python -m pip install --no-cache-dir --upgrade --force-reinstall \
+# 2) Force patched versions (what Trivy wants)
+RUN python -m pip install --no-cache-dir --upgrade --force-reinstall \
       "packaging>=24.0" \
       "backports.tarfile>=1.2.0" \
       "wheel==0.46.2" \
-      "jaraco.context==6.1.0" \
+      "jaraco.context==6.1.0"
+
+# 3) TRACE + CLEAN stale dist-info (Trivy reads METADATA from dist-info)
+# IMPORTANT: this RUN step is *only* the heredoc. No '&&' chaining after it.
+RUN echo "AUDIT_SEED=${AUDIT_SEED}" \
  && python - <<'PY'
-import os
-import sys
-import site
+import sys, site
 from pathlib import Path
 
 TARGET = {
@@ -62,79 +64,92 @@ TARGET = {
     "jaraco.context": "6.1.0",
 }
 
-def candidate_dirs():
-    dirs = []
-    # include all known python package roots
-    dirs.extend(site.getsitepackages())
-    if site.getusersitepackages():
-        dirs.append(site.getusersitepackages())
-    # include sys.path entries that look like site-packages/dist-packages
+def roots():
+    out = []
+    for p in site.getsitepackages():
+        out.append(Path(p))
+    usp = site.getusersitepackages()
+    if usp:
+        out.append(Path(usp))
+    # also scan sys.path entries that look like package roots
     for p in sys.path:
         if p and ("site-packages" in p or "dist-packages" in p):
-            dirs.append(p)
-    # unique + existing
-    out = []
-    for d in dict.fromkeys(dirs):
-        dp = Path(d)
-        if dp.exists() and dp.is_dir():
-            out.append(dp)
-    return out
+            out.append(Path(p))
+    # unique + existing dirs
+    uniq = []
+    seen = set()
+    for d in out:
+        if str(d) in seen:
+            continue
+        seen.add(str(d))
+        if d.exists() and d.is_dir():
+            uniq.append(d)
+    return uniq
 
 def read_metadata(dist_info: Path):
     meta = dist_info / "METADATA"
     if not meta.exists():
         return None, None
-    name = version = None
+    name = ver = None
     for line in meta.read_text(errors="ignore").splitlines():
         if line.startswith("Name: "):
             name = line.split(":", 1)[1].strip()
         elif line.startswith("Version: "):
-            version = line.split(":", 1)[1].strip()
-        if name and version:
+            ver = line.split(":", 1)[1].strip()
+        if name and ver:
             break
-    return name, version
+    return name, ver
 
 print("TRACE: python =", sys.version.replace("\n"," "))
-print("TRACE: sys.executable =", sys.executable)
-print("TRACE: package roots:")
-roots = candidate_dirs()
-for r in roots:
+print("TRACE: executable =", sys.executable)
+print("TRACE: sys.path (filtered):")
+for p in sys.path:
+    if "site-packages" in (p or "") or "dist-packages" in (p or ""):
+        print("  -", p)
+
+pkg_roots = roots()
+print("TRACE: discovered package roots:")
+for r in pkg_roots:
     print("  -", r)
 
 hits = []
-for root in roots:
-    for dist in root.glob("*.dist-info"):
+for r in pkg_roots:
+    for dist in r.glob("*.dist-info"):
         name, ver = read_metadata(dist)
         if name in TARGET:
-            hits.append((name, ver, str(dist)))
+            hits.append((name, ver, dist))
 
 print("TRACE: dist-info hits (before cleanup):")
-for name, ver, path in sorted(hits):
-    print(f"  - {name} {ver} :: {path}")
+for name, ver, dist in sorted(hits, key=lambda x: (x[0], x[1] or "", str(x[2]))):
+    print(f"  - {name} {ver} :: {dist}")
 
 removed = []
-for name, ver, path in hits:
+for name, ver, dist in hits:
     want = TARGET[name]
     if ver and ver != want:
-        d = Path(path)
-        removed.append((name, ver, path))
+        removed.append((name, ver, str(dist)))
         # remove entire dist-info directory (this is what Trivy reads)
-        for child in d.rglob("*"):
+        for child in sorted(dist.rglob("*"), reverse=True):
             if child.is_file():
                 child.unlink(missing_ok=True)
-        for child in sorted(d.rglob("*"), reverse=True):
-            if child.is_dir():
-                child.rmdir()
-        d.rmdir()
+            elif child.is_dir():
+                try:
+                    child.rmdir()
+                except OSError:
+                    pass
+        try:
+            dist.rmdir()
+        except OSError:
+            pass
 
-print("TRACE: removed dist-info (stale/vulnerable):")
-for name, ver, path in sorted(removed):
+print("TRACE: removed stale dist-info:")
+for name, ver, path in removed:
     print(f"  - REMOVED {name} {ver} :: {path}")
 
 # Re-scan after cleanup
 hits2 = []
-for root in roots:
-    for dist in root.glob("*.dist-info"):
+for r in pkg_roots:
+    for dist in r.glob("*.dist-info"):
         name, ver = read_metadata(dist)
         if name in TARGET:
             hits2.append((name, ver, str(dist)))
@@ -143,12 +158,15 @@ print("TRACE: dist-info hits (after cleanup):")
 for name, ver, path in sorted(hits2):
     print(f"  - {name} {ver} :: {path}")
 
-# Fail fast if stale metadata still exists (prevents wasting time in Trivy step)
-bad = [(n,v,p) for (n,v,p) in hits2 if v != TARGET[n]]
+bad = [(n, v, p) for (n, v, p) in hits2 if v != TARGET[n]]
 if bad:
-    raise SystemExit("Stale dist-info still present: " + str(bad))
-PY \
- && python -m pip check
+    raise SystemExit("FAIL: stale dist-info still present: " + str(bad))
+
+print("TRACE: OK - no stale dist-info remains for wheel/jaraco.context")
+PY
+
+# 4) Dependency integrity check (separate RUN — no heredoc complications)
+RUN python -m pip check
 
 # Copy application code + rubrics
 COPY src ./src
