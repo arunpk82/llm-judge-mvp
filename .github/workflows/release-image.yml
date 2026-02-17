@@ -53,80 +53,110 @@ jobs:
           file: Dockerfile
           load: true
           pull: true
+          # IMPORTANT: release builds should be deterministic; avoid “stale cache surprises”
+          no-cache: true
           tags: ${{ env.LOCAL_CI_TAG }}
-          cache-from: type=gha
-          cache-to: type=gha,mode=max
           build-args: |
             AUDIT_SEED=${{ github.run_id }}-${{ github.run_attempt }}
 
-      # World-class “show me exactly what got installed and from where”
-      - name: Audit wheel + jaraco.context (pip show + import path + dist-info METADATA hits)
+      - name: Show image identity (what we will scan + push)
+        run: |
+          set -euxo pipefail
+          docker image inspect ${{ env.LOCAL_CI_TAG }} --format 'ImageID={{.Id}} Created={{.Created}}'
+
+      # World-class audit: enumerate wheel/jaraco.context metadata across the ENTIRE filesystem,
+      # not only sys.path. This matches how scanners can behave.
+      - name: Audit wheel + jaraco.context (filesystem-wide METADATA)
         run: |
           set -euxo pipefail
 
-          echo "== pip show =="
+          docker run --rm ${{ env.LOCAL_CI_TAG }} python - <<'PY'
+          import os
+          import sys
+          from pathlib import Path
+
+          TARGET = {
+              "wheel": "0.46.2",
+              "jaraco.context": "6.1.0",
+          }
+
+          SKIP_PREFIXES = (
+              "/proc", "/sys", "/dev", "/run",
+              "/var/lib/docker", "/var/lib/containerd",
+              "/mnt", "/tmp",
+          )
+
+          def should_skip(path: str) -> bool:
+              return path.startswith(SKIP_PREFIXES)
+
+          def read_metadata(meta_path: Path):
+              # parse Name/Version from METADATA with minimal assumptions
+              name = ver = None
+              try:
+                  for line in meta_path.read_text(errors="ignore").splitlines():
+                      if line.startswith("Name: "):
+                          name = line.split(":", 1)[1].strip()
+                      elif line.startswith("Version: "):
+                          ver = line.split(":", 1)[1].strip()
+                      if name and ver:
+                          break
+              except Exception:
+                  return None, None
+              return name, ver
+
+          print("TRACE: python =", sys.version.replace("\n", " "))
+          print("TRACE: executable =", sys.executable)
+          print("TRACE: scanning filesystem for *.dist-info/METADATA for:", ", ".join(TARGET.keys()))
+          print("TRACE: skip prefixes:", SKIP_PREFIXES)
+          print()
+
+          hits = []
+          # Walk from filesystem root
+          for root, dirs, files in os.walk("/", topdown=True):
+              if should_skip(root):
+                  dirs[:] = []
+                  continue
+
+              # prune aggressively: if directory list contains skipped paths deeper, keep normal behavior
+              # keep dirs as-is; root-level skip already handles heavy areas
+
+              if not root.endswith(".dist-info"):
+                  continue
+
+              meta = Path(root) / "METADATA"
+              if not meta.exists():
+                  continue
+
+              name, ver = read_metadata(meta)
+              if name in TARGET:
+                  hits.append((name, ver, str(meta)))
+
+          hits_sorted = sorted(hits, key=lambda x: (x[0], x[1] or "", x[2]))
+
+          print("TRACE: METADATA hits (filesystem-wide):")
+          if not hits_sorted:
+              print("  (none found)  <-- this would be unexpected for wheel")
+          else:
+              for name, ver, meta in hits_sorted:
+                  print(f"  - {name} {ver} :: {meta}")
+
+          bad = [(n, v, m) for (n, v, m) in hits_sorted if v != TARGET[n]]
+          print()
+          if bad:
+              print("TRACE: BAD (stale/vulnerable) METADATA found:")
+              for n, v, m in bad:
+                  print(f"  - {n} {v} :: {m}")
+              raise SystemExit("FAIL: stale dist-info METADATA exists for wheel/jaraco.context")
+          else:
+              print("TRACE: OK - no stale METADATA exists for wheel/jaraco.context")
+          PY
+
+          echo "== pip show (sanity) =="
           docker run --rm ${{ env.LOCAL_CI_TAG }} sh -lc '
             python -V
             python -m pip --version
             python -m pip show wheel jaraco.context || true
           '
-
-          echo "== import locations =="
-          docker run --rm ${{ env.LOCAL_CI_TAG }} python - <<'PY'
-          import importlib, sys
-          for m in ["wheel", "jaraco.context"]:
-            mod = importlib.import_module(m)
-            print(f"{m}: {getattr(mod, '__file__', None)}")
-          print("sys.executable:", sys.executable)
-          PY
-
-          echo "== dist-info METADATA hits (what Trivy reads) =="
-          docker run --rm ${{ env.LOCAL_CI_TAG }} python - <<'PY'
-          import sys, site
-          from pathlib import Path
-
-          def roots():
-            r = []
-            r += site.getsitepackages()
-            usp = site.getusersitepackages()
-            if usp:
-              r.append(usp)
-            for p in sys.path:
-              if p and ("site-packages" in p or "dist-packages" in p):
-                r.append(p)
-            out = []
-            for x in dict.fromkeys(r):
-              px = Path(x)
-              if px.exists() and px.is_dir():
-                out.append(px)
-            return out
-
-          def meta(dist):
-            m = dist / "METADATA"
-            if not m.exists():
-              return None, None
-            name = ver = None
-            for line in m.read_text(errors="ignore").splitlines():
-              if line.startswith("Name: "):
-                name = line.split(":", 1)[1].strip()
-              elif line.startswith("Version: "):
-                ver = line.split(":", 1)[1].strip()
-              if name and ver:
-                break
-            return name, ver
-
-          targets = {"wheel", "jaraco.context"}
-          print("AUDIT roots:")
-          for r in roots():
-            print(" -", r)
-
-          print("\nAUDIT dist-info hits:")
-          for r in roots():
-            for d in r.glob("*.dist-info"):
-              n, v = meta(d)
-              if n in targets:
-                print(f" - {n} {v} :: {d}")
-          PY
 
       - name: Vulnerability scan (Trivy) - fail on HIGH/CRITICAL
         uses: aquasecurity/trivy-action@0.24.0
