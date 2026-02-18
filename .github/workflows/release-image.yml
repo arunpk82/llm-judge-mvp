@@ -8,7 +8,6 @@ on:
 permissions:
   contents: read
   packages: write
-  id-token: write  # Fix 1: Required for GHCR auth with GITHUB_TOKEN in newer runners
 
 env:
   REGISTRY: ghcr.io
@@ -27,7 +26,6 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          # refs/tags/v0.1.14 -> v0.1.14
           echo "version=${GITHUB_REF_NAME}" >> "$GITHUB_OUTPUT"
 
       - name: Set unique local image tag for this run
@@ -35,16 +33,14 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          # Fix 2: Short SHA to avoid Docker tag length limit (128 chars max)
-          SHORT_SHA="${GITHUB_SHA::12}"
-          echo "local_tag=llm-judge-mvp:ci-${SHORT_SHA}" >> "$GITHUB_OUTPUT"
+          echo "local_tag=llm-judge-mvp:ci-${GITHUB_SHA}" >> "$GITHUB_OUTPUT"
 
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
         with:
           driver: docker-container
           use: true
-          # Fix 3: 'cleanup' is not a valid input for setup-buildx-action — removed
+          cleanup: true
 
       - name: Log in to GHCR
         uses: docker/login-action@v3
@@ -58,10 +54,6 @@ jobs:
         with:
           context: .
           file: Dockerfile
-          # Fix 4: load: true and driver: docker-container are incompatible.
-          # Switch driver to 'docker' in setup-buildx (handled below) OR use
-          # a separate local builder. Here we keep load:true and override the
-          # builder to use the default docker driver via an inline workaround.
           load: true
           pull: true
           no-cache: true
@@ -73,83 +65,66 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          echo "LOCAL TAG: ${{ steps.img.outputs.local_tag }}"
-          docker images --no-trunc | head -n 50
-          docker inspect "${{ steps.img.outputs.local_tag }}" \
-            --format 'IMAGE_ID={{.Id}} CREATED={{.Created}} REPO_TAGS={{json .RepoTags}}'
+          TAG="${{ steps.img.outputs.local_tag }}"
+          echo "LOCAL TAG: ${TAG}"
+          docker inspect "${TAG}" --format 'IMAGE_ID={{.Id}} CREATED={{.Created}}'
 
-      - name: In-image metadata trace (wheel + jaraco.context)
+      - name: In-image trace (wheel + jaraco.context)
         shell: bash
         run: |
           set -euo pipefail
+          TAG="${{ steps.img.outputs.local_tag }}"
 
-          # Show runtime-installed versions
-          docker run --rm "${{ steps.img.outputs.local_tag }}" sh -lc '
-            set -eu
-            python -V
-            python -m pip --version
-            echo "== pip show =="
-            python -m pip show wheel jaraco.context || true
-          '
+          echo "== pip show =="
+          docker run --rm "${TAG}" python -m pip show wheel jaraco.context || true
 
-          # Fix 5: Hardcoded python3.11 path will fail if image uses a different
-          # Python version. Dynamically resolve site-packages path instead.
-          docker run --rm "${{ steps.img.outputs.local_tag }}" sh -lc "
-            set -eu
-            python -c '
-import sys
-from pathlib import Path
+          echo "== METADATA scan (site-packages) =="
+          docker run --rm "${TAG}" python - <<'PY'
+          import sys
+          from pathlib import Path
 
-TARGET = {\"wheel\": \"0.46.2\", \"jaraco.context\": \"6.1.0\"}
+          TARGET = {"wheel": "0.46.2", "jaraco.context": "6.1.0"}
+          roots = [Path("/usr/local/lib/python3.11/site-packages")]
 
-# Fix 5: Resolve all site-packages dirs from the running interpreter
-import site
-roots = [Path(p) for p in site.getsitepackages() if Path(p).exists()]
-if not roots:
-    roots = [Path(sys.prefix) / \"lib\" / f\"python{sys.version_info.major}.{sys.version_info.minor}\" / \"site-packages\"]
-roots = [r for r in roots if r.exists()]
+          def read_name_ver(meta: Path):
+              name = ver = None
+              for line in meta.read_text(errors="ignore").splitlines():
+                  if line.startswith("Name: "):
+                      name = line.split(":", 1)[1].strip()
+                  elif line.startswith("Version: "):
+                      ver = line.split(":", 1)[1].strip()
+                  if name and ver:
+                      break
+              return name, ver
 
-def read_name_ver(meta: Path):
-    name = ver = None
-    try:
-        for line in meta.read_text(errors=\"ignore\").splitlines():
-            if line.startswith(\"Name: \"):
-                name = line.split(\":\",1)[1].strip()
-            elif line.startswith(\"Version: \"):
-                ver = line.split(\":\",1)[1].strip()
-            if name and ver:
-                break
-    except Exception:
-        return None, None
-    return name, ver
+          hits = []
+          for root in roots:
+              if not root.exists():
+                  continue
+              for dist in root.glob("*.dist-info"):
+                  meta = dist / "METADATA"
+                  if not meta.exists():
+                      continue
+                  n, v = read_name_ver(meta)
+                  if n in TARGET:
+                      hits.append((n, v, str(dist)))
 
-hits = []
-for root in roots:
-    for dist in root.glob(\"*.dist-info\"):
-        meta = dist / \"METADATA\"
-        if not meta.exists():
-            continue
-        n, v = read_name_ver(meta)
-        if n in TARGET:
-            hits.append((n, v, str(meta)))
+          print("TRACE: dist-info hits:")
+          for n, v, p in sorted(hits):
+              print(f"  - {n} {v} :: {p}")
 
-print(\"TRACE: METADATA hits:\")
-for n, v, p in sorted(hits):
-    print(f\"  - {n} {v} :: {p}\")
+          bad = [(n, v, p) for (n, v, p) in hits if v != TARGET[n]]
+          if bad:
+              print("TRACE: BAD dist-info present:")
+              for n, v, p in bad:
+                  print(f"  - {n} {v} :: {p}")
+              raise SystemExit(2)
 
-bad = [(n,v,p) for (n,v,p) in hits if v != TARGET[n]]
-if bad:
-    print(\"TRACE: BAD METADATA found:\")
-    for n,v,p in bad:
-        print(f\"  - {n} {v} :: {p}\")
-    raise SystemExit(2)
-print(\"TRACE: OK - METADATA versions match expected\")'
-          "
+          print("TRACE: OK - expected versions present")
+          PY
 
-      - name: Vulnerability scan (Trivy) - fail on HIGH/CRITICAL
-        # Fix 6: Pin to a specific full semver digest to avoid supply-chain risk
-        # and keep it reproducible. 0.24.0 is also outdated — bumped to latest stable.
-        uses: aquasecurity/trivy-action@0.30.0
+      - name: Vulnerability scan (Trivy)
+        uses: aquasecurity/trivy-action@0.24.0
         with:
           scan-type: image
           image-ref: ${{ steps.img.outputs.local_tag }}
@@ -159,23 +134,22 @@ print(\"TRACE: OK - METADATA versions match expected\")'
           vuln-type: "os,library"
           severity: "HIGH,CRITICAL"
           scanners: "vuln"
-          # Fix 7: trivy-action needs to know where the local Docker daemon image lives
-          trivyignores: ""        # explicit empty — avoids accidental .trivyignore picks
 
       - name: Tag and push scanned image (release + latest)
         shell: bash
         run: |
           set -euo pipefail
 
-          RELEASE_REF="${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ steps.ver.outputs.version }}"
-          LATEST_REF="${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:latest"
+          LOCAL="${{ steps.img.outputs.local_tag }}"
+          RELEASE="${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ steps.ver.outputs.version }}"
+          LATEST="${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:latest"
 
-          docker tag "${{ steps.img.outputs.local_tag }}" "$RELEASE_REF"
-          docker tag "${{ steps.img.outputs.local_tag }}" "$LATEST_REF"
+          docker tag "${LOCAL}" "${RELEASE}"
+          docker tag "${LOCAL}" "${LATEST}"
 
-          docker push "$RELEASE_REF"
-          docker push "$LATEST_REF"
+          docker push "${RELEASE}"
+          docker push "${LATEST}"
 
           echo "Pushed:"
-          echo " - $RELEASE_REF"
-          echo " - $LATEST_REF"
+          echo " - ${RELEASE}"
+          echo " - ${LATEST}"
