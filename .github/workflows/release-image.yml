@@ -16,7 +16,7 @@ concurrency:
 env:
   REGISTRY: ghcr.io
   IMAGE_NAME: ${{ github.repository }}
-  LOCAL_CI_TAG: llm-judge-mvp:ci
+  LOCAL_CI_TAG: "llm-judge-mvp:ci"
   TRIVY_VERSION: "0.53.0"
 
 jobs:
@@ -48,7 +48,6 @@ jobs:
           TAG="${GITHUB_REF_NAME}"
           echo "version=${TAG#v}" >> "$GITHUB_OUTPUT"
 
-      # Build ONCE and load into local docker daemon (the image Trivy will scan)
       - name: Build (load) image for scan
         uses: docker/build-push-action@v6
         with:
@@ -57,20 +56,19 @@ jobs:
           load: true
           pull: true
           no-cache: true
-          tags: ${{ env.LOCAL_CI_TAG }}
+          tags: "${{ env.LOCAL_CI_TAG }}"
           build-args: |
             AUDIT_SEED=${{ github.run_id }}-${{ github.run_attempt }}
 
       - name: Show image identity (what we will scan + push)
         run: |
           set -euxo pipefail
-          docker image inspect ${{ env.LOCAL_CI_TAG }} --format 'ImageID={{.Id}} Created={{.Created}} RepoTags={{json .RepoTags}}'
+          docker image inspect "${{ env.LOCAL_CI_TAG }}" --format 'ImageID={{.Id}} Created={{.Created}} RepoTags={{json .RepoTags}}'
 
-      # Sanity: what runtime Python sees
       - name: Runtime sanity - pip / versions / dist-info list
         run: |
           set -euxo pipefail
-          docker run --rm ${{ env.LOCAL_CI_TAG }} sh -lc '
+          docker run --rm "${{ env.LOCAL_CI_TAG }}" sh -lc '
             python -V
             python -m pip --version
             python -m pip show wheel jaraco.context || true
@@ -83,8 +81,6 @@ print("dist-info hits:", hits)
 PY
           '
 
-      # ✅ Forensics: run Trivy JSON locally to extract the PATH(s) Trivy is using
-      # This is the missing root-cause signal. It will tell us exactly where 0.45.1 / 5.3.0 is coming from.
       - name: Trivy forensics (JSON) - print PkgPath for wheel/jaraco findings
         run: |
           set -euxo pipefail
@@ -92,10 +88,10 @@ PY
           docker run --rm \
             -v /var/run/docker.sock:/var/run/docker.sock \
             -v "${PWD}:/work" -w /work \
-            ghcr.io/aquasecurity/trivy:${{ env.TRIVY_VERSION }} \
+            "ghcr.io/aquasecurity/trivy:${{ env.TRIVY_VERSION }}" \
             image --scanners vuln --vuln-type os,library --severity HIGH,CRITICAL \
             --ignore-unfixed --format json \
-            ${{ env.LOCAL_CI_TAG }} > trivy.json || true
+            "${{ env.LOCAL_CI_TAG }}" > trivy.json || true
 
           python - <<'PY'
 import json
@@ -107,7 +103,6 @@ targets = {"wheel", "jaraco.context"}
 hits = []
 
 for r in data.get("Results", []):
-    # focus on python packages section(s)
     vulns = r.get("Vulnerabilities") or []
     for v in vulns:
         pkg = v.get("PkgName")
@@ -134,7 +129,6 @@ else:
 print("\n==== END FORENSICS ====\n")
 PY
 
-          # Keep the JSON as an artifact for offline inspection
       - name: Upload trivy.json artifact
         uses: actions/upload-artifact@v4
         with:
@@ -142,12 +136,11 @@ PY
           path: trivy.json
           if-no-files-found: error
 
-      # Enforcement scan (table) - fail on HIGH/CRITICAL
       - name: Vulnerability scan (Trivy) - fail on HIGH/CRITICAL
         uses: aquasecurity/trivy-action@0.24.0
         with:
           scan-type: image
-          image-ref: ${{ env.LOCAL_CI_TAG }}
+          image-ref: "${{ env.LOCAL_CI_TAG }}"
           format: table
           exit-code: "1"
           ignore-unfixed: true
@@ -155,7 +148,6 @@ PY
           severity: "HIGH,CRITICAL"
           scanners: "vuln"
 
-      # Push the SAME image that was scanned (no rebuild).
       - name: Tag and push scanned image (release + latest)
         run: |
           set -euxo pipefail
@@ -163,8 +155,8 @@ PY
           RELEASE_REF="${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ steps.ver.outputs.version }}"
           LATEST_REF="${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:latest"
 
-          docker tag ${{ env.LOCAL_CI_TAG }} "$RELEASE_REF"
-          docker tag ${{ env.LOCAL_CI_TAG }} "$LATEST_REF"
+          docker tag "${{ env.LOCAL_CI_TAG }}" "$RELEASE_REF"
+          docker tag "${{ env.LOCAL_CI_TAG }}" "$LATEST_REF"
 
           docker push "$RELEASE_REF"
           docker push "$LATEST_REF"
