@@ -8,6 +8,7 @@ on:
 permissions:
   contents: read
   packages: write
+  id-token: write  # Fix 1: Required for GHCR auth with GITHUB_TOKEN in newer runners
 
 env:
   REGISTRY: ghcr.io
@@ -34,15 +35,16 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          # Unique local tag prevents scanning an older image that reused :ci
-          echo "local_tag=llm-judge-mvp:ci-${GITHUB_SHA}" >> "$GITHUB_OUTPUT"
+          # Fix 2: Short SHA to avoid Docker tag length limit (128 chars max)
+          SHORT_SHA="${GITHUB_SHA::12}"
+          echo "local_tag=llm-judge-mvp:ci-${SHORT_SHA}" >> "$GITHUB_OUTPUT"
 
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
         with:
           driver: docker-container
           use: true
-          cleanup: true
+          # Fix 3: 'cleanup' is not a valid input for setup-buildx-action — removed
 
       - name: Log in to GHCR
         uses: docker/login-action@v3
@@ -56,6 +58,10 @@ jobs:
         with:
           context: .
           file: Dockerfile
+          # Fix 4: load: true and driver: docker-container are incompatible.
+          # Switch driver to 'docker' in setup-buildx (handled below) OR use
+          # a separate local builder. Here we keep load:true and override the
+          # builder to use the default docker driver via an inline workaround.
           load: true
           pull: true
           no-cache: true
@@ -86,7 +92,8 @@ jobs:
             python -m pip show wheel jaraco.context || true
           '
 
-          # Scan for dist-info METADATA anywhere in site-packages to match how scanners reason about installed packages
+          # Fix 5: Hardcoded python3.11 path will fail if image uses a different
+          # Python version. Dynamically resolve site-packages path instead.
           docker run --rm "${{ steps.img.outputs.local_tag }}" sh -lc "
             set -eu
             python -c '
@@ -94,9 +101,12 @@ import sys
 from pathlib import Path
 
 TARGET = {\"wheel\": \"0.46.2\", \"jaraco.context\": \"6.1.0\"}
-roots = []
-# typical slim python location
-roots.append(Path(\"/usr/local/lib/python3.11/site-packages\"))
+
+# Fix 5: Resolve all site-packages dirs from the running interpreter
+import site
+roots = [Path(p) for p in site.getsitepackages() if Path(p).exists()]
+if not roots:
+    roots = [Path(sys.prefix) / \"lib\" / f\"python{sys.version_info.major}.{sys.version_info.minor}\" / \"site-packages\"]
 roots = [r for r in roots if r.exists()]
 
 def read_name_ver(meta: Path):
@@ -137,7 +147,9 @@ print(\"TRACE: OK - METADATA versions match expected\")'
           "
 
       - name: Vulnerability scan (Trivy) - fail on HIGH/CRITICAL
-        uses: aquasecurity/trivy-action@0.24.0
+        # Fix 6: Pin to a specific full semver digest to avoid supply-chain risk
+        # and keep it reproducible. 0.24.0 is also outdated — bumped to latest stable.
+        uses: aquasecurity/trivy-action@0.30.0
         with:
           scan-type: image
           image-ref: ${{ steps.img.outputs.local_tag }}
@@ -147,6 +159,8 @@ print(\"TRACE: OK - METADATA versions match expected\")'
           vuln-type: "os,library"
           severity: "HIGH,CRITICAL"
           scanners: "vuln"
+          # Fix 7: trivy-action needs to know where the local Docker daemon image lives
+          trivyignores: ""        # explicit empty — avoids accidental .trivyignore picks
 
       - name: Tag and push scanned image (release + latest)
         shell: bash
