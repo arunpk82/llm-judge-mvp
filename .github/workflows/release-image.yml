@@ -3,29 +3,39 @@ name: release-image
 on:
   push:
     tags:
-      - "v*.*.*"
+      - "v*"
 
 permissions:
   contents: read
   packages: write
 
-concurrency:
-  group: release-image-${{ github.ref }}
-  cancel-in-progress: true
-
 env:
   REGISTRY: ghcr.io
-  IMAGE_NAME: ${{ github.repository }}
-  LOCAL_CI_TAG: "llm-judge-mvp:ci"
-  TRIVY_VERSION: "0.53.0"
+  IMAGE_NAME: arunpk82/llm-judge-mvp
 
 jobs:
-  build-scan-push:
+  release:
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+
+      - name: Extract version from tag
+        id: ver
+        shell: bash
+        run: |
+          set -euo pipefail
+          # refs/tags/v0.1.14 -> v0.1.14
+          echo "version=${GITHUB_REF_NAME}" >> "$GITHUB_OUTPUT"
+
+      - name: Set unique local image tag for this run
+        id: img
+        shell: bash
+        run: |
+          set -euo pipefail
+          # Unique local tag prevents scanning an older image that reused :ci
+          echo "local_tag=llm-judge-mvp:ci-${GITHUB_SHA}" >> "$GITHUB_OUTPUT"
 
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
@@ -34,21 +44,14 @@ jobs:
           use: true
           cleanup: true
 
-      - name: Login to GHCR
+      - name: Log in to GHCR
         uses: docker/login-action@v3
         with:
           registry: ${{ env.REGISTRY }}
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Extract version from tag
-        id: ver
-        run: |
-          set -euxo pipefail
-          TAG="${GITHUB_REF_NAME}"
-          echo "version=${TAG#v}" >> "$GITHUB_OUTPUT"
-
-      - name: Build (load) image for scan
+      - name: Build image (load into local docker)
         uses: docker/build-push-action@v6
         with:
           context: .
@@ -56,91 +59,88 @@ jobs:
           load: true
           pull: true
           no-cache: true
-          tags: "${{ env.LOCAL_CI_TAG }}"
+          tags: ${{ steps.img.outputs.local_tag }}
           build-args: |
             AUDIT_SEED=${{ github.run_id }}-${{ github.run_attempt }}
 
-      - name: Show image identity (what we will scan + push)
+      - name: Trace image identity (prove what will be scanned)
+        shell: bash
         run: |
-          set -euxo pipefail
-          docker image inspect "${{ env.LOCAL_CI_TAG }}" --format 'ImageID={{.Id}} Created={{.Created}} RepoTags={{json .RepoTags}}'
+          set -euo pipefail
+          echo "LOCAL TAG: ${{ steps.img.outputs.local_tag }}"
+          docker images --no-trunc | head -n 50
+          docker inspect "${{ steps.img.outputs.local_tag }}" \
+            --format 'IMAGE_ID={{.Id}} CREATED={{.Created}} REPO_TAGS={{json .RepoTags}}'
 
-      - name: Runtime sanity - pip / versions / dist-info list
+      - name: In-image metadata trace (wheel + jaraco.context)
+        shell: bash
         run: |
-          set -euxo pipefail
-          docker run --rm "${{ env.LOCAL_CI_TAG }}" sh -lc '
+          set -euo pipefail
+
+          # Show runtime-installed versions
+          docker run --rm "${{ steps.img.outputs.local_tag }}" sh -lc '
+            set -eu
             python -V
             python -m pip --version
+            echo "== pip show =="
             python -m pip show wheel jaraco.context || true
-            python - <<PY
-import site, glob, os
-sp = site.getsitepackages()[0]
-hits = sorted(os.path.basename(p) for p in glob.glob(sp + "/*.dist-info") if ("wheel" in p or "jaraco" in p))
-print("site-packages:", sp)
-print("dist-info hits:", hits)
-PY
           '
 
-      - name: Trivy forensics (JSON) - print PkgPath for wheel/jaraco findings
-        run: |
-          set -euxo pipefail
+          # Scan for dist-info METADATA anywhere in site-packages to match how scanners reason about installed packages
+          docker run --rm "${{ steps.img.outputs.local_tag }}" sh -lc "
+            set -eu
+            python -c '
+import sys
+from pathlib import Path
 
-          docker run --rm \
-            -v /var/run/docker.sock:/var/run/docker.sock \
-            -v "${PWD}:/work" -w /work \
-            "ghcr.io/aquasecurity/trivy:${{ env.TRIVY_VERSION }}" \
-            image --scanners vuln --vuln-type os,library --severity HIGH,CRITICAL \
-            --ignore-unfixed --format json \
-            "${{ env.LOCAL_CI_TAG }}" > trivy.json || true
+TARGET = {\"wheel\": \"0.46.2\", \"jaraco.context\": \"6.1.0\"}
+roots = []
+# typical slim python location
+roots.append(Path(\"/usr/local/lib/python3.11/site-packages\"))
+roots = [r for r in roots if r.exists()]
 
-          python - <<'PY'
-import json
+def read_name_ver(meta: Path):
+    name = ver = None
+    try:
+        for line in meta.read_text(errors=\"ignore\").splitlines():
+            if line.startswith(\"Name: \"):
+                name = line.split(\":\",1)[1].strip()
+            elif line.startswith(\"Version: \"):
+                ver = line.split(\":\",1)[1].strip()
+            if name and ver:
+                break
+    except Exception:
+        return None, None
+    return name, ver
 
-with open("trivy.json","r",encoding="utf-8") as f:
-    data = json.load(f)
-
-targets = {"wheel", "jaraco.context"}
 hits = []
+for root in roots:
+    for dist in root.glob(\"*.dist-info\"):
+        meta = dist / \"METADATA\"
+        if not meta.exists():
+            continue
+        n, v = read_name_ver(meta)
+        if n in TARGET:
+            hits.append((n, v, str(meta)))
 
-for r in data.get("Results", []):
-    vulns = r.get("Vulnerabilities") or []
-    for v in vulns:
-        pkg = v.get("PkgName")
-        if pkg in targets:
-            hits.append({
-                "Target": r.get("Target"),
-                "Type": r.get("Type"),
-                "PkgName": pkg,
-                "InstalledVersion": v.get("InstalledVersion"),
-                "FixedVersion": v.get("FixedVersion"),
-                "VulnerabilityID": v.get("VulnerabilityID"),
-                "PkgPath": v.get("PkgPath"),
-                "PrimaryURL": v.get("PrimaryURL"),
-            })
+print(\"TRACE: METADATA hits:\")
+for n, v, p in sorted(hits):
+    print(f\"  - {n} {v} :: {p}\")
 
-print("\n==== TRIVY FORENSICS (wheel / jaraco.context) ====")
-if not hits:
-    print("No wheel/jaraco findings in JSON (unexpected if table shows them).")
-else:
-    for h in hits:
-        print("-" * 72)
-        for k in ["PkgName","InstalledVersion","FixedVersion","VulnerabilityID","PkgPath","Type","Target","PrimaryURL"]:
-            print(f"{k}: {h.get(k)}")
-print("\n==== END FORENSICS ====\n")
-PY
-
-      - name: Upload trivy.json artifact
-        uses: actions/upload-artifact@v4
-        with:
-          name: trivy-json-${{ github.run_id }}-${{ github.run_attempt }}
-          path: trivy.json
-          if-no-files-found: error
+bad = [(n,v,p) for (n,v,p) in hits if v != TARGET[n]]
+if bad:
+    print(\"TRACE: BAD METADATA found:\")
+    for n,v,p in bad:
+        print(f\"  - {n} {v} :: {p}\")
+    raise SystemExit(2)
+print(\"TRACE: OK - METADATA versions match expected\")'
+          "
 
       - name: Vulnerability scan (Trivy) - fail on HIGH/CRITICAL
         uses: aquasecurity/trivy-action@0.24.0
         with:
           scan-type: image
-          image-ref: "${{ env.LOCAL_CI_TAG }}"
+          image-ref: ${{ steps.img.outputs.local_tag }}
           format: table
           exit-code: "1"
           ignore-unfixed: true
@@ -149,14 +149,15 @@ PY
           scanners: "vuln"
 
       - name: Tag and push scanned image (release + latest)
+        shell: bash
         run: |
-          set -euxo pipefail
+          set -euo pipefail
 
           RELEASE_REF="${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ steps.ver.outputs.version }}"
           LATEST_REF="${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:latest"
 
-          docker tag "${{ env.LOCAL_CI_TAG }}" "$RELEASE_REF"
-          docker tag "${{ env.LOCAL_CI_TAG }}" "$LATEST_REF"
+          docker tag "${{ steps.img.outputs.local_tag }}" "$RELEASE_REF"
+          docker tag "${{ steps.img.outputs.local_tag }}" "$LATEST_REF"
 
           docker push "$RELEASE_REF"
           docker push "$LATEST_REF"
