@@ -25,3 +25,5 @@ artifacts/
 # IDE
 .vscode/
 .idea/
+.coverage
+reports/
