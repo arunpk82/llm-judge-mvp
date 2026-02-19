@@ -1,0 +1,9 @@
+run_id_prefix: pr-gate
+dataset:
+  path: datasets/golden/v1.jsonl
+  dataset_id: golden
+  version: v1
+rubric_id: chat_quality
+judge_engine: deterministic
+output_dir: reports/runs
+random_seed: 42
