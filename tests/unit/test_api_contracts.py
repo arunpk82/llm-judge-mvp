@@ -3,6 +3,7 @@ from fastapi.testclient import TestClient
 from llm_judge.deterministic_judge import DeterministicJudge
 from llm_judge.main import app
 from llm_judge.runtime import get_judge_engine
+from llm_judge.schemas import Message, PredictRequest
 
 client = TestClient(app, raise_server_exceptions=True)
 
@@ -61,11 +62,10 @@ def test_chat_quality_rubric_exists() -> None:
 
 
 def test_scorer_unknown_rubric_fails_cleanly() -> None:
-    from llm_judge.schemas import PredictRequest
     from llm_judge.scorer import score_candidate
 
     req = PredictRequest(
-        conversation=[{"role": "user", "content": "Hello"}],
+        conversation=[Message(role="user", content="Hello")],
         candidate_answer="Hi",
         rubric_id="does_not_exist",
     )
@@ -75,11 +75,10 @@ def test_scorer_unknown_rubric_fails_cleanly() -> None:
 
 
 def test_scorer_low_relevance_flag_when_unrelated() -> None:
-    from llm_judge.schemas import PredictRequest
     from llm_judge.scorer import score_candidate
 
     req = PredictRequest(
-        conversation=[{"role": "user", "content": "How do I reset my router?"}],
+        conversation=[Message(role="user", content="How do I reset my router?")],
         candidate_answer="Bananas are yellow and grow in bunches.",
         rubric_id="chat_quality",
     )
@@ -90,11 +89,10 @@ def test_scorer_low_relevance_flag_when_unrelated() -> None:
 
 
 def test_scorer_rude_tone_flag_when_rude_words_present() -> None:
-    from llm_judge.schemas import PredictRequest
     from llm_judge.scorer import score_candidate
 
     req = PredictRequest(
-        conversation=[{"role": "user", "content": "Can you help me?"}],
+        conversation=[Message(role="user", content="Can you help me?")],
         candidate_answer="That is a stupid question. Shut up.",
         rubric_id="chat_quality",
     )
@@ -105,11 +103,10 @@ def test_scorer_rude_tone_flag_when_rude_words_present() -> None:
 
 
 def test_scorer_polite_language_improves_tone() -> None:
-    from llm_judge.schemas import PredictRequest
     from llm_judge.scorer import score_candidate
 
     req = PredictRequest(
-        conversation=[{"role": "user", "content": "My internet is slow"}],
+        conversation=[Message(role="user", content="My internet is slow")],
         candidate_answer="Please restart your router. Thanks!",
         rubric_id="chat_quality",
     )
@@ -164,16 +161,14 @@ def test_llm_timeout_falls_back_to_deterministic(monkeypatch) -> None:
 
     engine = get_judge_engine()
 
-    payload = {
-        "conversation": [{"role": "user", "content": "How do I reset my router?"}],
-        "candidate_answer": "Please restart your router.",
-        "rubric_id": "chat_quality",
-    }
-
     # Evaluate via engine directly (fast, deterministic)
-    from llm_judge.schemas import PredictRequest
 
-    req = PredictRequest(**payload)
+    req = PredictRequest(
+        conversation=[Message(role="user", content="How do I reset my router?")],
+        candidate_answer="Please restart your router.",
+        rubric_id="chat_quality",
+    )
+
     res = engine.evaluate(req)
 
     # DeterministicJudge produces these keys

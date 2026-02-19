@@ -11,6 +11,7 @@ from llm_judge.runtime import get_judge_engine
 from llm_judge.schemas import Message, PredictRequest
 
 from .io import build_manifest, ensure_dir, write_json, write_jsonl
+from .metrics import compute_metrics
 from .spec import RunSpec
 
 
@@ -86,8 +87,9 @@ def main() -> int:
 
     write_jsonl(run_dir / "judgments.jsonl", judgments)
 
-    # PR3 placeholder metrics (computed in PR4)
-    write_json(run_dir / "metrics.json", {"status": "metrics_pending", "n_cases": len(rows)})
+    # PR4: compute & persist metrics
+    metrics = compute_metrics(judgments)
+    write_json(run_dir / "metrics.json", metrics)
 
     print(f"Run complete: {run_dir}")
     return 0
