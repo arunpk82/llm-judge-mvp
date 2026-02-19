@@ -3,7 +3,7 @@ import json
 import httpx
 
 from llm_judge.runtime import get_judge_engine
-from llm_judge.schemas import PredictRequest
+from llm_judge.schemas import Message, PredictRequest
 
 
 class _FakeResponse:
@@ -71,7 +71,7 @@ def test_llm_judge_success_path_returns_llm_response(monkeypatch) -> None:
     engine = get_judge_engine()
 
     req = PredictRequest(
-        conversation=[{"role": "user", "content": "Hello"}],
+        conversation=[Message(role="user", content="Hello")],
         candidate_answer="Hi there!",
         rubric_id="chat_quality",
     )
@@ -100,7 +100,7 @@ def test_llm_invalid_json_triggers_fallback(monkeypatch) -> None:
     engine = get_judge_engine()
 
     req = PredictRequest(
-        conversation=[{"role": "user", "content": "How do I reset my router?"}],
+        conversation=[Message(role="user", content="How do I reset my router?")],
         candidate_answer="Please restart your router.",
         rubric_id="chat_quality",
     )
@@ -132,7 +132,7 @@ def test_engine_selector_returns_llm_engine_when_configured(monkeypatch) -> None
     monkeypatch.setattr(httpx, "Client", lambda *args, **kwargs: _FakeClient(json.dumps(llm_payload)))
 
     req = PredictRequest(
-        conversation=[{"role": "user", "content": "Hello"}],
+        conversation=[Message(role="user", content="Hello")],
         candidate_answer="Hi",
         rubric_id="chat_quality",
     )
@@ -161,7 +161,7 @@ def test_llm_http_error_triggers_fallback(monkeypatch) -> None:
     engine = get_judge_engine()
 
     req = PredictRequest(
-        conversation=[{"role": "user", "content": "Hello"}],
+        conversation=[Message(role="user", content="Hello")],
         candidate_answer="Hi",
         rubric_id="chat_quality",
     )

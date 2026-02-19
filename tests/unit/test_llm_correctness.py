@@ -4,12 +4,12 @@ from typing import Any
 import pytest
 
 from llm_judge.llm_correctness import _coerce_result, judge_correctness_llm
-from llm_judge.schemas import PredictRequest
+from llm_judge.schemas import Message, PredictRequest
 
 
 def _req() -> PredictRequest:
     return PredictRequest(
-        conversation=[{"role": "user", "content": "What is 2+2?"}],
+        conversation=[Message(role="user", content="What is 2+2?")],
         candidate_answer="It's 4.",
         rubric_id="chat_quality",
     )

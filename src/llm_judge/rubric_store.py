@@ -12,8 +12,12 @@ class Rubric:
     rubric_id: str
     version: str
     dimensions: list[str]
+    scale_min: int
+    scale_max: int
     pass_if_overall_score_gte: float
     fail_if_any_dimension_lte: int
+    # Optional per-dimension weights. If omitted, all dimensions are equally weighted.
+    weights: dict[str, float]
 
 
 def _project_root() -> Path:
@@ -70,10 +74,43 @@ def get_rubric(rubric_ref: str) -> Rubric:
     if not isinstance(policy, dict):
         raise ValueError("decision_policy must be an object")
 
+    scale = raw.get("scale", {})
+    if not isinstance(scale, dict):
+        raise ValueError("scale must be an object")
+    scale_min = int(scale.get("min", 1))
+    scale_max = int(scale.get("max", 5))
+    if scale_min >= scale_max:
+        raise ValueError("scale.min must be < scale.max")
+
+    weights_raw = raw.get("weights", {})
+    weights: dict[str, float] = {}
+    if weights_raw is not None:
+        if not isinstance(weights_raw, dict):
+            raise ValueError("weights must be an object if provided")
+        for k, v in weights_raw.items():
+            weights[str(k)] = float(v)
+
+    # Normalize weights: unknown dims are ignored; missing dims default to 1.0
+    if weights:
+        for d in dimensions:
+            weights.setdefault(d, 1.0)
+        # Ensure non-negative
+        for d, w in list(weights.items()):
+            if w < 0:
+                raise ValueError("weights must be non-negative")
+            if d not in dimensions:
+                # Ignore weights for unknown dimensions to keep rubric forwards-compatible.
+                weights.pop(d, None)
+    else:
+        weights = {d: 1.0 for d in dimensions}
+
     return Rubric(
         rubric_id=str(raw.get("rubric_id", rubric_id)),
         version=str(raw.get("version", version)),
         dimensions=dimensions,
+        scale_min=scale_min,
+        scale_max=scale_max,
         pass_if_overall_score_gte=float(policy.get("pass_if_overall_score_gte", 3.0)),
         fail_if_any_dimension_lte=int(policy.get("fail_if_any_dimension_lte", 1)),
+        weights=weights,
     )

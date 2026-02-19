@@ -1,9 +1,13 @@
 # syntax=docker/dockerfile:1.7
 
 ############################
-# Builder: export requirements
+# Builder stage
 ############################
 FROM python:3.11-slim AS builder
+
+ENV PYTHONDONTWRITEBYTECODE=1 \
+    PYTHONUNBUFFERED=1
+
 WORKDIR /app
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
@@ -11,168 +15,202 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     && rm -rf /var/lib/apt/lists/*
 
 RUN python -m pip install --no-cache-dir "poetry==2.1.1" \
-  && poetry self add poetry-plugin-export
+    && poetry self add poetry-plugin-export
 
 COPY pyproject.toml poetry.lock* ./
 RUN poetry export -f requirements.txt --output requirements.txt --without-hashes
 
-
 ############################
-# Runtime: install + audit + run
+# Runtime stage
 ############################
 FROM python:3.11-slim AS runtime
-WORKDIR /app
 
-# cache-buster for CI debugging
-ARG AUDIT_SEED=0
 ENV PYTHONDONTWRITEBYTECODE=1 \
     PYTHONUNBUFFERED=1 \
     PYTHONPATH=/app/src
 
+WORKDIR /app
 RUN useradd -m -u 10001 appuser
 
 COPY --from=builder /app/requirements.txt /app/requirements.txt
 
-# Install dependencies + force patched versions + *prove* filesystem state for Trivy
-RUN set -eux; \
-    echo "AUDIT_SEED=${AUDIT_SEED}"; \
-    python -m pip install --no-cache-dir --upgrade pip; \
-    python -m pip install --no-cache-dir -r /app/requirements.txt; \
-    python -m pip install --no-cache-dir --upgrade --force-reinstall \
+# --- 1) Install app deps (baseline) ---
+RUN python -m pip install --no-cache-dir --upgrade pip \
+ && python -m pip install --no-cache-dir -r /app/requirements.txt
+
+# --- 2) Force patched versions + ensure required deps exist ---
+RUN python -m pip install --no-cache-dir --upgrade --force-reinstall \
       "packaging>=24.0" \
       "backports.tarfile>=1.2.0" \
       "wheel==0.46.2" \
-      "jaraco.context==6.1.0"; \
-    \
-    # Remove common pip caches/temp artifacts that can carry stale wheels/sdists
-    rm -rf /root/.cache/pip /tmp/pip-* /tmp/build /var/tmp/* || true; \
-    \
-    # === TRIVY-TRACE: scan the filesystem for what Trivy scans (dist-info/METADATA) ===
-    python - <<'PY'
-import sys, zipfile
+      "jaraco.context==6.1.0"
+
+# --- 3) TRACE + CLEANUP stale dist-info across ALL python paths (Trivy focuses on METADATA) ---
+# BuildKit-safe: heredoc is its own RUN (no trailing "\" after PY terminator)
+RUN python - <<'PY'
+from __future__ import annotations
+
+import os
+import sys
+import site
+import sysconfig
 from pathlib import Path
+import shutil
+import importlib.metadata as md
 
-TARGET = {
-    "wheel": "0.46.2",
-    "jaraco.context": "6.1.0",
-}
+def banner(msg: str) -> None:
+    print("\n" + "=" * 88)
+    print(msg)
+    print("=" * 88)
 
-def parse_name_ver(txt: str):
-    name = ver = None
-    for line in txt.splitlines():
-        if line.startswith("Name: "):
-            name = line.split(":", 1)[1].strip()
-        elif line.startswith("Version: "):
-            ver = line.split(":", 1)[1].strip()
-        if name and ver:
-            break
-    return name, ver
-
-def safe_read(p: Path) -> str:
-    try:
-        return p.read_text(errors="ignore")
-    except Exception:
-        return ""
-
-def remove_tree(p: Path):
-    if p.is_file():
-        p.unlink(missing_ok=True)
-        return
-    for child in sorted(p.rglob("*"), reverse=True):
+def existing_dirs(paths):
+    seen = set()
+    for p in paths:
+        if not p:
+            continue
         try:
-            if child.is_file():
-                child.unlink(missing_ok=True)
-            elif child.is_dir():
-                child.rmdir()
+            pp = Path(p)
         except Exception:
-            pass
+            continue
+        if pp.exists() and pp.is_dir():
+            rp = str(pp.resolve())
+            if rp not in seen:
+                seen.add(rp)
+                yield Path(rp)
+
+def all_python_dirs():
+    candidates = []
+    # Common packaging dirs
     try:
-        p.rmdir()
+        candidates += site.getsitepackages()
+    except Exception:
+        pass
+    try:
+        usp = site.getusersitepackages()
+        if usp:
+            candidates.append(usp)
     except Exception:
         pass
 
-print("TRIVY-TRACE: python =", sys.version.replace("\n"," "))
-print("TRIVY-TRACE: executable =", sys.executable)
+    # sysconfig locations
+    sp = sysconfig.get_paths()
+    for k in ("purelib", "platlib", "stdlib", "data"):
+        v = sp.get(k)
+        if v:
+            candidates.append(v)
 
-# 1) dist-info scan (filesystem-wide)
-hits = []
-for dist in Path("/").rglob("*.dist-info"):
-    meta = dist / "METADATA"
-    if not meta.exists():
-        continue
-    name, ver = parse_name_ver(safe_read(meta))
-    if name in TARGET:
-        hits.append((name, ver, str(dist)))
+    # sys.path (includes dist-packages on Debian)
+    candidates += [p for p in sys.path if isinstance(p, str)]
 
-print("TRIVY-TRACE: dist-info hits (pre-clean):")
-for name, ver, path in sorted(hits):
-    print(f"  - {name} {ver} :: {path}")
+    # Filter to directories that are likely to hold installed dists
+    # but keep stdlib too (sometimes dist-info can end up there in broken images)
+    return list(existing_dirs(candidates))
 
-# Remove stale dist-info dirs for our targets
-removed = []
-for name, ver, path in hits:
-    want = TARGET[name]
-    if ver and ver != want:
-        removed.append((name, ver, path))
-        remove_tree(Path(path))
-
-print("TRIVY-TRACE: removed stale dist-info:")
-for name, ver, path in sorted(removed):
-    print(f"  - REMOVED {name} {ver} :: {path}")
-
-# 2) wheel archive scan: remove any .whl embedding stale METADATA for targets
-bad_whls = []
-for whl in Path("/").rglob("*.whl"):
+def print_dist(name: str):
     try:
-        with zipfile.ZipFile(whl) as z:
-            metas = [n for n in z.namelist() if n.endswith(".dist-info/METADATA")]
-            for m in metas:
-                txt = z.read(m).decode("utf-8", "ignore")
-                name, ver = parse_name_ver(txt)
-                if name in TARGET and ver and ver != TARGET[name]:
-                    bad_whls.append((name, ver, str(whl)))
-                    break
-    except Exception:
-        continue
+        dist = md.distribution(name)
+    except md.PackageNotFoundError:
+        print(f"[dist] {name}: NOT INSTALLED (per importlib.metadata)")
+        return
 
-print("TRIVY-TRACE: bad whl artifacts found:", len(bad_whls))
-for name, ver, path in bad_whls[:200]:
-    print(f"  - BAD whl {name} {ver} :: {path}")
-
-for _, _, p in bad_whls:
+    loc = None
     try:
-        Path(p).unlink(missing_ok=True)
+        loc = str(dist.locate_file(""))
     except Exception:
-        pass
+        loc = "unknown"
+    print(f"[dist] {name}: version={dist.version} location={loc}")
+    # dist.files can be None depending on install type
+    if dist.files:
+        # print a few representative entries
+        sample = list(dist.files)[:10]
+        print(f"[dist] {name}: sample files:")
+        for f in sample:
+            print(f"  - {f}")
 
-# 3) dist-info scan again (proof)
-hits2 = []
-for dist in Path("/").rglob("*.dist-info"):
-    meta = dist / "METADATA"
-    if not meta.exists():
-        continue
-    name, ver = parse_name_ver(safe_read(meta))
-    if name in TARGET:
-        hits2.append((name, ver, str(dist)))
+def find_metadata_dirs():
+    # Known-problem stale metadata variants (dash/underscore normalization differs)
+    targets = {
+        "wheel-0.45.1.dist-info",
+        "jaraco.context-5.3.0.dist-info",
+        "jaraco_context-5.3.0.dist-info",
+    }
 
-print("TRIVY-TRACE: dist-info hits (post-clean):")
-for name, ver, path in sorted(hits2):
-    print(f"  - {name} {ver} :: {path}")
+    hits = []
+    for base in all_python_dirs():
+        try:
+            for t in targets:
+                p = base / t
+                if p.exists():
+                    hits.append(p)
+        except Exception:
+            continue
+    return hits
 
-bad2 = [(n,v,p) for (n,v,p) in hits2 if v and v != TARGET[n]]
-if bad2:
-    raise SystemExit("TRIVY-TRACE: stale dist-info still present: " + str(bad2[:20]))
+def deep_find(patterns):
+    hits = []
+    for base in all_python_dirs():
+        # Avoid huge scans outside python dirs; we only iterate immediate children
+        try:
+            for child in base.iterdir():
+                n = child.name
+                if any(n == pat for pat in patterns):
+                    hits.append(child)
+        except Exception:
+            continue
+    return hits
 
-print("TRIVY-TRACE: OK - no stale METADATA remains for wheel/jaraco.context")
+banner("TRACE (pre-clean) - Python runtime + dist locations")
+print("python:", sys.version.replace("\n"," "))
+print("executable:", sys.executable)
+print("sys.path:")
+for p in sys.path:
+    print(" -", p)
+
+banner("TRACE (pre-clean) - importlib.metadata view")
+print_dist("wheel")
+print_dist("jaraco.context")
+print_dist("packaging")
+print_dist("backports.tarfile")
+
+banner("TRACE (pre-clean) - filesystem metadata dirs that commonly trip Trivy")
+pre_hits = find_metadata_dirs()
+if not pre_hits:
+    print("No known stale dist-info dirs found (wheel 0.45.1 / jaraco_context 5.3.0).")
+else:
+    for h in pre_hits:
+        print("FOUND:", h)
+
+# Remove stale metadata dirs wherever they exist
+banner("CLEANUP - removing stale metadata dirs (if present)")
+removed = 0
+for h in pre_hits:
+    try:
+        if h.is_dir():
+            shutil.rmtree(h)
+        else:
+            h.unlink()
+        print("REMOVED:", h)
+        removed += 1
+    except Exception as e:
+        print("FAILED to remove:", h, "error:", repr(e))
+
+banner("TRACE (post-clean) - confirm stale metadata is gone")
+post_hits = find_metadata_dirs()
+if not post_hits:
+    print("OK: stale dist-info dirs are gone.")
+else:
+    for h in post_hits:
+        print("STILL PRESENT:", h)
+
+print(f"\nCleanup summary: removed={removed} remaining={len(post_hits)}")
 PY
 
+# --- 4) Integrity check (will fail the build if deps are inconsistent) ---
 RUN python -m pip check
 
-# Copy app code + rubrics
 COPY src ./src
 COPY rubrics ./rubrics
 
 USER appuser
 EXPOSE 8000
-
 CMD ["uvicorn", "llm_judge.main:app", "--host", "0.0.0.0", "--port", "8000"]

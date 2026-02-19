@@ -70,6 +70,14 @@ _SYNONYMS: dict[str, str] = {
 }
 
 
+def _clamp_int(v: int, lo: int, hi: int) -> int:
+    return max(lo, min(hi, int(v)))
+
+
+def _clamp_float(v: float, lo: float, hi: float) -> float:
+    return max(lo, min(hi, float(v)))
+
+
 def _msg_content(m: object) -> str:
     """Safely extract message content from model or dict message."""
     content = getattr(m, "content", None)
@@ -111,16 +119,55 @@ def _heuristic_relevance(user_text: str, candidate: str) -> int:
     return 5
 
 
+def _has_structure(text: str) -> bool:
+    # Bullets, numbered lists, headings, or multi-paragraph answers tend to read clearer.
+    if "\n\n" in text:
+        return True
+    if re.search(r"(^|\n)\s*[-*]\s+", text):
+        return True
+    if re.search(r"(^|\n)\s*\d+\.\s+", text):
+        return True
+    if re.search(r"(^|\n)#+\s+", text):
+        return True
+    return False
+
+
 def _heuristic_tone(candidate: str) -> int:
-    rude = {"stupid", "idiot", "shut", "dumb", "moron", "trash"}
-    polite = {"please", "thanks", "thank", "kindly"}
+    rude = {
+        "stupid",
+        "idiot",
+        "shut",
+        "dumb",
+        "moron",
+        "trash",
+        "worthless",
+        "loser",
+    }
+    polite = {"please", "thanks", "thank", "kindly", "appreciate"}
 
     toks = set(re.findall(r"[a-z0-9]+", candidate.lower()))
+    # Excessive shouting is a strong negative signal.
+    if sum(1 for c in candidate if c.isupper()) >= 20 and len(candidate) >= 60:
+        return 2
     if toks & rude:
         return 1
     if toks & polite:
         return 5
     return 4
+
+
+def _needs_freshness_warning(user_text: str, candidate: str) -> bool:
+    # If user asks for latest/today/current and candidate provides definitive facts,
+    # deterministic judge should be conservative.
+    u = user_text.lower()
+    if any(k in u for k in ("latest", "most recent", "today", "current", "now", "this week", "this month")):
+        a = candidate.lower()
+        has_numbers = bool(re.search(r"\b\d{2,4}\b", a))
+        has_dates = bool(re.search(r"\b(20\d{2}|19\d{2})\b", a))
+        has_uncertainty = any(h in a for h in ("might", "may", "could", "not sure", "uncertain", "as of"))
+        if (has_numbers or has_dates) and not has_uncertainty:
+            return True
+    return False
 
 
 def score_candidate(request: PredictRequest) -> PredictResponse:
@@ -129,8 +176,7 @@ def score_candidate(request: PredictRequest) -> PredictResponse:
     Must NEVER throw for unknown rubrics; return a clean fail response.
     """
     try:
-        #rubric = get_rubric(request.rubric_id)
-        get_rubric(request.rubric_id)
+        rubric = get_rubric(request.rubric_id)
     except ValueError:
         return PredictResponse(
             decision="fail",
@@ -152,58 +198,98 @@ def score_candidate(request: PredictRequest) -> PredictResponse:
     relevance = _heuristic_relevance(user_text, candidate)
     tone = _heuristic_tone(candidate)
 
+    # Clarity: penalize very short answers; reward structure.
+    cand_strip = candidate.strip()
     clarity = 4
-    if not candidate.strip():
+    if not cand_strip:
         clarity = 1
-    elif len(candidate.strip()) < 10:
+    elif len(cand_strip) < 15:
+        clarity = 2
+    elif len(cand_strip) < 40:
         clarity = 3
+    if _has_structure(candidate):
+        clarity = min(5, clarity + 1)
 
     corr = judge_correctness_proxy(request)
     correctness = int(corr.score)
 
-    scores = {
+    # Conservative adjustment for time-sensitive asks without explicit freshness handling.
+    if _needs_freshness_warning(user_text, candidate):
+        correctness = max(1, correctness - 1)
+
+    # Candidate dimension scorers (extend here as you add deterministic capabilities)
+    dim_scores: dict[str, int] = {
         "relevance": int(relevance),
         "clarity": int(clarity),
         "correctness": int(correctness),
         "tone": int(tone),
     }
 
-    # Keep thresholds local unless Rubric schema explicitly exposes policy fields
-    pass_if = 3.0
-    fail_if_any = 1
+    # Only score rubric-defined dimensions (future-proofing for new rubrics)
+    scores: dict[str, int] = {}
+    for dim in rubric.dimensions:
+        if dim in dim_scores:
+            scores[dim] = _clamp_int(dim_scores[dim], rubric.scale_min, rubric.scale_max)
+        else:
+            # Unknown dimension requested by rubric; score at minimum and flag.
+            scores[dim] = rubric.scale_min
 
-    overall_score = sum(scores.values()) / 4.0
+    # Weighted overall score
+    total_w = 0.0
+    total_s = 0.0
+    for dim, s in scores.items():
+        w = float(rubric.weights.get(dim, 1.0))
+        total_w += w
+        total_s += w * float(s)
+    overall_score = (total_s / total_w) if total_w > 0 else float(rubric.scale_min)
     decision: Literal["pass", "fail"] = "pass"
-    if overall_score < pass_if or any(v <= fail_if_any for v in scores.values()):
+    if overall_score < rubric.pass_if_overall_score_gte or any(
+        v <= rubric.fail_if_any_dimension_lte for v in scores.values()
+    ):
         decision = "fail"
 
     flags: list[str] = []
-    if scores["relevance"] <= 2:
+    if "relevance" in scores and scores["relevance"] <= 2:
         flags.append("low_relevance")
-    if scores["tone"] <= 2:
+    if "tone" in scores and scores["tone"] <= 2:
         flags.append("rude_tone")
 
-    confidence = float(corr.confidence)
-    confidence = max(0.0, min(1.0, confidence))
+    if _needs_freshness_warning(user_text, candidate):
+        flags.append("time_sensitive_unverified")
+    if any(dim not in dim_scores for dim in rubric.dimensions):
+        flags.append("rubric_dimension_unscored")
 
-    explanations = {
-        "relevance": (
+    # Confidence is a composite: correctness proxy is dominant, but we reduce
+    # confidence when multiple dimensions are weak.
+    weak_cutoff = max(rubric.scale_min, rubric.fail_if_any_dimension_lte)
+    weak_dims = sum(1 for v in scores.values() if v <= weak_cutoff)
+    conf = float(corr.confidence)
+    conf -= 0.10 * weak_dims
+    if "time_sensitive_unverified" in flags:
+        conf -= 0.10
+    confidence = _clamp_float(conf, 0.05, 0.95)
+
+    explanations: dict[str, str] = {}
+    if "relevance" in scores:
+        explanations["relevance"] = (
             "Answer is unrelated or off-topic"
             if scores["relevance"] <= 2
             else "Answer is relevant to the user's question"
-        ),
-        "clarity": (
+        )
+    if "clarity" in scores:
+        explanations["clarity"] = (
             "Answer is unclear or poorly structured"
             if scores["clarity"] <= 2
             else "Answer is clear and well structured"
-        ),
-        "correctness": corr.explanation,
-        "tone": (
+        )
+    if "correctness" in scores:
+        explanations["correctness"] = corr.explanation
+    if "tone" in scores:
+        explanations["tone"] = (
             "Rude or inappropriate language detected"
             if scores["tone"] <= 2
             else "Tone is polite and appropriate"
-        ),
-    }
+        )
 
     return PredictResponse(
         decision=decision,
