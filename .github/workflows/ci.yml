@@ -82,5 +82,9 @@ jobs:
           echo "Latest run: $RUN_ID"
           cat "reports/runs/$RUN_ID/metrics.json"
           
+      - name: Docker build (smoke)
+        run: |
+          docker build -f Dockerfile --target release-image -t llm-judge:ci .
+          
           
           
