@@ -62,3 +62,25 @@ jobs:
       - name: Tests (pytest)
         run: |
           poetry run pytest
+
+      - name: Benchmark (golden dataset)
+        run: |
+          poetry run python -m llm_judge.eval.run --spec configs/runspecs/pr_gate.yaml
+
+      - name: Upload benchmark artifacts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: benchmark-runs
+          path: reports/runs
+          if-no-files-found: error
+          
+      - name: Print benchmark metrics
+        if: always()
+        run: |
+          RUN_ID=$(ls -1t reports/runs | head -n 1)
+          echo "Latest run: $RUN_ID"
+          cat "reports/runs/$RUN_ID/metrics.json"
+          
+          
+          
