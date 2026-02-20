@@ -27,3 +27,11 @@ artifacts/
 .idea/
 .coverage
 reports/
+.coverage
+reports/
+__pycache__/
+*.pyc
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+reports/runs/
