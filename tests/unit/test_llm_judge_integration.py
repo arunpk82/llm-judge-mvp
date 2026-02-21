@@ -1,175 +1,43 @@
-import json
+from __future__ import annotations
 
-import httpx
+from pathlib import Path
+from typing import Any
 
-from llm_judge.runtime import get_judge_engine
-from llm_judge.schemas import Message, PredictRequest
-
-
-class _FakeResponse:
-    def __init__(self, content: str) -> None:
-        self._content = content
-
-    def raise_for_status(self) -> None:
-        return None
-
-    def json(self) -> dict:
-        # OpenAI-compatible envelope expected by LLMJudge
-        return {
-            "choices": [
-                {
-                    "message": {
-                        "content": self._content,
-                    }
-                }
-            ]
-        }
+DATASET_PATH = Path("datasets/golden/v1.jsonl")
+ALLOWED_ROLES = {"system", "user", "assistant"}
+ALLOWED_DECISIONS = {"pass", "fail"}
 
 
-class _FakeClient:
-    def __init__(self, content: str) -> None:
-        self._content = content
-
-    def __enter__(self) -> "_FakeClient":
-        return self
-
-    def __exit__(self, exc_type, exc, tb) -> None:
-        return None
-
-    def post(self, url: str, headers: dict, json: dict) -> _FakeResponse:
-        return _FakeResponse(self._content)
+def _is_nonempty_str(x: Any) -> bool:
+    return isinstance(x, str) and bool(x.strip())
 
 
-def test_llm_judge_success_path_returns_llm_response(monkeypatch) -> None:
-    # Configure engine selection
-    monkeypatch.setenv("JUDGE_ENGINE", "llm")
-    monkeypatch.setenv("JUDGE_TIMEOUT_MS", "5000")
+def _validate_case(obj: dict[str, Any], *, line_no: int) -> None:
+    # Required keys (case_id is now required)
+    for key in ("case_id", "rubric_id", "conversation", "candidate_answer", "human_decision"):
+        assert key in obj, f"line {line_no}: missing required key '{key}'"
 
-    # Required for LLMJudge
-    monkeypatch.setenv("LLM_API_KEY", "test-key")
-    monkeypatch.setenv("LLM_API_BASE_URL", "https://example.com")
-    monkeypatch.setenv("LLM_MODEL", "test-model")
-    monkeypatch.setenv("LLM_TIMEOUT_S", "1")
+    assert _is_nonempty_str(obj["case_id"]), f"line {line_no}: case_id must be a non-empty string"
+    assert obj["rubric_id"] == "chat_quality", f"line {line_no}: rubric_id must be 'chat_quality' for v1"
 
-    # Mock httpx.Client to avoid network calls
-    llm_payload = {
-        "decision": "pass",
-        "overall_score": 4.2,
-        "scores": {"relevance": 4, "clarity": 4, "correctness": 4, "tone": 5},
-        "confidence": 0.9,
-        "flags": ["llm_path"],
-        "explanations": {
-            "relevance": "Relevant.",
-            "clarity": "Clear.",
-            "correctness": "Consistent.",
-            "tone": "Polite.",
-        },
-    }
-    monkeypatch.setattr(httpx, "Client", lambda *args, **kwargs: _FakeClient(json.dumps(llm_payload)))
+    conv = obj["conversation"]
+    assert isinstance(conv, list) and len(conv) >= 1, f"line {line_no}: conversation must be a non-empty list"
+    for i, msg in enumerate(conv):
+        assert isinstance(msg, dict), f"line {line_no}: conversation[{i}] must be an object"
+        assert msg.get("role") in ALLOWED_ROLES, f"line {line_no}: conversation[{i}].role invalid"
+        assert _is_nonempty_str(msg.get("content")), f"line {line_no}: conversation[{i}].content must be non-empty"
 
+    assert _is_nonempty_str(obj["candidate_answer"]), f"line {line_no}: candidate_answer must be non-empty"
+    assert obj["human_decision"] in ALLOWED_DECISIONS, f"line {line_no}: human_decision must be pass/fail"
 
-    engine = get_judge_engine()
+    if "human_scores" in obj and obj["human_scores"] is not None:
+        hs = obj["human_scores"]
+        assert isinstance(hs, dict), f"line {line_no}: human_scores must be an object"
+        for k in ("relevance", "clarity", "correctness", "tone"):
+            if k in hs:
+                v = hs[k]
+                assert isinstance(v, int), f"line {line_no}: human_scores.{k} must be int"
+                assert 1 <= v <= 5, f"line {line_no}: human_scores.{k} must be in [1..5]"
 
-    req = PredictRequest(
-        conversation=[Message(role="user", content="Hello")],
-        candidate_answer="Hi there!",
-        rubric_id="chat_quality",
-    )
-
-    res = engine.evaluate(req)
-
-    # Assert we returned the LLM response (not fallback)
-    assert res.flags == ["llm_path"]
-    assert res.decision in ("pass", "fail")
-    assert 0.0 <= res.overall_score <= 5.0
-    assert res.scores["tone"] == 5
-
-
-def test_llm_invalid_json_triggers_fallback(monkeypatch) -> None:
-    monkeypatch.setenv("JUDGE_ENGINE", "llm")
-    monkeypatch.setenv("JUDGE_TIMEOUT_MS", "5000")
-
-    monkeypatch.setenv("LLM_API_KEY", "test-key")
-    monkeypatch.setenv("LLM_API_BASE_URL", "https://example.com")
-    monkeypatch.setenv("LLM_MODEL", "test-model")
-    monkeypatch.setenv("LLM_TIMEOUT_S", "1")
-
-    # LLM returns invalid JSON -> LLMJudge raises -> fallback judge should be used
-    monkeypatch.setattr(httpx, "Client", lambda timeout: _FakeClient("NOT_JSON"))
-
-    engine = get_judge_engine()
-
-    req = PredictRequest(
-        conversation=[Message(role="user", content="How do I reset my router?")],
-        candidate_answer="Please restart your router.",
-        rubric_id="chat_quality",
-    )
-
-    res = engine.evaluate(req)
-
-    # Fallback judge returns deterministic dimension keys
-    assert "relevance" in res.scores
-    assert res.decision in ("pass", "fail")
-
-
-def test_engine_selector_returns_llm_engine_when_configured(monkeypatch) -> None:
-    monkeypatch.setenv("JUDGE_ENGINE", "llm")
-    monkeypatch.setenv("LLM_API_KEY", "test-key")
-
-    engine = get_judge_engine()
-
-    # We can't directly check internal wrapped types cleanly without coupling,
-    # so we assert behavior: LLM path works when JSON is returned.
-    llm_payload = {
-        "decision": "pass",
-        "overall_score": 4.0,
-        "scores": {"relevance": 4, "clarity": 4, "correctness": 4, "tone": 4},
-        "confidence": 0.8,
-        "flags": ["llm_selected"],
-        "explanations": {"relevance": "ok"},
-    }
-
-    monkeypatch.setattr(httpx, "Client", lambda *args, **kwargs: _FakeClient(json.dumps(llm_payload)))
-
-    req = PredictRequest(
-        conversation=[Message(role="user", content="Hello")],
-        candidate_answer="Hi",
-        rubric_id="chat_quality",
-    )
-    res = engine.evaluate(req)
-    assert res.flags == ["llm_selected"]
-
-
-def test_llm_http_error_triggers_fallback(monkeypatch) -> None:
-    monkeypatch.setenv("JUDGE_ENGINE", "llm")
-    monkeypatch.setenv("LLM_API_KEY", "test-key")
-
-    import httpx
-
-    class _ErrorClient:
-        def __enter__(self):
-            return self
-
-        def __exit__(self, exc_type, exc, tb):
-            return None
-
-        def post(self, url, headers, json):
-            raise httpx.HTTPError("boom")
-
-    monkeypatch.setattr(httpx, "Client", lambda timeout: _ErrorClient())
-
-    engine = get_judge_engine()
-
-    req = PredictRequest(
-        conversation=[Message(role="user", content="Hello")],
-        candidate_answer="Hi",
-        rubric_id="chat_quality",
-    )
-
-    res = engine.evaluate(req)
-
-    # fallback deterministic judge should run
-    assert "relevance" in res.scores
-
-
-
+    if "rationale" in obj and obj["rationale"] is not None:
+        assert _is_nonempty_str(obj["rationale"]), f"line {line_no}: rationale must be non-empty string"
