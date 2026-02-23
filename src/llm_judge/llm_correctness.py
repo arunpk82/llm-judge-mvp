@@ -115,6 +115,7 @@ def judge_correctness_llm(request: PredictRequest) -> LLMCorrectnessResult:
     We still use AsyncClient (so test monkeypatching works) by running the async
     implementation inside a dedicated thread.
     """
+
     def _run() -> LLMCorrectnessResult:
         return asyncio.run(_judge_correctness_llm_async(request))
 

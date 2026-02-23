@@ -22,19 +22,31 @@ def _validate_case(obj: dict[str, Any], *, line_no: int) -> None:
 
     # case_id is strongly recommended; optional for backward compatibility
     if "case_id" in obj and obj["case_id"] is not None:
-        assert _is_nonempty_str(obj["case_id"]), f"line {line_no}: case_id must be a non-empty string"
+        assert _is_nonempty_str(obj["case_id"]), (
+            f"line {line_no}: case_id must be a non-empty string"
+        )
 
-    assert obj["rubric_id"] == "chat_quality", f"line {line_no}: rubric_id must be 'chat_quality' for v1"
+    assert obj["rubric_id"] == "chat_quality", (
+        f"line {line_no}: rubric_id must be 'chat_quality' for v1"
+    )
 
     conv = obj["conversation"]
-    assert isinstance(conv, list) and len(conv) >= 1, f"line {line_no}: conversation must be a non-empty list"
+    assert isinstance(conv, list) and len(conv) >= 1, (
+        f"line {line_no}: conversation must be a non-empty list"
+    )
     for i, msg in enumerate(conv):
         assert isinstance(msg, dict), f"line {line_no}: conversation[{i}] must be an object"
         assert msg.get("role") in ALLOWED_ROLES, f"line {line_no}: conversation[{i}].role invalid"
-        assert _is_nonempty_str(msg.get("content")), f"line {line_no}: conversation[{i}].content must be non-empty"
+        assert _is_nonempty_str(msg.get("content")), (
+            f"line {line_no}: conversation[{i}].content must be non-empty"
+        )
 
-    assert _is_nonempty_str(obj["candidate_answer"]), f"line {line_no}: candidate_answer must be non-empty"
-    assert obj["human_decision"] in ALLOWED_DECISIONS, f"line {line_no}: human_decision must be pass/fail"
+    assert _is_nonempty_str(obj["candidate_answer"]), (
+        f"line {line_no}: candidate_answer must be non-empty"
+    )
+    assert obj["human_decision"] in ALLOWED_DECISIONS, (
+        f"line {line_no}: human_decision must be pass/fail"
+    )
 
     # Optional human_scores validation
     if "human_scores" in obj and obj["human_scores"] is not None:
@@ -55,7 +67,9 @@ def _validate_case(obj: dict[str, Any], *, line_no: int) -> None:
 
     # Optional rationale validation (you already use this)
     if "rationale" in obj and obj["rationale"] is not None:
-        assert _is_nonempty_str(obj["rationale"]), f"line {line_no}: rationale must be non-empty string"
+        assert _is_nonempty_str(obj["rationale"]), (
+            f"line {line_no}: rationale must be non-empty string"
+        )
 
 
 @pytest.mark.unit

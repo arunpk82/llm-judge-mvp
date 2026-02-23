@@ -31,10 +31,10 @@ def test_coerce_result_rejects_non_object() -> None:
 @pytest.mark.parametrize(
     "obj",
     [
-        {"score": 0, "explanation": "x", "confidence": 0.5},   # score too low
-        {"score": 6, "explanation": "x", "confidence": 0.5},   # score too high
+        {"score": 0, "explanation": "x", "confidence": 0.5},  # score too low
+        {"score": 6, "explanation": "x", "confidence": 0.5},  # score too high
         {"score": 3, "explanation": "x", "confidence": -0.1},  # confidence too low
-        {"score": 3, "explanation": "x", "confidence": 1.1},   # confidence too high
+        {"score": 3, "explanation": "x", "confidence": 1.1},  # confidence too high
     ],
 )
 def test_coerce_result_rejects_out_of_range(obj: Any) -> None:

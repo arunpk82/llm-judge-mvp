@@ -12,6 +12,7 @@ logger = structlog.get_logger()
 
 judge_engine = get_judge_engine()
 
+
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     logger.info("service.startup", service="llm-judge")
@@ -27,7 +28,7 @@ app = FastAPI(
 )
 
 # Global engine (initialized on startup)
-#judge_engine: JudgeEngine | None = None
+# judge_engine: JudgeEngine | None = None
 
 
 @app.on_event("startup")
@@ -48,7 +49,7 @@ async def on_shutdown() -> None:
 async def health() -> dict[str, str]:
     logger.info("health.check")
     return {"status": "ok"}
-    
+
 
 @app.post("/predict", response_model=PredictResponse)
 async def predict(request: PredictRequest) -> PredictResponse:

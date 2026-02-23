@@ -7,6 +7,7 @@ from llm_judge.schemas import Message, PredictRequest
 
 client = TestClient(app, raise_server_exceptions=True)
 
+
 def test_app_lifespan() -> None:
     with TestClient(app) as c:
         resp = c.get("/health")
@@ -46,11 +47,13 @@ def test_predict_missing_required_fields_fails_fast() -> None:
     body = resp.json()
     assert "detail" in body
 
+
 def test_logging_configuration_runs() -> None:
     from llm_judge.logging import configure_logging
 
     # This should not raise
     configure_logging()
+
 
 def test_chat_quality_rubric_exists() -> None:
     from llm_judge.rubrics import RUBRICS
@@ -174,6 +177,3 @@ def test_llm_timeout_falls_back_to_deterministic(monkeypatch) -> None:
     # DeterministicJudge produces these keys
     assert "relevance" in res.scores
     assert res.decision in ("pass", "fail")
-
-
-

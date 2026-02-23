@@ -5,7 +5,7 @@ import json
 import os
 import random
 from pathlib import Path
-from typing import Any
+from typing import Any, Dict, List
 
 from llm_judge.runtime import get_judge_engine
 from llm_judge.schemas import Message, PredictRequest
@@ -15,8 +15,8 @@ from .metrics import compute_metrics
 from .spec import RunSpec
 
 
-def _load_jsonl(path: Path) -> list[dict[str, Any]]:
-    rows: list[dict[str, Any]] = []
+def _load_jsonl(path: Path) -> List[dict[str, Any]]:
+    rows: List[dict[str, Any]] = []
     with path.open("r", encoding="utf-8") as f:
         for line in f:
             if not line.strip():
@@ -58,11 +58,9 @@ def main() -> int:
     ensure_dir(run_dir)
 
     manifest = build_manifest(runspec=spec, dataset_path=dataset_path)
-    # Optional: record whether dataset provides case_id (helps debugging/reporting)
-    manifest["dataset_has_case_id"] = any("case_id" in r for r in rows)
     write_json(run_dir / "manifest.json", manifest)
 
-    judgments: list[dict[str, Any]] = []
+    judgments: List[Dict[str, Any]] = []
     for i, row in enumerate(rows):
         # Convert conversation dicts to Message objects
         conv = [Message(**m) for m in row["conversation"]]
@@ -78,7 +76,6 @@ def main() -> int:
         judgments.append(
             {
                 "case_index": i,
-                "case_id": row.get("case_id"),  # NEW: stable identifier if present
                 "rubric_id": req.rubric_id,
                 "human_decision": row.get("human_decision"),
                 "human_scores": row.get("human_scores"),
@@ -90,7 +87,7 @@ def main() -> int:
 
     write_jsonl(run_dir / "judgments.jsonl", judgments)
 
-    # compute & persist metrics
+    # PR4: compute & persist metrics
     metrics = compute_metrics(judgments)
     write_json(run_dir / "metrics.json", metrics)
 

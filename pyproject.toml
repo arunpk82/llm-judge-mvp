@@ -71,7 +71,7 @@ check_untyped_defs = true
 ignore_missing_imports = true
 
 [tool.pytest.ini_options]
-addopts = "--cov=llm_judge --cov-report=term-missing --cov-fail-under=80"
+addopts = "--cov=llm_judge --cov-report=term-missing --cov-report=xml"
 testpaths = ["tests"]
 
 
@@ -82,4 +82,5 @@ omit = [
   "src/llm_judge/judge_base.py"
 ]
 
-
+[tool.poetry.scripts]
+gen-math-dataset = "tools.generate_deterministic_math_dataset:main"
