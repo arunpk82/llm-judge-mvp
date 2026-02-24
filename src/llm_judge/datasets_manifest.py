@@ -65,20 +65,37 @@ def iter_jsonl(path: str | Path) -> Iterable[dict[str, Any]]:
 
 def stable_sample(
     rows: Iterable[dict[str, Any]],
-    *,
-    sample_size: int,
+    sample_size: int | None = None,
     key_field: str = "case_id",
+    *,
+    # Back-compat aliases
+    k: int | None = None,
+    key: str | None = None,
 ) -> list[dict[str, Any]]:
-    """Deterministically select N rows using a stable hash of key_field."""
+    """
+    Deterministically select N rows using a stable hash.
+
+    Supports both:
+      - stable_sample(rows, *, sample_size=..., key_field=...)
+      - stable_sample(rows, k=..., key="case_id")
+    """
+    if sample_size is None and k is not None:
+        sample_size = k
+    if key is not None:
+        key_field = key
+
+    if sample_size is None:
+        raise TypeError("stable_sample requires sample_size (or k=...)")
+
     if sample_size <= 0:
         return []
 
     scored: list[tuple[int, dict[str, Any]]] = []
     for r in rows:
-        key = str(r.get(key_field, ""))
-        if not key:
-            key = json.dumps(r, sort_keys=True)
-        h = hashlib.sha256(key.encode("utf-8")).hexdigest()
+        kf = str(r.get(key_field, ""))
+        if not kf:
+            kf = json.dumps(r, sort_keys=True)
+        h = hashlib.sha256(kf.encode("utf-8")).hexdigest()
         scored.append((int(h[:12], 16), r))
 
     scored.sort(key=lambda t: t[0])

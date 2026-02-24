@@ -2,15 +2,25 @@ from __future__ import annotations
 
 import asyncio
 import inspect
+from collections.abc import Callable
+from typing import Any, Awaitable
 
 from llm_judge.main import app
 
 
-def _run_maybe_async(fn):
+def _run_maybe_async(fn: Callable[[], Any]) -> Any:
     out = fn()
-    # If handler returns a coroutine / awaitable, run it without pytest-asyncio
+
+    # If handler returns a coroutine / awaitable, run it without pytest-asyncio.
+    # mypy: asyncio.run requires a Coroutine, not a generic Awaitable, so wrap it.
     if inspect.isawaitable(out):
-        asyncio.run(out)
+
+        async def _runner(a: Awaitable[Any]) -> Any:
+            return await a
+
+        asyncio.run(_runner(out))
+        return None
+
     return out
 
 

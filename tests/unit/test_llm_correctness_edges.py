@@ -1,7 +1,5 @@
 from __future__ import annotations
 
-import pytest
-
 import llm_judge.llm_correctness as lc
 from llm_judge.schemas import Message, PredictRequest
 

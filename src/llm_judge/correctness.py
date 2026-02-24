@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 from dataclasses import dataclass
+from typing import Optional
 
 from llm_judge.llm_correctness import LLMCorrectnessResult, judge_correctness_llm
 from llm_judge.schemas import PredictRequest
@@ -21,13 +22,8 @@ def judge_correctness_proxy(request: PredictRequest) -> CorrectnessProxyResult:
     ans = (request.candidate_answer or "").strip().lower()
 
     if not ans:
-        return CorrectnessProxyResult(
-            score=1,
-            explanation="Empty answer.",
-            confidence=0.9,
-        )
+        return CorrectnessProxyResult(score=1, explanation="Empty answer.", confidence=0.9)
 
-    # Basic uncertainty / hedging patterns → reduce score
     hedges = ("i think", "maybe", "not sure", "i don't know", "cannot be sure")
     if any(h in ans for h in hedges):
         return CorrectnessProxyResult(
@@ -36,7 +32,6 @@ def judge_correctness_proxy(request: PredictRequest) -> CorrectnessProxyResult:
             confidence=0.65,
         )
 
-    # Otherwise default to "likely correct" proxy
     return CorrectnessProxyResult(
         score=4,
         explanation="No obvious uncertainty markers; proxy assumes likely correct.",
@@ -44,8 +39,5 @@ def judge_correctness_proxy(request: PredictRequest) -> CorrectnessProxyResult:
     )
 
 
-def judge_correctness(request: PredictRequest) -> LLMCorrectnessResult:
-    """
-    Async correctness judge (LLM-backed). Kept separate from sync scoring.
-    """
+def judge_correctness(request: PredictRequest) -> Optional[LLMCorrectnessResult]:
     return judge_correctness_llm(request)

@@ -73,4 +73,5 @@ async def test_judge_correctness_llm_parses_openai_shape(monkeypatch) -> None:
     monkeypatch.setattr(mod.httpx, "AsyncClient", _FakeClient)
 
     res = judge_correctness_llm(_req())
+    assert res is not None
     assert res.score == 5

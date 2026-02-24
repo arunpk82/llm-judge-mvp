@@ -4,13 +4,10 @@ import builtins
 from types import SimpleNamespace
 from typing import Any
 
-import pytest
-
-from llm_judge.schemas import Message, PredictRequest
 from llm_judge.rules.engine import RuleEngine, load_plan_for_rubric, run_rules
 from llm_judge.rules.registry import register
 from llm_judge.rules.types import RuleContext
-
+from llm_judge.schemas import Message, PredictRequest
 
 # ---- Helpers / dummy rules ----
 
