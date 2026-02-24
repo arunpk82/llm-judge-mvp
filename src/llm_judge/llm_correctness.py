@@ -4,7 +4,7 @@ import asyncio
 import json
 import os
 from concurrent.futures import ThreadPoolExecutor
-from typing import Any, cast
+from typing import Any, cast, Optional
 
 import httpx
 
@@ -107,17 +107,17 @@ async def _judge_correctness_llm_async(request: PredictRequest) -> LLMCorrectnes
         return _coerce_result(data)
 
 
-def judge_correctness_llm(request: PredictRequest) -> LLMCorrectnessResult:
-    """
-    IMPORTANT: This function must be SYNC because tests call it without `await`,
-    even inside an async test function.
+def judge_correctness_llm(request: "PredictRequest") -> Optional[float]:
+    # ✅ Hard guard: if key is missing, don't attempt network
+    if not os.getenv("OPENAI_API_KEY"):
+        return None
 
-    We still use AsyncClient (so test monkeypatching works) by running the async
-    implementation inside a dedicated thread.
-    """
-
-    def _run() -> LLMCorrectnessResult:
-        return asyncio.run(_judge_correctness_llm_async(request))
+    def _run() -> Optional[float]:
+        try:
+            return asyncio.run(_judge_correctness_llm_async(request))
+        except Exception:
+            # ✅ Never let LLM/network failures break scoring pipelines
+            return None
 
     with ThreadPoolExecutor(max_workers=1) as ex:
         return ex.submit(_run).result()

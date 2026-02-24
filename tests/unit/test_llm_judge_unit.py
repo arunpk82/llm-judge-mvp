@@ -77,7 +77,7 @@ def test_llm_judge_evaluate_happy_path_without_network(monkeypatch) -> None:
 
             class _FakeResponse:
                 status_code = 200
-                
+
                 def raise_for_status(self) -> None:
                     return None
 
@@ -129,7 +129,7 @@ def test_llm_judge_handles_non_200_response(monkeypatch) -> None:
 
         class _FakeResponse:
             status_code = 500  # <-- must be non-200 to hit the error path
-            
+
             def raise_for_status(self) -> None:
                 raise RuntimeError("HTTP 500")
 

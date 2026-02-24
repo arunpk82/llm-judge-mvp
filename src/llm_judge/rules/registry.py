@@ -44,8 +44,8 @@ def get_rule(rule_id: str) -> Rule:
         return RULE_REGISTRY[rule_id]
     except KeyError as e:
         raise KeyError(f"Unknown rule_id: {rule_id}") from e
-        
-       
+
+
 # Ensure rule registration happens as soon as registry is imported.
 # This keeps tests and runtime deterministic without requiring manual bootstrap calls.
 try:

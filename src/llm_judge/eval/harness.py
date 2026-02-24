@@ -132,7 +132,9 @@ async def run_eval(path: str = "datasets/golden/v1.jsonl") -> None:
         if not is_correct:
             print("    --- mismatch debug ---")
             print(f"    rubric_id={row.get('rubric_id')}")
-            print(f"    conversation_last={row.get('conversation', [])[-1] if row.get('conversation') else None}")
+            print(
+                f"    conversation_last={row.get('conversation', [])[-1] if row.get('conversation') else None}"
+            )
             print(f"    candidate_answer={row.get('candidate_answer')}")
             print("    ----------------------")
 
@@ -173,15 +175,10 @@ async def run_eval(path: str = "datasets/golden/v1.jsonl") -> None:
         "accuracy": accuracy,
         "confusion_matrix": {"tp": tp, "fn": fn, "fp": fp, "tn": tn},
         "mae": {
-            dim: (mae_totals[dim] / mae_count if mae_count > 0 else None)
-            for dim in mae_totals
+            dim: (mae_totals[dim] / mae_count if mae_count > 0 else None) for dim in mae_totals
         },
         "calibration": {
-            name: (
-                stats["correct"] / stats["total"]
-                if stats["total"] > 0
-                else None
-            )
+            name: (stats["correct"] / stats["total"] if stats["total"] > 0 else None)
             for name, stats in buckets.items()
         },
     }

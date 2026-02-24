@@ -58,10 +58,10 @@ def _safe_eval_expr(expr: str) -> Optional[float]:
 # Operands may have an optional leading sign; operator is a single char.
 _MATH_EXPR_RE = re.compile(
     r"(?P<expr>"
-    r"[-+]?\s*\d+(?:\.\d+)?"                          # first operand
+    r"[-+]?\s*\d+(?:\.\d+)?"  # first operand
     r"(?:"
-    r"\s*[\+\-\*\/%]\s*"                               # binary operator
-    r"[-+]?\s*\d+(?:\.\d+)?"                           # subsequent operand
+    r"\s*[\+\-\*\/%]\s*"  # binary operator
+    r"[-+]?\s*\d+(?:\.\d+)?"  # subsequent operand
     r")+"
     r")"
 )

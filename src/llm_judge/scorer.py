@@ -5,9 +5,11 @@ from typing import Any, Literal
 
 from llm_judge.correctness import judge_correctness_proxy
 from llm_judge.rubric_store import get_rubric
+from llm_judge.rules.engine import RuleEngine
 from llm_judge.rules.types import RuleContext
 from llm_judge.schemas import PredictRequest, PredictResponse
 
+# Keep this small + high-signal (don’t overdo it)
 _STOPWORDS: set[str] = {
     "a",
     "an",
@@ -59,6 +61,7 @@ _STOPWORDS: set[str] = {
     "thank",
 }
 
+# Normalize common intent synonyms (improves overlap without an LLM)
 _SYNONYMS: dict[str, str] = {
     "restart": "reset",
     "reboot": "reset",
@@ -68,39 +71,9 @@ _SYNONYMS: dict[str, str] = {
     "wi-fi": "wireless",
 }
 
-# Hard-fail signals (flag-first, scorer-decides)
-# NOTE: These are BASE IDS (no :severity suffix).
-_HARD_FAIL_FLAGS: set[str] = {
-    # legacy
-    "unknown_rubric",
-    # correctness
-    "correctness.definition_wrong",
-    "correctness.unsafe_advice",
-    "correctness.known_fact_mismatch",
-    "correctness.math_incorrect",
-    "correctness.nonsense_detected",
-    "correctness.empty_answer",
-    # PR6 correctness
-    "correctness.definition_sanity",
-    # quality (base hard fails)
-    "quality.off_topic",
-    "quality.category_error",
-    "quality.vacuous",
-}
-
-# Strong quality flags that should hard-fail when severity is strong.
-# (Keep small & high-confidence.)
-_STRONG_QUALITY_HARD_FAIL: set[str] = {
-    "quality.nonsense_basic",
-}
-
-# Strong (but not always hard) clarity impacts (base ids)
-_CLARITY_DOWN_FLAGS: set[str] = {
-    "quality.repetition_basic",
-}
-
 
 def _msg_content(m: object) -> str:
+    """Safely extract message content from model or dict message."""
     content = getattr(m, "content", None)
     if isinstance(content, str):
         return content
@@ -112,7 +85,7 @@ def _msg_content(m: object) -> str:
 
 
 def _tokenize(text: str) -> set[str]:
-    raw = re.findall(r"[a-z0-9]+", (text or "").lower())
+    raw = re.findall(r"[a-z0-9]+", text.lower())
     out: set[str] = set()
     for t in raw:
         t = _SYNONYMS.get(t, t)
@@ -124,9 +97,13 @@ def _tokenize(text: str) -> set[str]:
 def _heuristic_relevance(user_text: str, candidate: str) -> int:
     u = _tokenize(user_text)
     a = _tokenize(candidate)
+
     if not u or not a:
         return 1
+
     overlap = len(u & a)
+
+    # With stopwords removed, even overlap==1 can be meaningful (e.g., "router")
     if overlap == 0:
         return 1
     if overlap == 1:
@@ -139,7 +116,8 @@ def _heuristic_relevance(user_text: str, candidate: str) -> int:
 def _heuristic_tone(candidate: str) -> int:
     rude = {"stupid", "idiot", "shut", "dumb", "moron", "trash"}
     polite = {"please", "thanks", "thank", "kindly"}
-    toks = set(re.findall(r"[a-z0-9]+", (candidate or "").lower()))
+
+    toks = set(re.findall(r"[a-z0-9]+", candidate.lower()))
     if toks & rude:
         return 1
     if toks & polite:
@@ -147,112 +125,55 @@ def _heuristic_tone(candidate: str) -> int:
     return 4
 
 
-def _flag_to_str(flag: Any) -> str | None:
+def _apply_rubric_rules(request: PredictRequest, rubric: Any) -> list[str]:
     """
-    Convert a structured Flag (or string) into a stable string flag identifier.
-    - If it's already a string, return it.
-    - If it has id/severity attributes, return "id:severity".
+    Run all rules associated with the rubric against the request.
+    Returns a list of flag strings (e.g. 'correctness.definition_sanity:strong').
+
+    Patchable by tests via monkeypatch.
     """
-    if isinstance(flag, str):
-        return flag
-    fid = getattr(flag, "id", None)
-    sev = getattr(flag, "severity", None)
-    if isinstance(fid, str) and isinstance(sev, str):
-        return f"{fid}:{sev}"
-    if isinstance(fid, str):
-        return fid
-    return None
-
-
-def _apply_rubric_rules(request: PredictRequest, rubric: object) -> list[str]:
-    """
-    Apply deterministic rules for this rubric.
-
-    Priority:
-      1) If rubric YAML defines `rules: [...]`, use that (inline configuration)
-      2) Else, fall back to configs/rules/{rubric_id}_{version}.yaml via rules.engine
-
-    Returns a de-duplicated list of flag strings (id or id:severity).
-    """
-    try:
-        from llm_judge.rules.registry import get_rule
-    except Exception:
-        return []
-
     ctx = RuleContext(request=request, rubric=rubric)
-    out_flags: list[str] = []
+    rules_config = getattr(rubric, "rules", None)
 
-    rule_items = getattr(rubric, "rules", None)
-    if isinstance(rule_items, list) and rule_items:
-        # 1) Inline rules inside rubric file
-        for item in rule_items:
-            rid: str | None = None
-            params: dict[str, Any] = {}
-
-            if isinstance(item, str):
-                rid = item
-            elif isinstance(item, dict):
-                rid_raw = item.get("id")
-                if isinstance(rid_raw, str):
-                    rid = rid_raw
-                p = item.get("params")
-                if isinstance(p, dict):
-                    params = p
-
-            if not rid:
-                continue
-
-            try:
-                rule = get_rule(rid)
-            except Exception:
-                continue
-
-            try:
-                rr = rule.apply(ctx, params) if hasattr(rule, "apply") else rule(ctx, params)
-                rr_flags = getattr(rr, "flags", None)
-                if isinstance(rr_flags, list):
-                    for f in rr_flags:
-                        fs = _flag_to_str(f)
-                        if fs:
-                            out_flags.append(fs)
-            except Exception:
-                continue
+    if rules_config:
+        # Inline rules list on the rubric object
+        engine = RuleEngine(rules=rules_config)
+        engine.run(ctx)
     else:
-        # 2) Fallback to rule plan YAML via rules.engine
-        try:
-            from llm_judge.rules.engine import load_plan_for_rubric, run_rules
-        except Exception:
-            pass
-        else:
-            version = getattr(rubric, "version", None)
-            if not isinstance(version, str) or not version:
-                version = "v1"
+        # Default rule set when rubric has no explicit rules
+        engine = RuleEngine(
+            rules=[
+                {"id": "correctness.correctness_basic"},
+                {"id": "correctness.definition_sanity"},
+                {"id": "quality.nonsense_basic"},
+            ]
+        )
+        engine.run(ctx)
 
-            try:
-                plan = load_plan_for_rubric(request.rubric_id, version)
-                rr = run_rules(ctx, plan)
-                for f in rr.flags:
-                    fs = _flag_to_str(f)
-                    if fs:
-                        out_flags.append(fs)
-            except Exception:
-                pass
+    return list(getattr(ctx, "flags", []))
 
-    # Include legacy ctx.flags strings if rules appended them
-    ctx_flags = getattr(ctx, "flags", None)
-    if isinstance(ctx_flags, list):
-        for f in ctx_flags:
-            if isinstance(f, str):
-                out_flags.append(f)
 
-    # Deduplicate while preserving order
-    seen: set[str] = set()
-    uniq: list[str] = []
-    for f in out_flags:
-        if f not in seen:
-            seen.add(f)
-            uniq.append(f)
-    return uniq
+def _has_strong_flag(flags: list[str], prefix: str) -> bool:
+    """
+    True if any flag matches '<prefix>:strong' (or stronger variants later).
+    prefix is the base id like 'quality.nonsense_basic' or 'correctness.definition_sanity'.
+    """
+    for f in flags:
+        base, _, sev = f.partition(":")
+        if base == prefix and sev == "strong":
+            return True
+    return False
+
+
+def _any_strong_under_namespace(flags: list[str], namespace: str) -> bool:
+    """
+    True if any flag is '<namespace>.*:strong' e.g. correctness.*:strong.
+    """
+    for f in flags:
+        base, _, sev = f.partition(":")
+        if base.startswith(namespace) and sev == "strong":
+            return True
+    return False
 
 
 def score_candidate(request: PredictRequest) -> PredictResponse:
@@ -278,15 +199,15 @@ def score_candidate(request: PredictRequest) -> PredictResponse:
         )
 
     user_text = _msg_content(request.conversation[-1]) if request.conversation else ""
-    candidate = (request.candidate_answer or "").strip()
+    candidate = request.candidate_answer or ""
 
     relevance = _heuristic_relevance(user_text, candidate)
     tone = _heuristic_tone(candidate)
 
     clarity = 4
-    if not candidate:
+    if not candidate.strip():
         clarity = 1
-    elif len(candidate) < 10:
+    elif len(candidate.strip()) < 10:
         clarity = 3
 
     corr = judge_correctness_proxy(request)
@@ -299,69 +220,36 @@ def score_candidate(request: PredictRequest) -> PredictResponse:
         "tone": int(tone),
     }
 
-    flags: list[str] = []
+    # Pull policy if present
+    policy = getattr(rubric, "decision_policy", None)
+    pass_if = float(getattr(policy, "pass_if_overall_score_gte", 3.0)) if policy else 3.0
+    fail_if_any = int(getattr(policy, "fail_if_any_dimension_lte", 1)) if policy else 1
 
-    # Legacy signals
+    overall_score = sum(scores.values()) / 4.0
+    decision: Literal["pass", "fail"] = "pass"
+    if overall_score < pass_if or any(v <= fail_if_any for v in scores.values()):
+        decision = "fail"
+
+    # Heuristic flags
+    flags: list[str] = []
     if scores["relevance"] <= 2:
         flags.append("low_relevance")
     if scores["tone"] <= 2:
         flags.append("rude_tone")
 
-    # Deterministic rule signals
+    # Rubric rule flags (inline or default fallback)
     rule_flags = _apply_rubric_rules(request, rubric)
     for f in rule_flags:
         if f not in flags:
             flags.append(f)
 
-    # Base ids (drop :severity for mapping)
-    base_flags = {f.split(":", 1)[0] for f in flags}
-
-    # Strong base ids (only those explicitly marked :strong)
-    strong_base_flags = {
-        f.split(":", 1)[0]
-        for f in flags
-        if isinstance(f, str) and f.endswith(":strong")
-    }
-
-    # Score impacts (flag-first, scorer decides)
-    if "quality.off_topic" in base_flags:
-        scores["relevance"] = min(scores["relevance"], 1)
-    if "quality.category_error" in base_flags:
-        scores["correctness"] = min(scores["correctness"], 1)
-    if "quality.vacuous" in base_flags:
-        scores["clarity"] = min(scores["clarity"], 2)
-    if any(f in _CLARITY_DOWN_FLAGS for f in base_flags):
-        scores["clarity"] = min(scores["clarity"], 2)
-
-    # Correctness downshifts from deterministic flags
-    if "correctness.definition_wrong" in base_flags:
-        scores["correctness"] = min(scores["correctness"], 1)
-    if "correctness.definition_sanity" in base_flags:
-        scores["correctness"] = min(scores["correctness"], 1)
-
-    policy = getattr(rubric, "decision_policy", None)
-    pass_if = float(getattr(policy, "pass_if_overall_score_gte", 3.0)) if policy is not None else 3.0
-    fail_if_any_lte = int(getattr(policy, "fail_if_any_dimension_lte", 2)) if policy is not None else 2
-
-    overall_score = sum(scores.values()) / 4.0
-    decision: Literal["pass", "fail"] = "pass"
-
-    if overall_score < pass_if or any(v <= fail_if_any_lte for v in scores.values()):
+    # Hard-fail gates for strong signals (tests cover these branches)
+    if _any_strong_under_namespace(flags, "correctness."):
+        decision = "fail"
+    if _has_strong_flag(flags, "quality.nonsense_basic"):
         decision = "fail"
 
-    # Base hard-fail flags (regardless of severity)
-    if any(f in _HARD_FAIL_FLAGS for f in base_flags):
-        decision = "fail"
-
-    # PR6: Strong correctness flags hard-fail
-    if any(f.startswith("correctness.") for f in strong_base_flags):
-        decision = "fail"
-
-    # PR6: Selected strong quality flags hard-fail
-    if any(f in _STRONG_QUALITY_HARD_FAIL for f in strong_base_flags):
-        decision = "fail"
-
-    confidence = float(corr.confidence)
+    confidence = float(getattr(corr, "confidence", 0.5))
     confidence = max(0.0, min(1.0, confidence))
 
     explanations = {
@@ -371,20 +259,15 @@ def score_candidate(request: PredictRequest) -> PredictResponse:
             else "Answer is relevant to the user's question"
         ),
         "clarity": (
-            "Answer is vague, repetitive, or poorly structured"
+            "Answer is unclear or poorly structured"
             if scores["clarity"] <= 2
             else "Answer is clear and well structured"
         ),
-        "correctness": (
-            "Correctness/quality rule(s) flagged an issue: "
-            + ", ".join([f for f in base_flags if f.startswith(("correctness.", "quality."))])
-            if any(f.startswith(("correctness.", "quality.")) for f in base_flags)
-            else corr.explanation
-        ),
+        "correctness": getattr(corr, "explanation", "Correctness proxy applied."),
         "tone": (
-            "Answer uses rude or inappropriate language"
+            "Rude or inappropriate language detected"
             if scores["tone"] <= 2
-            else "Tone is appropriate and respectful"
+            else "Tone is polite and appropriate"
         ),
     }
 

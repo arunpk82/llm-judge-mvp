@@ -47,9 +47,8 @@ class RuleContext:
         if self.candidate_answer is not None:
             return self.candidate_answer
         # Fallback to request if present
-        return (self.request.candidate_answer or "")
-    
-    
+        return self.request.candidate_answer or ""
+
     @property
     def user_text(self) -> str:
         """

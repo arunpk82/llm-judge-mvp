@@ -27,11 +27,13 @@ def test_detect_nonsense_flags_absurd_answer_with_low_overlap() -> None:
     sig = detect_nonsense("How do I reset my router?", "Bananas are yellow and grow in bunches.")
     assert "correctness.nonsense_detected" in sig.flags
 
+
 def test_math_detector_flags_incorrect() -> None:
     sig = detect_math_incorrect("What is 2+2?", "5")
     assert sig is not None
     assert "correctness.math_incorrect" in sig.flags
-    
+
+
 def test_math_detector_no_signal_when_correct() -> None:
     sig = detect_math_incorrect("What is 2+2?", "4")
     assert sig is None

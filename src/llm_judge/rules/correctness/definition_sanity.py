@@ -113,7 +113,9 @@ def correctness_definition_sanity(ctx: RuleContext, params: dict[str, Any]) -> R
     strong_min_triggers = int(params.get("strong_min_triggers", 2))
 
     severity: Severity = "weak"
-    if ("self_referential" in triggers and strong_on_self_ref) or (len(triggers) >= strong_min_triggers):
+    if ("self_referential" in triggers and strong_on_self_ref) or (
+        len(triggers) >= strong_min_triggers
+    ):
         severity = "strong"
 
     details: dict[str, Any] = {

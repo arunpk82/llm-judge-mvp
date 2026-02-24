@@ -1,22 +1,23 @@
-name: CI
+name: nightly
 
 on:
-  push:
-    branches: ["master"]
-  pull_request:
-    branches: ["master"]
+  schedule:
+    # 02:10 Asia/Kolkata ≈ 20:40 UTC (previous day) – pick a quiet window
+    - cron: "40 20 * * *"
+  workflow_dispatch: {}
 
 concurrency:
-  group: ci-${{ github.workflow }}-${{ github.ref }}
+  group: nightly-${{ github.workflow }}
   cancel-in-progress: true
 
 jobs:
-  test:
+  test-nightly:
     runs-on: ubuntu-latest
 
     env:
       POETRY_VIRTUALENVS_IN_PROJECT: "true"
       PIP_DISABLE_PIP_VERSION_CHECK: "1"
+      LLM_JUDGE_DATASET_FULL: "1"
 
     steps:
       - name: Checkout
@@ -59,6 +60,6 @@ jobs:
         run: |
           poetry run mypy src
 
-      - name: Tests (pytest)
+      - name: Tests (pytest nightly)
         run: |
-          poetry run pytest -m "not nightly"
+          poetry run pytest -m nightly

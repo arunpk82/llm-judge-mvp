@@ -4,17 +4,6 @@ title: Chat Quality (v1)
 owner: data-ai
 created_at: "2026-02-05"
 
-# Deterministic rule enablement (signals). Scorer makes final decision.
-# This is intentionally config-driven so we can evolve rule coverage without code churn.
-rules:
-  - format.basic
-  - relevance.basic
-  - tone.basic
-  - correctness.basic
-  - quality.nonsense_basic
-  - quality.repetition_basic
-  - correctness.definition_sanity
-
 scale:
   min: 1
   max: 5
