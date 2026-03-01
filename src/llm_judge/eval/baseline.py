@@ -39,12 +39,6 @@ def _require_file(path: Path) -> None:
 
 
 def infer_suite_from_manifest(manifest: dict[str, Any]) -> str:
-    """
-    Best-effort inference. We try common keys found in run manifests.
-    Fall back to 'unknown_suite' if not present.
-
-    You can tighten this once we confirm manifest schema in Phase 2.
-    """
     for key in ("suite", "dataset_id", "dataset", "dataset_name", "runspec_name"):
         val = manifest.get(key)
         if isinstance(val, str) and val.strip():
@@ -53,23 +47,37 @@ def infer_suite_from_manifest(manifest: dict[str, Any]) -> str:
 
 
 def infer_rubric_id_from_manifest(manifest: dict[str, Any]) -> str:
-    """
-    Milestone A added rubric info into manifest v2 via eval/io.py.
-    We support a few common shapes.
-    """
     rubric = manifest.get("rubric")
     if isinstance(rubric, dict):
         rid = rubric.get("id") or rubric.get("rubric_id")
         if isinstance(rid, str) and rid.strip():
             return rid.strip()
 
-    # fallback keys
     for key in ("rubric_id", "rubric"):
         val = manifest.get(key)
         if isinstance(val, str) and val.strip():
             return val.strip()
 
     return "unknown_rubric"
+
+
+def _resolve_case_artifact(run_dir: Path) -> tuple[Path, str]:
+    """
+    Prefer current platform artifact name: judgments.jsonl
+    Backward compatible with older artifact name: results.jsonl
+    Returns: (path, label) where label is the filename used.
+    """
+    judgments = run_dir / "judgments.jsonl"
+    if judgments.exists():
+        return judgments, "judgments.jsonl"
+
+    results = run_dir / "results.jsonl"
+    if results.exists():
+        return results, "results.jsonl"
+
+    raise FileNotFoundError(
+        f"Missing required per-case artifact: {judgments} (or fallback {results})"
+    )
 
 
 def create_baseline_from_run(
@@ -86,23 +94,23 @@ def create_baseline_from_run(
 
     run_dir must contain:
       - manifest.json
-      - results.jsonl
+      - judgments.jsonl (preferred) OR results.jsonl (legacy)
       - metrics.json
 
     Writes:
-      baselines/<suite>/<rubric_id>/snapshots/<baseline_id>/{manifest.json,results.jsonl,metrics.json}
+      baselines/<suite>/<rubric_id>/snapshots/<baseline_id>/{manifest.json,judgments.jsonl,metrics.json}
       baselines/<suite>/<rubric_id>/latest.json  (if set_latest)
     """
     run_dir = run_dir.resolve()
     baselines_dir = baselines_dir.resolve()
 
     manifest_path = run_dir / "manifest.json"
-    results_path = run_dir / "results.jsonl"
     metrics_path = run_dir / "metrics.json"
 
     _require_file(manifest_path)
-    _require_file(results_path)
     _require_file(metrics_path)
+
+    case_path, case_name = _resolve_case_artifact(run_dir)
 
     manifest = _read_json(manifest_path)
 
@@ -114,8 +122,10 @@ def create_baseline_from_run(
     dst_dir.mkdir(parents=True, exist_ok=False)
 
     shutil.copy2(manifest_path, dst_dir / "manifest.json")
-    shutil.copy2(results_path, dst_dir / "results.jsonl")
     shutil.copy2(metrics_path, dst_dir / "metrics.json")
+
+    # Always store as judgments.jsonl in snapshots for a stable contract.
+    shutil.copy2(case_path, dst_dir / "judgments.jsonl")
 
     ref = BaselineRef(
         suite=suite_final,
@@ -135,6 +145,8 @@ def create_baseline_from_run(
                 "baseline_id": ref.baseline_id,
                 "created_at_utc": ref.created_at_utc,
                 "source_run_dir": ref.source_run_dir,
+                "case_artifact_source": case_name,
+                "case_artifact_snapshot": "judgments.jsonl",
             },
         )
 
