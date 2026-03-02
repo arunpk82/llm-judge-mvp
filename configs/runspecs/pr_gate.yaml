@@ -1,15 +1,12 @@
 run_id_prefix: pr-gate
-
 dataset:
-  path: datasets/deterministic/math_basic_v2_10k.jsonl
+  path: datasets/deterministic/math_basic_v1.jsonl
   dataset_id: math_basic
-  version: v2_10k
-
+  version: v1
 sample:
   n: 300
   seed: 42
   strategy: stable_hash
-
 rubric_id: chat_quality
 judge_engine: deterministic
 output_dir: reports/runs
