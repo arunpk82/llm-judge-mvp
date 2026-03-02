@@ -1,14 +1,9 @@
-run_id_prefix: pr-gate
+run_id_prefix: nightly-10k
 
 dataset:
   path: datasets/deterministic/math_basic_v2_10k.jsonl
   dataset_id: math_basic
   version: v2_10k
-
-sample:
-  n: 300
-  seed: 42
-  strategy: stable_hash
 
 rubric_id: chat_quality
 judge_engine: deterministic

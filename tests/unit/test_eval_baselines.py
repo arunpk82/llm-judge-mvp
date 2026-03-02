@@ -21,7 +21,10 @@ def test_create_baseline_from_run(tmp_path: Path) -> None:
         json.dumps({"rubric": {"id": "chat_quality"}, "dataset_id": "math_basic"}),
     )
     # Legacy filename still supported as input...
-    _write(run_dir / "results.jsonl", '{"case_index":0,"rubric_id":"chat_quality","judge_decision":"fail"}\n')
+    _write(
+        run_dir / "results.jsonl",
+        '{"case_index":0,"rubric_id":"chat_quality","judge_decision":"fail"}\n',
+    )
     _write(run_dir / "metrics.json", json.dumps({"total": 1, "pass": 1}))
 
     ref = create_baseline_from_run(run_dir=run_dir, baselines_dir=baselines)
@@ -41,8 +44,14 @@ def test_create_baseline_prefers_judgments_jsonl(tmp_path: Path) -> None:
         run_dir / "manifest.json",
         json.dumps({"rubric": {"id": "chat_quality"}, "dataset_id": "math_basic"}),
     )
-    _write(run_dir / "results.jsonl", '{"case_index":0,"rubric_id":"chat_quality","judge_decision":"pass"}\n')
-    _write(run_dir / "judgments.jsonl", '{"case_index":0,"rubric_id":"chat_quality","judge_decision":"fail"}\n')
+    _write(
+        run_dir / "results.jsonl",
+        '{"case_index":0,"rubric_id":"chat_quality","judge_decision":"pass"}\n',
+    )
+    _write(
+        run_dir / "judgments.jsonl",
+        '{"case_index":0,"rubric_id":"chat_quality","judge_decision":"fail"}\n',
+    )
     _write(run_dir / "metrics.json", json.dumps({"total": 1, "pass": 0}))
 
     ref = create_baseline_from_run(run_dir=run_dir, baselines_dir=baselines)

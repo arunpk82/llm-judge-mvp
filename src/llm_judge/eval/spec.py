@@ -15,6 +15,13 @@ class DatasetSpec:
 
 
 @dataclass(frozen=True)
+class SampleSpec:
+    n: int
+    seed: int = 42
+    strategy: str = "stable_hash"
+
+
+@dataclass(frozen=True)
 class RunSpec:
     run_id_prefix: str
     dataset: DatasetSpec
@@ -22,6 +29,7 @@ class RunSpec:
     judge_engine: str
     output_dir: str
     random_seed: int = 42
+    sample: SampleSpec | None = None
 
     @staticmethod
     def from_yaml(path: str | Path) -> "RunSpec":
@@ -35,6 +43,20 @@ class RunSpec:
             version=str(ds["version"]),
         )
 
+        # Optional sampling config (used for PR gate)
+        sample_obj: SampleSpec | None = None
+        sample_data = data.get("sample")
+        if isinstance(sample_data, dict):
+            n_val = sample_data.get("n")
+            if n_val is not None:
+                if not isinstance(n_val, int) or n_val <= 0:
+                    raise ValueError("sample.n must be a positive int")
+                seed_val = sample_data.get("seed", data.get("random_seed", 42))
+                if not isinstance(seed_val, int):
+                    raise ValueError("sample.seed must be an int")
+                strategy_val = str(sample_data.get("strategy", "stable_hash"))
+                sample_obj = SampleSpec(n=int(n_val), seed=int(seed_val), strategy=strategy_val)
+
         return RunSpec(
             run_id_prefix=str(data["run_id_prefix"]),
             dataset=dataset,
@@ -42,4 +64,5 @@ class RunSpec:
             judge_engine=str(data["judge_engine"]),
             output_dir=str(data["output_dir"]),
             random_seed=int(data.get("random_seed", 42)),
+            sample=sample_obj,
         )

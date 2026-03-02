@@ -9,56 +9,20 @@ from llm_judge.rules.engine import RuleEngine
 from llm_judge.rules.types import RuleContext
 from llm_judge.schemas import PredictRequest, PredictResponse
 
-# Keep this small + high-signal (don’t overdo it)
+# Rubrics where answers are expected to be short numbers — skip token-overlap
+# relevance scoring and quality/nonsense hard-fail checks entirely.
+_MATH_RUBRICS: frozenset[str] = frozenset({"math_basic"})
+
+# Regex to detect a pure numeric answer (possibly negative/decimal)
+_NUMERIC_RE = re.compile(r"^\s*[-+]?\d+(?:\.\d+)?\s*$")
+
+# Keep this small + high-signal (don't overdo it)
 _STOPWORDS: set[str] = {
-    "a",
-    "an",
-    "and",
-    "are",
-    "as",
-    "at",
-    "be",
-    "but",
-    "by",
-    "can",
-    "could",
-    "do",
-    "does",
-    "did",
-    "for",
-    "from",
-    "how",
-    "i",
-    "in",
-    "is",
-    "it",
-    "me",
-    "my",
-    "of",
-    "on",
-    "or",
-    "please",
-    "should",
-    "so",
-    "that",
-    "the",
-    "their",
-    "then",
-    "this",
-    "to",
-    "try",
-    "up",
-    "we",
-    "what",
-    "when",
-    "where",
-    "why",
-    "will",
-    "with",
-    "you",
-    "your",
-    "thanks",
-    "thank",
+    "a", "an", "and", "are", "as", "at", "be", "but", "by", "can", "could",
+    "do", "does", "did", "for", "from", "how", "i", "in", "is", "it", "me",
+    "my", "of", "on", "or", "please", "should", "so", "that", "the", "their",
+    "then", "this", "to", "try", "up", "we", "what", "when", "where", "why",
+    "will", "with", "you", "your", "thanks", "thank",
 }
 
 # Normalize common intent synonyms (improves overlap without an LLM)
@@ -94,7 +58,11 @@ def _tokenize(text: str) -> set[str]:
     return out
 
 
-def _heuristic_relevance(user_text: str, candidate: str) -> int:
+def _heuristic_relevance(user_text: str, candidate: str, rubric_id: str = "") -> int:
+    # For math rubrics, a numeric answer is always relevant — don't penalize brevity.
+    if rubric_id in _MATH_RUBRICS:
+        return 5 if _NUMERIC_RE.match(candidate) else 3
+
     u = _tokenize(user_text)
     a = _tokenize(candidate)
 
@@ -133,6 +101,7 @@ def _apply_rubric_rules(request: PredictRequest, rubric: Any) -> list[str]:
     Patchable by tests via monkeypatch.
     """
     ctx = RuleContext(request=request, rubric=rubric)
+    rubric_id = getattr(rubric, "rubric_id", "")
     rules_config = getattr(rubric, "rules", None)
 
     if rules_config:
@@ -140,14 +109,16 @@ def _apply_rubric_rules(request: PredictRequest, rubric: Any) -> list[str]:
         engine = RuleEngine(rules=rules_config)
         engine.run(ctx)
     else:
-        # Default rule set when rubric has no explicit rules
-        engine = RuleEngine(
-            rules=[
-                {"id": "correctness.correctness_basic"},
-                {"id": "correctness.definition_sanity"},
-                {"id": "quality.nonsense_basic"},
-            ]
-        )
+        # Default rule set — skip quality/nonsense rules for math rubrics since
+        # short numeric answers like "-10" are valid and not nonsense.
+        default_rules: list[dict[str, Any]] = [
+            {"id": "correctness.basic"},
+            {"id": "correctness.definition_sanity"},
+        ]
+        if rubric_id not in _MATH_RUBRICS:
+            default_rules.append({"id": "quality.nonsense_basic"})
+
+        engine = RuleEngine(rules=default_rules)
         engine.run(ctx)
 
     return list(getattr(ctx, "flags", []))
@@ -155,7 +126,7 @@ def _apply_rubric_rules(request: PredictRequest, rubric: Any) -> list[str]:
 
 def _has_strong_flag(flags: list[str], prefix: str) -> bool:
     """
-    True if any flag matches '<prefix>:strong' (or stronger variants later).
+    True if any flag matches '<prefix>:strong'.
     prefix is the base id like 'quality.nonsense_basic' or 'correctness.definition_sanity'.
     """
     for f in flags:
@@ -198,15 +169,19 @@ def score_candidate(request: PredictRequest) -> PredictResponse:
             },
         )
 
+    rubric_id = request.rubric_id
     user_text = _msg_content(request.conversation[-1]) if request.conversation else ""
     candidate = request.candidate_answer or ""
 
-    relevance = _heuristic_relevance(user_text, candidate)
+    relevance = _heuristic_relevance(user_text, candidate, rubric_id)
     tone = _heuristic_tone(candidate)
 
     clarity = 4
     if not candidate.strip():
         clarity = 1
+    elif rubric_id in _MATH_RUBRICS:
+        # Short numeric answers are perfectly clear for math rubrics
+        clarity = 5 if _NUMERIC_RE.match(candidate) else 3
     elif len(candidate.strip()) < 10:
         clarity = 3
 
@@ -243,10 +218,11 @@ def score_candidate(request: PredictRequest) -> PredictResponse:
         if f not in flags:
             flags.append(f)
 
-    # Hard-fail gates for strong signals (tests cover these branches)
+    # Hard-fail gates for strong signals
     if _any_strong_under_namespace(flags, "correctness."):
         decision = "fail"
-    if _has_strong_flag(flags, "quality.nonsense_basic"):
+    # Only apply quality hard-fail for non-math rubrics
+    if rubric_id not in _MATH_RUBRICS and _has_strong_flag(flags, "quality.nonsense_basic"):
         decision = "fail"
 
     confidence = float(getattr(corr, "confidence", 0.5))
