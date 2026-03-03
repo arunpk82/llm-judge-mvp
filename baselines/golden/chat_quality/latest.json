@@ -1,9 +1,9 @@
 {
-  "baseline_id": "20260303T030650Z",
+  "baseline_id": "20260303T092410Z",
   "case_artifact_snapshot": "judgments.jsonl",
   "case_artifact_source": "judgments.jsonl",
-  "created_at_utc": "20260303T030650Z",
+  "created_at_utc": "20260303T092410Z",
   "rubric_id": "chat_quality",
-  "source_run_dir": "reports/runs/pr-gate-20260303",
+  "source_run_dir": "/home/arunpk/work/llm-judge-mvp/reports/runs/pr-gate-20260303-030618-670487",
   "suite": "golden"
 }
