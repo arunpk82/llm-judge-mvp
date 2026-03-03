@@ -16,8 +16,9 @@ EXIT_POLICY_VIOLATION = 2
 class ResolvedRun:
     run_dir: Path
     manifest_path: Path
-    judgments_path: Path
+    case_path: Path
     metrics_path: Path
+    case_filename: str
 
 
 def _read_json(path: Path) -> dict[str, Any]:
@@ -41,50 +42,67 @@ def _require(path: Path) -> None:
         raise FileNotFoundError(f"Missing required file: {path}")
 
 
+def _resolve_case_artifact(run_dir: Path) -> tuple[Path, str]:
+    """
+    Prefer judgments.jsonl. Fallback to results.jsonl.
+    """
+    p = run_dir / "judgments.jsonl"
+    if p.exists():
+        return p, "judgments.jsonl"
+    p = run_dir / "results.jsonl"
+    if p.exists():
+        return p, "results.jsonl"
+    raise FileNotFoundError(
+        f"Missing required per-case artifact: {run_dir/'judgments.jsonl'} (or fallback {run_dir/'results.jsonl'})"
+    )
+
+
 def resolve_run_dir(run_dir: Path) -> ResolvedRun:
     run_dir = run_dir.resolve()
     manifest_path = run_dir / "manifest.json"
-    judgments_path = run_dir / "judgments.jsonl"
     metrics_path = run_dir / "metrics.json"
 
     _require(manifest_path)
-    _require(judgments_path)
     _require(metrics_path)
+
+    case_path, case_filename = _resolve_case_artifact(run_dir)
 
     return ResolvedRun(
         run_dir=run_dir,
         manifest_path=manifest_path,
-        judgments_path=judgments_path,
+        case_path=case_path,
         metrics_path=metrics_path,
+        case_filename=case_filename,
     )
 
 
 def resolve_baseline(baseline: Path) -> ResolvedRun:
     """
     baseline can be:
-      1) A snapshot directory containing manifest.json/judgments.jsonl/metrics.json
-      2) A latest.json pointer file created by Milestone B1
+      1) A snapshot directory containing manifest.json/(judgments.jsonl|results.jsonl)/metrics.json
+      2) A latest.json pointer file created by baseline-create
     """
     baseline = baseline.resolve()
     if baseline.is_file() and baseline.name.endswith(".json"):
-        # Assume latest.json pointer (Milestone B1 format)
         data = _read_json(baseline)
         baseline_id = data.get("baseline_id")
         if not isinstance(baseline_id, str) or not baseline_id.strip():
-            raise ValueError(f"Invalid baseline pointer file (missing baseline_id): {baseline}")
+            raise ValueError(
+                f"Invalid baseline pointer file (missing baseline_id): {baseline}"
+            )
 
-        # latest.json lives at: baselines/<suite>/<rubric_id>/latest.json
-        # snapshot lives at: baselines/<suite>/<rubric_id>/snapshots/<baseline_id>/
         snap_dir = baseline.parent / "snapshots" / baseline_id.strip()
         return resolve_run_dir(snap_dir)
 
-    # Otherwise treat as directory
     return resolve_run_dir(baseline)
 
 
 def _load_judgments(path: Path) -> dict[tuple[int, str], dict[str, Any]]:
     """
     Keyed by (case_index, rubric_id) to avoid collisions.
+    Assumes per-line JSON objects with at least:
+      - case_index: int
+      - rubric_id: str
     """
     out: dict[tuple[int, str], dict[str, Any]] = {}
     with path.open("r", encoding="utf-8") as f:
@@ -179,11 +197,9 @@ def _diff_judgments(
 
         b_scores_any = b.get("judge_scores")
         c_scores_any = c.get("judge_scores")
-
         b_scores: dict[str, Any] = b_scores_any if isinstance(b_scores_any, dict) else {}
         c_scores: dict[str, Any] = c_scores_any if isinstance(c_scores_any, dict) else {}
 
-        # per-dimension deltas
         dims = sorted(set(b_scores.keys()) | set(c_scores.keys()))
         deltas: dict[str, Any] = {}
         for d in dims:
@@ -213,9 +229,7 @@ def _diff_judgments(
     return {
         "n_cases_baseline": len(base),
         "n_cases_candidate": len(cand),
-        "missing_in_candidate": [
-            {"case_index": k[0], "rubric_id": k[1]} for k in missing_in_candidate
-        ],
+        "missing_in_candidate": [{"case_index": k[0], "rubric_id": k[1]} for k in missing_in_candidate],
         "new_in_candidate": [{"case_index": k[0], "rubric_id": k[1]} for k in new_in_candidate],
         "decision_flips": decision_flips,
         "score_deltas": score_deltas,
@@ -260,7 +274,6 @@ def _check_policy(
         violations.append(f"Decision flips detected: {len(j['decision_flips'])}")
 
     if max_abs_score_delta is not None:
-        # Look for any score delta exceeding threshold
         for item in j["score_deltas"]:
             for dim, d in item["deltas"].items():
                 if abs(float(d["delta"])) > max_abs_score_delta:
@@ -268,9 +281,7 @@ def _check_policy(
                         f"Score delta too large: case_index={item['case_index']} rubric_id={item['rubric_id']} "
                         f"dim={dim} delta={d['delta']} (threshold={max_abs_score_delta})"
                     )
-                    # keep scanning to surface more, but this is already a violation
 
-    # Metric drop rules: baseline - candidate <= tol
     m_deltas: dict[str, Any] = diff["metrics"]["deltas"]
     for k, tol in max_metric_drop.items():
         if k not in m_deltas:
@@ -289,7 +300,7 @@ def _check_policy(
 
 def _build_summary(diff: dict[str, Any], violations: list[str]) -> str:
     j = diff["judgments"]
-    lines = []
+    lines: list[str] = []
     lines.append("LLM-Judge Eval Diff Summary")
     lines.append("=" * 28)
     lines.append(f"Baseline:  {diff['baseline_dir']}")
@@ -350,8 +361,8 @@ def main(argv: list[str] | None = None) -> int:
         baseline_run = resolve_baseline(Path(args.baseline))
         candidate_run = resolve_run_dir(Path(args.candidate))
 
-        base_j = _load_judgments(baseline_run.judgments_path)
-        cand_j = _load_judgments(candidate_run.judgments_path)
+        base_j = _load_judgments(baseline_run.case_path)
+        cand_j = _load_judgments(candidate_run.case_path)
 
         base_m = _read_json(baseline_run.metrics_path)
         cand_m = _read_json(candidate_run.metrics_path)
