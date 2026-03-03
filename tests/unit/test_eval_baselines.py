@@ -31,9 +31,16 @@ def test_create_baseline_from_run(tmp_path: Path) -> None:
 
     snap_dir = baselines / ref.suite / ref.rubric_id / "snapshots" / ref.baseline_id
     assert (snap_dir / "manifest.json").exists()
-    # ...but snapshot contract is standardized to judgments.jsonl
+    # Snapshot contract is standardized to judgments.jsonl...
     assert (snap_dir / "judgments.jsonl").exists()
+    # ...and we also keep a compat copy for older tooling.
+    assert (snap_dir / "results.jsonl").exists()
     assert (snap_dir / "metrics.json").exists()
+
+    # Optional: ensure the compat file is the same content as the canonical one
+    assert (snap_dir / "results.jsonl").read_text(encoding="utf-8") == (
+        snap_dir / "judgments.jsonl"
+    ).read_text(encoding="utf-8")
 
 
 def test_create_baseline_prefers_judgments_jsonl(tmp_path: Path) -> None:
@@ -60,3 +67,8 @@ def test_create_baseline_prefers_judgments_jsonl(tmp_path: Path) -> None:
     data = (snap_dir / "judgments.jsonl").read_text(encoding="utf-8")
     # Should have copied judgments.jsonl (preferred) not results.jsonl
     assert '"judge_decision":"fail"' in data
+
+    # Compat file should match canonical snapshot content.
+    assert (snap_dir / "results.jsonl").read_text(encoding="utf-8") == (
+        snap_dir / "judgments.jsonl"
+    ).read_text(encoding="utf-8")
