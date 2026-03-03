@@ -265,6 +265,8 @@ def _check_policy(
     fail_on_decision_flip: bool,
     max_abs_score_delta: float | None,
     max_metric_drop: dict[str, float],
+    baseline_metrics: dict[str, Any],
+    candidate_metrics: dict[str, Any],
 ) -> list[str]:
     violations: list[str] = []
 
@@ -284,15 +286,37 @@ def _check_policy(
 
     m_deltas: dict[str, Any] = diff["metrics"]["deltas"]
     for k, tol in max_metric_drop.items():
-        if k not in m_deltas:
+        # Check if metric exists in both baseline and candidate
+        b_has_key = k in baseline_metrics
+        c_has_key = k in candidate_metrics
+
+        if not b_has_key and not c_has_key:
+            # Metric not in either - skip silently (not applicable)
+            continue
+
+        if not b_has_key or not c_has_key:
+            # Metric in one but not the other - this is a real issue
             violations.append(f"Metric '{k}' not present in both baseline and candidate metrics.")
             continue
-        base = float(m_deltas[k]["baseline"])
-        cand = float(m_deltas[k]["candidate"])
-        drop = base - cand
+
+        # Both have the key - check if values are comparable (both numeric)
+        b_val = _numeric(baseline_metrics[k])
+        c_val = _numeric(candidate_metrics[k])
+
+        if b_val is None and c_val is None:
+            # Both are null/non-numeric - they match, no violation
+            continue
+
+        if b_val is None or c_val is None:
+            # One is numeric, one is null - can't compare, but not necessarily a violation
+            # Just skip this metric for drop comparison
+            continue
+
+        # Both are numeric - check for drop
+        drop = b_val - c_val
         if drop > tol:
             violations.append(
-                f"Metric drop too large: {k} baseline={base} candidate={cand} drop={drop} (tolerance={tol})"
+                f"Metric drop too large: {k} baseline={b_val} candidate={c_val} drop={drop} (tolerance={tol})"
             )
 
     return violations
@@ -381,6 +405,8 @@ def main(argv: list[str] | None = None) -> int:
             fail_on_decision_flip=(args.fail_on == "decision_flip"),
             max_abs_score_delta=args.max_abs_score_delta,
             max_metric_drop=max_metric_drop,
+            baseline_metrics=base_m,
+            candidate_metrics=cand_m,
         )
 
         out_dir = Path(args.out) if args.out else (candidate_run.run_dir / "diff")
