@@ -284,7 +284,6 @@ def _check_policy(
                         f"dim={dim} delta={d['delta']} (threshold={max_abs_score_delta})"
                     )
 
-    m_deltas: dict[str, Any] = diff["metrics"]["deltas"]
     for k, tol in max_metric_drop.items():
         # Check if metric exists in both baseline and candidate
         b_has_key = k in baseline_metrics
