@@ -16,6 +16,13 @@ class DatasetSpec:
 
 @dataclass(frozen=True)
 class SampleSpec:
+    """
+    Sampling configuration for PR gate / fast runs.
+
+    strategy:
+      - "stable_hash": deterministic sampling that remains stable as dataset grows,
+                       assuming each row has a stable unique case_id.
+    """
     n: int
     seed: int = 42
     strategy: str = "stable_hash"
@@ -51,10 +58,16 @@ class RunSpec:
             if n_val is not None:
                 if not isinstance(n_val, int) or n_val <= 0:
                     raise ValueError("sample.n must be a positive int")
+
+                # Default seed to run random_seed if sample.seed not provided
                 seed_val = sample_data.get("seed", data.get("random_seed", 42))
                 if not isinstance(seed_val, int):
                     raise ValueError("sample.seed must be an int")
+
                 strategy_val = str(sample_data.get("strategy", "stable_hash"))
+                if strategy_val != "stable_hash":
+                    raise ValueError(f"Unsupported sample.strategy: {strategy_val}")
+
                 sample_obj = SampleSpec(n=int(n_val), seed=int(seed_val), strategy=strategy_val)
 
         return RunSpec(

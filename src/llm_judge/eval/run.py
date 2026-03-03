@@ -8,6 +8,7 @@ import random
 from pathlib import Path
 from typing import Any, Dict, List, Optional, Tuple
 
+from llm_judge.eval.schema import EVAL_RUN_SCHEMA_VERSION
 from llm_judge.runtime import get_judge_engine
 from llm_judge.schemas import Message, PredictRequest
 
@@ -50,60 +51,51 @@ def _sample_rows_stable_hash(
     """
     Deterministic sampling that remains stable even if dataset grows.
 
-    Rule:
-      - derive a stable key per row: prefer row['case_id'], else fallback to f"idx:{i}"
-      - sort by sha(seed, key) ascending
+    World-class contract:
+      - requires a stable unique case_id per row
+      - sort by sha(seed, case_id) ascending
       - take first n
+      - return rows sorted by case_id for stable downstream iteration/diff
 
     Returns sampled_rows and sampling_metadata.
     """
     if n <= 0:
-        return [], {"strategy": "stable_hash", "n": 0, "seed": seed}
+        return [], {"strategy": "stable_hash", "requested_n": 0, "actual_n": 0, "seed": seed}
 
-    keyed: List[Tuple[int, int, dict[str, Any]]] = []
-    for i, row in enumerate(rows):
-        cid = row.get("case_id")
-        key = str(cid) if isinstance(cid, str) and cid.strip() else f"idx:{i}"
-        hv = _stable_hash_u64(seed, key)
-        keyed.append((hv, i, row))
+    # Enforce case_id to guarantee stability as datasets scale/grow.
+    missing_case_id = [
+        i
+        for i, r in enumerate(rows)
+        if not isinstance(r.get("case_id"), str) or not r["case_id"].strip()
+    ]
+    if missing_case_id:
+        raise ValueError(
+            "Deterministic sampling requires non-empty string 'case_id' for every row. "
+            f"Missing/invalid case_id at rows: {missing_case_id[:10]}"
+            + (" ..." if len(missing_case_id) > 10 else "")
+        )
+
+    keyed: List[Tuple[int, str, dict[str, Any]]] = []
+    for row in rows:
+        cid = str(row["case_id"])
+        hv = _stable_hash_u64(seed, cid)
+        keyed.append((hv, cid, row))
 
     keyed.sort(key=lambda t: (t[0], t[1]))
     sampled = [t[2] for t in keyed[: min(n, len(keyed))]]
 
+    # For diff-friendly stability, sort selected rows by case_id.
+    sampled_sorted = sorted(sampled, key=lambda r: str(r["case_id"]))
+
     meta = {
         "strategy": "stable_hash",
         "requested_n": n,
-        "actual_n": len(sampled),
+        "actual_n": len(sampled_sorted),
         "seed": seed,
         "requires_case_id_for_growth_stability": True,
+        "ordering": "case_id_ascending",
     }
-    return sampled, meta
-
-
-def _get_sample_config(spec: Any) -> Optional[dict[str, Any]]:
-    """
-    Backward compatible:
-    - If RunSpec has attribute .sample (dict-like), use it.
-    - Otherwise return None.
-
-    This lets you land C1 code even before RunSpec is upgraded,
-    as long as pr_gate.yaml remains unchanged. Once RunSpec gains
-    `sample`, this automatically activates.
-    """
-    sample = getattr(spec, "sample", None)
-    if sample is None:
-        return None
-    if isinstance(sample, dict):
-        return sample
-    # If you model sample as a dataclass later, try to read fields
-    try:
-        return {
-            "n": getattr(sample, "n", None),
-            "seed": getattr(sample, "seed", None),
-            "strategy": getattr(sample, "strategy", None),
-        }
-    except Exception:
-        return None
+    return sampled_sorted, meta
 
 
 def main() -> int:
@@ -124,17 +116,11 @@ def main() -> int:
 
     # Optional sampling for PR gate
     sampling_meta: Optional[dict[str, Any]] = None
-    sample_cfg = _get_sample_config(spec)
-    if sample_cfg:
-        strategy = str(sample_cfg.get("strategy") or "stable_hash")
-        n = sample_cfg.get("n")
-        seed = sample_cfg.get("seed", spec.random_seed)
-        if isinstance(n, int) and n > 0:
-            if strategy != "stable_hash":
-                raise ValueError(f"Unsupported sample.strategy: {strategy}")
-            if not isinstance(seed, int):
-                raise ValueError("sample.seed must be an int")
-            rows, sampling_meta = _sample_rows_stable_hash(rows, n=n, seed=seed)
+    if spec.sample is not None:
+        # spec.py already validates strategy; keep guardrail here too.
+        if spec.sample.strategy != "stable_hash":
+            raise ValueError(f"Unsupported sample.strategy: {spec.sample.strategy}")
+        rows, sampling_meta = _sample_rows_stable_hash(rows, n=spec.sample.n, seed=spec.sample.seed)
 
     engine = get_judge_engine()
 
@@ -143,8 +129,14 @@ def main() -> int:
     ensure_dir(run_dir)
 
     manifest = build_manifest(runspec=spec, dataset_path=dataset_path)
+
+    # --- Production-grade artifact contract (schema/versioning) ---
+    manifest["schema_version"] = EVAL_RUN_SCHEMA_VERSION
+    manifest["artifact_type"] = "eval_run"
+
     if sampling_meta:
         manifest["sampling"] = sampling_meta
+
     write_json(run_dir / "manifest.json", manifest)
 
     judgments: List[Dict[str, Any]] = []
@@ -176,7 +168,7 @@ def main() -> int:
 
     write_jsonl(run_dir / "judgments.jsonl", judgments)
 
-    # PR4: compute & persist metrics
+    # compute & persist metrics
     metrics = compute_metrics(judgments)
     write_json(run_dir / "metrics.json", metrics)
 

@@ -15,6 +15,10 @@ Usage (CLI):
 
     # Show baseline details
     python -m llm_judge.eval.baseline show --suite golden --rubric chat_quality
+
+    # Validate baseline integrity (latest pointer + required snapshot artifacts)
+    python -m llm_judge.eval.baseline validate --suite golden --rubric-id chat_quality
+    python -m llm_judge.eval.baseline validate --all
 """
 
 from __future__ import annotations
@@ -27,7 +31,7 @@ import sys
 from dataclasses import dataclass
 from datetime import datetime, timezone
 from pathlib import Path
-from typing import Any
+from typing import Any, Iterable
 
 logger = logging.getLogger(__name__)
 
@@ -64,6 +68,12 @@ class ValidationError(BaselineError):
 
 class BaselineExistsError(BaselineError):
     """Raised when attempting to create a baseline that already exists."""
+
+    pass
+
+
+class BaselineIntegrityError(BaselineError):
+    """Raised when an existing baseline (latest pointer/snapshot) is invalid."""
 
     pass
 
@@ -210,6 +220,96 @@ def validate_run_artifacts(
     return manifest
 
 
+# ---------------------------------------------------------------------------
+# Baseline integrity validation (P0 governance)
+# ---------------------------------------------------------------------------
+
+def _parse_latest_json(latest_path: Path) -> dict[str, Any]:
+    _require_file(latest_path, "Baseline validation")
+    try:
+        return _read_json(latest_path)
+    except json.JSONDecodeError as e:
+        raise BaselineIntegrityError(f"Invalid latest.json at {latest_path}: {e}")
+
+
+def _extract_baseline_id(latest: dict[str, Any]) -> str:
+    """
+    Supports existing format:
+      { "baseline_id": "...", ... }
+
+    Also tolerates future-proof aliases if ever introduced.
+    """
+    for key in ("baseline_id", "latest", "snapshot_id", "snapshot"):
+        v = latest.get(key)
+        if isinstance(v, str) and v.strip():
+            return v.strip()
+    raise BaselineIntegrityError("latest.json missing baseline identifier (baseline_id/latest/snapshot_id)")
+
+
+def validate_baseline_snapshot_dir(snapshot_dir: Path) -> None:
+    """
+    World-class baseline snapshot contract.
+    Required:
+      - manifest.json
+      - metrics.json
+      - judgments.jsonl (canonical)
+    Optional:
+      - results.jsonl (legacy compat)
+    """
+    required = ["manifest.json", "metrics.json", "judgments.jsonl"]
+    missing = [name for name in required if not (snapshot_dir / name).exists()]
+    if missing:
+        raise BaselineIntegrityError(f"Snapshot missing required files: {missing} in {snapshot_dir}")
+
+    # Lightweight sanity checks: non-empty artifacts
+    if _count_jsonl_lines(snapshot_dir / "judgments.jsonl") <= 0:
+        raise BaselineIntegrityError(f"judgments.jsonl is empty in {snapshot_dir}")
+
+    try:
+        m = _read_json(snapshot_dir / "metrics.json")
+        if not m:
+            raise BaselineIntegrityError(f"metrics.json is empty in {snapshot_dir}")
+    except json.JSONDecodeError as e:
+        raise BaselineIntegrityError(f"Invalid metrics.json in {snapshot_dir}: {e}")
+
+    try:
+        _ = _read_json(snapshot_dir / "manifest.json")
+    except json.JSONDecodeError as e:
+        raise BaselineIntegrityError(f"Invalid manifest.json in {snapshot_dir}: {e}")
+
+
+def validate_latest_baseline(
+    *,
+    suite: str,
+    rubric_id: str,
+    baselines_dir: Path = DEFAULT_BASELINES_DIR,
+) -> Path:
+    """
+    Validate that baselines/<suite>/<rubric_id>/latest.json points to a valid snapshot.
+    Returns the snapshot_dir if valid.
+    """
+    baselines_dir = baselines_dir.resolve()
+    latest_path = baselines_dir / suite / rubric_id / "latest.json"
+    latest = _parse_latest_json(latest_path)
+
+    baseline_id = _extract_baseline_id(latest)
+    snapshot_dir = baselines_dir / suite / rubric_id / "snapshots" / baseline_id
+
+    if not snapshot_dir.exists() or not snapshot_dir.is_dir():
+        raise BaselineIntegrityError(f"latest.json points to missing snapshot dir: {snapshot_dir}")
+
+    validate_baseline_snapshot_dir(snapshot_dir)
+    return snapshot_dir
+
+
+def _iter_latest_files(baselines_dir: Path) -> Iterable[Path]:
+    return baselines_dir.resolve().rglob("latest.json")
+
+
+# ---------------------------------------------------------------------------
+# Baseline creation / listing / show (existing behavior)
+# ---------------------------------------------------------------------------
+
 def create_baseline_from_run(
     *,
     run_dir: Path,
@@ -223,24 +323,6 @@ def create_baseline_from_run(
 ) -> BaselineRef:
     """
     Promote a run directory into a baseline snapshot.
-
-    Args:
-        run_dir: Path to the eval run output directory
-        baselines_dir: Root directory for baselines (default: baselines/)
-        suite: Override suite name (default: infer from manifest)
-        rubric_id: Override rubric ID (default: infer from manifest)
-        baseline_id: Override baseline ID (default: UTC timestamp)
-        set_latest: Update latest.json pointer (default: True)
-        overwrite: Allow overwriting existing baseline (default: False)
-        min_cases: Minimum cases required for valid baseline (default: 1)
-
-    Returns:
-        BaselineRef with metadata about the created baseline
-
-    Raises:
-        FileNotFoundError: If required artifacts are missing
-        ValidationError: If artifacts are invalid or insufficient
-        BaselineExistsError: If baseline exists and overwrite=False
     """
     run_dir = run_dir.resolve()
     baselines_dir = baselines_dir.resolve()
@@ -270,12 +352,12 @@ def create_baseline_from_run(
 
     dst_dir.mkdir(parents=True, exist_ok=False)
 
-    # Copy all artifacts
+    # Copy all artifacts (canonical snapshot format)
     shutil.copy2(run_dir / "manifest.json", dst_dir / "manifest.json")
     shutil.copy2(run_dir / "metrics.json", dst_dir / "metrics.json")
     shutil.copy2(case_path, dst_dir / "judgments.jsonl")
 
-    # Compat symlink for older tooling expecting results.jsonl
+    # Compat file for older tooling expecting results.jsonl
     results_compat = dst_dir / "results.jsonl"
     if not results_compat.exists():
         shutil.copy2(case_path, results_compat)
@@ -323,7 +405,7 @@ def find_latest_run(prefix: str, runs_dir: Path = DEFAULT_RUNS_DIR) -> Path:
 def list_baselines(baselines_dir: Path = DEFAULT_BASELINES_DIR) -> list[dict[str, Any]]:
     """List all baselines with their metadata."""
     baselines_dir = baselines_dir.resolve()
-    results = []
+    results: list[dict[str, Any]] = []
 
     for latest_file in baselines_dir.rglob("latest.json"):
         try:
@@ -364,7 +446,6 @@ def get_baseline_info(
 # =============================================================================
 # CLI Interface
 # =============================================================================
-
 
 def _cmd_create(args: argparse.Namespace) -> int:
     """Handle 'create' subcommand."""
@@ -435,6 +516,50 @@ def _cmd_show(args: argparse.Namespace) -> int:
         return 1
 
 
+def _cmd_validate(args: argparse.Namespace) -> int:
+    """Handle 'validate' subcommand."""
+    baselines_dir = Path(args.baselines_dir)
+
+    try:
+        if args.all:
+            failures: list[str] = []
+            for latest_path in _iter_latest_files(baselines_dir):
+                # latest_path: baselines/<suite>/<rubric_id>/latest.json
+                try:
+                    rubric_dir = latest_path.parent
+                    rubric_id = rubric_dir.name
+                    suite = rubric_dir.parent.name
+                    snap = validate_latest_baseline(
+                        suite=suite,
+                        rubric_id=rubric_id,
+                        baselines_dir=baselines_dir,
+                    )
+                    print(f"OK  {suite}/{rubric_id} -> {snap}")
+                except Exception as e:
+                    failures.append(f"{latest_path}: {e}")
+                    print(f"ERR {latest_path}: {e}")
+
+            if failures:
+                return 1
+            return 0
+
+        if not args.suite or not args.rubric_id:
+            print("Error: Must pass --suite and --rubric-id (or use --all)", file=sys.stderr)
+            return 1
+
+        snap = validate_latest_baseline(
+            suite=args.suite,
+            rubric_id=args.rubric_id,
+            baselines_dir=baselines_dir,
+        )
+        print(f"OK {args.suite}/{args.rubric_id} -> {snap}")
+        return 0
+
+    except BaselineError as e:
+        print(f"Error: {e}", file=sys.stderr)
+        return 1
+
+
 def main(argv: list[str] | None = None) -> int:
     """CLI entry point."""
     parser = argparse.ArgumentParser(
@@ -477,6 +602,13 @@ def main(argv: list[str] | None = None) -> int:
     show_parser.add_argument("--suite", required=True, help="Suite name")
     show_parser.add_argument("--rubric-id", required=True, help="Rubric ID")
     show_parser.set_defaults(func=_cmd_show)
+
+    # validate subcommand
+    validate_parser = subparsers.add_parser("validate", help="Validate baseline integrity")
+    validate_parser.add_argument("--suite", help="Suite name (required unless --all)")
+    validate_parser.add_argument("--rubric-id", help="Rubric ID (required unless --all)")
+    validate_parser.add_argument("--all", action="store_true", help="Validate all latest.json pointers found")
+    validate_parser.set_defaults(func=_cmd_validate)
 
     args = parser.parse_args(argv)
 

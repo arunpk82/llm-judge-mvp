@@ -7,6 +7,8 @@ from dataclasses import dataclass
 from pathlib import Path
 from typing import Any
 
+from llm_judge.eval.schema import assert_compatible_schema
+
 EXIT_OK = 0
 EXIT_RUNTIME_ERROR = 1
 EXIT_POLICY_VIOLATION = 2
@@ -87,9 +89,7 @@ def resolve_baseline(baseline: Path) -> ResolvedRun:
         data = _read_json(baseline)
         baseline_id = data.get("baseline_id")
         if not isinstance(baseline_id, str) or not baseline_id.strip():
-            raise ValueError(
-                f"Invalid baseline pointer file (missing baseline_id): {baseline}"
-            )
+            raise ValueError(f"Invalid baseline pointer file (missing baseline_id): {baseline}")
 
         snap_dir = baseline.parent / "snapshots" / baseline_id.strip()
         return resolve_run_dir(snap_dir)
@@ -142,9 +142,7 @@ def _numeric(x: Any) -> float | None:
     return None
 
 
-def _diff_metrics(
-    baseline_metrics: dict[str, Any], candidate_metrics: dict[str, Any]
-) -> dict[str, Any]:
+def _diff_metrics(baseline_metrics: dict[str, Any], candidate_metrics: dict[str, Any]) -> dict[str, Any]:
     diffs: dict[str, Any] = {"deltas": {}, "only_in_baseline": [], "only_in_candidate": []}
 
     b_keys = set(baseline_metrics.keys())
@@ -187,12 +185,7 @@ def _diff_judgments(
         c_dec = c.get("judge_decision")
         if isinstance(b_dec, str) and isinstance(c_dec, str) and b_dec != c_dec:
             decision_flips.append(
-                {
-                    "case_index": key[0],
-                    "rubric_id": key[1],
-                    "baseline": b_dec,
-                    "candidate": c_dec,
-                }
+                {"case_index": key[0], "rubric_id": key[1], "baseline": b_dec, "candidate": c_dec}
             )
 
         b_scores_any = b.get("judge_scores")
@@ -285,33 +278,27 @@ def _check_policy(
                     )
 
     for k, tol in max_metric_drop.items():
-        # Check if metric exists in both baseline and candidate
         b_has_key = k in baseline_metrics
         c_has_key = k in candidate_metrics
 
         if not b_has_key and not c_has_key:
-            # Metric not in either - skip silently (not applicable)
             continue
-
         if not b_has_key or not c_has_key:
-            # Metric in one but not the other - this is a real issue
             violations.append(f"Metric '{k}' not present in both baseline and candidate metrics.")
             continue
 
-        # Both have the key - check if values are comparable (both numeric)
         b_val = _numeric(baseline_metrics[k])
         c_val = _numeric(candidate_metrics[k])
 
         if b_val is None and c_val is None:
-            # Both are null/non-numeric - they match, no violation
             continue
-
         if b_val is None or c_val is None:
-            # One is numeric, one is null - can't compare, but not necessarily a violation
-            # Just skip this metric for drop comparison
+            violations.append(
+                f"Metric '{k}' has incompatible types: "
+                f"baseline={baseline_metrics[k]!r} candidate={candidate_metrics[k]!r}"
+            )
             continue
 
-        # Both are numeric - check for drop
         drop = b_val - c_val
         if drop > tol:
             violations.append(
@@ -328,6 +315,7 @@ def _build_summary(diff: dict[str, Any], violations: list[str]) -> str:
     lines.append("=" * 28)
     lines.append(f"Baseline:  {diff['baseline_dir']}")
     lines.append(f"Candidate: {diff['candidate_dir']}")
+    lines.append(f"Schema:    baseline={diff.get('baseline_schema_version')} candidate={diff.get('candidate_schema_version')}")
     lines.append("")
     lines.append(f"Cases baseline:  {j['n_cases_baseline']}")
     lines.append(f"Cases candidate: {j['n_cases_candidate']}")
@@ -351,14 +339,10 @@ def build_cli() -> argparse.ArgumentParser:
     p = argparse.ArgumentParser(prog="llm-judge-eval-diff")
     p.add_argument("--baseline", required=True, help="Baseline snapshot dir OR latest.json pointer")
     p.add_argument("--candidate", required=True, help="Candidate run directory")
-    p.add_argument(
-        "--out",
-        default=None,
-        help="Output directory for diff artifacts (default: <candidate>/diff)",
-    )
+    p.add_argument("--out", default=None, help="Output directory for diff artifacts (default: <candidate>/diff)")
     p.add_argument(
         "--fail-on",
-        choices=["none", "decision_flip"],
+        choices=["none", "decision_flip", "metric_drop"],
         default="none",
         help="Policy: fail if condition is met",
     )
@@ -384,6 +368,15 @@ def main(argv: list[str] | None = None) -> int:
         baseline_run = resolve_baseline(Path(args.baseline))
         candidate_run = resolve_run_dir(Path(args.candidate))
 
+        base_manifest = _read_json(baseline_run.manifest_path)
+        cand_manifest = _read_json(candidate_run.manifest_path)
+
+        # --- Production-grade artifact contract enforcement ---
+        assert_compatible_schema(
+            baseline_version=base_manifest.get("schema_version"),
+            candidate_version=cand_manifest.get("schema_version"),
+        )
+
         base_j = _load_judgments(baseline_run.case_path)
         cand_j = _load_judgments(candidate_run.case_path)
 
@@ -393,6 +386,8 @@ def main(argv: list[str] | None = None) -> int:
         diff = {
             "baseline_dir": str(baseline_run.run_dir),
             "candidate_dir": str(candidate_run.run_dir),
+            "baseline_schema_version": base_manifest.get("schema_version"),
+            "candidate_schema_version": cand_manifest.get("schema_version"),
             "judgments": _diff_judgments(base_j, cand_j),
             "metrics": _diff_metrics(base_m, cand_m),
         }

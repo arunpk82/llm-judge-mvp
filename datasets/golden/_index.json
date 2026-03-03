@@ -1,0 +1,16 @@
+{
+  "dataset_id": "golden",
+  "version": "v1",
+  "path": "v1.jsonl",
+  "row_count": 3,
+  "schema": {
+    "required_fields": [
+      "case_id",
+      "conversation",
+      "candidate_answer",
+      "rubric_id",
+      "human_scores",
+      "human_decision"
+    ]
+  }
+}
