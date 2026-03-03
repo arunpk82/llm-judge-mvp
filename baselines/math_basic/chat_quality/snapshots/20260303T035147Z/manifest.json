@@ -1,0 +1,36 @@
+{
+  "created_at": "2026-03-03T03:06:18.471173+00:00",
+  "dataset": {
+    "path": "datasets/deterministic/math_basic_v1.jsonl",
+    "sha256": "01e3544d0647bdeaca3e166d6108b7fc13527b9b4caf2c27f5f268d0340aad54"
+  },
+  "env": {
+    "judge_engine": "deterministic",
+    "judge_timeout_ms": null
+  },
+  "git_sha": "8baf1421cac245577347e659b7a4931e3843822b",
+  "runspec": {
+    "dataset": {
+      "dataset_id": "math_basic",
+      "path": "datasets/deterministic/math_basic_v1.jsonl",
+      "version": "v1"
+    },
+    "judge_engine": "deterministic",
+    "output_dir": "reports/runs",
+    "random_seed": 42,
+    "rubric_id": "chat_quality",
+    "run_id_prefix": "pr-gate",
+    "sample": {
+      "n": 300,
+      "seed": 42,
+      "strategy": "stable_hash"
+    }
+  },
+  "sampling": {
+    "actual_n": 300,
+    "requested_n": 300,
+    "requires_case_id_for_growth_stability": true,
+    "seed": 42,
+    "strategy": "stable_hash"
+  }
+}
