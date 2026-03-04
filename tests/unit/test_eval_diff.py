@@ -37,6 +37,12 @@ def _read_summary(out_dir: Path) -> str:
     return p.read_text(encoding="utf-8")
 
 
+def _read_policy(out_dir: Path) -> dict:
+    p = out_dir / "policy_result.json"
+    assert p.exists(), f"Missing policy_result.json at {p}"
+    return json.loads(p.read_text(encoding="utf-8"))
+
+
 def test_diff_ok_no_violations(tmp_path: Path) -> None:
     base = _mk_run_dir(
         tmp_path,
@@ -85,6 +91,12 @@ def test_diff_ok_no_violations(tmp_path: Path) -> None:
     assert (out / "diff_summary.txt").exists()
     assert "POLICY: VIOLATION" not in _read_summary(out)
 
+    # EPIC-3: policy_result.json must always exist and be machine-readable
+    policy = _read_policy(out)
+    assert policy["artifact_type"] == "policy_result"
+    assert policy["status"] == "OK"
+    assert policy["exit_code"] == 0
+
 
 def test_diff_policy_violation_on_decision_flip(tmp_path: Path) -> None:
     base = _mk_run_dir(
@@ -131,6 +143,12 @@ def test_diff_policy_violation_on_decision_flip(tmp_path: Path) -> None:
     )
     assert rc == 2
     assert "POLICY: VIOLATION" in _read_summary(out)
+
+    policy = _read_policy(out)
+    assert policy["artifact_type"] == "policy_result"
+    assert policy["status"] == "VIOLATION"
+    assert policy["exit_code"] == 2
+    assert policy["decision_flips"] == 1
 
 
 def test_diff_policy_violation_on_metric_drop(tmp_path: Path) -> None:
@@ -180,6 +198,11 @@ def test_diff_policy_violation_on_metric_drop(tmp_path: Path) -> None:
     summary = _read_summary(out)
     assert "POLICY: VIOLATION" in summary
     assert "Metric drop too large" in summary
+
+    policy = _read_policy(out)
+    assert policy["status"] == "VIOLATION"
+    assert policy["exit_code"] == 2
+    assert policy["tolerances"].get("f1_fail") == 0.05
 
 
 def test_diff_metric_drop_within_tolerance_is_ok(tmp_path: Path) -> None:
@@ -233,6 +256,11 @@ def test_diff_metric_drop_within_tolerance_is_ok(tmp_path: Path) -> None:
     )
     assert rc == 0
     assert "POLICY: VIOLATION" not in _read_summary(out)
+
+    policy = _read_policy(out)
+    assert policy["status"] == "OK"
+    assert policy["exit_code"] == 0
+    assert policy["tolerances"].get("cohen_kappa") == 0.02
 
 
 def test_diff_policy_violation_when_candidate_metric_missing(tmp_path: Path) -> None:
@@ -289,6 +317,11 @@ def test_diff_policy_violation_when_candidate_metric_missing(tmp_path: Path) -> 
     # code for "invalid inputs", switch this to that code—but it should never be rc=0.
     assert rc == 2
     assert "POLICY: VIOLATION" in _read_summary(out)
+
+    policy = _read_policy(out)
+    assert policy["status"] == "VIOLATION"
+    assert policy["exit_code"] == 2
+    assert policy["tolerances"].get("cohen_kappa") == 0.01
 
 
 @pytest.mark.parametrize(
@@ -352,7 +385,12 @@ def test_diff_policy_violation_when_candidate_metric_not_numeric(tmp_path: Path,
 
     assert rc == 2
     assert "POLICY: VIOLATION" in _read_summary(out)
-    
+
+    policy = _read_policy(out)
+    assert policy["status"] == "VIOLATION"
+    assert policy["exit_code"] == 2
+    assert policy["tolerances"].get("f1_fail") == 0.01
+
 
 def test_diff_fails_on_schema_mismatch(tmp_path: Path) -> None:
     base = tmp_path / "baseline"
@@ -373,9 +411,12 @@ def test_diff_fails_on_schema_mismatch(tmp_path: Path) -> None:
 
     rc = diff_main(
         [
-            "--baseline", str(base),
-            "--candidate", str(cand),
-            "--out", str(out),
+            "--baseline",
+            str(base),
+            "--candidate",
+            str(cand),
+            "--out",
+            str(out),
         ]
     )
 

@@ -13,6 +13,9 @@ EXIT_OK = 0
 EXIT_RUNTIME_ERROR = 1
 EXIT_POLICY_VIOLATION = 2
 
+# Policy artifact contract (kept local to avoid coupling to schema.py versions for now)
+POLICY_RESULT_SCHEMA_VERSION = "1.0"
+
 
 @dataclass(frozen=True)
 class ResolvedRun:
@@ -335,6 +338,43 @@ def _build_summary(diff: dict[str, Any], violations: list[str]) -> str:
     return "\n".join(lines)
 
 
+def _policy_result(
+    *,
+    diff: dict[str, Any],
+    violations: list[str],
+    exit_code: int,
+    fail_on: str,
+    max_abs_score_delta: float | None,
+    max_metric_drop: dict[str, float],
+) -> dict[str, Any]:
+    j = diff["judgments"]
+
+    # Capture metric violations as a structured subset (useful for dashboards).
+    metric_violations: list[str] = []
+    for v in violations:
+        if v.startswith("Metric drop too large") or v.startswith("Metric '") or v.startswith("Metric "):
+            metric_violations.append(v)
+
+    return {
+        "schema_version": POLICY_RESULT_SCHEMA_VERSION,
+        "artifact_type": "policy_result",
+        "status": "VIOLATION" if violations else "OK",
+        "exit_code": exit_code,
+        "baseline_dir": diff["baseline_dir"],
+        "candidate_dir": diff["candidate_dir"],
+        "baseline_schema_version": diff.get("baseline_schema_version"),
+        "candidate_schema_version": diff.get("candidate_schema_version"),
+        "decision_flips": len(j["decision_flips"]),
+        "score_deltas": len(j["score_deltas"]),
+        "flag_diffs": len(j["flag_diffs"]),
+        "fail_on": fail_on,
+        "max_abs_score_delta": max_abs_score_delta,
+        "tolerances": dict(max_metric_drop),
+        "metric_violations": metric_violations,
+        "violations": list(violations),
+    }
+
+
 def build_cli() -> argparse.ArgumentParser:
     p = argparse.ArgumentParser(prog="llm-judge-eval-diff")
     p.add_argument("--baseline", required=True, help="Baseline snapshot dir OR latest.json pointer")
@@ -406,12 +446,29 @@ def main(argv: list[str] | None = None) -> int:
         out_dir = Path(args.out) if args.out else (candidate_run.run_dir / "diff")
         out_dir = out_dir.resolve()
 
+        exit_code = EXIT_POLICY_VIOLATION if violations else EXIT_OK
+
+        # Rich diff artifact (machine)
         _write_json(out_dir / "diff_report.json", {"diff": diff, "violations": violations})
+
+        # Human summary
         summary = _build_summary(diff, violations)
         _write_text(out_dir / "diff_summary.txt", summary)
+
+        # Policy result (machine, stable)
+        policy = _policy_result(
+            diff=diff,
+            violations=violations,
+            exit_code=exit_code,
+            fail_on=args.fail_on,
+            max_abs_score_delta=args.max_abs_score_delta,
+            max_metric_drop=max_metric_drop,
+        )
+        _write_json(out_dir / "policy_result.json", policy)
+
         print(summary)
 
-        return EXIT_POLICY_VIOLATION if violations else EXIT_OK
+        return exit_code
 
     except Exception as e:
         print(f"ERROR: {e}", file=sys.stderr)

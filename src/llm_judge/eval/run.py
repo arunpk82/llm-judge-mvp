@@ -5,10 +5,12 @@ import hashlib
 import json
 import os
 import random
+import time
 from pathlib import Path
 from typing import Any, Dict, List, Optional, Tuple
 
 from llm_judge.eval.schema import EVAL_RUN_SCHEMA_VERSION
+from llm_judge.rubric_store import get_rubric
 from llm_judge.runtime import get_judge_engine
 from llm_judge.schemas import Message, PredictRequest
 
@@ -35,6 +37,14 @@ def _make_run_id(prefix: str) -> str:
     ts = _dt.datetime.utcnow().strftime("%Y%m%d-%H%M%S")
     suffix = f"{random.randint(0, 999999):06d}"
     return f"{prefix}-{ts}-{suffix}"
+
+
+def _sha256_file(path: Path) -> str:
+    h = hashlib.sha256()
+    with path.open("rb") as f:
+        for chunk in iter(lambda: f.read(8192), b""):
+            h.update(chunk)
+    return f"sha256:{h.hexdigest()}"
 
 
 def _stable_hash_u64(seed: int, s: str) -> int:
@@ -98,6 +108,30 @@ def _sample_rows_stable_hash(
     return sampled_sorted, meta
 
 
+def _enforce_metrics_schema(*, rubric_ref: str, metrics: dict[str, Any]) -> None:
+    """
+    EPIC-2: enforce rubric-declared metrics schema (registry.yaml contract).
+
+    Policy:
+      - If rubric declares required metrics, all must be present in metrics.json
+      - Missing required keys => hard failure (prevents silent drift)
+    """
+    rubric = get_rubric(rubric_ref)
+    required = list(rubric.metrics_required)
+
+    if not required:
+        # Backward compatibility: registry.yaml may not yet declare metrics_schema.
+        return
+
+    missing = [k for k in required if k not in metrics]
+    if missing:
+        raise ValueError(
+            "Metrics schema violation: computed metrics.json is missing required keys "
+            f"for rubric={rubric.rubric_id}@{rubric.version}: {missing}. "
+            f"Present keys={sorted(list(metrics.keys()))}"
+        )
+
+
 def main() -> int:
     parser = argparse.ArgumentParser(description="Run reproducible evaluation benchmark.")
     parser.add_argument("--spec", required=True, help="Path to RunSpec YAML.")
@@ -111,16 +145,24 @@ def main() -> int:
     # Force engine via env to match repo contract
     os.environ["JUDGE_ENGINE"] = spec.judge_engine
 
+    start_total = time.perf_counter()
+
     dataset_path = Path(spec.dataset.path)
     rows = _load_jsonl(dataset_path)
+
+    dataset_hash = _sha256_file(dataset_path)
 
     # Optional sampling for PR gate
     sampling_meta: Optional[dict[str, Any]] = None
     if spec.sample is not None:
+        sampling_start = time.perf_counter()
         # spec.py already validates strategy; keep guardrail here too.
         if spec.sample.strategy != "stable_hash":
             raise ValueError(f"Unsupported sample.strategy: {spec.sample.strategy}")
         rows, sampling_meta = _sample_rows_stable_hash(rows, n=spec.sample.n, seed=spec.sample.seed)
+        sampling_seconds = time.perf_counter() - sampling_start
+    else:
+        sampling_seconds = 0.0
 
     engine = get_judge_engine()
 
@@ -134,20 +176,25 @@ def main() -> int:
     manifest["schema_version"] = EVAL_RUN_SCHEMA_VERSION
     manifest["artifact_type"] = "eval_run"
 
+    # --- Reproducibility: dataset hash ---
+    manifest["dataset_hash"] = dataset_hash
+
     if sampling_meta:
         manifest["sampling"] = sampling_meta
 
-    write_json(run_dir / "manifest.json", manifest)
-
     judgments: List[Dict[str, Any]] = []
+
+    evaluation_start = time.perf_counter()
     for i, row in enumerate(rows):
         # Convert conversation dicts to Message objects
         conv = [Message(**m) for m in row["conversation"]]
 
+        rubric_ref = str(row.get("rubric_id", spec.rubric_id))
+
         req = PredictRequest(
             conversation=conv,
             candidate_answer=str(row["candidate_answer"]),
-            rubric_id=str(row.get("rubric_id", spec.rubric_id)),
+            rubric_id=rubric_ref,
         )
 
         res = engine.evaluate(req)
@@ -165,12 +212,29 @@ def main() -> int:
                 "case_id": row.get("case_id"),
             }
         )
+    evaluation_seconds = time.perf_counter() - evaluation_start
 
     write_jsonl(run_dir / "judgments.jsonl", judgments)
 
     # compute & persist metrics
     metrics = compute_metrics(judgments)
+
+    # EPIC-2: enforce metrics schema declared in registry.yaml (if present)
+    _enforce_metrics_schema(rubric_ref=str(spec.rubric_id), metrics=metrics)
+
     write_json(run_dir / "metrics.json", metrics)
+
+    total_seconds = time.perf_counter() - start_total
+
+    # --- Observability: timing ---
+    manifest["timing"] = {
+        "sampling_seconds": round(float(sampling_seconds), 6),
+        "evaluation_seconds": round(float(evaluation_seconds), 6),
+        "total_seconds": round(float(total_seconds), 6),
+    }
+
+    # Write manifest last so it includes timing + hashes.
+    write_json(run_dir / "manifest.json", manifest)
 
     print(f"Run complete: {run_dir}")
     return 0
