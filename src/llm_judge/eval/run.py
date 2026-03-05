@@ -9,6 +9,7 @@ import time
 from pathlib import Path
 from typing import Any, Dict, List, Optional, Tuple
 
+from llm_judge.datasets.registry import DatasetRegistry
 from llm_judge.eval.schema import EVAL_RUN_SCHEMA_VERSION
 from llm_judge.rubric_store import get_rubric
 from llm_judge.runtime import get_judge_engine
@@ -131,6 +132,15 @@ def _enforce_metrics_schema(*, rubric_ref: str, metrics: dict[str, Any]) -> None
             f"Present keys={sorted(list(metrics.keys()))}"
         )
 
+def _resolve_dataset_path(spec: RunSpec) -> Path:
+    # Backward compatible: allow explicit path
+    if spec.dataset.path:
+        return Path(spec.dataset.path)
+
+    # Governed path: resolve by dataset_id + version
+    reg = DatasetRegistry()
+    resolved = reg.resolve(dataset_id=spec.dataset.dataset_id, version=spec.dataset.version)
+    return resolved.data_path
 
 def main() -> int:
     parser = argparse.ArgumentParser(description="Run reproducible evaluation benchmark.")
@@ -147,9 +157,8 @@ def main() -> int:
 
     start_total = time.perf_counter()
 
-    dataset_path = Path(spec.dataset.path)
+    dataset_path = _resolve_dataset_path(spec)
     rows = _load_jsonl(dataset_path)
-
     dataset_hash = _sha256_file(dataset_path)
 
     # Optional sampling for PR gate

@@ -1,0 +1,9 @@
+dataset_id: golden
+version: v1
+schema_version: 1
+
+data_file: v1.jsonl
+
+owner: llm-judge
+license: internal
+task_type: chat_quality

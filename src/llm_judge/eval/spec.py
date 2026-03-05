@@ -9,10 +9,9 @@ import yaml
 
 @dataclass(frozen=True)
 class DatasetSpec:
-    path: str
+    path: str | None
     dataset_id: str
     version: str
-
 
 @dataclass(frozen=True)
 class SampleSpec:
@@ -26,7 +25,6 @@ class SampleSpec:
     n: int
     seed: int = 42
     strategy: str = "stable_hash"
-
 
 @dataclass(frozen=True)
 class RunSpec:
@@ -44,8 +42,9 @@ class RunSpec:
         data: dict[str, Any] = yaml.safe_load(p.read_text(encoding="utf-8"))
 
         ds = data["dataset"]
+        path_val = ds.get("path")
         dataset = DatasetSpec(
-            path=str(ds["path"]),
+            path=str(path_val) if path_val is not None else None,
             dataset_id=str(ds["dataset_id"]),
             version=str(ds["version"]),
         )

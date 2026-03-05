@@ -4,7 +4,6 @@ judge_engine: deterministic
 random_seed: 42
 
 dataset:
-  path: datasets/deterministic/math_basic_v1.jsonl
   dataset_id: math_basic
   version: v1
 
