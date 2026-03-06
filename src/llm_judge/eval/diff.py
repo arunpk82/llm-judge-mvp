@@ -475,5 +475,36 @@ def main(argv: list[str] | None = None) -> int:
         return EXIT_RUNTIME_ERROR
 
 
+def compute_diff_summary(*, baseline: ResolvedRun, candidate: ResolvedRun) -> dict[str, Any]:
+    """
+    Machine-readable diff summary used by CI gates and baseline promotion.
+
+    Returns a stable dict containing:
+      - metrics_diffs (numeric deltas)
+      - judgment_diffs (flips/deltas/flag_diffs)
+      - schema compatibility metadata
+    """
+    b_manifest = _read_json(baseline.manifest_path)
+    c_manifest = _read_json(candidate.manifest_path)
+
+    # Enforce schema compatibility (already used in CLI)
+    assert_compatible_schema(
+        baseline_version=b_manifest.get("schema_version"),
+        candidate_version=c_manifest.get("schema_version"),
+    )
+
+    b_metrics = _read_json(baseline.metrics_path)
+    c_metrics = _read_json(candidate.metrics_path)
+
+    b_j = _load_judgments(baseline.case_path)
+    c_j = _load_judgments(candidate.case_path)
+
+    return {
+        "baseline": {"run_dir": str(baseline.run_dir)},
+        "candidate": {"run_dir": str(candidate.run_dir)},
+        "metrics": _diff_metrics(b_metrics, c_metrics),
+        "judgments": _diff_judgments(b_j, c_j),
+    }
+
 if __name__ == "__main__":
     raise SystemExit(main())

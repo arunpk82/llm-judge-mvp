@@ -1,0 +1,17 @@
+schema_version: "1"
+policy_id: "drift_default"
+
+# Metrics to monitor for drift
+monitored_metrics:
+  - f1_fail
+  - f1_pass
+  - precision_fail
+  - recall_fail
+
+# Max allowed change between runs
+max_drift:
+  f1_fail: 0.05
+  f1_pass: 0.05
+
+# Minimum runs needed for drift analysis
+min_runs: 2

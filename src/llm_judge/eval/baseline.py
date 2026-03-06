@@ -33,6 +33,8 @@ from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any, Iterable
 
+import yaml
+
 logger = logging.getLogger(__name__)
 
 # Default paths (can be overridden)
@@ -305,6 +307,10 @@ def validate_latest_baseline(
 def _iter_latest_files(baselines_dir: Path) -> Iterable[Path]:
     return baselines_dir.resolve().rglob("latest.json")
 
+def _read_yaml(path: Path) -> dict[str, Any]:
+    with path.open("r", encoding="utf-8") as f:
+        data = yaml.safe_load(f)
+    return data if isinstance(data, dict) else {}
 
 # ---------------------------------------------------------------------------
 # Baseline creation / listing / show (existing behavior)
@@ -560,6 +566,28 @@ def _cmd_validate(args: argparse.Namespace) -> int:
         return 1
 
 
+def _cmd_promote(args: argparse.Namespace) -> int:
+    """Handle 'promote' subcommand."""
+    try:
+        ref = promote_baseline_from_run(
+            run_dir=Path(args.run_dir),
+            policy_path=Path(args.policy),
+            baselines_dir=Path(args.baselines_dir),
+            suite=args.suite,
+            rubric_id=args.rubric_id,
+            dry_run=args.dry_run,
+        )
+        if args.dry_run:
+            print(f"Dry run complete: {ref.suite}/{ref.rubric_id}")
+        else:
+            print(f"Baseline promoted: baselines/{ref.suite}/{ref.rubric_id}/snapshots/{ref.baseline_id}")
+            print(f"Latest updated:    baselines/{ref.suite}/{ref.rubric_id}/latest.json")
+        return 0
+    except BaselineError as e:
+        print(f"Error: {e}", file=sys.stderr)
+        return 2
+
+
 def main(argv: list[str] | None = None) -> int:
     """CLI entry point."""
     parser = argparse.ArgumentParser(
@@ -610,6 +638,16 @@ def main(argv: list[str] | None = None) -> int:
     validate_parser.add_argument("--all", action="store_true", help="Validate all latest.json pointers found")
     validate_parser.set_defaults(func=_cmd_validate)
 
+    # promote subcommand
+    promote_parser = subparsers.add_parser("promote", help="Policy-gated baseline promotion")
+    promote_parser.add_argument("--run-dir", required=True, help="Eval run output dir")
+    promote_parser.add_argument("--policy", required=True, help="Promotion policy YAML")
+    promote_parser.add_argument("--baselines-dir", default="baselines", help="Baselines root (default: baselines)")
+    promote_parser.add_argument("--suite", help="Suite override (optional)")
+    promote_parser.add_argument("--rubric-id", help="Rubric override (optional)")
+    promote_parser.add_argument("--dry-run", action="store_true", help="Evaluate policy but do not write snapshot")
+    promote_parser.set_defaults(func=_cmd_promote)
+
     args = parser.parse_args(argv)
 
     logging.basicConfig(
@@ -619,6 +657,115 @@ def main(argv: list[str] | None = None) -> int:
 
     return args.func(args)
 
+
+def _policy_check(*, policy: dict[str, Any], diff_summary: dict[str, Any]) -> tuple[bool, list[str]]:
+    violations: list[str] = []
+
+    required = policy.get("required_metrics") or []
+    if not isinstance(required, list):
+        required = []
+
+    metric_diffs = diff_summary.get("metrics", {})
+    deltas = metric_diffs.get("deltas", {}) if isinstance(metric_diffs, dict) else {}
+
+    # Required metrics must appear in delta set OR at least be present in both metrics files.
+    # P0: enforce presence in deltas if numeric.
+    for k in required:
+        if str(k) not in deltas:
+            violations.append(f"Missing required metric delta: {k}")
+
+    # Max drop checks: baseline - candidate <= tolerance  => (candidate - baseline) >= -tolerance
+    max_drop = policy.get("max_metric_drop") or {}
+    if isinstance(max_drop, dict):
+        for k, tol_any in max_drop.items():
+            try:
+                tol = float(tol_any)
+            except Exception:
+                continue
+            d = deltas.get(str(k))
+            if isinstance(d, dict):
+                delta = d.get("delta")
+                if isinstance(delta, (int, float)) and delta < -tol:
+                    violations.append(
+                        f"Metric drop too large: {k} baseline={d.get('baseline')} candidate={d.get('candidate')} "
+                        f"drop={-delta} (tolerance={tol})"
+                    )
+
+    # Flip cap
+    max_flips_any = policy.get("max_decision_flips")
+    if max_flips_any is not None:
+        try:
+            max_flips = int(max_flips_any)
+            flips = diff_summary.get("judgments", {}).get("decision_flips", [])
+            if isinstance(flips, list) and len(flips) > max_flips:
+                violations.append(f"Too many decision flips: {len(flips)} (max={max_flips})")
+        except Exception:
+            pass
+
+    return (len(violations) == 0), violations
+    
+def promote_baseline_from_run(
+    *,
+    run_dir: Path,
+    policy_path: Path,
+    baselines_dir: Path = DEFAULT_BASELINES_DIR,
+    suite: str | None = None,
+    rubric_id: str | None = None,
+    dry_run: bool = False,
+) -> BaselineRef:
+    from llm_judge.eval.diff import compute_diff_summary, resolve_baseline, resolve_run_dir
+
+    manifest = validate_run_artifacts(run_dir)
+
+    suite_eff = suite or infer_suite_from_manifest(manifest)
+    rubric_eff = rubric_id or infer_rubric_id_from_manifest(manifest)
+
+    # Load promotion policy
+    policy = _read_yaml(policy_path)
+
+    # Resolve baseline pointer if exists
+    latest_path = baselines_dir / suite_eff / rubric_eff / "latest.json"
+    allow_missing = bool(policy.get("allow_missing_baseline", True))
+
+    diff_summary: dict[str, Any] | None = None
+    if latest_path.exists():
+        baseline_run = resolve_baseline(latest_path)
+        candidate_run = resolve_run_dir(run_dir)
+        diff_summary = compute_diff_summary(baseline=baseline_run, candidate=candidate_run)
+
+        ok, violations = _policy_check(policy=policy, diff_summary=diff_summary)
+        if not ok:
+            raise BaselineError("POLICY: VIOLATION\n- " + "\n- ".join(violations))
+    else:
+        if not allow_missing:
+            raise BaselineError(f"Missing latest baseline pointer: {latest_path}")
+
+    if dry_run:
+        print("Promotion decision: PASS (dry-run)" if diff_summary is not None else "Promotion decision: PASS (no prior baseline)")
+        return BaselineRef(
+            suite=suite_eff,
+            rubric_id=rubric_eff,
+            baseline_id="DRY_RUN",
+            created_at_utc=_utc_now_compact(),
+            source_run_dir=str(run_dir),
+        )
+
+    # Create snapshot (reuse existing baseline creator)
+    ref = create_baseline_from_run(
+        run_dir=run_dir,
+        baselines_dir=baselines_dir,
+        suite=suite_eff,
+        rubric_id=rubric_eff,
+        baseline_id=None,
+        set_latest=True,
+    )
+
+    # Write diff summary into snapshot if we had a baseline to compare
+    if diff_summary is not None:
+        _write_json(ref.snapshot_dir(baselines_dir) / "diff_summary.json", diff_summary)
+
+    return ref
+    
 
 if __name__ == "__main__":
     sys.exit(main())

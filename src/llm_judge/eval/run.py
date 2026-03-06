@@ -10,6 +10,7 @@ from pathlib import Path
 from typing import Any, Dict, List, Optional, Tuple
 
 from llm_judge.datasets.registry import DatasetRegistry
+from llm_judge.eval.registry import append_run_registry_entry
 from llm_judge.eval.schema import EVAL_RUN_SCHEMA_VERSION
 from llm_judge.rubric_store import get_rubric
 from llm_judge.runtime import get_judge_engine
@@ -232,6 +233,29 @@ def main() -> int:
     _enforce_metrics_schema(rubric_ref=str(spec.rubric_id), metrics=metrics)
 
     write_json(run_dir / "metrics.json", metrics)
+    
+    # --- L3 Observability: append to run registry (append-only) ---
+    # Dataset identifiers come from RunSpec (governed) and stay stable.
+    dataset_id = str(spec.dataset.dataset_id)
+    dataset_version = str(spec.dataset.version)
+
+    cases_total = len(_load_jsonl(dataset_path))  # total available in dataset file
+    cases_evaluated = len(rows)  # after sampling (or full)
+    sampled = spec.sample is not None
+
+    append_run_registry_entry(
+        run_dir=run_dir,
+        manifest=manifest,
+        metrics=metrics,
+        cases_total=cases_total,
+        cases_evaluated=cases_evaluated,
+        sampled=sampled,
+        dataset_id=dataset_id,
+        dataset_version=dataset_version,
+        rubric_id=str(spec.rubric_id),
+        judge_engine=str(spec.judge_engine),
+        dataset_hash=str(dataset_hash),
+    )
 
     total_seconds = time.perf_counter() - start_total
 

@@ -5,7 +5,7 @@ import subprocess
 import sys
 from pathlib import Path
 
-from .baseline import create_baseline_from_run
+from .baseline import create_baseline_from_run, promote_baseline_from_run
 
 
 def _cmd_baseline_create(args: argparse.Namespace) -> int:
@@ -20,6 +20,24 @@ def _cmd_baseline_create(args: argparse.Namespace) -> int:
     print(f"Baseline created: baselines/{ref.suite}/{ref.rubric_id}/snapshots/{ref.baseline_id}")
     if not args.no_latest:
         print(f"Latest updated:  baselines/{ref.suite}/{ref.rubric_id}/latest.json")
+    return 0
+
+
+def _cmd_baseline_promote(args: argparse.Namespace) -> int:
+    try:
+        ref = promote_baseline_from_run(
+            run_dir=Path(args.run_dir),
+            policy_path=Path(args.policy),
+            baselines_dir=Path(args.baselines_dir),
+            suite=args.suite,
+            rubric_id=args.rubric_id,
+            dry_run=args.dry_run,
+        )
+    except Exception as e:
+        print(str(e))
+        return 2
+    print(f"Baseline promoted: baselines/{ref.suite}/{ref.rubric_id}/snapshots/{ref.baseline_id}")
+    print(f"Latest updated:    baselines/{ref.suite}/{ref.rubric_id}/latest.json")
     return 0
 
 
@@ -107,6 +125,43 @@ def build_cli() -> argparse.ArgumentParser:
         help="Do not update latest.json",
     )
     p_bc.set_defaults(func=_cmd_baseline_create)
+
+    # ---- baseline-promote ----
+    p_bp = sub.add_parser(
+        "baseline-promote",
+        help="Policy-gated baseline promotion",
+    )
+    p_bp.add_argument(
+        "--run-dir",
+        required=True,
+        help="Eval run output dir",
+    )
+    p_bp.add_argument(
+        "--policy",
+        required=True,
+        help="Promotion policy YAML",
+    )
+    p_bp.add_argument(
+        "--baselines-dir",
+        default="baselines",
+        help="Baselines root (default: baselines)",
+    )
+    p_bp.add_argument(
+        "--suite",
+        default=None,
+        help="Suite override (optional)",
+    )
+    p_bp.add_argument(
+        "--rubric-id",
+        default=None,
+        help="Rubric override (optional)",
+    )
+    p_bp.add_argument(
+        "--dry-run",
+        action="store_true",
+        help="Evaluate policy but do not write snapshot",
+    )
+    p_bp.set_defaults(func=_cmd_baseline_promote)
 
     return p
 
