@@ -1,6 +1,7 @@
 name: CI
 
 on:
+  workflow_dispatch:
   push:
     branches: ["master"]
   pull_request:
@@ -12,7 +13,8 @@ concurrency:
 
 jobs:
   test:
-    runs-on: ubuntu-latest
+    runs-on:
+  workflow_dispatch: ubuntu-latest
 
     env:
       POETRY_VIRTUALENVS_IN_PROJECT: "true"
@@ -26,7 +28,8 @@ jobs:
         id: setup-python
         uses: actions/setup-python@v5
         with:
-          python-version: "3.11"
+          python-version:
+  workflow_dispatch: "3.11"
           cache: "pip"
 
       - name: Install Poetry
@@ -75,7 +78,8 @@ jobs:
           BASELINE_PTR="baselines/golden/chat_quality/latest.json"
           if [ ! -f "$BASELINE_PTR" ]; then
             echo "ERROR: Missing baseline pointer: $BASELINE_PTR"
-            echo "Action: Commit baselines/golden/chat_quality/latest.json and the referenced snapshot directory."
+            echo "Action:
+  workflow_dispatch: Commit baselines/golden/chat_quality/latest.json and the referenced snapshot directory."
             exit 1
           fi
 
@@ -84,7 +88,8 @@ jobs:
 
           if [ ! -d "$SNAP_DIR" ]; then
             echo "ERROR: Baseline snapshot directory missing: $SNAP_DIR"
-            echo "Action: Commit the snapshot directory referenced by latest.json."
+            echo "Action:
+  workflow_dispatch: Commit the snapshot directory referenced by latest.json."
             exit 1
           fi
 
