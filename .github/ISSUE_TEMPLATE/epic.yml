@@ -1,0 +1,114 @@
+name: "EPIC"
+description: A body of work spanning multiple tasks, assigned to a Capability Milestone.
+title: "[EPIC] "
+labels: ["epic"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ## Before you create this EPIC
+        - Assign it to the correct **Milestone** (CAP-N) on the right sidebar
+        - Add the correct **capability label** (e.g., `cap:dataset-governance`)
+        - Every task created under this EPIC must reference this issue number
+
+  - type: dropdown
+    id: capability
+    attributes:
+      label: "Capability (Milestone)"
+      description: Which Capability does this EPIC belong to?
+      options:
+        - "CAP-1 — Dataset Governance"
+        - "CAP-2 — Baseline Governance"
+        - "CAP-3 — Rule Governance"
+        - "CAP-4 — Artifact Governance"
+        - "CAP-5 — Drift Monitoring"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: level
+    attributes:
+      label: "Roadmap Level"
+      options:
+        - "L5 — EPIC (2–6 weeks)"
+    validations:
+      required: true
+
+  - type: textarea
+    id: vision_objective
+    attributes:
+      label: "Vision Objective Served"
+      description: Paste the relevant objective from VISION.md. If you cannot link this EPIC to the vision, do not create it.
+      placeholder: "e.g., Reliable evaluation reproducibility across runs and environments"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: effort
+    attributes:
+      label: "Estimated Effort"
+      options:
+        - "S — 1 week"
+        - "M — 2 weeks"
+        - "L — 3–4 weeks"
+        - "XL — 5–6 weeks (consider splitting)"
+    validations:
+      required: true
+
+  - type: textarea
+    id: purpose
+    attributes:
+      label: "Purpose"
+      description: What problem does this EPIC solve? One paragraph.
+    validations:
+      required: true
+
+  - type: textarea
+    id: scope
+    attributes:
+      label: "Scope"
+      description: What is in scope? What is explicitly out of scope?
+      placeholder: |
+        **In scope:**
+        - 
+
+        **Out of scope:**
+        - 
+    validations:
+      required: true
+
+  - type: textarea
+    id: acceptance_criteria
+    attributes:
+      label: "Acceptance Criteria"
+      description: At least 3 testable outcomes. Written as "Given X, when Y, then Z."
+      placeholder: |
+        - [ ] AC1: Given a valid dataset.yaml, when `llm-judge dataset validate` is run, then it exits 0
+        - [ ] AC2: Given an invalid schema, when validation runs, then a human-readable error is printed
+        - [ ] AC3: 
+    validations:
+      required: true
+
+  - type: textarea
+    id: definition_of_done
+    attributes:
+      label: "Definition of Done"
+      value: |
+        - [ ] All task issues closed
+        - [ ] Unit test coverage ≥ 80%
+        - [ ] Critical evaluation paths ≥ 95% covered
+        - [ ] Documentation updated
+        - [ ] No HIGH/CRITICAL CVEs in Docker image
+        - [ ] Deterministic regression suite passes
+        - [ ] Stakeholder sign-off recorded below
+    validations:
+      required: true
+
+  - type: textarea
+    id: tasks
+    attributes:
+      label: "Task List"
+      description: Add task issues here as they are created. GitHub will track progress automatically.
+      placeholder: |
+        - [ ] #N Task title
+        - [ ] #N Task title

@@ -1,0 +1,99 @@
+name: Validate PR Linkage
+
+on:
+  pull_request:
+    types: [opened, edited, synchronize, reopened]
+
+jobs:
+  validate-branch-name:
+    name: Branch naming convention
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check branch name pattern
+        run: |
+          BRANCH="${{ github.head_ref }}"
+          PATTERN='^(feature|fix|chore|docs|test)/[0-9]+-[a-z0-9-]+$'
+
+          echo "Branch: $BRANCH"
+
+          if [[ ! "$BRANCH" =~ $PATTERN ]]; then
+            echo ""
+            echo "❌ Branch name '$BRANCH' does not follow the required convention."
+            echo ""
+            echo "Required pattern: type/ISSUE_NUMBER-short-description"
+            echo "Valid types: feature, fix, chore, docs, test"
+            echo ""
+            echo "Examples:"
+            echo "  feature/45-dataset-registry-schema"
+            echo "  fix/78-sampling-stability"
+            echo "  chore/92-update-trivy-deps"
+            echo ""
+            exit 1
+          fi
+
+          echo "✅ Branch name is valid."
+
+  validate-closing-keyword:
+    name: PR must close an issue
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check PR body for closing keyword
+        env:
+          PR_BODY: ${{ github.event.pull_request.body }}
+        run: |
+          echo "Checking PR description for closing keyword..."
+
+          # Check for standard closing keywords (case-insensitive)
+          if echo "$PR_BODY" | grep -iE '(closes|fixes|resolves) #[0-9]+' > /dev/null; then
+            echo "✅ PR contains a valid closing keyword."
+          else
+            echo ""
+            echo "❌ PR description must contain a closing keyword linking to an issue."
+            echo ""
+            echo "Add one of the following to your PR description:"
+            echo "  Closes #ISSUE_NUMBER"
+            echo "  Fixes #ISSUE_NUMBER"
+            echo "  Resolves #ISSUE_NUMBER"
+            echo ""
+            echo "This is required for automated issue tracking and EPIC progress rollup."
+            echo ""
+            exit 1
+          fi
+
+  validate-issue-number-consistency:
+    name: Issue number matches branch
+    runs-on: ubuntu-latest
+    steps:
+      - name: Cross-check branch issue number vs PR closing keyword
+        env:
+          PR_BODY: ${{ github.event.pull_request.body }}
+          BRANCH: ${{ github.head_ref }}
+        run: |
+          # Extract issue number from branch name
+          BRANCH_ISSUE=$(echo "$BRANCH" | grep -oE '/[0-9]+' | tr -d '/')
+
+          if [ -z "$BRANCH_ISSUE" ]; then
+            echo "⚠️  Could not extract issue number from branch name. Skipping cross-check."
+            exit 0
+          fi
+
+          # Extract issue number from PR body closing keyword
+          PR_ISSUE=$(echo "$PR_BODY" | grep -ioE '(closes|fixes|resolves) #[0-9]+' | grep -oE '[0-9]+' | head -1)
+
+          if [ -z "$PR_ISSUE" ]; then
+            echo "⚠️  Could not extract issue number from PR body. Skipping cross-check."
+            exit 0
+          fi
+
+          echo "Branch issue: #$BRANCH_ISSUE"
+          echo "PR closing issue: #$PR_ISSUE"
+
+          if [ "$BRANCH_ISSUE" != "$PR_ISSUE" ]; then
+            echo ""
+            echo "⚠️  Warning: Branch references issue #$BRANCH_ISSUE but PR closes #$PR_ISSUE."
+            echo "This may be intentional (e.g., fix branch addressing a different issue)."
+            echo "Please confirm this is correct."
+            # Not a hard failure — just a warning
+          else
+            echo "✅ Branch and PR both reference issue #$BRANCH_ISSUE."
+          fi

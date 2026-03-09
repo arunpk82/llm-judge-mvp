@@ -1,0 +1,38 @@
+name: "Bug"
+description: A defect in existing behaviour.
+title: "[BUG] "
+labels: ["bug"]
+body:
+  - type: input
+    id: capability
+    attributes:
+      label: "Affected Capability"
+      placeholder: "CAP-2 — Baseline Governance"
+    validations:
+      required: true
+
+  - type: textarea
+    id: description
+    attributes:
+      label: "What is broken"
+    validations:
+      required: true
+
+  - type: textarea
+    id: reproduce
+    attributes:
+      label: "Steps to reproduce"
+      placeholder: |
+        1. Run `llm-judge evaluate --dataset ...`
+        2. Observe output
+        3. Expected: ...  Actual: ...
+    validations:
+      required: true
+
+  - type: textarea
+    id: impact
+    attributes:
+      label: "Impact"
+      description: Does this block a CI gate, break determinism, affect a maturity exit criterion?
+    validations:
+      required: true
