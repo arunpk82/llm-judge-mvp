@@ -3,13 +3,9 @@ name: CI
 on:
   workflow_dispatch:
   push:
-    branches:
-      - "master"
-      - "phase-*/**"
+    branches: ["master"]
   pull_request:
-    branches:
-      - "master"
-      - "phase-*/**"
+    branches: ["master"]
 
 concurrency:
   group: ci-${{ github.workflow }}-${{ github.ref }}
