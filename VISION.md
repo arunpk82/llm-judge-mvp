@@ -6,7 +6,7 @@ Build the industry-standard platform for evaluating, governing, and monitoring A
 enabling teams to ship AI with the same confidence, auditability, and rigor that traditional
 software CI/CD pipelines deliver for conventional code.
 
----
+-----
 
 ## 3-Year Outcome Target
 
@@ -14,7 +14,7 @@ software CI/CD pipelines deliver for conventional code.
 > AI systems, with Cohen's Kappa ≥0.80 on calibration sets, drift detection SLA <24 hours,
 > and a community of 10,000+ SDK users.
 
----
+-----
 
 ## Why This Platform Exists
 
