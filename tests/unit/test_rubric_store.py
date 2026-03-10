@@ -19,6 +19,3 @@ def test_get_rubric_explicit_version() -> None:
 def test_get_rubric_unknown_raises() -> None:
     with pytest.raises(ValueError):
         get_rubric("does_not_exist")
-
-
-

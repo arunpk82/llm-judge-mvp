@@ -1,0 +1,33 @@
+{
+  "schema_version": "deterministic.index.v1",
+  "datasets": [
+    {
+      "id": "math_basic_v1",
+      "dataset_id": "math_basic",
+      "version": "v1",
+      "path": "datasets/deterministic/math_basic_v1.jsonl",
+      "ci_sample": {
+        "n": 300,
+        "seed": 42,
+        "strategy": "stable_hash"
+      },
+      "nightly": {
+        "full_run": true
+      }
+    },
+    {
+      "id": "correctness_proxy_v1",
+      "dataset_id": "correctness_proxy",
+      "version": "v1",
+      "path": "datasets/deterministic/correctness_proxy_v1.jsonl",
+      "ci_sample": {
+        "n": 300,
+        "seed": 42,
+        "strategy": "stable_hash"
+      },
+      "nightly": {
+        "full_run": true
+      }
+    }
+  ]
+}

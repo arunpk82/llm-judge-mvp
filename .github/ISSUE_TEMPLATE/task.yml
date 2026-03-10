@@ -1,0 +1,73 @@
+name: "Task"
+description: An atomic unit of work, max 5 working days, linked to a parent EPIC.
+title: "[TASK] "
+labels: ["task"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ## Before you create this Task
+        - You must have a parent EPIC issue number ready
+        - This task should be completable in **≤5 working days**
+        - If larger, break it into multiple tasks
+
+  - type: input
+    id: traceability_capability
+    attributes:
+      label: "Capability"
+      placeholder: "CAP-1 — Dataset Governance"
+    validations:
+      required: true
+
+  - type: input
+    id: traceability_epic
+    attributes:
+      label: "Parent EPIC"
+      placeholder: "#45 — EPIC-5 Dataset Loader System"
+    validations:
+      required: true
+
+  - type: input
+    id: traceability_vision
+    attributes:
+      label: "Vision Objective"
+      placeholder: "Reliable evaluation reproducibility across runs and environments"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: effort
+    attributes:
+      label: "Estimated Effort"
+      options:
+        - "XS — half day"
+        - "S — 1 day"
+        - "M — 2–3 days"
+        - "L — 4–5 days (max)"
+    validations:
+      required: true
+
+  - type: textarea
+    id: description
+    attributes:
+      label: "What needs to be done"
+      description: Describe what, not how. One clear paragraph.
+    validations:
+      required: true
+
+  - type: textarea
+    id: acceptance_criteria
+    attributes:
+      label: "Acceptance Criteria"
+      placeholder: |
+        - [ ] Given X, when Y, then Z
+        - [ ] Test passes for edge case: ...
+    validations:
+      required: true
+
+  - type: textarea
+    id: notes
+    attributes:
+      label: "Notes / Context"
+      description: Links to prior art, relevant files, known constraints.
+      required: false

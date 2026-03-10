@@ -1,0 +1,25 @@
+# Rule execution config for chat_quality/v1
+rubric_id: chat_quality
+version: v1
+
+# Deterministic rule IDs executed in order.
+rules:
+  - id: quality.nonsense_basic
+    enabled: true
+    params:
+      min_alpha_ratio: 0.55
+      min_word_count: 3
+      max_repeat_char_run: 6
+      min_gibberish_token_ratio: 0.55
+
+  - id: quality.repetition_basic
+    enabled: true
+    params:
+      ngram_n: 3
+      min_repeated_ngram_count: 3
+      min_duplicate_line_ratio: 0.35
+
+  - id: correctness.definition_sanity
+    enabled: true
+    params:
+      min_definition_word_count: 8

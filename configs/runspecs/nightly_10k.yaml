@@ -1,0 +1,11 @@
+run_id_prefix: nightly-10k
+output_dir: reports/runs
+judge_engine: deterministic
+random_seed: 42
+
+dataset:
+  path: datasets/deterministic/math_basic_v2_10k.jsonl
+  dataset_id: math_basic
+  version: v2_10k
+
+rubric_id: math_basic

@@ -1,0 +1,122 @@
+name: nightly
+
+on:
+  schedule:
+    # 02:10 Asia/Kolkata ≈ 20:40 UTC (previous day) – pick a quiet window
+    - cron: "40 20 * * *"
+  workflow_dispatch: {}
+
+concurrency:
+  group: nightly-${{ github.workflow }}
+  cancel-in-progress: true
+
+jobs:
+  test-nightly:
+    runs-on: ubuntu-latest
+
+    env:
+      POETRY_VIRTUALENVS_IN_PROJECT: "true"
+      PIP_DISABLE_PIP_VERSION_CHECK: "1"
+      LLM_JUDGE_DATASET_FULL: "1"
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        id: setup-python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: "pip"
+
+      - name: Install Poetry
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install "poetry==2.1.1"
+          poetry --version
+
+      - name: Configure Poetry
+        run: |
+          poetry config virtualenvs.in-project true
+
+      - name: Cache .venv
+        uses: actions/cache@v4
+        with:
+          path: .venv
+          key: venv-${{ runner.os }}-py${{ steps.setup-python.outputs.python-version }}-${{ hashFiles('poetry.lock') }}
+          restore-keys: |
+            venv-${{ runner.os }}-py${{ steps.setup-python.outputs.python-version }}-
+
+      - name: Install dependencies
+        run: |
+          poetry install --no-interaction
+
+      - name: Lint (ruff)
+        run: |
+          poetry run ruff check .
+
+      - name: Type-check (mypy)
+        run: |
+          poetry run mypy src
+
+      - name: Tests (pytest nightly)
+        run: |
+          poetry run pytest -m nightly
+
+      # ----------------------------
+      # Eval governance gates (nightly)
+      # ----------------------------
+      - name: Eval run (nightly)
+        run: |
+          poetry run python -m llm_judge.eval run --spec configs/runspecs/pr_gate.yaml
+
+      - name: Validate baseline exists (nightly)
+        run: |
+          BASELINE_PTR="baselines/golden/chat_quality/latest.json"
+          if [ ! -f "$BASELINE_PTR" ]; then
+            echo "ERROR: Missing baseline pointer: $BASELINE_PTR"
+            echo "Action: Commit baselines/golden/chat_quality/latest.json and the referenced snapshot directory."
+            exit 1
+          fi
+
+          BASELINE_ID="$(python -c 'import json;print(json.load(open("baselines/golden/chat_quality/latest.json"))["baseline_id"])')"
+          SNAP_DIR="baselines/golden/chat_quality/snapshots/${BASELINE_ID}"
+
+          if [ ! -d "$SNAP_DIR" ]; then
+            echo "ERROR: Baseline snapshot directory missing: $SNAP_DIR"
+            echo "Action: Commit the snapshot directory referenced by latest.json."
+            exit 1
+          fi
+
+          for f in manifest.json judgments.jsonl metrics.json; do
+            if [ ! -f "$SNAP_DIR/$f" ]; then
+              echo "ERROR: Baseline snapshot missing file: $SNAP_DIR/$f"
+              exit 1
+            fi
+          done
+
+          echo "Baseline OK: $SNAP_DIR"
+
+      - name: Eval diff vs baseline (nightly)
+        run: |
+          LATEST_RUN="$(ls -td reports/runs/pr-gate-* | head -n 1)"
+          echo "Latest run: $LATEST_RUN"
+
+          poetry run python -m llm_judge.eval diff \
+            --baseline baselines/golden/chat_quality/latest.json \
+            --candidate "$LATEST_RUN" \
+            --fail-on decision_flip \
+            --max-metric-drop f1_fail=0.01 \
+            --max-metric-drop cohen_kappa=0.02
+
+      - name: Upload eval artifacts (nightly)
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: eval-nightly-artifacts
+          path: |
+            reports/runs/pr-gate-*
+            reports/runs/pr-gate-*/diff
+            baselines/golden/chat_quality/latest.json
+            baselines/golden/chat_quality/snapshots

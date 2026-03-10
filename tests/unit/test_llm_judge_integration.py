@@ -65,8 +65,9 @@ def test_llm_judge_success_path_returns_llm_response(monkeypatch) -> None:
             "tone": "Polite.",
         },
     }
-    monkeypatch.setattr(httpx, "Client", lambda *args, **kwargs: _FakeClient(json.dumps(llm_payload)))
-
+    monkeypatch.setattr(
+        httpx, "Client", lambda *args, **kwargs: _FakeClient(json.dumps(llm_payload))
+    )
 
     engine = get_judge_engine()
 
@@ -129,7 +130,9 @@ def test_engine_selector_returns_llm_engine_when_configured(monkeypatch) -> None
         "explanations": {"relevance": "ok"},
     }
 
-    monkeypatch.setattr(httpx, "Client", lambda *args, **kwargs: _FakeClient(json.dumps(llm_payload)))
+    monkeypatch.setattr(
+        httpx, "Client", lambda *args, **kwargs: _FakeClient(json.dumps(llm_payload))
+    )
 
     req = PredictRequest(
         conversation=[Message(role="user", content="Hello")],
@@ -170,6 +173,3 @@ def test_llm_http_error_triggers_fallback(monkeypatch) -> None:
 
     # fallback deterministic judge should run
     assert "relevance" in res.scores
-
-
-

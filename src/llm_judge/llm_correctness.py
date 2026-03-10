@@ -4,7 +4,7 @@ import asyncio
 import json
 import os
 from concurrent.futures import ThreadPoolExecutor
-from typing import Any, cast
+from typing import Any, Optional
 
 import httpx
 
@@ -29,11 +29,6 @@ def _build_correctness_prompt(request: PredictRequest) -> str:
 
 
 def _extract_openai_content(data: dict[str, Any]) -> Any:
-    """
-    Supports OpenAI-like response shape:
-      {"choices":[{"message":{"content":"{...json...}"}}]}
-    Returns the parsed JSON payload inside message.content.
-    """
     choices = data.get("choices")
     if not isinstance(choices, list) or not choices:
         raise ValueError("Missing choices in response")
@@ -47,12 +42,6 @@ def _extract_openai_content(data: dict[str, Any]) -> Any:
 
 
 def _coerce_result(data: Any) -> LLMCorrectnessResult:
-    """
-    Tests expect:
-    - ValueError for non-dict inputs
-    - ValueError for out-of-range score/confidence
-    - Accept either direct payload OR OpenAI-shaped wrapper
-    """
     if not isinstance(data, dict):
         raise ValueError("Result must be an object")
 
@@ -99,24 +88,29 @@ async def _judge_correctness_llm_async(request: PredictRequest) -> LLMCorrectnes
         "temperature": 0.0,
     }
 
-    async_client_factory = cast(Any, httpx.AsyncClient)
-    async with async_client_factory(timeout=timeout_s) as client:
+    async with httpx.AsyncClient(timeout=timeout_s) as client:
         resp = await client.post(endpoint, json=payload)
         resp.raise_for_status()
-        data = resp.json()
-        return _coerce_result(data)
+        return _coerce_result(resp.json())
 
 
-def judge_correctness_llm(request: PredictRequest) -> LLMCorrectnessResult:
+def judge_correctness_llm(request: PredictRequest) -> Optional[LLMCorrectnessResult]:
     """
-    IMPORTANT: This function must be SYNC because tests call it without `await`,
-    even inside an async test function.
+    Sync wrapper over async httpx client.
 
-    We still use AsyncClient (so test monkeypatching works) by running the async
-    implementation inside a dedicated thread.
+    Returns None when:
+      - OPENAI_API_KEY missing
+      - network errors
+      - parse/shape errors
     """
-    def _run() -> LLMCorrectnessResult:
-        return asyncio.run(_judge_correctness_llm_async(request))
+    if not os.getenv("OPENAI_API_KEY"):
+        return None
+
+    def _run() -> Optional[LLMCorrectnessResult]:
+        try:
+            return asyncio.run(_judge_correctness_llm_async(request))
+        except Exception:
+            return None
 
     with ThreadPoolExecutor(max_workers=1) as ex:
         return ex.submit(_run).result()

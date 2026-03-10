@@ -114,6 +114,12 @@ def compute_metrics(judgments: list[dict[str, Any]]) -> dict[str, Any]:
         human_pass_rate = sum(1 for (h, _) in valid_pairs if h == "pass") / n_valid
         judge_pass_rate = sum(1 for (_, y) in valid_pairs if y == "pass") / n_valid
 
+    # Accuracy = observed agreement = (TP + TN) / N for binary pass/fail.
+    # Using c_pass: tp = (pass,pass), tn = (fail,fail)
+    accuracy: float | None = None
+    if n_valid:
+        accuracy = (c_pass.tp + c_pass.tn) / n_valid
+
     kappa, kappa_warnings = cohen_kappa(judgments)
 
     out: dict[str, Any] = {
@@ -121,8 +127,19 @@ def compute_metrics(judgments: list[dict[str, Any]]) -> dict[str, Any]:
         "n_cases_scored": n_valid,
         "human_pass_rate": human_pass_rate,
         "judge_pass_rate": judge_pass_rate,
-        "confusion_pass_positive": {"tp": c_pass.tp, "fp": c_pass.fp, "tn": c_pass.tn, "fn": c_pass.fn},
-        "confusion_fail_positive": {"tp": c_fail.tp, "fp": c_fail.fp, "tn": c_fail.tn, "fn": c_fail.fn},
+        "accuracy": accuracy,
+        "confusion_pass_positive": {
+            "tp": c_pass.tp,
+            "fp": c_pass.fp,
+            "tn": c_pass.tn,
+            "fn": c_pass.fn,
+        },
+        "confusion_fail_positive": {
+            "tp": c_fail.tp,
+            "fp": c_fail.fp,
+            "tn": c_fail.tn,
+            "fn": c_fail.fn,
+        },
         "precision_pass": c_pass.precision(),
         "recall_pass": c_pass.recall(),
         "f1_pass": c_pass.f1(),

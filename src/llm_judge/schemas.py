@@ -21,6 +21,3 @@ class PredictResponse(BaseModel):
     confidence: float = Field(..., ge=0.0, le=1.0)
     flags: List[str] = Field(default_factory=list)
     explanations: Optional[Dict[str, str]] = None
-
-
-

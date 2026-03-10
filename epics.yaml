@@ -1,0 +1,953 @@
+repo: arunpk82/llm-judge-mvp
+
+# =======================================================================
+# ROLLING HORIZON PLANNING MODEL
+#
+# active  — fully planned: CAPs defined, EPICs defined, exit KPIs locked
+# shaped  — exit KPIs known, CAPs not yet defined, EPICs not yet written
+# vision  — direction known, everything else TBD
+#
+# Planning trigger: begin defining the next level when current level
+# reaches 80% mandatory EPICs closed.
+# =======================================================================
+
+project:
+  name: "LLM-Judge Roadmap"
+  description: "L1–L6 maturity roadmap for the LLM-Judge platform"
+
+  roadmap_items:
+
+    - level: L1
+      name: "Heuristic Evaluator"
+      planning_horizon: done
+      status: "Done"
+      target_quarter: "2025-Q4"
+      summary: >
+        Basic scoring logic with string matching, regex rules, keyword
+        checks. No governance, no versioning.
+      exit_criteria:
+        kpis:
+          - "Rule coverage >= 50%"
+          - "Basic test suite passing"
+      capabilities: []   # Pre-existing, no CAPs tracked
+
+    - level: L2
+      name: "Deterministic Guardrail Engine"
+      planning_horizon: done
+      status: "Done"
+      target_quarter: "2026-Q1"
+      summary: >
+        Structured rule registry with versioned schemas, artifact storage,
+        and CI/CD integration. Reproducible evaluation runs.
+      exit_criteria:
+        kpis:
+          - "Rule hit rate >= 70%"
+          - "Kappa >= 0.60 on calibration set"
+          - "CI gate operational"
+      capabilities: []   # Pre-existing, no CAPs tracked
+
+    - level: L3
+      name: "Governed Evaluation Platform"
+      planning_horizon: active   # Fully planned — track and deliver
+      status: "In Progress"
+      target_quarter: "2026-Q3"
+      summary: >
+        Full lifecycle governance with dataset versioning, baseline
+        promotion, rule lifecycle management, artifact governance,
+        and drift detection. Policy enforcement begins.
+      exit_criteria:
+        mandatory_caps: [CAP-1, CAP-2, CAP-3, CAP-4, CAP-5]
+        kpis:
+          - "Kappa >= 0.75 on calibration set"
+          - "Baseline promotion automated (zero manual steps)"
+          - "Dataset drift monitored with < 24h alert SLA"
+          - "All mandatory EPICs across CAP-1 to CAP-5 closed"
+        entry_criteria: "L2 exit criteria met (done)"
+      planning_trigger: "Begin L4 EPIC definition when L3 mandatory EPICs >= 80% closed"
+      capabilities: [CAP-1, CAP-2, CAP-3, CAP-4, CAP-5]
+
+    - level: L4
+      name: "Hybrid Adjudication Engine"
+      planning_horizon: shaped   # KPIs known, CAPs/EPICs not yet defined
+      status: "Planned"
+      target_quarter: "2027-Q1"
+      summary: >
+        LLM-based adjudication for ambiguous cases. Confidence calibration,
+        position-bias mitigation, and human-in-the-loop escalation pathways.
+      exit_criteria:
+        kpis:
+          - "Kappa >= 0.80 on calibration dataset"
+          - "Human escalation rate < 15% of total evaluations"
+          - "Confidence calibration within 5% (predicted vs actual accuracy)"
+          - "Position-bias inconsistency < 10%"
+        entry_criteria: "L3 exit criteria met"
+      planning_trigger: "Begin L4 EPIC definition when L3 mandatory EPICs >= 80% closed"
+      capabilities: []   # To be defined when L3 reaches 80%
+
+    - level: L5
+      name: "Enterprise AI Governance Platform"
+      planning_horizon: vision   # Direction known, details TBD
+      status: "Planned"
+      target_quarter: "2027-Q4"
+      summary: >
+        Multi-tenant architecture, RBAC, compliance reporting, bias
+        detection, and SLA enforcement for regulated industries.
+        SOC 2 Type II target.
+      exit_criteria:
+        kpis:
+          - "SOC 2 Type II audit passed"
+          - "Multi-tenant SLAs met"
+          - "Bias reports automated on every evaluation run"
+        entry_criteria: "L4 exit criteria met"
+      planning_trigger: "Begin L5 shaping when L4 is 80% complete"
+      capabilities: []   # To be defined when L4 is shaped
+
+    - level: L6
+      name: "AI Safety Operating System"
+      planning_horizon: vision
+      status: "Planned"
+      target_quarter: "2028-Q4"
+      summary: >
+        Continuous safety monitoring, adversarial red-teaming, automated
+        dataset generation, agent trajectory evaluation, cross-system
+        evaluation orchestration, evaluation marketplace.
+      exit_criteria:
+        kpis:
+          - "Continuous monitoring SLA < 24h detection"
+          - "Adversarial coverage >= 80% of known attack taxonomy"
+          - "Synthetic dataset Kappa >= 0.75 vs human-generated equivalent"
+        entry_criteria: "L5 exit criteria met"
+      planning_trigger: "Begin L6 shaping when L5 is 80% complete"
+      capabilities: []   # To be defined when L5 is shaped
+
+# =======================================================================
+# MILESTONES (Capabilities)
+# All current capabilities are L3 work.
+# L4/L5/L6 capabilities will be defined as those levels are shaped.
+# =======================================================================
+milestones:
+  CAP-1:
+    title: "CAP-1 Dataset Governance"
+    level: L3
+    description: >
+      Dataset registry, manifest schema, validation engine, version
+      resolution, loader system, and governance CLI.
+      Gates L3 KPI: dataset drift monitored.
+    due_date: "2026-06-30"
+
+  CAP-2:
+    title: "CAP-2 Baseline Governance"
+    level: L3
+    description: >
+      Baseline snapshot system, registry, validation engine, diff engine,
+      regression detection system, and CI gate.
+      Gates L3 KPI: baseline promotion automated.
+    due_date: "2026-06-30"
+
+  CAP-3:
+    title: "CAP-3 Rule Governance"
+    level: L3
+    description: >
+      Rule manifest system, registry validation, lifecycle management,
+      testing framework, drift detection, and governance CLI.
+      Gates L3 KPI: Kappa >= 0.75 (rule stability).
+    due_date: "2026-06-30"
+
+  CAP-4:
+    title: "CAP-4 Artifact Governance"
+    level: L3
+    description: >
+      Artifact schema system, validation engine, compatibility checks,
+      versioning system, storage governance, and inspection CLI.
+      Gates L3 KPI: full audit trail for all evaluation artifacts.
+    due_date: "2026-09-30"
+
+  CAP-5:
+    title: "CAP-5 Drift Monitoring"
+    level: L3
+    description: >
+      Metric drift detection, decision flip monitoring, score delta
+      analysis, stability monitoring, observability, and dashboard.
+      Gates L3 KPI: dataset drift monitored with < 24h SLA.
+    due_date: "2026-09-30"
+
+# =======================================================================
+# EPICs
+#
+# Each EPIC has:
+#   level:     which maturity level this EPIC's completion contributes to
+#   mandatory: true  = must close to exit the level (gates a KPI)
+#              false = should-have, can defer without blocking level exit
+# =======================================================================
+epics:
+
+  # -----------------------------------------------------------------------
+  # CAP-1 — Dataset Governance  (L3)
+  # Mandatory: EPIC-1, EPIC-2, EPIC-3, EPIC-5
+  # Optional:  EPIC-4, EPIC-6
+  # -----------------------------------------------------------------------
+
+  - id: EPIC-1
+    title: "[EPIC] EPIC-1 Dataset Registry"
+    milestone: CAP-1
+    level: L3
+    mandatory: true
+    labels: [epic, cap:dataset-governance]
+    status: in_progress
+    effort: "M — 2 weeks"
+    purpose: >
+      Store and manage evaluation datasets with discovery support.
+      Provides the registry structure that all dataset operations depend on.
+    vision_objective: "Reliable evaluation reproducibility across runs and environments"
+    scope_in:
+      - Dataset metadata storage
+      - Registry directory structure
+      - Dataset discovery (scan and list)
+      - Registry lookup by name, version, tag
+    scope_out:
+      - Dataset validation (EPIC-3)
+      - Dataset versioning resolution (EPIC-4)
+    acceptance_criteria:
+      - "Given a populated registry directory, when dataset list is called, then all datasets are returned with metadata"
+      - "Given a dataset name, when registry lookup is called, then the correct metadata object is returned"
+      - "Given an empty registry, when discovery runs, then an empty list is returned without error"
+    tasks:
+      - "TASK-1.1: Define dataset registry directory structure and file conventions"
+      - "TASK-1.2: Implement dataset discovery (scan registry dir, return list)"
+      - "TASK-1.3: Implement dataset metadata loading and in-memory registry object"
+      - "TASK-1.4: Add registry lookup by name, version, and tag"
+
+  - id: EPIC-2
+    title: "[EPIC] EPIC-2 Dataset Manifest Schema"
+    milestone: CAP-1
+    level: L3
+    mandatory: true
+    labels: [epic, cap:dataset-governance]
+    status: in_progress
+    effort: "M — 2 weeks"
+    purpose: >
+      Define and enforce the dataset metadata format via dataset.yaml schema.
+      Ensures all datasets are consistently structured and versioned.
+    vision_objective: "Reliable evaluation reproducibility across runs and environments"
+    scope_in:
+      - dataset.yaml schema definition
+      - Pydantic model for manifest validation
+      - Schema version field and upgrade path
+      - Content hash tracking for determinism
+    scope_out:
+      - Validation engine execution (EPIC-3)
+      - Version resolution logic (EPIC-4)
+    acceptance_criteria:
+      - "Given a valid dataset.yaml, when the Pydantic model is instantiated, then it succeeds with no errors"
+      - "Given an invalid dataset.yaml, when validation runs, then a structured error with field name is returned"
+      - "Given a dataset.yaml, when hash is computed, then the same file always produces the same hash"
+    tasks:
+      - "TASK-2.1: Draft dataset.yaml schema (fields, types, required vs optional)"
+      - "TASK-2.2: Implement Pydantic model for dataset manifest validation"
+      - "TASK-2.3: Add schema version field and version upgrade path"
+      - "TASK-2.4: Add content hash tracking to manifest"
+
+  - id: EPIC-3
+    title: "[EPIC] EPIC-3 Dataset Validation Engine"
+    milestone: CAP-1
+    level: L3
+    mandatory: true
+    labels: [epic, cap:dataset-governance]
+    status: planned
+    effort: "M — 2 weeks"
+    purpose: >
+      Ensure datasets follow required structure and pass integrity checks
+      before being used in evaluation runs. Directly gates the L3 KPI:
+      dataset drift monitored.
+    vision_objective: "Reliable evaluation reproducibility across runs and environments"
+    scope_in:
+      - Schema validation runner
+      - Case format validator
+      - Integrity checks (duplicate IDs, empty datasets, malformed YAML)
+      - Structured validation error output with line numbers
+    scope_out:
+      - CLI interface (EPIC-6)
+      - Version resolution (EPIC-4)
+    acceptance_criteria:
+      - "Given a valid dataset, when validation runs, then it exits 0 with no errors"
+      - "Given a dataset with duplicate case IDs, when validation runs, then a structured error listing the duplicates is returned"
+      - "Given a malformed YAML file, when validation runs, then a human-readable error with line number is returned"
+    tasks:
+      - "TASK-3.1: Implement schema validation runner"
+      - "TASK-3.2: Implement case format validator"
+      - "TASK-3.3: Add integrity checks (duplicate IDs, empty datasets, malformed YAML)"
+      - "TASK-3.4: Return structured validation errors with line numbers"
+
+  - id: EPIC-4
+    title: "[EPIC] EPIC-4 Dataset Version Resolution"
+    milestone: CAP-1
+    level: L3
+    mandatory: false
+    labels: [epic, cap:dataset-governance]
+    status: planned
+    effort: "M — 2 weeks"
+    purpose: >
+      Resolve dataset versions deterministically using semver-compatible
+      versioning with pinning support. Optional for L3 exit — useful but
+      does not directly gate any L3 KPI.
+    vision_objective: "Reliable evaluation reproducibility across runs and environments"
+    scope_in:
+      - Semver-compatible dataset versioning
+      - Version resolution (latest, ^1.0, exact pin)
+      - dataset.lock file generation
+    scope_out:
+      - Dataset loader (EPIC-5)
+    acceptance_criteria:
+      - "Given version spec latest, when resolved, then the highest available version is returned"
+      - "Given version spec ^1.0, when resolved, then the latest 1.x version is returned"
+      - "Given any resolution, when dataset.lock is written, then re-running resolution with the lock produces identical results"
+    tasks:
+      - "TASK-4.1: Implement semver-compatible dataset versioning"
+      - "TASK-4.2: Implement version resolution (latest, ^1.0, exact pin)"
+      - "TASK-4.3: Write dataset.lock file when version is resolved"
+
+  - id: EPIC-5
+    title: "[EPIC] EPIC-5 Dataset Loader System"
+    milestone: CAP-1
+    level: L3
+    mandatory: true
+    labels: [epic, cap:dataset-governance]
+    status: in_progress
+    effort: "M — 2 weeks"
+    purpose: >
+      Load datasets into the evaluation pipeline with deterministic
+      sampling, filtering, and streaming support for large datasets.
+      Mandatory — evaluation runs depend on the loader.
+    vision_objective: "Reliable evaluation reproducibility across runs and environments"
+    scope_in:
+      - Deterministic sampling (seed-based)
+      - Dataset hash tracking
+      - Dataset filtering (by tag, by case attribute)
+      - Streaming loader for large datasets
+    scope_out:
+      - CLI interface (EPIC-6)
+    acceptance_criteria:
+      - "Given the same seed, when sampling runs twice, then identical case sets are returned"
+      - "Given a tag filter, when loader runs, then only matching cases are returned"
+      - "Given a 100k case dataset, when streaming loader is used, then memory usage stays below 500MB"
+    tasks:
+      - "TASK-5.1: Implement deterministic sampling - DONE"
+      - "TASK-5.2: Implement dataset hash tracking - DONE"
+      - "TASK-5.3: Implement dataset filtering (by tag, by case attribute)"
+      - "TASK-5.4: Add streaming loader for large datasets"
+
+  - id: EPIC-6
+    title: "[EPIC] EPIC-6 Dataset Governance CLI"
+    milestone: CAP-1
+    level: L3
+    mandatory: false
+    labels: [epic, cap:dataset-governance]
+    status: planned
+    effort: "S — 1 week"
+    purpose: >
+      Manage datasets via CLI: list, validate, inspect. Optional for L3
+      exit — operational tooling that improves DX but does not gate any KPI.
+    vision_objective: "Scalable evaluation across datasets, rubrics, and models"
+    scope_in:
+      - llm-judge dataset list
+      - llm-judge dataset validate
+      - llm-judge dataset inspect
+    scope_out:
+      - Dataset loading into eval pipeline (EPIC-5)
+    acceptance_criteria:
+      - "Given a populated registry, when dataset list runs, then a table with name, version, case count, status is printed"
+      - "Given an invalid dataset, when dataset validate runs, then errors are printed and exit code is 1"
+      - "Given a dataset name, when dataset inspect runs, then metadata, schema version, and 3 sample cases are shown"
+    tasks:
+      - "TASK-6.1: Implement llm-judge dataset list"
+      - "TASK-6.2: Implement llm-judge dataset validate"
+      - "TASK-6.3: Implement llm-judge dataset inspect"
+
+  # -----------------------------------------------------------------------
+  # CAP-2 — Baseline Governance  (L3)
+  # Mandatory: EPIC-7, EPIC-10, EPIC-11, EPIC-12
+  # Optional:  EPIC-8, EPIC-9
+  # -----------------------------------------------------------------------
+
+  - id: EPIC-7
+    title: "[EPIC] EPIC-7 Baseline Snapshot System"
+    milestone: CAP-2
+    level: L3
+    mandatory: true
+    labels: [epic, cap:baseline-governance]
+    status: done
+    close_comment: "Completed. Baseline snapshot creation, metadata, and storage implemented. Artifacts: manifest.json, judgments.jsonl, metrics.json produced per run."
+    effort: "M — 2 weeks"
+    purpose: >
+      Create and store baseline snapshots from evaluation runs. Mandatory —
+      all downstream baseline governance depends on this foundation.
+    vision_objective: "Regression detection before every production release"
+    scope_in:
+      - Baseline snapshot creation from run artifacts
+      - Baseline metadata (timestamp, run config, dataset hash)
+      - Snapshot storage structure
+    scope_out:
+      - Baseline registry (EPIC-8)
+      - Diff engine (EPIC-10)
+    acceptance_criteria:
+      - "Given a completed evaluation run, when snapshot is created, then manifest.json, judgments.jsonl, metrics.json are all present"
+      - "Given a snapshot, when metadata is read, then timestamp, run config, and dataset hash are all populated"
+
+  - id: EPIC-8
+    title: "[EPIC] EPIC-8 Baseline Registry"
+    milestone: CAP-2
+    level: L3
+    mandatory: false
+    labels: [epic, cap:baseline-governance]
+    status: planned
+    effort: "S — 1 week"
+    purpose: >
+      Manage baseline versions with listing and lookup. Optional for L3
+      exit — useful but regression detection does not depend on a registry.
+    vision_objective: "Regression detection before every production release"
+    scope_in:
+      - Baseline listing
+      - Baseline lookup by ID
+      - Baseline metadata access
+    scope_out:
+      - Snapshot creation (EPIC-7)
+      - Validation (EPIC-9)
+    acceptance_criteria:
+      - "Given multiple baselines, when list is called, then all are returned sorted by date"
+      - "Given a baseline ID, when lookup is called, then the correct snapshot path is returned"
+    tasks:
+      - "TASK-8.1: Implement baseline registry structure (index file + snapshot dirs)"
+      - "TASK-8.2: Implement baseline listing with metadata"
+      - "TASK-8.3: Implement baseline lookup by ID"
+
+  - id: EPIC-9
+    title: "[EPIC] EPIC-9 Baseline Validation Engine"
+    milestone: CAP-2
+    level: L3
+    mandatory: false
+    labels: [epic, cap:baseline-governance]
+    status: planned
+    effort: "S — 1 week"
+    purpose: >
+      Validate baseline integrity. Optional for L3 exit — supporting
+      infrastructure that improves reliability but does not gate any KPI.
+    vision_objective: "Regression detection before every production release"
+    scope_in:
+      - Artifact presence checks
+      - Baseline compatibility validation
+      - Snapshot integrity validation
+    scope_out:
+      - Diff engine (EPIC-10)
+    acceptance_criteria:
+      - "Given a valid baseline, when validation runs, then it exits 0"
+      - "Given a baseline with missing artifacts, when validation runs, then specific missing files are listed"
+    tasks:
+      - "TASK-9.1: Implement artifact presence checks (manifest, judgments, metrics)"
+      - "TASK-9.2: Implement schema compatibility check between baseline and current version"
+      - "TASK-9.3: Integrate baseline validation into CI baseline gate"
+
+  - id: EPIC-10
+    title: "[EPIC] EPIC-10 Baseline Diff Engine"
+    milestone: CAP-2
+    level: L3
+    mandatory: true
+    labels: [epic, cap:baseline-governance]
+    status: in_progress
+    effort: "M — 2 weeks"
+    purpose: >
+      Compare evaluation runs against baselines to detect decision flips
+      and score deltas. Mandatory — directly feeds the regression detection
+      system which gates the L3 KPI: baseline promotion automated.
+    vision_objective: "Regression detection before every production release"
+    scope_in:
+      - Decision flip detection (pass to fail, fail to pass)
+      - Score delta computation (per-metric, aggregate)
+      - Structured diff report (JSON + human-readable table)
+    scope_out:
+      - Regression policy enforcement (EPIC-11)
+    acceptance_criteria:
+      - "Given two runs, when diff runs, then all decision flips are listed with case ID and direction"
+      - "Given two runs, when diff runs, then per-metric score deltas are computed correctly"
+      - "Given a diff result, when report is generated, then both JSON and table formats are produced"
+    tasks:
+      - "TASK-10.1: Decision flip detection - DONE"
+      - "TASK-10.2: Score delta computation - DONE"
+      - "TASK-10.3: Structured diff report output (JSON + human-readable table)"
+
+  - id: EPIC-11
+    title: "[EPIC] EPIC-11 Regression Detection System"
+    milestone: CAP-2
+    level: L3
+    mandatory: true
+    labels: [epic, cap:baseline-governance]
+    status: planned
+    effort: "M — 2 weeks"
+    purpose: >
+      Detect evaluation regressions using configurable policies. Mandatory —
+      directly gates L3 KPI: baseline promotion automated.
+    vision_objective: "Regression detection before every production release"
+    scope_in:
+      - Regression policy schema (metric, threshold, operator, severity)
+      - Regression rule evaluator against diff report
+      - Configurable failure policies (warn / error / block)
+    scope_out:
+      - CI gate integration (EPIC-12)
+    acceptance_criteria:
+      - "Given a policy with f1_fail drop threshold 0.01, when f1_fail drops 0.02, then regression is detected"
+      - "Given a warn policy, when regression is detected, then CI continues with a warning printed"
+      - "Given a block policy, when regression is detected, then CI exits 1"
+    tasks:
+      - "TASK-11.1: Define regression policy schema"
+      - "TASK-11.2: Implement regression rule evaluator against diff report"
+      - "TASK-11.3: Add configurable failure policies (warn / error / block)"
+
+  - id: EPIC-12
+    title: "[EPIC] EPIC-12 CI Baseline Gate"
+    milestone: CAP-2
+    level: L3
+    mandatory: true
+    labels: [epic, cap:baseline-governance]
+    status: done
+    close_comment: "Completed. CI baseline comparison and PR gate operational. Eval diff runs on every PR with decision_flip and metric drop thresholds enforced."
+    effort: "S — 1 week"
+    purpose: >
+      Fail CI if evaluation regresses beyond configured thresholds. Mandatory
+      and done — this is the enforcement mechanism for baseline promotion.
+    vision_objective: "Regression detection before every production release"
+    scope_in:
+      - CI integration via GitHub Actions
+      - Regression threshold configuration
+      - PR gate blocking on regression
+    acceptance_criteria:
+      - "Given a PR with an evaluation regression, when CI runs, then the gate step fails and merge is blocked"
+      - "Given a PR with no regression, when CI runs, then the gate step passes"
+
+  # -----------------------------------------------------------------------
+  # CAP-3 — Rule Governance  (L3)
+  # Mandatory: EPIC-13, EPIC-14, EPIC-15, EPIC-16
+  # Optional:  EPIC-17, EPIC-18
+  # -----------------------------------------------------------------------
+
+  - id: EPIC-13
+    title: "[EPIC] EPIC-13 Rule Manifest System"
+    milestone: CAP-3
+    level: L3
+    mandatory: true
+    labels: [epic, cap:rule-governance]
+    status: done
+    close_comment: "Completed. rules/manifest.yaml implemented with rule metadata, ownership, and rule registry structure."
+    effort: "S — 1 week"
+    purpose: >
+      Track rule metadata via rules/manifest.yaml. Mandatory and done —
+      foundation for all rule governance work.
+    vision_objective: "Deterministic rule-based evaluation"
+    scope_in:
+      - rules/manifest.yaml structure
+      - Rule metadata fields
+      - Rule ownership tracking
+    acceptance_criteria:
+      - "Given rules/manifest.yaml, when loaded, then all rule metadata is accessible"
+
+  - id: EPIC-14
+    title: "[EPIC] EPIC-14 Rule Registry Validation"
+    milestone: CAP-3
+    level: L3
+    mandatory: true
+    labels: [epic, cap:rule-governance]
+    status: done
+    close_comment: "Completed. Registry validation and missing rule detection implemented."
+    effort: "S — 1 week"
+    purpose: >
+      Ensure all rules referenced in rubrics exist in the registry. Mandatory
+      and done — prevents silent evaluation failures from missing rules.
+    vision_objective: "Deterministic rule-based evaluation"
+    scope_in:
+      - Registry validation against rubric references
+      - Missing rule detection
+    acceptance_criteria:
+      - "Given a rubric referencing a non-existent rule, when validation runs, then the missing rule ID is reported"
+
+  - id: EPIC-15
+    title: "[EPIC] EPIC-15 Rule Lifecycle Management"
+    milestone: CAP-3
+    level: L3
+    mandatory: true
+    labels: [epic, cap:rule-governance]
+    status: planned
+    effort: "S — 1 week"
+    purpose: >
+      Manage rule evolution through lifecycle stages. Mandatory — deprecated
+      and retired rule enforcement directly stabilises Kappa scores, gating
+      the L3 KPI: Kappa >= 0.75.
+    vision_objective: "Deterministic rule-based evaluation"
+    scope_in:
+      - Lifecycle stage field (draft / active / deprecated / retired)
+      - Lifecycle enforcement in rule loader
+      - Rule version history tracking with changelog
+    scope_out:
+      - Rule testing (EPIC-16)
+    acceptance_criteria:
+      - "Given a deprecated rule, when evaluation runs, then a warning is printed but evaluation continues"
+      - "Given a retired rule, when evaluation runs, then an error is raised and evaluation stops"
+      - "Given a rule version bump, when history is read, then previous versions and changelog are accessible"
+    tasks:
+      - "TASK-15.1: Add lifecycle stage field to rule manifest"
+      - "TASK-15.2: Enforce lifecycle in rule loader (warn on deprecated, error on retired)"
+      - "TASK-15.3: Add rule version history tracking (semver + changelog)"
+
+  - id: EPIC-16
+    title: "[EPIC] EPIC-16 Rule Testing Framework"
+    milestone: CAP-3
+    level: L3
+    mandatory: true
+    labels: [epic, cap:rule-governance]
+    status: planned
+    effort: "M — 2 weeks"
+    purpose: >
+      Ensure rule correctness via dedicated test datasets. Mandatory —
+      without rule-level accuracy validation, Kappa >= 0.75 cannot be
+      confidently claimed.
+    vision_objective: "Deterministic rule-based evaluation"
+    scope_in:
+      - Rule test dataset schema
+      - Rule test runner
+      - CI integration for rule tests
+    acceptance_criteria:
+      - "Given a rule test dataset, when test runner executes, then pass/fail verdicts are compared against expected"
+      - "Given a rule with test accuracy below 95%, when CI runs, then the rule test step fails"
+    tasks:
+      - "TASK-16.1: Define rule test dataset schema (input, expected_verdict, expected_score)"
+      - "TASK-16.2: Implement rule test runner"
+      - "TASK-16.3: Integrate rule tests into CI"
+
+  - id: EPIC-17
+    title: "[EPIC] EPIC-17 Rule Drift Detection"
+    milestone: CAP-3
+    level: L3
+    mandatory: false
+    labels: [epic, cap:rule-governance]
+    status: planned
+    effort: "M — 2 weeks"
+    purpose: >
+      Detect rule behaviour changes across evaluation runs. Optional for L3
+      exit — valuable monitoring but does not directly gate any L3 KPI.
+    vision_objective: "Deterministic rule-based evaluation"
+    scope_in:
+      - Rule output monitoring across runs
+      - Rule drift alerts
+    acceptance_criteria:
+      - "Given a rule whose output changes >5% across runs, when drift detection runs, then an alert is raised"
+    tasks:
+      - "TASK-17.1: Implement per-rule output tracking across runs"
+      - "TASK-17.2: Implement drift threshold comparison"
+      - "TASK-17.3: Add drift alert output to evaluation report"
+
+  - id: EPIC-18
+    title: "[EPIC] EPIC-18 Rule Governance CLI"
+    milestone: CAP-3
+    level: L3
+    mandatory: false
+    labels: [epic, cap:rule-governance]
+    status: planned
+    effort: "S — 1 week"
+    purpose: >
+      Manage rules via CLI: validate, list, inspect. Optional for L3 exit —
+      operational tooling that improves DX but does not gate any KPI.
+    vision_objective: "Deterministic rule-based evaluation"
+    scope_in:
+      - llm-judge rule validate
+      - llm-judge rule list
+      - llm-judge rule inspect
+    acceptance_criteria:
+      - "Given a rule registry, when rule list runs, then all rules with lifecycle stage are printed"
+      - "Given a rule ID, when rule inspect runs, then metadata, version history, and test status are shown"
+    tasks:
+      - "TASK-18.1: Implement llm-judge rule list"
+      - "TASK-18.2: Implement llm-judge rule validate"
+      - "TASK-18.3: Implement llm-judge rule inspect"
+
+  # -----------------------------------------------------------------------
+  # CAP-4 — Artifact Governance  (L3)
+  # Mandatory: EPIC-19, EPIC-20
+  # Optional:  EPIC-21, EPIC-22, EPIC-23, EPIC-24
+  # -----------------------------------------------------------------------
+
+  - id: EPIC-19
+    title: "[EPIC] EPIC-19 Artifact Schema System"
+    milestone: CAP-4
+    level: L3
+    mandatory: true
+    labels: [epic, cap:artifact-governance]
+    status: planned
+    effort: "M — 2 weeks"
+    purpose: >
+      Define evaluation artifact schemas for manifest, metrics, judgments.
+      Mandatory — without a schema, artifact validation cannot run and the
+      L3 audit trail KPI cannot be met.
+    vision_objective: "Transparent scoring with full audit trail"
+    scope_in:
+      - Manifest schema definition
+      - Metrics schema definition
+      - Judgments schema definition
+    acceptance_criteria:
+      - "Given any evaluation run, when artifacts are validated against schemas, then all pass without errors"
+    tasks:
+      - "TASK-19.1: Define manifest.json schema (Pydantic model)"
+      - "TASK-19.2: Define metrics.json schema (Pydantic model)"
+      - "TASK-19.3: Define judgments.jsonl schema (per-line Pydantic model)"
+
+  - id: EPIC-20
+    title: "[EPIC] EPIC-20 Artifact Validation Engine"
+    milestone: CAP-4
+    level: L3
+    mandatory: true
+    labels: [epic, cap:artifact-governance]
+    status: planned
+    effort: "M — 2 weeks"
+    purpose: >
+      Validate artifacts produced by evaluation runs. Mandatory — artifact
+      validation is the enforcement mechanism for the audit trail KPI.
+    vision_objective: "Transparent scoring with full audit trail"
+    scope_in:
+      - Artifact structure validation
+      - Missing artifact detection
+    acceptance_criteria:
+      - "Given a run with all artifacts present, when validation runs, then it exits 0"
+      - "Given a run missing metrics.json, when validation runs, then the missing file is reported"
+    tasks:
+      - "TASK-20.1: Implement artifact structure validator"
+      - "TASK-20.2: Implement missing artifact detector"
+      - "TASK-20.3: Integrate artifact validation into post-run pipeline"
+
+  - id: EPIC-21
+    title: "[EPIC] EPIC-21 Artifact Compatibility Checks"
+    milestone: CAP-4
+    level: L3
+    mandatory: false
+    labels: [epic, cap:artifact-governance]
+    status: planned
+    effort: "S — 1 week"
+    purpose: >
+      Ensure compatibility of artifacts across schema versions. Optional for
+      L3 exit — important for long-term maintainability but does not gate
+      any L3 KPI.
+    vision_objective: "Transparent scoring with full audit trail"
+    scope_in:
+      - Schema compatibility checks
+      - Version compatibility validation
+    acceptance_criteria:
+      - "Given artifacts from schema v1 and current schema v2, when compatibility check runs, then incompatibilities are listed"
+    tasks:
+      - "TASK-21.1: Implement schema version compatibility checker"
+      - "TASK-21.2: Add compatibility check to baseline promotion workflow"
+
+  - id: EPIC-22
+    title: "[EPIC] EPIC-22 Artifact Versioning System"
+    milestone: CAP-4
+    level: L3
+    mandatory: false
+    labels: [epic, cap:artifact-governance]
+    status: planned
+    effort: "M — 2 weeks"
+    purpose: >
+      Track artifact format versions with upgrade paths. Optional for L3
+      exit — needed for long-term evolution but not for initial governance.
+    vision_objective: "Transparent scoring with full audit trail"
+    scope_in:
+      - Artifact schema version tracking
+      - Version upgrade path
+    acceptance_criteria:
+      - "Given a v1 artifact, when upgrade runs, then a valid v2 artifact is produced"
+    tasks:
+      - "TASK-22.1: Add schema version field to all artifact types"
+      - "TASK-22.2: Implement v1 to v2 upgrade migration"
+      - "TASK-22.3: Add upgrade command to CLI"
+
+  - id: EPIC-23
+    title: "[EPIC] EPIC-23 Artifact Storage Governance"
+    milestone: CAP-4
+    level: L3
+    mandatory: false
+    labels: [epic, cap:artifact-governance]
+    status: planned
+    effort: "M — 2 weeks"
+    purpose: >
+      Manage run artifact storage with retention policy. Optional for L3
+      exit — operational concern that can be deferred without blocking KPIs.
+    vision_objective: "Transparent scoring with full audit trail"
+    scope_in:
+      - Artifact directory structure standardisation
+      - Retention policy enforcement
+    acceptance_criteria:
+      - "Given a retention policy of 30 days, when cleanup runs, then artifacts older than 30 days are removed"
+    tasks:
+      - "TASK-23.1: Define and enforce artifact directory structure"
+      - "TASK-23.2: Implement retention policy configuration"
+      - "TASK-23.3: Implement cleanup command"
+
+  - id: EPIC-24
+    title: "[EPIC] EPIC-24 Artifact Inspection CLI"
+    milestone: CAP-4
+    level: L3
+    mandatory: false
+    labels: [epic, cap:artifact-governance]
+    status: planned
+    effort: "S — 1 week"
+    purpose: >
+      Inspect evaluation artifacts via CLI. Optional for L3 exit —
+      operational tooling that does not gate any KPI.
+    vision_objective: "Transparent scoring with full audit trail"
+    scope_in:
+      - Artifact summary command
+      - Artifact debugging tools
+    acceptance_criteria:
+      - "Given a run ID, when artifact inspect runs, then a summary of all artifacts with sizes and schema versions is shown"
+    tasks:
+      - "TASK-24.1: Implement llm-judge artifact inspect"
+      - "TASK-24.2: Implement llm-judge artifact summary"
+
+  # -----------------------------------------------------------------------
+  # CAP-5 — Drift Monitoring  (L3)
+  # Mandatory: EPIC-25, EPIC-26
+  # Optional:  EPIC-27, EPIC-28, EPIC-29, EPIC-30
+  # -----------------------------------------------------------------------
+
+  - id: EPIC-25
+    title: "[EPIC] EPIC-25 Metric Drift Detection"
+    milestone: CAP-5
+    level: L3
+    mandatory: true
+    labels: [epic, cap:drift-monitoring]
+    status: planned
+    effort: "M — 2 weeks"
+    purpose: >
+      Detect metric changes across evaluation runs with trend detection
+      and alerts. Mandatory — directly gates L3 KPI: dataset drift
+      monitored with < 24h alert SLA.
+    vision_objective: "Integration with modern AI development pipelines"
+    scope_in:
+      - Metric trend detection across runs
+      - Metric change alerts
+    acceptance_criteria:
+      - "Given 5 consecutive runs with declining F1, when drift detection runs, then a downward trend alert is raised"
+    tasks:
+      - "TASK-25.1: Implement metric history store (per-metric time series)"
+      - "TASK-25.2: Implement trend detection algorithm"
+      - "TASK-25.3: Add drift alert to evaluation report"
+
+  - id: EPIC-26
+    title: "[EPIC] EPIC-26 Decision Flip Monitoring"
+    milestone: CAP-5
+    level: L3
+    mandatory: true
+    labels: [epic, cap:drift-monitoring]
+    status: in_progress
+    effort: "M — 2 weeks"
+    purpose: >
+      Detect and report decision changes across evaluation runs. Mandatory —
+      decision flip rate is a primary signal for drift detection, gating
+      the L3 KPI: dataset drift monitored.
+    vision_objective: "Integration with modern AI development pipelines"
+    scope_in:
+      - Decision flip detection across runs
+      - Flip trend reporting
+    scope_out:
+      - Single baseline diff (EPIC-10)
+    acceptance_criteria:
+      - "Given 3 runs with increasing flip rate, when monitoring runs, then a flip trend alert is raised"
+    tasks:
+      - "TASK-26.1: Implement cross-run flip rate tracking"
+      - "TASK-26.2: Implement flip trend detection"
+      - "TASK-26.3: Add flip monitoring report"
+
+  - id: EPIC-27
+    title: "[EPIC] EPIC-27 Score Delta Analysis"
+    milestone: CAP-5
+    level: L3
+    mandatory: false
+    labels: [epic, cap:drift-monitoring]
+    status: planned
+    effort: "M — 2 weeks"
+    purpose: >
+      Analyse scoring changes across runs with delta computation and
+      variance tracking. Optional for L3 exit — analytical depth that
+      enhances observability but does not gate any KPI.
+    vision_objective: "Integration with modern AI development pipelines"
+    scope_in:
+      - Score delta computation across multiple runs
+      - Score variance tracking
+    acceptance_criteria:
+      - "Given 10 runs, when score delta analysis runs, then mean, variance, and trend are reported per metric"
+    tasks:
+      - "TASK-27.1: Implement multi-run score delta aggregation"
+      - "TASK-27.2: Implement score variance computation"
+      - "TASK-27.3: Add variance report to evaluation output"
+
+  - id: EPIC-28
+    title: "[EPIC] EPIC-28 Evaluation Stability Monitoring"
+    milestone: CAP-5
+    level: L3
+    mandatory: false
+    labels: [epic, cap:drift-monitoring]
+    status: planned
+    effort: "M — 2 weeks"
+    purpose: >
+      Monitor repeated evaluation stability and variance. Optional for L3
+      exit — improves confidence in results but does not gate any KPI.
+    vision_objective: "Reliable evaluation reproducibility across runs and environments"
+    scope_in:
+      - Repeated evaluation stability checks
+      - Variance tracking across identical runs
+    acceptance_criteria:
+      - "Given 5 identical runs (same seed, same dataset), when stability check runs, then variance is reported as 0"
+    tasks:
+      - "TASK-28.1: Implement repeated run stability checker"
+      - "TASK-28.2: Implement variance threshold alerting"
+
+  - id: EPIC-29
+    title: "[EPIC] EPIC-29 Evaluation Observability"
+    milestone: CAP-5
+    level: L3
+    mandatory: false
+    labels: [epic, cap:drift-monitoring]
+    status: planned
+    effort: "M — 2 weeks"
+    purpose: >
+      Expose evaluation insights through run statistics and summaries.
+      Optional for L3 exit — operational visibility that can be deferred.
+    vision_objective: "Integration with modern AI development pipelines"
+    scope_in:
+      - Run statistics (duration, case count, rule hit rates)
+      - Evaluation summaries per run
+    acceptance_criteria:
+      - "Given a completed run, when summary is requested, then duration, case count, pass rate, and top failing rules are shown"
+    tasks:
+      - "TASK-29.1: Implement run statistics collector"
+      - "TASK-29.2: Implement evaluation summary generator"
+      - "TASK-29.3: Add summary to standard run output"
+
+  - id: EPIC-30
+    title: "[EPIC] EPIC-30 Evaluation Dashboard"
+    milestone: CAP-5
+    level: L3
+    mandatory: false
+    labels: [epic, cap:drift-monitoring]
+    status: planned
+    effort: "L — 3 to 4 weeks"
+    purpose: >
+      Visualise evaluation results through dashboards, metric charts, and
+      drift visualisations. Optional for L3 exit — high value but no KPI
+      depends on a visual dashboard.
+    vision_objective: "Integration with modern AI development pipelines"
+    scope_in:
+      - Run dashboards
+      - Metric trend charts
+      - Drift visualisations
+    acceptance_criteria:
+      - "Given 10 runs of data, when dashboard loads, then metric trends are visualised as time-series charts"
+      - "Given a drift event, when dashboard loads, then the drift is highlighted with the affected run"
+    tasks:
+      - "TASK-30.1: Design dashboard data model"
+      - "TASK-30.2: Implement static HTML report generator"
+      - "TASK-30.3: Add chart generation for metric trends"
+      - "TASK-30.4: Add drift event highlighting"

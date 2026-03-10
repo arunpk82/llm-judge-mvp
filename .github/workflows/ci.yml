@@ -3,9 +3,13 @@ name: CI
 on:
   workflow_dispatch:
   push:
-    branches: ["master"]
+    branches:
+      - "master"
+      - "phase-*/**"
   pull_request:
-    branches: ["master"]
+    branches:
+      - "master"
+      - "phase-*/**"
 
 concurrency:
   group: ci-${{ github.workflow }}-${{ github.ref }}
@@ -62,4 +66,61 @@ jobs:
 
       - name: Tests (pytest)
         run: |
-          poetry run pytest
+          poetry run pytest -m "not nightly"
+
+      # ----------------------------
+      # Eval governance gates (PR)
+      # ----------------------------
+      - name: Eval run (PR gate)
+        run: |
+          poetry run python -m llm_judge.eval run --spec configs/runspecs/pr_gate.yaml
+
+      - name: Validate baseline exists (PR gate)
+        run: |
+          BASELINE_PTR="baselines/golden/chat_quality/latest.json"
+          if [ ! -f "$BASELINE_PTR" ]; then
+            echo "ERROR: Missing baseline pointer: $BASELINE_PTR"
+            echo "Action: Commit baselines/golden/chat_quality/latest.json and the referenced snapshot directory."
+            exit 1
+          fi
+
+          BASELINE_ID="$(python -c 'import json;print(json.load(open("baselines/golden/chat_quality/latest.json"))["baseline_id"])')"
+          SNAP_DIR="baselines/golden/chat_quality/snapshots/${BASELINE_ID}"
+
+          if [ ! -d "$SNAP_DIR" ]; then
+            echo "ERROR: Baseline snapshot directory missing: $SNAP_DIR"
+            echo "Action: Commit the snapshot directory referenced by latest.json."
+            exit 1
+          fi
+
+          for f in manifest.json judgments.jsonl metrics.json; do
+            if [ ! -f "$SNAP_DIR/$f" ]; then
+              echo "ERROR: Baseline snapshot missing file: $SNAP_DIR/$f"
+              exit 1
+            fi
+          done
+
+          echo "Baseline OK: $SNAP_DIR"
+
+      - name: Eval diff vs baseline (PR gate)
+        run: |
+          LATEST_RUN="$(ls -td reports/runs/pr-gate-* | head -n 1)"
+          echo "Latest run: $LATEST_RUN"
+
+          poetry run python -m llm_judge.eval diff \
+            --baseline baselines/golden/chat_quality/latest.json \
+            --candidate "$LATEST_RUN" \
+            --fail-on decision_flip \
+            --max-metric-drop f1_fail=0.01 \
+            --max-metric-drop cohen_kappa=0.02
+
+      - name: Upload eval artifacts (PR gate)
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: eval-pr-gate-artifacts
+          path: |
+            reports/runs/pr-gate-*
+            reports/runs/pr-gate-*/diff
+            baselines/golden/chat_quality/latest.json
+            baselines/golden/chat_quality/snapshots

@@ -1,0 +1,107 @@
+name: Auto-Update Issue Status
+
+on:
+  # When a PR is opened — move linked issue to "In Review"
+  pull_request:
+    types: [opened, ready_for_review]
+
+  # When a PR is merged — issue closes automatically via "Closes #N"
+  # This workflow handles the Project board status update
+  pull_request_target:
+    types: [closed]
+
+  # When a branch is created — move linked issue to "In Progress"
+  create:
+
+permissions:
+  issues: write
+  pull-requests: read
+  contents: read
+
+jobs:
+  # -----------------------------------------------------------------------
+  # On branch create: add label "status:in-progress" to the linked issue
+  # -----------------------------------------------------------------------
+  mark-in-progress:
+    name: Mark issue In Progress on branch create
+    runs-on: ubuntu-latest
+    if: github.event_name == 'create' && github.event.ref_type == 'branch'
+    steps:
+      - name: Extract issue number from branch name
+        id: extract
+        run: |
+          BRANCH="${{ github.ref_name }}"
+          ISSUE=$(echo "$BRANCH" | grep -oE '/[0-9]+' | tr -d '/' | head -1)
+          echo "issue=$ISSUE" >> $GITHUB_OUTPUT
+          echo "Branch: $BRANCH → Issue: $ISSUE"
+
+      - name: Add in-progress label to issue
+        if: steps.extract.outputs.issue != ''
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const issue = parseInt('${{ steps.extract.outputs.issue }}');
+            if (!issue) return;
+
+            try {
+              await github.rest.issues.addLabels({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: issue,
+                labels: ['status:in-progress']
+              });
+              console.log(`✅ Added status:in-progress to issue #${issue}`);
+            } catch (e) {
+              console.log(`⚠️  Could not label issue #${issue}: ${e.message}`);
+            }
+
+  # -----------------------------------------------------------------------
+  # On PR open: add label "status:in-review" to the linked issue
+  # -----------------------------------------------------------------------
+  mark-in-review:
+    name: Mark issue In Review on PR open
+    runs-on: ubuntu-latest
+    if: github.event_name == 'pull_request' && github.event.action == 'opened'
+    steps:
+      - name: Extract issue numbers from PR body
+        id: extract
+        env:
+          PR_BODY: ${{ github.event.pull_request.body }}
+        run: |
+          ISSUES=$(echo "$PR_BODY" | grep -ioE '(closes|fixes|resolves) #[0-9]+' | grep -oE '[0-9]+' | tr '\n' ',')
+          echo "issues=$ISSUES" >> $GITHUB_OUTPUT
+          echo "Found issues: $ISSUES"
+
+      - name: Update issue labels
+        if: steps.extract.outputs.issues != ''
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const issueStr = '${{ steps.extract.outputs.issues }}';
+            const issues = issueStr.split(',').filter(n => n.trim() !== '');
+
+            for (const issueNum of issues) {
+              const issue = parseInt(issueNum.trim());
+              if (!issue) continue;
+
+              try {
+                // Remove in-progress, add in-review
+                await github.rest.issues.removeLabel({
+                  owner: context.repo.owner,
+                  repo: context.repo.repo,
+                  issue_number: issue,
+                  name: 'status:in-progress'
+                }).catch(() => {});
+
+                await github.rest.issues.addLabels({
+                  owner: context.repo.owner,
+                  repo: context.repo.repo,
+                  issue_number: issue,
+                  labels: ['status:in-review']
+                });
+
+                console.log(`✅ Marked issue #${issue} as In Review`);
+              } catch (e) {
+                console.log(`⚠️  Could not update issue #${issue}: ${e.message}`);
+              }
+            }

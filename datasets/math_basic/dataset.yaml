@@ -1,0 +1,4 @@
+dataset_id: math_basic
+version: v1
+data_file: ../deterministic/math_basic_v1.jsonl
+description: Math basic evaluation dataset

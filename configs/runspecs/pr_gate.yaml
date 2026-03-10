@@ -1,9 +1,15 @@
 run_id_prefix: pr-gate
-dataset:
-  path: datasets/golden/v1.jsonl
-  dataset_id: golden
-  version: v1
-rubric_id: chat_quality
-judge_engine: deterministic
 output_dir: reports/runs
+judge_engine: deterministic
 random_seed: 42
+
+dataset:
+  dataset_id: math_basic
+  version: v1
+
+sample:
+  n: 300
+  seed: 42
+  strategy: stable_hash
+
+rubric_id: math_basic

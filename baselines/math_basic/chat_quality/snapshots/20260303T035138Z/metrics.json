@@ -1,0 +1,28 @@
+{
+  "cohen_kappa": null,
+  "confusion_fail_positive": {
+    "fn": 0,
+    "fp": 0,
+    "tn": 0,
+    "tp": 0
+  },
+  "confusion_pass_positive": {
+    "fn": 0,
+    "fp": 0,
+    "tn": 0,
+    "tp": 0
+  },
+  "f1_fail": 0.0,
+  "f1_pass": 0.0,
+  "human_pass_rate": 0.0,
+  "judge_pass_rate": 0.0,
+  "n_cases_scored": 0,
+  "n_cases_total": 300,
+  "precision_fail": 0.0,
+  "precision_pass": 0.0,
+  "recall_fail": 0.0,
+  "recall_pass": 0.0,
+  "warnings": [
+    "kappa_no_valid_labels"
+  ]
+}

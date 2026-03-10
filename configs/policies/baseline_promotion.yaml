@@ -1,0 +1,20 @@
+schema_version: "1"
+policy_id: "baseline_promotion_default"
+
+# Require these metrics to exist in both baseline and candidate metrics.json
+required_metrics:
+  - f1_fail
+  - f1_pass
+  - precision_fail
+  - recall_fail
+
+# Candidate must not drop more than these tolerances vs baseline
+max_metric_drop:
+  f1_fail: 0.01
+  f1_pass: 0.01
+
+# Guardrails on behavioral change
+max_decision_flips: 0
+
+# Optional (useful later)
+allow_missing_baseline: true

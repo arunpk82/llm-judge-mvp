@@ -1,2 +1,17 @@
 latest:
   chat_quality: v1
+  math_basic: v1
+
+rubrics:
+  chat_quality:
+    versions:
+      v1:
+        metrics_schema:
+          required: [f1_fail, cohen_kappa]
+          optional:  []
+  math_basic:
+    versions:
+      v1:
+        metrics_schema:
+          required: [accuracy, f1_fail]
+          optional:  []

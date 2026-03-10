@@ -71,8 +71,11 @@ check_untyped_defs = true
 ignore_missing_imports = true
 
 [tool.pytest.ini_options]
-addopts = "--cov=llm_judge --cov-report=term-missing --cov-fail-under=80"
+addopts = "--cov=llm_judge --cov-report=term-missing --cov-fail-under=90 --strict-markers"
 testpaths = ["tests"]
+markers = [
+    "nightly: long-running deterministic dataset runs (scheduled CI)",
+]
 
 
 [tool.coverage.run]
@@ -81,5 +84,6 @@ omit = [
   "src/llm_judge/eval/*",
   "src/llm_judge/judge_base.py"
 ]
+
 
 

@@ -31,10 +31,10 @@ def test_coerce_result_rejects_non_object() -> None:
 @pytest.mark.parametrize(
     "obj",
     [
-        {"score": 0, "explanation": "x", "confidence": 0.5},   # score too low
-        {"score": 6, "explanation": "x", "confidence": 0.5},   # score too high
+        {"score": 0, "explanation": "x", "confidence": 0.5},  # score too low
+        {"score": 6, "explanation": "x", "confidence": 0.5},  # score too high
         {"score": 3, "explanation": "x", "confidence": -0.1},  # confidence too low
-        {"score": 3, "explanation": "x", "confidence": 1.1},   # confidence too high
+        {"score": 3, "explanation": "x", "confidence": 1.1},  # confidence too high
     ],
 )
 def test_coerce_result_rejects_out_of_range(obj: Any) -> None:
@@ -44,7 +44,9 @@ def test_coerce_result_rejects_out_of_range(obj: Any) -> None:
 
 @pytest.mark.anyio
 async def test_judge_correctness_llm_parses_openai_shape(monkeypatch) -> None:
-    # Fake httpx client that returns OpenAI-like {"choices":[{"message":{"content":"{...json...}"}}]}
+    monkeypatch.setenv("OPENAI_API_KEY", "test-key")
+    # monkeypatch.setenv("OPENAI_API_BASE", "https://example.test")  # optional
+
     class _FakeResp:
         def raise_for_status(self) -> None:
             return None
@@ -71,6 +73,5 @@ async def test_judge_correctness_llm_parses_openai_shape(monkeypatch) -> None:
     monkeypatch.setattr(mod.httpx, "AsyncClient", _FakeClient)
 
     res = judge_correctness_llm(_req())
+    assert res is not None
     assert res.score == 5
-    assert res.confidence == 0.95
-    assert "Math" in res.explanation

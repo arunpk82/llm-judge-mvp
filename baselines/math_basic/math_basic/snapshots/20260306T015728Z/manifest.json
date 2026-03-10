@@ -1,0 +1,45 @@
+{
+  "artifact_type": "eval_run",
+  "created_at": "2026-03-05T18:36:46.228649+00:00",
+  "dataset": {
+    "path": "/home/arunpk/work/llm-judge-mvp/datasets/math_basic/../deterministic/math_basic_v1.jsonl",
+    "sha256": "01e3544d0647bdeaca3e166d6108b7fc13527b9b4caf2c27f5f268d0340aad54"
+  },
+  "dataset_hash": "sha256:01e3544d0647bdeaca3e166d6108b7fc13527b9b4caf2c27f5f268d0340aad54",
+  "env": {
+    "judge_engine": "deterministic",
+    "judge_timeout_ms": null
+  },
+  "git_sha": "0e8ebedf2b4be5376dd5d0e91fb73f47ffc364d8",
+  "runspec": {
+    "dataset": {
+      "dataset_id": "math_basic",
+      "path": null,
+      "version": "v1"
+    },
+    "judge_engine": "deterministic",
+    "output_dir": "reports/runs",
+    "random_seed": 42,
+    "rubric_id": "math_basic",
+    "run_id_prefix": "pr-gate",
+    "sample": {
+      "n": 300,
+      "seed": 42,
+      "strategy": "stable_hash"
+    }
+  },
+  "sampling": {
+    "actual_n": 300,
+    "ordering": "case_id_ascending",
+    "requested_n": 300,
+    "requires_case_id_for_growth_stability": true,
+    "seed": 42,
+    "strategy": "stable_hash"
+  },
+  "schema_version": "1.0",
+  "timing": {
+    "evaluation_seconds": 1.723136,
+    "sampling_seconds": 0.002716,
+    "total_seconds": 1.755549
+  }
+}
