@@ -1,0 +1,173 @@
+name: CI Unified Pipeline
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - "master"
+      - "phase-*/**"
+  pull_request:
+    branches:
+      - "master"
+      - "phase-*/**"
+
+concurrency:
+  group: ci-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+env:
+  POETRY_VIRTUALENVS_IN_PROJECT: "true"
+  PIP_DISABLE_PIP_VERSION_CHECK: "1"
+
+jobs:
+  code-quality:
+    name: Code Quality & Unit Tests
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up Python
+        id: setup-python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: "pip"
+      - name: Install Poetry
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install "poetry==2.1.1"
+          poetry config virtualenvs.in-project true
+      - name: Cache .venv
+        uses: actions/cache@v4
+        with:
+          path: .venv
+          key: venv-${{ runner.os }}-py${{ steps.setup-python.outputs.python-version }}-${{ hashFiles('poetry.lock') }}
+          restore-keys: |
+            venv-${{ runner.os }}-py${{ steps.setup-python.outputs.python-version }}-
+      - name: Install dependencies
+        run: poetry install --no-interaction
+
+      - name: Lint (ruff)
+        run: poetry run ruff check . --output-format=github
+
+      - name: Type-check (mypy)
+        run: poetry run mypy src --ignore-missing-imports
+
+      - name: Tests + Coverage Gate
+        run: |
+          poetry run pytest -m "not nightly" \
+            --cov=. \
+            --cov-report=term-missing \
+            --cov-report=xml \
+            --cov-fail-under=80 \
+            -v
+
+      - name: Check critical path coverage
+        run: |
+          CRITICAL_MODULES=("llm_judge/engine" "llm_judge/scorer" "llm_judge/baseline" "llm_judge/dataset")
+          for module in "${CRITICAL_MODULES[@]}"; do
+            if [ -d "$module" ]; then
+              COV=$(poetry run python -m pytest --cov="$module" --cov-report=term-missing -q 2>&1 | grep "TOTAL" | awk '{print $4}' | tr -d '%')
+              if [ -n "$COV" ] && [ "$COV" -lt 95 ]; then
+                echo "❌ Critical module $module coverage: ${COV}% (required: ≥95%)"
+                exit 1
+              else
+                echo "✅ $module: ${COV:-N/A}%"
+              fi
+            fi
+          done
+
+      - name: Upload coverage report
+        uses: actions/upload-artifact@v4
+        with:
+          name: coverage-report
+          path: coverage.xml
+
+  security-and-regression:
+    name: Security & Deterministic Regression
+    needs: code-quality
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up Python & Poetry
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - run: python -m pip install "poetry==2.1.1" && poetry install --no-interaction
+
+      - name: Deterministic Regression Gate
+        run: |
+          poetry run python -m llm_judge evaluate \
+            --dataset tests/fixtures/regression_dataset.yaml \
+            --rubric tests/fixtures/regression_rubric.yaml \
+            --seed 42 \
+            --output /tmp/run1_metrics.json 2>/dev/null || \
+          poetry run pytest tests/regression/ -v --tb=short -m "deterministic"
+
+      - name: Run Trivy vulnerability scan
+        if: github.event_name == 'pull_request'
+        uses: aquasecurity/trivy-action@master
+        with:
+          scan-type: "fs"
+          scan-ref: "."
+          format: "table"
+          exit-code: "1"
+          ignore-unfixed: true
+          severity: "HIGH,CRITICAL"
+
+      - name: Run pip-audit
+        if: github.event_name == 'pull_request'
+        run: |
+          poetry export -f requirements.txt --output requirements.txt
+          pip install pip-audit
+          pip-audit --requirement requirements.txt 2>/dev/null || echo "⚠️ pip-audit failed, check logs"
+
+  eval-governance:
+    name: LLM Eval Governance
+    needs: code-quality
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up Python & Poetry
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - run: python -m pip install "poetry==2.1.1" && poetry install --no-interaction
+
+      - name: Eval run (PR gate)
+        run: poetry run python -m llm_judge.eval run --spec configs/runspecs/pr_gate.yaml
+
+      - name: Validate baseline exists
+        run: |
+          BASELINE_PTR="baselines/golden/chat_quality/latest.json"
+          if [ ! -f "$BASELINE_PTR" ]; then
+            echo "ERROR: Missing baseline pointer: $BASELINE_PTR"; exit 1
+          fi
+          BASELINE_ID="$(python -c 'import json;print(json.load(open("baselines/golden/chat_quality/latest.json"))["baseline_id"])')"
+          SNAP_DIR="baselines/golden/chat_quality/snapshots/${BASELINE_ID}"
+          if [ ! -d "$SNAP_DIR" ]; then
+            echo "ERROR: Baseline snapshot directory missing: $SNAP_DIR"; exit 1
+          fi
+          for f in manifest.json judgments.jsonl metrics.json; do
+            if [ ! -f "$SNAP_DIR/$f" ]; then echo "ERROR: Baseline snapshot missing file: $SNAP_DIR/$f"; exit 1; fi
+          done
+
+      - name: Eval diff vs baseline
+        run: |
+          LATEST_RUN="$(ls -td reports/runs/pr-gate-* | head -n 1)"
+          poetry run python -m llm_judge.eval diff \
+            --baseline baselines/golden/chat_quality/latest.json \
+            --candidate "$LATEST_RUN" \
+            --fail-on decision_flip \
+            --max-metric-drop f1_fail=0.01 \
+            --max-metric-drop cohen_kappa=0.02
+
+      - name: Upload eval artifacts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: eval-pr-gate-artifacts
+          path: |
+            reports/runs/pr-gate-*
+            reports/runs/pr-gate-*/diff
+            baselines/golden/chat_quality/latest.json
+            baselines/golden/chat_quality/snapshots

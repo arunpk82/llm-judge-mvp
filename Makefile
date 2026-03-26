@@ -234,17 +234,17 @@ eval: pr-gate baseline-dry-run registry-list
 
 # --- Automated Git Workflows ---
 
-# Usage: make git-start FEATURE=my-new-idea
+# Usage: make git-start BRANCH=feature/unify-ci-pipelines
 git-start:
-	@if [ -z "$(FEATURE)" ]; then \
-		echo "ERROR: Please provide a branch name. Example: make git-start FEATURE=my-new-feature"; \
+	@if [ -z "$(BRANCH)" ]; then \
+		echo "ERROR: Please provide a branch name. Example: make git-start BRANCH=feature/123-something"; \
 		exit 1; \
 	fi
-	@echo "Syncing main and creating new branch: $(FEATURE)..."
-	git checkout $(BRANCH)
-	git pull origin $(BRANCH)
-	git checkout -b $(FEATURE)
-	@echo "Branch $(FEATURE) created and ready for development."
+	@echo "Syncing $(BASE_BRANCH) and creating new branch: $(BRANCH)..."
+	git checkout $(BASE_BRANCH)
+	git pull origin $(BASE_BRANCH)
+	git checkout -b $(BRANCH)
+	@echo "Branch $(BRANCH) created and ready for development."
 
 # Usage: make git-ship MSG="feat: updated prompt logic"
 git-ship: preflight
@@ -256,9 +256,11 @@ git-ship: preflight
 	git add .
 	@echo "Committing with message: $(MSG)"
 	git commit -m "$(MSG)"
-	@echo "Pushing to remote..."
-	git push -u origin HEAD
-	@echo "Successfully shipped! 🚀"
+	@echo "Pushing to remote HEAD..."
+	git push origin HEAD
+	@echo "Opening Pull Request targeting $(BASE_BRANCH)..."
+	gh pr create --title "$(MSG)" --body "Automated PR created via git-ship command." --base $(BASE_BRANCH)
+	@echo "Successfully shipped and PR opened! CI pipelines are now running. 🚀"
 
 # Governance-aligned preflight:
 # - validates toolchain
