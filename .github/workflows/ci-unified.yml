@@ -96,7 +96,7 @@ jobs:
 
       - name: Deterministic Regression Gate
         run: |
-          poetry run pytest tests/deterministic/ -v --tb=short
+          poetry run pytest tests/deterministic/ -v --tb=short --no-cov
 
       - name: Run Trivy vulnerability scan
         if: github.event_name == 'pull_request'
