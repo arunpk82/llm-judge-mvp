@@ -20,6 +20,7 @@ from llm_judge.dataset_validator import (
 
 VALID_CASE: dict = {
     "id": "case-001",
+    "case_id": "case-001",
     "conversation": [{"role": "user", "content": "Hello"}],
     "candidate_answer": "Hi there",
     "rubric_id": "chat_quality",
@@ -107,7 +108,7 @@ def test_validate_cases_file_valid_jsonl(tmp_path: Path) -> None:
 def test_validate_cases_file_multiple_valid_cases(tmp_path: Path) -> None:
     f = tmp_path / "cases.jsonl"
     cases = [
-        {**VALID_CASE, "id": f"case-{i:03d}", "human_decision": "pass" if i % 2 == 0 else "fail"}
+        {**VALID_CASE, "id": f"case-{i:03d}", "case_id": f"case-{i:03d}", "human_decision": "pass" if i % 2 == 0 else "fail"}
         for i in range(1, 6)
     ]
     write_jsonl(f, cases)
@@ -132,7 +133,10 @@ def test_validate_cases_file_blank_lines_skipped(tmp_path: Path) -> None:
 
 def test_validate_cases_file_duplicate_ids(tmp_path: Path) -> None:
     f = tmp_path / "cases.jsonl"
-    write_jsonl(f, [{**VALID_CASE, "id": "dup-001"}, {**VALID_CASE, "id": "dup-001"}])
+    write_jsonl(f, [
+        {**VALID_CASE, "id": "dup-001", "case_id": "cid-001"},
+        {**VALID_CASE, "id": "dup-001", "case_id": "cid-002"},
+    ])
     result = validate_cases_file(f, "jsonl")
     assert not result.valid
     dup = next(e for e in result.errors if e.code == "DUPLICATE_ID")
@@ -140,10 +144,12 @@ def test_validate_cases_file_duplicate_ids(tmp_path: Path) -> None:
 
 
 def test_validate_cases_file_no_ids_no_duplicate_check(tmp_path: Path) -> None:
-    """Cases without 'id' should not trigger duplicate detection."""
+    """Cases without 'id' should not trigger legacy duplicate detection.
+    case_id is still required and must be unique."""
     f = tmp_path / "cases.jsonl"
-    case_no_id = {k: v for k, v in VALID_CASE.items() if k != "id"}
-    write_jsonl(f, [case_no_id, case_no_id])
+    case_no_id_1 = {k: v for k, v in VALID_CASE.items() if k != "id"}
+    case_no_id_2 = {**case_no_id_1, "case_id": "case-002"}
+    write_jsonl(f, [case_no_id_1, case_no_id_2])
     result = validate_cases_file(f, "jsonl")
     assert result.valid
 
@@ -155,6 +161,42 @@ def test_validate_cases_file_malformed_json_line(tmp_path: Path) -> None:
     assert not result.valid
     err = next(e for e in result.errors if e.code == "MALFORMED_JSON")
     assert err.line == 1
+
+
+# ---- EPIC-1.1: case_id completeness checks ----
+
+def test_validate_missing_case_id(tmp_path: Path) -> None:
+    """Rows without case_id are flagged — downstream sampling requires it."""
+    f = tmp_path / "cases.jsonl"
+    case_no_cid = {k: v for k, v in VALID_CASE.items() if k != "case_id"}
+    write_jsonl(f, [case_no_cid])
+    result = validate_cases_file(f, "jsonl")
+    assert not result.valid
+    err = next(e for e in result.errors if e.code == "MISSING_CASE_ID")
+    assert "case_id" in err.message
+    assert "sampling" in err.message.lower()
+
+
+def test_validate_duplicate_case_id(tmp_path: Path) -> None:
+    """Duplicate case_ids are caught at validation time."""
+    f = tmp_path / "cases.jsonl"
+    write_jsonl(f, [
+        {**VALID_CASE, "case_id": "dup-cid"},
+        {**VALID_CASE, "id": "case-002", "case_id": "dup-cid"},
+    ])
+    result = validate_cases_file(f, "jsonl")
+    assert not result.valid
+    err = next(e for e in result.errors if e.code == "DUPLICATE_CASE_ID")
+    assert "dup-cid" in err.message
+
+
+def test_validate_empty_case_id_is_missing(tmp_path: Path) -> None:
+    """Empty string case_id counts as missing."""
+    f = tmp_path / "cases.jsonl"
+    write_jsonl(f, [{**VALID_CASE, "case_id": ""}])
+    result = validate_cases_file(f, "jsonl")
+    assert not result.valid
+    assert any(e.code == "MISSING_CASE_ID" for e in result.errors)
 
 
 def test_validate_cases_file_malformed_json_reports_line_number(tmp_path: Path) -> None:

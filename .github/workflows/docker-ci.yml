@@ -3,8 +3,18 @@ name: docker-ci
 on:
   pull_request:
     branches: ["master", "main"]
+    paths:
+      - 'Dockerfile'
+      - '.dockerignore'
+      - 'pyproject.toml'
+      - 'poetry.lock'
   push:
-    branches: ["master", "main"]
+    branches: ["master", "main", "feature/**"]
+    paths:
+      - 'Dockerfile'
+      - '.dockerignore'
+      - 'pyproject.toml'
+      - 'poetry.lock'
 
 concurrency:
   group: docker-ci-${{ github.ref }}

@@ -232,6 +232,38 @@ eval: pr-gate baseline-dry-run registry-list
 	@echo "Eval SUCCESS — run, gate, registry OK."
 	@echo "======================================"
 
+# --- Automated Git Workflows ---
+
+BASE_BRANCH ?= master
+
+# Usage: make git-start BRANCH=feature/123-something
+git-start:
+	@if [ -z "$(BRANCH)" ]; then \
+		echo "ERROR: Please provide a branch name. Example: make git-start BRANCH=feature/123-something"; \
+		exit 1; \
+	fi
+	@echo "Syncing $(BASE_BRANCH) and creating new branch: $(BRANCH)..."
+	git checkout $(BASE_BRANCH)
+	git pull origin $(BASE_BRANCH)
+	git checkout -b $(BRANCH)
+	@echo "Branch $(BRANCH) created and ready for development."
+
+# Usage: make git-ship MSG="feat: updated prompt logic"
+git-ship: preflight
+	@if [ -z "$(MSG)" ]; then \
+		echo "ERROR: Please provide a commit message. Example: make git-ship MSG=\"fix: typo in prompt\""; \
+		exit 1; \
+	fi
+	@echo "Staging all changes..."
+	git add .
+	@echo "Committing with message: $(MSG)"
+	git commit -m "$(MSG)"
+	@echo "Pushing to remote HEAD..."
+	git push origin HEAD
+	@echo "Opening Pull Request targeting $(BASE_BRANCH)..."
+	gh pr create --title "$(MSG)" --body "Automated PR created via git-ship command." --base $(BASE_BRANCH)
+	@echo "Successfully shipped and PR opened! CI pipelines are now running. 🚀"
+
 # Governance-aligned preflight:
 # - validates toolchain
 # - runs pr-gate

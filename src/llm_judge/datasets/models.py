@@ -25,6 +25,10 @@ class DatasetMetadata(BaseModel):
     license: str | None = None
     task_type: str | None = None
 
+    # Reproducibility: SHA-256 hash of the data file at registration time.
+    # If present, resolve() verifies the file hasn't changed since registration.
+    content_hash: str | None = None
+
 
 class MessageRow(BaseModel):
     role: Literal["system", "user", "assistant"]

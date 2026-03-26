@@ -25,21 +25,3 @@ rules:
     owner: eval-team
     status: production
     introduced: "2026-03-06"
-
-  correctness.definition_sanity:
-    version: 1
-    owner: eval-team
-    status: production
-    introduced: "2026-03-06"
-
-  quality.nonsense_basic:
-    version: 1
-    owner: eval-team
-    status: production
-    introduced: "2026-03-06"
-
-  quality.repetition_basic:
-    version: 1
-    owner: eval-team
-    status: production
-    introduced: "2026-03-06"
