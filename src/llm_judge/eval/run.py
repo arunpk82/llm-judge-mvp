@@ -203,7 +203,7 @@ def main() -> int:
                 f"Pre-flight failed: dataset is missing required fields for scoring: "
                 f"{missing_fields}. First row keys: {sorted(sample_row.keys())}"
             )
-        preflight_notes.append(f"dataset_fields_ok")
+        preflight_notes.append("dataset_fields_ok")
 
     # --- EPIC-3.3: Rule governance check ---
     # Verify all runtime rules are declared in manifest.yaml.

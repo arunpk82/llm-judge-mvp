@@ -96,7 +96,10 @@ class DatasetRegistry:
         # rubric/dataset type, and the eval runner handles missing optional
         # fields gracefully with .get().
         try:
-            from llm_judge.dataset_validator import _check_integrity, _parse_and_validate_cases_jsonl
+            from llm_judge.dataset_validator import (
+                _check_integrity,
+                _parse_and_validate_cases_jsonl,
+            )
 
             if data_path.suffix in (".yaml", ".yml"):
                 from llm_judge.dataset_validator import _parse_and_validate_cases_yaml

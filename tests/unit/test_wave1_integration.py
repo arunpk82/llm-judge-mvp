@@ -10,14 +10,11 @@ during manual CLI steps now runs automatically in the critical path.
 from __future__ import annotations
 
 import json
-import textwrap
-import warnings
 from pathlib import Path
 from typing import Any
 
 import pytest
 import yaml
-
 
 # =====================================================================
 # Fixtures
@@ -251,7 +248,7 @@ class TestManifestIntegrity:
 
     def test_manifest_all_statuses_valid(self) -> None:
         """Given manifest rules, all have valid lifecycle statuses."""
-        from llm_judge.rules.lifecycle import load_manifest, VALID_STATUSES
+        from llm_judge.rules.lifecycle import VALID_STATUSES, load_manifest
 
         manifest_path = Path("rules/manifest.yaml")
         if not manifest_path.exists():
