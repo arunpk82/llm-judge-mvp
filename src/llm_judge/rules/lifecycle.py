@@ -153,6 +153,45 @@ def validate_rules() -> None:
     print("Rule lifecycle validation OK")
 
 
+def check_rules_governed() -> list[str]:
+    """
+    EPIC-3.3: Embeddable rule governance check.
+
+    Returns a list of error strings (empty = all rules governed).
+    Unlike validate_rules(), this does NOT print or exit — it returns
+    errors for the caller to handle. Used by eval runner pre-flight
+    to enforce governance at runtime, not just during preflight.
+    """
+    errors: list[str] = []
+
+    try:
+        manifest_rules = load_manifest()
+    except (FileNotFoundError, ValueError) as e:
+        return [f"Rule manifest not found or invalid: {e}"]
+
+    try:
+        runtime_rules = discover_runtime_rules()
+    except RuntimeError as e:
+        return [f"Could not discover runtime rules: {e}"]
+
+    manifest_rule_names = set(manifest_rules.keys())
+
+    # Rules in code but not governed
+    for name in sorted(runtime_rules - manifest_rule_names):
+        errors.append(f"Ungoverned rule: '{name}' exists in code but not in rules/manifest.yaml")
+
+    # Rules declared but missing from code
+    for name in sorted(manifest_rule_names - runtime_rules):
+        errors.append(f"Stale manifest entry: '{name}' in rules/manifest.yaml but not in RULE_REGISTRY")
+
+    # Metadata quality
+    for r in manifest_rules.values():
+        if r.status not in VALID_STATUSES:
+            errors.append(f"Invalid status for '{r.name}': '{r.status}'")
+
+    return errors
+
+
 def export_json(out_path: Path) -> None:
     manifest_rules = load_manifest()
     runtime_rules = discover_runtime_rules()

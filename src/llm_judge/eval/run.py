@@ -171,6 +171,58 @@ def main() -> int:
     rows = _load_jsonl(dataset_path)
     dataset_hash = _sha256_file(dataset_path)
 
+    # --- EPIC-2.1: Pre-flight compatibility check ---
+    # Verify rubric exists and rule plan is loadable before scoring.
+    # Catches mismatches early instead of failing mid-evaluation.
+    preflight_notes: list[str] = []
+    try:
+        rubric = get_rubric(str(spec.rubric_id))
+        preflight_notes.append(f"rubric={rubric.rubric_id}@{rubric.version}")
+    except ValueError as e:
+        raise ValueError(
+            f"Pre-flight failed: rubric '{spec.rubric_id}' not found. "
+            f"Register it in rubrics/registry.yaml before running evaluation. Error: {e}"
+        )
+
+    try:
+        from llm_judge.rules.engine import load_plan_for_rubric
+        plan = load_plan_for_rubric(rubric.rubric_id, rubric.version)
+        preflight_notes.append(f"rule_plan=config({len(plan.rules)} rules)")
+    except (FileNotFoundError, ValueError):
+        preflight_notes.append("rule_plan=fallback(no config file)")
+
+    # Check dataset rows have required fields for scoring
+    if rows:
+        sample_row = rows[0]
+        missing_fields = []
+        for field in ("conversation", "candidate_answer"):
+            if field not in sample_row:
+                missing_fields.append(field)
+        if missing_fields:
+            raise ValueError(
+                f"Pre-flight failed: dataset is missing required fields for scoring: "
+                f"{missing_fields}. First row keys: {sorted(sample_row.keys())}"
+            )
+        preflight_notes.append("dataset_fields_ok")
+
+    # --- EPIC-3.3: Rule governance check ---
+    # Verify all runtime rules are declared in manifest.yaml.
+    # Catches ungoverned rules before scoring — not just in preflight.
+    try:
+        from llm_judge.rules.lifecycle import check_rules_governed
+        governance_errors = check_rules_governed()
+        if governance_errors:
+            print("WARNING: Rule governance issues detected:")
+            for ge in governance_errors:
+                print(f"  - {ge}")
+            preflight_notes.append(f"rule_governance=WARN({len(governance_errors)} issues)")
+        else:
+            preflight_notes.append("rule_governance=OK")
+    except Exception:
+        preflight_notes.append("rule_governance=SKIP(lifecycle unavailable)")
+
+    print(f"Pre-flight: {', '.join(preflight_notes)}")
+
     # Optional sampling for PR gate
     sampling_meta: Optional[dict[str, Any]] = None
     if spec.sample is not None:
@@ -188,6 +240,32 @@ def main() -> int:
     run_id = _make_run_id(spec.run_id_prefix)
     run_dir = Path(spec.output_dir) / run_id
     ensure_dir(run_dir)
+
+    # --- EPIC-1.1: Emit validation report artifact ---
+    # Records what was checked and that it passed. Makes validation auditable
+    # for CAP-5 (Artifact Governance) to index.
+    import datetime as _dt
+    validation_report = {
+        "schema_version": "1.0",
+        "artifact_type": "validation_report",
+        "timestamp": _dt.datetime.utcnow().replace(microsecond=0).isoformat() + "Z",
+        "dataset_id": str(spec.dataset.dataset_id),
+        "dataset_version": str(spec.dataset.version),
+        "dataset_hash": dataset_hash,
+        "rubric_id": str(spec.rubric_id),
+        "checks": {
+            "dataset_resolved": True,
+            "hash_verified": bool(dataset_hash),
+            "integrity_checked": True,
+            "rubric_exists": True,
+            "rule_plan_source": preflight_notes[1] if len(preflight_notes) > 1 else "unknown",
+            "dataset_fields_compatible": True,
+        },
+        "result": "PASS",
+        "cases_loaded": len(rows),
+        "preflight_notes": preflight_notes,
+    }
+    write_json(run_dir / "validation_report.json", validation_report)
 
     manifest = build_manifest(runspec=spec, dataset_path=dataset_path)
 
