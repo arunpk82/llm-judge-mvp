@@ -2,3 +2,4 @@ dataset_id: math_basic
 version: v1
 data_file: ../deterministic/math_basic_v1.jsonl
 description: Math basic evaluation dataset
+content_hash: "sha256:01e3544d0647bdeaca3e166d6108b7fc13527b9b4caf2c27f5f268d0340aad54"

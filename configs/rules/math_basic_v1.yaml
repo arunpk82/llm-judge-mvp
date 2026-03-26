@@ -1,0 +1,15 @@
+# Rule execution config for math_basic/v1
+rubric_id: math_basic
+version: v1
+
+# Deterministic rule IDs executed in order.
+# Math rubrics skip quality/nonsense checks since short numeric answers
+# like "-10" are valid and not nonsense.
+rules:
+  - id: correctness.basic
+    enabled: true
+
+  - id: correctness.definition_sanity
+    enabled: true
+    params:
+      min_definition_word_count: 8

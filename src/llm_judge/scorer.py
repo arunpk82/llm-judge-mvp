@@ -1,13 +1,16 @@
 from __future__ import annotations
 
+import logging
 import re
 from typing import Any, Literal
 
 from llm_judge.correctness import judge_correctness_proxy
 from llm_judge.rubric_store import get_rubric
-from llm_judge.rules.engine import RuleEngine
+from llm_judge.rules.engine import RuleEngine, load_plan_for_rubric
 from llm_judge.rules.types import RuleContext
 from llm_judge.schemas import PredictRequest, PredictResponse
+
+logger = logging.getLogger(__name__)
 
 # Rubrics where answers are expected to be short numbers — skip token-overlap
 # relevance scoring and quality/nonsense hard-fail checks entirely.
@@ -98,29 +101,60 @@ def _apply_rubric_rules(request: PredictRequest, rubric: Any) -> list[str]:
     Run all rules associated with the rubric against the request.
     Returns a list of flag strings (e.g. 'correctness.definition_sanity:strong').
 
+    Resolution order (EPIC-2.1 — governed rule plan loading):
+      1. Config-driven plan: configs/rules/{rubric_id}_{version}.yaml
+      2. Inline rules on the rubric object
+      3. Hardcoded defaults (backward compatibility — will be removed)
+
     Patchable by tests via monkeypatch.
     """
     ctx = RuleContext(request=request, rubric=rubric)
     rubric_id = getattr(rubric, "rubric_id", "")
+    rubric_version = getattr(rubric, "version", "v1")
     rules_config = getattr(rubric, "rules", None)
 
+    # 1. Try config-driven plan (governed path)
+    try:
+        plan = load_plan_for_rubric(rubric_id, rubric_version)
+        if plan.rules:
+            engine = RuleEngine(rules=plan.rules)
+            engine.run(ctx)
+            logger.debug(
+                "rules.plan.loaded",
+                extra={"rubric_id": rubric_id, "version": rubric_version,
+                       "source": "config", "rule_count": len(plan.rules)},
+            )
+            return list(getattr(ctx, "flags", []))
+    except (FileNotFoundError, ValueError, OSError):
+        # Config file doesn't exist for this rubric — fall through
+        pass
+
+    # 2. Inline rules on the rubric object
     if rules_config:
-        # Inline rules list on the rubric object
         engine = RuleEngine(rules=rules_config)
         engine.run(ctx)
-    else:
-        # Default rule set — skip quality/nonsense rules for math rubrics since
-        # short numeric answers like "-10" are valid and not nonsense.
-        default_rules: list[dict[str, Any]] = [
-            {"id": "correctness.basic"},
-            {"id": "correctness.definition_sanity"},
-        ]
-        if rubric_id not in _MATH_RUBRICS:
-            default_rules.append({"id": "quality.nonsense_basic"})
+        logger.debug(
+            "rules.plan.loaded",
+            extra={"rubric_id": rubric_id, "source": "inline",
+                   "rule_count": len(rules_config)},
+        )
+        return list(getattr(ctx, "flags", []))
 
-        engine = RuleEngine(rules=default_rules)
-        engine.run(ctx)
+    # 3. Hardcoded defaults (backward compat — deprecated)
+    logger.warning(
+        "rules.plan.fallback_to_hardcoded",
+        extra={"rubric_id": rubric_id, "version": rubric_version,
+               "hint": "Create configs/rules/{rubric_id}_{version}.yaml"},
+    )
+    default_rules: list[dict[str, Any]] = [
+        {"id": "correctness.basic"},
+        {"id": "correctness.definition_sanity"},
+    ]
+    if rubric_id not in _MATH_RUBRICS:
+        default_rules.append({"id": "quality.nonsense_basic"})
 
+    engine = RuleEngine(rules=default_rules)
+    engine.run(ctx)
     return list(getattr(ctx, "flags", []))
 
 

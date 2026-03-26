@@ -7,3 +7,4 @@ data_file: v1.jsonl
 owner: llm-judge
 license: internal
 task_type: chat_quality
+content_hash: "sha256:5554ab43353cc2d531bdd0c59fa8119dbe6ae8b496ac46f8f5ea7fa3fbb4f60e"

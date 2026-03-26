@@ -179,7 +179,7 @@ def _parse_and_validate_cases_yaml(
 def _check_integrity(
     cases: list[dict[str, Any]], path: Path
 ) -> list[ValidationError]:
-    """Integrity checks: empty dataset, duplicate IDs."""
+    """Integrity checks: empty dataset, duplicate IDs, case_id completeness."""
     errors: list[ValidationError] = []
 
     if not cases:
@@ -192,6 +192,7 @@ def _check_integrity(
         )
         return errors
 
+    # Check for duplicate IDs (legacy 'id' field)
     seen: dict[str, list[int]] = {}
     for i, case in enumerate(cases, start=1):
         case_id = case.get("id")
@@ -205,6 +206,43 @@ def _check_integrity(
                 ValidationError(
                     code="DUPLICATE_ID",
                     message=f"Duplicate case ID '{case_id}' found at lines: {lines}",
+                    file=str(path),
+                )
+            )
+
+    # EPIC-1.1: case_id completeness check.
+    # Downstream consumers (sampling, judgments, diff tracking) require
+    # non-empty case_id on every row. Catch this at validation time
+    # instead of crashing at sampling time.
+    missing_case_id: list[int] = []
+    duplicate_case_ids: dict[str, list[int]] = {}
+    for i, case in enumerate(cases, start=1):
+        cid = case.get("case_id")
+        if not isinstance(cid, str) or not cid.strip():
+            missing_case_id.append(i)
+        else:
+            duplicate_case_ids.setdefault(cid.strip(), []).append(i)
+
+    if missing_case_id:
+        errors.append(
+            ValidationError(
+                code="MISSING_CASE_ID",
+                message=(
+                    f"Missing or empty 'case_id' at {len(missing_case_id)} row(s): "
+                    f"{missing_case_id[:10]}"
+                    + (" ..." if len(missing_case_id) > 10 else "")
+                    + ". Deterministic sampling requires case_id on every row."
+                ),
+                file=str(path),
+            )
+        )
+
+    for cid, lines in duplicate_case_ids.items():
+        if len(lines) > 1:
+            errors.append(
+                ValidationError(
+                    code="DUPLICATE_CASE_ID",
+                    message=f"Duplicate case_id '{cid}' found at lines: {lines}",
                     file=str(path),
                 )
             )
