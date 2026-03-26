@@ -6,6 +6,7 @@ import json
 import os
 import random
 import time
+import warnings
 from pathlib import Path
 from typing import Any, Dict, List, Optional, Tuple
 
@@ -134,11 +135,19 @@ def _enforce_metrics_schema(*, rubric_ref: str, metrics: dict[str, Any]) -> None
         )
 
 def _resolve_dataset_path(spec: RunSpec) -> Path:
-    # Backward compatible: allow explicit path
+    # Backward compatible: allow explicit path — but warn about bypass.
     if spec.dataset.path:
+        warnings.warn(
+            "RunSpec.dataset.path bypasses dataset governance (no validation, "
+            "no hash verification). Use dataset_id + version instead. "
+            "This bypass will be removed in a future version.",
+            DeprecationWarning,
+            stacklevel=2,
+        )
         return Path(spec.dataset.path)
 
     # Governed path: resolve by dataset_id + version
+    # Includes: metadata validation, hash verification, content validation
     reg = DatasetRegistry()
     resolved = reg.resolve(dataset_id=spec.dataset.dataset_id, version=spec.dataset.version)
     return resolved.data_path

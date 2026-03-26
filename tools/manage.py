@@ -40,7 +40,7 @@ import yaml
 # Config
 # ---------------------------------------------------------------------------
 
-YAML_PATH = Path(__file__).parent.parent / "epics.yaml"
+YAML_PATH = Path(__file__).parent.parent / "epics_v2.yaml"
 API_BASE  = "https://api.github.com"
 GRAPHQL   = "https://api.github.com/graphql"
 DELAY     = 0.5
@@ -1221,7 +1221,7 @@ def cmd_status(config: dict, token: str) -> None:
         remaining = trigger_n - l3_done
         print(f"  → {remaining} more L3 mandatory EPICs to close before L4 planning begins")
 
-    for cap_key in ["CAP-1", "CAP-2", "CAP-3", "CAP-4", "CAP-5"]:
+    for cap_key in sorted(config["milestones"].keys()):
         ms        = config["milestones"].get(cap_key, {})
         ms_title  = ms.get("title", cap_key)
         epic_list = by_cap.get(cap_key, [])
