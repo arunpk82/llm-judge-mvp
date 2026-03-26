@@ -1,11 +1,14 @@
 from __future__ import annotations
 
+import logging
 from dataclasses import dataclass
 from pathlib import Path
 from typing import Any, Mapping, Sequence
 
 from llm_judge.rules.registry import get_rule
 from llm_judge.rules.types import RuleContext
+
+logger = logging.getLogger(__name__)
 
 # RuleResult is a project type; we try to construct it if possible.
 # If its constructor signature changes, we fall back to a simple object with .flags.
@@ -204,9 +207,20 @@ class RuleEngine:
 def load_plan_for_rubric(rubric_id: str, version: str) -> RulePlan:
     """
     Load plan YAML from: configs/rules/{rubric_id}_{version}.yaml
+
+    EPIC-3.2: Rules that are deprecated AND past their warning period
+    are automatically excluded from the plan.
     """
     path = Path("configs") / "rules" / f"{rubric_id}_{version}.yaml"
     data = _load_yaml(path)
+
+    # Determine which rules are deprecated-enforced (past warning period)
+    excluded: set[str] = set()
+    try:
+        from llm_judge.rules.lifecycle import get_deprecated_enforced_rules
+        excluded = get_deprecated_enforced_rules()
+    except Exception:
+        pass  # graceful — if lifecycle unavailable, skip filtering
 
     rules_in = data.get("rules", [])
     rules: list[dict[str, Any]] = []
@@ -218,6 +232,13 @@ def load_plan_for_rubric(rubric_id: str, version: str) -> RulePlan:
                 continue
             rid = r.get("id")
             if not isinstance(rid, str):
+                continue
+            # EPIC-3.2: Skip deprecated-enforced rules
+            if rid in excluded:
+                logger.info(
+                    "rule.excluded.deprecated",
+                    extra={"rule_id": rid, "rubric_id": rubric_id},
+                )
                 continue
             rules.append(
                 {"id": rid, "params": r.get("params") if isinstance(r.get("params"), dict) else {}}
