@@ -96,11 +96,6 @@ jobs:
 
       - name: Deterministic Regression Gate
         run: |
-          poetry run python -m llm_judge evaluate \
-            --dataset tests/fixtures/regression_dataset.yaml \
-            --rubric tests/fixtures/regression_rubric.yaml \
-            --seed 42 \
-            --output /tmp/run1_metrics.json 2>/dev/null || \
           poetry run pytest tests/regression/ -v --tb=short -m "deterministic"
 
       - name: Run Trivy vulnerability scan

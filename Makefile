@@ -234,7 +234,9 @@ eval: pr-gate baseline-dry-run registry-list
 
 # --- Automated Git Workflows ---
 
-# Usage: make git-start BRANCH=feature/unify-ci-pipelines
+BASE_BRANCH ?= master
+
+# Usage: make git-start BRANCH=feature/123-something
 git-start:
 	@if [ -z "$(BRANCH)" ]; then \
 		echo "ERROR: Please provide a branch name. Example: make git-start BRANCH=feature/123-something"; \
