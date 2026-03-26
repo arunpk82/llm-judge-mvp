@@ -4,7 +4,7 @@
 # ----------------------------------------
 
 .PHONY: help install lint typecheck test baseline-validate pr-gate diff baseline-dry-run baseline-promote \
-        registry-list registry-show registry-trend eval preflight clean
+        registry-list registry-show registry-trend eval preflight clean git-start git-ship git-merge
 
 # Defaults (override like: make SUITE=golden RUBRIC=chat_quality ...)
 SUITE ?= math_basic
@@ -263,6 +263,15 @@ git-ship: preflight
 	@echo "Opening Pull Request targeting $(BASE_BRANCH)..."
 	gh pr create --title "$(MSG)" --body "Automated PR created via git-ship command." --base $(BASE_BRANCH)
 	@echo "Successfully shipped and PR opened! CI pipelines are now running. 🚀"
+
+# Usage: make git-merge (merges current branch's open PR after CI passes)
+git-merge:
+	gh pr merge --squash --delete-branch
+	git checkout $(BASE_BRANCH)
+	git pull origin $(BASE_BRANCH)
+	@echo "PR merged and $(BASE_BRANCH) updated. ✅"
+
+
 
 # Governance-aligned preflight:
 # - validates toolchain

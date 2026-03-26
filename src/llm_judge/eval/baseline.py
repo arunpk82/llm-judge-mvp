@@ -764,6 +764,29 @@ def promote_baseline_from_run(
     if diff_summary is not None:
         _write_json(ref.snapshot_dir(baselines_dir) / "diff_summary.json", diff_summary)
 
+    # --- EPIC-5.1: Emit baseline_promotion event to cross-capability registry ---
+    try:
+        from llm_judge.eval.event_registry import append_event
+
+        append_event(
+            event_type="baseline_promotion",
+            source="eval/baseline.py",
+            actor="operator",
+            related_ids={
+                "baseline_id": ref.baseline_id,
+                "suite": ref.suite,
+                "rubric_id": ref.rubric_id,
+                "source_run_dir": ref.source_run_dir,
+            },
+            payload={
+                "had_prior_baseline": diff_summary is not None,
+                "violations": [],
+                "dry_run": False,
+            },
+        )
+    except Exception:
+        logger.warning("Could not emit baseline_promotion event to event registry")
+
     return ref
     
 
