@@ -249,7 +249,7 @@ epics:
       - "Given successful validation, then validation_report.json is written to run directory"
     tasks:
       - "TASK-1.1.1: Wire dataset_validator.validate_dataset() into DatasetRegistry.resolve() — DONE (validator exists, needs wiring)"
-      - "TASK-1.1.2: Add case_id completeness check to _check_integrity (downstream sampling requires it)"
+      - "TASK-1.1.2: Add case_id completeness check to _check_integrity (downstream sampling requires it) - DONE"
       - "TASK-1.1.3: Add basic security scanning (injection pattern detection in content fields)"
       - "TASK-1.1.4: Emit validation_report.json artifact to run directory on pass/fail"
       - "TASK-1.1.5: Remove bypass path — make governed DatasetRegistry.resolve() the only path, deprecate spec.dataset.path shortcut"
@@ -279,8 +279,8 @@ epics:
       - "Given a hash mismatch (file replaced), then eval runner aborts with clear error — never silently uses wrong data"
       - "Given the content_hash field in dataset.yaml, then it is populated at registration and checked at load"
     tasks:
-      - "TASK-1.2.1: Add hash verification to DatasetRegistry.resolve() — compare computed hash vs dataset.yaml content_hash"
-      - "TASK-1.2.2: Populate content_hash in dataset.yaml during dataset registration (tooling)"
+      - "TASK-1.2.1: Add hash verification to DatasetRegistry.resolve() — compare computed hash vs dataset.yaml content_hash - DONE"
+      - "TASK-1.2.2: Populate content_hash in dataset.yaml during dataset registration (tooling) - DONE"
       - "TASK-1.2.3: Add 'dataset list' CLI command to Makefile (scan datasets/ dir, show id, version, hash)"
 
   # =====================================================================
