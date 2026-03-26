@@ -11,6 +11,7 @@ from pathlib import Path
 from typing import Any, Dict, List, Optional, Tuple
 
 from llm_judge.datasets.registry import DatasetRegistry
+from llm_judge.eval.event_registry import append_event
 from llm_judge.eval.registry import append_run_registry_entry
 from llm_judge.eval.schema import EVAL_RUN_SCHEMA_VERSION
 from llm_judge.rubric_store import get_rubric
@@ -209,7 +210,7 @@ def main() -> int:
     # Verify all runtime rules are declared in manifest.yaml.
     # Catches ungoverned rules before scoring — not just in preflight.
     try:
-        from llm_judge.rules.lifecycle import check_rules_governed
+        from llm_judge.rules.lifecycle import check_rules_governed, emit_rule_snapshot
         governance_errors = check_rules_governed()
         if governance_errors:
             print("WARNING: Rule governance issues detected:")
@@ -218,6 +219,8 @@ def main() -> int:
             preflight_notes.append(f"rule_governance=WARN({len(governance_errors)} issues)")
         else:
             preflight_notes.append("rule_governance=OK")
+        # EPIC-5.1: Record which rules were active for this evaluation
+        emit_rule_snapshot(actor="ci")
     except Exception:
         preflight_notes.append("rule_governance=SKIP(lifecycle unavailable)")
 
@@ -342,6 +345,29 @@ def main() -> int:
         rubric_id=str(spec.rubric_id),
         judge_engine=str(spec.judge_engine),
         dataset_hash=str(dataset_hash),
+    )
+
+    # --- EPIC-5.1: Cross-capability event registry ---
+    append_event(
+        event_type="eval_run",
+        source="eval/run.py",
+        actor="ci",
+        related_ids={
+            "run_id": run_id,
+            "dataset_id": dataset_id,
+            "dataset_version": dataset_version,
+            "rubric_id": str(spec.rubric_id),
+            "judge_engine": str(spec.judge_engine),
+        },
+        payload={
+            "cases_total": cases_total,
+            "cases_evaluated": cases_evaluated,
+            "sampled": sampled,
+            "dataset_hash": str(dataset_hash),
+            "kappa": metrics.get("cohen_kappa"),
+            "f1_fail": metrics.get("f1_fail"),
+            "accuracy": metrics.get("accuracy"),
+        },
     )
 
     total_seconds = time.perf_counter() - start_total

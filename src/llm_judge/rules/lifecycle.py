@@ -192,6 +192,54 @@ def check_rules_governed() -> list[str]:
     return errors
 
 
+def emit_rule_snapshot(*, actor: str = "system", registry_path: Path | None = None) -> None:
+    """
+    EPIC-5.1: Record current rule state as a governance event.
+
+    Called during eval runner pre-flight to create a traceable record
+    of which rules were active for each evaluation. Drift detection
+    (EPIC 6.1) uses these events to correlate metric changes with
+    rule state changes.
+    """
+    try:
+        manifest_rules = load_manifest()
+        runtime_rules = discover_runtime_rules()
+    except Exception:
+        return  # best-effort — don't block eval runs
+
+    rule_snapshot = {
+        name: {
+            "version": meta.version,
+            "status": meta.status,
+            "owner": meta.owner,
+            "in_runtime": name in runtime_rules,
+        }
+        for name, meta in manifest_rules.items()
+    }
+    ungoverned = sorted(runtime_rules - set(manifest_rules.keys()))
+
+    try:
+        from llm_judge.eval.event_registry import append_event
+
+        kwargs: dict[str, Any] = {
+            "event_type": "rule_change",
+            "source": "rules/lifecycle.py",
+            "actor": actor,
+            "related_ids": {},
+            "payload": {
+                "action": "snapshot",
+                "rule_count": len(manifest_rules),
+                "rules": rule_snapshot,
+                "ungoverned_rules": ungoverned,
+            },
+        }
+        if registry_path is not None:
+            kwargs["registry_path"] = registry_path
+        append_event(**kwargs)
+    except Exception:
+        pass  # best-effort
+
+
 def export_json(out_path: Path) -> None:
     manifest_rules = load_manifest()
     runtime_rules = discover_runtime_rules()
