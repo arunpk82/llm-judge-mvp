@@ -112,7 +112,6 @@ jobs:
       - name: Run pip-audit
         if: github.event_name == 'pull_request'
         run: |
-          poetry export -f requirements.txt --output requirements.txt
           pip install pip-audit
           poetry run pip-audit || echo "⚠️ pip-audit found issues, check logs"
           pip-audit --requirement requirements.txt 2>/dev/null || echo "⚠️ pip-audit failed, check logs"
