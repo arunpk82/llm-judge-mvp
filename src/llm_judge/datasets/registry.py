@@ -98,6 +98,7 @@ class DatasetRegistry:
         try:
             from llm_judge.dataset_validator import (
                 _check_integrity,
+                _check_security,
                 _parse_and_validate_cases_jsonl,
             )
 
@@ -127,6 +128,15 @@ class DatasetRegistry:
                     f"Dataset integrity check failed for {dataset_id}@{version}: {error_lines}"
                     + (f" (+{len(integrity_errors) - 5} more)" if len(integrity_errors) > 5 else "")
                 )
+
+            # TASK-1.1.3: Security scanning (warnings, not hard failures)
+            security_warnings = _check_security(raw_cases, data_path)
+            if security_warnings:
+                for sw in security_warnings[:5]:
+                    logger.warning(
+                        "dataset.security_warning",
+                        extra={"dataset_id": dataset_id, "code": sw.code, "message": sw.message},
+                    )
         except ImportError:
             # Graceful degradation: if validator module is unavailable,
             # log warning but don't block — allows minimal environments.

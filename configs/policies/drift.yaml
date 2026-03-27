@@ -15,3 +15,18 @@ max_drift:
 
 # Minimum runs needed for drift analysis
 min_runs: 2
+
+# EPIC-6.1: Heartbeat — alert if no eval_run events within this many hours
+# Set to null/remove to disable heartbeat check
+heartbeat_max_hours: 72
+
+# EPIC-6.1: Correlation window — look for governance events within +/- this many hours of a drift violation
+correlation_window_hours: 24
+
+# EPIC-6.2: Per-metric response actions
+# block = fail CI, warn = print warning, log = silent log only
+response_actions:
+  f1_fail: block
+  f1_pass: warn
+  precision_fail: warn
+  recall_fail: log

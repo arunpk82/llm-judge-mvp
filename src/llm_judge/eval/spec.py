@@ -27,6 +27,13 @@ class SampleSpec:
     strategy: str = "stable_hash"
 
 @dataclass(frozen=True)
+class SmokeTestSpec:
+    """Fast-fail gate: run N cases, abort if pass rate below threshold."""
+    n: int = 10
+    min_pass_rate: float = 0.5
+
+
+@dataclass(frozen=True)
 class RunSpec:
     run_id_prefix: str
     dataset: DatasetSpec
@@ -35,6 +42,7 @@ class RunSpec:
     output_dir: str
     random_seed: int = 42
     sample: SampleSpec | None = None
+    smoke_test: SmokeTestSpec | None = None
 
     @staticmethod
     def from_yaml(path: str | Path) -> "RunSpec":
@@ -69,6 +77,15 @@ class RunSpec:
 
                 sample_obj = SampleSpec(n=int(n_val), seed=int(seed_val), strategy=strategy_val)
 
+        # Optional smoke test config
+        smoke_obj: SmokeTestSpec | None = None
+        smoke_data = data.get("smoke_test")
+        if isinstance(smoke_data, dict):
+            smoke_obj = SmokeTestSpec(
+                n=int(smoke_data.get("n", 10)),
+                min_pass_rate=float(smoke_data.get("min_pass_rate", 0.5)),
+            )
+
         return RunSpec(
             run_id_prefix=str(data["run_id_prefix"]),
             dataset=dataset,
@@ -77,4 +94,5 @@ class RunSpec:
             output_dir=str(data["output_dir"]),
             random_seed=int(data.get("random_seed", 42)),
             sample=sample_obj,
+            smoke_test=smoke_obj,
         )

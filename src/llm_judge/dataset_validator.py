@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import json
+import re as _re
 from dataclasses import dataclass, field
 from pathlib import Path
 from typing import Any, Optional
@@ -250,6 +251,86 @@ def _check_integrity(
     return errors
 
 
+# =====================================================================
+# TASK-1.1.3: Security scanning
+# =====================================================================
+
+# Patterns that indicate potential injection attacks in dataset content.
+# These catch prompt injection, system prompt overrides, and common
+# jailbreak patterns that could poison evaluation results.
+_INJECTION_PATTERNS: list[tuple[str, _re.Pattern[str]]] = [
+    ("SYSTEM_OVERRIDE", _re.compile(
+        r"(?:ignore|disregard|forget)\s+(?:all\s+)?(?:previous|prior|above)\s+(?:instructions|prompts|rules)",
+        _re.IGNORECASE,
+    )),
+    ("ROLE_INJECTION", _re.compile(
+        r"\[\s*(?:SYSTEM|INST|SYS)\s*\]|\{\{?\s*(?:system|role)\s*[:=]",
+        _re.IGNORECASE,
+    )),
+    ("JAILBREAK_PATTERN", _re.compile(
+        r"(?:DAN|do\s+anything\s+now|you\s+are\s+now|act\s+as\s+if|pretend\s+you\s+are)\s+",
+        _re.IGNORECASE,
+    )),
+    ("XML_INJECTION", _re.compile(
+        r"<\s*/?(?:script|iframe|object|embed|form|input)\b",
+        _re.IGNORECASE,
+    )),
+]
+
+
+def _check_security(
+    cases: list[dict[str, Any]], path: Path
+) -> list[ValidationError]:
+    """
+    TASK-1.1.3: Scan dataset content fields for injection patterns.
+
+    Checks conversation content and candidate_answer fields for patterns
+    that could poison evaluation: prompt injection, role overrides,
+    jailbreak attempts, and HTML/script injection.
+
+    Returns warnings (not hard failures) — flagged rows should be
+    reviewed by a human before inclusion in evaluation datasets.
+    """
+    warnings: list[ValidationError] = []
+
+    for i, case in enumerate(cases, start=1):
+        texts_to_scan: list[str] = []
+
+        # Collect text from conversation messages
+        conversation = case.get("conversation", [])
+        if isinstance(conversation, list):
+            for msg in conversation:
+                if isinstance(msg, dict):
+                    content = msg.get("content", "")
+                    if isinstance(content, str):
+                        texts_to_scan.append(content)
+
+        # Collect candidate_answer
+        answer = case.get("candidate_answer", "")
+        if isinstance(answer, str):
+            texts_to_scan.append(answer)
+
+        # Scan all collected text
+        for text in texts_to_scan:
+            for pattern_name, pattern in _INJECTION_PATTERNS:
+                if pattern.search(text):
+                    warnings.append(
+                        ValidationError(
+                            code=f"SECURITY_{pattern_name}",
+                            message=(
+                                f"Potential {pattern_name.lower().replace('_', ' ')} "
+                                f"detected at row {i}. Review this row before "
+                                f"including in evaluation dataset."
+                            ),
+                            file=str(path),
+                            line=i,
+                        )
+                    )
+                    break  # one warning per row is enough
+
+    return warnings
+
+
 def validate_cases_file(path: Path, fmt: str = "jsonl") -> ValidationResult:
     """Validate a raw cases file (JSONL or YAML) without a manifest."""
     if not path.exists():
@@ -281,6 +362,7 @@ def validate_cases_file(path: Path, fmt: str = "jsonl") -> ValidationResult:
         )
 
     errors.extend(_check_integrity(raw_cases, path))
+    errors.extend(_check_security(raw_cases, path))
     return ValidationResult(valid=len(errors) == 0, errors=errors)
 
 

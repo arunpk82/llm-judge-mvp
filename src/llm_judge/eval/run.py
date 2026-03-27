@@ -11,6 +11,7 @@ from pathlib import Path
 from typing import Any, Dict, List, Optional, Tuple
 
 from llm_judge.datasets.registry import DatasetRegistry
+from llm_judge.eval.event_registry import append_event
 from llm_judge.eval.registry import append_run_registry_entry
 from llm_judge.eval.schema import EVAL_RUN_SCHEMA_VERSION
 from llm_judge.rubric_store import get_rubric
@@ -209,7 +210,7 @@ def main() -> int:
     # Verify all runtime rules are declared in manifest.yaml.
     # Catches ungoverned rules before scoring — not just in preflight.
     try:
-        from llm_judge.rules.lifecycle import check_rules_governed
+        from llm_judge.rules.lifecycle import check_rules_governed, emit_rule_snapshot
         governance_errors = check_rules_governed()
         if governance_errors:
             print("WARNING: Rule governance issues detected:")
@@ -218,6 +219,8 @@ def main() -> int:
             preflight_notes.append(f"rule_governance=WARN({len(governance_errors)} issues)")
         else:
             preflight_notes.append("rule_governance=OK")
+        # EPIC-5.1: Record which rules were active for this evaluation
+        emit_rule_snapshot(actor="ci")
     except Exception:
         preflight_notes.append("rule_governance=SKIP(lifecycle unavailable)")
 
@@ -281,6 +284,12 @@ def main() -> int:
 
     judgments: List[Dict[str, Any]] = []
 
+    # --- EPIC-2.2: Per-rule hit-rate tracking ---
+    rule_hit_counts: Dict[str, int] = {}
+
+    total_cases = len(rows)
+    progress_interval = max(1, total_cases // 10) if total_cases > 20 else total_cases
+
     evaluation_start = time.perf_counter()
     for i, row in enumerate(rows):
         # Convert conversation dicts to Message objects
@@ -296,6 +305,7 @@ def main() -> int:
 
         res = engine.evaluate(req)
 
+        flags = getattr(res, "flags", None) or []
         judgments.append(
             {
                 "case_index": i,
@@ -304,17 +314,62 @@ def main() -> int:
                 "human_scores": row.get("human_scores"),
                 "judge_decision": getattr(res, "decision", None),
                 "judge_scores": getattr(res, "scores", None),
-                "judge_flags": getattr(res, "flags", None),
+                "judge_flags": flags,
                 # carry through for traceability/debugging
                 "case_id": row.get("case_id"),
             }
         )
+
+        # EPIC-2.2: Track per-rule hit rates
+        for flag in flags:
+            flag_str = str(flag)
+            rule_id = flag_str.split(":")[0] if ":" in flag_str else flag_str
+            rule_hit_counts[rule_id] = rule_hit_counts.get(rule_id, 0) + 1
+
+        # EPIC-8.1: Streaming progress
+        if (i + 1) % progress_interval == 0 or i == total_cases - 1:
+            elapsed = time.perf_counter() - evaluation_start
+            rate = (i + 1) / elapsed if elapsed > 0 else 0
+            print(
+                f"  [{i + 1}/{total_cases}] "
+                f"{(i + 1) / total_cases * 100:.0f}% "
+                f"({rate:.1f} cases/sec)"
+            )
+
+        # EPIC-2.2: Smoke test gate — fast-fail after N cases
+        if spec.smoke_test and (i + 1) == spec.smoke_test.n and total_cases > spec.smoke_test.n:
+            pass_count = sum(
+                1 for j in judgments
+                if j.get("judge_decision") == j.get("human_decision")
+            )
+            pass_rate = pass_count / len(judgments) if judgments else 0
+            if pass_rate < spec.smoke_test.min_pass_rate:
+                raise ValueError(
+                    f"Smoke test FAILED after {spec.smoke_test.n} cases: "
+                    f"pass_rate={pass_rate:.2%} < threshold={spec.smoke_test.min_pass_rate:.0%}. "
+                    f"Aborting evaluation — check dataset/rubric compatibility."
+                )
+            print(
+                f"  Smoke test PASSED: {pass_rate:.0%} pass rate "
+                f"on first {spec.smoke_test.n} cases (threshold: {spec.smoke_test.min_pass_rate:.0%})"
+            )
+
     evaluation_seconds = time.perf_counter() - evaluation_start
 
     write_jsonl(run_dir / "judgments.jsonl", judgments)
 
     # compute & persist metrics
     metrics = compute_metrics(judgments)
+
+    # EPIC-2.2: Add per-rule hit-rate tracking to metrics
+    if rule_hit_counts and total_cases > 0:
+        metrics["rule_hit_rates"] = {
+            rule_id: {
+                "count": count,
+                "rate": round(count / total_cases, 4),
+            }
+            for rule_id, count in sorted(rule_hit_counts.items())
+        }
 
     # EPIC-2: enforce metrics schema declared in registry.yaml (if present)
     _enforce_metrics_schema(rubric_ref=str(spec.rubric_id), metrics=metrics)
@@ -342,6 +397,29 @@ def main() -> int:
         rubric_id=str(spec.rubric_id),
         judge_engine=str(spec.judge_engine),
         dataset_hash=str(dataset_hash),
+    )
+
+    # --- EPIC-5.1: Cross-capability event registry ---
+    append_event(
+        event_type="eval_run",
+        source="eval/run.py",
+        actor="ci",
+        related_ids={
+            "run_id": run_id,
+            "dataset_id": dataset_id,
+            "dataset_version": dataset_version,
+            "rubric_id": str(spec.rubric_id),
+            "judge_engine": str(spec.judge_engine),
+        },
+        payload={
+            "cases_total": cases_total,
+            "cases_evaluated": cases_evaluated,
+            "sampled": sampled,
+            "dataset_hash": str(dataset_hash),
+            "kappa": metrics.get("cohen_kappa"),
+            "f1_fail": metrics.get("f1_fail"),
+            "accuracy": metrics.get("accuracy"),
+        },
     )
 
     total_seconds = time.perf_counter() - start_total

@@ -1,0 +1,38 @@
+# LLM Judge Registry — L4 Hybrid Adjudication Engine
+#
+# Each judge must be registered here before it can evaluate production responses.
+# Uncalibrated judges are blocked by the trust gate (EPIC 7.1).
+
+schema_version: "1"
+
+judges:
+
+  gpt-4o-mini:
+    provider: openai
+    model: gpt-4o-mini
+    prompt_version: v1
+    domain: general
+    status: registered          # registered | calibrating | calibrated | blocked
+    calibration:
+      min_accuracy: 0.70        # minimum overall accuracy to pass calibration
+      min_dimension_accuracy: 0.60  # minimum per-dimension accuracy
+      golden_dataset_id: golden
+      golden_dataset_version: v1
+
+  gpt-4o:
+    provider: openai
+    model: gpt-4o
+    prompt_version: v1
+    domain: general
+    status: registered
+    calibration:
+      min_accuracy: 0.75
+      min_dimension_accuracy: 0.65
+      golden_dataset_id: golden
+      golden_dataset_version: v1
+
+# Trust gate configuration
+trust_gate:
+  enforce: true               # if false, uncalibrated judges emit warnings but aren't blocked
+  allow_deterministic: true    # deterministic judge always allowed (no calibration needed)
+  default_confidence_threshold: 0.6  # below this → route to human adjudication (EPIC 7.3)
