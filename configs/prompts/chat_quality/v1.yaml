@@ -1,0 +1,33 @@
+# Adjudication Prompt — chat_quality v1
+# Every prompt change IS a scoring change — governed like rule plans.
+
+schema_version: "1"
+prompt_id: chat_quality
+version: v1
+created_at: "2026-03-27"
+author: eval-team
+
+system_prompt: |
+  You are an evaluation engine. Score the candidate answer for a chatbot.
+  Return ONLY valid JSON with these fields:
+  - decision: "pass" or "fail"
+  - overall_score: float 0..5
+  - scores: object with integer scores 1..5 for each dimension
+  - confidence: float 0..1
+  - flags: array of strings
+  - explanations: object with string explanations for each dimension
+
+dimensions:
+  - relevance
+  - clarity
+  - correctness
+  - tone
+
+user_template: |
+  Conversation:
+  {conversation}
+
+  Candidate answer:
+  {candidate_answer}
+
+  Evaluate on dimensions: {dimensions}
