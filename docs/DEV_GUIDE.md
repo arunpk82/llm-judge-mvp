@@ -18,7 +18,7 @@ make pr-gate
 
 This runs the PR gate evaluation using `configs/runspecs/pr_gate.yaml`, producing:
 - `reports/runs/pr-gate-<timestamp>/judgments.jsonl` — per-case verdicts
-- `reports/runs/pr-gate-<timestamp>/metrics.json` — Kappa, F1, accuracy
+- `reports/runs/pr-gate-<timestamp>/metrics.json` — Kappa, F1, accuracy, rule hit-rates
 - `reports/runs/pr-gate-<timestamp>/manifest.json` — run metadata
 - `reports/runs/pr-gate-<timestamp>/validation_report.json` — pre-flight checks
 
@@ -28,15 +28,15 @@ This runs the PR gate evaluation using `configs/runspecs/pr_gate.yaml`, producin
 make diff
 ```
 
-Shows decision flips, score deltas, and metric changes vs the golden baseline.
+Shows decision flips, score deltas, and whether the run meets the baseline quality bar.
 
-### 4. Run the full preflight
+### 4. Run the full governance check
 
 ```bash
 make preflight
 ```
 
-Chains: lint → typecheck → test → rules-validate → baseline-validate → pr-gate → baseline-dry-run → registry-list → drift-check.
+Chains: lint → typecheck → test → rules-validate → baseline-validate → pr-gate → baseline-dry-run → registry-list → drift-check. If it passes, your code is ready to ship.
 
 ## Daily Workflow
 
@@ -45,7 +45,17 @@ make eval          # pr-gate + baseline-dry-run + registry-list
 make preflight     # full governance check before pushing
 ```
 
+## Git Workflow
+
+```bash
+make git-start BRANCH=epic/1.1/111-feature-name   # create branch from master
+make git-ship MSG="EPIC-1.1: description"          # preflight → commit → push → PR
+make git-merge                                      # squash merge after CI passes
+```
+
 ## Key Commands
+
+### L3 — Governance
 
 | Command | What it does |
 |---------|-------------|
@@ -59,33 +69,64 @@ make preflight     # full governance check before pushing
 | `make registry-list` | List recent evaluation runs |
 | `make registry-trend` | Show metric trends |
 | `make drift-check` | Check for metric drift |
-| `make rules-list` | List governed rules |
+| `make rules-list` | List governed rules with aging status |
 | `make rules-validate` | Validate rule manifest alignment |
+| `make rules-aging` | Show rule aging report |
+| `make rules-audit` | Show rule audit log |
+| `make dataset-list` | List registered datasets |
+| `make dataset-validate` | Validate all datasets |
+| `make event-query` | Query event registry |
+| `make event-trace RUN_ID=...` | Trace events for a run |
+| `make event-stats` | Show event registry statistics |
+
+### L4 — Calibration & Adjudication
+
+| Command | What it does |
+|---------|-------------|
+| `make judge-list` | List registered LLM judges with calibration status |
+| `make judge-status` | Show trust gate status for all judges |
 
 ## Project Structure
 
 ```
 src/llm_judge/
-  scorer.py              # Deterministic scoring (relevance, clarity, correctness, tone)
-  rules/engine.py        # Rule execution engine
-  rules/lifecycle.py     # Rule governance (list, validate, export)
-  eval/run.py            # Evaluation runner
-  eval/diff.py           # Diff engine (flips, deltas, policy check)
-  eval/baseline.py       # Baseline management (snapshots, promotion)
-  eval/drift.py          # Drift detection (point + trend)
-  eval/registry.py       # Run registry (append-only event log)
-  eval/metrics.py        # Metrics computation (Kappa, F1, confusion)
-  datasets/registry.py   # Dataset resolution + hash verification
-  dataset_validator.py   # Dataset validation (schema, integrity, case_id)
+  scorer.py                    # Deterministic scoring (relevance, clarity, correctness, tone)
+  rules/engine.py              # Rule execution engine with deprecation filtering
+  rules/lifecycle.py           # Rule governance (list, validate, aging, audit, export)
+  eval/run.py                  # Evaluation runner with smoke test + streaming progress
+  eval/diff.py                 # Diff engine (flips, deltas, policy check)
+  eval/baseline.py             # Baseline management (snapshots, promotion)
+  eval/drift.py                # Drift detection + causation + response lifecycle
+  eval/event_registry.py       # Cross-capability event registry (6 typed events)
+  eval/registry.py             # Run registry (append-only event log)
+  eval/metrics.py              # Metrics computation (Kappa, F1, confusion)
+  datasets/registry.py         # Dataset resolution + hash verification + security scanning
+  datasets/cli.py              # Dataset CLI (list, validate, inspect)
+  dataset_validator.py         # Dataset validation (schema, integrity, case_id, security)
+  calibration/__init__.py      # Judge registry, calibration pipeline, trust gate
+  calibration/bias.py          # Position/length bias detection, DebiasedJudge
+  calibration/adjudication.py  # Confidence router, human adjudication queue
+  calibration/prompts.py       # Versioned adjudication prompt management
+  calibration/hallucination.py # Hallucination detection (grounding, claims, citations)
+  calibration/testgen.py       # Test case generation (template, document, export)
+  calibration/feedback.py      # Feedback loop (disagreement analysis, recommendations)
 ```
 
 ## Adding a New Rule
 
 1. Create rule module in `src/llm_judge/rules/` (see `quality/nonsense_basic.py` for template)
 2. Use `@register("category.rule_name")` decorator
-3. Add entry to `rules/manifest.yaml` (version, owner, status, introduced)
+3. Add entry to `rules/manifest.yaml` (version, owner, status, introduced, last_reviewed, review_period_days)
 4. Add to rule plan config: `configs/rules/{rubric_id}_{version}.yaml`
 5. Run `make rules-validate` to verify manifest alignment
+
+## Registering an LLM Judge (L4)
+
+1. Add judge config to `configs/judges/registry.yaml`
+2. Create versioned prompt in `configs/prompts/{rubric_id}/v{N}.yaml`
+3. Run calibration against golden dataset
+4. Verify trust gate passes: `make judge-status`
+5. Set `JUDGE_ENGINE=llm` to enable LLM-based evaluation
 
 ## Configuration
 
@@ -94,3 +135,5 @@ src/llm_judge/
 - **Policies:** `configs/policies/` — baseline promotion and drift policies
 - **Rubrics:** `rubrics/` — rubric definitions with dimensions and decision policy
 - **Datasets:** `datasets/` — governed datasets with `dataset.yaml` metadata
+- **Judges:** `configs/judges/` — LLM judge registry with calibration thresholds
+- **Prompts:** `configs/prompts/` — versioned adjudication prompt templates

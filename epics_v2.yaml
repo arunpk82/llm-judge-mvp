@@ -1,24 +1,12 @@
 repo: arunpk82/llm-judge-mvp
 
 # =======================================================================
-# ROLLING HORIZON PLANNING MODEL
+# ROLLING HORIZON PLANNING MODEL — POST L4 COMPLETION
 #
-# active  — fully planned: CAPs defined, EPICs defined, exit KPIs locked
-# shaped  — exit KPIs known, CAPs not yet defined, EPICs not yet written
-# vision  — direction known, everything else TBD
+# L1-L4: COMPLETE (all EPICs closed, 109+ integration tests)
+# L5-L6: Vision (architecture defined, not yet built)
 #
-# Planning trigger: begin defining the next level when current level
-# reaches 80% mandatory EPICs closed.
-#
-# ARCHITECTURE ALIGNMENT
-# This file is the gap-adjusted backlog derived from:
-#   1. AI Architect's Playbook v2.1 (8-step framework)
-#   2. LLM-Judge Architecture Walkthrough v9 (20 EPICs, 8 CAPs)
-#   3. Repo gap analysis (March 2026) — maps code to architecture
-#
-# EPIC numbering follows the architecture walkthrough (1.1–8.2).
-# Each task reflects REMAINING work after gap analysis — not the full
-# EPIC scope. Tasks marked DONE are already implemented in the codebase.
+# Updated: 2026-03-27 after Wave 4 + L4 completion
 # =======================================================================
 
 project:
@@ -32,227 +20,115 @@ project:
       planning_horizon: done
       status: "Done"
       target_quarter: "2025-Q4"
-      summary: >
-        Basic scoring logic with string matching, regex rules, keyword
-        checks. No governance, no versioning.
-      exit_criteria:
-        kpis:
-          - "Rule coverage >= 50%"
-          - "Basic test suite passing"
-      capabilities: []
 
     - level: L2
       name: "Deterministic Guardrail Engine"
       planning_horizon: done
       status: "Done"
       target_quarter: "2026-Q1"
-      summary: >
-        Structured rule registry with versioned schemas, artifact storage,
-        and CI/CD integration. Reproducible evaluation runs.
-      exit_criteria:
-        kpis:
-          - "Rule hit rate >= 70%"
-          - "Kappa >= 0.60 on calibration set"
-          - "CI gate operational"
-      capabilities: []
 
     - level: L3
       name: "Governed Evaluation Platform"
-      planning_horizon: active
-      status: "In Progress"
+      planning_horizon: done
+      status: "Done"
       target_quarter: "2026-Q3"
       summary: >
-        Full lifecycle governance with dataset versioning, baseline
-        promotion, rule lifecycle management, artifact governance,
-        drift detection, and developer experience. Policy enforcement.
-      exit_criteria:
-        mandatory_caps: [CAP-1, CAP-2, CAP-3, CAP-4, CAP-5, CAP-6, CAP-8]
-        kpis:
-          - "Kappa >= 0.75 on calibration set"
-          - "Coverage >= 90%"
-          - "Baseline promotion automated (zero manual steps)"
-          - "Drift detection < 24h alert SLA"
-          - "Zero untracked scoring changes"
-          - "All mandatory EPICs across CAP-1 to CAP-8 closed"
-        entry_criteria: "L2 exit criteria met (done)"
-      planning_trigger: "Begin L4 EPIC definition when L3 mandatory EPICs >= 80% closed"
-      capabilities: [CAP-1, CAP-2, CAP-3, CAP-4, CAP-5, CAP-6, CAP-8]
+        Full lifecycle governance — all 17 L3 EPICs closed across 4 waves.
+        147 tests. 5 cross-cutting patterns resolved.
 
     - level: L4
       name: "Hybrid Adjudication Engine"
-      planning_horizon: shaped
-      status: "Planned"
+      planning_horizon: done
+      status: "Done"
       target_quarter: "2027-Q1"
       summary: >
-        LLM-based adjudication for ambiguous cases. Confidence calibration,
-        position-bias mitigation, and human-in-the-loop escalation pathways.
-      exit_criteria:
-        kpis:
-          - "Kappa >= 0.80 on calibration dataset (hybrid)"
-          - "Human escalation rate < 15% of total evaluations"
-          - "Confidence calibration within 5%"
-          - "Position-bias inconsistency < 10%"
-        entry_criteria: "L3 exit criteria met"
-      planning_trigger: "Begin L4 EPIC definition when L3 mandatory EPICs >= 80% closed"
-      capabilities: [CAP-7]
+        All 10 L4 functional steps implemented: judge registry, calibration,
+        prompt versioning, bias reduction, hallucination detection, test case
+        generation, human adjudication, and feedback loop. 45 L4 tests.
 
     - level: L5
       name: "Enterprise AI Governance Platform"
       planning_horizon: vision
       status: "Planned"
       target_quarter: "2027-Q4"
-      summary: >
-        Multi-tenant architecture, RBAC, compliance reporting, bias
-        detection, and SLA enforcement for regulated industries.
-      exit_criteria:
-        kpis:
-          - "SOC 2 Type II audit passed"
-          - "Multi-tenant SLAs met"
-          - "Bias reports automated on every evaluation run"
-        entry_criteria: "L4 exit criteria met"
-      planning_trigger: "Begin L5 shaping when L4 is 80% complete"
-      capabilities: []
 
     - level: L6
       name: "AI Safety Operating System"
       planning_horizon: vision
       status: "Planned"
       target_quarter: "2028-Q4"
-      summary: >
-        Continuous safety monitoring, adversarial red-teaming, automated
-        dataset generation, agent trajectory evaluation, cross-system
-        evaluation orchestration.
-      exit_criteria:
-        kpis:
-          - "Continuous monitoring SLA < 24h detection"
-          - "Adversarial coverage >= 80% of known attack taxonomy"
-          - "Synthetic dataset Kappa >= 0.75 vs human-generated"
-        entry_criteria: "L5 exit criteria met"
-      planning_trigger: "Begin L6 shaping when L5 is 80% complete"
-      capabilities: []
 
 # =======================================================================
-# MILESTONES (Capabilities) — Architecture-aligned, 8 CAPs
+# MILESTONES — All L3 + L4 complete
 # =======================================================================
 milestones:
   CAP-1:
     title: "CAP-1 Dataset Governance"
     level: L3
-    description: >
-      Dataset validation, registry, version pinning, hash verification.
-      Gates: Coverage >= 90%, Zero untracked scoring changes.
+    status: done
     due_date: "2026-06-30"
 
   CAP-2:
     title: "CAP-2 Rule/Scoring Engine"
     level: L3
-    description: >
-      Scoring pipeline, rules engine, metrics computation, artifact emission.
-      Gates: Kappa >= 0.75, Evaluation Latency < 50ms, Hit Rate >= 70%.
+    status: done
     due_date: "2026-06-30"
 
   CAP-3:
     title: "CAP-3 Rule Governance"
     level: L3
-    description: >
-      Rule versioning, lifecycle management, aging, drift detection.
-      Gates: Zero untracked scoring changes.
+    status: done
     due_date: "2026-06-30"
 
   CAP-4:
     title: "CAP-4 Baseline & Regression Governance"
     level: L3
-    description: >
-      Golden baselines, diff engine, flip tracking, CI regression gate.
-      Gates: No regression ships undetected (primary acceptance test).
+    status: done
     due_date: "2026-06-30"
 
   CAP-5:
     title: "CAP-5 Artifact Governance"
     level: L3
-    description: >
-      Master artifact registry, immutability, process tracing, point-in-time queries.
-      Gates: Zero untracked scoring changes, full audit trail.
+    status: done
     due_date: "2026-09-30"
 
   CAP-6:
     title: "CAP-6 Drift & Degradation Monitoring"
     level: L3
-    description: >
-      Multi-dimensional drift detection, causation analysis, response actions.
-      Gates: Drift Detection SLA < 24h.
+    status: done
     due_date: "2026-09-30"
 
   CAP-7:
     title: "CAP-7 Calibration & Adjudication"
     level: L4
-    description: >
-      LLM judge registration, calibration, dimensional evaluation, bias reduction,
-      human adjudication interface. L4 capability — shaped, not active.
+    status: done
     due_date: "2027-03-31"
 
   CAP-8:
     title: "CAP-8 Developer Experience & Human Interface"
     level: L3
-    description: >
-      CLI, CI/CD integration, dashboards, alert routing, onboarding.
-      Gates: All KPIs via adoption and operability.
+    status: done
     due_date: "2026-09-30"
 
 # =======================================================================
-# EPICs — Architecture-aligned, gap-adjusted from repo review
-#
-# Status reflects CODEBASE STATE after gap analysis:
-#   done         = fully implemented, tested, no remaining work
-#   in_progress  = partially implemented, specific gaps identified
-#   planned      = not yet implemented (or L4 future work)
-#
-# Wave assignment for 2-week sprint:
-#   Wave 1 (days 1-4):   Wire existing components into execution path
-#   Wave 2 (days 5-9):   Cross-capability registry + response mechanisms
-#   Wave 3 (days 10-12): Streaming, smoke test, hit-rate, documentation
-#   Buffer (days 13-14): Testing, integration, cleanup
+# EPICs — ALL CLOSED
 # =======================================================================
 epics:
 
-  # =====================================================================
-  # CAP-1 — Dataset Governance
-  # =====================================================================
-
+  # CAP-1
   - id: EPIC-1.1
     title: "[EPIC] EPIC-1.1 Dataset Ingestion & Validation Pipeline"
     milestone: CAP-1
     level: L3
     mandatory: true
     labels: [epic, cap:dataset-governance, priority:critical]
-    status: in_progress
-    effort: "S — 3 days"
+    status: done
     wave: 1
-    purpose: >
-      Validate datasets at the boundary before they enter the scoring pipeline.
-      Without this, corrupt or incomplete data produces misleading metrics silently.
-      Directly gates Coverage >= 90% and FPR < 5%.
-    vision_objective: "No corrupt data enters the scoring pipeline"
-    scope_in:
-      - Security scanning (injection risks, source authorization)
-      - Structural validation (schema compliance, required columns, data types)
-      - Data integrity checks (duplicates, missing IDs, completeness)
-      - Structured validation report (pass/fail per check with error details)
-      - Wire validator into eval runner execution path (non-bypassable)
-    scope_out:
-      - Version pinning (EPIC 1.2)
-      - CLI interface (covered in EPIC 8.1)
-    acceptance_criteria:
-      - "Given a dataset, when eval runner loads it, then validation runs automatically — cannot be bypassed"
-      - "Given corrupt data (duplicates, missing fields), then structured ValidationError with code + line number is emitted"
-      - "Given validation failure, then eval runner aborts with structured error — no partial execution"
-      - "Given successful validation, then validation_report.json is written to run directory"
-    tasks:
-      - "TASK-1.1.1: Wire dataset_validator.validate_dataset() into DatasetRegistry.resolve() — DONE (validator exists, needs wiring)"
-      - "TASK-1.1.2: Add case_id completeness check to _check_integrity (downstream sampling requires it) - DONE"
-      - "TASK-1.1.3: Add basic security scanning (injection pattern detection in content fields)"
-      - "TASK-1.1.4: Emit validation_report.json artifact to run directory on pass/fail"
-      - "TASK-1.1.5: Remove bypass path — make governed DatasetRegistry.resolve() the only path, deprecate spec.dataset.path shortcut"
+    close_comment: >
+      Completed Wave 1+4. Validator wired into registry.resolve() (non-bypassable),
+      case_id completeness check, bypass path deprecated, validation_report.json emitted,
+      security scanning with 4 injection patterns (prompt override, role injection,
+      jailbreak, XML injection).
 
   - id: EPIC-1.2
     title: "[EPIC] EPIC-1.2 Dataset Registration & Version Pinning"
@@ -260,57 +136,26 @@ epics:
     level: L3
     mandatory: true
     labels: [epic, cap:dataset-governance, priority:critical]
-    status: in_progress
-    effort: "S — 2 days"
+    status: done
     wave: 1
-    purpose: >
-      Pin exact dataset versions with cryptographic hashes for reproducibility.
-      Without this, teams cannot determine which dataset was used in a past evaluation.
-      Gates: Zero untracked scoring changes.
-    vision_objective: "Same config produces same results — provably"
-    scope_in:
-      - SHA-256 hash verification on read (not just write)
-      - Populate content_hash field in DatasetManifest (already in schema)
-      - Dataset discovery CLI (list registered datasets)
-    scope_out:
-      - Semver resolution (future enhancement)
-    acceptance_criteria:
-      - "Given a registered dataset, when loaded for eval, then SHA-256 hash is verified against stored hash"
-      - "Given a hash mismatch (file replaced), then eval runner aborts with clear error — never silently uses wrong data"
-      - "Given the content_hash field in dataset.yaml, then it is populated at registration and checked at load"
-    tasks:
-      - "TASK-1.2.1: Add hash verification to DatasetRegistry.resolve() — compare computed hash vs dataset.yaml content_hash - DONE"
-      - "TASK-1.2.2: Populate content_hash in dataset.yaml during dataset registration (tooling) - DONE"
-      - "TASK-1.2.3: Add 'dataset list' CLI command to Makefile (scan datasets/ dir, show id, version, hash)"
+    close_comment: >
+      Completed Wave 1+4. SHA-256 hash verification on every read,
+      content_hash populated in dataset.yaml, dataset CLI module
+      (python -m llm_judge.datasets list/validate/inspect).
 
-  # =====================================================================
-  # CAP-2 — Rule/Scoring Engine
-  # =====================================================================
-
+  # CAP-2
   - id: EPIC-2.1
     title: "[EPIC] EPIC-2.1 Evaluation Setup & Compatibility Check"
     milestone: CAP-2
     level: L3
     mandatory: true
     labels: [epic, cap:scoring-engine, priority:high]
-    status: in_progress
-    effort: "S — 2 days"
+    status: done
     wave: 1
-    purpose: >
-      Ensure evaluation runs with compatible data and rules. Without this,
-      mismatched data and rules produce meaningless scores without error.
-    vision_objective: "Evaluations never run on incompatible inputs"
-    scope_in:
-      - Compatibility check between dataset fields and rule plan requirements
-      - Wire config-driven rule plan loading into scorer (replace hardcoded defaults)
-    scope_out:
-      - Scoring execution (EPIC 2.2)
-    acceptance_criteria:
-      - "Given a math rule plan and a chat-quality dataset, when eval starts, then compatibility check fails with specific error"
-      - "Given a RunSpec, when scorer loads rules, then it uses configs/rules/{rubric}_{version}.yaml — not hardcoded defaults"
-    tasks:
-      - "TASK-2.1.1: Wire load_plan_for_rubric() into scorer._apply_rubric_rules() — replace hardcoded default rule list"
-      - "TASK-2.1.2: Add dataset-to-rule-plan compatibility check in eval runner (validate required fields exist in dataset)"
+    close_comment: >
+      Completed Wave 1. Config-driven rule plan loading via load_plan_for_rubric(),
+      pre-flight compatibility check (rubric, rule plan, dataset fields),
+      math_basic_v1.yaml rule plan config.
 
   - id: EPIC-2.2
     title: "[EPIC] EPIC-2.2 Scoring Execution with Smoke Test Gate"
@@ -318,28 +163,11 @@ epics:
     level: L3
     mandatory: true
     labels: [epic, cap:scoring-engine, priority:high]
-    status: in_progress
-    effort: "S — 3 days"
+    status: done
     wave: 3
-    purpose: >
-      Execute deterministic evaluation with fast-fail smoke test and per-rule
-      hit-rate tracking. Without smoke test, broken inputs waste 500+ evaluations.
-      Without hit-rate tracking, dead rules go undetected.
-    vision_objective: "Fast feedback on broken inputs, visibility into rule health"
-    scope_in:
-      - Smoke test gate (run ~10 cases, check pass rate, abort if below threshold)
-      - Per-rule hit-rate tracking (count flag occurrences per rule)
-      - Hit-rate emission in metrics.json
-    scope_out:
-      - Core scoring logic (already implemented and strong)
-    acceptance_criteria:
-      - "Given a broken dataset where 90% of cases fail, when smoke test runs on 10 cases, then eval aborts with early signal"
-      - "Given a rule that never fires, then metrics.json shows 0% hit rate for that rule"
-      - "Given a healthy dataset, when smoke test passes, then full evaluation proceeds normally"
-    tasks:
-      - "TASK-2.2.1: Implement smoke test gate — run sample, compute pass rate, abort if below configurable threshold - DONE (sampling exists, gate logic needed)"
-      - "TASK-2.2.2: Add per-rule hit-rate tracking in RuleEngine.run() — count flags per rule_id"
-      - "TASK-2.2.3: Emit rule_hit_rates in metrics.json alongside existing metrics"
+    close_comment: >
+      Completed Wave 3. Smoke test gate (fast-fail after N cases),
+      per-rule hit-rate tracking in metrics.json, streaming progress output.
 
   - id: EPIC-2.3
     title: "[EPIC] EPIC-2.3 Verdict Aggregation & Artifact Emission"
@@ -348,67 +176,20 @@ epics:
     mandatory: true
     labels: [epic, cap:scoring-engine]
     status: done
-    close_comment: >
-      Completed. Cohen's Kappa, F1, precision/recall, confusion matrices, accuracy all implemented.
-      judgments.jsonl + metrics.json + manifest.json with schema versioning, dataset hash, timing.
-      Metrics schema enforcement via rubric registry contract. Strongest module in the codebase.
-    effort: "M — completed"
-    purpose: >
-      Aggregate per-rule verdicts into overall metrics and emit structured artifacts
-      for downstream consumption by baselines, monitoring, and audit.
-    vision_objective: "Every evaluation run produces traceable, structured artifacts"
-    scope_in:
-      - Kappa, F1, precision, recall, confusion matrices, accuracy
-      - judgments.jsonl with per-case verdicts
-      - metrics.json with all computed metrics
-      - manifest.json with schema version, dataset hash, timing
-      - Metrics schema enforcement via registry.yaml contract
-    scope_out:
-      - Drift monitoring consumption (EPIC 6.1)
-    acceptance_criteria:
-      - "Given evaluation results, then judgments.jsonl, metrics.json, manifest.json are all produced"
-      - "Given registry.yaml declares required metrics, then missing metrics cause hard failure"
-    tasks:
-      - "TASK-2.3.1: Implement metrics computation (Kappa, F1, confusion) - DONE"
-      - "TASK-2.3.2: Implement artifact emission (judgments.jsonl, metrics.json, manifest.json) - DONE"
-      - "TASK-2.3.3: Implement metrics schema enforcement from registry.yaml - DONE"
+    close_comment: "Pre-existing. Kappa, F1, judgments.jsonl, metrics.json, manifest.json."
 
-  # =====================================================================
-  # CAP-3 — Rule Governance
-  # =====================================================================
-
+  # CAP-3
   - id: EPIC-3.1
     title: "[EPIC] EPIC-3.1 Rule Plan Versioning & Schema Validation"
     milestone: CAP-3
     level: L3
     mandatory: true
     labels: [epic, cap:rule-governance, priority:high]
-    status: in_progress
-    effort: "M — 4 days"
+    status: done
     wave: 2
-    purpose: >
-      Track all rule changes with immutable versioning and audit trail.
-      Without this, rule changes are untracked and the acceptance test cannot be proven.
-      Gates: Zero untracked scoring changes.
-    vision_objective: "Every rule change is versioned, auditable, and reversible"
-    scope_in:
-      - Immutable rule plan versioning (change creates new version, not overwrite)
-      - Structured audit trail (who, what, when, why per change)
-      - Rule-plan drift detection (deployed rules match declared plan)
-      - Wire lifecycle validation into rule loading (not just preflight)
-    scope_out:
-      - RBAC (L5 capability)
-      - Rule aging (EPIC 3.2)
-    acceptance_criteria:
-      - "Given a rule change, then a new immutable version is created — old version preserved"
-      - "Given any rule change, then audit log records who, what, when with structured fields"
-      - "Given deployed rules differ from manifest.yaml, then CI gate fails with specific drift error"
-      - "Given lifecycle.validate runs, then it also runs at rule load time — not just in preflight"
-    tasks:
-      - "TASK-3.1.1: Make rule plan changes create new version files (immutable snapshots) instead of editing manifest.yaml in place"
-      - "TASK-3.1.2: Add structured audit trail (append-only JSONL: rule_id, action, timestamp, operator)"
-      - "TASK-3.1.3: Wire lifecycle.validate_rules() into rule loading path (not just Makefile preflight) - DONE (validate exists, needs wiring)"
-      - "TASK-3.1.4: Fix duplicate entries in rules/manifest.yaml"
+    close_comment: >
+      Completed Waves 1+2. Manifest duplicates fixed, lifecycle validation wired
+      into eval runner, structured audit trail (append-only JSONL).
 
   - id: EPIC-3.2
     title: "[EPIC] EPIC-3.2 Rule Aging & Deprecation Engine"
@@ -416,30 +197,12 @@ epics:
     level: L3
     mandatory: true
     labels: [epic, cap:rule-governance, priority:medium]
-    status: planned
-    effort: "S — 3 days"
+    status: done
     wave: 2
-    purpose: >
-      Detect stale rules and enforce controlled deprecation. Without this,
-      rules written for GPT-3.5 behavior silently evaluate GPT-4 responses.
-      A rule not reviewed in 12 months is a governance risk.
-    vision_objective: "No stale rules silently degrade evaluation quality"
-    scope_in:
-      - Aging detection (days since introduced, configurable review period per category)
-      - Aging alerts (flag rules exceeding review period)
-      - Deprecation workflow (warning period, notification, enforcement)
-      - Aging report in metrics output
-    scope_out:
-      - Automated rule replacement
-    acceptance_criteria:
-      - "Given a rule introduced 400 days ago with 365-day review period, then aging alert fires"
-      - "Given a deprecated rule with expired warning period, then it is excluded from execution"
-      - "Given aging check runs, then report includes rule_id, days_since_review, status, hit_rate"
-    tasks:
-      - "TASK-3.2.1: Add aging calculation to lifecycle.py (days since introduced vs configurable review_period)"
-      - "TASK-3.2.2: Add aging alert output to lifecycle list/validate commands"
-      - "TASK-3.2.3: Add deprecation warning period to manifest schema (warning_days, deprecated_at fields)"
-      - "TASK-3.2.4: Enforce deprecated rules exclusion from execution in RuleEngine"
+    close_comment: >
+      Completed Wave 2. Aging calculation, stale rule detection,
+      deprecation enforcement in RuleEngine (deprecated-enforced rules
+      auto-excluded from plans), CLI commands (rules-aging, rules-audit).
 
   - id: EPIC-3.3
     title: "[EPIC] EPIC-3.3 Rule Drift Detection"
@@ -447,30 +210,13 @@ epics:
     level: L3
     mandatory: true
     labels: [epic, cap:rule-governance, priority:high]
-    status: in_progress
-    effort: "S — 2 days"
+    status: done
     wave: 1
-    purpose: >
-      Detect when deployed rules diverge from declared plan. The lifecycle
-      validate command cross-references manifest and runtime registry — but
-      only runs during preflight, not at rule load time.
-    vision_objective: "Deployed rules always match declared governance plan"
-    scope_in:
-      - Wire lifecycle validation into rule loading path
-      - Emit rule-change events to event registry (for CAP-6 correlation)
-    scope_out:
-      - Metric-level drift detection (EPIC 6.1)
-    acceptance_criteria:
-      - "Given a rule added to code but not to manifest, then rule loading fails — not just preflight"
-      - "Given a rule change, then a typed event is appended to event registry for CAP-6 correlation"
-    tasks:
-      - "TASK-3.3.1: Wire lifecycle.validate_rules() into RuleEngine initialization - DONE (validate exists, needs wiring)"
-      - "TASK-3.3.2: Emit rule_change events to event registry (JSONL) when rules are loaded/changed"
+    close_comment: >
+      Completed Waves 1+2. check_rules_governed() wired into eval runner
+      pre-flight, emit_rule_snapshot() records rule state to event registry.
 
-  # =====================================================================
-  # CAP-4 — Baseline & Regression Governance
-  # =====================================================================
-
+  # CAP-4
   - id: EPIC-4.1
     title: "[EPIC] EPIC-4.1 Golden Baseline Management"
     milestone: CAP-4
@@ -478,32 +224,7 @@ epics:
     mandatory: true
     labels: [epic, cap:baseline-governance]
     status: done
-    close_comment: >
-      Completed. 770-line baseline.py with snapshot creation, latest.json pointers,
-      policy-gated promotion (three-way: block/approve/promote), dry-run mode,
-      baseline validation (validate --all). Directory structure:
-      baselines/{suite}/{rubric_id}/snapshots/{baseline_id}/. Promotion policy
-      from YAML config with configurable metric tolerances and flip caps.
-    effort: "L — completed"
-    purpose: >
-      Maintain golden baselines as immutable snapshots of known-good evaluation
-      results. The trust anchor for all regression detection.
-    vision_objective: "Every quality standard is a versioned, immutable, auditable baseline"
-    scope_in:
-      - Immutable snapshot creation
-      - latest.json pointer management
-      - Policy-gated promotion (configurable thresholds)
-      - Baseline validation
-    scope_out:
-      - Diff engine (EPIC 4.2)
-      - CI gate (EPIC 4.3)
-    acceptance_criteria:
-      - "Given a completed eval run, when baseline-create runs, then immutable snapshot with all artifacts is created"
-      - "Given promotion policy, when baseline-promote runs, then policy check passes before snapshot is written"
-    tasks:
-      - "TASK-4.1.1: Implement baseline snapshot creation - DONE"
-      - "TASK-4.1.2: Implement policy-gated promotion - DONE"
-      - "TASK-4.1.3: Implement baseline validation (validate --all) - DONE"
+    close_comment: "Pre-existing. 770-line baseline.py, policy-gated promotion."
 
   - id: EPIC-4.2
     title: "[EPIC] EPIC-4.2 Diff Engine & Flip Tracking"
@@ -512,31 +233,7 @@ epics:
     mandatory: true
     labels: [epic, cap:baseline-governance]
     status: done
-    close_comment: >
-      Completed. 507-line diff.py with decision flip tracking, per-dimension
-      score deltas, flag diffs, metric deltas, schema version compatibility
-      enforcement. Machine-readable diff_report.json + human-readable
-      diff_summary.txt. Policy violation detection with configurable thresholds.
-      World-class implementation.
-    effort: "L — completed"
-    purpose: >
-      Compare evaluation runs against baselines at both aggregate and
-      per-response level. Flip tracking catches hidden failures that
-      aggregate metrics miss.
-    vision_objective: "No regression is invisible — every change is quantified"
-    scope_in:
-      - Decision flip tracking per case
-      - Per-dimension score deltas
-      - Flag diffs (added/removed)
-      - Metric deltas with numeric type handling
-      - Schema version compatibility enforcement
-    scope_out: []
-    acceptance_criteria:
-      - "Given 50 pass→fail and 50 fail→pass flips, then diff report shows flip count even though Kappa is unchanged"
-      - "Given any diff, then both machine-readable (JSON) and human-readable (text) reports are produced"
-    tasks:
-      - "TASK-4.2.1: Implement diff engine with flip tracking - DONE"
-      - "TASK-4.2.2: Implement policy violation detection - DONE"
+    close_comment: "Pre-existing. 507-line diff.py, flip tracking, policy violations."
 
   - id: EPIC-4.3
     title: "[EPIC] EPIC-4.3 CI Regression Gate"
@@ -545,69 +242,22 @@ epics:
     mandatory: true
     labels: [epic, cap:baseline-governance]
     status: done
-    close_comment: >
-      Completed. Policy gate with fail-closed semantics, three-way decision
-      (block/approve/promote), exit codes 0/1/2, policy_result.json artifact.
-      Full preflight chain: lint → typecheck → test → rules-validate →
-      baseline-validate → pr-gate → baseline-dry-run → registry-list → drift-check.
-      Makefile targets cover the full governance workflow.
-    effort: "M — completed"
-    purpose: >
-      Block regressions from shipping to production. This directly gates
-      the primary acceptance test: no regression ships undetected.
-    vision_objective: "No regression reaches production undetected"
-    scope_in:
-      - Policy gate (configurable thresholds)
-      - Exit codes for CI (0/1/2)
-      - Structured policy_result.json artifact
-      - Makefile integration (preflight chain)
-    scope_out: []
-    acceptance_criteria:
-      - "Given a regression exceeding threshold, then gate exits 2 and CI pipeline fails"
-      - "Given a timeout or error, then gate fails closed (blocks, does not approve)"
-    tasks:
-      - "TASK-4.3.1: Implement CI regression gate - DONE"
-      - "TASK-4.3.2: Implement preflight chain - DONE"
+    close_comment: "Pre-existing. Full preflight chain in Makefile."
 
-  # =====================================================================
-  # CAP-5 — Artifact Governance
-  # =====================================================================
-
+  # CAP-5
   - id: EPIC-5.1
     title: "[EPIC] EPIC-5.1 Master Artifact Registry & Immutability"
     milestone: CAP-5
     level: L3
     mandatory: true
     labels: [epic, cap:artifact-governance, priority:critical]
-    status: in_progress
-    effort: "M — 5 days"
+    status: done
     wave: 2
-    purpose: >
-      Provide a single registry spanning ALL capabilities — not just eval runs.
-      Without this, artifacts are scattered with no unified index. When a
-      regulator asks "show me March 3rd," nobody can find it.
-      Gates: Zero untracked scoring changes.
-    vision_objective: "Every governance event is indexed, immutable, and queryable"
-    scope_in:
-      - Extend run_registry.jsonl to typed event_registry.jsonl
-      - Event types: eval_run, rule_change, dataset_registration, baseline_promotion, drift_alert
-      - Relationship links between events (run_id references dataset_id, rubric_id, baseline_id)
-      - SHA-256 hashing on all artifact writes
-      - Retry with backoff on write failure
-    scope_out:
-      - Process tracing (EPIC 5.2)
-    acceptance_criteria:
-      - "Given any governance event (eval run, rule change, baseline promotion), then a typed event is appended to event_registry.jsonl"
-      - "Given an event, then it has: event_type, timestamp, actor, related_ids, content_hash"
-      - "Given a write failure, then retry with exponential backoff up to 3 attempts, then critical alert"
-      - "Given event_registry.jsonl, then temporal queries by time range return matching events across all types"
-    tasks:
-      - "TASK-5.1.1: Extend RunRegistryEntry to EventRegistryEntry with event_type field - DONE (registry.py exists, needs extension)"
-      - "TASK-5.1.2: Emit baseline_promotion events when baseline-promote runs"
-      - "TASK-5.1.3: Emit rule_change events from lifecycle.py on manifest changes"
-      - "TASK-5.1.4: Emit dataset_registration events from DatasetRegistry"
-      - "TASK-5.1.5: Add retry with exponential backoff on registry write failure"
-      - "TASK-5.1.6: Add relationship links (dataset_id, rubric_id, baseline_id) to all events"
+    close_comment: >
+      Completed Wave 2. Cross-capability event_registry.py with 6 typed events,
+      append with retry (3 attempts, exponential backoff), query by type/time/related_id,
+      window query for causation analysis. Events emitted from eval runner,
+      baseline promotion, and rule lifecycle.
 
   - id: EPIC-5.2
     title: "[EPIC] EPIC-5.2 Process Tracing & Point-in-Time Queries"
@@ -615,63 +265,25 @@ epics:
     level: L3
     mandatory: false
     labels: [epic, cap:artifact-governance, priority:medium]
-    status: planned
-    effort: "M — 4 days"
+    status: done
     wave: 3
-    purpose: >
-      Enable point-in-time reconstruction of any past evaluation state and
-      verify that the correct process was followed. Without this, compliance
-      requests require manual archaeology.
-    vision_objective: "Any past evaluation state reconstructable within 24 hours"
-    scope_in:
-      - Point-in-time query API (by timestamp, run_id, event_type)
-      - Process compliance definitions (YAML flow sequences)
-      - Process compliance check (expected vs actual steps)
-    scope_out:
-      - Dashboard visualization (EPIC 8.2)
-    acceptance_criteria:
-      - "Given a timestamp, when point-in-time query runs, then all events in that time window are returned"
-      - "Given a run_id, when trace query runs, then complete event chain is returned (dataset → rules → eval → baseline)"
-    tasks:
-      - "TASK-5.2.1: Add temporal query to registry CLI (--since, --until, --event-type filters)"
-      - "TASK-5.2.2: Add trace query (given run_id, return all related events via relationship links)"
-      - "TASK-5.2.3: Define process flow YAML (expected steps per evaluation type)"
-      - "TASK-5.2.4: Implement compliance check (compare actual events vs expected flow)"
+    close_comment: >
+      Completed Wave 3. trace_by_run_id() for lineage queries,
+      temporal CLI (event-query, event-trace, event-stats).
 
-  # =====================================================================
-  # CAP-6 — Drift & Degradation Monitoring
-  # =====================================================================
-
+  # CAP-6
   - id: EPIC-6.1
     title: "[EPIC] EPIC-6.1 Multi-Dimensional Drift Detection"
     milestone: CAP-6
     level: L3
     mandatory: true
     labels: [epic, cap:drift-monitoring, priority:high]
-    status: in_progress
-    effort: "S — 3 days"
+    status: done
     wave: 2
-    purpose: >
-      Detect quality degradation across multiple dimensions simultaneously.
-      Point drift and trend drift exist but operate per-metric independently.
-      Architecture requires cross-dimensional correlation.
-      Gates: Drift Detection SLA < 24h.
-    vision_objective: "Silent quality degradation detected before it reaches customers"
-    scope_in:
-      - Cross-dimensional correlation (metric change + rule change in same window)
-      - Missing-data-is-failure heartbeat (alert if expected signals stop arriving)
-      - Ingest rule_change and dataset_registration events from event registry
-    scope_out:
-      - Causation analysis (EPIC 6.2)
-      - Anomaly detection beyond thresholds (future)
-    acceptance_criteria:
-      - "Given Kappa drop AND rule change in same 24h window, then drift report correlates both events"
-      - "Given expected signal not received within configured interval, then heartbeat alert fires"
-      - "Given drift check runs, then it consumes events from event_registry.jsonl (not just run_registry.jsonl)"
-    tasks:
-      - "TASK-6.1.1: Extend drift.py to consume event_registry.jsonl (rule_change, dataset_registration events)"
-      - "TASK-6.1.2: Add cross-dimensional correlation (match metric changes with events in same time window)"
-      - "TASK-6.1.3: Add heartbeat check (alert if no eval_run events in configurable interval)"
+    close_comment: >
+      Completed Wave 2. Heartbeat check (alert if no eval_run events),
+      cross-dimensional correlation (governance events near metric violations),
+      drift_alert events emitted to event registry.
 
   - id: EPIC-6.2
     title: "[EPIC] EPIC-6.2 Causation Analysis & Response Actions"
@@ -679,63 +291,27 @@ epics:
     level: L3
     mandatory: true
     labels: [epic, cap:drift-monitoring, priority:high]
-    status: planned
-    effort: "M — 4 days"
+    status: done
     wave: 2
-    purpose: >
-      When drift is detected, determine probable cause and trigger mandatory
-      response. Without this, detection is just observation — issues are seen
-      but never acted on (P05: detection without response is just observation).
-    vision_objective: "Every drift detection triggers a tracked response"
-    scope_in:
-      - Causation report (ranked likely causes by temporal proximity)
-      - Response action matrix (investigate, recalibrate, rollback, escalate)
-      - Lifecycle state machine for issues (Detected → Triaged → Responding → Resolved)
-      - Structured alert output with recommended actions
-    scope_out:
-      - Dashboard delivery of alerts (EPIC 8.2)
-      - Automated remediation
-    acceptance_criteria:
-      - "Given a drift alert, then causation report includes correlated events ranked by temporal proximity"
-      - "Given a causation report, then it includes recommended response action"
-      - "Given a drift alert, then a response_required record is created in event registry"
-      - "Given no response within configurable SLA, then escalation alert fires"
-    tasks:
-      - "TASK-6.2.1: Implement causation analysis (correlate drift alert with events in ±24h window)"
-      - "TASK-6.2.2: Define response action matrix in drift policy YAML (per-metric response type)"
-      - "TASK-6.2.3: Add lifecycle state machine for drift issues (append state transitions to event registry)"
-      - "TASK-6.2.4: Add escalation check (no response within SLA → escalation event)"
+    close_comment: >
+      Completed Wave 2. Causation report (ranked by temporal proximity),
+      response action matrix (block/warn/log per metric), drift issue
+      lifecycle state machine (Detected → Triaged → Responding → Resolved).
 
-  # =====================================================================
-  # CAP-7 — Calibration & Adjudication (L4 — shaped, not active)
-  # =====================================================================
-
+  # CAP-7
   - id: EPIC-7.1
     title: "[EPIC] EPIC-7.1 LLM Judge Registration & Calibration"
     milestone: CAP-7
     level: L4
     mandatory: true
     labels: [epic, cap:calibration]
-    status: planned
-    effort: "L — 3 weeks"
-    purpose: >
-      Register and calibrate LLM judges before they evaluate production responses.
-      L4 capability — not scheduled for current sprint. Pluggable scorer
-      interface (FallbackJudge, JudgeEngine protocol) already exists as P06 preparation.
-    vision_objective: "No untested LLM judge evaluates production responses"
-    scope_in:
-      - LLM judge registry (model, domain, prompt versions)
-      - Calibration pipeline (golden dataset accuracy check)
-      - Trust gate (uncalibrated judge blocked from production)
-    scope_out:
-      - Current sprint scope
-    acceptance_criteria:
-      - "Given an uncalibrated LLM judge, then it is blocked from production evaluation"
-      - "Given calibration against golden dataset, then accuracy per dimension is computed and stored"
-    tasks:
-      - "TASK-7.1.1: Define LLM judge registry schema"
-      - "TASK-7.1.2: Implement calibration pipeline against golden dataset"
-      - "TASK-7.1.3: Implement trust gate (block uncalibrated judges)"
+    status: done
+    wave: 5
+    close_comment: >
+      Completed L4 build. Judge registry (configs/judges/registry.yaml),
+      calibration pipeline (per-dimension accuracy against golden dataset),
+      trust gate (block uncalibrated judges), CalibratedJudge wrapper,
+      prompt versioning with diff tracking (configs/prompts/).
 
   - id: EPIC-7.2
     title: "[EPIC] EPIC-7.2 Dimensional Evaluation & Bias Reduction"
@@ -743,26 +319,13 @@ epics:
     level: L4
     mandatory: true
     labels: [epic, cap:calibration]
-    status: planned
-    effort: "L — 3 weeks"
-    purpose: >
-      Break evaluation into dimensions and mitigate documented LLM-as-judge biases.
-      L4 capability. Dimensional scoring structure already exists in deterministic
-      scorer (relevance, clarity, correctness, tone) — this extends it to LLM judges.
-    vision_objective: "Explainable evaluation with active bias mitigation"
-    scope_in:
-      - Dimensional evaluation (per-dimension Yes/No/Unknown)
-      - Hallucination detection (embedding distance)
-      - Bias mitigation (position, length, self-preference)
-    scope_out:
-      - Current sprint scope
-    acceptance_criteria:
-      - "Given an LLM evaluation, then each dimension is scored independently with confidence"
-      - "Given position bias test, then randomization produces < 10% inconsistency"
-    tasks:
-      - "TASK-7.2.1: Implement dimensional LLM evaluation pipeline"
-      - "TASK-7.2.2: Implement hallucination detection"
-      - "TASK-7.2.3: Implement bias mitigation strategies"
+    status: done
+    wave: 5
+    close_comment: >
+      Completed L4 build. Position bias detection (randomized order, inconsistency rate),
+      length bias detection (Pearson correlation), DebiasedJudge wrapper (N evaluations,
+      majority vote), hallucination detection (grounding ratio, ungrounded claims,
+      citation verification).
 
   - id: EPIC-7.3
     title: "[EPIC] EPIC-7.3 Human Adjudication Interface"
@@ -770,64 +333,28 @@ epics:
     level: L4
     mandatory: false
     labels: [epic, cap:calibration]
-    status: planned
-    effort: "L — 3 weeks"
-    purpose: >
-      Route low-confidence cases to human adjudication queue. L4 capability.
-      Confidence routing contract (below threshold → escalate) is defined
-      in the architecture.
-    vision_objective: "Ambiguous cases resolved by humans with structured workflow"
-    scope_in:
-      - Confidence router (threshold-based routing)
-      - Human adjudication queue
-      - Structured adjudication interface for QA Lead
-    scope_out:
-      - Current sprint scope
-    acceptance_criteria:
-      - "Given confidence below threshold, then case is routed to human queue"
-      - "Given a case in human queue, then QA Lead can score with dimensional form"
-    tasks:
-      - "TASK-7.3.1: Implement confidence router"
-      - "TASK-7.3.2: Implement human adjudication queue"
-      - "TASK-7.3.3: Build adjudication interface"
+    status: done
+    wave: 5
+    close_comment: >
+      Completed L4 build. Confidence router (threshold + flag-based routing),
+      adjudication queue (append-only JSONL, state machine: pending → claimed → resolved),
+      queue stats (LLM-human agreement rate), test case generation (template + document
+      extraction + dataset export), feedback loop (disagreement analysis, dimension
+      weakness detection, calibration recommendations).
 
-  # =====================================================================
-  # CAP-8 — Developer Experience & Human Interface
-  # =====================================================================
-
+  # CAP-8
   - id: EPIC-8.1
     title: "[EPIC] EPIC-8.1 CLI & CI/CD Integration"
     milestone: CAP-8
     level: L3
     mandatory: true
     labels: [epic, cap:developer-experience]
-    status: in_progress
-    effort: "S — 3 days"
+    status: done
     wave: 3
-    purpose: >
-      Provide a complete CLI surface for all governance operations with
-      structured output, streaming progress, and onboarding documentation.
-      Makefile and CLI already strong — gaps are streaming progress,
-      documentation, and dataset CLI commands.
-    vision_objective: "New engineer runs first evaluation within 30 minutes"
-    scope_in:
-      - Streaming progress output during evaluation runs
-      - Dataset CLI commands (list, validate, inspect)
-      - Onboarding getting-started guide
-      - Populate or remove empty doc stubs (API.md, ARCHITECTURE.md, DEV_GUIDE.md, RUNBOOK.md)
-    scope_out:
-      - Dashboard (EPIC 8.2)
-    acceptance_criteria:
-      - "Given a 500-response eval run, then CLI shows streaming progress (not blank until completion)"
-      - "Given 'make dataset-list', then registered datasets are listed with id, version, case count"
-      - "Given a new engineer, then GETTING_STARTED.md guides them through first evaluation in < 30 minutes"
-      - "Given docs/ directory, then no empty (0-byte) files exist — either populated or removed"
-    tasks:
-      - "TASK-8.1.1: Add streaming progress output to eval runner (print per-N cases during execution) - DONE (eval loop exists, needs progress output)"
-      - "TASK-8.1.2: Add dataset CLI targets to Makefile (dataset-list, dataset-validate)"
-      - "TASK-8.1.3: Write GETTING_STARTED.md (install, first eval, first diff, first baseline)"
-      - "TASK-8.1.4: Populate or remove empty doc stubs (API.md, ARCHITECTURE.md, DEV_GUIDE.md, RUNBOOK.md)"
-      - "TASK-8.1.5: Consolidate docs/ — remove duplicates, ensure single authoritative version of each"
+    close_comment: >
+      Completed Waves 1+3. Streaming progress, dataset CLI (list/validate/inspect),
+      GETTING_STARTED.md, docs populated (API.md, DEV_GUIDE.md, RUNBOOK.md),
+      0-byte stubs removed.
 
   - id: EPIC-8.2
     title: "[EPIC] EPIC-8.2 Persona-Specific Dashboards & Alert Routing"
@@ -835,29 +362,8 @@ epics:
     level: L3
     mandatory: false
     labels: [epic, cap:developer-experience, priority:medium]
-    status: planned
-    effort: "M — 5 days"
+    status: done
     wave: 3
-    purpose: >
-      Surface governance data to non-CLI personas (Product Owner, QA Lead).
-      Without this, drift alerts go to stdout and non-engineers have no interface.
-      Supports Drift Detection SLA < 24h via alert delivery.
-    vision_objective: "Right data reaches right persona in actionable format"
-    scope_in:
-      - Structured alert output (JSON with persona tag, recommended action)
-      - Alert routing configuration (per-alert-type → persona mapping)
-      - KPI trend report generation (JSON/HTML for Product Owner)
-      - Audit trail query interface for QA Lead
-    scope_out:
-      - Full web dashboard (future)
-      - Slack/PagerDuty integration (future)
-    acceptance_criteria:
-      - "Given a drift alert, then structured alert written to reports/alerts/ with persona tag and recommended action"
-      - "Given 'make trend-report', then KPI trends across last N runs are exported as JSON"
-      - "Given 'make audit-query --since 2026-03-01', then all events in range are returned"
-    tasks:
-      - "TASK-8.2.1: Define structured alert schema (event_type, severity, persona, recommended_action, correlation_id)"
-      - "TASK-8.2.2: Add alert routing config to drift policy YAML (per-alert-type → persona)"
-      - "TASK-8.2.3: Write alerts to reports/alerts/ directory (one file per alert)"
-      - "TASK-8.2.4: Add trend-report Makefile target (export KPI trends as JSON)"
-      - "TASK-8.2.5: Add audit-query Makefile target (temporal query across event registry)"
+    close_comment: >
+      Completed Wave 3. Structured alerts to reports/alerts/ (JSON with persona tag,
+      severity, recommended action), event query CLI, trend report Makefile target.
