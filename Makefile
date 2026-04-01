@@ -4,7 +4,7 @@
 # ----------------------------------------
 
 .PHONY: help install lint typecheck test baseline-validate pr-gate diff baseline-dry-run baseline-promote \
-        registry-list registry-show registry-trend eval preflight clean git-start git-ship git-merge
+        registry-list registry-show registry-trend eval preflight clean git-start git-ship git-merge validate
 
 # Defaults (override like: make SUITE=golden RUBRIC=chat_quality ...)
 SUITE ?= math_basic
@@ -286,3 +286,6 @@ preflight: lint typecheck test rules-validate baseline-validate pr-gate baseline
 
 clean:
 	rm -rf reports/runs/pr-gate-*
+
+validate:
+	poetry run python tools/validate_platform.py --dataset datasets/validation/cs_validation_scored.jsonl

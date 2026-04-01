@@ -18,6 +18,8 @@ rules:
       ngram_n: 3
       min_repeated_ngram_count: 3
       min_duplicate_line_ratio: 0.35
+      max_unique_ratio: 0.4
+      min_token_count_for_diversity: 8
 
   - id: correctness.definition_sanity
     enabled: true
