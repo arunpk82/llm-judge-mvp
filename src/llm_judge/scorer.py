@@ -451,6 +451,23 @@ def score_candidate(request: PredictRequest) -> PredictResponse:
     # Only apply quality hard-fail for non-math rubrics
     if rubric_id not in _MATH_RUBRICS and _has_strong_flag(flags, "quality.nonsense_basic"):
         decision = "fail"
+    if rubric_id not in _MATH_RUBRICS and _has_strong_flag(flags, "quality.repetition_basic"):
+        decision = "fail"
+
+    # Rule flags influence dimensional scores (not just decision).
+    # When quality rules fire, scores should reflect the detected issue.
+    if rubric_id not in _MATH_RUBRICS:
+        if _has_strong_flag(flags, "quality.nonsense_basic"):
+            scores["clarity"] = min(scores["clarity"], 1)
+            scores["correctness"] = min(scores["correctness"], 1)
+            scores["relevance"] = min(scores["relevance"], 2)
+        if _has_strong_flag(flags, "quality.repetition_basic"):
+            scores["clarity"] = min(scores["clarity"], 1)
+            scores["relevance"] = min(scores["relevance"], 2)
+        if _has_flag(flags, "quality.nonsense_basic"):
+            scores["clarity"] = min(scores["clarity"], 2)
+        if _has_flag(flags, "quality.repetition_basic"):
+            scores["clarity"] = min(scores["clarity"], 2)
 
     confidence = float(getattr(corr, "confidence", 0.5))
     confidence = max(0.0, min(1.0, confidence))
@@ -482,3 +499,11 @@ def score_candidate(request: PredictRequest) -> PredictResponse:
         flags=flags,
         explanations=explanations,
     )
+
+def _has_flag(flags: list[str], prefix: str) -> bool:
+    """True if any flag matches the prefix (any severity)."""
+    for f in flags:
+        base, _, _ = f.partition(":")
+        if base == prefix:
+            return True
+    return False
