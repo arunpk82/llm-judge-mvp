@@ -41,11 +41,14 @@ def get_judge_engine() -> JudgeEngine:
 
     JUDGE_ENGINE env var controls which engine is used:
       deterministic  — Gate 1 only (default)
-      gemini         — Gemini API (free tier) + deterministic fallback
-      groq           — Groq API (free tier) + deterministic fallback
-      openai         — OpenAI API + deterministic fallback
-      ollama         — Ollama local + deterministic fallback
+      gemini         — Gate 2 Gemini only + deterministic fallback
+      groq           — Gate 2 Groq only + deterministic fallback
+      openai         — Gate 2 OpenAI only + deterministic fallback
+      ollama         — Gate 2 Ollama only + deterministic fallback
       llm            — alias for openai (backward compatible)
+      sequential     — Gate 1 first, escalate to Gate 2 when low confidence
+                       Requires GATE2_ENGINE to specify which LLM provider
+                       Example: JUDGE_ENGINE=sequential GATE2_ENGINE=gemini
 
     All LLM engines fall back to deterministic on failure.
     """
@@ -57,7 +60,17 @@ def get_judge_engine() -> JudgeEngine:
     if engine_choice == "deterministic":
         return deterministic
 
-    # Map legacy "llm" to "openai"
+    # Sequential mode: Gate 1 + Gate 2 combined
+    if engine_choice == "sequential":
+        from llm_judge.sequential_judge import SequentialJudge
+
+        gate2_engine = os.getenv("GATE2_ENGINE", "gemini").strip().lower()
+        if gate2_engine == "llm":
+            gate2_engine = "openai"
+        gate2 = LLMJudge(timeout_ms=timeout_ms, engine=gate2_engine)
+        return SequentialJudge(gate1=deterministic, gate2=gate2)
+
+    # Single LLM mode with fallback
     if engine_choice == "llm":
         engine_choice = "openai"
 
