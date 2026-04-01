@@ -1,0 +1,41 @@
+# docker-compose.yaml — LLM-Judge Platform (EPIC-D3)
+#
+# Usage:
+#   cp .env.example .env       # edit as needed
+#   docker-compose up -d       # start
+#   curl localhost:8000/ready  # verify readiness
+#   docker-compose restart     # state persists via volumes
+#   docker-compose down        # stop (data preserved)
+#   docker-compose down -v     # stop + delete data volumes
+
+version: "3.9"
+
+services:
+  llm-judge:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: llm-judge
+    ports:
+      - "${LLM_JUDGE_PORT:-8000}:8000"
+    env_file:
+      - .env
+    environment:
+      # Path resolution (D1) — baked into Dockerfile defaults,
+      # listed here for visibility
+      - LLM_JUDGE_CONFIGS_DIR=/app/configs
+      - LLM_JUDGE_DATA_DIR=/data
+    volumes:
+      # Persistent state — survives restart and rebuild
+      - llm-judge-data:/data
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "python", "-c", "import httpx; r=httpx.get('http://localhost:8000/ready', timeout=4); exit(0 if r.status_code==200 else 1)"]
+      interval: 30s
+      timeout: 5s
+      start_period: 10s
+      retries: 3
+
+volumes:
+  llm-judge-data:
+    driver: local

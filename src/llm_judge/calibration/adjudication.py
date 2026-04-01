@@ -16,9 +16,11 @@ from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
 
+from llm_judge.paths import state_root
+
 logger = logging.getLogger(__name__)
 
-DEFAULT_QUEUE_PATH = Path("reports/adjudication/queue.jsonl")
+DEFAULT_QUEUE_PATH = state_root() / "adjudication" / "queue.jsonl"
 
 QUEUE_STATES = ("pending", "claimed", "resolved")
 VALID_QUEUE_TRANSITIONS: dict[str, list[str]] = {

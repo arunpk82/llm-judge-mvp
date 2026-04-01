@@ -21,6 +21,8 @@ from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
 
+from llm_judge.paths import state_root
+
 logger = logging.getLogger(__name__)
 
 
@@ -209,9 +211,11 @@ def _generate_recommendations(report: FeedbackReport) -> None:
 
 def save_feedback_report(
     report: FeedbackReport,
-    output_dir: Path = Path("reports/feedback"),
+    output_dir: Path | None = None,
 ) -> Path:
     """Save feedback report as JSON."""
+    if output_dir is None:
+        output_dir = state_root() / "feedback"
     output_dir.mkdir(parents=True, exist_ok=True)
 
     data: dict[str, Any] = {

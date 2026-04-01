@@ -4,9 +4,9 @@ from __future__ import annotations
 
 import asyncio
 import json
-from pathlib import Path
 from typing import Any
 
+from llm_judge.paths import ensure_dir, state_root
 from llm_judge.runtime import get_judge_engine
 from llm_judge.schemas import PredictRequest
 
@@ -183,8 +183,7 @@ async def run_eval(path: str = "datasets/golden/v1.jsonl") -> None:
         },
     }
 
-    Path("reports").mkdir(exist_ok=True)
-    out_path = Path("reports/eval_report.json")
+    out_path = ensure_dir(state_root()) / "eval_report.json"
     with open(out_path, "w", encoding="utf-8") as f:
         json.dump(report, f, indent=2)
 

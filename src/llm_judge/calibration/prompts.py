@@ -15,9 +15,11 @@ from typing import Any
 
 import yaml
 
+from llm_judge.paths import config_root
+
 logger = logging.getLogger(__name__)
 
-PROMPTS_DIR = Path("configs/prompts")
+PROMPTS_DIR = config_root() / "prompts"
 
 
 @dataclass(frozen=True)

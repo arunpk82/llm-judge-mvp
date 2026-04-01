@@ -7,8 +7,10 @@ from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any, Iterable, Optional
 
+from llm_judge.paths import state_root
+
 REGISTRY_SCHEMA_VERSION = "1.0"
-DEFAULT_REGISTRY_PATH = Path("reports/run_registry.jsonl")
+DEFAULT_REGISTRY_PATH = state_root() / "run_registry.jsonl"
 
 
 @dataclass(frozen=True)

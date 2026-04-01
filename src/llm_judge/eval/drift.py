@@ -9,12 +9,14 @@ from typing import Any, Iterable
 
 import yaml
 
+from llm_judge.paths import state_root
+
 EXIT_OK = 0
 EXIT_RUNTIME_ERROR = 1
 EXIT_POLICY_VIOLATION = 2
 
-DEFAULT_REGISTRY_PATH = Path("reports/run_registry.jsonl")
-DEFAULT_REPORT_PATH = Path("reports/drift/drift_report.json")
+DEFAULT_REGISTRY_PATH = state_root() / "run_registry.jsonl"
+DEFAULT_REPORT_PATH = state_root() / "drift" / "drift_report.json"
 
 
 @dataclass(frozen=True)
@@ -538,7 +540,7 @@ VALID_TRANSITIONS: dict[str, list[str]] = {
     "resolved": [],  # terminal
 }
 
-DEFAULT_DRIFT_ISSUES_PATH = Path("reports/drift/drift_issues.jsonl")
+DEFAULT_DRIFT_ISSUES_PATH = state_root() / "drift" / "drift_issues.jsonl"
 
 
 def _load_drift_issues(

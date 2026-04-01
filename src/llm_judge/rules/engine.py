@@ -5,6 +5,7 @@ from dataclasses import dataclass
 from pathlib import Path
 from typing import Any, Mapping, Sequence
 
+from llm_judge.paths import config_root
 from llm_judge.rules.registry import get_rule
 from llm_judge.rules.types import RuleContext
 
@@ -211,7 +212,7 @@ def load_plan_for_rubric(rubric_id: str, version: str) -> RulePlan:
     EPIC-3.2: Rules that are deprecated AND past their warning period
     are automatically excluded from the plan.
     """
-    path = Path("configs") / "rules" / f"{rubric_id}_{version}.yaml"
+    path = config_root() / "rules" / f"{rubric_id}_{version}.yaml"
     data = _load_yaml(path)
 
     # Determine which rules are deprecated-enforced (past warning period)

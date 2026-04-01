@@ -24,12 +24,13 @@ from typing import Any
 import yaml
 
 from llm_judge.judge_base import JudgeEngine
+from llm_judge.paths import config_root, state_root
 from llm_judge.schemas import PredictRequest, PredictResponse
 
 logger = logging.getLogger(__name__)
 
-JUDGE_REGISTRY_PATH = Path("configs/judges/registry.yaml")
-CALIBRATION_DIR = Path("reports/calibration")
+JUDGE_REGISTRY_PATH = config_root() / "judges" / "registry.yaml"
+CALIBRATION_DIR = state_root() / "calibration"
 
 VALID_JUDGE_STATUSES = frozenset({
     "registered", "calibrating", "calibrated", "blocked",
