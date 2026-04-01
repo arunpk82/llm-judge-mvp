@@ -35,11 +35,13 @@ from typing import Any, Iterable
 
 import yaml
 
+from llm_judge.paths import baselines_root, state_root
+
 logger = logging.getLogger(__name__)
 
 # Default paths (can be overridden)
-DEFAULT_BASELINES_DIR = Path("baselines")
-DEFAULT_RUNS_DIR = Path("reports/runs")
+DEFAULT_BASELINES_DIR = baselines_root()
+DEFAULT_RUNS_DIR = state_root() / "runs"
 
 
 @dataclass(frozen=True)

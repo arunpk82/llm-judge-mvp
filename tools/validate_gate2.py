@@ -34,6 +34,7 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "src"))
 
 from llm_judge.deterministic_judge import DeterministicJudge  # noqa: E402
+from llm_judge.paths import state_root  # noqa: E402
 from llm_judge.schemas import Message, PredictRequest  # noqa: E402
 
 
@@ -258,7 +259,7 @@ def main() -> int:
     )
     parser.add_argument(
         "--output-dir",
-        default="reports/validation",
+        default=None,
         help="Directory for results (default: reports/validation/)",
     )
     args = parser.parse_args()
@@ -311,7 +312,7 @@ def main() -> int:
     print_comparison(gate2_results)
 
     # 6. Save results
-    output_dir = Path(args.output_dir)
+    output_dir = Path(args.output_dir) if args.output_dir else state_root() / "validation"
     output_dir.mkdir(parents=True, exist_ok=True)
 
     results_path = output_dir / "gate2_results.json"

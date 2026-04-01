@@ -19,9 +19,11 @@ from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
 
+from llm_judge.paths import datasets_root
+
 logger = logging.getLogger(__name__)
 
-GENERATED_DIR = Path("datasets/generated")
+GENERATED_DIR = datasets_root() / "generated"
 
 
 @dataclass

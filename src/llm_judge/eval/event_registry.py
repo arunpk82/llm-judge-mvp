@@ -29,10 +29,12 @@ from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any, Iterable
 
+from llm_judge.paths import state_root
+
 logger = logging.getLogger(__name__)
 
 EVENT_REGISTRY_SCHEMA_VERSION = "1.0"
-DEFAULT_EVENT_REGISTRY_PATH = Path("reports/event_registry.jsonl")
+DEFAULT_EVENT_REGISTRY_PATH = state_root() / "event_registry.jsonl"
 
 # Valid event types — enforced at append time
 VALID_EVENT_TYPES = frozenset({
@@ -283,7 +285,7 @@ def trace_by_run_id(
 # EPIC 8.2: Structured alerts
 # =====================================================================
 
-DEFAULT_ALERTS_DIR = Path("reports/alerts")
+DEFAULT_ALERTS_DIR = state_root() / "alerts"
 
 
 def write_structured_alert(

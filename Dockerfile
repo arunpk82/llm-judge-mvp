@@ -168,11 +168,27 @@ PY
 
 RUN python -m pip check
 
-# Copy app code + rubrics
+# Copy app code + static assets baked into image
 COPY src ./src
 COPY rubrics ./rubrics
+COPY configs ./configs
+COPY rules ./rules
+COPY datasets/math_basic ./datasets/math_basic
+COPY datasets/validation ./datasets/validation
+COPY tools ./tools
+
+# Create data directories (will be overlaid by volume mounts)
+RUN mkdir -p /data/reports /data/baselines /data/datasets \
+    && chown -R appuser:appuser /data
+
+# D1 env-independent paths: default for Docker layout
+ENV LLM_JUDGE_CONFIGS_DIR=/app/configs \
+    LLM_JUDGE_DATA_DIR=/data
 
 USER appuser
 EXPOSE 8000
+
+HEALTHCHECK --interval=30s --timeout=5s --start-period=10s --retries=3 \
+    CMD ["python", "-c", "import httpx; r=httpx.get('http://localhost:8000/ready', timeout=4); exit(0 if r.status_code==200 else 1)"]
 
 CMD ["uvicorn", "llm_judge.main:app", "--host", "0.0.0.0", "--port", "8000"]

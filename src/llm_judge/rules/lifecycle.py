@@ -9,8 +9,10 @@ from typing import Any
 
 import yaml
 
+from llm_judge.paths import state_root
+
 MANIFEST_PATH = Path("rules/manifest.yaml")
-AUDIT_LOG_PATH = Path("reports/rule_audit.jsonl")
+AUDIT_LOG_PATH = state_root() / "rule_audit.jsonl"
 VALID_STATUSES = {"draft", "validated", "production", "deprecated"}
 
 # Default review period if not specified per-rule

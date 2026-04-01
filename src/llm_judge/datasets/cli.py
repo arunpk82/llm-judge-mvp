@@ -15,7 +15,9 @@ from typing import Any
 
 import yaml
 
-DEFAULT_DATASETS_DIR = Path("datasets")
+from llm_judge.paths import datasets_root
+
+DEFAULT_DATASETS_DIR = datasets_root()
 
 
 def _sha256_file(path: Path) -> str:
