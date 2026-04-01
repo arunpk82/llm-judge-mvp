@@ -34,8 +34,8 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "src"))
 
 from llm_judge.deterministic_judge import DeterministicJudge  # noqa: E402
-from llm_judge.schemas import Message, PredictRequest  # noqa: E402
 from llm_judge.paths import state_root  # noqa: E402
+from llm_judge.schemas import Message, PredictRequest  # noqa: E402
 
 def load_dataset(path: Path) -> list[dict]:
     cases = []
