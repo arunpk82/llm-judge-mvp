@@ -110,7 +110,12 @@ def test_scorer_polite_language_improves_tone() -> None:
 
     req = PredictRequest(
         conversation=[Message(role="user", content="My internet is slow")],
-        candidate_answer="Please restart your router. Thanks!",
+        candidate_answer=(
+            "I understand how frustrating slow internet can be. "
+            "Let me help you troubleshoot this. First, please try restarting "
+            "your router by unplugging it for 30 seconds. If that doesn't help, "
+            "I can run a diagnostic on your connection. Thanks for your patience!"
+        ),
         rubric_id="chat_quality",
     )
     res = score_candidate(req)

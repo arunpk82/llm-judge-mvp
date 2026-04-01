@@ -48,18 +48,29 @@ def quality_repetition_basic(ctx: RuleContext, params: dict[str, Any]) -> RuleRe
             rep.sort(key=lambda x: (-x[1], x[0]))
             top_ngram = " ".join(rep[0][0])
 
+    # Unigram diversity: low unique-token ratio = word-level repetition
+    max_unique_ratio = float(params.get("max_unique_ratio", 0.4))
+    min_token_count = int(params.get("min_token_count_for_diversity", 8))
+    unique_ratio = len(set(toks)) / max(1, len(toks))
+
     triggers: list[str] = []
     if dup_line_ratio >= min_dup_line_ratio:
         triggers.append("duplicate_lines")
     if rep_ngram_count > 0:
         triggers.append("repeated_ngrams")
+    if len(toks) >= min_token_count and unique_ratio <= max_unique_ratio:
+        triggers.append("low_diversity")
 
     if not triggers:
         return RuleResult(flags=[])
 
     severity: Severity = (
         "strong"
-        if (dup_line_ratio >= (min_dup_line_ratio * 1.5) or rep_ngram_count >= 2)
+        if (
+            dup_line_ratio >= (min_dup_line_ratio * 1.5)
+            or rep_ngram_count >= 2
+            or unique_ratio <= max_unique_ratio
+        )
         else "weak"
     )
 
@@ -77,6 +88,7 @@ def quality_repetition_basic(ctx: RuleContext, params: dict[str, Any]) -> RuleRe
                 details={
                     "dup_line_ratio": round(dup_line_ratio, 3),
                     "repeated_ngram_types": rep_ngram_count,
+                    "unique_token_ratio": round(unique_ratio, 3),
                     "ngram_n": n,
                     "triggers": triggers,
                 },
