@@ -4,7 +4,8 @@
 # ----------------------------------------
 
 .PHONY: help install lint typecheck test baseline-validate pr-gate diff baseline-dry-run baseline-promote \
-        registry-list registry-show registry-trend eval preflight clean git-start git-ship git-merge validate
+        registry-list registry-show registry-trend eval preflight clean git-start git-ship git-merge validate \
+        docker-build docker-deploy docker-status docker-validate docker-down docker-reset
 
 # Defaults (override like: make SUITE=golden RUBRIC=chat_quality ...)
 SUITE ?= math_basic
@@ -45,6 +46,14 @@ help:
 	@echo "  POLICY=$(POLICY)"
 	@echo "  REGISTRY=$(REGISTRY) REG_LIMIT=$(REG_LIMIT) REG_METRIC=$(REG_METRIC) REG_LAST=$(REG_LAST)"
 	@echo ""
+	@echo ""
+	@echo "Docker targets:"
+	@echo "  make docker-build          Build Docker image"
+	@echo "  make docker-deploy         Pull latest, rebuild, start, verify ready"
+	@echo "  make docker-status         Check health, ready, and dependencies"
+	@echo "  make docker-validate       Run Gate 1 validation inside container"
+	@echo "  make docker-down           Stop container (keep data)"
+	@echo "  make docker-reset          Stop container and delete data volume"
 
 install:
 	poetry install --no-interaction --no-root
@@ -289,3 +298,50 @@ clean:
 
 validate:
 	poetry run python tools/validate_platform.py --dataset datasets/validation/cs_validation_scored.jsonl
+
+
+# ----------------------------------------
+# Docker targets (P07 — Design for Deployment)
+# ----------------------------------------
+
+docker-build:
+	docker-compose build
+
+docker-deploy:
+	@echo "Deploying from $(BASE_BRANCH)..."
+	git checkout $(BASE_BRANCH)
+	git pull origin $(BASE_BRANCH)
+	docker-compose down
+	docker-compose build
+	docker-compose up -d
+	@echo "Waiting for service to start..."
+	@sleep 5
+	@echo "Checking readiness..."
+	@curl -sf http://localhost:8000/ready | python -m json.tool \
+		&& echo "Deploy SUCCESS — service is ready. ✅" \
+		|| (echo "Deploy FAILED — /ready check did not pass. ❌" && exit 1)
+
+docker-status:
+	@echo "=== Health (liveness) ==="
+	@curl -sf http://localhost:8000/health | python -m json.tool || echo "Service not running"
+	@echo ""
+	@echo "=== Ready (readiness) ==="
+	@curl -sf http://localhost:8000/ready | python -m json.tool || echo "Service not ready"
+	@echo ""
+	@echo "=== Dependencies ==="
+	@curl -sf http://localhost:8000/health/dependencies | python -m json.tool || echo "Service not running"
+
+docker-validate:
+	@echo "Running Gate 1 validation inside container..."
+	docker exec llm-judge python tools/validate_platform.py \
+		--dataset datasets/validation/cs_validation_scored.jsonl
+	@echo ""
+	@echo "Validation complete. ✅"
+
+docker-down:
+	docker-compose down
+	@echo "Container stopped. Data volume preserved."
+
+docker-reset:
+	docker-compose down -v
+	@echo "Container stopped. Data volume deleted."
