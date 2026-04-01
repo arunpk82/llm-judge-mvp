@@ -1,0 +1,189 @@
+# Tone evaluation patterns — config-driven (no code changes to add new patterns)
+#
+# How it works:
+#   The tone heuristic loads this file and checks each phrase against the response.
+#   To add new patterns: edit this file, re-run validation. No Python changes needed.
+#
+# Pattern categories:
+#   severity: strong → score 1 (clear violation)
+#   severity: moderate → score 2 (concerning but less severe)
+#
+# How patterns grow:
+#   1. Run Gate 2 (LLM judge) on cases where Gate 1 returns neutral (score 3)
+#   2. LLM identifies tone issues that phrases missed
+#   3. Extract repeating patterns from LLM findings
+#   4. Add to this file
+#   5. Re-run validation to confirm improvement
+#
+# Created: March 2026
+# Source: Layer 2 validation — human expert scoring on 30 CS cases
+
+tone_patterns:
+  version: v1
+
+  # ================================================================
+  # STRONG NEGATIVE (score → 1)
+  # ================================================================
+  blame_shifting:
+    severity: strong
+    description: "Second-person + obligation/fault language"
+    phrases:
+      - "if you had read"
+      - "if you had checked"
+      - "next time make sure"
+      - "next time, make sure"
+      - "you should have"
+      - "you didn't"
+      - "you failed to"
+      - "you must have entered"
+      - "you forgot to"
+      - "you neglected"
+      - "not our policy"
+      - "not our problem"
+      - "not my problem"
+      - "we are not responsible"
+      - "not responsible for"
+      - "outside of our control"
+      - "outside our control"
+      - "issue with your"
+      - "problem with your"
+      - "fault on your end"
+      - "on your end"
+    # Regex patterns for variations with filler words
+    # e.g., "not really our problem", "not exactly our problem"
+    regex_patterns:
+      - "not\\s+\\w+\\s+our\\s+problem"
+      - "not\\s+\\w+\\s+my\\s+problem"
+      - "you\\s+should\\s+have\\s+\\w+"
+
+  pushy:
+    severity: strong
+    description: "Unwarranted urgency, pressure, argumentative"
+    phrases:
+      - "you need to upgrade"
+      - "you must switch"
+      - "you have to buy"
+      - "everyone is using"
+      - "all our best customers"
+      - "most people prefer"
+      - "everyone upgrades"
+      - "why wouldn't you"
+      - "it makes no sense"
+      - "why would you not"
+      - "trust me"
+      - "believe me"
+      - "i guarantee"
+      - "don't miss out"
+      - "act now"
+      - "before it's too late"
+      - "limited time"
+      - "hurry"
+
+  condescending:
+    severity: strong
+    description: "Trivializing difficulty, implying incompetence"
+    phrases:
+      - "maybe you're using it wrong"
+      - "are you sure you"
+      - "did you even try"
+      - "did you even read"
+      - "as you can clearly see"
+      - "it's actually quite simple"
+      - "it's really not that hard"
+      - "this is basic"
+      - "even a beginner"
+      - "standard practice dictates"
+      - "any user would know"
+      - "common sense"
+    # Words that are condescending at sentence start
+    sentence_start_words:
+      - "obviously"
+      - "simply"
+      - "basically"
+
+  # ================================================================
+  # MODERATE NEGATIVE (score → 2)
+  # ================================================================
+  dismissive:
+    severity: moderate
+    description: "Impatience, deflection, shutting down without path forward"
+    phrases:
+      # Impatient callbacks
+      - "as i mentioned"
+      - "as i said"
+      - "like i said"
+      - "as previously stated"
+      - "as i just"
+      - "i already told you"
+      - "i just explained"
+      # Dead-end deflections
+      - "refer to the documentation"
+      - "check the website"
+      - "google it"
+      - "contact support"
+      - "contact billing"
+      - "call this number"
+      - "email support@"
+      - "email us at"
+      # Abrupt shutdowns
+      - "that's just how it is"
+      - "nothing else i can do"
+      - "there is nothing else"
+      - "cannot help with that"
+      - "can't help with that"
+      - "not something we can"
+
+  # ================================================================
+  # CONTEXT-AWARE RUDE (score → 1)
+  # These use regex because context matters
+  # ================================================================
+  context_rude:
+    severity: strong
+    description: "Words that are rude only in certain contexts"
+    regex_patterns:
+      - "\\byou'?re\\s+trash\\b"
+      - "\\bthat'?s?\\s+trash\\b"
+      - "\\bstupid\\b"
+      - "\\bidiot\\b"
+      - "\\bmoron\\b"
+      - "\\bdumb\\b"
+      - "\\bshut\\s+up\\b"
+
+  # ================================================================
+  # POSITIVE SIGNALS
+  # ================================================================
+  polite:
+    description: "Helpful, professional language"
+    phrases:
+      - "i understand"
+      - "i'm sorry"
+      - "i apologize"
+      - "let me help"
+      - "happy to help"
+      - "glad to help"
+      - "i can help"
+      - "let me look into"
+      - "let me check"
+      - "thank you for"
+      - "thanks for your patience"
+      - "is there anything else"
+      - "don't hesitate to"
+      - "i appreciate"
+      - "great question"
+
+  empathy:
+    description: "Acknowledging user's emotional state"
+    phrases:
+      - "frustrating"
+      - "understand your concern"
+      - "sorry to hear"
+      - "i can see how"
+      - "that must be"
+
+  # ================================================================
+  # STRUCTURAL RULES
+  # ================================================================
+  structural:
+    short_response_threshold: 10       # words — below this is potentially dismissive
+    detailed_question_threshold: 15    # words — question above this needs substantive response
+    substantive_response_threshold: 25 # words — above this, no-negative-signal = score 4
