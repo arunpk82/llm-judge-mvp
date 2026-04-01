@@ -283,7 +283,7 @@ def main() -> int:
     )
     parser.add_argument(
         "--output-dir",
-        default="reports/validation",
+        default=None,
         help="Directory for validation results (default: reports/validation/)",
     )
     parser.add_argument(
@@ -298,7 +298,7 @@ def main() -> int:
         print(f"ERROR: Dataset not found: {dataset_path}", file=sys.stderr)
         return 1
 
-    output_dir = Path(args.output_dir)
+    output_dir = Path(args.output_dir) if args.output_dir else state_root() / "validation"
     output_dir.mkdir(parents=True, exist_ok=True)
 
     cases = load_validation_dataset(dataset_path)

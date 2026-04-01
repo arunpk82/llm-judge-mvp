@@ -174,9 +174,12 @@ COPY rubrics ./rubrics
 COPY configs ./configs
 COPY rules ./rules
 COPY datasets/math_basic ./datasets/math_basic
+COPY datasets/validation ./datasets/validation
+COPY tools ./tools
 
 # Create data directories (will be overlaid by volume mounts)
-RUN mkdir -p /data/reports /data/baselines /data/datasets
+RUN mkdir -p /data/reports /data/baselines /data/datasets \
+    && chown -R appuser:appuser /data
 
 # D1 env-independent paths: default for Docker layout
 ENV LLM_JUDGE_CONFIGS_DIR=/app/configs \
