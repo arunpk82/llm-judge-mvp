@@ -1,19 +1,13 @@
 """
 Gate 2 LLM Judge — unified provider with thin adapters.
 
+EPIC 7.5 CHANGE: LLMJudge now accepts an optional PromptTemplate.
+When provided, the versioned prompt replaces the hardcoded system prompt.
+The _FALLBACK_SYSTEM_PROMPT is used ONLY when no versioned prompt is
+available — and a warning is logged to make the fallback visible.
+
 One judge class, multiple providers. Provider is a config choice, not a code change.
 Supports: Gemini (free), OpenAI-compatible (OpenAI/Groq), Ollama (local).
-
-Usage:
-    JUDGE_ENGINE=gemini  GEMINI_API_KEY=...          (Google free tier)
-    JUDGE_ENGINE=groq    GROQ_API_KEY=...            (Groq free tier)
-    JUDGE_ENGINE=openai  LLM_API_KEY=...             (OpenAI)
-    JUDGE_ENGINE=ollama  OLLAMA_BASE_URL=...         (local or Colab)
-
-Architecture:
-    LLMJudge → ProviderAdapter → httpx → provider API
-    Each adapter is ~15 lines: build_request() + parse_response()
-    Adding a new provider = one new adapter class, no other changes.
 """
 from __future__ import annotations
 
@@ -21,7 +15,7 @@ import json
 import os
 import re
 from abc import ABC, abstractmethod
-from typing import Any, Final
+from typing import TYPE_CHECKING, Any, Final
 
 import httpx
 import structlog
@@ -29,11 +23,16 @@ import structlog
 from llm_judge.judge_base import JudgeEngine
 from llm_judge.schemas import PredictRequest, PredictResponse
 
+if TYPE_CHECKING:
+    from llm_judge.calibration.prompts import PromptTemplate
+
 logger = structlog.get_logger()
 
 _DEFAULT_TIMEOUT_S: Final[float] = 15.0
 
-_SYSTEM_PROMPT: Final[str] = """\
+# EPIC 7.5: This is now a FALLBACK only — versioned prompts take priority.
+# Using this fallback is logged as a WARNING so it's never silent.
+_FALLBACK_SYSTEM_PROMPT: Final[str] = """\
 You are a strict AI response quality evaluator for customer support.
 Score each dimension independently on a 1-5 scale:
 
@@ -52,10 +51,25 @@ Return ONLY valid JSON, no markdown fences.\
 """
 
 
-def _build_eval_prompt(request: PredictRequest) -> str:
+def _build_eval_prompt(
+    request: PredictRequest,
+    template: PromptTemplate | None = None,
+) -> str:
+    """Build the evaluation prompt from request, using versioned template if available."""
     conversation = "\n".join(
         f"{m.role.upper()}: {m.content}" for m in request.conversation
     )
+
+    if template and template.user_template:
+        # Use versioned user template
+        dimensions_str = ", ".join(template.dimensions) if template.dimensions else ""
+        return template.user_template.format(
+            conversation=conversation,
+            candidate_answer=request.candidate_answer,
+            dimensions=dimensions_str,
+        )
+
+    # Fallback to basic prompt structure
     return (
         f"Customer conversation:\n{conversation}\n\n"
         f"Candidate answer:\n{request.candidate_answer}\n\n"
@@ -64,6 +78,17 @@ def _build_eval_prompt(request: PredictRequest) -> str:
         '"confidence":float,"flags":["..."],'
         '"explanations":{"relevance":"...","clarity":"...","correctness":"...","tone":"..."}}'
     )
+
+
+def _get_system_prompt(template: PromptTemplate | None = None) -> str:
+    """Get the system prompt — versioned if available, fallback otherwise."""
+    if template and template.system_prompt:
+        return template.system_prompt
+    logger.warning(
+        "llm_judge.using_fallback_prompt",
+        reason="no versioned prompt provided",
+    )
+    return _FALLBACK_SYSTEM_PROMPT
 
 
 def _extract_json(text: str) -> dict:
@@ -103,7 +128,7 @@ class ProviderAdapter(ABC):
     """Thin adapter: translate between our format and a provider's API."""
 
     @abstractmethod
-    def build_request(self, prompt: str) -> tuple[str, dict[str, str], dict]:
+    def build_request(self, prompt: str, system_prompt: str) -> tuple[str, dict[str, str], dict]:
         """Return (url, headers, payload) for the provider."""
 
     @abstractmethod
@@ -119,7 +144,7 @@ class OpenAIAdapter(ProviderAdapter):
         self._api_key = api_key
         self._model = model
 
-    def build_request(self, prompt: str) -> tuple[str, dict[str, str], dict]:
+    def build_request(self, prompt: str, system_prompt: str) -> tuple[str, dict[str, str], dict]:
         headers = {
             "Authorization": f"Bearer {self._api_key}",
             "Content-Type": "application/json",
@@ -127,7 +152,7 @@ class OpenAIAdapter(ProviderAdapter):
         payload = {
             "model": self._model,
             "messages": [
-                {"role": "system", "content": _SYSTEM_PROMPT},
+                {"role": "system", "content": system_prompt},
                 {"role": "user", "content": prompt},
             ],
             "temperature": 0,
@@ -146,12 +171,12 @@ class GeminiAdapter(ProviderAdapter):
         self._model = model
         self._base = "https://generativelanguage.googleapis.com/v1beta/models"
 
-    def build_request(self, prompt: str) -> tuple[str, dict[str, str], dict]:
+    def build_request(self, prompt: str, system_prompt: str) -> tuple[str, dict[str, str], dict]:
         url = f"{self._base}/{self._model}:generateContent?key={self._api_key}"
         headers = {"Content-Type": "application/json"}
         payload: dict[str, Any] = {
             "contents": [{"role": "user", "parts": [{"text": prompt}]}],
-            "systemInstruction": {"parts": [{"text": _SYSTEM_PROMPT}]},
+            "systemInstruction": {"parts": [{"text": system_prompt}]},
             "generationConfig": {
                 "temperature": 0.0,
                 "topP": 1.0,
@@ -171,12 +196,12 @@ class OllamaAdapter(ProviderAdapter):
         self._url = f"{base_url.rstrip('/')}/api/chat"
         self._model = model
 
-    def build_request(self, prompt: str) -> tuple[str, dict[str, str], dict]:
+    def build_request(self, prompt: str, system_prompt: str) -> tuple[str, dict[str, str], dict]:
         headers = {"Content-Type": "application/json"}
         payload = {
             "model": self._model,
             "messages": [
-                {"role": "system", "content": _SYSTEM_PROMPT},
+                {"role": "system", "content": system_prompt},
                 {"role": "user", "content": prompt},
             ],
             "stream": False,
@@ -233,14 +258,15 @@ class LLMJudge(JudgeEngine):
     """
     Unified LLM judge. Provider is a config choice, not a code change.
 
-    Uses JudgeEngine protocol — drop-in replacement for DeterministicJudge.
-    Combined with FallbackJudge in runtime.py for graceful degradation.
+    EPIC 7.5: Now accepts an optional PromptTemplate for versioned prompts.
+    When provided, the versioned prompt replaces the hardcoded fallback.
     """
 
     def __init__(
         self,
         timeout_ms: int | None = None,
         engine: str | None = None,
+        prompt_template: PromptTemplate | None = None,
     ) -> None:
         if timeout_ms is not None:
             self._timeout_s = max(timeout_ms, 1) / 1000.0
@@ -253,6 +279,7 @@ class LLMJudge(JudgeEngine):
         else:
             self._engine = os.getenv("JUDGE_ENGINE", "openai")
         self._adapter: ProviderAdapter | None = None
+        self._prompt_template = prompt_template
 
     def evaluate(self, request: PredictRequest) -> PredictResponse:
         if os.getenv("SIMULATE_LLM_TIMEOUT") == "1":
@@ -261,8 +288,9 @@ class LLMJudge(JudgeEngine):
         if self._adapter is None:
             self._adapter = _get_adapter(self._engine)
 
-        prompt = _build_eval_prompt(request)
-        url, headers, payload = self._adapter.build_request(prompt)
+        system_prompt = _get_system_prompt(self._prompt_template)
+        prompt = _build_eval_prompt(request, self._prompt_template)
+        url, headers, payload = self._adapter.build_request(prompt, system_prompt)
 
         with httpx.Client(timeout=self._timeout_s) as client:
             resp = client.post(url, headers=headers, json=payload)
