@@ -83,7 +83,7 @@ def check_attribution_accuracy(
     context, measures cosine similarity. High similarity = supported,
     low similarity = neutral or contradicted.
     """
-    from llm_judge.properties import get_embedding_provider, EmbeddingProvider
+    from llm_judge.properties import EmbeddingProvider, get_embedding_provider
 
     provider: EmbeddingProvider = (
         embedding_provider if isinstance(embedding_provider, EmbeddingProvider)
@@ -174,7 +174,7 @@ def check_fabrication(
     against all context sentences. Sentences with very low similarity
     to all context = likely fabricated (introducing information from nowhere).
     """
-    from llm_judge.properties import get_embedding_provider, EmbeddingProvider
+    from llm_judge.properties import EmbeddingProvider, get_embedding_provider
 
     provider: EmbeddingProvider = (
         embedding_provider if isinstance(embedding_provider, EmbeddingProvider)
