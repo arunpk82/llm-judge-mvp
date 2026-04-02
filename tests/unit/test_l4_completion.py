@@ -66,7 +66,7 @@ class TestPromptVersioning:
             conversation="USER: What is AI?",
             candidate_answer="AI stands for artificial intelligence.",
         )
-        assert "evaluation engine" in sys_msg.lower()
+        assert "quality evaluator" in sys_msg.lower()
         assert "What is AI?" in user_msg
         assert "artificial intelligence" in user_msg
 

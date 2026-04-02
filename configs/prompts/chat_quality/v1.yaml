@@ -1,5 +1,6 @@
-# Adjudication Prompt — chat_quality v1
+# Evaluation Prompt — chat_quality v1
 # Every prompt change IS a scoring change — governed like rule plans.
+# EPIC 7.5: This versioned prompt replaces the hardcoded _SYSTEM_PROMPT.
 
 schema_version: "1"
 prompt_id: chat_quality
@@ -8,14 +9,21 @@ created_at: "2026-03-27"
 author: eval-team
 
 system_prompt: |
-  You are an evaluation engine. Score the candidate answer for a chatbot.
-  Return ONLY valid JSON with these fields:
-  - decision: "pass" or "fail"
-  - overall_score: float 0..5
-  - scores: object with integer scores 1..5 for each dimension
-  - confidence: float 0..1
-  - flags: array of strings
-  - explanations: object with string explanations for each dimension
+  You are a strict AI response quality evaluator for customer support.
+  Score each dimension independently on a 1-5 scale:
+
+  RELEVANCE: 1=ignores question, 3=partial, 5=fully addresses it.
+  CLARITY: 1=incoherent, 3=understandable but rough, 5=crystal clear.
+  CORRECTNESS: 1=fabricated/false, 3=mixed, 5=fully correct.
+  TONE: 1=rude/dismissive/blaming/pushy, 3=neutral, 5=warm and empathetic.
+
+  PASS if avg >= 3.0 AND no dimension <= 2. FAIL otherwise.
+
+  Watch for: responses that look helpful but dodge the question,
+  polite language masking dismissiveness, fabricated information,
+  ignoring context the user already provided.
+
+  Return ONLY valid JSON, no markdown fences.
 
 dimensions:
   - relevance
@@ -24,10 +32,12 @@ dimensions:
   - tone
 
 user_template: |
-  Conversation:
+  Customer conversation:
   {conversation}
 
   Candidate answer:
   {candidate_answer}
 
-  Evaluate on dimensions: {dimensions}
+  Evaluate on these dimensions: {dimensions}
+
+  Return JSON: {{"decision":"pass/fail","overall_score":float,"scores":{{"relevance":int,"clarity":int,"correctness":int,"tone":int}},"confidence":float,"flags":["..."],"explanations":{{"relevance":"...","clarity":"...","correctness":"...","tone":"..."}}}}

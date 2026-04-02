@@ -1,26 +1,20 @@
 #!/usr/bin/env python3
 """
-Gate 2 Validation — LLM Judge on Cases Where Gate 1 Disagrees
+Gate 2 Validation — Integrated Pipeline (PCT-1).
+
+EPIC 7.5/7.6 CHANGE: Uses IntegratedJudge instead of raw LLMJudge.
+Every evaluation now produces:
+  - Versioned prompt evidence (prompt_version_used)
+  - Hallucination check results (grounding, claims, citations)
+  - Property execution evidence (which properties ran, their flags)
+  - Detection coverage metric
 
 Usage:
     GEMINI_API_KEY=your-key poetry run python tools/validate_gate2.py \
-        --dataset datasets/validation/cs_validation_scored.jsonl
+        --dataset datasets/validation/cs_validation_scored.jsonl \
+        --integrated
 
-What it does:
-    1. Runs Gate 1 (deterministic) on all cases
-    2. Identifies cases where Gate 1 disagrees with human expert
-    3. Runs Gate 2 (LLM judge) on ONLY those disagreement cases
-    4. Compares Gate 1, Gate 2, and human scores side by side
-    5. Produces a combined report showing where Gate 2 improves on Gate 1
-
-This demonstrates the sequential gate model:
-    - Gate 1 runs on everything (fast, cheap)
-    - Gate 2 runs only where Gate 1 lacks confidence (slow, better)
-    - The combined pipeline should beat either gate alone
-
-Supported engines:
-    JUDGE_ENGINE=gemini   GEMINI_API_KEY=...   (default)
-    JUDGE_ENGINE=llm      LLM_API_KEY=...      (OpenAI-compatible)
+    Add --raw to use the old LLMJudge without properties (for comparison).
 """
 from __future__ import annotations
 
@@ -78,11 +72,96 @@ def run_gate1(cases: list[dict]) -> list[dict]:
     return results
 
 
-def run_gate2(
+def run_gate2_integrated(
     disagreements: list[dict],
     engine: str,
 ) -> list[dict]:
-    """Run LLM judge on disagreement cases only."""
+    """Run integrated pipeline on disagreement cases (PCT-1)."""
+    from llm_judge.integrated_judge import IntegratedJudge
+
+    judge = IntegratedJudge(engine=engine)
+    results = []
+
+    for i, case in enumerate(disagreements):
+        messages = [
+            Message(role=m["role"], content=m["content"])
+            for m in case["conversation"]
+        ]
+        request = PredictRequest(
+            conversation=messages,
+            candidate_answer=case["candidate_answer"],
+            rubric_id=case["rubric_id"],
+        )
+        print(f"  [{i + 1}/{len(disagreements)}] {case['case_id']}...", end=" ")
+        start = time.time()
+        try:
+            enriched = judge.evaluate_enriched(request, case_id=case["case_id"])
+            elapsed = time.time() - start
+            print(f"done ({elapsed:.1f}s)")
+
+            case["gate2_scores"] = enriched.scores
+            case["gate2_decision"] = enriched.decision
+            case["gate2_confidence"] = enriched.confidence
+            case["gate2_flags"] = enriched.all_flags()
+            case["gate2_explanations"] = enriched.explanations
+            case["gate2_error"] = None
+
+            # PCT-1 enrichments
+            case["prompt_version"] = enriched.prompt_version
+            case["detection_coverage"] = enriched.detection_coverage
+            case["pipeline_latency_ms"] = enriched.pipeline_latency_ms
+
+            if enriched.hallucination_result:
+                case["hallucination"] = {
+                    "risk_score": enriched.hallucination_result.risk_score,
+                    "grounding_ratio": enriched.hallucination_result.grounding_ratio,
+                    "ungrounded_claims": enriched.hallucination_result.ungrounded_claims,
+                    "unverifiable_citations": enriched.hallucination_result.unverifiable_citations,
+                    "flags": enriched.hallucination_result.flags,
+                }
+            else:
+                case["hallucination"] = None
+
+            # Property evidence summary
+            case["property_evidence"] = {
+                name: {
+                    "id": ev.property_id,
+                    "executed": ev.executed,
+                    "gate_mode": ev.gate_mode,
+                    "flags": ev.flags,
+                }
+                for name, ev in enriched.property_evidence.items()
+            }
+
+        except Exception as e:
+            elapsed = time.time() - start
+            print(f"ERROR ({elapsed:.1f}s): {e}")
+            case["gate2_scores"] = None
+            case["gate2_decision"] = None
+            case["gate2_confidence"] = None
+            case["gate2_flags"] = []
+            case["gate2_explanations"] = None
+            case["gate2_error"] = str(e)
+            case["prompt_version"] = None
+            case["hallucination"] = None
+            case["property_evidence"] = None
+            case["detection_coverage"] = None
+            case["pipeline_latency_ms"] = None
+
+        results.append(case)
+
+        # Rate limit: 1 second between calls for free tier
+        if i < len(disagreements) - 1:
+            time.sleep(1.0)
+
+    return results
+
+
+def run_gate2_raw(
+    disagreements: list[dict],
+    engine: str,
+) -> list[dict]:
+    """Run raw LLMJudge on disagreement cases (legacy, for comparison)."""
     from llm_judge.llm_judge import LLMJudge
     judge = LLMJudge(engine=engine)
 
@@ -120,20 +199,19 @@ def run_gate2(
             case["gate2_error"] = str(e)
 
         results.append(case)
-
-        # Rate limit: 1 second between calls for free tier
         if i < len(disagreements) - 1:
             time.sleep(1.0)
 
     return results
 
 
-def print_comparison(results: list[dict]) -> None:
+def print_comparison(results: list[dict], integrated: bool = False) -> None:
     """Print side-by-side comparison of Gate 1, Gate 2, and human scores."""
     dims = ["relevance", "clarity", "correctness", "tone"]
 
     print("\n" + "=" * 90)
-    print("GATE 2 VALIDATION REPORT")
+    mode = "INTEGRATED PIPELINE (PCT-1)" if integrated else "RAW LLM JUDGE"
+    print(f"GATE 2 VALIDATION REPORT — {mode}")
     print(f"LLM judge on {len(results)} disagreement cases")
     print("=" * 90)
 
@@ -185,7 +263,20 @@ def print_comparison(results: list[dict]) -> None:
             f"{'':<10} {'DECISION':<12} {hd:>6} {g1d + g1_match:>6} "
             f"{g2d + g2_match:>6} {'':>5} {'':>5}"
         )
-        print(f"{'':<10} {'rationale':<12} {r['rationale'][:55]}")
+
+        # PCT-1: Show hallucination results if available
+        if integrated and r.get("hallucination"):
+            hal = r["hallucination"]
+            print(
+                f"{'':<10} {'HALLUC':<12} "
+                f"risk={hal['risk_score']:.2f} "
+                f"grounding={hal['grounding_ratio']:.2f} "
+                f"claims={hal['ungrounded_claims']} "
+                f"citations={hal['unverifiable_citations']}"
+            )
+            if hal.get("flags"):
+                print(f"{'':<10} {'FLAGS':<12} {', '.join(hal['flags'])}")
+
         print()
 
     # Summary
@@ -213,34 +304,29 @@ def print_comparison(results: list[dict]) -> None:
         print(f"    Gate 2: {g2_dec_match}/{len(valid)} "
               f"({g2_dec_match / len(valid) * 100:.0f}%)")
 
-    # Per-dimension Gate 2 within ±1
-    if valid:
-        print("\n  Gate 2 within ±1 of human (on disagreement cases only):")
-        for dim in dims:
-            within1 = sum(
-                1 for r in valid
-                if abs(r["gate2_scores"][dim] - r["human_scores"][dim]) <= 1
-            )
-            print(f"    {dim:>12}: {within1}/{len(valid)} "
-                  f"({within1 / len(valid) * 100:.0f}%)")
+    # PCT-1: Detection coverage and prompt version
+    if integrated and valid:
+        print(f"\n  Prompt version: {valid[0].get('prompt_version', 'unknown')}")
+        print(f"  Detection coverage: {valid[0].get('detection_coverage', 'unknown')}")
 
-    # Gate 2 explanations
-    if valid and valid[0].get("gate2_explanations"):
-        print("\n--- GATE 2 EXPLANATIONS (selected) ---")
-        for r in valid[:5]:
-            print(f"\n  {r['case_id']} (human={r['human_decision']}, "
-                  f"gate2={r['gate2_decision']}):")
-            expl = r.get("gate2_explanations") or {}
-            for dim in dims:
-                if dim in expl:
-                    print(f"    {dim}: {expl[dim][:80]}")
+        # Hallucination summary
+        hal_cases = [r for r in valid if r.get("hallucination")]
+        if hal_cases:
+            flagged = [r for r in hal_cases if r["hallucination"].get("flags")]
+            avg_grounding = sum(
+                r["hallucination"]["grounding_ratio"] for r in hal_cases
+            ) / len(hal_cases)
+            print("\n  Hallucination analysis:")
+            print(f"    Cases checked: {len(hal_cases)}")
+            print(f"    Cases flagged: {len(flagged)}")
+            print(f"    Avg grounding ratio: {avg_grounding:.2f}")
 
     print(f"\n{'=' * 80}")
 
 
 def main() -> int:
     parser = argparse.ArgumentParser(
-        description="Gate 2 Validation — LLM judge on disagreement cases",
+        description="Gate 2 Validation — Integrated Pipeline (PCT-1)",
     )
     parser.add_argument(
         "--dataset",
@@ -253,6 +339,17 @@ def main() -> int:
         help="LLM engine: gemini, llm (default: gemini)",
     )
     parser.add_argument(
+        "--integrated",
+        action="store_true",
+        default=True,
+        help="Use integrated pipeline with properties (default: true)",
+    )
+    parser.add_argument(
+        "--raw",
+        action="store_true",
+        help="Use raw LLMJudge without properties (for comparison)",
+    )
+    parser.add_argument(
         "--all-cases",
         action="store_true",
         help="Run Gate 2 on ALL cases, not just disagreements",
@@ -263,6 +360,9 @@ def main() -> int:
         help="Directory for results (default: reports/validation/)",
     )
     args = parser.parse_args()
+
+    # --raw overrides --integrated
+    use_integrated = not args.raw
 
     dataset_path = Path(args.dataset)
     if not dataset_path.exists():
@@ -305,18 +405,23 @@ def main() -> int:
         return 0
 
     # 4. Run Gate 2
-    print(f"\nRunning Gate 2 ({args.engine})...")
-    gate2_results = run_gate2(targets, args.engine)
+    mode_name = "integrated pipeline" if use_integrated else "raw LLM judge"
+    print(f"\nRunning Gate 2 ({args.engine}, {mode_name})...")
+
+    if use_integrated:
+        gate2_results = run_gate2_integrated(targets, args.engine)
+    else:
+        gate2_results = run_gate2_raw(targets, args.engine)
 
     # 5. Print comparison
-    print_comparison(gate2_results)
+    print_comparison(gate2_results, integrated=use_integrated)
 
     # 6. Save results
     output_dir = Path(args.output_dir) if args.output_dir else state_root() / "validation"
     output_dir.mkdir(parents=True, exist_ok=True)
 
-    results_path = output_dir / "gate2_results.json"
-    # Remove non-serializable fields
+    suffix = "_integrated" if use_integrated else "_raw"
+    results_path = output_dir / f"gate2_results{suffix}.json"
     save_results = []
     for r in gate2_results:
         save_r = {k: v for k, v in r.items() if k not in ("conversation",)}

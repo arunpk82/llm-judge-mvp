@@ -355,7 +355,7 @@ def test_openai_adapter_builds_correct_request() -> None:
         api_key="test-key",
         model="gpt-4",
     )
-    url, headers, payload = adapter.build_request("test prompt")
+    url, headers, payload = adapter.build_request("test prompt", "system prompt")
 
     assert url == "https://api.openai.com/v1/chat/completions"
     assert headers["Authorization"] == "Bearer test-key"
@@ -380,7 +380,7 @@ def test_gemini_adapter_builds_correct_request() -> None:
     from llm_judge.llm_judge import GeminiAdapter
 
     adapter = GeminiAdapter(api_key="gem-key", model="gemini-2.5-flash")
-    url, headers, payload = adapter.build_request("test prompt")
+    url, headers, payload = adapter.build_request("test prompt", "system prompt")
 
     assert "gemini-2.5-flash" in url
     assert "gem-key" in url
@@ -403,7 +403,7 @@ def test_ollama_adapter_builds_correct_request() -> None:
         base_url="http://localhost:11434",
         model="llama3.1:8b",
     )
-    url, headers, payload = adapter.build_request("test prompt")
+    url, headers, payload = adapter.build_request("test prompt", "system prompt")
 
     assert url == "http://localhost:11434/api/chat"
     assert payload["model"] == "llama3.1:8b"
