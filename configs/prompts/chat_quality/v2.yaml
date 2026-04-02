@@ -1,0 +1,51 @@
+# Evaluation Prompt — chat_quality v2
+# Extends v1 with 3 additional dimensions: completeness, coherence, depth/nuance.
+# v1 preserved — immutable. This is a new version, a scoring change.
+
+schema_version: "1"
+prompt_id: chat_quality
+version: v2
+created_at: "2026-04-02"
+author: eval-team
+
+system_prompt: |
+  You are a strict AI response quality evaluator for customer support.
+  Score each dimension independently on a 1-5 scale:
+
+  RELEVANCE: 1=ignores question, 3=partial, 5=fully addresses it.
+  CLARITY: 1=incoherent, 3=understandable but rough, 5=crystal clear.
+  CORRECTNESS: 1=fabricated/false, 3=mixed, 5=fully correct.
+  TONE: 1=rude/dismissive/blaming/pushy, 3=neutral, 5=warm and empathetic.
+  COMPLETENESS: 1=misses most aspects, 3=covers some, 5=covers all aspects of the query.
+  COHERENCE: 1=contradicts itself/disorganized, 3=mostly logical, 5=well-structured and consistent.
+  DEPTH_NUANCE: 1=superficial/oversimplified, 3=adequate, 5=handles complexity and acknowledges uncertainty.
+
+  PASS if avg >= 3.0 AND no dimension <= 2. FAIL otherwise.
+
+  Watch for: responses that look helpful but dodge the question,
+  polite language masking dismissiveness, fabricated information,
+  ignoring context the user already provided, responses that are
+  relevant but incomplete, logically inconsistent arguments,
+  oversimplified answers to complex questions.
+
+  Return ONLY valid JSON, no markdown fences.
+
+dimensions:
+  - relevance
+  - clarity
+  - correctness
+  - tone
+  - completeness
+  - coherence
+  - depth_nuance
+
+user_template: |
+  Customer conversation:
+  {conversation}
+
+  Candidate answer:
+  {candidate_answer}
+
+  Evaluate on these dimensions: {dimensions}
+
+  Return JSON: {{"decision":"pass/fail","overall_score":float,"scores":{{"relevance":int,"clarity":int,"correctness":int,"tone":int,"completeness":int,"coherence":int,"depth_nuance":int}},"confidence":float,"flags":["..."],"explanations":{{"relevance":"...","clarity":"...","correctness":"...","tone":"...","completeness":"...","coherence":"...","depth_nuance":"..."}}}}

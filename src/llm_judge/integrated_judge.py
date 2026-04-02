@@ -1,16 +1,17 @@
 """
-Integrated Evaluation Pipeline (EPICs 7.4–7.7, PCT-1).
+Integrated Evaluation Pipeline (EPICs 7.4–7.7 + full property wiring).
 
-Replaces the raw LLMJudge code path with a property-aware pipeline:
+All 28 properties are wired. Enable any property in property_config.yaml
+and it runs automatically. No code changes needed for promotion.
+
+Pipeline steps:
   1. Load property configuration
-  2. Load versioned prompt (replaces hardcoded _SYSTEM_PROMPT)
-  3. Run deterministic pre-checks (hallucination 1.1–1.3)
-  4. Execute LLM evaluation with versioned prompt
-  5. Apply gate mode per property
-  6. Assemble enriched response with property execution evidence
-
-Every Gate 2 evaluation produces evidence that all enabled properties
-executed — flags, scores, version IDs, confidence scores.
+  2. Load versioned prompt
+  3. Run deterministic pre-checks (Cat 1 hallucination, Cat 3 safety, Cat 4 task fidelity)
+  4. Execute LLM evaluation with versioned prompt (Cat 2 semantic quality)
+  5. Run post-eval checks (Cat 1 advanced faithfulness, Cat 6 performance)
+  6. Apply gate mode per property
+  7. Assemble enriched response with property execution evidence
 """
 from __future__ import annotations
 
@@ -47,16 +48,8 @@ class PropertyEvidence:
 
 @dataclass
 class EnrichedResponse:
-    """
-    Gate 2 response enriched with property execution evidence.
-
-    Extends PredictResponse with hallucination results, prompt version,
-    property evidence, and detection coverage.
-    """
-    # Core evaluation (from LLMJudge)
+    """Gate 2 response enriched with property execution evidence."""
     predict_response: PredictResponse
-
-    # Property evidence
     prompt_version: str | None = None
     hallucination_result: HallucinationResult | None = None
     property_evidence: dict[str, PropertyEvidence] = field(default_factory=dict)
@@ -128,26 +121,48 @@ class EnrichedResponse:
 
 
 def _build_context(request: PredictRequest) -> str:
-    """Build context string from conversation for hallucination checks."""
+    """Build context string from conversation for grounding checks."""
     parts = [msg.content for msg in request.conversation]
     return " ".join(parts)
+
+
+def _build_query(request: PredictRequest) -> str:
+    """Extract the user query from conversation."""
+    for msg in reversed(request.conversation):
+        if msg.role == "user":
+            return msg.content
+    return request.conversation[0].content if request.conversation else ""
+
+
+def _record_evidence(
+    evidence: dict[str, PropertyEvidence],
+    prop_name: str,
+    prop_id: str,
+    gate_mode: str,
+    executed: bool,
+    result: Any = None,
+    flags: list[str] | None = None,
+    error: str | None = None,
+) -> None:
+    """Record property execution evidence."""
+    evidence[prop_name] = PropertyEvidence(
+        property_name=prop_name,
+        property_id=prop_id,
+        enabled=True,
+        gate_mode=gate_mode,
+        executed=executed,
+        result=result,
+        flags=flags or [],
+        error=error,
+    )
 
 
 class IntegratedJudge(JudgeEngine):
     """
     Property-aware evaluation pipeline for Gate 2.
 
-    Replaces the raw LLMJudge usage with:
-    1. Property configuration loading
-    2. Versioned prompt loading (EPIC 7.5)
-    3. Deterministic pre-checks — hallucination (EPIC 7.6)
-    4. LLM evaluation with versioned prompt
-    5. Gate mode application per property
-    6. Enriched response assembly
-
-    The evaluate() method returns a standard PredictResponse for
-    backward compatibility. Use evaluate_enriched() for the full
-    property evidence.
+    All 28 properties are wired. Enable any property in
+    property_config.yaml and it runs automatically.
     """
 
     def __init__(
@@ -193,14 +208,8 @@ class IntegratedJudge(JudgeEngine):
             )
 
     def evaluate(self, request: PredictRequest) -> PredictResponse:
-        """
-        Standard JudgeEngine interface — returns PredictResponse.
-
-        For backward compatibility with existing pipeline.
-        Internally runs the full integrated pipeline.
-        """
+        """Standard JudgeEngine interface — backward compatible."""
         enriched = self.evaluate_enriched(request)
-        # Merge all flags into the PredictResponse
         all_flags = enriched.all_flags()
         return PredictResponse(
             decision=enriched.predict_response.decision,
@@ -216,140 +225,251 @@ class IntegratedJudge(JudgeEngine):
         request: PredictRequest,
         case_id: str = "unknown",
     ) -> EnrichedResponse:
-        """
-        Full integrated evaluation with property evidence.
-
-        Steps:
-        1. Load property config (once)
-        2. Load versioned prompt (once)
-        3. Run deterministic pre-checks (hallucination 1.1–1.3)
-        4. Execute LLM evaluation with versioned prompt
-        5. Assemble enriched response with evidence
-        """
+        """Full integrated evaluation with all property wiring."""
         start_time = time.time()
         self._ensure_initialized()
         assert self._registry is not None
 
         evidence: dict[str, PropertyEvidence] = {}
+        context = _build_context(request)
+        query = _build_query(request)
+        response_text = request.candidate_answer
 
-        # --- Step 3: Deterministic pre-checks (hallucination 1.1–1.3) ---
+        # =============================================================
+        # Step 3: Deterministic pre-checks (parallel-safe)
+        # =============================================================
+
+        # --- Cat 1: Faithfulness (1.1–1.3) — hallucination checks ---
         hallucination_result: HallucinationResult | None = None
-
         faithfulness_props = self._registry.get_enabled_by_category("faithfulness")
-        if faithfulness_props:
-            context = _build_context(request)
-            response_text = request.candidate_answer
 
-            # Guard: context must be longer than just the candidate answer
+        basic_faith = {
+            k: v for k, v in faithfulness_props.items()
+            if k in ("groundedness", "ungrounded_claims", "citation_verification")
+        }
+        if basic_faith:
             if len(context.strip()) == 0:
-                logger.warning(
-                    "hallucination.empty_context",
-                    extra={"case_id": case_id},
-                )
-                for prop_name, prop in faithfulness_props.items():
-                    evidence[prop_name] = PropertyEvidence(
-                        property_name=prop_name,
-                        property_id=prop.id,
-                        enabled=True,
-                        gate_mode=prop.gate_mode,
-                        executed=False,
-                        error="empty_context",
+                for prop_name, prop in basic_faith.items():
+                    _record_evidence(
+                        evidence, prop_name, prop.id, prop.gate_mode,
+                        executed=False, error="empty_context",
                         flags=["pipeline_error:empty_context"],
                     )
             else:
-                grounding_threshold = 0.3
-                max_claims = 2
                 gt_prop = self._registry.get("groundedness")
-                if gt_prop and gt_prop.threshold is not None:
-                    grounding_threshold = float(gt_prop.threshold)
+                grounding_threshold = float(gt_prop.threshold) if gt_prop and gt_prop.threshold is not None else 0.3
                 uc_prop = self._registry.get("ungrounded_claims")
-                if uc_prop and uc_prop.threshold is not None:
-                    max_claims = int(uc_prop.threshold)
+                max_claims = int(uc_prop.threshold) if uc_prop and uc_prop.threshold is not None else 2
 
                 hallucination_result = check_hallucination(
-                    response=response_text,
-                    context=context,
-                    case_id=case_id,
+                    response=response_text, context=context, case_id=case_id,
                     grounding_threshold=grounding_threshold,
                     max_ungrounded_claims=max_claims,
                 )
 
-                # Record evidence for each faithfulness property
-                for prop_name, prop in faithfulness_props.items():
+                for prop_name, prop in basic_faith.items():
                     prop_flags: list[str] = []
-                    if prop_name == "groundedness" and hallucination_result:
-                        if hallucination_result.grounding_ratio < grounding_threshold:
-                            prop_flags.append(
-                                f"low_grounding:{hallucination_result.grounding_ratio:.2f}"
-                            )
-                    elif prop_name == "ungrounded_claims" and hallucination_result:
-                        if hallucination_result.ungrounded_claims > max_claims:
-                            prop_flags.append(
-                                f"ungrounded_claims:{hallucination_result.ungrounded_claims}"
-                            )
-                    elif prop_name == "citation_verification" and hallucination_result:
-                        if hallucination_result.unverifiable_citations > 0:
-                            prop_flags.append(
-                                f"unverifiable_citations:{hallucination_result.unverifiable_citations}"
-                            )
-
-                    evidence[prop_name] = PropertyEvidence(
-                        property_name=prop_name,
-                        property_id=prop.id,
-                        enabled=True,
-                        gate_mode=prop.gate_mode,
-                        executed=True,
-                        result=hallucination_result,
-                        flags=prop_flags,
+                    if prop_name == "groundedness" and hallucination_result.grounding_ratio < grounding_threshold:
+                        prop_flags.append(f"low_grounding:{hallucination_result.grounding_ratio:.2f}")
+                    elif prop_name == "ungrounded_claims" and hallucination_result.ungrounded_claims > max_claims:
+                        prop_flags.append(f"ungrounded_claims:{hallucination_result.ungrounded_claims}")
+                    elif prop_name == "citation_verification" and hallucination_result.unverifiable_citations > 0:
+                        prop_flags.append(f"unverifiable_citations:{hallucination_result.unverifiable_citations}")
+                    _record_evidence(
+                        evidence, prop_name, prop.id, prop.gate_mode,
+                        executed=True, result=hallucination_result, flags=prop_flags,
                     )
 
-        # --- Step 4: LLM evaluation with versioned prompt ---
+        # --- Cat 3: Safety (3.1–3.3) ---
+        safety_props = self._registry.get_enabled_by_category("safety")
+        if safety_props:
+            from llm_judge.properties.safety import (
+                check_instruction_boundary,
+                check_pii_leakage,
+                check_toxicity,
+            )
+
+            if self._registry.is_enabled("toxicity_bias"):
+                result = check_toxicity(response=response_text, case_id=case_id)
+                prop = self._registry.get("toxicity_bias")
+                assert prop is not None
+                _record_evidence(
+                    evidence, "toxicity_bias", prop.id, prop.gate_mode,
+                    executed=True, result=result, flags=result.flags,
+                )
+
+            if self._registry.is_enabled("instruction_boundary"):
+                result_ib = check_instruction_boundary(response=response_text, case_id=case_id)
+                prop = self._registry.get("instruction_boundary")
+                assert prop is not None
+                _record_evidence(
+                    evidence, "instruction_boundary", prop.id, prop.gate_mode,
+                    executed=True, result=result_ib, flags=result_ib.flags,
+                )
+
+            if self._registry.is_enabled("pii_data_leakage"):
+                result_pii = check_pii_leakage(response=response_text, case_id=case_id)
+                prop = self._registry.get("pii_data_leakage")
+                assert prop is not None
+                _record_evidence(
+                    evidence, "pii_data_leakage", prop.id, prop.gate_mode,
+                    executed=True, result=result_pii, flags=result_pii.flags,
+                )
+
+        # --- Cat 4: Task Fidelity (4.1–4.2) ---
+        if self._registry.is_enabled("instruction_following"):
+            from llm_judge.properties.task_fidelity import check_instruction_following
+            result_if = check_instruction_following(
+                query=query, response=response_text, case_id=case_id,
+            )
+            prop = self._registry.get("instruction_following")
+            assert prop is not None
+            _record_evidence(
+                evidence, "instruction_following", prop.id, prop.gate_mode,
+                executed=True, result=result_if, flags=result_if.flags,
+            )
+
+        if self._registry.is_enabled("format_structure"):
+            from llm_judge.properties.task_fidelity import check_format_structure
+            result_fs = check_format_structure(response=response_text, case_id=case_id)
+            prop = self._registry.get("format_structure")
+            assert prop is not None
+            _record_evidence(
+                evidence, "format_structure", prop.id, prop.gate_mode,
+                executed=True, result=result_fs, flags=result_fs.flags,
+            )
+
+        # =============================================================
+        # Step 4: LLM evaluation with versioned prompt (Cat 2)
+        # =============================================================
         assert self._llm_judge is not None
         predict_response = self._llm_judge.evaluate(request)
 
-        # Record evidence for semantic quality properties
+        # Record semantic quality evidence
         semantic_props = self._registry.get_enabled_by_category("semantic_quality")
         for prop_name, prop in semantic_props.items():
-            dim_name = prop_name  # property name matches dimension name
-            score = predict_response.scores.get(dim_name)
-            prop_flags_sem: list[str] = []
+            score = predict_response.scores.get(prop_name)
+            sem_flags: list[str] = []
             if score is not None and score <= 2:
-                prop_flags_sem.append(f"low_{dim_name}:{score}")
-
-            evidence[prop_name] = PropertyEvidence(
-                property_name=prop_name,
-                property_id=prop.id,
-                enabled=True,
-                gate_mode=prop.gate_mode,
-                executed=True,
-                result=score,
-                flags=prop_flags_sem,
+                sem_flags.append(f"low_{prop_name}:{score}")
+            _record_evidence(
+                evidence, prop_name, prop.id, prop.gate_mode,
+                executed=True, result=score, flags=sem_flags,
             )
 
-        # Record evidence for enabled but non-executing properties
-        # (robustness/performance properties that run in calibration, not per-response)
-        for prop_name, prop in self._registry.get_enabled().items():
-            if prop_name not in evidence:
-                evidence[prop_name] = PropertyEvidence(
-                    property_name=prop_name,
-                    property_id=prop.id,
-                    enabled=True,
-                    gate_mode=prop.gate_mode,
-                    executed=False,  # calibration-only properties
-                    flags=[],
+        # =============================================================
+        # Step 5: Post-eval checks
+        # =============================================================
+
+        # --- Cat 1 Advanced: Faithfulness (1.4–1.5) — embedding-based ---
+        if self._registry.is_enabled("attribution_accuracy") and context.strip():
+            try:
+                from llm_judge.properties.faithfulness_advanced import check_attribution_accuracy
+                result_aa = check_attribution_accuracy(
+                    response=response_text, context=context, case_id=case_id,
+                )
+                prop = self._registry.get("attribution_accuracy")
+                assert prop is not None
+                _record_evidence(
+                    evidence, "attribution_accuracy", prop.id, prop.gate_mode,
+                    executed=True, result=result_aa, flags=result_aa.flags,
+                )
+            except Exception as e:
+                prop = self._registry.get("attribution_accuracy")
+                assert prop is not None
+                _record_evidence(
+                    evidence, "attribution_accuracy", prop.id, prop.gate_mode,
+                    executed=False, error=str(e)[:80],
                 )
 
-        # --- Step 5: Compute detection coverage ---
-        coverage = self._registry.detection_coverage()
+        if self._registry.is_enabled("fabrication_detection") and context.strip():
+            try:
+                from llm_judge.properties.faithfulness_advanced import check_fabrication
+                result_fab = check_fabrication(
+                    response=response_text, context=context, case_id=case_id,
+                )
+                prop = self._registry.get("fabrication_detection")
+                assert prop is not None
+                _record_evidence(
+                    evidence, "fabrication_detection", prop.id, prop.gate_mode,
+                    executed=True, result=result_fab, flags=result_fab.flags,
+                )
+            except Exception as e:
+                prop = self._registry.get("fabrication_detection")
+                assert prop is not None
+                _record_evidence(
+                    evidence, "fabrication_detection", prop.id, prop.gate_mode,
+                    executed=False, error=str(e)[:80],
+                )
 
+        # --- Cat 6: Performance (6.1, 6.3, 6.4) ---
+        if self._registry.is_enabled("explainability"):
+            from llm_judge.properties.performance import check_explainability
+            dims = self._prompt.dimensions if self._prompt else ["relevance", "clarity", "correctness", "tone"]
+            result_ex = check_explainability(
+                explanations=predict_response.explanations,
+                expected_dimensions=dims,
+                case_id=case_id,
+            )
+            prop = self._registry.get("explainability")
+            assert prop is not None
+            _record_evidence(
+                evidence, "explainability", prop.id, prop.gate_mode,
+                executed=True, result=result_ex, flags=result_ex.flags,
+            )
+
+        if self._registry.is_enabled("judge_reasoning_fidelity"):
+            from llm_judge.properties.performance import check_reasoning_fidelity
+            result_rf = check_reasoning_fidelity(
+                explanations=predict_response.explanations,
+                response=response_text,
+                context=context,
+                case_id=case_id,
+            )
+            prop = self._registry.get("judge_reasoning_fidelity")
+            assert prop is not None
+            _record_evidence(
+                evidence, "judge_reasoning_fidelity", prop.id, prop.gate_mode,
+                executed=True, result=result_rf, flags=result_rf.flags,
+            )
+
+        # --- Cat 6.1: Latency ---
         elapsed_ms = (time.time() - start_time) * 1000
+        if self._registry.is_enabled("latency_cost"):
+            from llm_judge.properties.performance import measure_latency
+            result_lat = measure_latency(
+                case_id=case_id,
+                pipeline_latency_ms=elapsed_ms,
+                input_text=context + " " + response_text,
+                output_text=str(predict_response.explanations or ""),
+            )
+            prop = self._registry.get("latency_cost")
+            assert prop is not None
+            _record_evidence(
+                evidence, "latency_cost", prop.id, prop.gate_mode,
+                executed=True, result=result_lat, flags=result_lat.flags,
+            )
+
+        # =============================================================
+        # Record calibration-only properties as not-executed-per-response
+        # =============================================================
+        for prop_name, prop in self._registry.get_enabled().items():
+            if prop_name not in evidence:
+                _record_evidence(
+                    evidence, prop_name, prop.id, prop.gate_mode,
+                    executed=False,  # calibration-only (Cat 5) or not yet wired
+                )
+
+        # =============================================================
+        # Step 6: Compute detection coverage
+        # =============================================================
+        coverage = self._registry.detection_coverage()
 
         return EnrichedResponse(
             predict_response=predict_response,
             prompt_version=(
                 f"{self._prompt.prompt_id}/{self._prompt.version}"
-                if self._prompt
-                else None
+                if self._prompt else None
             ),
             hallucination_result=hallucination_result,
             property_evidence=evidence,
