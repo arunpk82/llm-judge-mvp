@@ -78,7 +78,7 @@ def get_judge_engine() -> JudgeEngine:
         from llm_judge.integrated_judge import IntegratedJudge
 
         gate2_engine = os.getenv("GATE2_ENGINE", "gemini").strip().lower()
-        primary = IntegratedJudge(engine=gate2_engine, timeout_ms=timeout_ms)
+        primary: JudgeEngine = IntegratedJudge(engine=gate2_engine, timeout_ms=timeout_ms)
         return FallbackJudge(primary=primary, fallback=deterministic)
 
     # Sequential mode: Gate 1 + Gate 2 combined

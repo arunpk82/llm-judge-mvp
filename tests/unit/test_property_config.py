@@ -3,20 +3,15 @@ Tests for Property Configuration (EPIC 7.4) and Integrated Judge (EPICs 7.5–7.
 """
 from __future__ import annotations
 
-import textwrap
 from pathlib import Path
 
 import pytest
 import yaml
 
 from llm_judge.property_config import (
-    DetectionCoverage,
-    PropertyConfig,
-    PropertyRegistry,
     load_property_config,
 )
 from llm_judge.schemas import PredictResponse
-
 
 # =====================================================================
 # EPIC 7.4: Property Configuration Tests

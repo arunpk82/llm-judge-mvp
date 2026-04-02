@@ -316,7 +316,7 @@ def print_comparison(results: list[dict], integrated: bool = False) -> None:
             avg_grounding = sum(
                 r["hallucination"]["grounding_ratio"] for r in hal_cases
             ) / len(hal_cases)
-            print(f"\n  Hallucination analysis:")
+            print("\n  Hallucination analysis:")
             print(f"    Cases checked: {len(hal_cases)}")
             print(f"    Cases flagged: {len(flagged)}")
             print(f"    Avg grounding ratio: {avg_grounding:.2f}")
