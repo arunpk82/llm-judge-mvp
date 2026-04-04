@@ -1,0 +1,35 @@
+# RAG Context Retrieval Configuration
+# Controls how source documents are retrieved for grounding evaluation.
+#
+# Three retrieval methods available:
+#   cosine_similarity: embedding-based semantic search (default)
+#   bm25: keyword-based retrieval using BM25 scoring
+#   hybrid: weighted combination of cosine + BM25
+#
+# Integration: retrieval runs inside IntegratedJudge.evaluate_enriched()
+# as a step between _build_query() and faithfulness property checks.
+
+# Master switch — disable to skip retrieval entirely
+enabled: true
+
+# Retrieval method
+method: cosine_similarity    # cosine_similarity | bm25 | hybrid
+
+# Number of documents to retrieve
+top_k: 3
+
+# Minimum similarity score to include a document
+# Documents below this threshold are discarded
+similarity_threshold: 0.2
+
+# Hybrid method: weight for cosine similarity (1 - alpha = BM25 weight)
+# 0.7 means 70% cosine + 30% BM25
+hybrid_alpha: 0.7
+
+# Embedding model for retrieval (must match EmbeddingProvider)
+# Uses the same model as property evaluation by default
+embedding_model: all-MiniLM-L6-v2
+
+# Knowledge base source
+# Path relative to config root, or absolute path
+knowledge_base_path: retrieval/knowledge_base.json

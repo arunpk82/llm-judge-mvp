@@ -2,6 +2,7 @@
 Integrated Evaluation Pipeline — all 28 properties wired.
 
 Enable any property in property_config.yaml and it runs automatically.
+RAG context retrieval enriches the evaluation context for grounding.
 """
 from __future__ import annotations
 
@@ -43,6 +44,7 @@ class EnrichedResponse:
     prompt_version: str | None = None
     hallucination_result: HallucinationResult | None = None
     property_evidence: dict[str, PropertyEvidence] = field(default_factory=dict)
+    retrieval_evidence: Any = None  # RetrievalEvidence when retrieval runs
     detection_coverage: str = ""
     pipeline_latency_ms: float = 0.0
 
@@ -102,11 +104,27 @@ class EnrichedResponse:
             }
             for name, ev_item in self.property_evidence.items()
         }
+        if self.retrieval_evidence is not None:
+            out["retrieval"] = {
+                "method": self.retrieval_evidence.method,
+                "docs_retrieved": self.retrieval_evidence.docs_retrieved,
+                "top_score": self.retrieval_evidence.top_score,
+                "doc_ids": self.retrieval_evidence.doc_ids,
+                "error": self.retrieval_evidence.error,
+            }
         return out
 
 
-def _build_context(request: PredictRequest) -> str:
-    return " ".join(msg.content for msg in request.conversation)
+def _build_context(request: PredictRequest, source_docs: list[str] | None = None) -> str:
+    """Build evaluation context from conversation and source documents."""
+    conversation_context = " ".join(msg.content for msg in request.conversation)
+    if source_docs:
+        doc_text = "\n\n--- Source Documentation ---\n".join(source_docs)
+        return f"{conversation_context}\n\n--- Source Documentation ---\n{doc_text}"
+    if request.source_context:
+        doc_text = "\n\n--- Source Documentation ---\n".join(request.source_context)
+        return f"{conversation_context}\n\n--- Source Documentation ---\n{doc_text}"
+    return conversation_context
 
 
 def _build_query(request: PredictRequest) -> str:
@@ -156,10 +174,12 @@ class IntegratedJudge(JudgeEngine):
     def __init__(
         self, engine: str = "gemini", timeout_ms: int | None = None,
         registry: PropertyRegistry | None = None,
+        context_retriever: Any | None = None,
     ) -> None:
         self._engine = engine
         self._timeout_ms = timeout_ms
         self._registry = registry
+        self._context_retriever = context_retriever
         self._llm_judge: LLMJudge | None = None
         self._prompt: PromptTemplate | None = None
 
@@ -179,6 +199,27 @@ class IntegratedJudge(JudgeEngine):
                 engine=self._engine, timeout_ms=self._timeout_ms,
                 prompt_template=self._prompt,
             )
+        if self._context_retriever is None:
+            try:
+                from llm_judge.retrieval.context_retriever import (
+                    ContextRetriever,
+                    load_retrieval_config,
+                )
+                from llm_judge.retrieval.knowledge_base import load_knowledge_base
+
+                config = load_retrieval_config()
+                if config.enabled:
+                    kb = load_knowledge_base()
+                    if kb.is_loaded:
+                        self._context_retriever = ContextRetriever(
+                            vector_store=kb.store, config=config,
+                        )
+                        logger.info(
+                            "retriever.initialized",
+                            extra={"docs": kb.document_count, "method": config.method},
+                        )
+            except Exception as exc:
+                logger.info("retriever.not_available", extra={"reason": str(exc)[:80]})
 
     def evaluate(self, request: PredictRequest) -> PredictResponse:
         enriched = self.evaluate_enriched(request)
@@ -200,9 +241,31 @@ class IntegratedJudge(JudgeEngine):
         reg = self._registry
 
         evidence: dict[str, PropertyEvidence] = {}
-        context = _build_context(request)
         query = _build_query(request)
         response_text = request.candidate_answer
+
+        # =============================================================
+        # RAG context retrieval (EPIC 7.14)
+        # =============================================================
+        retrieved_docs: list[str] | None = None
+        retrieval_evidence = None
+
+        if request.source_context:
+            # Source context provided in request — use directly
+            retrieved_docs = request.source_context
+        elif self._context_retriever is not None:
+            # Retrieve from knowledge base
+            try:
+                retrieved_docs, retrieval_evidence = (
+                    self._context_retriever.retrieve(query)
+                )
+            except Exception as exc:
+                logger.warning(
+                    "retrieval.failed",
+                    extra={"error": str(exc)[:80]},
+                )
+
+        context = _build_context(request, source_docs=retrieved_docs)
 
         # =============================================================
         # Deterministic pre-checks
@@ -366,6 +429,7 @@ class IntegratedJudge(JudgeEngine):
             ),
             hallucination_result=hallucination_result,
             property_evidence=evidence,
+            retrieval_evidence=retrieval_evidence,
             detection_coverage=coverage.summary(),
             pipeline_latency_ms=elapsed_ms,
         )
