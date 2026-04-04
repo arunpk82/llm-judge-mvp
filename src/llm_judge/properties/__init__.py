@@ -15,6 +15,7 @@ from __future__ import annotations
 import logging
 import math
 from abc import ABC, abstractmethod
+from typing import Any
 
 logger = logging.getLogger(__name__)
 
@@ -55,7 +56,7 @@ class SentenceTransformerProvider(EmbeddingProvider):
 
     def __init__(self, model_name: str = "all-MiniLM-L6-v2") -> None:
         self._model_name = model_name
-        self._model = None
+        self._model: Any = None
 
     def _ensure_loaded(self) -> None:
         if self._model is None:

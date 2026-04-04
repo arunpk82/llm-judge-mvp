@@ -1,0 +1,102 @@
+{
+  "schema_version": "1",
+  "description": "Synthetic customer support knowledge base for Science Gate experiment. Simulates policy documentation that a RAG pipeline would retrieve per intent.",
+  "retrieval_method": "intent_exact_match",
+  "note": "This is NOT real RAG retrieval. This is a controlled experiment testing whether grounding improves when source documentation is available. The retrieval mechanism is a simple intent-to-document lookup.",
+
+  "case_intent_map": {
+    "cs_001": "refund_double_charge",
+    "cs_002": "refund_double_charge",
+    "cs_003": "refund_double_charge",
+    "cs_004": "password_reset",
+    "cs_005": "password_reset",
+    "cs_006": "password_reset",
+    "cs_007": "missing_delivery",
+    "cs_008": "missing_delivery",
+    "cs_009": "missing_delivery",
+    "cs_010": "discount_request",
+    "cs_011": "discount_request",
+    "cs_012": "discount_request",
+    "cs_013": "cancel_account",
+    "cs_014": "cancel_account",
+    "cs_015": "cancel_account",
+    "cs_016": "product_compatibility",
+    "cs_017": "product_compatibility",
+    "cs_018": "product_compatibility",
+    "cs_019": "change_shipping",
+    "cs_020": "change_shipping",
+    "cs_021": "app_crashing",
+    "cs_022": "app_crashing",
+    "cs_023": "app_crashing",
+    "cs_024": "cloud_storage_recovery",
+    "cs_025": "cloud_storage_recovery",
+    "cs_026": "plan_comparison",
+    "cs_027": "plan_comparison",
+    "cs_028": "error_503",
+    "cs_029": "error_503",
+    "cs_030": "account_balance"
+  },
+
+  "knowledge_base": {
+    "refund_double_charge": {
+      "intent": "refund_double_charge",
+      "category": "BILLING",
+      "documentation": "Refund Policy for Duplicate Charges: If a customer reports a duplicate charge on their subscription, verify the charge in the billing system. Duplicate charges are eligible for a full refund. Initiate the refund through the billing portal. Standard refund processing time is 3-5 business days for credit cards and 5-10 business days for bank transfers. Always confirm the refund amount with the customer. Document the case in the billing incident log. If the duplicate charge exceeds $500, escalate to a billing supervisor for approval before processing the refund."
+    },
+    "password_reset": {
+      "intent": "password_reset",
+      "category": "ACCOUNT",
+      "documentation": "Password Reset Procedure: Guide the customer to the password reset page at account.example.com/reset. They will need to enter their registered email address. A reset link will be sent within 2 minutes. The link expires after 24 hours. If the customer does not receive the email, check spam/junk folders first. If still not received, verify the email address on file. For security, password reset requires email verification. New passwords must be at least 8 characters with one uppercase letter and one number. After 3 failed reset attempts, the account is temporarily locked for 30 minutes."
+    },
+    "missing_delivery": {
+      "intent": "missing_delivery",
+      "category": "SHIPPING",
+      "documentation": "Missing or Lost Delivery Policy: If tracking shows delivered but customer hasn't received the package, first ask the customer to check with neighbors and building management. Check if a photo confirmation is available in the delivery system. If the package cannot be located within 48 hours of reported delivery, file a carrier investigation. For packages over $100, a replacement or refund can be issued immediately while investigation proceeds. Standard investigation takes 5-7 business days. Document all delivery issues in the shipping incident tracker. Contact the carrier for GPS delivery confirmation data if available."
+    },
+    "discount_request": {
+      "intent": "discount_request",
+      "category": "SALES",
+      "documentation": "Discount and Loyalty Program Policy: Agents cannot offer ad-hoc discounts without supervisor approval. Available discount programs include: Loyalty Program (10% off after 10th purchase), seasonal promotions (check current promotions calendar), volume discounts for orders over $200 (15% off), and referral credits ($10 per successful referral). Current active promotion: SEASON15 for 15% off orders over $50. Check if the customer has unused reward points on their account. Long-term customers (3+ years) may be eligible for the VIP program — refer to the VIP enrollment team. Maximum discount cap is 20% without VP approval."
+    },
+    "cancel_account": {
+      "intent": "cancel_account",
+      "category": "ACCOUNT",
+      "documentation": "Account Cancellation Procedure: When a customer requests cancellation, first acknowledge their concerns and ask about the specific issues. Offer to connect them with a specialist who may be able to resolve their concerns. If the customer still wants to cancel, process through the account management portal. Remaining subscription balance is refunded pro-rata for annual plans. Monthly plans cancel at end of current billing cycle. Data retention: customer data is kept for 30 days after cancellation, then permanently deleted. Offer the customer an option to export their data before cancellation. Document the reason for cancellation in the churn tracking system."
+    },
+    "product_compatibility": {
+      "intent": "product_compatibility",
+      "category": "TECHNICAL",
+      "documentation": "Product Compatibility Information: Our software is compatible with Windows 10/11, macOS 12+ (Monterey and later), and Linux (Ubuntu 20.04+, Fedora 35+). Mobile apps available for iOS 15+ and Android 11+. Browser extension supports Chrome, Firefox, Safari, and Edge (latest two versions). Minimum system requirements: 4GB RAM, 2GHz processor, 500MB disk space. For Mac users with Apple Silicon (M1/M2/M3), the app runs natively — no Rosetta needed. Known compatibility issues: older macOS versions may experience display scaling issues. Check the compatibility matrix at support.example.com/compatibility for detailed version support."
+    },
+    "change_shipping": {
+      "intent": "change_shipping",
+      "category": "SHIPPING",
+      "documentation": "Shipping Address Change Policy: Shipping address can be modified if the order has not yet been shipped. Check order status in the fulfillment system. If status is 'processing' or 'confirmed', the address can be updated directly. If status is 'shipped', a redirect request must be filed with the carrier (additional $5 fee may apply). Address changes for international orders must be processed within 24 hours of order placement. Verify the new address format and postal code before updating. Update both the order record and the customer's default address if requested."
+    },
+    "app_crashing": {
+      "intent": "app_crashing",
+      "category": "TECHNICAL",
+      "documentation": "App Crash Troubleshooting Guide: Step 1: Verify the customer is running the latest app version (current: v4.2.1). Step 2: Clear the app cache (Settings > Storage > Clear Cache). Step 3: Check available device storage (minimum 200MB free required). Step 4: If crashes persist after cache clear, try uninstalling and reinstalling. Step 5: Check if the issue occurs on WiFi only or also on mobile data (known issue with certain proxy configurations). Step 6: Collect crash logs (Settings > Support > Send Diagnostics). For persistent crashes, escalate to Tier 2 support with crash logs attached. Known issue: app version 4.1.x has a memory leak on Android 13 devices — update to 4.2.1 resolves this."
+    },
+    "cloud_storage_recovery": {
+      "intent": "cloud_storage_recovery",
+      "category": "TECHNICAL",
+      "documentation": "Cloud Storage File Recovery Policy: Deleted files are moved to the Trash folder and retained for 30 days before permanent deletion. To recover: navigate to Trash in the web portal or mobile app, select files, click Restore. Files are restored to their original location. For files deleted more than 30 days ago, recovery may be possible through our backup system — submit a recovery request ticket. Recovery from backup takes 24-48 hours and is available for Business and Enterprise plans only. Free plan users: files are permanently deleted after 30 days with no recovery option. Version history is available for the last 100 versions of each file on Pro plans and above."
+    },
+    "plan_comparison": {
+      "intent": "plan_comparison",
+      "category": "SALES",
+      "documentation": "Plan Comparison — Pro vs Enterprise: Pro Plan ($29/month): 100GB storage, 5 team members, email support, API access (1000 calls/day), basic analytics, custom branding, SSO via Google/Microsoft. Enterprise Plan ($99/month): unlimited storage, unlimited team members, 24/7 phone support, API access (unlimited), advanced analytics with export, white-label options, SAML SSO, dedicated account manager, custom integrations, SLA guarantee (99.9% uptime), audit logs, HIPAA compliance available. Both plans include: real-time collaboration, mobile apps, offline access, 256-bit encryption. Enterprise add-ons: data residency ($20/month), advanced security pack ($30/month)."
+    },
+    "error_503": {
+      "intent": "error_503",
+      "category": "TECHNICAL",
+      "documentation": "Error 503 Troubleshooting: Error 503 (Service Unavailable) indicates the server is temporarily unable to handle the request. Common causes: server maintenance (check status.example.com for scheduled maintenance), high traffic periods, or temporary outage. Customer steps: 1) Wait 5 minutes and retry. 2) Clear browser cache and cookies. 3) Try a different browser or incognito mode. 4) Check status.example.com for known outages. If the error persists for more than 30 minutes, escalate to infrastructure team. For API users: implement exponential backoff retry logic. Current SLA: 99.9% uptime for Enterprise, 99.5% for Pro."
+    },
+    "account_balance": {
+      "intent": "account_balance",
+      "category": "BILLING",
+      "documentation": "Account Balance Inquiry Policy: Account balance can be checked by the customer in their account dashboard under Billing > Current Balance. Agents can look up balance using the customer's account ID or registered email. For security, verify customer identity before disclosing balance information (verify name, registered email, and last 4 digits of payment method). Balance includes: current subscription charges, any pending credits or refunds, and usage-based charges. Balance is updated in real-time for card payments and within 24 hours for bank transfers. IMPORTANT: Never disclose full payment method details or share balance information without identity verification."
+    }
+  }
+}

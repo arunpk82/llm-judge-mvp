@@ -1,0 +1,289 @@
+{
+  "experiment": "science_gate_grounding_context",
+  "retrieval_method": "intent_exact_match",
+  "knowledge_base": "synthetic_knowledge_base.json",
+  "cases": 30,
+  "baseline": {
+    "pass_avg": 0.0817,
+    "cs012": 0.08,
+    "gap": 0.0017
+  },
+  "with_docs": {
+    "pass_avg": 0.3835,
+    "cs012": 0.16,
+    "gap": 0.2235
+  },
+  "verdict": "PASS",
+  "per_case": [
+    {
+      "case_id": "cs_001",
+      "human": "pass",
+      "correctness": 5,
+      "intent": "refund_double_charge",
+      "grounding_baseline": 0.1622,
+      "grounding_with_docs": 0.4054,
+      "delta": 0.2432
+    },
+    {
+      "case_id": "cs_002",
+      "human": "fail",
+      "correctness": 3,
+      "intent": "refund_double_charge",
+      "grounding_baseline": 0.0,
+      "grounding_with_docs": 0.3333,
+      "delta": 0.3333
+    },
+    {
+      "case_id": "cs_003",
+      "human": "fail",
+      "correctness": 4,
+      "intent": "refund_double_charge",
+      "grounding_baseline": 0.1,
+      "grounding_with_docs": 0.1667,
+      "delta": 0.0667
+    },
+    {
+      "case_id": "cs_004",
+      "human": "pass",
+      "correctness": 5,
+      "intent": "password_reset",
+      "grounding_baseline": 0.08,
+      "grounding_with_docs": 0.6,
+      "delta": 0.52
+    },
+    {
+      "case_id": "cs_005",
+      "human": "fail",
+      "correctness": 1,
+      "intent": "password_reset",
+      "grounding_baseline": 0.4,
+      "grounding_with_docs": 0.6,
+      "delta": 0.2
+    },
+    {
+      "case_id": "cs_006",
+      "human": "fail",
+      "correctness": 2,
+      "intent": "password_reset",
+      "grounding_baseline": 0.1053,
+      "grounding_with_docs": 0.2632,
+      "delta": 0.1579
+    },
+    {
+      "case_id": "cs_007",
+      "human": "pass",
+      "correctness": 5,
+      "intent": "missing_delivery",
+      "grounding_baseline": 0.0952,
+      "grounding_with_docs": 0.3492,
+      "delta": 0.254
+    },
+    {
+      "case_id": "cs_008",
+      "human": "fail",
+      "correctness": 2,
+      "intent": "missing_delivery",
+      "grounding_baseline": 0.2174,
+      "grounding_with_docs": 0.2609,
+      "delta": 0.0435
+    },
+    {
+      "case_id": "cs_009",
+      "human": "pass",
+      "correctness": 3,
+      "intent": "missing_delivery",
+      "grounding_baseline": 0.0,
+      "grounding_with_docs": 0.0,
+      "delta": 0.0
+    },
+    {
+      "case_id": "cs_010",
+      "human": "pass",
+      "correctness": 5,
+      "intent": "discount_request",
+      "grounding_baseline": 0.1042,
+      "grounding_with_docs": 0.5625,
+      "delta": 0.4583
+    },
+    {
+      "case_id": "cs_011",
+      "human": "fail",
+      "correctness": 4,
+      "intent": "discount_request",
+      "grounding_baseline": 0.0,
+      "grounding_with_docs": 0.3333,
+      "delta": 0.3333
+    },
+    {
+      "case_id": "cs_012",
+      "human": "fail",
+      "correctness": 1,
+      "intent": "discount_request",
+      "grounding_baseline": 0.08,
+      "grounding_with_docs": 0.16,
+      "delta": 0.08
+    },
+    {
+      "case_id": "cs_013",
+      "human": "pass",
+      "correctness": 5,
+      "intent": "cancel_account",
+      "grounding_baseline": 0.0526,
+      "grounding_with_docs": 0.4474,
+      "delta": 0.3948
+    },
+    {
+      "case_id": "cs_014",
+      "human": "fail",
+      "correctness": 4,
+      "intent": "cancel_account",
+      "grounding_baseline": 0.0238,
+      "grounding_with_docs": 0.0476,
+      "delta": 0.0238
+    },
+    {
+      "case_id": "cs_015",
+      "human": "fail",
+      "correctness": 3,
+      "intent": "cancel_account",
+      "grounding_baseline": 0.2857,
+      "grounding_with_docs": 0.4286,
+      "delta": 0.1429
+    },
+    {
+      "case_id": "cs_016",
+      "human": "pass",
+      "correctness": 5,
+      "intent": "product_compatibility",
+      "grounding_baseline": 0.0286,
+      "grounding_with_docs": 0.3143,
+      "delta": 0.2857
+    },
+    {
+      "case_id": "cs_017",
+      "human": "fail",
+      "correctness": 4,
+      "intent": "product_compatibility",
+      "grounding_baseline": 0.2,
+      "grounding_with_docs": 0.2,
+      "delta": 0.0
+    },
+    {
+      "case_id": "cs_018",
+      "human": "fail",
+      "correctness": 5,
+      "intent": "product_compatibility",
+      "grounding_baseline": 0.0217,
+      "grounding_with_docs": 0.1087,
+      "delta": 0.087
+    },
+    {
+      "case_id": "cs_019",
+      "human": "pass",
+      "correctness": 5,
+      "intent": "change_shipping",
+      "grounding_baseline": 0.1471,
+      "grounding_with_docs": 0.4706,
+      "delta": 0.3235
+    },
+    {
+      "case_id": "cs_020",
+      "human": "fail",
+      "correctness": 4,
+      "intent": "change_shipping",
+      "grounding_baseline": 0.1714,
+      "grounding_with_docs": 0.2857,
+      "delta": 0.1143
+    },
+    {
+      "case_id": "cs_021",
+      "human": "pass",
+      "correctness": 5,
+      "intent": "app_crashing",
+      "grounding_baseline": 0.0784,
+      "grounding_with_docs": 0.4118,
+      "delta": 0.3334
+    },
+    {
+      "case_id": "cs_022",
+      "human": "fail",
+      "correctness": 4,
+      "intent": "app_crashing",
+      "grounding_baseline": 0.5,
+      "grounding_with_docs": 0.5,
+      "delta": 0.0
+    },
+    {
+      "case_id": "cs_023",
+      "human": "fail",
+      "correctness": 1,
+      "intent": "app_crashing",
+      "grounding_baseline": 0.1053,
+      "grounding_with_docs": 0.1579,
+      "delta": 0.0526
+    },
+    {
+      "case_id": "cs_024",
+      "human": "pass",
+      "correctness": 5,
+      "intent": "cloud_storage_recovery",
+      "grounding_baseline": 0.1277,
+      "grounding_with_docs": 0.5106,
+      "delta": 0.3829
+    },
+    {
+      "case_id": "cs_025",
+      "human": "fail",
+      "correctness": 2,
+      "intent": "cloud_storage_recovery",
+      "grounding_baseline": 0.1786,
+      "grounding_with_docs": 0.2857,
+      "delta": 0.1071
+    },
+    {
+      "case_id": "cs_026",
+      "human": "pass",
+      "correctness": 5,
+      "intent": "plan_comparison",
+      "grounding_baseline": 0.0816,
+      "grounding_with_docs": 0.449,
+      "delta": 0.3674
+    },
+    {
+      "case_id": "cs_027",
+      "human": "fail",
+      "correctness": 2,
+      "intent": "plan_comparison",
+      "grounding_baseline": 0.125,
+      "grounding_with_docs": 0.125,
+      "delta": 0.0
+    },
+    {
+      "case_id": "cs_028",
+      "human": "pass",
+      "correctness": 5,
+      "intent": "error_503",
+      "grounding_baseline": 0.0435,
+      "grounding_with_docs": 0.2826,
+      "delta": 0.2391
+    },
+    {
+      "case_id": "cs_029",
+      "human": "pass",
+      "correctness": 5,
+      "intent": "error_503",
+      "grounding_baseline": 0.0588,
+      "grounding_with_docs": 0.2745,
+      "delta": 0.2157
+    },
+    {
+      "case_id": "cs_030",
+      "human": "pass",
+      "correctness": 5,
+      "intent": "account_balance",
+      "grounding_baseline": 0.0833,
+      "grounding_with_docs": 0.2917,
+      "delta": 0.2084
+    }
+  ]
+}
