@@ -1,0 +1,345 @@
+# Property-Based Evaluation Configuration
+# Every property has three independent dimensions:
+#   enabled: Does it run?
+#   gate_mode: informational | auto-gated | human-gated
+#   visibility: per-persona show/hide
+#
+# PCT-5: All 28 properties enabled, all informational.
+# Next step: Phase 2 measurement sweep → calibrate thresholds → promote to gated.
+# Grounding threshold updated from 0.3 to 0.2 based on Science Gate results
+# (cs_012 caught at 0.20 with 7.1% FP rate).
+
+schema_version: "2"
+
+properties:
+
+  # === Category 1: Faithfulness & Grounding (Is it real?) ===
+
+  groundedness:
+    id: "1.1"
+    category: faithfulness
+    enabled: true
+    gate_mode: informational
+    threshold: 0.2            # Science Gate validated: 135x separation at 0.20
+    visibility:
+      ml_engineer: show
+      product_owner: hide
+      qa_lead: show
+      executive: hide
+
+  ungrounded_claims:
+    id: "1.2"
+    category: faithfulness
+    enabled: true
+    gate_mode: informational
+    threshold: 2              # above this count → flagged
+    visibility:
+      ml_engineer: show
+      product_owner: hide
+      qa_lead: show
+      executive: hide
+
+  citation_verification:
+    id: "1.3"
+    category: faithfulness
+    enabled: true
+    gate_mode: informational
+    threshold: 0              # any unverifiable citation → flagged
+    visibility:
+      ml_engineer: show
+      product_owner: hide
+      qa_lead: show
+      executive: hide
+
+  attribution_accuracy:
+    id: "1.4"
+    category: faithfulness
+    enabled: true              # PCT-4: RAG context now available (EPIC 7.14)
+    gate_mode: informational
+    visibility:
+      ml_engineer: show
+      product_owner: hide
+      qa_lead: show
+      executive: hide
+
+  fabrication_detection:
+    id: "1.5"
+    category: faithfulness
+    enabled: true              # PCT-4: embedding distance with RAG context
+    gate_mode: informational
+    visibility:
+      ml_engineer: show
+      product_owner: hide
+      qa_lead: show
+      executive: hide
+
+  # === Category 2: Semantic Quality (Is it good?) ===
+
+  relevance:
+    id: "2.1"
+    category: semantic_quality
+    enabled: true
+    gate_mode: auto-gated          # Phase 2: R=100% P=71% F1=83% on 30 cases
+    visibility:
+      ml_engineer: show
+      product_owner: show
+      qa_lead: show
+      executive: show
+
+  clarity:
+    id: "2.2"
+    category: semantic_quality
+    enabled: true
+    gate_mode: informational
+    visibility:
+      ml_engineer: show
+      product_owner: show
+      qa_lead: show
+      executive: show
+
+  correctness:
+    id: "2.3"
+    category: semantic_quality
+    enabled: true
+    gate_mode: auto-gated          # Phase 2: R=86% P=75% F1=80% on 30 cases
+    visibility:
+      ml_engineer: show
+      product_owner: show
+      qa_lead: show
+      executive: show
+
+  tone:
+    id: "2.4"
+    category: semantic_quality
+    enabled: true
+    gate_mode: auto-gated          # Phase 2: R=83% P=91% F1=87% on 30 cases
+    visibility:
+      ml_engineer: show
+      product_owner: show
+      qa_lead: show
+      executive: show
+
+  completeness:
+    id: "2.5"
+    category: semantic_quality
+    enabled: true              # PCT-2: v2 prompt active (7 dimensions)
+    gate_mode: informational
+    visibility:
+      ml_engineer: show
+      product_owner: show
+      qa_lead: show
+      executive: hide
+
+  coherence:
+    id: "2.6"
+    category: semantic_quality
+    enabled: true              # PCT-2: v2 prompt active
+    gate_mode: informational
+    visibility:
+      ml_engineer: show
+      product_owner: show
+      qa_lead: show
+      executive: hide
+
+  depth_nuance:
+    id: "2.7"
+    category: semantic_quality
+    enabled: true              # PCT-2: v2 prompt active
+    gate_mode: informational
+    visibility:
+      ml_engineer: show
+      product_owner: show
+      qa_lead: show
+      executive: hide
+
+  # === Category 3: Safety & Compliance (Is it safe?) ===
+
+  toxicity_bias:
+    id: "3.1"
+    category: safety
+    enabled: true              # PCT-3: deterministic keyword + bias patterns
+    gate_mode: informational
+    visibility:
+      ml_engineer: show
+      product_owner: show
+      qa_lead: show
+      executive: show
+
+  instruction_boundary:
+    id: "3.2"
+    category: safety
+    enabled: true              # PCT-3: deterministic boundary checks
+    gate_mode: informational
+    visibility:
+      ml_engineer: show
+      product_owner: show
+      qa_lead: show
+      executive: hide
+
+  pii_data_leakage:
+    id: "3.3"
+    category: safety
+    enabled: true              # PCT-3: SSN, email, phone, CC, API key, system prompt
+    gate_mode: informational
+    visibility:
+      ml_engineer: show
+      product_owner: show
+      qa_lead: show
+      executive: show
+
+  # === Category 4: Task Fidelity (Does it do what was asked?) ===
+
+  instruction_following:
+    id: "4.1"
+    category: task_fidelity
+    enabled: true              # PCT-3: embedding-based check
+    gate_mode: informational
+    visibility:
+      ml_engineer: show
+      product_owner: hide
+      qa_lead: show
+      executive: hide
+
+  format_structure:
+    id: "4.2"
+    category: task_fidelity
+    enabled: true              # PCT-3: deterministic format checks
+    gate_mode: informational
+    visibility:
+      ml_engineer: show
+      product_owner: hide
+      qa_lead: show
+      executive: hide
+
+  # === Category 5: Robustness (Does it break under pressure?) ===
+
+  position_bias:
+    id: "5.1"
+    category: robustness
+    enabled: true
+    gate_mode: informational
+    threshold: 0.10            # < 10% inconsistency acceptable
+    visibility:
+      ml_engineer: show
+      product_owner: hide
+      qa_lead: show
+      executive: hide
+
+  length_bias:
+    id: "5.2"
+    category: robustness
+    enabled: true
+    gate_mode: informational
+    threshold: 0.5             # Pearson correlation threshold
+    visibility:
+      ml_engineer: show
+      product_owner: hide
+      qa_lead: show
+      executive: hide
+
+  self_preference_bias:
+    id: "5.3"
+    category: robustness
+    enabled: true              # PCT-5: calibration diagnostic
+    gate_mode: informational
+    visibility:
+      ml_engineer: show
+      product_owner: hide
+      qa_lead: show
+      executive: hide
+
+  consistency:
+    id: "5.4"
+    category: robustness
+    enabled: true              # PCT-5: paraphrase stability check
+    gate_mode: informational
+    visibility:
+      ml_engineer: show
+      product_owner: hide
+      qa_lead: show
+      executive: hide
+
+  adversarial_resilience:
+    id: "5.5"
+    category: robustness
+    enabled: true              # PCT-5: adversarial input handling
+    gate_mode: informational
+    visibility:
+      ml_engineer: show
+      product_owner: hide
+      qa_lead: show
+      executive: hide
+
+  edge_case_handling:
+    id: "5.6"
+    category: robustness
+    enabled: true              # PCT-5: edge case detection
+    gate_mode: informational
+    visibility:
+      ml_engineer: show
+      product_owner: hide
+      qa_lead: show
+      executive: hide
+
+  reproducibility:
+    id: "5.7"
+    category: robustness
+    enabled: true              # PCT-5: run-to-run consistency
+    gate_mode: informational
+    visibility:
+      ml_engineer: show
+      product_owner: hide
+      qa_lead: show
+      executive: hide
+
+  # === Category 6: Performance Characteristics (Is it practical?) ===
+
+  latency_cost:
+    id: "6.1"
+    category: performance
+    enabled: true              # PCT-3: pipeline timing + token counting
+    gate_mode: informational
+    visibility:
+      ml_engineer: show
+      product_owner: hide
+      qa_lead: show
+      executive: show
+
+  confidence_calibration:
+    id: "6.2"
+    category: performance
+    enabled: true
+    gate_mode: informational
+    visibility:
+      ml_engineer: show
+      product_owner: hide
+      qa_lead: show
+      executive: hide
+
+  explainability:
+    id: "6.3"
+    category: performance
+    enabled: true              # PCT-4: checks explanation specificity
+    gate_mode: informational
+    visibility:
+      ml_engineer: show
+      product_owner: hide
+      qa_lead: show
+      executive: hide
+
+  judge_reasoning_fidelity:
+    id: "6.4"
+    category: performance
+    enabled: true              # PCT-4: does judge reference actual content?
+    gate_mode: informational
+    visibility:
+      ml_engineer: show
+      product_owner: hide
+      qa_lead: show
+      executive: hide
+
+# Detection Coverage Metric
+# PCT-5: 28 enabled / 28 total = 100% enabled, 3 auto-gated (11%)
+# Phase 2 sweep complete: 83% decision agreement on 30 cases
+# Gated: 2.1 relevance (F1=83%), 2.3 correctness (F1=80%), 2.4 tone (F1=87%)
+# Next: expand to 30K cases for statistical significance, improve Cat 1 faithfulness

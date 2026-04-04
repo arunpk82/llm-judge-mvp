@@ -65,7 +65,7 @@ typecheck:
 	poetry run mypy .
 
 test:
-	poetry run pytest -q
+	TRANSFORMERS_OFFLINE=1 HF_HUB_OFFLINE=1 GEMINI_API_KEY= poetry run pytest -q
 
 baseline-validate:
 	poetry run python -m llm_judge.eval.baseline validate --all

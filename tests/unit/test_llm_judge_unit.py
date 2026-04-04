@@ -62,6 +62,8 @@ def test_llm_judge_evaluate_happy_path_without_network(monkeypatch) -> None:
     """
 
     monkeypatch.setenv("LLM_API_KEY", "dummy")
+    monkeypatch.setenv("JUDGE_ENGINE", "openai")
+    monkeypatch.setenv("OPENAI_API_KEY", "dummy")
 
     # If your implementation ever adds internal helper functions, this still supports them.
     def _fake_call(*args: Any, **kwargs: Any) -> Any:
@@ -124,6 +126,8 @@ def test_llm_judge_handles_non_200_response(monkeypatch) -> None:
     """
 
     monkeypatch.setenv("LLM_API_KEY", "dummy")
+    monkeypatch.setenv("JUDGE_ENGINE", "openai")
+    monkeypatch.setenv("OPENAI_API_KEY", "dummy")
 
     if hasattr(lj, "httpx"):
 
