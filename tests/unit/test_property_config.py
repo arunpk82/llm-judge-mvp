@@ -378,6 +378,6 @@ def test_production_config_loads() -> None:
         registry = load_property_config(config_path)
         assert len(registry.all_properties) == 28
         coverage = registry.detection_coverage()
-        # PCT-1: 10 fully built properties enabled, 0 gated
-        assert coverage.enabled == 10
+        # PCT-5: all 28 properties enabled, all informational, 0 gated
+        assert coverage.enabled == 28
         assert coverage.gated == 0

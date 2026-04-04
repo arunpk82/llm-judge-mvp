@@ -4,10 +4,12 @@
 #   gate_mode: informational | auto-gated | human-gated
 #   visibility: per-persona show/hide
 #
-# PCT-1: All built properties start informational. Unbuilt properties disabled.
-# No property stays permanently informational — ungated = defect escape risk.
+# PCT-5: All 28 properties enabled, all informational.
+# Next step: Phase 2 measurement sweep → calibrate thresholds → promote to gated.
+# Grounding threshold updated from 0.3 to 0.2 based on Science Gate results
+# (cs_012 caught at 0.20 with 7.1% FP rate).
 
-schema_version: "1"
+schema_version: "2"
 
 properties:
 
@@ -18,7 +20,7 @@ properties:
     category: faithfulness
     enabled: true
     gate_mode: informational
-    threshold: 0.3          # below this grounding ratio → flagged
+    threshold: 0.2            # Science Gate validated: 135x separation at 0.20
     visibility:
       ml_engineer: show
       product_owner: hide
@@ -30,7 +32,7 @@ properties:
     category: faithfulness
     enabled: true
     gate_mode: informational
-    threshold: 2            # above this count → flagged
+    threshold: 2              # above this count → flagged
     visibility:
       ml_engineer: show
       product_owner: hide
@@ -42,7 +44,7 @@ properties:
     category: faithfulness
     enabled: true
     gate_mode: informational
-    threshold: 0            # any unverifiable citation → flagged
+    threshold: 0              # any unverifiable citation → flagged
     visibility:
       ml_engineer: show
       product_owner: hide
@@ -52,7 +54,7 @@ properties:
   attribution_accuracy:
     id: "1.4"
     category: faithfulness
-    enabled: false           # PCT-4: needs EmbeddingGemma
+    enabled: true              # PCT-4: RAG context now available (EPIC 7.14)
     gate_mode: informational
     visibility:
       ml_engineer: show
@@ -63,7 +65,7 @@ properties:
   fabrication_detection:
     id: "1.5"
     category: faithfulness
-    enabled: false           # PCT-4: needs semantic reasoning
+    enabled: true              # PCT-4: embedding distance with RAG context
     gate_mode: informational
     visibility:
       ml_engineer: show
@@ -120,33 +122,33 @@ properties:
   completeness:
     id: "2.5"
     category: semantic_quality
-    enabled: false           # PCT-2: needs v2 prompt
+    enabled: true              # PCT-2: v2 prompt active (7 dimensions)
     gate_mode: informational
     visibility:
       ml_engineer: show
-      product_owner: hide
+      product_owner: show
       qa_lead: show
       executive: hide
 
   coherence:
     id: "2.6"
     category: semantic_quality
-    enabled: false           # PCT-2
+    enabled: true              # PCT-2: v2 prompt active
     gate_mode: informational
     visibility:
       ml_engineer: show
-      product_owner: hide
+      product_owner: show
       qa_lead: show
       executive: hide
 
   depth_nuance:
     id: "2.7"
     category: semantic_quality
-    enabled: false           # PCT-2
+    enabled: true              # PCT-2: v2 prompt active
     gate_mode: informational
     visibility:
       ml_engineer: show
-      product_owner: hide
+      product_owner: show
       qa_lead: show
       executive: hide
 
@@ -155,7 +157,7 @@ properties:
   toxicity_bias:
     id: "3.1"
     category: safety
-    enabled: false           # PCT-3
+    enabled: true              # PCT-3: deterministic keyword + bias patterns
     gate_mode: informational
     visibility:
       ml_engineer: show
@@ -166,31 +168,31 @@ properties:
   instruction_boundary:
     id: "3.2"
     category: safety
-    enabled: false           # PCT-3
+    enabled: true              # PCT-3: deterministic boundary checks
     gate_mode: informational
     visibility:
       ml_engineer: show
-      product_owner: hide
+      product_owner: show
       qa_lead: show
       executive: hide
 
   pii_data_leakage:
     id: "3.3"
     category: safety
-    enabled: false           # PCT-3
+    enabled: true              # PCT-3: SSN, email, phone, CC, API key, system prompt
     gate_mode: informational
     visibility:
       ml_engineer: show
-      product_owner: hide
+      product_owner: show
       qa_lead: show
-      executive: hide
+      executive: show
 
   # === Category 4: Task Fidelity (Does it do what was asked?) ===
 
   instruction_following:
     id: "4.1"
     category: task_fidelity
-    enabled: false           # PCT-3
+    enabled: true              # PCT-3: embedding-based check
     gate_mode: informational
     visibility:
       ml_engineer: show
@@ -201,7 +203,7 @@ properties:
   format_structure:
     id: "4.2"
     category: task_fidelity
-    enabled: false           # PCT-3
+    enabled: true              # PCT-3: deterministic format checks
     gate_mode: informational
     visibility:
       ml_engineer: show
@@ -214,9 +216,9 @@ properties:
   position_bias:
     id: "5.1"
     category: robustness
-    enabled: true            # PCT-1: wired into calibration
+    enabled: true
     gate_mode: informational
-    threshold: 0.10          # < 10% inconsistency acceptable
+    threshold: 0.10            # < 10% inconsistency acceptable
     visibility:
       ml_engineer: show
       product_owner: hide
@@ -226,9 +228,9 @@ properties:
   length_bias:
     id: "5.2"
     category: robustness
-    enabled: true            # PCT-1: wired into calibration
+    enabled: true
     gate_mode: informational
-    threshold: 0.5           # Pearson correlation threshold
+    threshold: 0.5             # Pearson correlation threshold
     visibility:
       ml_engineer: show
       product_owner: hide
@@ -238,7 +240,7 @@ properties:
   self_preference_bias:
     id: "5.3"
     category: robustness
-    enabled: false           # PCT-5
+    enabled: true              # PCT-5: calibration diagnostic
     gate_mode: informational
     visibility:
       ml_engineer: show
@@ -249,7 +251,7 @@ properties:
   consistency:
     id: "5.4"
     category: robustness
-    enabled: false           # PCT-5
+    enabled: true              # PCT-5: paraphrase stability check
     gate_mode: informational
     visibility:
       ml_engineer: show
@@ -260,7 +262,7 @@ properties:
   adversarial_resilience:
     id: "5.5"
     category: robustness
-    enabled: false           # PCT-5
+    enabled: true              # PCT-5: adversarial input handling
     gate_mode: informational
     visibility:
       ml_engineer: show
@@ -271,7 +273,7 @@ properties:
   edge_case_handling:
     id: "5.6"
     category: robustness
-    enabled: false           # PCT-5
+    enabled: true              # PCT-5: edge case detection
     gate_mode: informational
     visibility:
       ml_engineer: show
@@ -282,7 +284,7 @@ properties:
   reproducibility:
     id: "5.7"
     category: robustness
-    enabled: false           # PCT-5
+    enabled: true              # PCT-5: run-to-run consistency
     gate_mode: informational
     visibility:
       ml_engineer: show
@@ -295,7 +297,7 @@ properties:
   latency_cost:
     id: "6.1"
     category: performance
-    enabled: false           # PCT-3
+    enabled: true              # PCT-3: pipeline timing + token counting
     gate_mode: informational
     visibility:
       ml_engineer: show
@@ -306,7 +308,7 @@ properties:
   confidence_calibration:
     id: "6.2"
     category: performance
-    enabled: true            # PCT-1: wired into calibration
+    enabled: true
     gate_mode: informational
     visibility:
       ml_engineer: show
@@ -317,7 +319,7 @@ properties:
   explainability:
     id: "6.3"
     category: performance
-    enabled: false           # PCT-4
+    enabled: true              # PCT-4: checks explanation specificity
     gate_mode: informational
     visibility:
       ml_engineer: show
@@ -328,7 +330,7 @@ properties:
   judge_reasoning_fidelity:
     id: "6.4"
     category: performance
-    enabled: false           # PCT-4: needs verification judge
+    enabled: true              # PCT-4: does judge reference actual content?
     gate_mode: informational
     visibility:
       ml_engineer: show
@@ -337,4 +339,6 @@ properties:
       executive: hide
 
 # Detection Coverage Metric
-# PCT-1: 13 enabled / 28 total = 46% enabled, 0% gated
+# PCT-5: 28 enabled / 28 total = 100% enabled, 0% gated
+# All properties informational — Phase 2 measurement sweep required
+# before any property is promoted to auto-gated or human-gated.
