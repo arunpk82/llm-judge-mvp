@@ -121,15 +121,28 @@ class TokenOverlapFallback(EmbeddingProvider):
         return self._dim
 
 
+_provider_cache: dict[str, EmbeddingProvider] = {}
+
+
 def get_embedding_provider(
     model_name: str = "all-MiniLM-L6-v2",
 ) -> EmbeddingProvider:
-    """Get embedding provider — real model if available, fallback otherwise."""
+    """Get embedding provider — singleton per model_name.
+
+    Caches providers so the underlying model (e.g. MiniLM) is loaded
+    once per process rather than once per evaluation case.
+    """
+    if model_name in _provider_cache:
+        return _provider_cache[model_name]
+
     try:
-        return SentenceTransformerProvider(model_name)
+        provider: EmbeddingProvider = SentenceTransformerProvider(model_name)
     except RuntimeError:
         logger.warning(
             "embedding.fallback_to_token_overlap",
             extra={"model": model_name},
         )
-        return TokenOverlapFallback()
+        provider = TokenOverlapFallback()
+
+    _provider_cache[model_name] = provider
+    return provider
