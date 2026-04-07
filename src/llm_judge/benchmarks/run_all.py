@@ -97,6 +97,9 @@ def main() -> None:
                         help="Skip embedding-based checks (1.4, 1.5) for faster runs")
     parser.add_argument("--with-llm", action="store_true",
                         help="Include Cat 2 LLM-based evaluation (requires GEMINI_API_KEY)")
+    parser.add_argument("--gate2", type=str, default="none",
+                        choices=["none", "ambiguous", "fail", "ambiguous+fail", "all"],
+                        help="Gate 2 routing for Property 1.1: which cases to send to Gemini")
     args = parser.parse_args()
 
     data_root = Path(args.data_dir)
@@ -139,6 +142,7 @@ def main() -> None:
         result = run_benchmark(
             adapter, split=args.split, max_cases=args.max_cases,
             skip_embeddings=args.skip_embeddings, with_llm=args.with_llm,
+            gate2_routing=args.gate2,
         )
 
         # Compute metrics

@@ -186,7 +186,7 @@ class GeminiAdapter(ProviderAdapter):
         return url, headers, payload
 
     def parse_response(self, data: dict) -> str:
-        return data["candidates"][0]["content"]["parts"][0]["text"]
+        return data["candidates"][0]["content"]["parts"][-1]["text"]
 
 
 class OllamaAdapter(ProviderAdapter):

@@ -1,0 +1,19 @@
+{
+  "experiment": "Experiment 15: KG Extraction Comparison",
+  "total_cases": 50,
+  "total_sentences": 175,
+  "gemini_extraction_calls": 9,
+  "l0_deterministic": 15,
+  "l2_entailment": 63,
+  "l2_contradiction": 13,
+  "l3_spacy_exact": 29,
+  "l3_gemini_exact": 0,
+  "l3_both": 0,
+  "l3_spacy_only": 29,
+  "l3_gemini_only": 0,
+  "l3_neither": 55,
+  "l4_with_spacy": 81,
+  "l4_with_gemini": 110,
+  "free_pct_spacy": 61.1,
+  "free_pct_gemini": 44.6
+}
