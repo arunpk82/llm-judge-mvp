@@ -13,7 +13,7 @@
 enabled: true
 
 # Retrieval method
-method: cosine_similarity    # cosine_similarity | bm25 | hybrid
+method: hybrid    # cosine_similarity | bm25 | hybrid
 
 # Number of documents to retrieve
 top_k: 3
@@ -32,4 +32,4 @@ embedding_model: all-MiniLM-L6-v2
 
 # Knowledge base source
 # Path relative to config root, or absolute path
-knowledge_base_path: retrieval/knowledge_base.json
+knowledge_base_path: ../../experiments/bitext_knowledge_base.json

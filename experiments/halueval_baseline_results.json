@@ -1,0 +1,103 @@
+{
+  "benchmark": "HaluEval",
+  "version": "1.0",
+  "citation": "Li et al., HaluEval: A Large-Scale Hallucination Evaluation Benchmark for Large Language Models, EMNLP 2023",
+  "cases_evaluated": 100,
+  "elapsed_seconds": 0.5,
+  "error_count": 0,
+  "response_level": {
+    "tp": 15,
+    "fp": 11,
+    "tn": 36,
+    "fn": 38,
+    "precision": 0.5769,
+    "recall": 0.283,
+    "f1": 0.3797,
+    "accuracy": 0.51,
+    "total": 100
+  },
+  "per_property": {
+    "1.1 Groundedness": {
+      "tp": 15,
+      "fp": 11,
+      "tn": 36,
+      "fn": 38,
+      "precision": 0.5769,
+      "recall": 0.283,
+      "f1": 0.3797,
+      "accuracy": 0.51,
+      "total": 100
+    },
+    "1.5 Fabrication Detection": {
+      "tp": 0,
+      "fp": 0,
+      "tn": 47,
+      "fn": 53,
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "accuracy": 0.47,
+      "total": 100
+    }
+  },
+  "per_model": {
+    "": {
+      "tp": 15,
+      "fp": 11,
+      "tn": 36,
+      "fn": 38,
+      "precision": 0.5769,
+      "recall": 0.283,
+      "f1": 0.3797,
+      "accuracy": 0.51,
+      "total": 100
+    }
+  },
+  "per_task_type": {
+    "qa": {
+      "tp": 0,
+      "fp": 0,
+      "tn": 17,
+      "fn": 16,
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "accuracy": 0.5152,
+      "total": 33
+    },
+    "summarization": {
+      "tp": 0,
+      "fp": 0,
+      "tn": 17,
+      "fn": 16,
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "accuracy": 0.5152,
+      "total": 33
+    },
+    "general": {
+      "tp": 15,
+      "fp": 11,
+      "tn": 2,
+      "fn": 6,
+      "precision": 0.5769,
+      "recall": 0.7143,
+      "f1": 0.6383,
+      "accuracy": 0.5,
+      "total": 34
+    }
+  },
+  "published_baselines": [
+    {
+      "method": "ChatGPT (zero-shot)",
+      "metric": "recognition_accuracy",
+      "published_value": 0.625,
+      "source": "Li et al., EMNLP 2023, Table 4"
+    }
+  ],
+  "supported_properties": [
+    "1.1 Groundedness",
+    "1.5 Fabrication Detection"
+  ]
+}

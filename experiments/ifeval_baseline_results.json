@@ -1,0 +1,58 @@
+{
+  "benchmark": "IFEval",
+  "version": "1.0",
+  "citation": "Zhou et al., Instruction-Following Evaluation for Large Language Models, 2023",
+  "cases_evaluated": 100,
+  "elapsed_seconds": 0.0,
+  "error_count": 0,
+  "response_level": {
+    "tp": 6,
+    "fp": 0,
+    "tn": 0,
+    "fn": 94,
+    "precision": 1.0,
+    "recall": 0.06,
+    "f1": 0.1132,
+    "accuracy": 0.06,
+    "total": 100
+  },
+  "per_property": {},
+  "per_model": {
+    "": {
+      "tp": 6,
+      "fp": 0,
+      "tn": 0,
+      "fn": 94,
+      "precision": 1.0,
+      "recall": 0.06,
+      "f1": 0.1132,
+      "accuracy": 0.06,
+      "total": 100
+    }
+  },
+  "per_task_type": {
+    "": {
+      "tp": 6,
+      "fp": 0,
+      "tn": 0,
+      "fn": 94,
+      "precision": 1.0,
+      "recall": 0.06,
+      "f1": 0.1132,
+      "accuracy": 0.06,
+      "total": 100
+    }
+  },
+  "published_baselines": [
+    {
+      "method": "GPT-4 (strict)",
+      "metric": "prompt_level_strict_accuracy",
+      "published_value": 0.765,
+      "source": "Zhou et al., 2023"
+    }
+  ],
+  "supported_properties": [
+    "4.1 Instruction Following",
+    "4.2 Format & Structure"
+  ]
+}

@@ -37,3 +37,5 @@ __pycache__/
 reports/runs/
 *.zip
 *.zip:Zone.Identifier
+*.Zone.Identifier
+*:Zone.Identifier

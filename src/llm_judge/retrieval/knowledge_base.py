@@ -129,19 +129,34 @@ class KnowledgeBase:
                         metadata={"intent": intent, **metadata},
                     ))
         else:
-            # Flat format
+            # Flat format: {"intent_name": "text"} or {"intent_name": {"documentation": "...", ...}}
             for key, value in data.items():
                 if key.startswith("_") or key in (
                     "schema_version", "description", "retrieval_method",
                     "note", "case_intent_map",
                 ):
                     continue
-                content = value if isinstance(value, str) else str(value)
+
+                if isinstance(value, dict):
+                    # Dict entry — extract documentation field
+                    content = value.get("documentation", "")
+                    metadata = {
+                        k: v for k, v in value.items()
+                        if k != "documentation" and isinstance(v, (str, int, float, bool))
+                    }
+                    metadata["source_key"] = key
+                elif isinstance(value, str):
+                    content = value
+                    metadata = {"source_key": key}
+                else:
+                    content = str(value)
+                    metadata = {"source_key": key}
+
                 if content.strip():
                     documents.append(Document(
                         doc_id=key,
                         content=content.strip(),
-                        metadata={"source_key": key},
+                        metadata=metadata,
                     ))
 
         return self._index_documents(documents, str(path))

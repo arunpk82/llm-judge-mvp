@@ -1,0 +1,145 @@
+{
+  "queries": 270,
+  "recall_at_1": 0.7741,
+  "recall_at_3": 0.9741,
+  "hit_rate": 0.9741,
+  "mrr": 0.8636,
+  "per_intent": {
+    "change_shipping_address": {
+      "total": 9,
+      "hit_at_1": 9,
+      "hit_at_3": 9
+    },
+    "track_refund": {
+      "total": 10,
+      "hit_at_1": 8,
+      "hit_at_3": 9
+    },
+    "set_up_shipping_address": {
+      "total": 10,
+      "hit_at_1": 7,
+      "hit_at_3": 10
+    },
+    "check_invoice": {
+      "total": 11,
+      "hit_at_1": 7,
+      "hit_at_3": 11
+    },
+    "cancel_order": {
+      "total": 9,
+      "hit_at_1": 9,
+      "hit_at_3": 9
+    },
+    "check_refund_policy": {
+      "total": 10,
+      "hit_at_1": 8,
+      "hit_at_3": 10
+    },
+    "recover_password": {
+      "total": 11,
+      "hit_at_1": 11,
+      "hit_at_3": 11
+    },
+    "check_cancellation_fee": {
+      "total": 9,
+      "hit_at_1": 9,
+      "hit_at_3": 9
+    },
+    "newsletter_subscription": {
+      "total": 11,
+      "hit_at_1": 11,
+      "hit_at_3": 11
+    },
+    "delivery_options": {
+      "total": 10,
+      "hit_at_1": 6,
+      "hit_at_3": 10
+    },
+    "switch_account": {
+      "total": 10,
+      "hit_at_1": 3,
+      "hit_at_3": 8
+    },
+    "contact_customer_service": {
+      "total": 11,
+      "hit_at_1": 7,
+      "hit_at_3": 11
+    },
+    "complaint": {
+      "total": 11,
+      "hit_at_1": 11,
+      "hit_at_3": 11
+    },
+    "edit_account": {
+      "total": 11,
+      "hit_at_1": 10,
+      "hit_at_3": 11
+    },
+    "review": {
+      "total": 9,
+      "hit_at_1": 8,
+      "hit_at_3": 8
+    },
+    "get_refund": {
+      "total": 11,
+      "hit_at_1": 4,
+      "hit_at_3": 10
+    },
+    "payment_issue": {
+      "total": 11,
+      "hit_at_1": 11,
+      "hit_at_3": 11
+    },
+    "create_account": {
+      "total": 8,
+      "hit_at_1": 3,
+      "hit_at_3": 8
+    },
+    "get_invoice": {
+      "total": 9,
+      "hit_at_1": 7,
+      "hit_at_3": 9
+    },
+    "check_payment_methods": {
+      "total": 10,
+      "hit_at_1": 8,
+      "hit_at_3": 10
+    },
+    "place_order": {
+      "total": 11,
+      "hit_at_1": 8,
+      "hit_at_3": 10
+    },
+    "contact_human_agent": {
+      "total": 10,
+      "hit_at_1": 3,
+      "hit_at_3": 9
+    },
+    "registration_problems": {
+      "total": 10,
+      "hit_at_1": 10,
+      "hit_at_3": 10
+    },
+    "change_order": {
+      "total": 10,
+      "hit_at_1": 6,
+      "hit_at_3": 10
+    },
+    "delete_account": {
+      "total": 8,
+      "hit_at_1": 8,
+      "hit_at_3": 8
+    },
+    "delivery_period": {
+      "total": 11,
+      "hit_at_1": 9,
+      "hit_at_3": 11
+    },
+    "track_order": {
+      "total": 9,
+      "hit_at_1": 8,
+      "hit_at_3": 9
+    }
+  },
+  "failure_count": 7
+}

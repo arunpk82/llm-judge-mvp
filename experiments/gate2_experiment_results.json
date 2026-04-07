@@ -1,0 +1,2640 @@
+{
+  "experiment": "Experiment 3: Gate 2 LLM Routing",
+  "cases_total": 290,
+  "band_distribution": {
+    "fail": 0,
+    "ambiguous": 7,
+    "pass": 283
+  },
+  "exp2_baseline": {
+    "f1": 0.022,
+    "p": 0.5,
+    "r": 0.0112
+  },
+  "gate2_on_ambiguous": {
+    "f1": 1.0,
+    "cases": 7
+  },
+  "combined": {
+    "f1": 0.086,
+    "p": 1.0,
+    "r": 0.0449,
+    "fire_rate": 0.0138,
+    "tp": 4,
+    "fp": 0,
+    "tn": 201,
+    "fn": 85
+  },
+  "per_case": [
+    {
+      "case_id": "gt_00832_clean",
+      "expected": "pass",
+      "injection": "none",
+      "ratio": 1.0,
+      "gate1": "pass",
+      "gate2": "",
+      "final": "pass"
+    },
+    {
+      "case_id": "gt_00856_clean",
+      "expected": "pass",
+      "injection": "none",
+      "ratio": 1.0,
+      "gate1": "pass",
+      "gate2": "",
+      "final": "pass"
+    },
+    {
+      "case_id": "gt_00081_clean",
+      "expected": "pass",
+      "injection": "none",
+      "ratio": 1.0,
+      "gate1": "pass",
+      "gate2": "",
+      "final": "pass"
+    },
+    {
+      "case_id": "gt_00362_clean",
+      "expected": "pass",
+      "injection": "none",
+      "ratio": 1.0,
+      "gate1": "pass",
+      "gate2": "",
+      "final": "pass"
+    },
+    {
+      "case_id": "gt_00433_clean",
+      "expected": "pass",
+      "injection": "none",
+      "ratio": 1.0,
+      "gate1": "pass",
+      "gate2": "",
+      "final": "pass"
+    },
+    {
+      "case_id": "gt_00649_clean",
+      "expected": "pass",
+      "injection": "none",
+      "ratio": 1.0,
+      "gate1": "pass",
+      "gate2": "",
+      "final": "pass"
+    },
+    {
+      "case_id": "gt_00151_clean",
+      "expected": "pass",
+      "injection": "none",
+      "ratio": 1.0,
+      "gate1": "pass",
+      "gate2": "",
+      "final": "pass"
+    },
+    {
+      "case_id": "gt_00927_clean",
+      "expected": "pass",
+      "injection": "none",
+      "ratio": 1.0,
+      "gate1": "pass",
+      "gate2": "",
+      "final": "pass"
+    },
+    {
+      "case_id": "gt_02174_fabrication",
+      "expected": "fail",
+      "injection": "fabrication",
+      "ratio": 0.8333,
+      "gate1": "pass",
+      "gate2": "",
+      "final": "pass"
+    },
+    {
+      "case_id": "gt_00854_clean",
+      "expected": "pass",
+      "injection": "none",
+      "ratio": 1.0,
+      "gate1": "pass",
+      "gate2": "",
+      "final": "pass"
+    },
+    {
+      "case_id": "gt_02350_fabrication",
+      "expected": "fail",
+      "injection": "fabrication",
+      "ratio": 0.875,
+      "gate1": "pass",
+      "gate2": "",
+      "final": "pass"
+    },
+    {
+      "case_id": "gt_02693_multi",
+      "expected": "fail",
+      "injection": "multi_failure",
+      "ratio": 0.5714,
+      "gate1": "ambiguous",
+      "gate2": "fail",
+      "final": "fail"
+    },
+    {
+      "case_id": "gt_00350_clean",
+      "expected": "pass",
+      "injection": "none",
+      "ratio": 1.0,
+      "gate1": "pass",
+      "gate2": "",
+      "final": "pass"
+    },
+    {
+      "case_id": "gt_02352_fabrication",
+      "expected": "fail",
+      "injection": "fabrication",
+      "ratio": 0.8571,
+      "gate1": "pass",
+      "gate2": "",
+      "final": "pass"
+    },
+    {
+      "case_id": "gt_00230_clean",
+      "expected": "pass",
+      "injection": "none",
+      "ratio": 1.0,
+      "gate1": "pass",
+      "gate2": "",
+      "final": "pass"
+    },
+    {
+      "case_id": "gt_02723_multi",
+      "expected": "fail",
+      "injection": "multi_failure",
+      "ratio": 0.9375,
+      "gate1": "pass",
+      "gate2": "",
+      "final": "pass"
+    },
+    {
+      "case_id": "gt_00537_clean",
+      "expected": "pass",
+      "injection": "none",
+      "ratio": 1.0,
+      "gate1": "pass",
+      "gate2": "",
+      "final": "pass"
+    },
+    {
+      "case_id": "gt_00690_clean",
+      "expected": "pass",
+      "injection": "none",
+      "ratio": 1.0,
+      "gate1": "pass",
+      "gate2": "",
+      "final": "pass"
+    },
+    {
+      "case_id": "gt_00345_clean",
+      "expected": "pass",
+      "injection": "none",
+      "ratio": 1.0,
+      "gate1": "pass",
+      "gate2": "",
+      "final": "pass"
+    },
+    {
+      "case_id": "gt_02243_fabrication",
+      "expected": "fail",
+      "injection": "fabrication",
+      "ratio": 0.75,
+      "gate1": "pass",
+      "gate2": "",
+      "final": "pass"
+    },
+    {
+      "case_id": "gt_00264_clean",
+      "expected": "pass",
+      "injection": "none",
+      "ratio": 1.0,
+      "gate1": "pass",
+      "gate2": "",
+      "final": "pass"
+    },
+    {
+      "case_id": "gt_00788_clean",
+      "expected": "pass",
+      "injection": "none",
+      "ratio": 1.0,
+      "gate1": "pass",
+      "gate2": "",
+      "final": "pass"
+    },
+    {
+      "case_id": "gt_02635_multi",
+      "expected": "fail",
+      "injection": "multi_failure",
+      "ratio": 0.7143,
+      "gate1": "pass",
+      "gate2": "",
+      "final": "pass"
+    },
+    {
+      "case_id": "gt_00383_clean",
+      "expected": "pass",
+      "injection": "none",
+      "ratio": 1.0,
+      "gate1": "pass",
+      "gate2": "",
+      "final": "pass"
+    },
+    {
+      "case_id": "gt_00910_clean",
+      "expected": "pass",
+      "injection": "none",
+      "ratio": 1.0,
+      "gate1": "pass",
+      "gate2": "",
+      "final": "pass"
+    },
+    {
+      "case_id": "gt_00842_clean",
+      "expected": "pass",
+      "injection": "none",
+      "ratio": 1.0,
+      "gate1": "pass",
+      "gate2": "",
+      "final": "pass"
+    },
+    {
+      "case_id": "gt_00180_clean",
+      "expected": "pass",
+      "injection": "none",
+      "ratio": 1.0,
+      "gate1": "pass",
+      "gate2": "",
+      "final": "pass"
+    },
+    {
+      "case_id": "gt_00261_clean",
+      "expected": "pass",
+      "injection": "none",
+      "ratio": 1.0,
+      "gate1": "pass",
+      "gate2": "",
+      "final": "pass"
+    },
+    {
+      "case_id": "gt_02624_multi",
+      "expected": "fail",
+      "injection": "multi_failure",
+      "ratio": 0.875,
+      "gate1": "pass",
+      "gate2": "",
+      "final": "pass"
+    },
+    {
+      "case_id": "gt_00979_clean",
+      "expected": "pass",
+      "injection": "none",
+      "ratio": 0.8333,
+      "gate1": "pass",
+      "gate2": "",
+      "final": "pass"
+    },
+    {
+      "case_id": "gt_02349_fabrication",
+      "expected": "fail",
+      "injection": "fabrication",
+      "ratio": 0.75,
+      "gate1": "pass",
+      "gate2": "",
+      "final": "pass"
+    },
+    {
+      "case_id": "gt_00831_clean",
+      "expected": "pass",
+      "injection": "none",
+      "ratio": 1.0,
+      "gate1": "pass",
+      "gate2": "",
+      "final": "pass"
+    },
+    {
+      "case_id": "gt_00916_clean",
+      "expected": "pass",
+      "injection": "none",
+      "ratio": 1.0,
+      "gate1": "pass",
+      "gate2": "",
+      "final": "pass"
+    },
+    {
+      "case_id": "gt_00177_clean",
+      "expected": "pass",
+      "injection": "none",
+      "ratio": 1.0,
+      "gate1": "pass",
+      "gate2": "",
+      "final": "pass"
+    },
+    {
+      "case_id": "gt_00596_clean",
+      "expected": "pass",
+      "injection": "none",
+      "ratio": 1.0,
+      "gate1": "pass",
+      "gate2": "",
+      "final": "pass"
+    },
+    {
+      "case_id": "gt_00595_clean",
+      "expected": "pass",
+      "injection": "none",
+      "ratio": 1.0,
+      "gate1": "pass",
+      "gate2": "",
+      "final": "pass"
+    },
+    {
+      "case_id": "gt_00629_clean",
+      "expected": "pass",
+      "injection": "none",
+      "ratio": 1.0,
+      "gate1": "pass",
+      "gate2": "",
+      "final": "pass"
+    },
+    {
+      "case_id": "gt_00376_clean",
+      "expected": "pass",
+      "injection": "none",
+      "ratio": 1.0,
+      "gate1": "pass",
+      "gate2": "",
+      "final": "pass"
+    },
+    {
+      "case_id": "gt_02686_multi",
+      "expected": "fail",
+      "injection": "multi_failure",
+      "ratio": 0.8571,
+      "gate1": "pass",
+      "gate2": "",
+      "final": "pass"
+    },
+    {
+      "case_id": "gt_00381_clean",
+      "expected": "pass",
+      "injection": "none",
+      "ratio": 1.0,
+      "gate1": "pass",
+      "gate2": "",
+      "final": "pass"
+    },
+    {
+      "case_id": "gt_00499_clean",
+      "expected": "pass",
+      "injection": "none",
+      "ratio": 1.0,
+      "gate1": "pass",
+      "gate2": "",
+      "final": "pass"
+    },
+    {
+      "case_id": "gt_00570_clean",
+      "expected": "pass",
+      "injection": "none",
+      "ratio": 1.0,
+      "gate1": "pass",
+      "gate2": "",
+      "final": "pass"
+    },
+    {
+      "case_id": "gt_00214_clean",
+      "expected": "pass",
+      "injection": "none",
+      "ratio": 1.0,
+      "gate1": "pass",
+      "gate2": "",
+      "final": "pass"
+    },
+    {
+      "case_id": "gt_00159_clean",
+      "expected": "pass",
+      "injection": "none",
+      "ratio": 0.9091,
+      "gate1": "pass",
+      "gate2": "",
+      "final": "pass"
+    },
+    {
+      "case_id": "gt_00389_clean",
+      "expected": "pass",
+      "injection": "none",
+      "ratio": 1.0,
+      "gate1": "pass",
+      "gate2": "",
+      "final": "pass"
+    },
+    {
+      "case_id": "gt_02720_multi",
+      "expected": "fail",
+      "injection": "multi_failure",
+      "ratio": 1.0,
+      "gate1": "pass",
+      "gate2": "",
+      "final": "pass"
+    },
+    {
+      "case_id": "gt_00298_clean",
+      "expected": "pass",
+      "injection": "none",
+      "ratio": 0.8333,
+      "gate1": "pass",
+      "gate2": "",
+      "final": "pass"
+    },
+    {
+      "case_id": "gt_02374_fabrication",
+      "expected": "fail",
+      "injection": "fabrication",
+      "ratio": 0.75,
+      "gate1": "pass",
+      "gate2": "",
+      "final": "pass"
+    },
+    {
+      "case_id": "gt_00019_clean",
+      "expected": "pass",
+      "injection": "none",
+      "ratio": 1.0,
+      "gate1": "pass",
+      "gate2": "",
+      "final": "pass"
+    },
+    {
+      "case_id": "gt_00200_clean",
+      "expected": "pass",
+      "injection": "none",
+      "ratio": 1.0,
+      "gate1": "pass",
+      "gate2": "",
+      "final": "pass"
+    },
+    {
+      "case_id": "gt_00985_clean",
+      "expected": "pass",
+      "injection": "none",
+      "ratio": 1.0,
+      "gate1": "pass",
+      "gate2": "",
+      "final": "pass"
+    },
+    {
+      "case_id": "gt_02316_fabrication",
+      "expected": "fail",
+      "injection": "fabrication",
+      "ratio": 0.8333,
+      "gate1": "pass",
+      "gate2": "",
+      "final": "pass"
+    },
+    {
+      "case_id": "gt_00028_clean",
+      "expected": "pass",
+      "injection": "none",
+      "ratio": 1.0,
+      "gate1": "pass",
+      "gate2": "",
+      "final": "pass"
+    },
+    {
+      "case_id": "gt_00479_clean",
+      "expected": "pass",
+      "injection": "none",
+      "ratio": 1.0,
+      "gate1": "pass",
+      "gate2": "",
+      "final": "pass"
+    },
+    {
+      "case_id": "gt_02264_fabrication",
+      "expected": "fail",
+      "injection": "fabrication",
+      "ratio": 1.0,
+      "gate1": "pass",
+      "gate2": "",
+      "final": "pass"
+    },
+    {
+      "case_id": "gt_02634_multi",
+      "expected": "fail",
+      "injection": "multi_failure",
+      "ratio": 0.7143,
+      "gate1": "pass",
+      "gate2": "",
+      "final": "pass"
+    },
+    {
+      "case_id": "gt_00072_clean",
+      "expected": "pass",
+      "injection": "none",
+      "ratio": 1.0,
+      "gate1": "pass",
+      "gate2": "",
+      "final": "pass"
+    },
+    {
+      "case_id": "gt_00048_clean",
+      "expected": "pass",
+      "injection": "none",
+      "ratio": 1.0,
+      "gate1": "pass",
+      "gate2": "",
+      "final": "pass"
+    },
+    {
+      "case_id": "gt_00632_clean",
+      "expected": "pass",
+      "injection": "none",
+      "ratio": 1.0,
+      "gate1": "pass",
+      "gate2": "",
+      "final": "pass"
+    },
+    {
+      "case_id": "gt_00109_clean",
+      "expected": "pass",
+      "injection": "none",
+      "ratio": 1.0,
+      "gate1": "pass",
+      "gate2": "",
+      "final": "pass"
+    },
+    {
+      "case_id": "gt_00173_clean",
+      "expected": "pass",
+      "injection": "none",
+      "ratio": 1.0,
+      "gate1": "pass",
+      "gate2": "",
+      "final": "pass"
+    },
+    {
+      "case_id": "gt_02102_fabrication",
+      "expected": "fail",
+      "injection": "fabrication",
+      "ratio": 0.8333,
+      "gate1": "pass",
+      "gate2": "",
+      "final": "pass"
+    },
+    {
+      "case_id": "gt_00275_clean",
+      "expected": "pass",
+      "injection": "none",
+      "ratio": 1.0,
+      "gate1": "pass",
+      "gate2": "",
+      "final": "pass"
+    },
+    {
+      "case_id": "gt_02225_fabrication",
+      "expected": "fail",
+      "injection": "fabrication",
+      "ratio": 0.9231,
+      "gate1": "pass",
+      "gate2": "",
+      "final": "pass"
+    },
+    {
+      "case_id": "gt_00652_clean",
+      "expected": "pass",
+      "injection": "none",
+      "ratio": 1.0,
+      "gate1": "pass",
+      "gate2": "",
+      "final": "pass"
+    },
+    {
+      "case_id": "gt_02197_fabrication",
+      "expected": "fail",
+      "injection": "fabrication",
+      "ratio": 1.0,
+      "gate1": "pass",
+      "gate2": "",
+      "final": "pass"
+    },
+    {
+      "case_id": "gt_02621_multi",
+      "expected": "fail",
+      "injection": "multi_failure",
+      "ratio": 0.7778,
+      "gate1": "pass",
+      "gate2": "",
+      "final": "pass"
+    },
+    {
+      "case_id": "gt_02271_fabrication",
+      "expected": "fail",
+      "injection": "fabrication",
+      "ratio": 1.0,
+      "gate1": "pass",
+      "gate2": "",
+      "final": "pass"
+    },
+    {
+      "case_id": "gt_00251_clean",
+      "expected": "pass",
+      "injection": "none",
+      "ratio": 1.0,
+      "gate1": "pass",
+      "gate2": "",
+      "final": "pass"
+    },
+    {
+      "case_id": "gt_00729_clean",
+      "expected": "pass",
+      "injection": "none",
+      "ratio": 1.0,
+      "gate1": "pass",
+      "gate2": "",
+      "final": "pass"
+    },
+    {
+      "case_id": "gt_00532_clean",
+      "expected": "pass",
+      "injection": "none",
+      "ratio": 1.0,
+      "gate1": "pass",
+      "gate2": "",
+      "final": "pass"
+    },
+    {
+      "case_id": "gt_00273_clean",
+      "expected": "pass",
+      "injection": "none",
+      "ratio": 1.0,
+      "gate1": "pass",
+      "gate2": "",
+      "final": "pass"
+    },
+    {
+      "case_id": "gt_02196_fabrication",
+      "expected": "fail",
+      "injection": "fabrication",
+      "ratio": 0.9286,
+      "gate1": "pass",
+      "gate2": "",
+      "final": "pass"
+    },
+    {
+      "case_id": "gt_02331_fabrication",
+      "expected": "fail",
+      "injection": "fabrication",
+      "ratio": 0.7143,
+      "gate1": "pass",
+      "gate2": "",
+      "final": "pass"
+    },
+    {
+      "case_id": "gt_00186_clean",
+      "expected": "pass",
+      "injection": "none",
+      "ratio": 1.0,
+      "gate1": "pass",
+      "gate2": "",
+      "final": "pass"
+    },
+    {
+      "case_id": "gt_02749_multi",
+      "expected": "fail",
+      "injection": "multi_failure",
+      "ratio": 0.8333,
+      "gate1": "pass",
+      "gate2": "",
+      "final": "pass"
+    },
+    {
+      "case_id": "gt_02620_multi",
+      "expected": "fail",
+      "injection": "multi_failure",
+      "ratio": 0.875,
+      "gate1": "pass",
+      "gate2": "",
+      "final": "pass"
+    },
+    {
+      "case_id": "gt_00703_clean",
+      "expected": "pass",
+      "injection": "none",
+      "ratio": 1.0,
+      "gate1": "pass",
+      "gate2": "",
+      "final": "pass"
+    },
+    {
+      "case_id": "gt_00398_clean",
+      "expected": "pass",
+      "injection": "none",
+      "ratio": 1.0,
+      "gate1": "pass",
+      "gate2": "",
+      "final": "pass"
+    },
+    {
+      "case_id": "gt_00798_clean",
+      "expected": "pass",
+      "injection": "none",
+      "ratio": 1.0,
+      "gate1": "pass",
+      "gate2": "",
+      "final": "pass"
+    },
+    {
+      "case_id": "gt_02230_fabrication",
+      "expected": "fail",
+      "injection": "fabrication",
+      "ratio": 0.8571,
+      "gate1": "pass",
+      "gate2": "",
+      "final": "pass"
+    },
+    {
+      "case_id": "gt_00529_clean",
+      "expected": "pass",
+      "injection": "none",
+      "ratio": 1.0,
+      "gate1": "pass",
+      "gate2": "",
+      "final": "pass"
+    },
+    {
+      "case_id": "gt_00282_clean",
+      "expected": "pass",
+      "injection": "none",
+      "ratio": 1.0,
+      "gate1": "pass",
+      "gate2": "",
+      "final": "pass"
+    },
+    {
+      "case_id": "gt_00772_clean",
+      "expected": "pass",
+      "injection": "none",
+      "ratio": 1.0,
+      "gate1": "pass",
+      "gate2": "",
+      "final": "pass"
+    },
+    {
+      "case_id": "gt_00378_clean",
+      "expected": "pass",
+      "injection": "none",
+      "ratio": 0.8333,
+      "gate1": "pass",
+      "gate2": "",
+      "final": "pass"
+    },
+    {
+      "case_id": "gt_00277_clean",
+      "expected": "pass",
+      "injection": "none",
+      "ratio": 1.0,
+      "gate1": "pass",
+      "gate2": "",
+      "final": "pass"
+    },
+    {
+      "case_id": "gt_02700_multi",
+      "expected": "fail",
+      "injection": "multi_failure",
+      "ratio": 0.875,
+      "gate1": "pass",
+      "gate2": "",
+      "final": "pass"
+    },
+    {
+      "case_id": "gt_00653_clean",
+      "expected": "pass",
+      "injection": "none",
+      "ratio": 1.0,
+      "gate1": "pass",
+      "gate2": "",
+      "final": "pass"
+    },
+    {
+      "case_id": "gt_02132_fabrication",
+      "expected": "fail",
+      "injection": "fabrication",
+      "ratio": 0.8333,
+      "gate1": "pass",
+      "gate2": "",
+      "final": "pass"
+    },
+    {
+      "case_id": "gt_00805_clean",
+      "expected": "pass",
+      "injection": "none",
+      "ratio": 1.0,
+      "gate1": "pass",
+      "gate2": "",
+      "final": "pass"
+    },
+    {
+      "case_id": "gt_00940_clean",
+      "expected": "pass",
+      "injection": "none",
+      "ratio": 1.0,
+      "gate1": "pass",
+      "gate2": "",
+      "final": "pass"
+    },
+    {
+      "case_id": "gt_02781_multi",
+      "expected": "fail",
+      "injection": "multi_failure",
+      "ratio": 0.75,
+      "gate1": "pass",
+      "gate2": "",
+      "final": "pass"
+    },
+    {
+      "case_id": "gt_00192_clean",
+      "expected": "pass",
+      "injection": "none",
+      "ratio": 1.0,
+      "gate1": "pass",
+      "gate2": "",
+      "final": "pass"
+    },
+    {
+      "case_id": "gt_00975_clean",
+      "expected": "pass",
+      "injection": "none",
+      "ratio": 1.0,
+      "gate1": "pass",
+      "gate2": "",
+      "final": "pass"
+    },
+    {
+      "case_id": "gt_00773_clean",
+      "expected": "pass",
+      "injection": "none",
+      "ratio": 1.0,
+      "gate1": "pass",
+      "gate2": "",
+      "final": "pass"
+    },
+    {
+      "case_id": "gt_00393_clean",
+      "expected": "pass",
+      "injection": "none",
+      "ratio": 1.0,
+      "gate1": "pass",
+      "gate2": "",
+      "final": "pass"
+    },
+    {
+      "case_id": "gt_00619_clean",
+      "expected": "pass",
+      "injection": "none",
+      "ratio": 1.0,
+      "gate1": "pass",
+      "gate2": "",
+      "final": "pass"
+    },
+    {
+      "case_id": "gt_00951_clean",
+      "expected": "pass",
+      "injection": "none",
+      "ratio": 1.0,
+      "gate1": "pass",
+      "gate2": "",
+      "final": "pass"
+    },
+    {
+      "case_id": "gt_00175_clean",
+      "expected": "pass",
+      "injection": "none",
+      "ratio": 1.0,
+      "gate1": "pass",
+      "gate2": "",
+      "final": "pass"
+    },
+    {
+      "case_id": "gt_00466_clean",
+      "expected": "pass",
+      "injection": "none",
+      "ratio": 1.0,
+      "gate1": "pass",
+      "gate2": "",
+      "final": "pass"
+    },
+    {
+      "case_id": "gt_00688_clean",
+      "expected": "pass",
+      "injection": "none",
+      "ratio": 1.0,
+      "gate1": "pass",
+      "gate2": "",
+      "final": "pass"
+    },
+    {
+      "case_id": "gt_00802_clean",
+      "expected": "pass",
+      "injection": "none",
+      "ratio": 1.0,
+      "gate1": "pass",
+      "gate2": "",
+      "final": "pass"
+    },
+    {
+      "case_id": "gt_00792_clean",
+      "expected": "pass",
+      "injection": "none",
+      "ratio": 1.0,
+      "gate1": "pass",
+      "gate2": "",
+      "final": "pass"
+    },
+    {
+      "case_id": "gt_00480_clean",
+      "expected": "pass",
+      "injection": "none",
+      "ratio": 1.0,
+      "gate1": "pass",
+      "gate2": "",
+      "final": "pass"
+    },
+    {
+      "case_id": "gt_00143_clean",
+      "expected": "pass",
+      "injection": "none",
+      "ratio": 1.0,
+      "gate1": "pass",
+      "gate2": "",
+      "final": "pass"
+    },
+    {
+      "case_id": "gt_02240_fabrication",
+      "expected": "fail",
+      "injection": "fabrication",
+      "ratio": 0.8333,
+      "gate1": "pass",
+      "gate2": "",
+      "final": "pass"
+    },
+    {
+      "case_id": "gt_00669_clean",
+      "expected": "pass",
+      "injection": "none",
+      "ratio": 1.0,
+      "gate1": "pass",
+      "gate2": "",
+      "final": "pass"
+    },
+    {
+      "case_id": "gt_02348_fabrication",
+      "expected": "fail",
+      "injection": "fabrication",
+      "ratio": 0.9091,
+      "gate1": "pass",
+      "gate2": "",
+      "final": "pass"
+    },
+    {
+      "case_id": "gt_02297_fabrication",
+      "expected": "fail",
+      "injection": "fabrication",
+      "ratio": 0.8,
+      "gate1": "pass",
+      "gate2": "",
+      "final": "pass"
+    },
+    {
+      "case_id": "gt_00908_clean",
+      "expected": "pass",
+      "injection": "none",
+      "ratio": 1.0,
+      "gate1": "pass",
+      "gate2": "",
+      "final": "pass"
+    },
+    {
+      "case_id": "gt_02277_fabrication",
+      "expected": "fail",
+      "injection": "fabrication",
+      "ratio": 0.8182,
+      "gate1": "pass",
+      "gate2": "",
+      "final": "pass"
+    },
+    {
+      "case_id": "gt_02795_multi",
+      "expected": "fail",
+      "injection": "multi_failure",
+      "ratio": 0.75,
+      "gate1": "pass",
+      "gate2": "",
+      "final": "pass"
+    },
+    {
+      "case_id": "gt_00394_clean",
+      "expected": "pass",
+      "injection": "none",
+      "ratio": 0.5,
+      "gate1": "ambiguous",
+      "gate2": "pass",
+      "final": "pass"
+    },
+    {
+      "case_id": "gt_02658_multi",
+      "expected": "fail",
+      "injection": "multi_failure",
+      "ratio": 0.7143,
+      "gate1": "pass",
+      "gate2": "",
+      "final": "pass"
+    },
+    {
+      "case_id": "gt_00357_clean",
+      "expected": "pass",
+      "injection": "none",
+      "ratio": 1.0,
+      "gate1": "pass",
+      "gate2": "",
+      "final": "pass"
+    },
+    {
+      "case_id": "gt_02191_fabrication",
+      "expected": "fail",
+      "injection": "fabrication",
+      "ratio": 1.0,
+      "gate1": "pass",
+      "gate2": "",
+      "final": "pass"
+    },
+    {
+      "case_id": "gt_00382_clean",
+      "expected": "pass",
+      "injection": "none",
+      "ratio": 1.0,
+      "gate1": "pass",
+      "gate2": "",
+      "final": "pass"
+    },
+    {
+      "case_id": "gt_00422_clean",
+      "expected": "pass",
+      "injection": "none",
+      "ratio": 1.0,
+      "gate1": "pass",
+      "gate2": "",
+      "final": "pass"
+    },
+    {
+      "case_id": "gt_02670_multi",
+      "expected": "fail",
+      "injection": "multi_failure",
+      "ratio": 0.8571,
+      "gate1": "pass",
+      "gate2": "",
+      "final": "pass"
+    },
+    {
+      "case_id": "gt_00762_clean",
+      "expected": "pass",
+      "injection": "none",
+      "ratio": 1.0,
+      "gate1": "pass",
+      "gate2": "",
+      "final": "pass"
+    },
+    {
+      "case_id": "gt_00912_clean",
+      "expected": "pass",
+      "injection": "none",
+      "ratio": 1.0,
+      "gate1": "pass",
+      "gate2": "",
+      "final": "pass"
+    },
+    {
+      "case_id": "gt_00960_clean",
+      "expected": "pass",
+      "injection": "none",
+      "ratio": 1.0,
+      "gate1": "pass",
+      "gate2": "",
+      "final": "pass"
+    },
+    {
+      "case_id": "gt_00704_clean",
+      "expected": "pass",
+      "injection": "none",
+      "ratio": 0.875,
+      "gate1": "pass",
+      "gate2": "",
+      "final": "pass"
+    },
+    {
+      "case_id": "gt_00810_clean",
+      "expected": "pass",
+      "injection": "none",
+      "ratio": 0.9231,
+      "gate1": "pass",
+      "gate2": "",
+      "final": "pass"
+    },
+    {
+      "case_id": "gt_00172_clean",
+      "expected": "pass",
+      "injection": "none",
+      "ratio": 1.0,
+      "gate1": "pass",
+      "gate2": "",
+      "final": "pass"
+    },
+    {
+      "case_id": "gt_02125_fabrication",
+      "expected": "fail",
+      "injection": "fabrication",
+      "ratio": 1.0,
+      "gate1": "pass",
+      "gate2": "",
+      "final": "pass"
+    },
+    {
+      "case_id": "gt_02737_multi",
+      "expected": "fail",
+      "injection": "multi_failure",
+      "ratio": 0.75,
+      "gate1": "pass",
+      "gate2": "",
+      "final": "pass"
+    },
+    {
+      "case_id": "gt_02183_fabrication",
+      "expected": "fail",
+      "injection": "fabrication",
+      "ratio": 1.0,
+      "gate1": "pass",
+      "gate2": "",
+      "final": "pass"
+    },
+    {
+      "case_id": "gt_00220_clean",
+      "expected": "pass",
+      "injection": "none",
+      "ratio": 1.0,
+      "gate1": "pass",
+      "gate2": "",
+      "final": "pass"
+    },
+    {
+      "case_id": "gt_02221_fabrication",
+      "expected": "fail",
+      "injection": "fabrication",
+      "ratio": 0.9231,
+      "gate1": "pass",
+      "gate2": "",
+      "final": "pass"
+    },
+    {
+      "case_id": "gt_00554_clean",
+      "expected": "pass",
+      "injection": "none",
+      "ratio": 1.0,
+      "gate1": "pass",
+      "gate2": "",
+      "final": "pass"
+    },
+    {
+      "case_id": "gt_02367_fabrication",
+      "expected": "fail",
+      "injection": "fabrication",
+      "ratio": 0.8889,
+      "gate1": "pass",
+      "gate2": "",
+      "final": "pass"
+    },
+    {
+      "case_id": "gt_00539_clean",
+      "expected": "pass",
+      "injection": "none",
+      "ratio": 1.0,
+      "gate1": "pass",
+      "gate2": "",
+      "final": "pass"
+    },
+    {
+      "case_id": "gt_02236_fabrication",
+      "expected": "fail",
+      "injection": "fabrication",
+      "ratio": 1.0,
+      "gate1": "pass",
+      "gate2": "",
+      "final": "pass"
+    },
+    {
+      "case_id": "gt_00572_clean",
+      "expected": "pass",
+      "injection": "none",
+      "ratio": 1.0,
+      "gate1": "pass",
+      "gate2": "",
+      "final": "pass"
+    },
+    {
+      "case_id": "gt_00286_clean",
+      "expected": "pass",
+      "injection": "none",
+      "ratio": 1.0,
+      "gate1": "pass",
+      "gate2": "",
+      "final": "pass"
+    },
+    {
+      "case_id": "gt_00610_clean",
+      "expected": "pass",
+      "injection": "none",
+      "ratio": 1.0,
+      "gate1": "pass",
+      "gate2": "",
+      "final": "pass"
+    },
+    {
+      "case_id": "gt_00021_clean",
+      "expected": "pass",
+      "injection": "none",
+      "ratio": 1.0,
+      "gate1": "pass",
+      "gate2": "",
+      "final": "pass"
+    },
+    {
+      "case_id": "gt_02110_fabrication",
+      "expected": "fail",
+      "injection": "fabrication",
+      "ratio": 0.9091,
+      "gate1": "pass",
+      "gate2": "",
+      "final": "pass"
+    },
+    {
+      "case_id": "gt_00096_clean",
+      "expected": "pass",
+      "injection": "none",
+      "ratio": 1.0,
+      "gate1": "pass",
+      "gate2": "",
+      "final": "pass"
+    },
+    {
+      "case_id": "gt_00318_clean",
+      "expected": "pass",
+      "injection": "none",
+      "ratio": 1.0,
+      "gate1": "pass",
+      "gate2": "",
+      "final": "pass"
+    },
+    {
+      "case_id": "gt_00415_clean",
+      "expected": "pass",
+      "injection": "none",
+      "ratio": 1.0,
+      "gate1": "pass",
+      "gate2": "",
+      "final": "pass"
+    },
+    {
+      "case_id": "gt_00996_clean",
+      "expected": "pass",
+      "injection": "none",
+      "ratio": 1.0,
+      "gate1": "pass",
+      "gate2": "",
+      "final": "pass"
+    },
+    {
+      "case_id": "gt_00598_clean",
+      "expected": "pass",
+      "injection": "none",
+      "ratio": 1.0,
+      "gate1": "pass",
+      "gate2": "",
+      "final": "pass"
+    },
+    {
+      "case_id": "gt_02684_multi",
+      "expected": "fail",
+      "injection": "multi_failure",
+      "ratio": 0.8,
+      "gate1": "pass",
+      "gate2": "",
+      "final": "pass"
+    },
+    {
+      "case_id": "gt_00757_clean",
+      "expected": "pass",
+      "injection": "none",
+      "ratio": 1.0,
+      "gate1": "pass",
+      "gate2": "",
+      "final": "pass"
+    },
+    {
+      "case_id": "gt_02604_multi",
+      "expected": "fail",
+      "injection": "multi_failure",
+      "ratio": 1.0,
+      "gate1": "pass",
+      "gate2": "",
+      "final": "pass"
+    },
+    {
+      "case_id": "gt_02275_fabrication",
+      "expected": "fail",
+      "injection": "fabrication",
+      "ratio": 0.8571,
+      "gate1": "pass",
+      "gate2": "",
+      "final": "pass"
+    },
+    {
+      "case_id": "gt_02343_fabrication",
+      "expected": "fail",
+      "injection": "fabrication",
+      "ratio": 0.8333,
+      "gate1": "pass",
+      "gate2": "",
+      "final": "pass"
+    },
+    {
+      "case_id": "gt_00340_clean",
+      "expected": "pass",
+      "injection": "none",
+      "ratio": 1.0,
+      "gate1": "pass",
+      "gate2": "",
+      "final": "pass"
+    },
+    {
+      "case_id": "gt_00999_clean",
+      "expected": "pass",
+      "injection": "none",
+      "ratio": 1.0,
+      "gate1": "pass",
+      "gate2": "",
+      "final": "pass"
+    },
+    {
+      "case_id": "gt_00749_clean",
+      "expected": "pass",
+      "injection": "none",
+      "ratio": 1.0,
+      "gate1": "pass",
+      "gate2": "",
+      "final": "pass"
+    },
+    {
+      "case_id": "gt_00026_clean",
+      "expected": "pass",
+      "injection": "none",
+      "ratio": 1.0,
+      "gate1": "pass",
+      "gate2": "",
+      "final": "pass"
+    },
+    {
+      "case_id": "gt_02206_fabrication",
+      "expected": "fail",
+      "injection": "fabrication",
+      "ratio": 1.0,
+      "gate1": "pass",
+      "gate2": "",
+      "final": "pass"
+    },
+    {
+      "case_id": "gt_02709_multi",
+      "expected": "fail",
+      "injection": "multi_failure",
+      "ratio": 0.8,
+      "gate1": "pass",
+      "gate2": "",
+      "final": "pass"
+    },
+    {
+      "case_id": "gt_00613_clean",
+      "expected": "pass",
+      "injection": "none",
+      "ratio": 1.0,
+      "gate1": "pass",
+      "gate2": "",
+      "final": "pass"
+    },
+    {
+      "case_id": "gt_02322_fabrication",
+      "expected": "fail",
+      "injection": "fabrication",
+      "ratio": 0.8571,
+      "gate1": "pass",
+      "gate2": "",
+      "final": "pass"
+    },
+    {
+      "case_id": "gt_02148_fabrication",
+      "expected": "fail",
+      "injection": "fabrication",
+      "ratio": 0.75,
+      "gate1": "pass",
+      "gate2": "",
+      "final": "pass"
+    },
+    {
+      "case_id": "gt_00685_clean",
+      "expected": "pass",
+      "injection": "none",
+      "ratio": 1.0,
+      "gate1": "pass",
+      "gate2": "",
+      "final": "pass"
+    },
+    {
+      "case_id": "gt_00260_clean",
+      "expected": "pass",
+      "injection": "none",
+      "ratio": 1.0,
+      "gate1": "pass",
+      "gate2": "",
+      "final": "pass"
+    },
+    {
+      "case_id": "gt_00787_clean",
+      "expected": "pass",
+      "injection": "none",
+      "ratio": 1.0,
+      "gate1": "pass",
+      "gate2": "",
+      "final": "pass"
+    },
+    {
+      "case_id": "gt_00676_clean",
+      "expected": "pass",
+      "injection": "none",
+      "ratio": 1.0,
+      "gate1": "pass",
+      "gate2": "",
+      "final": "pass"
+    },
+    {
+      "case_id": "gt_00965_clean",
+      "expected": "pass",
+      "injection": "none",
+      "ratio": 1.0,
+      "gate1": "pass",
+      "gate2": "",
+      "final": "pass"
+    },
+    {
+      "case_id": "gt_00355_clean",
+      "expected": "pass",
+      "injection": "none",
+      "ratio": 1.0,
+      "gate1": "pass",
+      "gate2": "",
+      "final": "pass"
+    },
+    {
+      "case_id": "gt_02644_multi",
+      "expected": "fail",
+      "injection": "multi_failure",
+      "ratio": 0.9167,
+      "gate1": "pass",
+      "gate2": "",
+      "final": "pass"
+    },
+    {
+      "case_id": "gt_02762_multi",
+      "expected": "fail",
+      "injection": "multi_failure",
+      "ratio": 0.7778,
+      "gate1": "pass",
+      "gate2": "",
+      "final": "pass"
+    },
+    {
+      "case_id": "gt_00170_clean",
+      "expected": "pass",
+      "injection": "none",
+      "ratio": 1.0,
+      "gate1": "pass",
+      "gate2": "",
+      "final": "pass"
+    },
+    {
+      "case_id": "gt_00877_clean",
+      "expected": "pass",
+      "injection": "none",
+      "ratio": 1.0,
+      "gate1": "pass",
+      "gate2": "",
+      "final": "pass"
+    },
+    {
+      "case_id": "gt_02175_fabrication",
+      "expected": "fail",
+      "injection": "fabrication",
+      "ratio": 0.8,
+      "gate1": "pass",
+      "gate2": "",
+      "final": "pass"
+    },
+    {
+      "case_id": "gt_00018_clean",
+      "expected": "pass",
+      "injection": "none",
+      "ratio": 1.0,
+      "gate1": "pass",
+      "gate2": "",
+      "final": "pass"
+    },
+    {
+      "case_id": "gt_02145_fabrication",
+      "expected": "fail",
+      "injection": "fabrication",
+      "ratio": 0.8889,
+      "gate1": "pass",
+      "gate2": "",
+      "final": "pass"
+    },
+    {
+      "case_id": "gt_00453_clean",
+      "expected": "pass",
+      "injection": "none",
+      "ratio": 1.0,
+      "gate1": "pass",
+      "gate2": "",
+      "final": "pass"
+    },
+    {
+      "case_id": "gt_00991_clean",
+      "expected": "pass",
+      "injection": "none",
+      "ratio": 1.0,
+      "gate1": "pass",
+      "gate2": "",
+      "final": "pass"
+    },
+    {
+      "case_id": "gt_00129_clean",
+      "expected": "pass",
+      "injection": "none",
+      "ratio": 1.0,
+      "gate1": "pass",
+      "gate2": "",
+      "final": "pass"
+    },
+    {
+      "case_id": "gt_02724_multi",
+      "expected": "fail",
+      "injection": "multi_failure",
+      "ratio": 0.625,
+      "gate1": "ambiguous",
+      "gate2": "fail",
+      "final": "fail"
+    },
+    {
+      "case_id": "gt_02617_multi",
+      "expected": "fail",
+      "injection": "multi_failure",
+      "ratio": 0.875,
+      "gate1": "pass",
+      "gate2": "",
+      "final": "pass"
+    },
+    {
+      "case_id": "gt_00934_clean",
+      "expected": "pass",
+      "injection": "none",
+      "ratio": 1.0,
+      "gate1": "pass",
+      "gate2": "",
+      "final": "pass"
+    },
+    {
+      "case_id": "gt_02310_fabrication",
+      "expected": "fail",
+      "injection": "fabrication",
+      "ratio": 0.875,
+      "gate1": "pass",
+      "gate2": "",
+      "final": "pass"
+    },
+    {
+      "case_id": "gt_00723_clean",
+      "expected": "pass",
+      "injection": "none",
+      "ratio": 1.0,
+      "gate1": "pass",
+      "gate2": "",
+      "final": "pass"
+    },
+    {
+      "case_id": "gt_00673_clean",
+      "expected": "pass",
+      "injection": "none",
+      "ratio": 1.0,
+      "gate1": "pass",
+      "gate2": "",
+      "final": "pass"
+    },
+    {
+      "case_id": "gt_00114_clean",
+      "expected": "pass",
+      "injection": "none",
+      "ratio": 1.0,
+      "gate1": "pass",
+      "gate2": "",
+      "final": "pass"
+    },
+    {
+      "case_id": "gt_00664_clean",
+      "expected": "pass",
+      "injection": "none",
+      "ratio": 1.0,
+      "gate1": "pass",
+      "gate2": "",
+      "final": "pass"
+    },
+    {
+      "case_id": "gt_00022_clean",
+      "expected": "pass",
+      "injection": "none",
+      "ratio": 1.0,
+      "gate1": "pass",
+      "gate2": "",
+      "final": "pass"
+    },
+    {
+      "case_id": "gt_02689_multi",
+      "expected": "fail",
+      "injection": "multi_failure",
+      "ratio": 0.875,
+      "gate1": "pass",
+      "gate2": "",
+      "final": "pass"
+    },
+    {
+      "case_id": "gt_00936_clean",
+      "expected": "pass",
+      "injection": "none",
+      "ratio": 1.0,
+      "gate1": "pass",
+      "gate2": "",
+      "final": "pass"
+    },
+    {
+      "case_id": "gt_02357_fabrication",
+      "expected": "fail",
+      "injection": "fabrication",
+      "ratio": 1.0,
+      "gate1": "pass",
+      "gate2": "",
+      "final": "pass"
+    },
+    {
+      "case_id": "gt_02129_fabrication",
+      "expected": "fail",
+      "injection": "fabrication",
+      "ratio": 0.8,
+      "gate1": "pass",
+      "gate2": "",
+      "final": "pass"
+    },
+    {
+      "case_id": "gt_00820_clean",
+      "expected": "pass",
+      "injection": "none",
+      "ratio": 0.8889,
+      "gate1": "pass",
+      "gate2": "",
+      "final": "pass"
+    },
+    {
+      "case_id": "gt_00828_clean",
+      "expected": "pass",
+      "injection": "none",
+      "ratio": 1.0,
+      "gate1": "pass",
+      "gate2": "",
+      "final": "pass"
+    },
+    {
+      "case_id": "gt_02364_fabrication",
+      "expected": "fail",
+      "injection": "fabrication",
+      "ratio": 0.8,
+      "gate1": "pass",
+      "gate2": "",
+      "final": "pass"
+    },
+    {
+      "case_id": "gt_00149_clean",
+      "expected": "pass",
+      "injection": "none",
+      "ratio": 0.8,
+      "gate1": "pass",
+      "gate2": "",
+      "final": "pass"
+    },
+    {
+      "case_id": "gt_02666_multi",
+      "expected": "fail",
+      "injection": "multi_failure",
+      "ratio": 0.75,
+      "gate1": "pass",
+      "gate2": "",
+      "final": "pass"
+    },
+    {
+      "case_id": "gt_00988_clean",
+      "expected": "pass",
+      "injection": "none",
+      "ratio": 1.0,
+      "gate1": "pass",
+      "gate2": "",
+      "final": "pass"
+    },
+    {
+      "case_id": "gt_00575_clean",
+      "expected": "pass",
+      "injection": "none",
+      "ratio": 1.0,
+      "gate1": "pass",
+      "gate2": "",
+      "final": "pass"
+    },
+    {
+      "case_id": "gt_00919_clean",
+      "expected": "pass",
+      "injection": "none",
+      "ratio": 1.0,
+      "gate1": "pass",
+      "gate2": "",
+      "final": "pass"
+    },
+    {
+      "case_id": "gt_00254_clean",
+      "expected": "pass",
+      "injection": "none",
+      "ratio": 1.0,
+      "gate1": "pass",
+      "gate2": "",
+      "final": "pass"
+    },
+    {
+      "case_id": "gt_00695_clean",
+      "expected": "pass",
+      "injection": "none",
+      "ratio": 1.0,
+      "gate1": "pass",
+      "gate2": "",
+      "final": "pass"
+    },
+    {
+      "case_id": "gt_00469_clean",
+      "expected": "pass",
+      "injection": "none",
+      "ratio": 1.0,
+      "gate1": "pass",
+      "gate2": "",
+      "final": "pass"
+    },
+    {
+      "case_id": "gt_00293_clean",
+      "expected": "pass",
+      "injection": "none",
+      "ratio": 1.0,
+      "gate1": "pass",
+      "gate2": "",
+      "final": "pass"
+    },
+    {
+      "case_id": "gt_00465_clean",
+      "expected": "pass",
+      "injection": "none",
+      "ratio": 1.0,
+      "gate1": "pass",
+      "gate2": "",
+      "final": "pass"
+    },
+    {
+      "case_id": "gt_00901_clean",
+      "expected": "pass",
+      "injection": "none",
+      "ratio": 1.0,
+      "gate1": "pass",
+      "gate2": "",
+      "final": "pass"
+    },
+    {
+      "case_id": "gt_00506_clean",
+      "expected": "pass",
+      "injection": "none",
+      "ratio": 1.0,
+      "gate1": "pass",
+      "gate2": "",
+      "final": "pass"
+    },
+    {
+      "case_id": "gt_02752_multi",
+      "expected": "fail",
+      "injection": "multi_failure",
+      "ratio": 0.9,
+      "gate1": "pass",
+      "gate2": "",
+      "final": "pass"
+    },
+    {
+      "case_id": "gt_02610_multi",
+      "expected": "fail",
+      "injection": "multi_failure",
+      "ratio": 1.0,
+      "gate1": "pass",
+      "gate2": "",
+      "final": "pass"
+    },
+    {
+      "case_id": "gt_00274_clean",
+      "expected": "pass",
+      "injection": "none",
+      "ratio": 1.0,
+      "gate1": "pass",
+      "gate2": "",
+      "final": "pass"
+    },
+    {
+      "case_id": "gt_00302_clean",
+      "expected": "pass",
+      "injection": "none",
+      "ratio": 1.0,
+      "gate1": "pass",
+      "gate2": "",
+      "final": "pass"
+    },
+    {
+      "case_id": "gt_00131_clean",
+      "expected": "pass",
+      "injection": "none",
+      "ratio": 1.0,
+      "gate1": "pass",
+      "gate2": "",
+      "final": "pass"
+    },
+    {
+      "case_id": "gt_02150_fabrication",
+      "expected": "fail",
+      "injection": "fabrication",
+      "ratio": 1.0,
+      "gate1": "pass",
+      "gate2": "",
+      "final": "pass"
+    },
+    {
+      "case_id": "gt_02372_fabrication",
+      "expected": "fail",
+      "injection": "fabrication",
+      "ratio": 0.75,
+      "gate1": "pass",
+      "gate2": "",
+      "final": "pass"
+    },
+    {
+      "case_id": "gt_00217_clean",
+      "expected": "pass",
+      "injection": "none",
+      "ratio": 1.0,
+      "gate1": "pass",
+      "gate2": "",
+      "final": "pass"
+    },
+    {
+      "case_id": "gt_02660_multi",
+      "expected": "fail",
+      "injection": "multi_failure",
+      "ratio": 0.7273,
+      "gate1": "pass",
+      "gate2": "",
+      "final": "pass"
+    },
+    {
+      "case_id": "gt_00392_clean",
+      "expected": "pass",
+      "injection": "none",
+      "ratio": 1.0,
+      "gate1": "pass",
+      "gate2": "",
+      "final": "pass"
+    },
+    {
+      "case_id": "gt_00883_clean",
+      "expected": "pass",
+      "injection": "none",
+      "ratio": 1.0,
+      "gate1": "pass",
+      "gate2": "",
+      "final": "pass"
+    },
+    {
+      "case_id": "gt_00909_clean",
+      "expected": "pass",
+      "injection": "none",
+      "ratio": 1.0,
+      "gate1": "pass",
+      "gate2": "",
+      "final": "pass"
+    },
+    {
+      "case_id": "gt_02385_fabrication",
+      "expected": "fail",
+      "injection": "fabrication",
+      "ratio": 0.7143,
+      "gate1": "pass",
+      "gate2": "",
+      "final": "pass"
+    },
+    {
+      "case_id": "gt_00950_clean",
+      "expected": "pass",
+      "injection": "none",
+      "ratio": 0.9,
+      "gate1": "pass",
+      "gate2": "",
+      "final": "pass"
+    },
+    {
+      "case_id": "gt_00617_clean",
+      "expected": "pass",
+      "injection": "none",
+      "ratio": 1.0,
+      "gate1": "pass",
+      "gate2": "",
+      "final": "pass"
+    },
+    {
+      "case_id": "gt_00110_clean",
+      "expected": "pass",
+      "injection": "none",
+      "ratio": 1.0,
+      "gate1": "pass",
+      "gate2": "",
+      "final": "pass"
+    },
+    {
+      "case_id": "gt_00990_clean",
+      "expected": "pass",
+      "injection": "none",
+      "ratio": 1.0,
+      "gate1": "pass",
+      "gate2": "",
+      "final": "pass"
+    },
+    {
+      "case_id": "gt_00470_clean",
+      "expected": "pass",
+      "injection": "none",
+      "ratio": 1.0,
+      "gate1": "pass",
+      "gate2": "",
+      "final": "pass"
+    },
+    {
+      "case_id": "gt_00288_clean",
+      "expected": "pass",
+      "injection": "none",
+      "ratio": 0.6667,
+      "gate1": "ambiguous",
+      "gate2": "pass",
+      "final": "pass"
+    },
+    {
+      "case_id": "gt_00768_clean",
+      "expected": "pass",
+      "injection": "none",
+      "ratio": 1.0,
+      "gate1": "pass",
+      "gate2": "",
+      "final": "pass"
+    },
+    {
+      "case_id": "gt_02745_multi",
+      "expected": "fail",
+      "injection": "multi_failure",
+      "ratio": 0.875,
+      "gate1": "pass",
+      "gate2": "",
+      "final": "pass"
+    },
+    {
+      "case_id": "gt_00372_clean",
+      "expected": "pass",
+      "injection": "none",
+      "ratio": 1.0,
+      "gate1": "pass",
+      "gate2": "",
+      "final": "pass"
+    },
+    {
+      "case_id": "gt_00144_clean",
+      "expected": "pass",
+      "injection": "none",
+      "ratio": 1.0,
+      "gate1": "pass",
+      "gate2": "",
+      "final": "pass"
+    },
+    {
+      "case_id": "gt_00864_clean",
+      "expected": "pass",
+      "injection": "none",
+      "ratio": 1.0,
+      "gate1": "pass",
+      "gate2": "",
+      "final": "pass"
+    },
+    {
+      "case_id": "gt_00371_clean",
+      "expected": "pass",
+      "injection": "none",
+      "ratio": 1.0,
+      "gate1": "pass",
+      "gate2": "",
+      "final": "pass"
+    },
+    {
+      "case_id": "gt_02141_fabrication",
+      "expected": "fail",
+      "injection": "fabrication",
+      "ratio": 0.9,
+      "gate1": "pass",
+      "gate2": "",
+      "final": "pass"
+    },
+    {
+      "case_id": "gt_00660_clean",
+      "expected": "pass",
+      "injection": "none",
+      "ratio": 1.0,
+      "gate1": "pass",
+      "gate2": "",
+      "final": "pass"
+    },
+    {
+      "case_id": "gt_00860_clean",
+      "expected": "pass",
+      "injection": "none",
+      "ratio": 1.0,
+      "gate1": "pass",
+      "gate2": "",
+      "final": "pass"
+    },
+    {
+      "case_id": "gt_00330_clean",
+      "expected": "pass",
+      "injection": "none",
+      "ratio": 1.0,
+      "gate1": "pass",
+      "gate2": "",
+      "final": "pass"
+    },
+    {
+      "case_id": "gt_00858_clean",
+      "expected": "pass",
+      "injection": "none",
+      "ratio": 1.0,
+      "gate1": "pass",
+      "gate2": "",
+      "final": "pass"
+    },
+    {
+      "case_id": "gt_00528_clean",
+      "expected": "pass",
+      "injection": "none",
+      "ratio": 1.0,
+      "gate1": "pass",
+      "gate2": "",
+      "final": "pass"
+    },
+    {
+      "case_id": "gt_00945_clean",
+      "expected": "pass",
+      "injection": "none",
+      "ratio": 1.0,
+      "gate1": "pass",
+      "gate2": "",
+      "final": "pass"
+    },
+    {
+      "case_id": "gt_00552_clean",
+      "expected": "pass",
+      "injection": "none",
+      "ratio": 1.0,
+      "gate1": "pass",
+      "gate2": "",
+      "final": "pass"
+    },
+    {
+      "case_id": "gt_00413_clean",
+      "expected": "pass",
+      "injection": "none",
+      "ratio": 1.0,
+      "gate1": "pass",
+      "gate2": "",
+      "final": "pass"
+    },
+    {
+      "case_id": "gt_02396_fabrication",
+      "expected": "fail",
+      "injection": "fabrication",
+      "ratio": 1.0,
+      "gate1": "pass",
+      "gate2": "",
+      "final": "pass"
+    },
+    {
+      "case_id": "gt_00835_clean",
+      "expected": "pass",
+      "injection": "none",
+      "ratio": 1.0,
+      "gate1": "pass",
+      "gate2": "",
+      "final": "pass"
+    },
+    {
+      "case_id": "gt_00742_clean",
+      "expected": "pass",
+      "injection": "none",
+      "ratio": 0.75,
+      "gate1": "pass",
+      "gate2": "",
+      "final": "pass"
+    },
+    {
+      "case_id": "gt_00566_clean",
+      "expected": "pass",
+      "injection": "none",
+      "ratio": 1.0,
+      "gate1": "pass",
+      "gate2": "",
+      "final": "pass"
+    },
+    {
+      "case_id": "gt_00887_clean",
+      "expected": "pass",
+      "injection": "none",
+      "ratio": 1.0,
+      "gate1": "pass",
+      "gate2": "",
+      "final": "pass"
+    },
+    {
+      "case_id": "gt_02104_fabrication",
+      "expected": "fail",
+      "injection": "fabrication",
+      "ratio": 0.9231,
+      "gate1": "pass",
+      "gate2": "",
+      "final": "pass"
+    },
+    {
+      "case_id": "gt_00076_clean",
+      "expected": "pass",
+      "injection": "none",
+      "ratio": 1.0,
+      "gate1": "pass",
+      "gate2": "",
+      "final": "pass"
+    },
+    {
+      "case_id": "gt_00457_clean",
+      "expected": "pass",
+      "injection": "none",
+      "ratio": 1.0,
+      "gate1": "pass",
+      "gate2": "",
+      "final": "pass"
+    },
+    {
+      "case_id": "gt_00682_clean",
+      "expected": "pass",
+      "injection": "none",
+      "ratio": 1.0,
+      "gate1": "pass",
+      "gate2": "",
+      "final": "pass"
+    },
+    {
+      "case_id": "gt_00374_clean",
+      "expected": "pass",
+      "injection": "none",
+      "ratio": 1.0,
+      "gate1": "pass",
+      "gate2": "",
+      "final": "pass"
+    },
+    {
+      "case_id": "gt_02101_fabrication",
+      "expected": "fail",
+      "injection": "fabrication",
+      "ratio": 1.0,
+      "gate1": "pass",
+      "gate2": "",
+      "final": "pass"
+    },
+    {
+      "case_id": "gt_00533_clean",
+      "expected": "pass",
+      "injection": "none",
+      "ratio": 0.9231,
+      "gate1": "pass",
+      "gate2": "",
+      "final": "pass"
+    },
+    {
+      "case_id": "gt_02669_multi",
+      "expected": "fail",
+      "injection": "multi_failure",
+      "ratio": 0.875,
+      "gate1": "pass",
+      "gate2": "",
+      "final": "pass"
+    },
+    {
+      "case_id": "gt_00889_clean",
+      "expected": "pass",
+      "injection": "none",
+      "ratio": 1.0,
+      "gate1": "pass",
+      "gate2": "",
+      "final": "pass"
+    },
+    {
+      "case_id": "gt_02625_multi",
+      "expected": "fail",
+      "injection": "multi_failure",
+      "ratio": 0.6667,
+      "gate1": "ambiguous",
+      "gate2": "fail",
+      "final": "fail"
+    },
+    {
+      "case_id": "gt_00206_clean",
+      "expected": "pass",
+      "injection": "none",
+      "ratio": 1.0,
+      "gate1": "pass",
+      "gate2": "",
+      "final": "pass"
+    },
+    {
+      "case_id": "gt_02600_multi",
+      "expected": "fail",
+      "injection": "multi_failure",
+      "ratio": 0.8235,
+      "gate1": "pass",
+      "gate2": "",
+      "final": "pass"
+    },
+    {
+      "case_id": "gt_02652_multi",
+      "expected": "fail",
+      "injection": "multi_failure",
+      "ratio": 0.6429,
+      "gate1": "ambiguous",
+      "gate2": "fail",
+      "final": "fail"
+    },
+    {
+      "case_id": "gt_00871_clean",
+      "expected": "pass",
+      "injection": "none",
+      "ratio": 1.0,
+      "gate1": "pass",
+      "gate2": "",
+      "final": "pass"
+    },
+    {
+      "case_id": "gt_00886_clean",
+      "expected": "pass",
+      "injection": "none",
+      "ratio": 1.0,
+      "gate1": "pass",
+      "gate2": "",
+      "final": "pass"
+    },
+    {
+      "case_id": "gt_02157_fabrication",
+      "expected": "fail",
+      "injection": "fabrication",
+      "ratio": 1.0,
+      "gate1": "pass",
+      "gate2": "",
+      "final": "pass"
+    },
+    {
+      "case_id": "gt_02133_fabrication",
+      "expected": "fail",
+      "injection": "fabrication",
+      "ratio": 0.8571,
+      "gate1": "pass",
+      "gate2": "",
+      "final": "pass"
+    },
+    {
+      "case_id": "gt_00969_clean",
+      "expected": "pass",
+      "injection": "none",
+      "ratio": 1.0,
+      "gate1": "pass",
+      "gate2": "",
+      "final": "pass"
+    },
+    {
+      "case_id": "gt_00246_clean",
+      "expected": "pass",
+      "injection": "none",
+      "ratio": 1.0,
+      "gate1": "pass",
+      "gate2": "",
+      "final": "pass"
+    },
+    {
+      "case_id": "gt_00001_clean",
+      "expected": "pass",
+      "injection": "none",
+      "ratio": 1.0,
+      "gate1": "pass",
+      "gate2": "",
+      "final": "pass"
+    },
+    {
+      "case_id": "gt_02146_fabrication",
+      "expected": "fail",
+      "injection": "fabrication",
+      "ratio": 0.8571,
+      "gate1": "pass",
+      "gate2": "",
+      "final": "pass"
+    },
+    {
+      "case_id": "gt_00789_clean",
+      "expected": "pass",
+      "injection": "none",
+      "ratio": 1.0,
+      "gate1": "pass",
+      "gate2": "",
+      "final": "pass"
+    },
+    {
+      "case_id": "gt_00154_clean",
+      "expected": "pass",
+      "injection": "none",
+      "ratio": 1.0,
+      "gate1": "pass",
+      "gate2": "",
+      "final": "pass"
+    },
+    {
+      "case_id": "gt_02763_multi",
+      "expected": "fail",
+      "injection": "multi_failure",
+      "ratio": 0.875,
+      "gate1": "pass",
+      "gate2": "",
+      "final": "pass"
+    },
+    {
+      "case_id": "gt_00639_clean",
+      "expected": "pass",
+      "injection": "none",
+      "ratio": 1.0,
+      "gate1": "pass",
+      "gate2": "",
+      "final": "pass"
+    },
+    {
+      "case_id": "gt_02728_multi",
+      "expected": "fail",
+      "injection": "multi_failure",
+      "ratio": 0.7778,
+      "gate1": "pass",
+      "gate2": "",
+      "final": "pass"
+    },
+    {
+      "case_id": "gt_00799_clean",
+      "expected": "pass",
+      "injection": "none",
+      "ratio": 1.0,
+      "gate1": "pass",
+      "gate2": "",
+      "final": "pass"
+    },
+    {
+      "case_id": "gt_00525_clean",
+      "expected": "pass",
+      "injection": "none",
+      "ratio": 1.0,
+      "gate1": "pass",
+      "gate2": "",
+      "final": "pass"
+    },
+    {
+      "case_id": "gt_00476_clean",
+      "expected": "pass",
+      "injection": "none",
+      "ratio": 1.0,
+      "gate1": "pass",
+      "gate2": "",
+      "final": "pass"
+    },
+    {
+      "case_id": "gt_00456_clean",
+      "expected": "pass",
+      "injection": "none",
+      "ratio": 1.0,
+      "gate1": "pass",
+      "gate2": "",
+      "final": "pass"
+    },
+    {
+      "case_id": "gt_00680_clean",
+      "expected": "pass",
+      "injection": "none",
+      "ratio": 1.0,
+      "gate1": "pass",
+      "gate2": "",
+      "final": "pass"
+    },
+    {
+      "case_id": "gt_00107_clean",
+      "expected": "pass",
+      "injection": "none",
+      "ratio": 1.0,
+      "gate1": "pass",
+      "gate2": "",
+      "final": "pass"
+    },
+    {
+      "case_id": "gt_00324_clean",
+      "expected": "pass",
+      "injection": "none",
+      "ratio": 1.0,
+      "gate1": "pass",
+      "gate2": "",
+      "final": "pass"
+    },
+    {
+      "case_id": "gt_00395_clean",
+      "expected": "pass",
+      "injection": "none",
+      "ratio": 1.0,
+      "gate1": "pass",
+      "gate2": "",
+      "final": "pass"
+    },
+    {
+      "case_id": "gt_02242_fabrication",
+      "expected": "fail",
+      "injection": "fabrication",
+      "ratio": 0.8,
+      "gate1": "pass",
+      "gate2": "",
+      "final": "pass"
+    },
+    {
+      "case_id": "gt_00640_clean",
+      "expected": "pass",
+      "injection": "none",
+      "ratio": 1.0,
+      "gate1": "pass",
+      "gate2": "",
+      "final": "pass"
+    },
+    {
+      "case_id": "gt_00031_clean",
+      "expected": "pass",
+      "injection": "none",
+      "ratio": 1.0,
+      "gate1": "pass",
+      "gate2": "",
+      "final": "pass"
+    },
+    {
+      "case_id": "gt_00168_clean",
+      "expected": "pass",
+      "injection": "none",
+      "ratio": 0.6667,
+      "gate1": "ambiguous",
+      "gate2": "pass",
+      "final": "pass"
+    },
+    {
+      "case_id": "gt_00636_clean",
+      "expected": "pass",
+      "injection": "none",
+      "ratio": 0.9444,
+      "gate1": "pass",
+      "gate2": "",
+      "final": "pass"
+    },
+    {
+      "case_id": "gt_02203_fabrication",
+      "expected": "fail",
+      "injection": "fabrication",
+      "ratio": 1.0,
+      "gate1": "pass",
+      "gate2": "",
+      "final": "pass"
+    },
+    {
+      "case_id": "gt_00182_clean",
+      "expected": "pass",
+      "injection": "none",
+      "ratio": 1.0,
+      "gate1": "pass",
+      "gate2": "",
+      "final": "pass"
+    },
+    {
+      "case_id": "gt_00725_clean",
+      "expected": "pass",
+      "injection": "none",
+      "ratio": 1.0,
+      "gate1": "pass",
+      "gate2": "",
+      "final": "pass"
+    },
+    {
+      "case_id": "gt_00692_clean",
+      "expected": "pass",
+      "injection": "none",
+      "ratio": 1.0,
+      "gate1": "pass",
+      "gate2": "",
+      "final": "pass"
+    },
+    {
+      "case_id": "gt_00363_clean",
+      "expected": "pass",
+      "injection": "none",
+      "ratio": 1.0,
+      "gate1": "pass",
+      "gate2": "",
+      "final": "pass"
+    },
+    {
+      "case_id": "gt_02756_multi",
+      "expected": "fail",
+      "injection": "multi_failure",
+      "ratio": 0.8333,
+      "gate1": "pass",
+      "gate2": "",
+      "final": "pass"
+    },
+    {
+      "case_id": "gt_02216_fabrication",
+      "expected": "fail",
+      "injection": "fabrication",
+      "ratio": 0.9091,
+      "gate1": "pass",
+      "gate2": "",
+      "final": "pass"
+    },
+    {
+      "case_id": "gt_02103_fabrication",
+      "expected": "fail",
+      "injection": "fabrication",
+      "ratio": 0.8571,
+      "gate1": "pass",
+      "gate2": "",
+      "final": "pass"
+    },
+    {
+      "case_id": "gt_00257_clean",
+      "expected": "pass",
+      "injection": "none",
+      "ratio": 1.0,
+      "gate1": "pass",
+      "gate2": "",
+      "final": "pass"
+    },
+    {
+      "case_id": "gt_02107_fabrication",
+      "expected": "fail",
+      "injection": "fabrication",
+      "ratio": 0.7143,
+      "gate1": "pass",
+      "gate2": "",
+      "final": "pass"
+    }
+  ]
+}

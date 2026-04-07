@@ -325,6 +325,7 @@ def test_enriched_response_all_flags() -> None:
             case_id="test",
             risk_score=0.3,
             grounding_ratio=0.5,
+            min_sentence_sim=0.25,
             ungrounded_claims=1,
             unverifiable_citations=0,
             flags=["low_grounding:0.50"],

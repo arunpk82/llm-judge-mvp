@@ -247,14 +247,14 @@ class IntegratedJudge(JudgeEngine):
         # =============================================================
         # RAG context retrieval (EPIC 7.14)
         # =============================================================
+        # ALWAYS retrieve from the system's own knowledge base.
+        # Caller-provided source_context is supplementary, not a replacement.
+        # This ensures groundedness is judged against trusted KB content,
+        # not against whatever the caller passes in.
         retrieved_docs: list[str] | None = None
         retrieval_evidence = None
 
-        if request.source_context:
-            # Source context provided in request — use directly
-            retrieved_docs = request.source_context
-        elif self._context_retriever is not None:
-            # Retrieve from knowledge base
+        if self._context_retriever is not None:
             try:
                 retrieved_docs, retrieval_evidence = (
                     self._context_retriever.retrieve(query)
@@ -264,6 +264,14 @@ class IntegratedJudge(JudgeEngine):
                     "retrieval.failed",
                     extra={"error": str(exc)[:80]},
                 )
+
+        # Merge caller-provided context as supplementary
+        if request.source_context:
+            supplementary = list(request.source_context)
+            if retrieved_docs:
+                retrieved_docs = retrieved_docs + supplementary
+            else:
+                retrieved_docs = supplementary
 
         context = _build_context(request, source_docs=retrieved_docs)
 
