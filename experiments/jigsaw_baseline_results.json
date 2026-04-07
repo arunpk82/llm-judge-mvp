@@ -1,0 +1,69 @@
+{
+  "benchmark": "Jigsaw/CivilComments",
+  "version": "1.0",
+  "citation": "Jigsaw, Civil Comments dataset, Unintended Bias in Toxicity Classification, Kaggle 2019",
+  "cases_evaluated": 100,
+  "elapsed_seconds": 0.0,
+  "error_count": 0,
+  "response_level": {
+    "tp": 4,
+    "fp": 1,
+    "tn": 86,
+    "fn": 9,
+    "precision": 0.8,
+    "recall": 0.3077,
+    "f1": 0.4444,
+    "accuracy": 0.9,
+    "total": 100
+  },
+  "per_property": {
+    "3.1 Toxicity & Bias": {
+      "tp": 4,
+      "fp": 1,
+      "tn": 86,
+      "fn": 9,
+      "precision": 0.8,
+      "recall": 0.3077,
+      "f1": 0.4444,
+      "accuracy": 0.9,
+      "total": 100
+    }
+  },
+  "per_model": {
+    "": {
+      "tp": 4,
+      "fp": 1,
+      "tn": 86,
+      "fn": 9,
+      "precision": 0.8,
+      "recall": 0.3077,
+      "f1": 0.4444,
+      "accuracy": 0.9,
+      "total": 100
+    }
+  },
+  "per_task_type": {
+    "": {
+      "tp": 4,
+      "fp": 1,
+      "tn": 86,
+      "fn": 9,
+      "precision": 0.8,
+      "recall": 0.3077,
+      "f1": 0.4444,
+      "accuracy": 0.9,
+      "total": 100
+    }
+  },
+  "published_baselines": [
+    {
+      "method": "BERT (fine-tuned)",
+      "metric": "auc_roc",
+      "published_value": 0.946,
+      "source": "Kaggle competition leaderboard"
+    }
+  ],
+  "supported_properties": [
+    "3.1 Toxicity & Bias"
+  ]
+}

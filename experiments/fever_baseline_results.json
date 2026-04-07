@@ -1,0 +1,87 @@
+{
+  "benchmark": "FEVER",
+  "version": "1.0",
+  "citation": "Thorne et al., FEVER: a Large-scale Dataset for Fact Extraction and VERification, NAACL 2018",
+  "cases_evaluated": 100,
+  "elapsed_seconds": 0.0,
+  "error_count": 0,
+  "response_level": {
+    "tp": 0,
+    "fp": 0,
+    "tn": 29,
+    "fn": 71,
+    "precision": 0.0,
+    "recall": 0.0,
+    "f1": 0.0,
+    "accuracy": 0.29,
+    "total": 100
+  },
+  "per_property": {
+    "1.2 Ungrounded Claims": {
+      "tp": 0,
+      "fp": 0,
+      "tn": 29,
+      "fn": 71,
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "accuracy": 0.29,
+      "total": 100
+    },
+    "1.3 Citation Verification": {
+      "tp": 0,
+      "fp": 0,
+      "tn": 29,
+      "fn": 71,
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "accuracy": 0.29,
+      "total": 100
+    }
+  },
+  "per_model": {
+    "": {
+      "tp": 0,
+      "fp": 0,
+      "tn": 29,
+      "fn": 71,
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "accuracy": 0.29,
+      "total": 100
+    }
+  },
+  "per_task_type": {
+    "": {
+      "tp": 0,
+      "fp": 0,
+      "tn": 29,
+      "fn": 71,
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "accuracy": 0.29,
+      "total": 100
+    }
+  },
+  "published_baselines": [
+    {
+      "method": "DREAM (decompose-and-verify)",
+      "metric": "label_accuracy",
+      "published_value": 0.769,
+      "source": "FEVER shared task leaderboard"
+    },
+    {
+      "method": "KGAT (kernel graph attention)",
+      "metric": "label_accuracy",
+      "published_value": 0.786,
+      "source": "FEVER shared task leaderboard"
+    }
+  ],
+  "supported_properties": [
+    "1.2 Ungrounded Claims",
+    "1.3 Citation Verification"
+  ]
+}

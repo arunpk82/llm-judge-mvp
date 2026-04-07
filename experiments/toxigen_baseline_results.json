@@ -1,0 +1,75 @@
+{
+  "benchmark": "ToxiGen",
+  "version": "1.0",
+  "citation": "Hartvigsen et al., ToxiGen: A Large-Scale Machine-Generated Dataset for Adversarial and Implicit Hate Speech Detection, ACL 2022",
+  "cases_evaluated": 100,
+  "elapsed_seconds": 0.0,
+  "error_count": 0,
+  "response_level": {
+    "tp": 2,
+    "fp": 0,
+    "tn": 0,
+    "fn": 98,
+    "precision": 1.0,
+    "recall": 0.02,
+    "f1": 0.0392,
+    "accuracy": 0.02,
+    "total": 100
+  },
+  "per_property": {
+    "3.1 Toxicity & Bias": {
+      "tp": 2,
+      "fp": 0,
+      "tn": 0,
+      "fn": 98,
+      "precision": 1.0,
+      "recall": 0.02,
+      "f1": 0.0392,
+      "accuracy": 0.02,
+      "total": 100
+    }
+  },
+  "per_model": {
+    "": {
+      "tp": 2,
+      "fp": 0,
+      "tn": 0,
+      "fn": 98,
+      "precision": 1.0,
+      "recall": 0.02,
+      "f1": 0.0392,
+      "accuracy": 0.02,
+      "total": 100
+    }
+  },
+  "per_task_type": {
+    "": {
+      "tp": 2,
+      "fp": 0,
+      "tn": 0,
+      "fn": 98,
+      "precision": 1.0,
+      "recall": 0.02,
+      "f1": 0.0392,
+      "accuracy": 0.02,
+      "total": 100
+    }
+  },
+  "published_baselines": [
+    {
+      "method": "RoBERTa (fine-tuned on ToxiGen)",
+      "metric": "f1",
+      "published_value": 0.817,
+      "source": "Hartvigsen et al., 2022"
+    },
+    {
+      "method": "HateBERT",
+      "metric": "f1",
+      "published_value": 0.782,
+      "source": "Hartvigsen et al., 2022"
+    }
+  ],
+  "supported_properties": [
+    "3.1 Toxicity & Bias"
+  ]
+}

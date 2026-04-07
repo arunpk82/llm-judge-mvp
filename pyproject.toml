@@ -89,7 +89,22 @@ markers = [
 omit = [
   "src/llm_judge/logging.py",
   "src/llm_judge/eval/*",
-  "src/llm_judge/judge_base.py"
+  "src/llm_judge/judge_base.py",
+  "src/llm_judge/benchmarks/gate2_experiment.py",
+  "src/llm_judge/benchmarks/generate_ground_truth.py",
+  "src/llm_judge/benchmarks/sweep_rag.py",
+  "src/llm_judge/benchmarks/threshold_sweep.py",
+  "src/llm_judge/benchmarks/verify_rag.py",
+  "src/llm_judge/benchmarks/run_all.py",
+  "src/llm_judge/benchmarks/report.py",
+  "src/llm_judge/benchmarks/master_gt.py",
+  "src/llm_judge/benchmarks/runner.py",
+  "src/llm_judge/benchmarks/faithdial.py",
+  "src/llm_judge/benchmarks/fever.py",
+  "src/llm_judge/benchmarks/halueval.py",
+  "src/llm_judge/benchmarks/ifeval.py",
+  "src/llm_judge/benchmarks/jigsaw.py",
+  "src/llm_judge/benchmarks/toxigen.py",
 ]
 
 

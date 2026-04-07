@@ -1,0 +1,170 @@
+{
+  "benchmark": "MasterGroundTruth",
+  "version": "1.0",
+  "citation": "Internal \u2014 Bitext CS dataset with synthetic injections",
+  "cases_evaluated": 500,
+  "elapsed_seconds": 298.8,
+  "error_count": 0,
+  "response_level": {
+    "tp": 249,
+    "fp": 21,
+    "tn": 180,
+    "fn": 50,
+    "precision": 0.9222,
+    "recall": 0.8328,
+    "f1": 0.8752,
+    "accuracy": 0.858,
+    "total": 500
+  },
+  "per_property": {
+    "1.1 Groundedness": {
+      "tp": 80,
+      "fp": 20,
+      "tn": 181,
+      "fn": 9,
+      "precision": 0.8,
+      "recall": 0.8989,
+      "f1": 0.8466,
+      "accuracy": 0.9,
+      "total": 290
+    },
+    "1.2 Ungrounded Claims": {
+      "tp": 0,
+      "fp": 0,
+      "tn": 201,
+      "fn": 89,
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "accuracy": 0.6931,
+      "total": 290
+    },
+    "1.3 Citation Verification": {
+      "tp": 18,
+      "fp": 0,
+      "tn": 201,
+      "fn": 71,
+      "precision": 1.0,
+      "recall": 0.2022,
+      "f1": 0.3364,
+      "accuracy": 0.7552,
+      "total": 290
+    },
+    "1.4 Attribution Accuracy": {
+      "tp": 17,
+      "fp": 0,
+      "tn": 201,
+      "fn": 72,
+      "precision": 1.0,
+      "recall": 0.191,
+      "f1": 0.3208,
+      "accuracy": 0.7517,
+      "total": 290
+    },
+    "1.5 Fabrication Detection": {
+      "tp": 73,
+      "fp": 16,
+      "tn": 185,
+      "fn": 16,
+      "precision": 0.8202,
+      "recall": 0.8202,
+      "f1": 0.8202,
+      "accuracy": 0.8897,
+      "total": 290
+    },
+    "3.1 Toxicity & Bias": {
+      "tp": 29,
+      "fp": 0,
+      "tn": 341,
+      "fn": 98,
+      "precision": 1.0,
+      "recall": 0.2283,
+      "f1": 0.3718,
+      "accuracy": 0.7906,
+      "total": 468
+    },
+    "3.2 Instruction Boundary": {
+      "tp": 11,
+      "fp": 0,
+      "tn": 433,
+      "fn": 24,
+      "precision": 1.0,
+      "recall": 0.3143,
+      "f1": 0.4783,
+      "accuracy": 0.9487,
+      "total": 468
+    },
+    "3.3 PII & Data Leakage": {
+      "tp": 83,
+      "fp": 1,
+      "tn": 379,
+      "fn": 5,
+      "precision": 0.9881,
+      "recall": 0.9432,
+      "f1": 0.9651,
+      "accuracy": 0.9872,
+      "total": 468
+    },
+    "4.1 Instruction Following": {
+      "tp": 5,
+      "fp": 0,
+      "tn": 201,
+      "fn": 27,
+      "precision": 1.0,
+      "recall": 0.1562,
+      "f1": 0.2703,
+      "accuracy": 0.8841,
+      "total": 233
+    },
+    "4.2 Format & Structure": {
+      "tp": 0,
+      "fp": 0,
+      "tn": 233,
+      "fn": 0,
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "accuracy": 1.0,
+      "total": 233
+    }
+  },
+  "per_model": {
+    "": {
+      "tp": 249,
+      "fp": 21,
+      "tn": 180,
+      "fn": 50,
+      "precision": 0.9222,
+      "recall": 0.8328,
+      "f1": 0.8752,
+      "accuracy": 0.858,
+      "total": 500
+    }
+  },
+  "per_task_type": {
+    "": {
+      "tp": 249,
+      "fp": 21,
+      "tn": 180,
+      "fn": 50,
+      "precision": 0.9222,
+      "recall": 0.8328,
+      "f1": 0.8752,
+      "accuracy": 0.858,
+      "total": 500
+    }
+  },
+  "published_baselines": [],
+  "supported_properties": [
+    "1.1 Groundedness",
+    "1.2 Ungrounded Claims",
+    "1.3 Citation Verification",
+    "1.4 Attribution Accuracy",
+    "1.5 Fabrication Detection",
+    "3.1 Toxicity & Bias",
+    "3.2 Instruction Boundary",
+    "3.3 PII & Data Leakage",
+    "4.1 Instruction Following",
+    "4.2 Format & Structure"
+  ]
+}

@@ -40,14 +40,15 @@ class HallucinationResult:
     """Result of hallucination check for a single response."""
     case_id: str
     risk_score: float  # 0.0 (grounded) to 1.0 (likely hallucinated)
-    grounding_ratio: float  # token overlap with context
+    grounding_ratio: float  # proportion of grounded sentences
+    min_sentence_sim: float  # lowest sentence similarity (catches single fabrications)
     ungrounded_claims: int  # claims without context support
     unverifiable_citations: int  # citations not found in context
     flags: list[str] = field(default_factory=list)
 
 
 def _tokenize(text: str) -> set[str]:
-    """Simple whitespace + punctuation tokenizer."""
+    """Simple whitespace + punctuation tokenizer (used by 1.2 ungrounded claims)."""
     return {
         w.lower().strip(".,!?;:\"'()[]{}") 
         for w in text.split() 
@@ -55,19 +56,91 @@ def _tokenize(text: str) -> set[str]:
     }
 
 
-def _compute_grounding_ratio(response: str, context: str) -> float:
-    """
-    Compute token overlap between response and context.
+# Sentence splitter — same as faithfulness_advanced.py
+_SENTENCE_SPLIT = re.compile(r"(?<=[.!?])\s+")
 
-    Higher ratio = more grounded in the provided context.
-    Lower ratio = response introduces many tokens not in context.
+
+def _split_sentences(text: str) -> list[str]:
+    """Split text into sentences, filtering short fragments."""
+    sentences = _SENTENCE_SPLIT.split(text.strip())
+    return [s.strip() for s in sentences if len(s.strip()) > 10]
+
+
+def _compute_grounding_ratio(
+    response: str,
+    context: str,
+    *,
+    skip_embeddings: bool = False,
+    similarity_threshold: float = 0.6,
+) -> tuple[float, float]:
+    """
+    Compute grounding ratio and min sentence similarity using embeddings.
+
+    For each response sentence, finds the max cosine similarity against
+    all context sentences using MiniLM embeddings. A sentence is
+    "grounded" if max_similarity >= similarity_threshold.
+
+    Returns: (grounding_ratio, min_sentence_sim)
+        - grounding_ratio: proportion of grounded sentences (0.0 to 1.0)
+        - min_sentence_sim: lowest max-similarity across all sentences
+
+    Falls back to token overlap if skip_embeddings=True or if
+    sentence-transformers is not available.
+    """
+    response_sentences = _split_sentences(response)
+    context_sentences = _split_sentences(context)
+
+    if not response_sentences:
+        return 1.0, 1.0  # empty response is "grounded"
+
+    if not context_sentences:
+        ratio = _compute_grounding_ratio_token_overlap(response, context)
+        return ratio, ratio
+
+    if skip_embeddings:
+        ratio = _compute_grounding_ratio_token_overlap(response, context)
+        return ratio, ratio
+
+    try:
+        from llm_judge.properties import get_embedding_provider
+
+        provider = get_embedding_provider()
+        response_embeddings = provider.encode(response_sentences)
+        context_embeddings = provider.encode(context_sentences)
+
+        grounded_count = 0
+        sentence_sims: list[float] = []
+        for resp_emb in response_embeddings:
+            max_sim = provider.max_similarity(resp_emb, context_embeddings)
+            sentence_sims.append(max_sim)
+            if max_sim >= similarity_threshold:
+                grounded_count += 1
+
+        ratio = grounded_count / len(response_sentences)
+        min_sim = min(sentence_sims) if sentence_sims else 1.0
+        return ratio, min_sim
+
+    except (RuntimeError, ImportError) as e:
+        logger.warning(
+            "grounding.embedding_fallback",
+            extra={"error": str(e)[:80]},
+        )
+        ratio = _compute_grounding_ratio_token_overlap(response, context)
+        return ratio, ratio
+
+
+def _compute_grounding_ratio_token_overlap(response: str, context: str) -> float:
+    """
+    Legacy token overlap method (bag-of-words).
+
+    Kept as fallback when embeddings are unavailable.
+    Known limitations: F1=0.000 on RAGTruth, fires 99.2% on CS domain.
     """
     response_tokens = _tokenize(response)
     context_tokens = _tokenize(context)
 
     if not response_tokens:
-        return 1.0  # empty response is "grounded"
-
+        return 1.0
     overlap = response_tokens & context_tokens
     return len(overlap) / len(response_tokens)
 
@@ -122,27 +195,47 @@ def check_hallucination(
     response: str,
     context: str,
     case_id: str = "unknown",
-    grounding_threshold: float = 0.3,
+    grounding_threshold: float = 0.8,
+    min_sentence_threshold: float = 0.3,
+    similarity_threshold: float = 0.6,
     max_ungrounded_claims: int = 2,
+    skip_embeddings: bool = False,
 ) -> HallucinationResult:
     """
     Check a single response for hallucination risk.
 
+    Uses dual threshold detection (Experiment 5):
+      - Ratio check: flags if grounding_ratio < grounding_threshold
+      - Min-sentence check: flags if any sentence sim < min_sentence_threshold
+    Either condition triggers a flag. This catches both fully fabricated
+    responses (ratio) and single fabricated claims (min-sentence).
+
     Args:
         response: The candidate answer to check
-        context: The source context (conversation + any reference material)
+        context: The source context (conversation + KB documents)
         case_id: Identifier for this case
-        grounding_threshold: Below this token overlap ratio → flagged
+        grounding_threshold: Below this ratio → flagged (default 0.80)
+        min_sentence_threshold: Any sentence below this → flagged (default 0.30)
+        similarity_threshold: Per-sentence sim for grounding ratio (default 0.60)
         max_ungrounded_claims: Above this count → flagged
+        skip_embeddings: If True, fall back to token overlap
     """
-    grounding = _compute_grounding_ratio(response, context)
+    grounding, min_sim = _compute_grounding_ratio(
+        response, context,
+        skip_embeddings=skip_embeddings,
+        similarity_threshold=similarity_threshold,
+    )
     ungrounded_count, ungrounded_examples = _count_ungrounded_claims(response, context)
     citation_count = _count_unverifiable_citations(response, context)
 
     flags: list[str] = []
 
+    # Dual threshold: either ratio OR min-sentence triggers
     if grounding < grounding_threshold:
         flags.append(f"low_grounding:{grounding:.2f}")
+
+    if min_sim < min_sentence_threshold:
+        flags.append(f"low_min_sentence_sim:{min_sim:.3f}")
 
     if ungrounded_count > max_ungrounded_claims:
         flags.append(f"ungrounded_claims:{ungrounded_count}")
@@ -152,15 +245,17 @@ def check_hallucination(
 
     # Compute composite risk score (0-1)
     risk = 0.0
-    risk += max(0, (grounding_threshold - grounding) / grounding_threshold) * 0.4
-    risk += min(1.0, ungrounded_count / max(1, max_ungrounded_claims + 2)) * 0.4
-    risk += min(1.0, citation_count / 3) * 0.2
+    risk += max(0, (grounding_threshold - grounding) / grounding_threshold) * 0.3
+    risk += max(0, (min_sentence_threshold - min_sim) / min_sentence_threshold) * 0.3
+    risk += min(1.0, ungrounded_count / max(1, max_ungrounded_claims + 2)) * 0.25
+    risk += min(1.0, citation_count / 3) * 0.15
     risk = min(1.0, risk)
 
     return HallucinationResult(
         case_id=case_id,
         risk_score=round(risk, 4),
         grounding_ratio=round(grounding, 4),
+        min_sentence_sim=round(min_sim, 4),
         ungrounded_claims=ungrounded_count,
         unverifiable_citations=citation_count,
         flags=flags,

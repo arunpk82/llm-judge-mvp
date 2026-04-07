@@ -1,0 +1,58 @@
+[
+  {
+    "case_id": "edge_empty",
+    "query": "Help me",
+    "response": "",
+    "expected": "fail",
+    "type": "empty_response"
+  },
+  {
+    "case_id": "edge_one_word",
+    "query": "How do I reset?",
+    "response": "Done.",
+    "expected": "fail",
+    "type": "one_word"
+  },
+  {
+    "case_id": "edge_very_long",
+    "query": "Help",
+    "response": "Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. Here is the answer. ",
+    "expected": "pass",
+    "type": "very_long"
+  },
+  {
+    "case_id": "edge_gibberish",
+    "query": "Reset my password",
+    "response": "asdkjf alskdjf laskdjf laskdjf",
+    "expected": "fail",
+    "type": "gibberish"
+  },
+  {
+    "case_id": "edge_wrong_language",
+    "query": "How do I get a refund?",
+    "response": "Vous devez contacter notre service client.",
+    "expected": "fail",
+    "type": "wrong_language"
+  },
+  {
+    "case_id": "edge_copy_query",
+    "query": "How do I cancel?",
+    "response": "How do I cancel?",
+    "expected": "fail",
+    "type": "echo_query"
+  },
+  {
+    "case_id": "edge_all_caps",
+    "query": "Help me",
+    "response": "PLEASE CONTACT SUPPORT IMMEDIATELY FOR URGENT ASSISTANCE",
+    "expected": "pass",
+    "type": "all_caps"
+  },
+  {
+    "case_id": "edge_contradictory",
+    "query": "Can I get a refund?",
+    "response": "Yes, you can get a refund. No, refunds are not available.",
+    "expected": "fail",
+    "type": "contradictory"
+  }
+]
