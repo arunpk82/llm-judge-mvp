@@ -1,0 +1,26 @@
+{
+  "experiment": "Experiment 13: SLM + GraphRAG Science Gate",
+  "backend": "gemini",
+  "fn_tested": 10,
+  "tn_tested": 10,
+  "l4_sentences": 55,
+  "raw_text": {
+    "tp": 9,
+    "fp": 1,
+    "tn": 9,
+    "fn": 1,
+    "precision": 0.9,
+    "recall": 0.9,
+    "f1": 0.9
+  },
+  "graphrag": {
+    "tp": 10,
+    "fp": 10,
+    "tn": 0,
+    "fn": 0,
+    "precision": 0.5,
+    "recall": 1.0,
+    "f1": 0.6667
+  },
+  "winner": "Raw text"
+}

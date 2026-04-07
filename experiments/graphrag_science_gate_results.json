@@ -1,0 +1,232 @@
+{
+  "experiment": "Experiment 11: GraphRAG Science Gate (spaCy SVO)",
+  "model": "en_core_web_sm",
+  "fn_tested": 10,
+  "fn_caught": 10,
+  "tn_tested": 10,
+  "tn_false_positives": 10,
+  "detection_rate": 1.0,
+  "false_positive_rate": 1.0,
+  "cases": [
+    {
+      "case_id": "ragtruth_29",
+      "ground_truth": "fail",
+      "correct": true,
+      "decision": "fail",
+      "source_triplets": 43,
+      "response_triplets": 9,
+      "pred_mismatches": 5,
+      "mod_mismatches": 0,
+      "fabrications": 0
+    },
+    {
+      "case_id": "ragtruth_44",
+      "ground_truth": "fail",
+      "correct": true,
+      "decision": "fail",
+      "source_triplets": 75,
+      "response_triplets": 21,
+      "pred_mismatches": 7,
+      "mod_mismatches": 0,
+      "fabrications": 0
+    },
+    {
+      "case_id": "ragtruth_46",
+      "ground_truth": "fail",
+      "correct": true,
+      "decision": "fail",
+      "source_triplets": 75,
+      "response_triplets": 12,
+      "pred_mismatches": 5,
+      "mod_mismatches": 1,
+      "fabrications": 0
+    },
+    {
+      "case_id": "ragtruth_141",
+      "ground_truth": "fail",
+      "correct": true,
+      "decision": "fail",
+      "source_triplets": 60,
+      "response_triplets": 7,
+      "pred_mismatches": 4,
+      "mod_mismatches": 0,
+      "fabrications": 1
+    },
+    {
+      "case_id": "ragtruth_180",
+      "ground_truth": "fail",
+      "correct": true,
+      "decision": "fail",
+      "source_triplets": 134,
+      "response_triplets": 12,
+      "pred_mismatches": 6,
+      "mod_mismatches": 0,
+      "fabrications": 0
+    },
+    {
+      "case_id": "ragtruth_184",
+      "ground_truth": "fail",
+      "correct": true,
+      "decision": "fail",
+      "source_triplets": 134,
+      "response_triplets": 11,
+      "pred_mismatches": 6,
+      "mod_mismatches": 0,
+      "fabrications": 0
+    },
+    {
+      "case_id": "ragtruth_185",
+      "ground_truth": "fail",
+      "correct": true,
+      "decision": "fail",
+      "source_triplets": 134,
+      "response_triplets": 19,
+      "pred_mismatches": 5,
+      "mod_mismatches": 0,
+      "fabrications": 0
+    },
+    {
+      "case_id": "ragtruth_206",
+      "ground_truth": "fail",
+      "correct": true,
+      "decision": "fail",
+      "source_triplets": 65,
+      "response_triplets": 14,
+      "pred_mismatches": 8,
+      "mod_mismatches": 0,
+      "fabrications": 0
+    },
+    {
+      "case_id": "ragtruth_213",
+      "ground_truth": "fail",
+      "correct": true,
+      "decision": "fail",
+      "source_triplets": 92,
+      "response_triplets": 13,
+      "pred_mismatches": 7,
+      "mod_mismatches": 0,
+      "fabrications": 2
+    },
+    {
+      "case_id": "ragtruth_250",
+      "ground_truth": "fail",
+      "correct": true,
+      "decision": "fail",
+      "source_triplets": 82,
+      "response_triplets": 14,
+      "pred_mismatches": 9,
+      "mod_mismatches": 0,
+      "fabrications": 2
+    },
+    {
+      "case_id": "ragtruth_24",
+      "ground_truth": "pass",
+      "correct": false,
+      "decision": "fail",
+      "source_triplets": 43,
+      "response_triplets": 7,
+      "pred_mismatches": 0,
+      "mod_mismatches": 0,
+      "fabrications": 1
+    },
+    {
+      "case_id": "ragtruth_25",
+      "ground_truth": "pass",
+      "correct": false,
+      "decision": "fail",
+      "source_triplets": 43,
+      "response_triplets": 6,
+      "pred_mismatches": 4,
+      "mod_mismatches": 0,
+      "fabrications": 0
+    },
+    {
+      "case_id": "ragtruth_26",
+      "ground_truth": "pass",
+      "correct": false,
+      "decision": "fail",
+      "source_triplets": 43,
+      "response_triplets": 8,
+      "pred_mismatches": 4,
+      "mod_mismatches": 0,
+      "fabrications": 1
+    },
+    {
+      "case_id": "ragtruth_27",
+      "ground_truth": "pass",
+      "correct": false,
+      "decision": "fail",
+      "source_triplets": 43,
+      "response_triplets": 6,
+      "pred_mismatches": 1,
+      "mod_mismatches": 0,
+      "fabrications": 1
+    },
+    {
+      "case_id": "ragtruth_42",
+      "ground_truth": "pass",
+      "correct": false,
+      "decision": "fail",
+      "source_triplets": 75,
+      "response_triplets": 18,
+      "pred_mismatches": 1,
+      "mod_mismatches": 0,
+      "fabrications": 0
+    },
+    {
+      "case_id": "ragtruth_43",
+      "ground_truth": "pass",
+      "correct": false,
+      "decision": "fail",
+      "source_triplets": 75,
+      "response_triplets": 22,
+      "pred_mismatches": 13,
+      "mod_mismatches": 0,
+      "fabrications": 0
+    },
+    {
+      "case_id": "ragtruth_45",
+      "ground_truth": "pass",
+      "correct": false,
+      "decision": "fail",
+      "source_triplets": 75,
+      "response_triplets": 11,
+      "pred_mismatches": 1,
+      "mod_mismatches": 0,
+      "fabrications": 0
+    },
+    {
+      "case_id": "ragtruth_47",
+      "ground_truth": "pass",
+      "correct": false,
+      "decision": "fail",
+      "source_triplets": 75,
+      "response_triplets": 14,
+      "pred_mismatches": 2,
+      "mod_mismatches": 0,
+      "fabrications": 1
+    },
+    {
+      "case_id": "ragtruth_54",
+      "ground_truth": "pass",
+      "correct": false,
+      "decision": "fail",
+      "source_triplets": 113,
+      "response_triplets": 15,
+      "pred_mismatches": 6,
+      "mod_mismatches": 0,
+      "fabrications": 1
+    },
+    {
+      "case_id": "ragtruth_55",
+      "ground_truth": "pass",
+      "correct": false,
+      "decision": "fail",
+      "source_triplets": 113,
+      "response_triplets": 32,
+      "pred_mismatches": 9,
+      "mod_mismatches": 0,
+      "fabrications": 3
+    }
+  ]
+}

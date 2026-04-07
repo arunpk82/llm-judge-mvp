@@ -1,0 +1,368 @@
+"""
+Experiment 14b: SLM Science Gate — Qwen2.5-7B GGUF (quantized).
+
+Same experiment as 14, but using GGUF quantized model via llama-cpp-python.
+This uses ~4.5GB RAM instead of ~28GB for float32.
+
+Usage:
+    # Install llama-cpp-python:
+    pip install llama-cpp-python --break-system-packages
+
+    # Download model (~4.5GB):
+    poetry run python -c "
+    from huggingface_hub import hf_hub_download
+    path = hf_hub_download(repo_id='Qwen/Qwen2.5-7B-Instruct-GGUF', filename='qwen2.5-7b-instruct-q4_k_m.gguf')
+    print(f'Downloaded to: {path}')
+    "
+
+    # Run experiment:
+    poetry run python -m llm_judge.benchmarks.slm_gguf_science_gate --max-fn 10 --max-tn 10
+"""
+from __future__ import annotations
+
+import argparse
+import json
+import logging
+import os
+import re
+import time
+from difflib import SequenceMatcher
+from pathlib import Path
+from typing import Any
+
+import torch
+from transformers import AutoModelForSequenceClassification, AutoTokenizer
+
+from llm_judge.benchmarks.ragtruth import RAGTruthAdapter
+from llm_judge.calibration.hallucination import _compute_grounding_ratio, _split_sentences
+from llm_judge.properties import get_embedding_provider
+
+logger = logging.getLogger(__name__)
+NLI_MODEL = "cross-encoder/nli-deberta-v3-large"
+
+PROMPT_TEMPLATE = """You are checking whether a SINGLE sentence from a summary is supported by the source document.
+
+SOURCE DOCUMENT:
+{source}
+
+SENTENCE TO CHECK:
+{sentence}
+
+Is this sentence fully supported by the source document? Consider:
+- Are all specific facts (names, dates, numbers, locations) accurate?
+- Does the source actually state or directly imply this?
+- If the sentence adds details not in the source, it is NOT supported.
+
+Answer with exactly one word: SUPPORTED or UNSUPPORTED"""
+
+
+# --- GGUF SLM via llama-cpp-python ---
+
+_llm: Any = None
+
+
+def load_gguf_model(model_path: str, n_ctx: int = 4096):
+    global _llm
+    from llama_cpp import Llama
+    print(f"Loading GGUF model: {model_path}")
+    start = time.time()
+    _llm = Llama(
+        model_path=model_path,
+        n_ctx=n_ctx,
+        n_threads=os.cpu_count() or 4,
+        verbose=False,
+    )
+    elapsed = time.time() - start
+    print(f"  Loaded in {elapsed:.1f}s")
+
+
+def download_model(repo_id: str, filename: str) -> str:
+    """Download GGUF model from HuggingFace and return local path."""
+    from huggingface_hub import hf_hub_download
+    print(f"Downloading {repo_id}/{filename}...")
+    path = hf_hub_download(repo_id=repo_id, filename=filename)
+    print(f"  Downloaded to: {path}")
+    return path
+
+
+def slm_check_sentence(sentence: str, source: str) -> tuple[str, float]:
+    """Check one sentence with GGUF SLM."""
+    prompt = PROMPT_TEMPLATE.format(source=source[:3500], sentence=sentence)
+
+    # Format as chat message for instruct model
+    formatted = (
+        "<|im_start|>system\nYou are a helpful assistant.<|im_end|>\n"
+        f"<|im_start|>user\n{prompt}<|im_end|>\n"
+        "<|im_start|>assistant\n"
+    )
+
+    start = time.time()
+    output: Any = _llm(
+        formatted,
+        max_tokens=10,
+        temperature=0.0,
+        stop=["<|im_end|>", "\n"],
+    )
+    elapsed = time.time() - start
+
+    response = output["choices"][0]["text"].strip().upper()
+    decision = "unsupported" if "UNSUPPORTED" in response else "supported"
+    return decision, elapsed
+
+
+# --- Layer filters ---
+
+def nli_classify(tokenizer, model, premise, hypothesis, labels):
+    inputs = tokenizer(premise, hypothesis, return_tensors="pt", truncation=True, max_length=512)
+    with torch.no_grad():
+        probs = torch.softmax(model(**inputs).logits, dim=-1)[0].tolist()
+    return {label: round(p, 4) for label, p in zip(labels, probs)}
+
+
+def deterministic_match(sentence, source_sentences, source_full):
+    norm_sent = re.sub(r"\s+", " ", sentence.lower().strip())
+    norm_source = re.sub(r"\s+", " ", source_full.lower().strip())
+    if norm_sent in norm_source:
+        return True
+    sent_tokens = set(re.findall(r"\w+", sentence.lower()))
+    if not sent_tokens:
+        return False
+    for src_sent in source_sentences:
+        norm_src = re.sub(r"\s+", " ", src_sent.lower().strip())
+        if SequenceMatcher(None, norm_sent, norm_src).ratio() > 0.85:
+            return True
+        src_tokens = set(re.findall(r"\w+", src_sent.lower()))
+        if src_tokens:
+            jaccard = len(sent_tokens & src_tokens) / len(sent_tokens | src_tokens)
+            if jaccard > 0.80:
+                return True
+    return False
+
+
+def find_test_cases(max_cases=500, max_fn=10, max_tn=10):
+    adapter = RAGTruthAdapter()
+    get_embedding_provider()  # init singleton
+    fns: list[tuple] = []
+    tns: list[tuple] = []
+    for case in adapter.load_cases(max_cases=max_cases):
+        gt = case.ground_truth.property_labels.get("1.1")
+        if gt not in ("pass", "fail"):
+            continue
+        ctx_parts = list(case.request.source_context or [])
+        conv = " ".join(msg.content for msg in case.request.conversation)
+        ctx = conv + ("\n\n" + "\n".join(ctx_parts) if ctx_parts else "")
+        resp = case.request.candidate_answer
+        ratio, min_sim = _compute_grounding_ratio(resp, ctx, similarity_threshold=0.60)
+        if ratio >= 0.80 and min_sim >= 0.30:
+            src = "\n".join(ctx_parts) if ctx_parts else ctx
+            entry = (case, src, ctx, resp, ratio, min_sim)
+            if gt == "fail" and len(fns) < max_fn:
+                fns.append(entry)
+            elif gt == "pass" and len(tns) < max_tn:
+                tns.append(entry)
+        if len(fns) >= max_fn and len(tns) >= max_tn:
+            break
+    return fns, tns
+
+
+# --- GGUF model registry ---
+
+GGUF_MODELS = {
+    "qwen2.5-7b": {
+        "repo_id": "Qwen/Qwen2.5-7B-Instruct-GGUF",
+        "filename": "qwen2.5-7b-instruct-q4_k_m.gguf",
+    },
+    "qwen2.5-3b": {
+        "repo_id": "Qwen/Qwen2.5-3B-Instruct-GGUF",
+        "filename": "qwen2.5-3b-instruct-q4_k_m.gguf",
+    },
+    "qwen2.5-1.5b": {
+        "repo_id": "Qwen/Qwen2.5-1.5B-Instruct-GGUF",
+        "filename": "qwen2.5-1.5b-instruct-q4_k_m.gguf",
+    },
+    "phi-3.5-mini": {
+        "repo_id": "bartowski/Phi-3.5-mini-instruct-GGUF",
+        "filename": "Phi-3.5-mini-instruct-Q4_K_M.gguf",
+    },
+}
+
+
+def main():
+    parser = argparse.ArgumentParser(description="Experiment 14b: SLM GGUF Science Gate")
+    parser.add_argument("--max-fn", type=int, default=10)
+    parser.add_argument("--max-tn", type=int, default=10)
+    parser.add_argument("--max-cases", type=int, default=500)
+    parser.add_argument("--model", type=str, default="qwen2.5-7b",
+                        choices=list(GGUF_MODELS.keys()),
+                        help="GGUF model to use")
+    parser.add_argument("--model-path", type=str, default=None,
+                        help="Path to local GGUF file (overrides --model)")
+    parser.add_argument("--n-ctx", type=int, default=4096,
+                        help="Context window size")
+    parser.add_argument("--output-dir", type=str, default="experiments")
+    args = parser.parse_args()
+    output_dir = Path(args.output_dir)
+    output_dir.mkdir(parents=True, exist_ok=True)
+
+    model_name = args.model
+    print(f"Model: {model_name}")
+
+    # Find test cases
+    print("Finding test cases...")
+    fn_cases, tn_cases = find_test_cases(args.max_cases, args.max_fn, args.max_tn)
+    print(f"Found {len(fn_cases)} FN + {len(tn_cases)} TN")
+
+    # Load NLI + embeddings
+    print("Loading NLI + embeddings...")
+    nli_tokenizer = AutoTokenizer.from_pretrained(NLI_MODEL)
+    nli_model = AutoModelForSequenceClassification.from_pretrained(NLI_MODEL)
+    nli_model.eval()
+    nli_labels = [nli_model.config.id2label[i].upper() for i in range(len(nli_model.config.id2label))]
+    provider = get_embedding_provider()
+
+    # Load GGUF model
+    if args.model_path:
+        model_path = args.model_path
+    else:
+        info = GGUF_MODELS[model_name]
+        model_path = download_model(info["repo_id"], info["filename"])
+
+    load_gguf_model(model_path, n_ctx=args.n_ctx)
+
+    # Process cases
+    all_results = []
+    total_l4 = 0
+    total_slm_time = 0.0
+
+    for label, cases, gt_val in [("FN", fn_cases, "fail"), ("TN", tn_cases, "pass")]:
+        for idx, (case, src, ctx, resp, ratio, min_sim) in enumerate(cases):
+            print(f"\n{label} {idx+1}/{len(cases)}: {case.case_id}")
+            case_start = time.time()
+
+            resp_sents = _split_sentences(resp)
+            ctx_sents = _split_sentences(ctx)
+            if not resp_sents or not ctx_sents:
+                continue
+
+            resp_embs = provider.encode(resp_sents)
+            ctx_embs = provider.encode(ctx_sents)
+
+            has_hallucination = False
+            l4_count = 0
+            l4_details = []
+
+            for i, (sent, emb) in enumerate(zip(resp_sents, resp_embs)):
+                # L0: Deterministic
+                if deterministic_match(sent, ctx_sents, src):
+                    continue
+
+                # L2: NLI
+                sims = [(j, provider.max_similarity(emb, [ce])) for j, ce in enumerate(ctx_embs)]
+                sims.sort(key=lambda x: x[1], reverse=True)
+                best_e = 0.0
+                for src_idx, _ in sims[:3]:
+                    nli = nli_classify(nli_tokenizer, nli_model, ctx_sents[src_idx], sent, nli_labels)
+                    best_e = max(best_e, nli.get("ENTAILMENT", 0))
+
+                if best_e > 0.7:
+                    continue
+
+                # L4: SLM reasoning
+                l4_count += 1
+                total_l4 += 1
+                decision, slm_elapsed = slm_check_sentence(sent, src)
+                total_slm_time += slm_elapsed
+
+                if decision == "unsupported":
+                    has_hallucination = True
+
+                l4_details.append({
+                    "sentence_idx": i,
+                    "sentence": sent[:120],
+                    "decision": decision,
+                    "elapsed": round(slm_elapsed, 1),
+                })
+
+            case_decision = "fail" if has_hallucination else "pass"
+            correct = (case_decision == gt_val)
+            case_elapsed = time.time() - case_start
+
+            print(f"  decision={case_decision} gt={gt_val} L4={l4_count} "
+                  f"{'CORRECT' if correct else 'WRONG'} ({case_elapsed:.1f}s)")
+
+            all_results.append({
+                "case_id": case.case_id,
+                "gt": gt_val,
+                "decision": case_decision,
+                "correct": correct,
+                "l4_count": l4_count,
+                "l4_details": l4_details,
+            })
+
+    # Compute metrics
+    fn_results = [r for r in all_results if r["gt"] == "fail"]
+    tn_results = [r for r in all_results if r["gt"] == "pass"]
+
+    tp = sum(1 for r in fn_results if r["decision"] == "fail")
+    fn = sum(1 for r in fn_results if r["decision"] == "pass")
+    fp = sum(1 for r in tn_results if r["decision"] == "fail")
+    tn = sum(1 for r in tn_results if r["decision"] == "pass")
+
+    precision = tp / (tp + fp) if (tp + fp) > 0 else 0
+    recall = tp / (tp + fn) if (tp + fn) > 0 else 0
+    f1 = 2 * precision * recall / (precision + recall) if (precision + recall) > 0 else 0
+
+    print(f"\n{'='*70}")
+    print("EXPERIMENT 14b: SLM GGUF SCIENCE GATE")
+    print(f"{'='*70}")
+    print(f"Model: {model_name} (GGUF Q4_K_M)")
+    print(f"Cases: {len(fn_results)} FN + {len(tn_results)} TN = {len(all_results)} total")
+    print(f"L4 sentences: {total_l4}")
+    print(f"Avg SLM latency: {total_slm_time/max(1,total_l4):.1f}s per sentence")
+    print()
+    print("RESULTS")
+    print(f"  TP={tp} FP={fp} TN={tn} FN={fn}")
+    print(f"  Precision: {precision:.3f}  Recall: {recall:.3f}  F1: {f1:.3f}")
+    print(f"  FN caught: {tp}/{len(fn_results)}  TN FP: {fp}/{len(tn_results)}")
+    print()
+    print("COMPARISON")
+    print("  Gemini (Exp 13):          F1=0.900  (TP=9 FP=1)")
+    print("  Qwen2.5-1.5B f32 (14):   F1=0.700  (TP=7 FP=3)")
+    print(f"  {model_name} GGUF (14b):  F1={f1:.3f}  (TP={tp} FP={fp})")
+    print("  Pass criteria: F1 >= 0.800")
+    print(f"  Result: {'PASS' if f1 >= 0.800 else 'FAIL'}")
+    print(f"{'='*70}")
+
+    # Per-case details
+    print("\n--- L4 SENTENCE DETAILS ---")
+    for r in all_results:
+        if not r["l4_details"]:
+            continue
+        marker = "CORRECT" if r["correct"] else "WRONG"
+        print(f"\n  {r['case_id']} (gt={r['gt']}) [{marker}]")
+        for d in r["l4_details"]:
+            print(f"    [{d['sentence_idx']+1}] {d['decision']:>11} ({d['elapsed']:.1f}s) {d['sentence']}")
+
+    # Save
+    save_data = {
+        "experiment": "Experiment 14b: SLM GGUF Science Gate",
+        "model": model_name,
+        "quantization": "Q4_K_M",
+        "fn_tested": len(fn_results), "tn_tested": len(tn_results),
+        "l4_sentences": total_l4,
+        "avg_slm_latency": round(total_slm_time / max(1, total_l4), 1),
+        "tp": tp, "fp": fp, "tn": tn, "fn": fn,
+        "precision": round(precision, 4), "recall": round(recall, 4), "f1": round(f1, 4),
+        "gemini_f1": 0.900, "qwen_1_5b_f1": 0.700,
+        "pass_criteria": "F1 >= 0.800",
+        "result": "PASS" if f1 >= 0.800 else "FAIL",
+        "cases": all_results,
+    }
+    save_path = output_dir / "slm_gguf_science_gate_results.json"
+    with open(save_path, "w") as f:
+        json.dump(save_data, f, indent=2)
+    print(f"\nSaved: {save_path}")
+
+
+if __name__ == "__main__":
+    main()

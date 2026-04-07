@@ -1,0 +1,18 @@
+{
+  "total_cases": 50,
+  "gate1_fail": 22,
+  "gate1_fail_correct": 8,
+  "gate1_fail_wrong": 14,
+  "gate1_pass": 28,
+  "total_sentences": 175,
+  "l0_deterministic": 15,
+  "l0_exact_substring": 7,
+  "l0_near_exact": 7,
+  "l0_token_overlap": 1,
+  "l2_entailment": 63,
+  "l2_contradiction": 13,
+  "l3_exact_match": 29,
+  "l4_needs_reasoning": 55,
+  "confident_handled_pct": 61.1,
+  "llm_calls_needed_pct": 38.9
+}

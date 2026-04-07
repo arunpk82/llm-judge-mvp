@@ -180,7 +180,7 @@ def run_gate2(cases: list[Gate2Case]) -> None:
                 resp = client.post(url, json=payload, headers={"Content-Type": "application/json"})
                 resp.raise_for_status()
                 data = resp.json()
-                raw = data["candidates"][0]["content"]["parts"][0]["text"].strip().upper()
+                raw = data["candidates"][0]["content"]["parts"][-1]["text"].strip().upper()
                 case.gate2_raw = raw
 
                 if "HALLUCINATED" in raw:

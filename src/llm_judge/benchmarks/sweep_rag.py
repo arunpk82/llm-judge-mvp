@@ -204,7 +204,7 @@ def sweep_all(cases: list[SweepCase]) -> dict[str, Any]:
 
 def print_report(cases: list[SweepCase], results: dict[str, Any]) -> None:
     n = len(cases)
-    fail_count = sum(1 for c in cases if c.expected == "fail")
+    fail_count = sum(1 for c in cases if c.expected == "fail")  # noqa: F841
     pass_count = n - fail_count
 
     # Similarity distributions WITH RAG context

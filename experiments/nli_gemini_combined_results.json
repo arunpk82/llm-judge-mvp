@@ -1,0 +1,526 @@
+{
+  "experiment": "EPIC 7.20: NLI + Gemini Combined",
+  "nli_model": "cross-encoder/nli-deberta-v3-large",
+  "false_negatives_tested": 10,
+  "caught": 9,
+  "total_sentences": 62,
+  "gemini_calls": 34,
+  "cost_savings_pct": 45.2,
+  "result": "PASS",
+  "cases": [
+    {
+      "case_id": "ragtruth_29",
+      "correct": true,
+      "gemini_calls": 3,
+      "total_sentences": 5,
+      "sentences": [
+        {
+          "sentence": "A 30-year-old Philadelphia woman, Keonna Thomas, was charged with attempting to travel to Syria to join ISIS.",
+          "nli_label": "NEUTRAL",
+          "gemini_decision": "supported",
+          "final_decision": "grounded",
+          "routed_to_gemini": true
+        },
+        {
+          "sentence": "She was arrested on March 26 and could face 15 years in prison.",
+          "nli_label": "CONTRADICTION",
+          "gemini_decision": "",
+          "final_decision": "hallucinated",
+          "routed_to_gemini": false
+        },
+        {
+          "sentence": "Two other women, Noelle Velentzas and Asia Siddiqui, were arrested in New York for planning to build an explosive device for attacks in the US.",
+          "nli_label": "ENTAILMENT",
+          "gemini_decision": "",
+          "final_decision": "grounded",
+          "routed_to_gemini": false
+        },
+        {
+          "sentence": "In the past 18 months, the Justice Department has prosecuted 30 cases of people attempting to join or support terrorist groups, with 18 involving ISIS",
+          "nli_label": "NEUTRAL",
+          "gemini_decision": "unsupported",
+          "final_decision": "hallucinated",
+          "routed_to_gemini": true
+        },
+        {
+          "sentence": "Homeland Security Secretary Jeh Johnson described the current terrorist threat as decentralized, diffuse, and complicated, with the potential for lone",
+          "nli_label": "NEUTRAL",
+          "gemini_decision": "supported",
+          "final_decision": "grounded",
+          "routed_to_gemini": true
+        }
+      ]
+    },
+    {
+      "case_id": "ragtruth_44",
+      "correct": false,
+      "gemini_calls": 4,
+      "total_sentences": 10,
+      "sentences": [
+        {
+          "sentence": "Blue Bell Ice Cream Recalls Products Amid Listeria Outbreak; No Blue Bell Ice Cream Is Linked to Infections in Patients\n\nBlue Bell Creameries has temp",
+          "nli_label": "NEUTRAL",
+          "gemini_decision": "supported",
+          "final_decision": "grounded",
+          "routed_to_gemini": true
+        },
+        {
+          "sentence": "The contamination was found in a cup of ice cream recovered from a hospital in Kansas that served Blue Bell products.",
+          "nli_label": "NEUTRAL",
+          "gemini_decision": "supported",
+          "final_decision": "grounded",
+          "routed_to_gemini": true
+        },
+        {
+          "sentence": "The company has recalled other products and shut down the plant \"out of an abundance of caution\" to search for a possible cause of contamination.",
+          "nli_label": "NEUTRAL",
+          "gemini_decision": "supported",
+          "final_decision": "grounded",
+          "routed_to_gemini": true
+        },
+        {
+          "sentence": "The Centers for Disease Control and Prevention (CDC) advised consumers not to eat any Blue Bell-branded products made at the Broken Arrow plant, which",
+          "nli_label": "NEUTRAL",
+          "gemini_decision": "supported",
+          "final_decision": "grounded",
+          "routed_to_gemini": true
+        },
+        {
+          "sentence": "However, the warning does not affect other Blue Bell ice cream.",
+          "nli_label": "ENTAILMENT",
+          "gemini_decision": "",
+          "final_decision": "grounded",
+          "routed_to_gemini": false
+        },
+        {
+          "sentence": "Listeriosis, a serious infection caused by eating contaminated food, primarily affects the elderly, pregnant women, newborns, and people with weakened",
+          "nli_label": "ENTAILMENT",
+          "gemini_decision": "",
+          "final_decision": "grounded",
+          "routed_to_gemini": false
+        },
+        {
+          "sentence": "Symptoms include fever and muscle aches, sometimes associated with diarrhea or other gastrointestinal symptoms.",
+          "nli_label": "ENTAILMENT",
+          "gemini_decision": "",
+          "final_decision": "grounded",
+          "routed_to_gemini": false
+        },
+        {
+          "sentence": "In the United States, an estimated 1,600 people become seriously ill each year, and approximately 16% of these illnesses result in death.",
+          "nli_label": "ENTAILMENT",
+          "gemini_decision": "",
+          "final_decision": "grounded",
+          "routed_to_gemini": false
+        },
+        {
+          "sentence": "The CDC advises that individuals and institutions should check their freezers for the recalled products and throw them away.",
+          "nli_label": "ENTAILMENT",
+          "gemini_decision": "",
+          "final_decision": "grounded",
+          "routed_to_gemini": false
+        },
+        {
+          "sentence": "Blue Bell Creameries has stated that this recall is the first in its 108-year history.",
+          "nli_label": "ENTAILMENT",
+          "gemini_decision": "",
+          "final_decision": "grounded",
+          "routed_to_gemini": false
+        }
+      ]
+    },
+    {
+      "case_id": "ragtruth_46",
+      "correct": true,
+      "gemini_calls": 2,
+      "total_sentences": 5,
+      "sentences": [
+        {
+          "sentence": "Blue Bell ice cream has temporarily shut down one of its plants after listeria contamination was discovered in a serving of ice cream.",
+          "nli_label": "ENTAILMENT",
+          "gemini_decision": "",
+          "final_decision": "grounded",
+          "routed_to_gemini": false
+        },
+        {
+          "sentence": "Public health officials advised consumers not to eat any Blue Bell products made at the plant in Oklahoma.",
+          "nli_label": "ENTAILMENT",
+          "gemini_decision": "",
+          "final_decision": "grounded",
+          "routed_to_gemini": false
+        },
+        {
+          "sentence": "The recall includes 3-ounce servings of ice cream with certain coding dates.",
+          "nli_label": "NEUTRAL",
+          "gemini_decision": "supported",
+          "final_decision": "grounded",
+          "routed_to_gemini": true
+        },
+        {
+          "sentence": "This is the third time Blue Bell has taken action due to listeria contamination, and the company is cooperating with investigations.",
+          "nli_label": "NEUTRAL",
+          "gemini_decision": "supported",
+          "final_decision": "grounded",
+          "routed_to_gemini": true
+        },
+        {
+          "sentence": "No illnesses have been reported directly linked to the contaminated ice cream, but five people in Kansas have died from listeriosis in the past year a",
+          "nli_label": "CONTRADICTION",
+          "gemini_decision": "",
+          "final_decision": "hallucinated",
+          "routed_to_gemini": false
+        }
+      ]
+    },
+    {
+      "case_id": "ragtruth_141",
+      "correct": true,
+      "gemini_calls": 2,
+      "total_sentences": 5,
+      "sentences": [
+        {
+          "sentence": "Kanye West has settled a lawsuit with a paparazzo he assaulted in 2013.",
+          "nli_label": "NEUTRAL",
+          "gemini_decision": "supported",
+          "final_decision": "grounded",
+          "routed_to_gemini": true
+        },
+        {
+          "sentence": "The photographer, Daniel Ramos, sought damages for interfering with his right to work.",
+          "nli_label": "ENTAILMENT",
+          "gemini_decision": "",
+          "final_decision": "grounded",
+          "routed_to_gemini": false
+        },
+        {
+          "sentence": "West pleaded guilty to battery and was sentenced to probation and anger management classes.",
+          "nli_label": "CONTRADICTION",
+          "gemini_decision": "",
+          "final_decision": "hallucinated",
+          "routed_to_gemini": false
+        },
+        {
+          "sentence": "The settlement includes an apology from West to Ramos.",
+          "nli_label": "ENTAILMENT",
+          "gemini_decision": "",
+          "final_decision": "grounded",
+          "routed_to_gemini": false
+        },
+        {
+          "sentence": "This is the second time West has settled a legal dispute involving physical altercations, having previously reached a civil settlement with another ma",
+          "nli_label": "NEUTRAL",
+          "gemini_decision": "supported",
+          "final_decision": "grounded",
+          "routed_to_gemini": true
+        }
+      ]
+    },
+    {
+      "case_id": "ragtruth_180",
+      "correct": true,
+      "gemini_calls": 3,
+      "total_sentences": 7,
+      "sentences": [
+        {
+          "sentence": "Indiana Pacers forward, Chris Copeland, and his wife were stabbed outside the Manhattan nightclub 1OAK last night.",
+          "nli_label": "NEUTRAL",
+          "gemini_decision": "unsupported",
+          "final_decision": "hallucinated",
+          "routed_to_gemini": true
+        },
+        {
+          "sentence": "Copeland suffered knife wounds to his elbow and abdomen and is in a stable condition at a New York hospital.",
+          "nli_label": "ENTAILMENT",
+          "gemini_decision": "",
+          "final_decision": "grounded",
+          "routed_to_gemini": false
+        },
+        {
+          "sentence": "Atlanta Hawks players Pero Antic and Thabo Sefolosha were at the nightclub and were arrested for obstruction of justice and disorderly conduct.",
+          "nli_label": "NEUTRAL",
+          "gemini_decision": "unsupported",
+          "final_decision": "hallucinated",
+          "routed_to_gemini": true
+        },
+        {
+          "sentence": "The players were not involved in the stabbing incident, but allegedly interfered with police officers trying to establish a crime scene.",
+          "nli_label": "NEUTRAL",
+          "gemini_decision": "supported",
+          "final_decision": "grounded",
+          "routed_to_gemini": true
+        },
+        {
+          "sentence": "The suspect is in police custody, and charges are pending.",
+          "nli_label": "ENTAILMENT",
+          "gemini_decision": "",
+          "final_decision": "grounded",
+          "routed_to_gemini": false
+        },
+        {
+          "sentence": "The incident took place just before 4 a.m.",
+          "nli_label": "ENTAILMENT",
+          "gemini_decision": "",
+          "final_decision": "grounded",
+          "routed_to_gemini": false
+        },
+        {
+          "sentence": "and the club was shut down immediately afterwards.",
+          "nli_label": "ENTAILMENT",
+          "gemini_decision": "",
+          "final_decision": "grounded",
+          "routed_to_gemini": false
+        }
+      ]
+    },
+    {
+      "case_id": "ragtruth_184",
+      "correct": true,
+      "gemini_calls": 4,
+      "total_sentences": 6,
+      "sentences": [
+        {
+          "sentence": "Indiana Pacers player Chris Copeland and a female companion were stabbed outside a trendy nightclub in New York City early Wednesday morning.",
+          "nli_label": "NEUTRAL",
+          "gemini_decision": "supported",
+          "final_decision": "grounded",
+          "routed_to_gemini": true
+        },
+        {
+          "sentence": "Two Atlanta Hawks players, Pero Antic and Thabo Sefolosha, were arrested on charges of obstructing governmental administration and disorderly conduct ",
+          "nli_label": "NEUTRAL",
+          "gemini_decision": "unsupported",
+          "final_decision": "hallucinated",
+          "routed_to_gemini": true
+        },
+        {
+          "sentence": "The stabbing occurred after a dispute between Copeland and a 22-year-old man, who stabbed Copland and two other women before fleeing the scene.",
+          "nli_label": "NEUTRAL",
+          "gemini_decision": "unsupported",
+          "final_decision": "hallucinated",
+          "routed_to_gemini": true
+        },
+        {
+          "sentence": "Copeland and the other victims were taken to the hospital, and the suspect was arrested and recovered a knife at the scene.",
+          "nli_label": "NEUTRAL",
+          "gemini_decision": "unsupported",
+          "final_decision": "hallucinated",
+          "routed_to_gemini": true
+        },
+        {
+          "sentence": "The Hawks players were not involved in the stabbing but were arrested for interfering with the police.",
+          "nli_label": "ENTAILMENT",
+          "gemini_decision": "",
+          "final_decision": "grounded",
+          "routed_to_gemini": false
+        },
+        {
+          "sentence": "The Pacers and the NBA are investigating the incident.",
+          "nli_label": "CONTRADICTION",
+          "gemini_decision": "",
+          "final_decision": "hallucinated",
+          "routed_to_gemini": false
+        }
+      ]
+    },
+    {
+      "case_id": "ragtruth_185",
+      "correct": true,
+      "gemini_calls": 4,
+      "total_sentences": 9,
+      "sentences": [
+        {
+          "sentence": "Chris Copeland, a player for the Indiana Pacers, was stabbed outside a nightclub in New York City early Wednesday morning.",
+          "nli_label": "ENTAILMENT",
+          "gemini_decision": "",
+          "final_decision": "grounded",
+          "routed_to_gemini": false
+        },
+        {
+          "sentence": "Two Atlanta Hawks players, Pero Antic and Thabo Sefolosha, were arrested on charges of obstructing governmental administration and disorderly conduct.",
+          "nli_label": "NEUTRAL",
+          "gemini_decision": "supported",
+          "final_decision": "grounded",
+          "routed_to_gemini": true
+        },
+        {
+          "sentence": "The stabbing occurred in front of the Fulton Houses project, and not at the nightclub 1OAK, where Copeland and a female companion had been before the ",
+          "nli_label": "ENTAILMENT",
+          "gemini_decision": "",
+          "final_decision": "grounded",
+          "routed_to_gemini": false
+        },
+        {
+          "sentence": "The suspect, who has not been named, stabbed Copeland and Saltara and then fled the scene.",
+          "nli_label": "NEUTRAL",
+          "gemini_decision": "unsupported",
+          "final_decision": "hallucinated",
+          "routed_to_gemini": true
+        },
+        {
+          "sentence": "Copeland and Saltara tried to make their way back to the club, leaving a bloody trail behind them.",
+          "nli_label": "ENTAILMENT",
+          "gemini_decision": "",
+          "final_decision": "grounded",
+          "routed_to_gemini": false
+        },
+        {
+          "sentence": "The club's security team assisted Copeland until the police arrived.",
+          "nli_label": "NEUTRAL",
+          "gemini_decision": "unsupported",
+          "final_decision": "hallucinated",
+          "routed_to_gemini": true
+        },
+        {
+          "sentence": "The Hawks players were arrested for interfering with officers trying to establish a crime scene.",
+          "nli_label": "NEUTRAL",
+          "gemini_decision": "unsupported",
+          "final_decision": "hallucinated",
+          "routed_to_gemini": true
+        },
+        {
+          "sentence": "The police have released little information, but local media has identified the injured man as Copeland.",
+          "nli_label": "ENTAILMENT",
+          "gemini_decision": "",
+          "final_decision": "grounded",
+          "routed_to_gemini": false
+        },
+        {
+          "sentence": "The Pacers have confirmed that Copeland suffered a knife wound to his left elbow and abdomen and is in stable condition at a New York hospital.",
+          "nli_label": "ENTAILMENT",
+          "gemini_decision": "",
+          "final_decision": "grounded",
+          "routed_to_gemini": false
+        }
+      ]
+    },
+    {
+      "case_id": "ragtruth_206",
+      "correct": true,
+      "gemini_calls": 5,
+      "total_sentences": 5,
+      "sentences": [
+        {
+          "sentence": "Tejano superstar Selena will soon return as a holographic figure thanks to a new technology developed by Acrovirt LLC.",
+          "nli_label": "NEUTRAL",
+          "gemini_decision": "supported",
+          "final_decision": "grounded",
+          "routed_to_gemini": true
+        },
+        {
+          "sentence": "Dubbed \"Selena the One,\" the walking, talking, singing, and dancing digital embodiment of the late singer will be created using detailed individual pe",
+          "nli_label": "NEUTRAL",
+          "gemini_decision": "supported",
+          "final_decision": "grounded",
+          "routed_to_gemini": true
+        },
+        {
+          "sentence": "The family behind Selena's estate is excited about the new technology and believes it will help her legacy continue to grow.",
+          "nli_label": "NEUTRAL",
+          "gemini_decision": "supported",
+          "final_decision": "grounded",
+          "routed_to_gemini": true
+        },
+        {
+          "sentence": "In addition to the hologram, the family also plans to release new music and collaborate with current hit artists.",
+          "nli_label": "NEUTRAL",
+          "gemini_decision": "supported",
+          "final_decision": "grounded",
+          "routed_to_gemini": true
+        },
+        {
+          "sentence": "The project has already raised $1.3 million from an Indiegogo campaign, and a commemorative Fiesta de la Flor event is planned for April 17 and 18.",
+          "nli_label": "NEUTRAL",
+          "gemini_decision": "unsupported",
+          "final_decision": "hallucinated",
+          "routed_to_gemini": true
+        }
+      ]
+    },
+    {
+      "case_id": "ragtruth_213",
+      "correct": true,
+      "gemini_calls": 3,
+      "total_sentences": 5,
+      "sentences": [
+        {
+          "sentence": "On Monday, Alaska Airlines Flight 448 made an unexpected stop in Los Angeles after the pilot heard strange noises coming from the cargo hold.",
+          "nli_label": "ENTAILMENT",
+          "gemini_decision": "",
+          "final_decision": "grounded",
+          "routed_to_gemini": false
+        },
+        {
+          "sentence": "Further investigation revealed that a ramp agent from Menzies Aviation had fallen asleep in the cargo hold.",
+          "nli_label": "NEUTRAL",
+          "gemini_decision": "unsupported",
+          "final_decision": "hallucinated",
+          "routed_to_gemini": true
+        },
+        {
+          "sentence": "Although the passenger compartment was pressurized and temperature-controlled, the man's presence caused concern among the passengers.",
+          "nli_label": "CONTRADICTION",
+          "gemini_decision": "",
+          "final_decision": "hallucinated",
+          "routed_to_gemini": false
+        },
+        {
+          "sentence": "An emergency landing was made, and the agent was taken to the hospital as a precaution but was later released.",
+          "nli_label": "NEUTRAL",
+          "gemini_decision": "supported",
+          "final_decision": "grounded",
+          "routed_to_gemini": true
+        },
+        {
+          "sentence": "The airline is investigating the incident.",
+          "nli_label": "NEUTRAL",
+          "gemini_decision": "supported",
+          "final_decision": "grounded",
+          "routed_to_gemini": true
+        }
+      ]
+    },
+    {
+      "case_id": "ragtruth_250",
+      "correct": true,
+      "gemini_calls": 4,
+      "total_sentences": 5,
+      "sentences": [
+        {
+          "sentence": "Emy Afalava, a decorated veteran born in American Samoa, is fighting for his right to citizenship despite being subject to American law his entire lif",
+          "nli_label": "NEUTRAL",
+          "gemini_decision": "supported",
+          "final_decision": "grounded",
+          "routed_to_gemini": true
+        },
+        {
+          "sentence": "The Constitution grants citizenship to all persons born in the US, but the federal government denies Afalava and other American Samoans this right.",
+          "nli_label": "NEUTRAL",
+          "gemini_decision": "supported",
+          "final_decision": "grounded",
+          "routed_to_gemini": true
+        },
+        {
+          "sentence": "This injustice has its roots in historical racism, as seen in the Dred Scott case, which denied citizenship to free African Americans.",
+          "nli_label": "ENTAILMENT",
+          "gemini_decision": "",
+          "final_decision": "grounded",
+          "routed_to_gemini": false
+        },
+        {
+          "sentence": "Similar discrimination was faced by Isabel Gonzalez, a Puerto Rican woman who was labeled an \"undesirable alien\" when she tried to enter the US in 190",
+          "nli_label": "NEUTRAL",
+          "gemini_decision": "supported",
+          "final_decision": "grounded",
+          "routed_to_gemini": true
+        },
+        {
+          "sentence": "The Supreme Court eventually granted her citizenship, but the fight for equal rights continues for Afalava and other US territory inhabitants.",
+          "nli_label": "NEUTRAL",
+          "gemini_decision": "unsupported",
+          "final_decision": "hallucinated",
+          "routed_to_gemini": true
+        }
+      ]
+    }
+  ]
+}

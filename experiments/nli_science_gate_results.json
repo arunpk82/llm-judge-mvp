@@ -1,0 +1,720 @@
+{
+  "experiment": "EPIC 7.20: Science Gate \u2014 NLI Validation",
+  "model": "cross-encoder/nli-deberta-v3-large",
+  "false_negatives_tested": 10,
+  "caught": 5,
+  "pass_criteria": ">= 7/10",
+  "result": "FAIL",
+  "cases": [
+    {
+      "case_id": "ragtruth_29",
+      "gate1_ratio": 1.0,
+      "gate1_min_sim": 0.6510228986477583,
+      "nli_decision": "fail",
+      "correct": true,
+      "sentences": [
+        {
+          "sentence": "A 30-year-old Philadelphia woman, Keonna Thomas, was charged with attempting to travel to Syria to join ISIS.",
+          "cosine_sim": 0.651,
+          "nli_label": "NEUTRAL",
+          "nli_probs": {
+            "CONTRADICTION": 0.0,
+            "ENTAILMENT": 0.0001,
+            "NEUTRAL": 0.9999
+          }
+        },
+        {
+          "sentence": "She was arrested on March 26 and could face 15 years in prison.",
+          "cosine_sim": 0.8326,
+          "nli_label": "NEUTRAL",
+          "nli_probs": {
+            "CONTRADICTION": 0.0,
+            "ENTAILMENT": 0.0001,
+            "NEUTRAL": 0.9999
+          }
+        },
+        {
+          "sentence": "Two other women, Noelle Velentzas and Asia Siddiqui, were arrested in New York for planning to build an explosive device for attacks in the US.",
+          "cosine_sim": 0.7931,
+          "nli_label": "ENTAILMENT",
+          "nli_probs": {
+            "CONTRADICTION": 0.0,
+            "ENTAILMENT": 0.997,
+            "NEUTRAL": 0.003
+          }
+        },
+        {
+          "sentence": "In the past 18 months, the Justice Department has prosecuted 30 cases of people attempting to join or support terrorist groups, with 18 involving ISIS",
+          "cosine_sim": 0.8128,
+          "nli_label": "NEUTRAL",
+          "nli_probs": {
+            "CONTRADICTION": 0.0,
+            "ENTAILMENT": 0.0001,
+            "NEUTRAL": 0.9999
+          }
+        },
+        {
+          "sentence": "Homeland Security Secretary Jeh Johnson described the current terrorist threat as decentralized, diffuse, and complicated, with the potential for lone",
+          "cosine_sim": 0.8252,
+          "nli_label": "NEUTRAL",
+          "nli_probs": {
+            "CONTRADICTION": 0.0,
+            "ENTAILMENT": 0.0001,
+            "NEUTRAL": 0.9999
+          }
+        }
+      ]
+    },
+    {
+      "case_id": "ragtruth_44",
+      "gate1_ratio": 1.0,
+      "gate1_min_sim": 0.6306686285513091,
+      "nli_decision": "pass",
+      "correct": false,
+      "sentences": [
+        {
+          "sentence": "Blue Bell Ice Cream Recalls Products Amid Listeria Outbreak; No Blue Bell Ice Cream Is Linked to Infections in Patients\n\nBlue Bell Creameries has temp",
+          "cosine_sim": 0.8537,
+          "nli_label": "NEUTRAL",
+          "nli_probs": {
+            "CONTRADICTION": 0.0,
+            "ENTAILMENT": 0.0002,
+            "NEUTRAL": 0.9998
+          }
+        },
+        {
+          "sentence": "The contamination was found in a cup of ice cream recovered from a hospital in Kansas that served Blue Bell products.",
+          "cosine_sim": 0.7066,
+          "nli_label": "NEUTRAL",
+          "nli_probs": {
+            "CONTRADICTION": 0.0,
+            "ENTAILMENT": 0.0001,
+            "NEUTRAL": 0.9999
+          }
+        },
+        {
+          "sentence": "The company has recalled other products and shut down the plant \"out of an abundance of caution\" to search for a possible cause of contamination.",
+          "cosine_sim": 0.6307,
+          "nli_label": "NEUTRAL",
+          "nli_probs": {
+            "CONTRADICTION": 0.0003,
+            "ENTAILMENT": 0.0,
+            "NEUTRAL": 0.9997
+          }
+        },
+        {
+          "sentence": "The Centers for Disease Control and Prevention (CDC) advised consumers not to eat any Blue Bell-branded products made at the Broken Arrow plant, which",
+          "cosine_sim": 0.7595,
+          "nli_label": "NEUTRAL",
+          "nli_probs": {
+            "CONTRADICTION": 0.0,
+            "ENTAILMENT": 0.0005,
+            "NEUTRAL": 0.9995
+          }
+        },
+        {
+          "sentence": "However, the warning does not affect other Blue Bell ice cream.",
+          "cosine_sim": 0.905,
+          "nli_label": "ENTAILMENT",
+          "nli_probs": {
+            "CONTRADICTION": 0.0002,
+            "ENTAILMENT": 0.8569,
+            "NEUTRAL": 0.1428
+          }
+        },
+        {
+          "sentence": "Listeriosis, a serious infection caused by eating contaminated food, primarily affects the elderly, pregnant women, newborns, and people with weakened",
+          "cosine_sim": 0.9712,
+          "nli_label": "ENTAILMENT",
+          "nli_probs": {
+            "CONTRADICTION": 0.0001,
+            "ENTAILMENT": 0.9974,
+            "NEUTRAL": 0.0025
+          }
+        },
+        {
+          "sentence": "Symptoms include fever and muscle aches, sometimes associated with diarrhea or other gastrointestinal symptoms.",
+          "cosine_sim": 0.6575,
+          "nli_label": "ENTAILMENT",
+          "nli_probs": {
+            "CONTRADICTION": 0.0002,
+            "ENTAILMENT": 0.9894,
+            "NEUTRAL": 0.0104
+          }
+        },
+        {
+          "sentence": "In the United States, an estimated 1,600 people become seriously ill each year, and approximately 16% of these illnesses result in death.",
+          "cosine_sim": 1.0,
+          "nli_label": "ENTAILMENT",
+          "nli_probs": {
+            "CONTRADICTION": 0.007,
+            "ENTAILMENT": 0.975,
+            "NEUTRAL": 0.0181
+          }
+        },
+        {
+          "sentence": "The CDC advises that individuals and institutions should check their freezers for the recalled products and throw them away.",
+          "cosine_sim": 0.9045,
+          "nli_label": "ENTAILMENT",
+          "nli_probs": {
+            "CONTRADICTION": 0.0002,
+            "ENTAILMENT": 0.9964,
+            "NEUTRAL": 0.0035
+          }
+        },
+        {
+          "sentence": "Blue Bell Creameries has stated that this recall is the first in its 108-year history.",
+          "cosine_sim": 0.6629,
+          "nli_label": "CONTRADICTION",
+          "nli_probs": {
+            "CONTRADICTION": 0.9997,
+            "ENTAILMENT": 0.0,
+            "NEUTRAL": 0.0003
+          }
+        }
+      ]
+    },
+    {
+      "case_id": "ragtruth_46",
+      "gate1_ratio": 1.0,
+      "gate1_min_sim": 0.7264481191989781,
+      "nli_decision": "fail",
+      "correct": true,
+      "sentences": [
+        {
+          "sentence": "Blue Bell ice cream has temporarily shut down one of its plants after listeria contamination was discovered in a serving of ice cream.",
+          "cosine_sim": 0.9471,
+          "nli_label": "ENTAILMENT",
+          "nli_probs": {
+            "CONTRADICTION": 0.0,
+            "ENTAILMENT": 0.9984,
+            "NEUTRAL": 0.0015
+          }
+        },
+        {
+          "sentence": "Public health officials advised consumers not to eat any Blue Bell products made at the plant in Oklahoma.",
+          "cosine_sim": 0.8659,
+          "nli_label": "ENTAILMENT",
+          "nli_probs": {
+            "CONTRADICTION": 0.0,
+            "ENTAILMENT": 0.9989,
+            "NEUTRAL": 0.0011
+          }
+        },
+        {
+          "sentence": "The recall includes 3-ounce servings of ice cream with certain coding dates.",
+          "cosine_sim": 0.7264,
+          "nli_label": "NEUTRAL",
+          "nli_probs": {
+            "CONTRADICTION": 0.0,
+            "ENTAILMENT": 0.0,
+            "NEUTRAL": 0.9999
+          }
+        },
+        {
+          "sentence": "This is the third time Blue Bell has taken action due to listeria contamination, and the company is cooperating with investigations.",
+          "cosine_sim": 0.869,
+          "nli_label": "NEUTRAL",
+          "nli_probs": {
+            "CONTRADICTION": 0.0,
+            "ENTAILMENT": 0.0001,
+            "NEUTRAL": 0.9999
+          }
+        },
+        {
+          "sentence": "No illnesses have been reported directly linked to the contaminated ice cream, but five people in Kansas have died from listeriosis in the past year a",
+          "cosine_sim": 0.853,
+          "nli_label": "CONTRADICTION",
+          "nli_probs": {
+            "CONTRADICTION": 0.9996,
+            "ENTAILMENT": 0.0001,
+            "NEUTRAL": 0.0003
+          }
+        }
+      ]
+    },
+    {
+      "case_id": "ragtruth_141",
+      "gate1_ratio": 1.0,
+      "gate1_min_sim": 0.6095389123035323,
+      "nli_decision": "fail",
+      "correct": true,
+      "sentences": [
+        {
+          "sentence": "Kanye West has settled a lawsuit with a paparazzo he assaulted in 2013.",
+          "cosine_sim": 0.8565,
+          "nli_label": "NEUTRAL",
+          "nli_probs": {
+            "CONTRADICTION": 0.0,
+            "ENTAILMENT": 0.0001,
+            "NEUTRAL": 0.9999
+          }
+        },
+        {
+          "sentence": "The photographer, Daniel Ramos, sought damages for interfering with his right to work.",
+          "cosine_sim": 0.6968,
+          "nli_label": "ENTAILMENT",
+          "nli_probs": {
+            "CONTRADICTION": 0.0,
+            "ENTAILMENT": 0.9934,
+            "NEUTRAL": 0.0066
+          }
+        },
+        {
+          "sentence": "West pleaded guilty to battery and was sentenced to probation and anger management classes.",
+          "cosine_sim": 0.6542,
+          "nli_label": "NEUTRAL",
+          "nli_probs": {
+            "CONTRADICTION": 0.0001,
+            "ENTAILMENT": 0.0,
+            "NEUTRAL": 0.9999
+          }
+        },
+        {
+          "sentence": "The settlement includes an apology from West to Ramos.",
+          "cosine_sim": 0.6577,
+          "nli_label": "ENTAILMENT",
+          "nli_probs": {
+            "CONTRADICTION": 0.0001,
+            "ENTAILMENT": 0.9957,
+            "NEUTRAL": 0.0042
+          }
+        },
+        {
+          "sentence": "This is the second time West has settled a legal dispute involving physical altercations, having previously reached a civil settlement with another ma",
+          "cosine_sim": 0.6095,
+          "nli_label": "NEUTRAL",
+          "nli_probs": {
+            "CONTRADICTION": 0.0,
+            "ENTAILMENT": 0.0,
+            "NEUTRAL": 0.9999
+          }
+        }
+      ]
+    },
+    {
+      "case_id": "ragtruth_180",
+      "gate1_ratio": 0.8571428571428571,
+      "gate1_min_sim": 0.5997711021870722,
+      "nli_decision": "pass",
+      "correct": false,
+      "sentences": [
+        {
+          "sentence": "Indiana Pacers forward, Chris Copeland, and his wife were stabbed outside the Manhattan nightclub 1OAK last night.",
+          "cosine_sim": 0.8258,
+          "nli_label": "NEUTRAL",
+          "nli_probs": {
+            "CONTRADICTION": 0.0008,
+            "ENTAILMENT": 0.0004,
+            "NEUTRAL": 0.9988
+          }
+        },
+        {
+          "sentence": "Copeland suffered knife wounds to his elbow and abdomen and is in a stable condition at a New York hospital.",
+          "cosine_sim": 0.8438,
+          "nli_label": "ENTAILMENT",
+          "nli_probs": {
+            "CONTRADICTION": 0.0001,
+            "ENTAILMENT": 0.9972,
+            "NEUTRAL": 0.0027
+          }
+        },
+        {
+          "sentence": "Atlanta Hawks players Pero Antic and Thabo Sefolosha were at the nightclub and were arrested for obstruction of justice and disorderly conduct.",
+          "cosine_sim": 0.6623,
+          "nli_label": "NEUTRAL",
+          "nli_probs": {
+            "CONTRADICTION": 0.0001,
+            "ENTAILMENT": 0.0002,
+            "NEUTRAL": 0.9997
+          }
+        },
+        {
+          "sentence": "The players were not involved in the stabbing incident, but allegedly interfered with police officers trying to establish a crime scene.",
+          "cosine_sim": 0.6929,
+          "nli_label": "NEUTRAL",
+          "nli_probs": {
+            "CONTRADICTION": 0.0,
+            "ENTAILMENT": 0.0004,
+            "NEUTRAL": 0.9996
+          }
+        },
+        {
+          "sentence": "The suspect is in police custody, and charges are pending.",
+          "cosine_sim": 0.5998,
+          "nli_label": "ENTAILMENT",
+          "nli_probs": {
+            "CONTRADICTION": 0.0001,
+            "ENTAILMENT": 0.9988,
+            "NEUTRAL": 0.0012
+          }
+        },
+        {
+          "sentence": "The incident took place just before 4 a.m.",
+          "cosine_sim": 0.6763,
+          "nli_label": "ENTAILMENT",
+          "nli_probs": {
+            "CONTRADICTION": 0.0002,
+            "ENTAILMENT": 0.9864,
+            "NEUTRAL": 0.0134
+          }
+        },
+        {
+          "sentence": "and the club was shut down immediately afterwards.",
+          "cosine_sim": 0.7543,
+          "nli_label": "ENTAILMENT",
+          "nli_probs": {
+            "CONTRADICTION": 0.0001,
+            "ENTAILMENT": 0.9947,
+            "NEUTRAL": 0.0053
+          }
+        }
+      ]
+    },
+    {
+      "case_id": "ragtruth_184",
+      "gate1_ratio": 0.8333333333333334,
+      "gate1_min_sim": 0.581875411888803,
+      "nli_decision": "fail",
+      "correct": true,
+      "sentences": [
+        {
+          "sentence": "Indiana Pacers player Chris Copeland and a female companion were stabbed outside a trendy nightclub in New York City early Wednesday morning.",
+          "cosine_sim": 0.8248,
+          "nli_label": "NEUTRAL",
+          "nli_probs": {
+            "CONTRADICTION": 0.0001,
+            "ENTAILMENT": 0.0,
+            "NEUTRAL": 0.9999
+          }
+        },
+        {
+          "sentence": "Two Atlanta Hawks players, Pero Antic and Thabo Sefolosha, were arrested on charges of obstructing governmental administration and disorderly conduct ",
+          "cosine_sim": 0.6822,
+          "nli_label": "NEUTRAL",
+          "nli_probs": {
+            "CONTRADICTION": 0.0,
+            "ENTAILMENT": 0.0011,
+            "NEUTRAL": 0.9989
+          }
+        },
+        {
+          "sentence": "The stabbing occurred after a dispute between Copeland and a 22-year-old man, who stabbed Copland and two other women before fleeing the scene.",
+          "cosine_sim": 0.6369,
+          "nli_label": "NEUTRAL",
+          "nli_probs": {
+            "CONTRADICTION": 0.0,
+            "ENTAILMENT": 0.0001,
+            "NEUTRAL": 0.9999
+          }
+        },
+        {
+          "sentence": "Copeland and the other victims were taken to the hospital, and the suspect was arrested and recovered a knife at the scene.",
+          "cosine_sim": 0.6346,
+          "nli_label": "NEUTRAL",
+          "nli_probs": {
+            "CONTRADICTION": 0.001,
+            "ENTAILMENT": 0.0015,
+            "NEUTRAL": 0.9975
+          }
+        },
+        {
+          "sentence": "The Hawks players were not involved in the stabbing but were arrested for interfering with the police.",
+          "cosine_sim": 0.9251,
+          "nli_label": "ENTAILMENT",
+          "nli_probs": {
+            "CONTRADICTION": 0.0,
+            "ENTAILMENT": 0.9955,
+            "NEUTRAL": 0.0044
+          }
+        },
+        {
+          "sentence": "The Pacers and the NBA are investigating the incident.",
+          "cosine_sim": 0.5819,
+          "nli_label": "CONTRADICTION",
+          "nli_probs": {
+            "CONTRADICTION": 0.9992,
+            "ENTAILMENT": 0.0002,
+            "NEUTRAL": 0.0006
+          }
+        }
+      ]
+    },
+    {
+      "case_id": "ragtruth_185",
+      "gate1_ratio": 1.0,
+      "gate1_min_sim": 0.6227953675280147,
+      "nli_decision": "pass",
+      "correct": false,
+      "sentences": [
+        {
+          "sentence": "Chris Copeland, a player for the Indiana Pacers, was stabbed outside a nightclub in New York City early Wednesday morning.",
+          "cosine_sim": 0.8395,
+          "nli_label": "ENTAILMENT",
+          "nli_probs": {
+            "CONTRADICTION": 0.0002,
+            "ENTAILMENT": 0.9973,
+            "NEUTRAL": 0.0025
+          }
+        },
+        {
+          "sentence": "Two Atlanta Hawks players, Pero Antic and Thabo Sefolosha, were arrested on charges of obstructing governmental administration and disorderly conduct.",
+          "cosine_sim": 0.6656,
+          "nli_label": "NEUTRAL",
+          "nli_probs": {
+            "CONTRADICTION": 0.0,
+            "ENTAILMENT": 0.0046,
+            "NEUTRAL": 0.9954
+          }
+        },
+        {
+          "sentence": "The stabbing occurred in front of the Fulton Houses project, and not at the nightclub 1OAK, where Copeland and a female companion had been before the ",
+          "cosine_sim": 0.7001,
+          "nli_label": "NEUTRAL",
+          "nli_probs": {
+            "CONTRADICTION": 0.0001,
+            "ENTAILMENT": 0.0001,
+            "NEUTRAL": 0.9997
+          }
+        },
+        {
+          "sentence": "The suspect, who has not been named, stabbed Copeland and Saltara and then fled the scene.",
+          "cosine_sim": 0.7431,
+          "nli_label": "NEUTRAL",
+          "nli_probs": {
+            "CONTRADICTION": 0.0,
+            "ENTAILMENT": 0.0001,
+            "NEUTRAL": 0.9999
+          }
+        },
+        {
+          "sentence": "Copeland and Saltara tried to make their way back to the club, leaving a bloody trail behind them.",
+          "cosine_sim": 0.755,
+          "nli_label": "ENTAILMENT",
+          "nli_probs": {
+            "CONTRADICTION": 0.0001,
+            "ENTAILMENT": 0.9984,
+            "NEUTRAL": 0.0015
+          }
+        },
+        {
+          "sentence": "The club's security team assisted Copeland until the police arrived.",
+          "cosine_sim": 0.6267,
+          "nli_label": "NEUTRAL",
+          "nli_probs": {
+            "CONTRADICTION": 0.0,
+            "ENTAILMENT": 0.0001,
+            "NEUTRAL": 0.9999
+          }
+        },
+        {
+          "sentence": "The Hawks players were arrested for interfering with officers trying to establish a crime scene.",
+          "cosine_sim": 0.6228,
+          "nli_label": "NEUTRAL",
+          "nli_probs": {
+            "CONTRADICTION": 0.0,
+            "ENTAILMENT": 0.0001,
+            "NEUTRAL": 0.9998
+          }
+        },
+        {
+          "sentence": "The police have released little information, but local media has identified the injured man as Copeland.",
+          "cosine_sim": 0.9143,
+          "nli_label": "ENTAILMENT",
+          "nli_probs": {
+            "CONTRADICTION": 0.0,
+            "ENTAILMENT": 0.9986,
+            "NEUTRAL": 0.0014
+          }
+        },
+        {
+          "sentence": "The Pacers have confirmed that Copeland suffered a knife wound to his left elbow and abdomen and is in stable condition at a New York hospital.",
+          "cosine_sim": 0.9719,
+          "nli_label": "ENTAILMENT",
+          "nli_probs": {
+            "CONTRADICTION": 0.0,
+            "ENTAILMENT": 0.9989,
+            "NEUTRAL": 0.0011
+          }
+        }
+      ]
+    },
+    {
+      "case_id": "ragtruth_206",
+      "gate1_ratio": 0.8,
+      "gate1_min_sim": 0.5004403413297995,
+      "nli_decision": "pass",
+      "correct": false,
+      "sentences": [
+        {
+          "sentence": "Tejano superstar Selena will soon return as a holographic figure thanks to a new technology developed by Acrovirt LLC.",
+          "cosine_sim": 0.8036,
+          "nli_label": "NEUTRAL",
+          "nli_probs": {
+            "CONTRADICTION": 0.0,
+            "ENTAILMENT": 0.0002,
+            "NEUTRAL": 0.9998
+          }
+        },
+        {
+          "sentence": "Dubbed \"Selena the One,\" the walking, talking, singing, and dancing digital embodiment of the late singer will be created using detailed individual pe",
+          "cosine_sim": 0.6365,
+          "nli_label": "NEUTRAL",
+          "nli_probs": {
+            "CONTRADICTION": 0.0,
+            "ENTAILMENT": 0.0001,
+            "NEUTRAL": 0.9999
+          }
+        },
+        {
+          "sentence": "The family behind Selena's estate is excited about the new technology and believes it will help her legacy continue to grow.",
+          "cosine_sim": 0.7486,
+          "nli_label": "NEUTRAL",
+          "nli_probs": {
+            "CONTRADICTION": 0.0,
+            "ENTAILMENT": 0.0001,
+            "NEUTRAL": 0.9999
+          }
+        },
+        {
+          "sentence": "In addition to the hologram, the family also plans to release new music and collaborate with current hit artists.",
+          "cosine_sim": 0.5004,
+          "nli_label": "NEUTRAL",
+          "nli_probs": {
+            "CONTRADICTION": 0.0004,
+            "ENTAILMENT": 0.0,
+            "NEUTRAL": 0.9996
+          }
+        },
+        {
+          "sentence": "The project has already raised $1.3 million from an Indiegogo campaign, and a commemorative Fiesta de la Flor event is planned for April 17 and 18.",
+          "cosine_sim": 0.6063,
+          "nli_label": "NEUTRAL",
+          "nli_probs": {
+            "CONTRADICTION": 0.0,
+            "ENTAILMENT": 0.0,
+            "NEUTRAL": 0.9999
+          }
+        }
+      ]
+    },
+    {
+      "case_id": "ragtruth_213",
+      "gate1_ratio": 0.8,
+      "gate1_min_sim": 0.5491925204512396,
+      "nli_decision": "fail",
+      "correct": true,
+      "sentences": [
+        {
+          "sentence": "On Monday, Alaska Airlines Flight 448 made an unexpected stop in Los Angeles after the pilot heard strange noises coming from the cargo hold.",
+          "cosine_sim": 0.7479,
+          "nli_label": "ENTAILMENT",
+          "nli_probs": {
+            "CONTRADICTION": 0.0001,
+            "ENTAILMENT": 0.7539,
+            "NEUTRAL": 0.246
+          }
+        },
+        {
+          "sentence": "Further investigation revealed that a ramp agent from Menzies Aviation had fallen asleep in the cargo hold.",
+          "cosine_sim": 0.6035,
+          "nli_label": "NEUTRAL",
+          "nli_probs": {
+            "CONTRADICTION": 0.0679,
+            "ENTAILMENT": 0.0002,
+            "NEUTRAL": 0.9319
+          }
+        },
+        {
+          "sentence": "Although the passenger compartment was pressurized and temperature-controlled, the man's presence caused concern among the passengers.",
+          "cosine_sim": 0.5492,
+          "nli_label": "CONTRADICTION",
+          "nli_probs": {
+            "CONTRADICTION": 0.948,
+            "ENTAILMENT": 0.0001,
+            "NEUTRAL": 0.0519
+          }
+        },
+        {
+          "sentence": "An emergency landing was made, and the agent was taken to the hospital as a precaution but was later released.",
+          "cosine_sim": 0.6603,
+          "nli_label": "NEUTRAL",
+          "nli_probs": {
+            "CONTRADICTION": 0.0,
+            "ENTAILMENT": 0.0001,
+            "NEUTRAL": 0.9999
+          }
+        },
+        {
+          "sentence": "The airline is investigating the incident.",
+          "cosine_sim": 0.7303,
+          "nli_label": "NEUTRAL",
+          "nli_probs": {
+            "CONTRADICTION": 0.0,
+            "ENTAILMENT": 0.0039,
+            "NEUTRAL": 0.9961
+          }
+        }
+      ]
+    },
+    {
+      "case_id": "ragtruth_250",
+      "gate1_ratio": 0.8,
+      "gate1_min_sim": 0.5429436536587373,
+      "nli_decision": "pass",
+      "correct": false,
+      "sentences": [
+        {
+          "sentence": "Emy Afalava, a decorated veteran born in American Samoa, is fighting for his right to citizenship despite being subject to American law his entire lif",
+          "cosine_sim": 0.7242,
+          "nli_label": "NEUTRAL",
+          "nli_probs": {
+            "CONTRADICTION": 0.0002,
+            "ENTAILMENT": 0.0,
+            "NEUTRAL": 0.9998
+          }
+        },
+        {
+          "sentence": "The Constitution grants citizenship to all persons born in the US, but the federal government denies Afalava and other American Samoans this right.",
+          "cosine_sim": 0.604,
+          "nli_label": "NEUTRAL",
+          "nli_probs": {
+            "CONTRADICTION": 0.0002,
+            "ENTAILMENT": 0.0001,
+            "NEUTRAL": 0.9997
+          }
+        },
+        {
+          "sentence": "This injustice has its roots in historical racism, as seen in the Dred Scott case, which denied citizenship to free African Americans.",
+          "cosine_sim": 0.7578,
+          "nli_label": "ENTAILMENT",
+          "nli_probs": {
+            "CONTRADICTION": 0.0,
+            "ENTAILMENT": 0.9954,
+            "NEUTRAL": 0.0046
+          }
+        },
+        {
+          "sentence": "Similar discrimination was faced by Isabel Gonzalez, a Puerto Rican woman who was labeled an \"undesirable alien\" when she tried to enter the US in 190",
+          "cosine_sim": 0.7231,
+          "nli_label": "NEUTRAL",
+          "nli_probs": {
+            "CONTRADICTION": 0.0001,
+            "ENTAILMENT": 0.0002,
+            "NEUTRAL": 0.9997
+          }
+        },
+        {
+          "sentence": "The Supreme Court eventually granted her citizenship, but the fight for equal rights continues for Afalava and other US territory inhabitants.",
+          "cosine_sim": 0.5429,
+          "nli_label": "NEUTRAL",
+          "nli_probs": {
+            "CONTRADICTION": 0.0005,
+            "ENTAILMENT": 0.0,
+            "NEUTRAL": 0.9995
+          }
+        }
+      ]
+    }
+  ]
+}

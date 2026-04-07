@@ -60,6 +60,7 @@ def _evaluate_case_all_properties(
     *,
     skip_embeddings: bool = False,
     with_llm: bool = False,
+    gate2_routing: str = "none",
 ) -> dict[str, Any]:
     """Run ALL property checks on a single case."""
     response_text = case.request.candidate_answer
@@ -83,14 +84,23 @@ def _evaluate_case_all_properties(
             similarity_threshold=0.6,
             max_ungrounded_claims=2,
             skip_embeddings=skip_embeddings,
+            gate2_routing=gate2_routing,
         )
-        # Dual threshold: ratio OR min-sentence triggers fail
-        fail_ratio = hallucination_result.grounding_ratio < 0.8
-        fail_min_sim = hallucination_result.min_sentence_sim < 0.3
+        # Decision from two-gate architecture
+        g1 = hallucination_result.gate1_decision
+        g2 = hallucination_result.gate2_decision
+        if g2:
+            decision_1_1 = g2  # Gate 2 overrides when routed
+        elif g1 in ("fail", "ambiguous"):
+            decision_1_1 = "fail"
+        else:
+            decision_1_1 = "pass"
         results["1.1"] = {
             "grounding_ratio": hallucination_result.grounding_ratio,
             "min_sentence_sim": hallucination_result.min_sentence_sim,
-            "decision": "fail" if (fail_ratio or fail_min_sim) else "pass",
+            "gate1_decision": g1,
+            "gate2_decision": g2,
+            "decision": decision_1_1,
         }
         results["1.2"] = {
             "ungrounded_claims": hallucination_result.ungrounded_claims,
@@ -511,6 +521,7 @@ def run_benchmark(
     properties: list[str] | None = None,
     skip_embeddings: bool = False,
     with_llm: bool = False,
+    gate2_routing: str = "none",
 ) -> BenchmarkRunResult:
     """Run benchmark evaluation across all 28 properties."""
     meta = adapter.metadata()
@@ -537,6 +548,7 @@ def run_benchmark(
         try:
             eval_results = _evaluate_case_all_properties(
                 case, skip_embeddings=skip_embeddings, with_llm=with_llm,
+                gate2_routing=gate2_routing,
             )
 
             # Cache for diagnostics (limit to 200 to save memory)

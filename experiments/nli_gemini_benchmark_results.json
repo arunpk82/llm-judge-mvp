@@ -1,0 +1,22 @@
+{
+  "experiment": "NLI + Gemini Combined Benchmark on RAGTruth",
+  "nli_model": "cross-encoder/nli-deberta-v3-large",
+  "cases": 50,
+  "elapsed_s": 696.0,
+  "precision": 0.359,
+  "recall": 0.9333,
+  "f1": 0.5185,
+  "tp": 14,
+  "fp": 25,
+  "tn": 10,
+  "fn": 1,
+  "published_gpt4_f1": 0.635,
+  "delta_vs_gpt4": -0.1165,
+  "gate1_fails": 22,
+  "total_sentences": 175,
+  "nli_entailments": 76,
+  "nli_contradictions": 13,
+  "nli_neutrals": 86,
+  "gemini_calls": 86,
+  "cost_savings_pct": 50.9
+}

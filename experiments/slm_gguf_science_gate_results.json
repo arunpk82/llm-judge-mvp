@@ -1,0 +1,658 @@
+{
+  "experiment": "Experiment 14b: SLM GGUF Science Gate",
+  "model": "qwen2.5-3b",
+  "quantization": "Q4_K_M",
+  "fn_tested": 10,
+  "tn_tested": 10,
+  "l4_sentences": 76,
+  "avg_slm_latency": 5.0,
+  "tp": 10,
+  "fp": 10,
+  "tn": 0,
+  "fn": 0,
+  "precision": 0.5,
+  "recall": 1.0,
+  "f1": 0.6667,
+  "gemini_f1": 0.9,
+  "qwen_1_5b_f1": 0.7,
+  "pass_criteria": "F1 >= 0.800",
+  "result": "FAIL",
+  "cases": [
+    {
+      "case_id": "ragtruth_29",
+      "gt": "fail",
+      "decision": "fail",
+      "correct": true,
+      "l4_count": 4,
+      "l4_details": [
+        {
+          "sentence_idx": 0,
+          "sentence": "A 30-year-old Philadelphia woman, Keonna Thomas, was charged with attempting to travel to Syria to join ISIS.",
+          "decision": "unsupported",
+          "elapsed": 21.5
+        },
+        {
+          "sentence_idx": 1,
+          "sentence": "She was arrested on March 26 and could face 15 years in prison.",
+          "decision": "unsupported",
+          "elapsed": 2.7
+        },
+        {
+          "sentence_idx": 3,
+          "sentence": "In the past 18 months, the Justice Department has prosecuted 30 cases of people attempting to join or support terrorist ",
+          "decision": "unsupported",
+          "elapsed": 4.2
+        },
+        {
+          "sentence_idx": 4,
+          "sentence": "Homeland Security Secretary Jeh Johnson described the current terrorist threat as decentralized, diffuse, and complicate",
+          "decision": "unsupported",
+          "elapsed": 3.5
+        }
+      ]
+    },
+    {
+      "case_id": "ragtruth_44",
+      "gt": "fail",
+      "decision": "fail",
+      "correct": true,
+      "l4_count": 4,
+      "l4_details": [
+        {
+          "sentence_idx": 0,
+          "sentence": "Blue Bell Ice Cream Recalls Products Amid Listeria Outbreak; No Blue Bell Ice Cream Is Linked to Infections in Patients\n",
+          "decision": "unsupported",
+          "elapsed": 21.9
+        },
+        {
+          "sentence_idx": 1,
+          "sentence": "The contamination was found in a cup of ice cream recovered from a hospital in Kansas that served Blue Bell products.",
+          "decision": "unsupported",
+          "elapsed": 2.9
+        },
+        {
+          "sentence_idx": 2,
+          "sentence": "The company has recalled other products and shut down the plant \"out of an abundance of caution\" to search for a possibl",
+          "decision": "unsupported",
+          "elapsed": 3.0
+        },
+        {
+          "sentence_idx": 3,
+          "sentence": "The Centers for Disease Control and Prevention (CDC) advised consumers not to eat any Blue Bell-branded products made at",
+          "decision": "unsupported",
+          "elapsed": 3.9
+        }
+      ]
+    },
+    {
+      "case_id": "ragtruth_46",
+      "gt": "fail",
+      "decision": "fail",
+      "correct": true,
+      "l4_count": 3,
+      "l4_details": [
+        {
+          "sentence_idx": 2,
+          "sentence": "The recall includes 3-ounce servings of ice cream with certain coding dates.",
+          "decision": "unsupported",
+          "elapsed": 2.6
+        },
+        {
+          "sentence_idx": 3,
+          "sentence": "This is the third time Blue Bell has taken action due to listeria contamination, and the company is cooperating with inv",
+          "decision": "unsupported",
+          "elapsed": 2.9
+        },
+        {
+          "sentence_idx": 4,
+          "sentence": "No illnesses have been reported directly linked to the contaminated ice cream, but five people in Kansas have died from ",
+          "decision": "unsupported",
+          "elapsed": 3.2
+        }
+      ]
+    },
+    {
+      "case_id": "ragtruth_141",
+      "gt": "fail",
+      "decision": "fail",
+      "correct": true,
+      "l4_count": 3,
+      "l4_details": [
+        {
+          "sentence_idx": 0,
+          "sentence": "Kanye West has settled a lawsuit with a paparazzo he assaulted in 2013.",
+          "decision": "unsupported",
+          "elapsed": 14.9
+        },
+        {
+          "sentence_idx": 2,
+          "sentence": "West pleaded guilty to battery and was sentenced to probation and anger management classes.",
+          "decision": "unsupported",
+          "elapsed": 2.6
+        },
+        {
+          "sentence_idx": 4,
+          "sentence": "This is the second time West has settled a legal dispute involving physical altercations, having previously reached a ci",
+          "decision": "unsupported",
+          "elapsed": 3.3
+        }
+      ]
+    },
+    {
+      "case_id": "ragtruth_180",
+      "gt": "fail",
+      "decision": "fail",
+      "correct": true,
+      "l4_count": 3,
+      "l4_details": [
+        {
+          "sentence_idx": 0,
+          "sentence": "Indiana Pacers forward, Chris Copeland, and his wife were stabbed outside the Manhattan nightclub 1OAK last night.",
+          "decision": "unsupported",
+          "elapsed": 19.7
+        },
+        {
+          "sentence_idx": 2,
+          "sentence": "Atlanta Hawks players Pero Antic and Thabo Sefolosha were at the nightclub and were arrested for obstruction of justice ",
+          "decision": "unsupported",
+          "elapsed": 3.1
+        },
+        {
+          "sentence_idx": 3,
+          "sentence": "The players were not involved in the stabbing incident, but allegedly interfered with police officers trying to establis",
+          "decision": "unsupported",
+          "elapsed": 2.8
+        }
+      ]
+    },
+    {
+      "case_id": "ragtruth_184",
+      "gt": "fail",
+      "decision": "fail",
+      "correct": true,
+      "l4_count": 5,
+      "l4_details": [
+        {
+          "sentence_idx": 0,
+          "sentence": "Indiana Pacers player Chris Copeland and a female companion were stabbed outside a trendy nightclub in New York City ear",
+          "decision": "unsupported",
+          "elapsed": 3.0
+        },
+        {
+          "sentence_idx": 1,
+          "sentence": "Two Atlanta Hawks players, Pero Antic and Thabo Sefolosha, were arrested on charges of obstructing governmental administ",
+          "decision": "unsupported",
+          "elapsed": 3.3
+        },
+        {
+          "sentence_idx": 2,
+          "sentence": "The stabbing occurred after a dispute between Copeland and a 22-year-old man, who stabbed Copland and two other women be",
+          "decision": "unsupported",
+          "elapsed": 3.0
+        },
+        {
+          "sentence_idx": 3,
+          "sentence": "Copeland and the other victims were taken to the hospital, and the suspect was arrested and recovered a knife at the sce",
+          "decision": "unsupported",
+          "elapsed": 4.3
+        },
+        {
+          "sentence_idx": 5,
+          "sentence": "The Pacers and the NBA are investigating the incident.",
+          "decision": "unsupported",
+          "elapsed": 2.6
+        }
+      ]
+    },
+    {
+      "case_id": "ragtruth_185",
+      "gt": "fail",
+      "decision": "fail",
+      "correct": true,
+      "l4_count": 4,
+      "l4_details": [
+        {
+          "sentence_idx": 1,
+          "sentence": "Two Atlanta Hawks players, Pero Antic and Thabo Sefolosha, were arrested on charges of obstructing governmental administ",
+          "decision": "unsupported",
+          "elapsed": 3.1
+        },
+        {
+          "sentence_idx": 3,
+          "sentence": "The suspect, who has not been named, stabbed Copeland and Saltara and then fled the scene.",
+          "decision": "unsupported",
+          "elapsed": 2.8
+        },
+        {
+          "sentence_idx": 5,
+          "sentence": "The club's security team assisted Copeland until the police arrived.",
+          "decision": "unsupported",
+          "elapsed": 2.7
+        },
+        {
+          "sentence_idx": 6,
+          "sentence": "The Hawks players were arrested for interfering with officers trying to establish a crime scene.",
+          "decision": "unsupported",
+          "elapsed": 2.7
+        }
+      ]
+    },
+    {
+      "case_id": "ragtruth_206",
+      "gt": "fail",
+      "decision": "fail",
+      "correct": true,
+      "l4_count": 5,
+      "l4_details": [
+        {
+          "sentence_idx": 0,
+          "sentence": "Tejano superstar Selena will soon return as a holographic figure thanks to a new technology developed by Acrovirt LLC.",
+          "decision": "supported",
+          "elapsed": 16.2
+        },
+        {
+          "sentence_idx": 1,
+          "sentence": "Dubbed \"Selena the One,\" the walking, talking, singing, and dancing digital embodiment of the late singer will be create",
+          "decision": "supported",
+          "elapsed": 3.0
+        },
+        {
+          "sentence_idx": 2,
+          "sentence": "The family behind Selena's estate is excited about the new technology and believes it will help her legacy continue to g",
+          "decision": "unsupported",
+          "elapsed": 7.4
+        },
+        {
+          "sentence_idx": 3,
+          "sentence": "In addition to the hologram, the family also plans to release new music and collaborate with current hit artists.",
+          "decision": "unsupported",
+          "elapsed": 9.8
+        },
+        {
+          "sentence_idx": 4,
+          "sentence": "The project has already raised $1.3 million from an Indiegogo campaign, and a commemorative Fiesta de la Flor event is p",
+          "decision": "unsupported",
+          "elapsed": 5.0
+        }
+      ]
+    },
+    {
+      "case_id": "ragtruth_213",
+      "gt": "fail",
+      "decision": "fail",
+      "correct": true,
+      "l4_count": 4,
+      "l4_details": [
+        {
+          "sentence_idx": 1,
+          "sentence": "Further investigation revealed that a ramp agent from Menzies Aviation had fallen asleep in the cargo hold.",
+          "decision": "unsupported",
+          "elapsed": 18.4
+        },
+        {
+          "sentence_idx": 2,
+          "sentence": "Although the passenger compartment was pressurized and temperature-controlled, the man's presence caused concern among t",
+          "decision": "unsupported",
+          "elapsed": 2.8
+        },
+        {
+          "sentence_idx": 3,
+          "sentence": "An emergency landing was made, and the agent was taken to the hospital as a precaution but was later released.",
+          "decision": "unsupported",
+          "elapsed": 2.8
+        },
+        {
+          "sentence_idx": 4,
+          "sentence": "The airline is investigating the incident.",
+          "decision": "unsupported",
+          "elapsed": 6.5
+        }
+      ]
+    },
+    {
+      "case_id": "ragtruth_250",
+      "gt": "fail",
+      "decision": "fail",
+      "correct": true,
+      "l4_count": 4,
+      "l4_details": [
+        {
+          "sentence_idx": 0,
+          "sentence": "Emy Afalava, a decorated veteran born in American Samoa, is fighting for his right to citizenship despite being subject ",
+          "decision": "unsupported",
+          "elapsed": 19.6
+        },
+        {
+          "sentence_idx": 1,
+          "sentence": "The Constitution grants citizenship to all persons born in the US, but the federal government denies Afalava and other A",
+          "decision": "unsupported",
+          "elapsed": 2.5
+        },
+        {
+          "sentence_idx": 3,
+          "sentence": "Similar discrimination was faced by Isabel Gonzalez, a Puerto Rican woman who was labeled an \"undesirable alien\" when sh",
+          "decision": "unsupported",
+          "elapsed": 2.9
+        },
+        {
+          "sentence_idx": 4,
+          "sentence": "The Supreme Court eventually granted her citizenship, but the fight for equal rights continues for Afalava and other US ",
+          "decision": "unsupported",
+          "elapsed": 2.1
+        }
+      ]
+    },
+    {
+      "case_id": "ragtruth_24",
+      "gt": "pass",
+      "decision": "fail",
+      "correct": false,
+      "l4_count": 3,
+      "l4_details": [
+        {
+          "sentence_idx": 0,
+          "sentence": "The FBI has charged a Philadelphia woman, Keonna Thomas, with trying to travel overseas to fight for ISIS.",
+          "decision": "supported",
+          "elapsed": 11.2
+        },
+        {
+          "sentence_idx": 2,
+          "sentence": "Thomas purchased an electronic visa to Turkey and a round-trip ticket to Barcelona, following the advice given in an ISI",
+          "decision": "unsupported",
+          "elapsed": 2.4
+        },
+        {
+          "sentence_idx": 3,
+          "sentence": "She has been charged with attempting to provide material support to a terrorist organisation and could face 15 years in ",
+          "decision": "supported",
+          "elapsed": 2.1
+        }
+      ]
+    },
+    {
+      "case_id": "ragtruth_25",
+      "gt": "pass",
+      "decision": "fail",
+      "correct": false,
+      "l4_count": 3,
+      "l4_details": [
+        {
+          "sentence_idx": 0,
+          "sentence": "A Philadelphia woman, Keonna Thomas, has been charged by the FBI for attempting to travel overseas to fight for ISIS.",
+          "decision": "supported",
+          "elapsed": 4.0
+        },
+        {
+          "sentence_idx": 1,
+          "sentence": "Two other women from New York were also arrested on terror charges.",
+          "decision": "unsupported",
+          "elapsed": 1.9
+        },
+        {
+          "sentence_idx": 2,
+          "sentence": "Thomas had sent multiple social media messages expressing support for ISIS and had purchased a visa to Turkey, a common ",
+          "decision": "unsupported",
+          "elapsed": 2.3
+        }
+      ]
+    },
+    {
+      "case_id": "ragtruth_26",
+      "gt": "pass",
+      "decision": "fail",
+      "correct": false,
+      "l4_count": 4,
+      "l4_details": [
+        {
+          "sentence_idx": 0,
+          "sentence": "The FBI charged a Philadelphia woman named Keonna Thomas, also known as \u201cYoung Lioness\u201d and \u201cFatayat Al Khilafah,\u201d with ",
+          "decision": "supported",
+          "elapsed": 3.1
+        },
+        {
+          "sentence_idx": 1,
+          "sentence": "She purchased an electronic visa to Turkey, which is known as the easiest way to enter Syria and join ISIS.",
+          "decision": "unsupported",
+          "elapsed": 2.1
+        },
+        {
+          "sentence_idx": 3,
+          "sentence": "Meanwhile, two New York women were also arrested this week on terror charges.",
+          "decision": "unsupported",
+          "elapsed": 2.5
+        },
+        {
+          "sentence_idx": 4,
+          "sentence": "Homeland Security Secretary Jeh Johnson stated that the terrorist threat is more decentralized and involves the potentia",
+          "decision": "unsupported",
+          "elapsed": 2.1
+        }
+      ]
+    },
+    {
+      "case_id": "ragtruth_27",
+      "gt": "pass",
+      "decision": "fail",
+      "correct": false,
+      "l4_count": 3,
+      "l4_details": [
+        {
+          "sentence_idx": 0,
+          "sentence": "FBI charges Philadelphia woman with attempting to join ISIS after purchasing electronic visa for Turkey.",
+          "decision": "unsupported",
+          "elapsed": 2.6
+        },
+        {
+          "sentence_idx": 1,
+          "sentence": "Keonna Thomas, 30, also known as \"Young Lioness\" and \"Fatayat Al Khilafah,\" made numerous social media posts expressing ",
+          "decision": "supported",
+          "elapsed": 2.4
+        },
+        {
+          "sentence_idx": 3,
+          "sentence": "Three women have been arrested this week on terror charges, including two in New York who were accused of planning to bu",
+          "decision": "unsupported",
+          "elapsed": 2.3
+        }
+      ]
+    },
+    {
+      "case_id": "ragtruth_42",
+      "gt": "pass",
+      "decision": "fail",
+      "correct": false,
+      "l4_count": 2,
+      "l4_details": [
+        {
+          "sentence_idx": 0,
+          "sentence": "Blue Bell has temporarily shut down its Broken Arrow, Oklahoma, plant over the discovery of listeria contamination in a ",
+          "decision": "unsupported",
+          "elapsed": 17.7
+        },
+        {
+          "sentence_idx": 1,
+          "sentence": "This is the third time Blue Bell has taken action in light of a listeria outbreak at a Kansas hospital that served the c",
+          "decision": "unsupported",
+          "elapsed": 2.6
+        }
+      ]
+    },
+    {
+      "case_id": "ragtruth_43",
+      "gt": "pass",
+      "decision": "fail",
+      "correct": false,
+      "l4_count": 6,
+      "l4_details": [
+        {
+          "sentence_idx": 0,
+          "sentence": "Blue Bell ice cream has temporarily closed one of its manufacturing plants in Broken Arrow, Oklahoma, after listeria con",
+          "decision": "supported",
+          "elapsed": 2.4
+        },
+        {
+          "sentence_idx": 1,
+          "sentence": "Public health officials have warned consumers not to eat any Blue Bell products made at the plant, specifically 3-ounce ",
+          "decision": "unsupported",
+          "elapsed": 3.2
+        },
+        {
+          "sentence_idx": 4,
+          "sentence": "Blue Bell is shutting down the Broken Arrow plant to investigate the cause of the contamination.",
+          "decision": "supported",
+          "elapsed": 2.7
+        },
+        {
+          "sentence_idx": 6,
+          "sentence": "The CDC found listeria bacteria in a cup of ice cream from a Kansas hospital that matched samples recovered from the Bro",
+          "decision": "unsupported",
+          "elapsed": 2.2
+        },
+        {
+          "sentence_idx": 7,
+          "sentence": "However, it is still uncertain if the ice cream is the source of these infections.",
+          "decision": "unsupported",
+          "elapsed": 2.1
+        },
+        {
+          "sentence_idx": 8,
+          "sentence": "Blue Bell has issued a statement expressing their concern and sadness for those affected by the outbreak.",
+          "decision": "unsupported",
+          "elapsed": 2.0
+        }
+      ]
+    },
+    {
+      "case_id": "ragtruth_45",
+      "gt": "pass",
+      "decision": "fail",
+      "correct": false,
+      "l4_count": 4,
+      "l4_details": [
+        {
+          "sentence_idx": 1,
+          "sentence": "The Centers for Disease Control and Prevention (CDC) has warned consumers not to eat any Blue Bell-branded products made",
+          "decision": "supported",
+          "elapsed": 3.2
+        },
+        {
+          "sentence_idx": 3,
+          "sentence": "Investigations into the possible connection between the ice cream and the infections are ongoing.",
+          "decision": "unsupported",
+          "elapsed": 2.1
+        },
+        {
+          "sentence_idx": 4,
+          "sentence": "The company has recalled other products and advises individuals and institutions to check their freezers for the recalle",
+          "decision": "unsupported",
+          "elapsed": 2.8
+        },
+        {
+          "sentence_idx": 5,
+          "sentence": "This is the first product recall in Blue Bell's 108-year history.",
+          "decision": "unsupported",
+          "elapsed": 2.0
+        }
+      ]
+    },
+    {
+      "case_id": "ragtruth_47",
+      "gt": "pass",
+      "decision": "fail",
+      "correct": false,
+      "l4_count": 4,
+      "l4_details": [
+        {
+          "sentence_idx": 1,
+          "sentence": "The contaminated product was traced back to the company's Broken Arrow, Oklahoma plant, and public health officials are ",
+          "decision": "unsupported",
+          "elapsed": 2.8
+        },
+        {
+          "sentence_idx": 3,
+          "sentence": "The company has recalled other products and is shutting down the plant to investigate the possible cause of contaminatio",
+          "decision": "unsupported",
+          "elapsed": 2.4
+        },
+        {
+          "sentence_idx": 4,
+          "sentence": "The Centers for Disease Control and Prevention (CDC) has found a link between the contaminated ice cream and a listeria ",
+          "decision": "unsupported",
+          "elapsed": 3.2
+        },
+        {
+          "sentence_idx": 7,
+          "sentence": "This is the first product recall in Blue Bell's 108-year history.",
+          "decision": "unsupported",
+          "elapsed": 2.1
+        }
+      ]
+    },
+    {
+      "case_id": "ragtruth_54",
+      "gt": "pass",
+      "decision": "fail",
+      "correct": false,
+      "l4_count": 3,
+      "l4_details": [
+        {
+          "sentence_idx": 2,
+          "sentence": "Following the apology, the question has arisen as to whether the University, the Phi Kappa Psi fraternity or any of the ",
+          "decision": "unsupported",
+          "elapsed": 19.0
+        },
+        {
+          "sentence_idx": 3,
+          "sentence": "While the University, being a public university, is ineligible, the individual members of the fraternity may be able to ",
+          "decision": "unsupported",
+          "elapsed": 3.2
+        },
+        {
+          "sentence_idx": 4,
+          "sentence": "Lawyers suggest that if the members of the fraternity can get past the preliminary hurdles of a defamation claim and mak",
+          "decision": "unsupported",
+          "elapsed": 2.5
+        }
+      ]
+    },
+    {
+      "case_id": "ragtruth_55",
+      "gt": "pass",
+      "decision": "fail",
+      "correct": false,
+      "l4_count": 5,
+      "l4_details": [
+        {
+          "sentence_idx": 2,
+          "sentence": "Rolling Stone's managing editor, Will Dana, issued an apology to readers and those affected by the story, including the ",
+          "decision": "unsupported",
+          "elapsed": 2.6
+        },
+        {
+          "sentence_idx": 4,
+          "sentence": "The Virginia Supreme Court has stated that for a statement to be defamatory, it must be both false and harmful.",
+          "decision": "unsupported",
+          "elapsed": 2.8
+        },
+        {
+          "sentence_idx": 11,
+          "sentence": "UVA, as a public university, cannot sue for defamation.",
+          "decision": "unsupported",
+          "elapsed": 1.9
+        },
+        {
+          "sentence_idx": 12,
+          "sentence": "Fraternities, as groups, generally cannot sue either unless the defamatory language is easily imputed against all member",
+          "decision": "unsupported",
+          "elapsed": 2.3
+        },
+        {
+          "sentence_idx": 13,
+          "sentence": "Overall, proving defamation can be challenging, as the plaintiff must show financial harm and tangible damages.",
+          "decision": "unsupported",
+          "elapsed": 2.1
+        }
+      ]
+    }
+  ]
+}
