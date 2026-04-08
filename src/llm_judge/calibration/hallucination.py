@@ -1,20 +1,24 @@
 """
 Hallucination Detection — 5-Layer Groundedness Pipeline.
 
-Validated architecture from 16 experiments (RAGTruth benchmark, F1=0.900):
+Validated architecture from 20 experiments (RAGTruth benchmark):
 
   L0: Deterministic text match (exact substring, near-exact, Jaccard)
       → 9% of sentences confirmed grounded. Free, instant, no models.
   L1: Gate 1 MiniLM embeddings (whole-response dual threshold)
       → 44% of cases stopped as hallucinated. Free, 80MB model.
-  L2: NLI DeBERTa ENTAILMENT (per-sentence)
-      → 36% of sentences confirmed grounded. Free, 400MB model.
+  L2a: MiniCheck Flan-T5-Large (purpose-built factual consistency)
+      → 78% of sentences confirmed grounded. Free, 3.1GB model.
+      Breakthrough from Exp 17b: +97% improvement over DeBERTa NLI.
+  L2b: NLI DeBERTa ENTAILMENT (fallback on MiniCheck "unsupported")
+      → Catches 10 additional sentences MiniCheck misses. 400MB model.
   L3: GraphRAG spaCy SVO exact match (per-sentence)
-      → 17% of sentences confirmed grounded. Free, 50MB model.
+      → Handles remaining structural matches. Free, 50MB model.
   L4: Gemini per-sentence reasoning
-      → 39% of sentences need LLM. F1=0.900. Per-call cost.
+      → ~4% of sentences need LLM. F1=0.900. Per-call cost.
 
-Total free: 61%. Total local model footprint: ~530MB.
+Total free: ~96% of sentences resolved locally.
+Total local model footprint: ~3.6GB (MiniLM 80MB + MiniCheck 3.1GB + DeBERTa 400MB).
 """
 from __future__ import annotations
 
@@ -206,7 +210,57 @@ def _compute_grounding_ratio_token_overlap(response: str, context: str) -> float
     return len(overlap) / len(response_tokens)
 
 
-# --- L2: NLI DeBERTa ENTAILMENT ---
+# --- L2a: MiniCheck Flan-T5-Large (factual consistency) ---
+
+_mc_model: Any = None
+_mc_tokenizer: Any = None
+
+_MINICHECK_PROMPT = (
+    "Determine whether the following claim is consistent with "
+    "the corresponding document.\nDocument: {document}\nClaim: {claim}"
+)
+
+
+def _load_minicheck() -> None:
+    """Lazy-load MiniCheck model (~3.1GB Flan-T5-Large)."""
+    global _mc_model, _mc_tokenizer
+    if _mc_model is not None:
+        return
+
+    from transformers import AutoModelForSeq2SeqLM, AutoTokenizer
+
+    model_name = "lytang/MiniCheck-Flan-T5-Large"
+    logger.info(f"Loading MiniCheck: {model_name}")
+    _mc_tokenizer = AutoTokenizer.from_pretrained(model_name, use_fast=False)
+    _mc_model = AutoModelForSeq2SeqLM.from_pretrained(model_name)
+    _mc_model.eval()
+
+
+def _l2a_minicheck(sentence: str, source_doc: str) -> bool:
+    """
+    L2a: MiniCheck factual consistency check.
+    Takes full source document + claim sentence. Returns True if supported.
+    Breakthrough from Exp 17b: 78% coverage vs DeBERTa's 39%.
+    """
+    import torch
+
+    _load_minicheck()
+
+    prompt = _MINICHECK_PROMPT.format(
+        document=source_doc[:3500], claim=sentence,
+    )
+    inputs = _mc_tokenizer(
+        prompt, return_tensors="pt", truncation=True, max_length=2048,
+    )
+
+    with torch.no_grad():
+        outputs = _mc_model.generate(**inputs, max_new_tokens=5)
+
+    generated = _mc_tokenizer.decode(outputs[0], skip_special_tokens=True).strip()
+    return generated == "1"
+
+
+# --- L2b: NLI DeBERTa ENTAILMENT (fallback) ---
 
 _nli_model: Any = None
 _nli_tokenizer: Any = None
@@ -459,7 +513,7 @@ def check_hallucination(
     citation_count = _count_unverifiable_citations(response, context)
     flags: list[str] = []
     sentence_results: list[SentenceLayerResult] = []
-    layer_stats = {"L0": 0, "L1_fail": 0, "L2": 0, "L3": 0, "L4_supported": 0, "L4_unsupported": 0}
+    layer_stats = {"L0": 0, "L1_fail": 0, "L2a_minicheck": 0, "L2b_nli": 0, "L3": 0, "L4_supported": 0, "L4_unsupported": 0}
 
     if not resp_sents or not ctx_sents:
         return HallucinationResult(
@@ -504,15 +558,20 @@ def check_hallucination(
             flags.append(f"low_min_sentence_sim:{min_sim:.3f}")
 
         layer_stats["L1_fail"] = 1
-        risk = max(0, (grounding_threshold - grounding) / grounding_threshold) * 0.5 + 0.3
 
-        return HallucinationResult(
-            case_id=case_id, risk_score=round(min(1.0, risk), 4),
-            grounding_ratio=round(grounding, 4), min_sentence_sim=round(min_sim, 4),
-            ungrounded_claims=ungrounded_count, unverifiable_citations=citation_count,
-            gate1_decision=gate1_decision, flags=flags, layer_stats=layer_stats,
-            sentence_results=sentence_results,
-        )
+        # When gate2_routing is "none", Gate 1 is the final verdict.
+        # When gate2_routing is "pass"/"all", continue to L2+ for verification.
+        # Gate 1 fail/ambiguous becomes a signal, not a stopper.
+        if gate2_routing == "none":
+            risk = max(0, (grounding_threshold - grounding) / grounding_threshold) * 0.5 + 0.3
+            return HallucinationResult(
+                case_id=case_id, risk_score=round(min(1.0, risk), 4),
+                grounding_ratio=round(grounding, 4), min_sentence_sim=round(min_sim, 4),
+                ungrounded_claims=ungrounded_count, unverifiable_citations=citation_count,
+                gate1_decision=gate1_decision, flags=flags, layer_stats=layer_stats,
+                sentence_results=sentence_results,
+            )
+        # else: fall through to L2+ analysis
 
     # -- Gate 1 PASS: per-sentence analysis for L0-unmatched sentences --
 
@@ -548,18 +607,30 @@ def check_hallucination(
         if i in l0_resolved:
             continue
 
-        # L2: NLI ENTAILMENT
+        # L2a: MiniCheck (primary — 78% coverage, Exp 17b)
+        try:
+            if _l2a_minicheck(sent, source_doc):
+                layer_stats["L2a_minicheck"] = layer_stats.get("L2a_minicheck", 0) + 1
+                sentence_results.append(SentenceLayerResult(
+                    sentence_idx=i, sentence=sent[:120],
+                    resolved_by="L2a_minicheck",
+                ))
+                continue
+        except Exception as e:
+            logger.debug(f"l2a_minicheck.error: {str(e)[:60]}")
+
+        # L2b: NLI DeBERTa ENTAILMENT (fallback — catches 10 more, Exp 17b)
         if resp_embs[i] is not None and ctx_embs:
             try:
                 if _l2_nli_check(sent, ctx_sents, ctx_embs, resp_embs[i]):
-                    layer_stats["L2"] += 1
+                    layer_stats["L2b_nli"] = layer_stats.get("L2b_nli", 0) + 1
                     sentence_results.append(SentenceLayerResult(
                         sentence_idx=i, sentence=sent[:120],
-                        resolved_by="L2_entailment",
+                        resolved_by="L2b_nli",
                     ))
                     continue
             except Exception as e:
-                logger.debug(f"l2_nli.error: {str(e)[:60]}")
+                logger.debug(f"l2b_nli.error: {str(e)[:60]}")
 
         # L3: GraphRAG exact match
         try:

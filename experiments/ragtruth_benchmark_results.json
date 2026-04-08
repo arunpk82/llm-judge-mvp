@@ -1,0 +1,883 @@
+{
+  "benchmark": "RAGTruth Response-Level Hallucination Detection",
+  "total_cases": 50,
+  "minicheck_enabled": true,
+  "precision": 0.4,
+  "recall": 0.8,
+  "f1": 0.5333,
+  "accuracy": 0.58,
+  "tp": 12,
+  "fp": 18,
+  "fn": 3,
+  "tn": 17,
+  "gt_fail": 15,
+  "gt_pass": 35,
+  "elapsed_seconds": 1479.7,
+  "comparison": {
+    "gpt4_turbo_f1": 0.634,
+    "selfcheckgpt_f1": 0.588,
+    "ft_llama2_13b_f1": 0.787,
+    "our_pipeline_f1": 0.5333
+  },
+  "layer_totals": {
+    "gate1_fail": 22,
+    "L0": 19,
+    "L2a_minicheck": 205,
+    "L2b_nli": 13,
+    "L3": 0,
+    "L4_supported": 18,
+    "L4_unsupported": 28
+  },
+  "cases": [
+    {
+      "case_id": "ragtruth_24",
+      "ground_truth": "pass",
+      "predicted": "pass",
+      "gate1_decision": "pass",
+      "gate2_decision": "",
+      "layer_stats": {
+        "L0": 0,
+        "L1_fail": 0,
+        "L2a_minicheck": 3,
+        "L2b_nli": 1,
+        "L3": 0,
+        "L4_supported": 0,
+        "L4_unsupported": 0
+      },
+      "correct": true
+    },
+    {
+      "case_id": "ragtruth_25",
+      "ground_truth": "pass",
+      "predicted": "pass",
+      "gate1_decision": "pass",
+      "gate2_decision": "",
+      "layer_stats": {
+        "L0": 0,
+        "L1_fail": 0,
+        "L2a_minicheck": 5,
+        "L2b_nli": 0,
+        "L3": 0,
+        "L4_supported": 0,
+        "L4_unsupported": 0
+      },
+      "correct": true
+    },
+    {
+      "case_id": "ragtruth_26",
+      "ground_truth": "pass",
+      "predicted": "pass",
+      "gate1_decision": "pass",
+      "gate2_decision": "",
+      "layer_stats": {
+        "L0": 1,
+        "L1_fail": 0,
+        "L2a_minicheck": 4,
+        "L2b_nli": 0,
+        "L3": 0,
+        "L4_supported": 0,
+        "L4_unsupported": 0
+      },
+      "correct": true
+    },
+    {
+      "case_id": "ragtruth_27",
+      "ground_truth": "pass",
+      "predicted": "pass",
+      "gate1_decision": "pass",
+      "gate2_decision": "",
+      "layer_stats": {
+        "L0": 0,
+        "L1_fail": 0,
+        "L2a_minicheck": 4,
+        "L2b_nli": 0,
+        "L3": 0,
+        "L4_supported": 0,
+        "L4_unsupported": 0
+      },
+      "correct": true
+    },
+    {
+      "case_id": "ragtruth_28",
+      "ground_truth": "fail",
+      "predicted": "fail",
+      "gate1_decision": "fail",
+      "gate2_decision": "fail",
+      "layer_stats": {
+        "L0": 0,
+        "L1_fail": 1,
+        "L2a_minicheck": 4,
+        "L2b_nli": 0,
+        "L3": 0,
+        "L4_supported": 0,
+        "L4_unsupported": 1
+      },
+      "correct": true
+    },
+    {
+      "case_id": "ragtruth_29",
+      "ground_truth": "fail",
+      "predicted": "fail",
+      "gate1_decision": "pass",
+      "gate2_decision": "fail",
+      "layer_stats": {
+        "L0": 0,
+        "L1_fail": 0,
+        "L2a_minicheck": 4,
+        "L2b_nli": 0,
+        "L3": 0,
+        "L4_supported": 0,
+        "L4_unsupported": 1
+      },
+      "correct": true
+    },
+    {
+      "case_id": "ragtruth_42",
+      "ground_truth": "pass",
+      "predicted": "pass",
+      "gate1_decision": "pass",
+      "gate2_decision": "",
+      "layer_stats": {
+        "L0": 5,
+        "L1_fail": 0,
+        "L2a_minicheck": 2,
+        "L2b_nli": 0,
+        "L3": 0,
+        "L4_supported": 0,
+        "L4_unsupported": 0
+      },
+      "correct": true
+    },
+    {
+      "case_id": "ragtruth_43",
+      "ground_truth": "pass",
+      "predicted": "pass",
+      "gate1_decision": "pass",
+      "gate2_decision": "",
+      "layer_stats": {
+        "L0": 0,
+        "L1_fail": 0,
+        "L2a_minicheck": 11,
+        "L2b_nli": 0,
+        "L3": 0,
+        "L4_supported": 0,
+        "L4_unsupported": 0
+      },
+      "correct": true
+    },
+    {
+      "case_id": "ragtruth_44",
+      "ground_truth": "fail",
+      "predicted": "pass",
+      "gate1_decision": "pass",
+      "gate2_decision": "pass",
+      "layer_stats": {
+        "L0": 4,
+        "L1_fail": 0,
+        "L2a_minicheck": 5,
+        "L2b_nli": 0,
+        "L3": 0,
+        "L4_supported": 1,
+        "L4_unsupported": 0
+      },
+      "correct": false
+    },
+    {
+      "case_id": "ragtruth_45",
+      "ground_truth": "pass",
+      "predicted": "pass",
+      "gate1_decision": "pass",
+      "gate2_decision": "",
+      "layer_stats": {
+        "L0": 2,
+        "L1_fail": 0,
+        "L2a_minicheck": 4,
+        "L2b_nli": 0,
+        "L3": 0,
+        "L4_supported": 0,
+        "L4_unsupported": 0
+      },
+      "correct": true
+    },
+    {
+      "case_id": "ragtruth_46",
+      "ground_truth": "fail",
+      "predicted": "fail",
+      "gate1_decision": "pass",
+      "gate2_decision": "fail",
+      "layer_stats": {
+        "L0": 0,
+        "L1_fail": 0,
+        "L2a_minicheck": 3,
+        "L2b_nli": 0,
+        "L3": 0,
+        "L4_supported": 1,
+        "L4_unsupported": 1
+      },
+      "correct": true
+    },
+    {
+      "case_id": "ragtruth_47",
+      "ground_truth": "pass",
+      "predicted": "pass",
+      "gate1_decision": "pass",
+      "gate2_decision": "",
+      "layer_stats": {
+        "L0": 0,
+        "L1_fail": 0,
+        "L2a_minicheck": 8,
+        "L2b_nli": 0,
+        "L3": 0,
+        "L4_supported": 0,
+        "L4_unsupported": 0
+      },
+      "correct": true
+    },
+    {
+      "case_id": "ragtruth_54",
+      "ground_truth": "pass",
+      "predicted": "fail",
+      "gate1_decision": "pass",
+      "gate2_decision": "fail",
+      "layer_stats": {
+        "L0": 0,
+        "L1_fail": 0,
+        "L2a_minicheck": 3,
+        "L2b_nli": 0,
+        "L3": 0,
+        "L4_supported": 1,
+        "L4_unsupported": 1
+      },
+      "correct": false
+    },
+    {
+      "case_id": "ragtruth_55",
+      "ground_truth": "pass",
+      "predicted": "fail",
+      "gate1_decision": "pass",
+      "gate2_decision": "fail",
+      "layer_stats": {
+        "L0": 1,
+        "L1_fail": 0,
+        "L2a_minicheck": 10,
+        "L2b_nli": 1,
+        "L3": 0,
+        "L4_supported": 2,
+        "L4_unsupported": 1
+      },
+      "correct": false
+    },
+    {
+      "case_id": "ragtruth_56",
+      "ground_truth": "pass",
+      "predicted": "fail",
+      "gate1_decision": "ambiguous",
+      "gate2_decision": "fail",
+      "layer_stats": {
+        "L0": 0,
+        "L1_fail": 1,
+        "L2a_minicheck": 6,
+        "L2b_nli": 1,
+        "L3": 0,
+        "L4_supported": 0,
+        "L4_unsupported": 1
+      },
+      "correct": false
+    },
+    {
+      "case_id": "ragtruth_57",
+      "ground_truth": "pass",
+      "predicted": "fail",
+      "gate1_decision": "ambiguous",
+      "gate2_decision": "fail",
+      "layer_stats": {
+        "L0": 0,
+        "L1_fail": 1,
+        "L2a_minicheck": 5,
+        "L2b_nli": 0,
+        "L3": 0,
+        "L4_supported": 1,
+        "L4_unsupported": 1
+      },
+      "correct": false
+    },
+    {
+      "case_id": "ragtruth_58",
+      "ground_truth": "fail",
+      "predicted": "fail",
+      "gate1_decision": "fail",
+      "gate2_decision": "fail",
+      "layer_stats": {
+        "L0": 0,
+        "L1_fail": 1,
+        "L2a_minicheck": 4,
+        "L2b_nli": 0,
+        "L3": 0,
+        "L4_supported": 1,
+        "L4_unsupported": 1
+      },
+      "correct": true
+    },
+    {
+      "case_id": "ragtruth_59",
+      "ground_truth": "pass",
+      "predicted": "fail",
+      "gate1_decision": "ambiguous",
+      "gate2_decision": "",
+      "layer_stats": {
+        "L0": 0,
+        "L1_fail": 1,
+        "L2a_minicheck": 9,
+        "L2b_nli": 0,
+        "L3": 0,
+        "L4_supported": 0,
+        "L4_unsupported": 0
+      },
+      "correct": false
+    },
+    {
+      "case_id": "ragtruth_66",
+      "ground_truth": "pass",
+      "predicted": "pass",
+      "gate1_decision": "fail",
+      "gate2_decision": "pass",
+      "layer_stats": {
+        "L0": 0,
+        "L1_fail": 1,
+        "L2a_minicheck": 4,
+        "L2b_nli": 0,
+        "L3": 0,
+        "L4_supported": 1,
+        "L4_unsupported": 0
+      },
+      "correct": true
+    },
+    {
+      "case_id": "ragtruth_67",
+      "ground_truth": "pass",
+      "predicted": "fail",
+      "gate1_decision": "ambiguous",
+      "gate2_decision": "fail",
+      "layer_stats": {
+        "L0": 1,
+        "L1_fail": 1,
+        "L2a_minicheck": 5,
+        "L2b_nli": 0,
+        "L3": 0,
+        "L4_supported": 0,
+        "L4_unsupported": 1
+      },
+      "correct": false
+    },
+    {
+      "case_id": "ragtruth_68",
+      "ground_truth": "fail",
+      "predicted": "fail",
+      "gate1_decision": "fail",
+      "gate2_decision": "fail",
+      "layer_stats": {
+        "L0": 0,
+        "L1_fail": 1,
+        "L2a_minicheck": 1,
+        "L2b_nli": 0,
+        "L3": 0,
+        "L4_supported": 0,
+        "L4_unsupported": 2
+      },
+      "correct": true
+    },
+    {
+      "case_id": "ragtruth_69",
+      "ground_truth": "pass",
+      "predicted": "fail",
+      "gate1_decision": "fail",
+      "gate2_decision": "",
+      "layer_stats": {
+        "L0": 0,
+        "L1_fail": 1,
+        "L2a_minicheck": 4,
+        "L2b_nli": 0,
+        "L3": 0,
+        "L4_supported": 0,
+        "L4_unsupported": 0
+      },
+      "correct": false
+    },
+    {
+      "case_id": "ragtruth_70",
+      "ground_truth": "pass",
+      "predicted": "pass",
+      "gate1_decision": "pass",
+      "gate2_decision": "pass",
+      "layer_stats": {
+        "L0": 0,
+        "L1_fail": 0,
+        "L2a_minicheck": 4,
+        "L2b_nli": 0,
+        "L3": 0,
+        "L4_supported": 1,
+        "L4_unsupported": 0
+      },
+      "correct": true
+    },
+    {
+      "case_id": "ragtruth_71",
+      "ground_truth": "pass",
+      "predicted": "pass",
+      "gate1_decision": "pass",
+      "gate2_decision": "pass",
+      "layer_stats": {
+        "L0": 0,
+        "L1_fail": 0,
+        "L2a_minicheck": 3,
+        "L2b_nli": 1,
+        "L3": 0,
+        "L4_supported": 1,
+        "L4_unsupported": 0
+      },
+      "correct": true
+    },
+    {
+      "case_id": "ragtruth_120",
+      "ground_truth": "pass",
+      "predicted": "pass",
+      "gate1_decision": "pass",
+      "gate2_decision": "",
+      "layer_stats": {
+        "L0": 0,
+        "L1_fail": 0,
+        "L2a_minicheck": 2,
+        "L2b_nli": 0,
+        "L3": 0,
+        "L4_supported": 0,
+        "L4_unsupported": 0
+      },
+      "correct": true
+    },
+    {
+      "case_id": "ragtruth_121",
+      "ground_truth": "fail",
+      "predicted": "fail",
+      "gate1_decision": "ambiguous",
+      "gate2_decision": "fail",
+      "layer_stats": {
+        "L0": 0,
+        "L1_fail": 1,
+        "L2a_minicheck": 2,
+        "L2b_nli": 1,
+        "L3": 0,
+        "L4_supported": 0,
+        "L4_unsupported": 1
+      },
+      "correct": true
+    },
+    {
+      "case_id": "ragtruth_122",
+      "ground_truth": "fail",
+      "predicted": "fail",
+      "gate1_decision": "fail",
+      "gate2_decision": "",
+      "layer_stats": {
+        "L0": 0,
+        "L1_fail": 1,
+        "L2a_minicheck": 2,
+        "L2b_nli": 0,
+        "L3": 0,
+        "L4_supported": 0,
+        "L4_unsupported": 0
+      },
+      "correct": true
+    },
+    {
+      "case_id": "ragtruth_123",
+      "ground_truth": "fail",
+      "predicted": "fail",
+      "gate1_decision": "fail",
+      "gate2_decision": "fail",
+      "layer_stats": {
+        "L0": 0,
+        "L1_fail": 1,
+        "L2a_minicheck": 2,
+        "L2b_nli": 0,
+        "L3": 0,
+        "L4_supported": 0,
+        "L4_unsupported": 1
+      },
+      "correct": true
+    },
+    {
+      "case_id": "ragtruth_124",
+      "ground_truth": "fail",
+      "predicted": "pass",
+      "gate1_decision": "fail",
+      "gate2_decision": "pass",
+      "layer_stats": {
+        "L0": 0,
+        "L1_fail": 1,
+        "L2a_minicheck": 2,
+        "L2b_nli": 0,
+        "L3": 0,
+        "L4_supported": 1,
+        "L4_unsupported": 0
+      },
+      "correct": false
+    },
+    {
+      "case_id": "ragtruth_125",
+      "ground_truth": "pass",
+      "predicted": "fail",
+      "gate1_decision": "fail",
+      "gate2_decision": "fail",
+      "layer_stats": {
+        "L0": 0,
+        "L1_fail": 1,
+        "L2a_minicheck": 2,
+        "L2b_nli": 0,
+        "L3": 0,
+        "L4_supported": 0,
+        "L4_unsupported": 1
+      },
+      "correct": false
+    },
+    {
+      "case_id": "ragtruth_138",
+      "ground_truth": "pass",
+      "predicted": "pass",
+      "gate1_decision": "ambiguous",
+      "gate2_decision": "pass",
+      "layer_stats": {
+        "L0": 0,
+        "L1_fail": 1,
+        "L2a_minicheck": 3,
+        "L2b_nli": 0,
+        "L3": 0,
+        "L4_supported": 1,
+        "L4_unsupported": 0
+      },
+      "correct": true
+    },
+    {
+      "case_id": "ragtruth_139",
+      "ground_truth": "pass",
+      "predicted": "pass",
+      "gate1_decision": "pass",
+      "gate2_decision": "",
+      "layer_stats": {
+        "L0": 0,
+        "L1_fail": 0,
+        "L2a_minicheck": 6,
+        "L2b_nli": 0,
+        "L3": 0,
+        "L4_supported": 0,
+        "L4_unsupported": 0
+      },
+      "correct": true
+    },
+    {
+      "case_id": "ragtruth_140",
+      "ground_truth": "pass",
+      "predicted": "fail",
+      "gate1_decision": "pass",
+      "gate2_decision": "fail",
+      "layer_stats": {
+        "L0": 0,
+        "L1_fail": 0,
+        "L2a_minicheck": 3,
+        "L2b_nli": 1,
+        "L3": 0,
+        "L4_supported": 0,
+        "L4_unsupported": 1
+      },
+      "correct": false
+    },
+    {
+      "case_id": "ragtruth_141",
+      "ground_truth": "fail",
+      "predicted": "pass",
+      "gate1_decision": "pass",
+      "gate2_decision": "pass",
+      "layer_stats": {
+        "L0": 0,
+        "L1_fail": 0,
+        "L2a_minicheck": 3,
+        "L2b_nli": 1,
+        "L3": 0,
+        "L4_supported": 1,
+        "L4_unsupported": 0
+      },
+      "correct": false
+    },
+    {
+      "case_id": "ragtruth_142",
+      "ground_truth": "pass",
+      "predicted": "fail",
+      "gate1_decision": "fail",
+      "gate2_decision": "fail",
+      "layer_stats": {
+        "L0": 0,
+        "L1_fail": 1,
+        "L2a_minicheck": 3,
+        "L2b_nli": 0,
+        "L3": 0,
+        "L4_supported": 1,
+        "L4_unsupported": 1
+      },
+      "correct": false
+    },
+    {
+      "case_id": "ragtruth_143",
+      "ground_truth": "pass",
+      "predicted": "fail",
+      "gate1_decision": "pass",
+      "gate2_decision": "fail",
+      "layer_stats": {
+        "L0": 0,
+        "L1_fail": 0,
+        "L2a_minicheck": 4,
+        "L2b_nli": 0,
+        "L3": 0,
+        "L4_supported": 0,
+        "L4_unsupported": 1
+      },
+      "correct": false
+    },
+    {
+      "case_id": "ragtruth_144",
+      "ground_truth": "pass",
+      "predicted": "fail",
+      "gate1_decision": "ambiguous",
+      "gate2_decision": "",
+      "layer_stats": {
+        "L0": 2,
+        "L1_fail": 1,
+        "L2a_minicheck": 2,
+        "L2b_nli": 0,
+        "L3": 0,
+        "L4_supported": 0,
+        "L4_unsupported": 0
+      },
+      "correct": false
+    },
+    {
+      "case_id": "ragtruth_145",
+      "ground_truth": "pass",
+      "predicted": "fail",
+      "gate1_decision": "fail",
+      "gate2_decision": "",
+      "layer_stats": {
+        "L0": 1,
+        "L1_fail": 1,
+        "L2a_minicheck": 5,
+        "L2b_nli": 0,
+        "L3": 0,
+        "L4_supported": 0,
+        "L4_unsupported": 0
+      },
+      "correct": false
+    },
+    {
+      "case_id": "ragtruth_146",
+      "ground_truth": "fail",
+      "predicted": "fail",
+      "gate1_decision": "ambiguous",
+      "gate2_decision": "fail",
+      "layer_stats": {
+        "L0": 0,
+        "L1_fail": 1,
+        "L2a_minicheck": 3,
+        "L2b_nli": 0,
+        "L3": 0,
+        "L4_supported": 0,
+        "L4_unsupported": 1
+      },
+      "correct": true
+    },
+    {
+      "case_id": "ragtruth_147",
+      "ground_truth": "pass",
+      "predicted": "fail",
+      "gate1_decision": "ambiguous",
+      "gate2_decision": "",
+      "layer_stats": {
+        "L0": 0,
+        "L1_fail": 1,
+        "L2a_minicheck": 4,
+        "L2b_nli": 0,
+        "L3": 0,
+        "L4_supported": 0,
+        "L4_unsupported": 0
+      },
+      "correct": false
+    },
+    {
+      "case_id": "ragtruth_148",
+      "ground_truth": "pass",
+      "predicted": "pass",
+      "gate1_decision": "pass",
+      "gate2_decision": "",
+      "layer_stats": {
+        "L0": 1,
+        "L1_fail": 0,
+        "L2a_minicheck": 3,
+        "L2b_nli": 1,
+        "L3": 0,
+        "L4_supported": 0,
+        "L4_unsupported": 0
+      },
+      "correct": true
+    },
+    {
+      "case_id": "ragtruth_149",
+      "ground_truth": "pass",
+      "predicted": "pass",
+      "gate1_decision": "pass",
+      "gate2_decision": "pass",
+      "layer_stats": {
+        "L0": 0,
+        "L1_fail": 0,
+        "L2a_minicheck": 1,
+        "L2b_nli": 0,
+        "L3": 0,
+        "L4_supported": 1,
+        "L4_unsupported": 0
+      },
+      "correct": true
+    },
+    {
+      "case_id": "ragtruth_180",
+      "ground_truth": "fail",
+      "predicted": "fail",
+      "gate1_decision": "pass",
+      "gate2_decision": "fail",
+      "layer_stats": {
+        "L0": 0,
+        "L1_fail": 0,
+        "L2a_minicheck": 5,
+        "L2b_nli": 1,
+        "L3": 0,
+        "L4_supported": 0,
+        "L4_unsupported": 1
+      },
+      "correct": true
+    },
+    {
+      "case_id": "ragtruth_181",
+      "ground_truth": "pass",
+      "predicted": "fail",
+      "gate1_decision": "pass",
+      "gate2_decision": "fail",
+      "layer_stats": {
+        "L0": 0,
+        "L1_fail": 0,
+        "L2a_minicheck": 8,
+        "L2b_nli": 2,
+        "L3": 0,
+        "L4_supported": 1,
+        "L4_unsupported": 2
+      },
+      "correct": false
+    },
+    {
+      "case_id": "ragtruth_182",
+      "ground_truth": "pass",
+      "predicted": "fail",
+      "gate1_decision": "ambiguous",
+      "gate2_decision": "fail",
+      "layer_stats": {
+        "L0": 0,
+        "L1_fail": 1,
+        "L2a_minicheck": 5,
+        "L2b_nli": 1,
+        "L3": 0,
+        "L4_supported": 1,
+        "L4_unsupported": 1
+      },
+      "correct": false
+    },
+    {
+      "case_id": "ragtruth_183",
+      "ground_truth": "pass",
+      "predicted": "fail",
+      "gate1_decision": "pass",
+      "gate2_decision": "fail",
+      "layer_stats": {
+        "L0": 0,
+        "L1_fail": 0,
+        "L2a_minicheck": 1,
+        "L2b_nli": 1,
+        "L3": 0,
+        "L4_supported": 1,
+        "L4_unsupported": 2
+      },
+      "correct": false
+    },
+    {
+      "case_id": "ragtruth_184",
+      "ground_truth": "fail",
+      "predicted": "fail",
+      "gate1_decision": "pass",
+      "gate2_decision": "fail",
+      "layer_stats": {
+        "L0": 0,
+        "L1_fail": 0,
+        "L2a_minicheck": 3,
+        "L2b_nli": 0,
+        "L3": 0,
+        "L4_supported": 0,
+        "L4_unsupported": 3
+      },
+      "correct": true
+    },
+    {
+      "case_id": "ragtruth_185",
+      "ground_truth": "fail",
+      "predicted": "fail",
+      "gate1_decision": "pass",
+      "gate2_decision": "fail",
+      "layer_stats": {
+        "L0": 1,
+        "L1_fail": 0,
+        "L2a_minicheck": 7,
+        "L2b_nli": 0,
+        "L3": 0,
+        "L4_supported": 0,
+        "L4_unsupported": 1
+      },
+      "correct": true
+    },
+    {
+      "case_id": "ragtruth_204",
+      "ground_truth": "pass",
+      "predicted": "fail",
+      "gate1_decision": "ambiguous",
+      "gate2_decision": "",
+      "layer_stats": {
+        "L0": 0,
+        "L1_fail": 1,
+        "L2a_minicheck": 4,
+        "L2b_nli": 0,
+        "L3": 0,
+        "L4_supported": 0,
+        "L4_unsupported": 0
+      },
+      "correct": false
+    },
+    {
+      "case_id": "ragtruth_205",
+      "ground_truth": "pass",
+      "predicted": "pass",
+      "gate1_decision": "pass",
+      "gate2_decision": "",
+      "layer_stats": {
+        "L0": 0,
+        "L1_fail": 0,
+        "L2a_minicheck": 5,
+        "L2b_nli": 0,
+        "L3": 0,
+        "L4_supported": 0,
+        "L4_unsupported": 0
+      },
+      "correct": true
+    }
+  ]
+}

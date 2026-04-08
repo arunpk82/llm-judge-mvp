@@ -88,7 +88,7 @@ def load_spacy_model():
         nlp = spacy.load(SPACY_MODEL)
     except OSError:
         print(f"  Downloading {SPACY_MODEL}...")
-        spacy.cli.download(SPACY_MODEL)
+        spacy.cli.download(SPACY_MODEL)  # type: ignore[attr-defined]
         nlp = spacy.load(SPACY_MODEL)
     print(f"  Loaded in {time.time() - start:.1f}s")
     return nlp
