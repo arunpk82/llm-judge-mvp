@@ -1,0 +1,1243 @@
+{
+  "experiment": "Experiment 17b: MiniCheck vs DeBERTa NLI",
+  "total_cases": 50,
+  "total_sentences": 175,
+  "l0_deterministic": 15,
+  "nli_threshold": 0.7,
+  "minicheck_threshold": 0.5,
+  "l2_nli_total": 63,
+  "l2_mc_total": 124,
+  "l2_both": 53,
+  "l2_nli_only": 10,
+  "l2_mc_only": 71,
+  "l2_neither": 26,
+  "free_pct_nli": 44.6,
+  "free_pct_mc": 79.4,
+  "sentences": [
+    {
+      "idx": 0,
+      "sentence": "The FBI has charged a Philadelphia woman, Keonna Thomas, with trying to travel overseas to fight for",
+      "layer": "L2_mc_only",
+      "nli": 0.0001,
+      "minicheck": 0.984
+    },
+    {
+      "idx": 1,
+      "sentence": "This follows the arrests of two New York women, Noelle Velentzas and Asia Siddiqui, who were accused",
+      "layer": "L2_nli_only",
+      "nli": 0.9972,
+      "minicheck": 0.4407
+    },
+    {
+      "idx": 2,
+      "sentence": "Thomas purchased an electronic visa to Turkey and a round-trip ticket to Barcelona, following the ad",
+      "layer": "L2_mc_only",
+      "nli": 0.0,
+      "minicheck": 0.9422
+    },
+    {
+      "idx": 3,
+      "sentence": "She has been charged with attempting to provide material support to a terrorist organisation and cou",
+      "layer": "L2_mc_only",
+      "nli": 0.0001,
+      "minicheck": 0.9771
+    },
+    {
+      "idx": 0,
+      "sentence": "A Philadelphia woman, Keonna Thomas, has been charged by the FBI for attempting to travel overseas t",
+      "layer": "L2_mc_only",
+      "nli": 0.0003,
+      "minicheck": 0.9832
+    },
+    {
+      "idx": 1,
+      "sentence": "Two other women from New York were also arrested on terror charges.",
+      "layer": "L2_mc_only",
+      "nli": 0.0002,
+      "minicheck": 0.9582
+    },
+    {
+      "idx": 2,
+      "sentence": "Thomas had sent multiple social media messages expressing support for ISIS and had purchased a visa ",
+      "layer": "L2_mc_only",
+      "nli": 0.0002,
+      "minicheck": 0.9772
+    },
+    {
+      "idx": 3,
+      "sentence": "In a separate case, two women in New York, Noelle Velentzas and Asia Siddiqui, were arrested for pla",
+      "layer": "L2_both",
+      "nli": 0.9752,
+      "minicheck": 0.9628
+    },
+    {
+      "idx": 4,
+      "sentence": "The Department of Justice has prosecuted over 30 cases related to terrorism in the past 18 months.",
+      "layer": "L2_both",
+      "nli": 0.9989,
+      "minicheck": 0.9836
+    },
+    {
+      "idx": 0,
+      "sentence": "The FBI charged a Philadelphia woman named Keonna Thomas, also known as \u201cYoung Lioness\u201d and \u201cFatayat",
+      "layer": "L2_mc_only",
+      "nli": 0.0002,
+      "minicheck": 0.9745
+    },
+    {
+      "idx": 1,
+      "sentence": "She purchased an electronic visa to Turkey, which is known as the easiest way to enter Syria and joi",
+      "layer": "L2_mc_only",
+      "nli": 0.0001,
+      "minicheck": 0.9805
+    },
+    {
+      "idx": 2,
+      "sentence": "Thomas could be sentenced to 15 years in prison.",
+      "layer": "L0",
+      "nli": 0.0,
+      "minicheck": 0.0
+    },
+    {
+      "idx": 3,
+      "sentence": "Meanwhile, two New York women were also arrested this week on terror charges.",
+      "layer": "L2_mc_only",
+      "nli": 0.0001,
+      "minicheck": 0.9464
+    },
+    {
+      "idx": 4,
+      "sentence": "Homeland Security Secretary Jeh Johnson stated that the terrorist threat is more decentralized and i",
+      "layer": "L2_mc_only",
+      "nli": 0.0011,
+      "minicheck": 0.9769
+    },
+    {
+      "idx": 0,
+      "sentence": "FBI charges Philadelphia woman with attempting to join ISIS after purchasing electronic visa for Tur",
+      "layer": "L2_mc_only",
+      "nli": 0.0001,
+      "minicheck": 0.9707
+    },
+    {
+      "idx": 1,
+      "sentence": "Keonna Thomas, 30, also known as \"Young Lioness\" and \"Fatayat Al Khilafah,\" made numerous social med",
+      "layer": "L2_mc_only",
+      "nli": 0.0001,
+      "minicheck": 0.9805
+    },
+    {
+      "idx": 2,
+      "sentence": "She could face 15 years in prison.",
+      "layer": "L2_both",
+      "nli": 0.9991,
+      "minicheck": 0.9789
+    },
+    {
+      "idx": 3,
+      "sentence": "Three women have been arrested this week on terror charges, including two in New York who were accus",
+      "layer": "L2_mc_only",
+      "nli": 0.0003,
+      "minicheck": 0.9281
+    },
+    {
+      "idx": 0,
+      "sentence": "A 30-year-old Philadelphia woman, Keonna Thomas, was charged with attempting to travel to Syria to j",
+      "layer": "L2_mc_only",
+      "nli": 0.0001,
+      "minicheck": 0.9766
+    },
+    {
+      "idx": 1,
+      "sentence": "She was arrested on March 26 and could face 15 years in prison.",
+      "layer": "L4_needed",
+      "nli": 0.0001,
+      "minicheck": 0.1432
+    },
+    {
+      "idx": 2,
+      "sentence": "Two other women, Noelle Velentzas and Asia Siddiqui, were arrested in New York for planning to build",
+      "layer": "L2_both",
+      "nli": 0.997,
+      "minicheck": 0.955
+    },
+    {
+      "idx": 3,
+      "sentence": "In the past 18 months, the Justice Department has prosecuted 30 cases of people attempting to join o",
+      "layer": "L2_mc_only",
+      "nli": 0.0001,
+      "minicheck": 0.9812
+    },
+    {
+      "idx": 4,
+      "sentence": "Homeland Security Secretary Jeh Johnson described the current terrorist threat as decentralized, dif",
+      "layer": "L2_mc_only",
+      "nli": 0.001,
+      "minicheck": 0.971
+    },
+    {
+      "idx": 0,
+      "sentence": "Blue Bell has temporarily shut down its Broken Arrow, Oklahoma, plant over the discovery of listeria",
+      "layer": "L2_mc_only",
+      "nli": 0.0001,
+      "minicheck": 0.9787
+    },
+    {
+      "idx": 1,
+      "sentence": "This is the third time Blue Bell has taken action in light of a listeria outbreak at a Kansas hospit",
+      "layer": "L2_mc_only",
+      "nli": 0.0001,
+      "minicheck": 0.9568
+    },
+    {
+      "idx": 2,
+      "sentence": "All five patients were hospitalized at the same hospital before developing listeriosis, the CDC said",
+      "layer": "L0",
+      "nli": 0.0,
+      "minicheck": 0.0
+    },
+    {
+      "idx": 3,
+      "sentence": "At least four of them had consumed milkshakes made with Blue Bell ice cream before developing the in",
+      "layer": "L0",
+      "nli": 0.0,
+      "minicheck": 0.0
+    },
+    {
+      "idx": 4,
+      "sentence": "The CDC advises that individuals and institutions should check their freezers for the recalled produ",
+      "layer": "L0",
+      "nli": 0.0,
+      "minicheck": 0.0
+    },
+    {
+      "idx": 5,
+      "sentence": "In a statement on its website, Blue Bell said \"this recall in no way includes Blue Bell ice cream ha",
+      "layer": "L0",
+      "nli": 0.0,
+      "minicheck": 0.0
+    },
+    {
+      "idx": 6,
+      "sentence": "cups.\" This has been the first product recall in the 108-year history of Blue Bell Creameries, the c",
+      "layer": "L0",
+      "nli": 0.0,
+      "minicheck": 0.0
+    },
+    {
+      "idx": 0,
+      "sentence": "Blue Bell ice cream has temporarily closed one of its manufacturing plants in Broken Arrow, Oklahoma",
+      "layer": "L2_mc_only",
+      "nli": 0.0003,
+      "minicheck": 0.9789
+    },
+    {
+      "idx": 1,
+      "sentence": "Public health officials have warned consumers not to eat any Blue Bell products made at the plant, s",
+      "layer": "L2_mc_only",
+      "nli": 0.0003,
+      "minicheck": 0.9795
+    },
+    {
+      "idx": 2,
+      "sentence": "The Centers for Disease Control and Prevention (CDC) has stated that this warning does not apply to ",
+      "layer": "L2_both",
+      "nli": 0.9948,
+      "minicheck": 0.9675
+    },
+    {
+      "idx": 3,
+      "sentence": "However, the company has issued a recall for other products.",
+      "layer": "L2_both",
+      "nli": 0.9991,
+      "minicheck": 0.962
+    },
+    {
+      "idx": 4,
+      "sentence": "Blue Bell is shutting down the Broken Arrow plant to investigate the cause of the contamination.",
+      "layer": "L2_mc_only",
+      "nli": 0.0006,
+      "minicheck": 0.9857
+    },
+    {
+      "idx": 5,
+      "sentence": "This is the third time the company has taken action due to a listeria outbreak.",
+      "layer": "L2_both",
+      "nli": 0.9981,
+      "minicheck": 0.951
+    },
+    {
+      "idx": 6,
+      "sentence": "The CDC found listeria bacteria in a cup of ice cream from a Kansas hospital that matched samples re",
+      "layer": "L2_mc_only",
+      "nli": 0.0002,
+      "minicheck": 0.9658
+    },
+    {
+      "idx": 7,
+      "sentence": "However, it is still uncertain if the ice cream is the source of these infections.",
+      "layer": "L2_mc_only",
+      "nli": 0.0002,
+      "minicheck": 0.9745
+    },
+    {
+      "idx": 8,
+      "sentence": "Blue Bell has issued a statement expressing their concern and sadness for those affected by the outb",
+      "layer": "L2_mc_only",
+      "nli": 0.0008,
+      "minicheck": 0.9821
+    },
+    {
+      "idx": 9,
+      "sentence": "The CDC advises individuals and institutions to check their freezers for recalled products and disca",
+      "layer": "L2_both",
+      "nli": 0.9988,
+      "minicheck": 0.9832
+    },
+    {
+      "idx": 10,
+      "sentence": "Listeriosis is a serious infection primarily affecting vulnerable groups, such as the elderly, pregn",
+      "layer": "L2_both",
+      "nli": 0.9975,
+      "minicheck": 0.9705
+    },
+    {
+      "idx": 0,
+      "sentence": "Blue Bell Ice Cream Recalls Products Amid Listeria Outbreak; No Blue Bell Ice Cream Is Linked to Inf",
+      "layer": "L4_needed",
+      "nli": 0.0133,
+      "minicheck": 0.0456
+    },
+    {
+      "idx": 1,
+      "sentence": "The contamination was found in a cup of ice cream recovered from a hospital in Kansas that served Bl",
+      "layer": "L2_mc_only",
+      "nli": 0.0001,
+      "minicheck": 0.9841
+    },
+    {
+      "idx": 2,
+      "sentence": "The company has recalled other products and shut down the plant \"out of an abundance of caution\" to ",
+      "layer": "L2_mc_only",
+      "nli": 0.0002,
+      "minicheck": 0.9721
+    },
+    {
+      "idx": 3,
+      "sentence": "The Centers for Disease Control and Prevention (CDC) advised consumers not to eat any Blue Bell-bran",
+      "layer": "L2_mc_only",
+      "nli": 0.0036,
+      "minicheck": 0.9817
+    },
+    {
+      "idx": 4,
+      "sentence": "However, the warning does not affect other Blue Bell ice cream.",
+      "layer": "L2_both",
+      "nli": 0.8569,
+      "minicheck": 0.9748
+    },
+    {
+      "idx": 5,
+      "sentence": "Listeriosis, a serious infection caused by eating contaminated food, primarily affects the elderly, ",
+      "layer": "L0",
+      "nli": 0.0,
+      "minicheck": 0.0
+    },
+    {
+      "idx": 6,
+      "sentence": "Symptoms include fever and muscle aches, sometimes associated with diarrhea or other gastrointestina",
+      "layer": "L0",
+      "nli": 0.0,
+      "minicheck": 0.0
+    },
+    {
+      "idx": 7,
+      "sentence": "In the United States, an estimated 1,600 people become seriously ill each year, and approximately 16",
+      "layer": "L0",
+      "nli": 0.0,
+      "minicheck": 0.0
+    },
+    {
+      "idx": 8,
+      "sentence": "The CDC advises that individuals and institutions should check their freezers for the recalled produ",
+      "layer": "L0",
+      "nli": 0.0,
+      "minicheck": 0.0
+    },
+    {
+      "idx": 9,
+      "sentence": "Blue Bell Creameries has stated that this recall is the first in its 108-year history.",
+      "layer": "L2_both",
+      "nli": 0.999,
+      "minicheck": 0.9823
+    },
+    {
+      "idx": 0,
+      "sentence": "Blue Bell ice cream has temporarily shut down one of its manufacturing plants after discovering list",
+      "layer": "L0",
+      "nli": 0.0,
+      "minicheck": 0.0
+    },
+    {
+      "idx": 1,
+      "sentence": "The Centers for Disease Control and Prevention (CDC) has warned consumers not to eat any Blue Bell-b",
+      "layer": "L2_mc_only",
+      "nli": 0.0025,
+      "minicheck": 0.9818
+    },
+    {
+      "idx": 2,
+      "sentence": "This is the third time Blue Bell has taken action due to a listeria outbreak at a Kansas hospital th",
+      "layer": "L0",
+      "nli": 0.0,
+      "minicheck": 0.0
+    },
+    {
+      "idx": 3,
+      "sentence": "Investigations into the possible connection between the ice cream and the infections are ongoing.",
+      "layer": "L2_mc_only",
+      "nli": 0.0001,
+      "minicheck": 0.9818
+    },
+    {
+      "idx": 4,
+      "sentence": "The company has recalled other products and advises individuals and institutions to check their free",
+      "layer": "L2_mc_only",
+      "nli": 0.0171,
+      "minicheck": 0.9629
+    },
+    {
+      "idx": 5,
+      "sentence": "This is the first product recall in Blue Bell's 108-year history.",
+      "layer": "L2_mc_only",
+      "nli": 0.0,
+      "minicheck": 0.9548
+    },
+    {
+      "idx": 0,
+      "sentence": "Blue Bell ice cream has temporarily shut down one of its plants after listeria contamination was dis",
+      "layer": "L2_both",
+      "nli": 0.9984,
+      "minicheck": 0.981
+    },
+    {
+      "idx": 1,
+      "sentence": "Public health officials advised consumers not to eat any Blue Bell products made at the plant in Okl",
+      "layer": "L2_both",
+      "nli": 0.9989,
+      "minicheck": 0.9855
+    },
+    {
+      "idx": 2,
+      "sentence": "The recall includes 3-ounce servings of ice cream with certain coding dates.",
+      "layer": "L2_mc_only",
+      "nli": 0.0001,
+      "minicheck": 0.9842
+    },
+    {
+      "idx": 3,
+      "sentence": "This is the third time Blue Bell has taken action due to listeria contamination, and the company is ",
+      "layer": "L4_needed",
+      "nli": 0.0001,
+      "minicheck": 0.0836
+    },
+    {
+      "idx": 4,
+      "sentence": "No illnesses have been reported directly linked to the contaminated ice cream, but five people in Ka",
+      "layer": "L4_needed",
+      "nli": 0.0001,
+      "minicheck": 0.0616
+    },
+    {
+      "idx": 0,
+      "sentence": "Blue Bell ice cream has temporarily closed one of its manufacturing plants due to a listeria contami",
+      "layer": "L2_both",
+      "nli": 0.9989,
+      "minicheck": 0.9812
+    },
+    {
+      "idx": 1,
+      "sentence": "The contaminated product was traced back to the company's Broken Arrow, Oklahoma plant, and public h",
+      "layer": "L2_mc_only",
+      "nli": 0.0001,
+      "minicheck": 0.9797
+    },
+    {
+      "idx": 2,
+      "sentence": "This includes 3-ounce servings of ice cream with certain letter codes.",
+      "layer": "L2_both",
+      "nli": 0.9986,
+      "minicheck": 0.9809
+    },
+    {
+      "idx": 3,
+      "sentence": "The company has recalled other products and is shutting down the plant to investigate the possible c",
+      "layer": "L2_mc_only",
+      "nli": 0.0,
+      "minicheck": 0.9708
+    },
+    {
+      "idx": 4,
+      "sentence": "The Centers for Disease Control and Prevention (CDC) has found a link between the contaminated ice c",
+      "layer": "L2_mc_only",
+      "nli": 0.0019,
+      "minicheck": 0.9
+    },
+    {
+      "idx": 5,
+      "sentence": "The CDC is continuing to investigate.",
+      "layer": "L2_both",
+      "nli": 0.9984,
+      "minicheck": 0.9824
+    },
+    {
+      "idx": 6,
+      "sentence": "Consumers are advised to check their freezers for recalled products and throw them away.",
+      "layer": "L2_both",
+      "nli": 0.9973,
+      "minicheck": 0.9814
+    },
+    {
+      "idx": 7,
+      "sentence": "This is the first product recall in Blue Bell's 108-year history.",
+      "layer": "L2_mc_only",
+      "nli": 0.0,
+      "minicheck": 0.9548
+    },
+    {
+      "idx": 0,
+      "sentence": "An outside review by Columbia Journalism School professors has found that the Rolling Stone article ",
+      "layer": "L2_both",
+      "nli": 0.9987,
+      "minicheck": 0.9821
+    },
+    {
+      "idx": 1,
+      "sentence": "The magazine's managing editor, Will Dana, has apologised to readers and those damaged by the story ",
+      "layer": "L2_both",
+      "nli": 0.999,
+      "minicheck": 0.983
+    },
+    {
+      "idx": 2,
+      "sentence": "Following the apology, the question has arisen as to whether the University, the Phi Kappa Psi frate",
+      "layer": "L2_mc_only",
+      "nli": 0.0003,
+      "minicheck": 0.9569
+    },
+    {
+      "idx": 3,
+      "sentence": "While the University, being a public university, is ineligible, the individual members of the frater",
+      "layer": "L4_needed",
+      "nli": 0.0006,
+      "minicheck": 0.1896
+    },
+    {
+      "idx": 4,
+      "sentence": "Lawyers suggest that if the members of the fraternity can get past the preliminary hurdles of a defa",
+      "layer": "L4_needed",
+      "nli": 0.0003,
+      "minicheck": 0.0405
+    },
+    {
+      "idx": 0,
+      "sentence": "An outside review by professors from Columbia Journalism School has determined that Rolling Stone ma",
+      "layer": "L2_both",
+      "nli": 0.9989,
+      "minicheck": 0.9777
+    },
+    {
+      "idx": 1,
+      "sentence": "The review found that the failure extended to reporting, editing, editorial supervision, and fact-ch",
+      "layer": "L2_both",
+      "nli": 0.9988,
+      "minicheck": 0.9854
+    },
+    {
+      "idx": 2,
+      "sentence": "Rolling Stone's managing editor, Will Dana, issued an apology to readers and those affected by the s",
+      "layer": "L2_mc_only",
+      "nli": 0.0011,
+      "minicheck": 0.9782
+    },
+    {
+      "idx": 3,
+      "sentence": "The question now arises as to whether UVA, Phi Kappa Psi, or other fraternities on campus can sue fo",
+      "layer": "L2_both",
+      "nli": 0.999,
+      "minicheck": 0.9577
+    },
+    {
+      "idx": 4,
+      "sentence": "The Virginia Supreme Court has stated that for a statement to be defamatory, it must be both false a",
+      "layer": "L2_mc_only",
+      "nli": 0.0001,
+      "minicheck": 0.9798
+    },
+    {
+      "idx": 5,
+      "sentence": "However, defamation laws must be balanced with the freedom of speech protected by the First Amendmen",
+      "layer": "L2_both",
+      "nli": 0.9987,
+      "minicheck": 0.9577
+    },
+    {
+      "idx": 6,
+      "sentence": "The Rolling Stone article presented as fact, which could potentially be deemed false by the law.",
+      "layer": "L2_both",
+      "nli": 0.9991,
+      "minicheck": 0.9842
+    },
+    {
+      "idx": 7,
+      "sentence": "Individual fraternity members are likely considered private individuals rather than public figures, ",
+      "layer": "L2_nli_only",
+      "nli": 0.998,
+      "minicheck": 0.3884
+    },
+    {
+      "idx": 8,
+      "sentence": "To successfully sue for defamation, private individuals must show that the defendant published a fal",
+      "layer": "L2_both",
+      "nli": 0.9984,
+      "minicheck": 0.9679
+    },
+    {
+      "idx": 9,
+      "sentence": "They must also prove that the defendant knew the statement was false or acted negligently in checkin",
+      "layer": "L2_both",
+      "nli": 0.999,
+      "minicheck": 0.9088
+    },
+    {
+      "idx": 10,
+      "sentence": "However, there are strict rules about who can be a plaintiff in a defamation case.",
+      "layer": "L0",
+      "nli": 0.0,
+      "minicheck": 0.0
+    },
+    {
+      "idx": 11,
+      "sentence": "UVA, as a public university, cannot sue for defamation.",
+      "layer": "L4_needed",
+      "nli": 0.0002,
+      "minicheck": 0.2001
+    },
+    {
+      "idx": 12,
+      "sentence": "Fraternities, as groups, generally cannot sue either unless the defamatory language is easily impute",
+      "layer": "L4_needed",
+      "nli": 0.0001,
+      "minicheck": 0.4836
+    },
+    {
+      "idx": 13,
+      "sentence": "Overall, proving defamation can be challenging, as the plaintiff must show financial harm and tangib",
+      "layer": "L4_needed",
+      "nli": 0.0001,
+      "minicheck": 0.0151
+    },
+    {
+      "idx": 14,
+      "sentence": "While a successful defamation case is rare, the UVA situation may have the potential for success if ",
+      "layer": "L2_both",
+      "nli": 0.936,
+      "minicheck": 0.5034
+    },
+    {
+      "idx": 0,
+      "sentence": "Rand Paul announced his presidential campaign with a message of inclusivity, but his record shows ot",
+      "layer": "L2_mc_only",
+      "nli": 0.0001,
+      "minicheck": 0.9837
+    },
+    {
+      "idx": 1,
+      "sentence": "As the first woman and person of color in the Kentucky State Senate, the author knows how important ",
+      "layer": "L2_mc_only",
+      "nli": 0.0004,
+      "minicheck": 0.7635
+    },
+    {
+      "idx": 2,
+      "sentence": "However, Paul has questioned landmark legislation and opposed policies that benefit minority communi",
+      "layer": "L2_both",
+      "nli": 0.9816,
+      "minicheck": 0.9751
+    },
+    {
+      "idx": 3,
+      "sentence": "He has also shown a lack of cultural competency and disrespected the intelligence of the American pe",
+      "layer": "L4_needed",
+      "nli": 0.0,
+      "minicheck": 0.0773
+    },
+    {
+      "idx": 4,
+      "sentence": "The author concludes that Paul's record is outdated and disqualifies him from leading the country.",
+      "layer": "L2_mc_only",
+      "nli": 0.0006,
+      "minicheck": 0.985
+    },
+    {
+      "idx": 0,
+      "sentence": "Rand Paul, a Kentucky Senator, has announced his candidacy for President, but his record on civil ri",
+      "layer": "L2_mc_only",
+      "nli": 0.0001,
+      "minicheck": 0.9776
+    },
+    {
+      "idx": 1,
+      "sentence": "Paul has questioned the Civil Rights Act and the Voting Rights Act, and has suggested that private b",
+      "layer": "L2_mc_only",
+      "nli": 0.0012,
+      "minicheck": 0.9201
+    },
+    {
+      "idx": 2,
+      "sentence": "His attempts to rebrand himself as a champion of minority outreach have been met with skepticism, as",
+      "layer": "L4_needed",
+      "nli": 0.0001,
+      "minicheck": 0.2546
+    },
+    {
+      "idx": 3,
+      "sentence": "The author argues that Paul's positions would take the country back to a time before the Civil Right",
+      "layer": "L2_both",
+      "nli": 0.9984,
+      "minicheck": 0.9674
+    },
+    {
+      "idx": 4,
+      "sentence": "The author believes that the American people deserve a leader who will not dismantle the progress ma",
+      "layer": "L2_nli_only",
+      "nli": 0.9833,
+      "minicheck": 0.473
+    },
+    {
+      "idx": 0,
+      "sentence": "Mary Kay Letourneau Fualaau, who served over seven years in prison after having an affair with her 1",
+      "layer": "L2_mc_only",
+      "nli": 0.0042,
+      "minicheck": 0.9701
+    },
+    {
+      "idx": 1,
+      "sentence": "In the interview, she discusses their marriage, her plans to teach again, and her intention to have ",
+      "layer": "L2_both",
+      "nli": 0.9985,
+      "minicheck": 0.982
+    },
+    {
+      "idx": 0,
+      "sentence": "Kanye West has settled a lawsuit with paparazzi photographer Daniel Ramos, whom he assaulted in 2013",
+      "layer": "L2_mc_only",
+      "nli": 0.0006,
+      "minicheck": 0.9815
+    },
+    {
+      "idx": 1,
+      "sentence": "West pleaded no contest to a misdemeanor count of battery and received probation, anger management s",
+      "layer": "L2_mc_only",
+      "nli": 0.0,
+      "minicheck": 0.9792
+    },
+    {
+      "idx": 2,
+      "sentence": "Ramos had filed a civil suit seeking damages, alleging that West interfered with his right to work.",
+      "layer": "L2_both",
+      "nli": 0.999,
+      "minicheck": 0.7685
+    },
+    {
+      "idx": 3,
+      "sentence": "The case was set for trial, but Ramos filed a dismissal after reaching a settlement with West.",
+      "layer": "L2_both",
+      "nli": 0.9976,
+      "minicheck": 0.5565
+    },
+    {
+      "idx": 4,
+      "sentence": "The settlement included an apology from West to Ramos, as shown in a picture of them shaking hands.",
+      "layer": "L2_both",
+      "nli": 0.9982,
+      "minicheck": 0.9859
+    },
+    {
+      "idx": 5,
+      "sentence": "This incident is not the first time West has been accused of assault.",
+      "layer": "L2_mc_only",
+      "nli": 0.0001,
+      "minicheck": 0.7163
+    },
+    {
+      "idx": 0,
+      "sentence": "Kanye West has settled a lawsuit with a paparazzi photographer he assaulted in 2013.",
+      "layer": "L2_mc_only",
+      "nli": 0.0002,
+      "minicheck": 0.9768
+    },
+    {
+      "idx": 1,
+      "sentence": "The photographer, Daniel Ramos, had sued West for damages and accused him of interfering with his ri",
+      "layer": "L2_nli_only",
+      "nli": 0.9615,
+      "minicheck": 0.3156
+    },
+    {
+      "idx": 2,
+      "sentence": "Ramos accepted an apology from West and the two shook hands in a photo released by Ramos' lawyer, Gl",
+      "layer": "L2_both",
+      "nli": 0.9943,
+      "minicheck": 0.9554
+    },
+    {
+      "idx": 3,
+      "sentence": "Ramos and West had previously reached a criminal settlement in which West pleaded no contest to a mi",
+      "layer": "L4_needed",
+      "nli": 0.0001,
+      "minicheck": 0.2887
+    },
+    {
+      "idx": 4,
+      "sentence": "Allred stated that the case sent an important message that celebrities are not above the law and can",
+      "layer": "L2_mc_only",
+      "nli": 0.0005,
+      "minicheck": 0.977
+    },
+    {
+      "idx": 0,
+      "sentence": "Kanye West has settled a lawsuit with a paparazzo he assaulted in 2013.",
+      "layer": "L2_mc_only",
+      "nli": 0.0002,
+      "minicheck": 0.8525
+    },
+    {
+      "idx": 1,
+      "sentence": "The photographer, Daniel Ramos, sought damages for interfering with his right to work.",
+      "layer": "L2_nli_only",
+      "nli": 0.9934,
+      "minicheck": 0.1414
+    },
+    {
+      "idx": 2,
+      "sentence": "West pleaded guilty to battery and was sentenced to probation and anger management classes.",
+      "layer": "L2_mc_only",
+      "nli": 0.0,
+      "minicheck": 0.9807
+    },
+    {
+      "idx": 3,
+      "sentence": "The settlement includes an apology from West to Ramos.",
+      "layer": "L2_both",
+      "nli": 0.9957,
+      "minicheck": 0.9883
+    },
+    {
+      "idx": 4,
+      "sentence": "This is the second time West has settled a legal dispute involving physical altercations, having pre",
+      "layer": "L4_needed",
+      "nli": 0.0,
+      "minicheck": 0.2731
+    },
+    {
+      "idx": 0,
+      "sentence": "Kanye West has settled a lawsuit with paparazzo Daniel Ramos, who he assaulted at LAX in 2013.",
+      "layer": "L2_mc_only",
+      "nli": 0.0006,
+      "minicheck": 0.9792
+    },
+    {
+      "idx": 1,
+      "sentence": "West pleaded no contest to battery and was sentenced to probation and anger management.",
+      "layer": "L2_mc_only",
+      "nli": 0.0,
+      "minicheck": 0.983
+    },
+    {
+      "idx": 2,
+      "sentence": "The civil suit sought damages for interfering with Ramos' right to pursue his occupation.",
+      "layer": "L2_both",
+      "nli": 0.9987,
+      "minicheck": 0.9739
+    },
+    {
+      "idx": 3,
+      "sentence": "The case was settled out of court, with West apologizing to Ramos and the parties agreeing to keep t",
+      "layer": "L2_mc_only",
+      "nli": 0.0003,
+      "minicheck": 0.7973
+    },
+    {
+      "idx": 4,
+      "sentence": "The incident was caught on video and sparked debate about celebrities' treatment of paparazzi.",
+      "layer": "L4_needed",
+      "nli": 0.0001,
+      "minicheck": 0.0967
+    },
+    {
+      "idx": 0,
+      "sentence": "Blues legend B.B.",
+      "layer": "L0",
+      "nli": 0.0,
+      "minicheck": 0.0
+    },
+    {
+      "idx": 1,
+      "sentence": "King was hospitalized for dehydration but has since recovered and is back home resting.",
+      "layer": "L2_mc_only",
+      "nli": 0.0008,
+      "minicheck": 0.9786
+    },
+    {
+      "idx": 2,
+      "sentence": "His dehydration was caused by his Type II diabetes.",
+      "layer": "L2_both",
+      "nli": 0.997,
+      "minicheck": 0.9823
+    },
+    {
+      "idx": 3,
+      "sentence": "King thanked fans for their concerns and promised to return to performing soon.",
+      "layer": "L2_mc_only",
+      "nli": 0.0005,
+      "minicheck": 0.9572
+    },
+    {
+      "idx": 4,
+      "sentence": "He has been inducted into the Rock and Roll Hall of Fame and has won numerous Grammys throughout his",
+      "layer": "L2_nli_only",
+      "nli": 0.9927,
+      "minicheck": 0.0945
+    },
+    {
+      "idx": 0,
+      "sentence": "King was hospitalized for dehydration due to his Type II diabetes, but has since been released and i",
+      "layer": "L2_mc_only",
+      "nli": 0.0004,
+      "minicheck": 0.9589
+    },
+    {
+      "idx": 1,
+      "sentence": "The 89-year-old blues legend has a history of health issues, including a previous bout of dehydratio",
+      "layer": "L4_needed",
+      "nli": 0.0003,
+      "minicheck": 0.0447
+    },
+    {
+      "idx": 0,
+      "sentence": "Indiana Pacers forward, Chris Copeland, and his wife were stabbed outside the Manhattan nightclub 1O",
+      "layer": "L4_needed",
+      "nli": 0.0004,
+      "minicheck": 0.0779
+    },
+    {
+      "idx": 1,
+      "sentence": "Copeland suffered knife wounds to his elbow and abdomen and is in a stable condition at a New York h",
+      "layer": "L2_nli_only",
+      "nli": 0.9972,
+      "minicheck": 0.018
+    },
+    {
+      "idx": 2,
+      "sentence": "Atlanta Hawks players Pero Antic and Thabo Sefolosha were at the nightclub and were arrested for obs",
+      "layer": "L2_mc_only",
+      "nli": 0.0005,
+      "minicheck": 0.8272
+    },
+    {
+      "idx": 3,
+      "sentence": "The players were not involved in the stabbing incident, but allegedly interfered with police officer",
+      "layer": "L2_mc_only",
+      "nli": 0.0004,
+      "minicheck": 0.5479
+    },
+    {
+      "idx": 4,
+      "sentence": "The suspect is in police custody, and charges are pending.",
+      "layer": "L2_both",
+      "nli": 0.9988,
+      "minicheck": 0.9614
+    },
+    {
+      "idx": 5,
+      "sentence": "The incident took place just before 4 a.m.",
+      "layer": "L2_both",
+      "nli": 0.9864,
+      "minicheck": 0.9584
+    },
+    {
+      "idx": 6,
+      "sentence": "and the club was shut down immediately afterwards.",
+      "layer": "L2_both",
+      "nli": 0.9947,
+      "minicheck": 0.9808
+    },
+    {
+      "idx": 0,
+      "sentence": "Indiana Pacers player Chris Copeland was stabbed outside of a nightclub in New York early Wednesday ",
+      "layer": "L2_both",
+      "nli": 0.9975,
+      "minicheck": 0.9264
+    },
+    {
+      "idx": 1,
+      "sentence": "Two Atlanta Hawks players, Pero Antic and Thabo Sefolosha, were arrested in connection with the inci",
+      "layer": "L2_both",
+      "nli": 0.9662,
+      "minicheck": 0.926
+    },
+    {
+      "idx": 2,
+      "sentence": "The stabbing occurred in front of the Fulton Houses project, not inside the club as initially report",
+      "layer": "L2_both",
+      "nli": 0.988,
+      "minicheck": 0.983
+    },
+    {
+      "idx": 3,
+      "sentence": "Copeland and a female companion were leaving the club when they were attacked.",
+      "layer": "L2_mc_only",
+      "nli": 0.0104,
+      "minicheck": 0.9717
+    },
+    {
+      "idx": 4,
+      "sentence": "Copeland suffered a knife wound to his left elbow and abdomen, while the female companion and anothe",
+      "layer": "L4_needed",
+      "nli": 0.0004,
+      "minicheck": 0.017
+    },
+    {
+      "idx": 5,
+      "sentence": "The suspect was detained by Copeland's driver and is now in police custody.",
+      "layer": "L2_both",
+      "nli": 0.999,
+      "minicheck": 0.9374
+    },
+    {
+      "idx": 6,
+      "sentence": "Antic and Sefolosha were arrested on charges of obstructing governmental administration and disorder",
+      "layer": "L2_mc_only",
+      "nli": 0.0006,
+      "minicheck": 0.9612
+    },
+    {
+      "idx": 7,
+      "sentence": "The Hawks players were apparently trying to check on Copeland when they were arrested.",
+      "layer": "L2_mc_only",
+      "nli": 0.0001,
+      "minicheck": 0.9658
+    },
+    {
+      "idx": 8,
+      "sentence": "The club shut down immediately after the incident.",
+      "layer": "L2_both",
+      "nli": 0.9893,
+      "minicheck": 0.9807
+    },
+    {
+      "idx": 9,
+      "sentence": "Copeland is in stable condition at a New York hospital.",
+      "layer": "L2_nli_only",
+      "nli": 0.9825,
+      "minicheck": 0.0461
+    },
+    {
+      "idx": 10,
+      "sentence": "The NBA and the Hawks front office are investigating the incident.",
+      "layer": "L2_nli_only",
+      "nli": 0.9983,
+      "minicheck": 0.0496
+    },
+    {
+      "idx": 11,
+      "sentence": "The Hawks are currently preparing for the NBA playoffs after clinching the No.",
+      "layer": "L4_needed",
+      "nli": 0.0059,
+      "minicheck": 0.0176
+    },
+    {
+      "idx": 12,
+      "sentence": "1 seed in the Eastern Conference, while the Pacers are one game out of playoff contention.",
+      "layer": "L4_needed",
+      "nli": 0.001,
+      "minicheck": 0.0221
+    },
+    {
+      "idx": 0,
+      "sentence": "Indiana Pacer Chris Copeland was stabbed outside a New York nightclub early Wednesday morning, and t",
+      "layer": "L2_mc_only",
+      "nli": 0.0001,
+      "minicheck": 0.8907
+    },
+    {
+      "idx": 1,
+      "sentence": "According to police, Copeland and a female companion were walking away from the club when a 22-year-",
+      "layer": "L4_needed",
+      "nli": 0.0041,
+      "minicheck": 0.032
+    },
+    {
+      "idx": 2,
+      "sentence": "Copeland suffered a knife wound to his elbow and abdomen and is in stable condition at a New York ho",
+      "layer": "L2_nli_only",
+      "nli": 0.9955,
+      "minicheck": 0.0151
+    },
+    {
+      "idx": 3,
+      "sentence": "Antic and Sefolosha were taken into custody after they allegedly interfered with police officers try",
+      "layer": "L4_needed",
+      "nli": 0.0002,
+      "minicheck": 0.1153
+    },
+    {
+      "idx": 4,
+      "sentence": "The Hawks players were in New York for a Wednesday night game against the Brooklyn Nets, and neither",
+      "layer": "L4_needed",
+      "nli": 0.0026,
+      "minicheck": 0.0406
+    },
+    {
+      "idx": 0,
+      "sentence": "Indiana Pacers player Chris Copeland and a female companion were stabbed outside a trendy nightclub ",
+      "layer": "L2_mc_only",
+      "nli": 0.0,
+      "minicheck": 0.9178
+    },
+    {
+      "idx": 1,
+      "sentence": "Two Atlanta Hawks players, Pero Antic and Thabo Sefolosha, were arrested on charges of obstructing g",
+      "layer": "L2_mc_only",
+      "nli": 0.0011,
+      "minicheck": 0.7403
+    },
+    {
+      "idx": 2,
+      "sentence": "The stabbing occurred after a dispute between Copeland and a 22-year-old man, who stabbed Copland an",
+      "layer": "L4_needed",
+      "nli": 0.0001,
+      "minicheck": 0.0386
+    },
+    {
+      "idx": 3,
+      "sentence": "Copeland and the other victims were taken to the hospital, and the suspect was arrested and recovere",
+      "layer": "L4_needed",
+      "nli": 0.0015,
+      "minicheck": 0.1596
+    },
+    {
+      "idx": 4,
+      "sentence": "The Hawks players were not involved in the stabbing but were arrested for interfering with the polic",
+      "layer": "L2_both",
+      "nli": 0.9955,
+      "minicheck": 0.8246
+    },
+    {
+      "idx": 5,
+      "sentence": "The Pacers and the NBA are investigating the incident.",
+      "layer": "L4_needed",
+      "nli": 0.0002,
+      "minicheck": 0.0766
+    },
+    {
+      "idx": 0,
+      "sentence": "Chris Copeland, a player for the Indiana Pacers, was stabbed outside a nightclub in New York City ea",
+      "layer": "L2_both",
+      "nli": 0.9978,
+      "minicheck": 0.9216
+    },
+    {
+      "idx": 1,
+      "sentence": "Two Atlanta Hawks players, Pero Antic and Thabo Sefolosha, were arrested on charges of obstructing g",
+      "layer": "L2_mc_only",
+      "nli": 0.0046,
+      "minicheck": 0.9435
+    },
+    {
+      "idx": 2,
+      "sentence": "The stabbing occurred in front of the Fulton Houses project, and not at the nightclub 1OAK, where Co",
+      "layer": "L2_both",
+      "nli": 0.9967,
+      "minicheck": 0.9788
+    },
+    {
+      "idx": 3,
+      "sentence": "The suspect, who has not been named, stabbed Copeland and Saltara and then fled the scene.",
+      "layer": "L2_mc_only",
+      "nli": 0.0001,
+      "minicheck": 0.5513
+    },
+    {
+      "idx": 4,
+      "sentence": "Copeland and Saltara tried to make their way back to the club, leaving a bloody trail behind them.",
+      "layer": "L2_both",
+      "nli": 0.9984,
+      "minicheck": 0.9761
+    },
+    {
+      "idx": 5,
+      "sentence": "The club's security team assisted Copeland until the police arrived.",
+      "layer": "L2_mc_only",
+      "nli": 0.0002,
+      "minicheck": 0.9601
+    },
+    {
+      "idx": 6,
+      "sentence": "The Hawks players were arrested for interfering with officers trying to establish a crime scene.",
+      "layer": "L4_needed",
+      "nli": 0.0001,
+      "minicheck": 0.2133
+    },
+    {
+      "idx": 7,
+      "sentence": "The police have released little information, but local media has identified the injured man as Copel",
+      "layer": "L2_both",
+      "nli": 0.9986,
+      "minicheck": 0.517
+    },
+    {
+      "idx": 8,
+      "sentence": "The Pacers have confirmed that Copeland suffered a knife wound to his left elbow and abdomen and is ",
+      "layer": "L0",
+      "nli": 0.0,
+      "minicheck": 0.0
+    },
+    {
+      "idx": 0,
+      "sentence": "Selena, the Tejano star who died 20 years ago, is being brought back through a hologram-like figure.",
+      "layer": "L2_both",
+      "nli": 0.9988,
+      "minicheck": 0.9808
+    },
+    {
+      "idx": 1,
+      "sentence": "Her family is creating a digital embodiment of her persona that will be able to walk, talk, sing, an",
+      "layer": "L2_both",
+      "nli": 0.9982,
+      "minicheck": 0.9787
+    },
+    {
+      "idx": 2,
+      "sentence": "The technology is being handled by Acrovirt LLC, and the project is called \"Selena the One.\" The fam",
+      "layer": "L2_mc_only",
+      "nli": 0.0045,
+      "minicheck": 0.9434
+    },
+    {
+      "idx": 3,
+      "sentence": "This is not the first time a performer has used virtual technology, but Selena's hologram is expecte",
+      "layer": "L2_mc_only",
+      "nli": 0.0001,
+      "minicheck": 0.9433
+    },
+    {
+      "idx": 4,
+      "sentence": "Fans can support the launch through an Indiegogo campaign.",
+      "layer": "L2_both",
+      "nli": 0.999,
+      "minicheck": 0.9857
+    }
+  ]
+}

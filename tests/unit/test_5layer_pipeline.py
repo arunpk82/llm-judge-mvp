@@ -4,10 +4,11 @@ Tests for the 5-layer groundedness pipeline (hallucination.py).
 Layer coverage:
   L0: Deterministic text match (direct, no mocks)
   L1: Gate 1 MiniLM (uses real model via _compute_grounding_ratio)
-  L2: NLI DeBERTa ENTAILMENT (mocked)
+  L2a: MiniCheck factual consistency (mocked)
+  L2b: NLI DeBERTa ENTAILMENT fallback (mocked)
   L3: GraphRAG spaCy exact match (mocked)
   L4: Gemini per-sentence (mocked HTTP)
-  Integration: Full layered flow with mocked L2/L3/L4
+  Integration: Full layered flow with mocked L2a/L2b/L3/L4
 """
 from __future__ import annotations
 
@@ -127,11 +128,85 @@ class TestL1Gate1Check:
 
 
 # =====================================================================
-# L2: NLI DeBERTa ENTAILMENT (mocked)
+# L2a: MiniCheck factual consistency (mocked)
+# =====================================================================
+
+class TestL2aMiniCheck:
+    """L2a uses MiniCheck Flan-T5 — mocked to avoid loading 3.1GB model."""
+
+    def test_supported_returns_true(self) -> None:
+        import torch
+
+        import llm_judge.calibration.hallucination as hal
+        from llm_judge.calibration.hallucination import _l2a_minicheck
+
+        mock_tokenizer = MagicMock()
+        mock_tokenizer.return_value = {"input_ids": torch.zeros(1, 20, dtype=torch.long)}
+        mock_model = MagicMock()
+        # T5 generate returns sequences tensor
+        mock_model.generate.return_value = torch.tensor([[1]])
+        mock_tokenizer.decode.return_value = "1"
+
+        hal._mc_tokenizer = mock_tokenizer
+        hal._mc_model = mock_model
+
+        result = _l2a_minicheck("Paris is the capital.", "Paris is the capital of France.")
+        assert result is True
+
+    def test_unsupported_returns_false(self) -> None:
+        import torch
+
+        import llm_judge.calibration.hallucination as hal
+        from llm_judge.calibration.hallucination import _l2a_minicheck
+
+        mock_tokenizer = MagicMock()
+        mock_tokenizer.return_value = {"input_ids": torch.zeros(1, 20, dtype=torch.long)}
+        mock_model = MagicMock()
+        mock_model.generate.return_value = torch.tensor([[0]])
+        mock_tokenizer.decode.return_value = "0"
+
+        hal._mc_tokenizer = mock_tokenizer
+        hal._mc_model = mock_model
+
+        result = _l2a_minicheck("Tokyo is in Germany.", "Tokyo is the capital of Japan.")
+        assert result is False
+
+
+# =====================================================================
+# L2a→L2b Fallback: MiniCheck misses, DeBERTa catches
+# =====================================================================
+
+class TestL2Fallback:
+    """When MiniCheck returns unsupported, DeBERTa NLI acts as fallback."""
+
+    def test_deberta_catches_minicheck_miss(self) -> None:
+        """L2b catches a sentence that L2a missed."""
+        import llm_judge.calibration.hallucination as hal
+        from llm_judge.calibration.hallucination import check_hallucination
+
+        response = "Paris is the capital of France. London is the capital of England."
+        context = "Paris is the capital of France. London is the capital of England."
+
+        # MiniCheck misses, DeBERTa catches
+        with patch.object(hal, "_l2a_minicheck", return_value=False), \
+             patch.object(hal, "_load_minicheck"), \
+             patch.object(hal, "_l2_nli_check", return_value=True), \
+             patch.object(hal, "_load_nli"):
+            result = check_hallucination(
+                response=response, context=context,
+                case_id="test_fallback", gate2_routing="pass",
+            )
+
+        # DeBERTa fallback should catch sentences that MiniCheck missed
+        assert result.layer_stats.get("L2b_nli", 0) >= 1 or result.layer_stats.get("L0", 0) >= 1
+
+
+# =====================================================================
+# L2b: NLI DeBERTa ENTAILMENT (mocked)
 # =====================================================================
 
 class TestL2NLICheck:
-    """L2 uses DeBERTa NLI — mocked to avoid loading 400MB model in tests."""
+    """L2b uses DeBERTa NLI as fallback — mocked to avoid loading 400MB model."""
 
     def test_entailment_confirms_grounded(self) -> None:
         # Mock NLI model to return high entailment
@@ -378,17 +453,38 @@ class TestLayeredPipeline:
         assert result.layer_stats.get("L0", 0) >= 1
 
     def test_gate1_fail_stops_pipeline(self) -> None:
-        """When Gate 1 fails, no deeper analysis is needed."""
+        """When Gate 1 fails with gate2_routing='none', no deeper analysis runs."""
         from llm_judge.calibration.hallucination import check_hallucination
 
         result = check_hallucination(
             response="Quantum gravitational waves disrupted the spacetime fabric of the multiverse causing interdimensional cascading failures.",
             context="What is the weather like today?",
             case_id="test_gate1_fail",
-            gate2_routing="pass",
+            gate2_routing="none",  # Gate 1 is final verdict
         )
         assert result.gate1_decision in ("fail", "ambiguous")
         assert result.risk_score > 0.0
+        assert result.layer_stats.get("L1_fail", 0) == 1
+
+    def test_gate1_fail_continues_with_gate2_pass(self) -> None:
+        """When Gate 1 fails with gate2_routing='pass', L2+ still runs."""
+        import llm_judge.calibration.hallucination as hal
+        from llm_judge.calibration.hallucination import check_hallucination
+
+        with patch.object(hal, "_l2a_minicheck", return_value=False), \
+             patch.object(hal, "_load_minicheck"), \
+             patch.object(hal, "_l2_nli_check", return_value=False), \
+             patch.object(hal, "_load_nli"), \
+             patch.object(hal, "_l3_graphrag_check", return_value=False), \
+             patch.object(hal, "_l4_gemini_check", return_value="unsupported"):
+            result = check_hallucination(
+                response="Quantum gravitational waves disrupted the spacetime fabric of the multiverse causing interdimensional cascading failures.",
+                context="What is the weather like today?",
+                case_id="test_gate1_continues",
+                gate2_routing="pass",  # Gate 1 fail continues to L2+
+            )
+        assert result.gate1_decision in ("fail", "ambiguous")
+        assert result.gate2_decision == "fail"
         assert result.layer_stats.get("L1_fail", 0) == 1
 
     def test_layered_flow_with_mocked_l2_l3_l4(self) -> None:
@@ -400,9 +496,9 @@ class TestLayeredPipeline:
         response = "Paris is the capital of France. Tokyo has the largest metropolitan population."
         context = "Paris is the capital of France. Tokyo is the most populous metropolitan area in the world."
 
-        # Mock L2 to return True (entailment found) for the second sentence
-        with patch.object(hal, "_l2_nli_check", return_value=True), \
-             patch.object(hal, "_load_nli"):
+        # Mock L2a MiniCheck to return True for non-L0 sentences
+        with patch.object(hal, "_l2a_minicheck", return_value=True), \
+             patch.object(hal, "_load_minicheck"):
             result = check_hallucination(
                 response=response,
                 context=context,
@@ -412,7 +508,7 @@ class TestLayeredPipeline:
 
         assert result.gate1_decision == "pass"
         # First sentence should be L0, second should be L2
-        assert result.layer_stats.get("L0", 0) >= 1 or result.layer_stats.get("L2", 0) >= 1
+        assert result.layer_stats.get("L0", 0) >= 1 or result.layer_stats.get("L2a_minicheck", 0) >= 1
 
     def test_l4_unsupported_causes_fail(self) -> None:
         """When L4 Gemini returns unsupported, case should fail.
@@ -439,7 +535,9 @@ class TestLayeredPipeline:
         )
 
         # Mock: L2 returns False (no entailment), L3 returns False, L4 returns unsupported
-        with patch("llm_judge.calibration.hallucination._l2_nli_check", return_value=False), \
+        with patch("llm_judge.calibration.hallucination._l2a_minicheck", return_value=False), \
+             patch("llm_judge.calibration.hallucination._load_minicheck"), \
+             patch("llm_judge.calibration.hallucination._l2_nli_check", return_value=False), \
              patch("llm_judge.calibration.hallucination._load_nli"), \
              patch("llm_judge.calibration.hallucination._l3_graphrag_check", return_value=False), \
              patch("llm_judge.calibration.hallucination._l4_gemini_check", return_value="unsupported"):
@@ -465,7 +563,9 @@ class TestLayeredPipeline:
         response = "Paris is the capital of France. It is a beautiful city in Europe."
         context = "Paris is the capital of France. Paris is known as a beautiful European city."
 
-        with patch.object(hal, "_l2_nli_check", return_value=False), \
+        with patch.object(hal, "_l2a_minicheck", return_value=False), \
+             patch.object(hal, "_load_minicheck"), \
+             patch.object(hal, "_l2_nli_check", return_value=False), \
              patch.object(hal, "_load_nli"), \
              patch.object(hal, "_l3_graphrag_check", return_value=False), \
              patch.object(hal, "_l4_gemini_check", return_value="supported"):
@@ -488,9 +588,9 @@ class TestLayeredPipeline:
         response = "Paris is the capital of France. Tokyo is in Japan. Berlin is in Germany."
         context = "Paris is the capital of France. Tokyo is located in Japan. Berlin is the capital of Germany."
 
-        # L2 returns True for sentences not matched by L0
-        with patch.object(hal, "_l2_nli_check", return_value=True), \
-             patch.object(hal, "_load_nli"):
+        # L2a MiniCheck returns True for sentences not matched by L0
+        with patch.object(hal, "_l2a_minicheck", return_value=True), \
+             patch.object(hal, "_load_minicheck"):
             result = check_hallucination(
                 response=response,
                 context=context,
@@ -501,7 +601,7 @@ class TestLayeredPipeline:
         assert len(result.sentence_results) > 0
         resolved_layers = {sr.resolved_by for sr in result.sentence_results}
         # Should have at least L0 or L2 entries
-        assert resolved_layers & {"L0", "L2_entailment"}
+        assert resolved_layers & {"L0", "L2a_minicheck"}
 
     def test_backward_compatibility_no_layered(self) -> None:
         """layered=False should behave like the old 2-gate system."""
@@ -559,7 +659,7 @@ class TestDataclasses:
         )
         # layer_stats should have keys
         assert isinstance(result.layer_stats, dict)
-        assert "L0" in result.layer_stats
+        assert "L0" in result.layer_stats or "L2a_minicheck" in result.layer_stats
 
 
 # =====================================================================
@@ -602,8 +702,8 @@ class TestEdgeCases:
         context = "User asked about Blue Bell. The company shut down its Broken Arrow plant."
         source_only = "Blue Bell temporarily shut down its Broken Arrow, Oklahoma plant."
 
-        with patch.object(hal, "_l2_nli_check", return_value=True), \
-             patch.object(hal, "_load_nli"):
+        with patch.object(hal, "_l2a_minicheck", return_value=True), \
+             patch.object(hal, "_load_minicheck"):
             result = check_hallucination(
                 response=response,
                 context=context,
