@@ -15,17 +15,16 @@ from __future__ import annotations
 import argparse
 import json
 import re
-import time
 from difflib import SequenceMatcher
 from pathlib import Path
 from typing import Any
 
 import torch
-from transformers import AutoTokenizer, AutoModelForSequenceClassification
+from transformers import AutoModelForSequenceClassification, AutoTokenizer
 
-from llm_judge.calibration.hallucination import _split_sentences, _compute_grounding_ratio
-from llm_judge.properties import get_embedding_provider
 from llm_judge.benchmarks.ragtruth import RAGTruthAdapter
+from llm_judge.calibration.hallucination import _compute_grounding_ratio, _split_sentences
+from llm_judge.properties import get_embedding_provider
 
 NLI_MODEL = "cross-encoder/nli-deberta-v3-large"
 

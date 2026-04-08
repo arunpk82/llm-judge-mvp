@@ -23,8 +23,6 @@ from dataclasses import dataclass, field
 from pathlib import Path
 from typing import Any
 
-import spacy
-
 from llm_judge.benchmarks.ragtruth import RAGTruthAdapter
 from llm_judge.calibration.hallucination import _compute_grounding_ratio, _split_sentences
 from llm_judge.properties import get_embedding_provider
@@ -82,6 +80,8 @@ class CaseResult:
 
 def load_spacy_model():
     """Load spaCy model for dependency parsing."""
+    import spacy
+
     print(f"Loading spaCy model: {SPACY_MODEL}")
     start = time.time()
     try:

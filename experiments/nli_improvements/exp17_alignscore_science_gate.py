@@ -20,17 +20,17 @@ import json
 import logging
 import re
 import time
-from dataclasses import dataclass, field
+from dataclasses import dataclass
 from difflib import SequenceMatcher
 from pathlib import Path
 from typing import Any
 
 import torch
-from transformers import AutoTokenizer, AutoModelForSequenceClassification
+from transformers import AutoModelForSequenceClassification, AutoTokenizer
 
-from llm_judge.calibration.hallucination import _split_sentences, _compute_grounding_ratio
-from llm_judge.properties import get_embedding_provider
 from llm_judge.benchmarks.ragtruth import RAGTruthAdapter
+from llm_judge.calibration.hallucination import _compute_grounding_ratio, _split_sentences
+from llm_judge.properties import get_embedding_provider
 
 logger = logging.getLogger(__name__)
 
@@ -264,7 +264,7 @@ def main():
     print(f"{'='*70}")
     print(f"Cases: {total_cases}, Gate 1 FAIL: {gate1_fail}")
     print(f"Elapsed: {elapsed:.1f}s")
-    print(f"\nFUNNEL:")
+    print("\nFUNNEL:")
     print(f"  Total sentences:     {total_sentences}")
     print(f"  L0 Deterministic:    {l0_deterministic:>4} ({l0_deterministic/max(1,total_sentences)*100:.0f}%)")
     print(f"  Remaining for L2:    {remaining:>4}")
@@ -274,7 +274,7 @@ def main():
     print(f"  AlignScore catches:  {align_total:>4} ({align_total/max(1,remaining)*100:.0f}%)")
     print(f"  Improvement:         {align_total - nli_total:>+4} sentences")
 
-    print(f"\n  Breakdown:")
+    print("\n  Breakdown:")
     print(f"    Both catch:        {l2_both:>4}")
     print(f"    DeBERTa only:      {l2_nli_only:>4}")
     print(f"    AlignScore only:   {l2_align_only:>4}")
@@ -282,7 +282,7 @@ def main():
 
     nli_free = l0_deterministic + nli_total
     align_free = l0_deterministic + align_total
-    print(f"\nTOTAL FREE (L0 + L2):")
+    print("\nTOTAL FREE (L0 + L2):")
     print(f"  With DeBERTa:        {nli_free:>4}/{total_sentences} ({nli_free/max(1,total_sentences)*100:.0f}%)")
     print(f"  With AlignScore:     {align_free:>4}/{total_sentences} ({align_free/max(1,total_sentences)*100:.0f}%)")
     print(f"  L4 with DeBERTa:     {total_sentences - nli_free:>4} ({(total_sentences-nli_free)/max(1,total_sentences)*100:.0f}%)")

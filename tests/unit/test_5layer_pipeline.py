@@ -11,11 +11,7 @@ Layer coverage:
 """
 from __future__ import annotations
 
-from typing import Any
 from unittest.mock import MagicMock, patch
-
-import pytest
-
 
 # =====================================================================
 # L0: Deterministic text match
@@ -138,11 +134,11 @@ class TestL2NLICheck:
     """L2 uses DeBERTa NLI — mocked to avoid loading 400MB model in tests."""
 
     def test_entailment_confirms_grounded(self) -> None:
-        from llm_judge.calibration.hallucination import _l2_nli_check
-        import llm_judge.calibration.hallucination as hal
-
         # Mock NLI model to return high entailment
         import torch
+
+        import llm_judge.calibration.hallucination as hal
+        from llm_judge.calibration.hallucination import _l2_nli_check
         mock_tokenizer = MagicMock()
         mock_tokenizer.return_value = {"input_ids": torch.zeros(1, 10, dtype=torch.long)}
         mock_model = MagicMock()
@@ -171,10 +167,10 @@ class TestL2NLICheck:
         assert result is True
 
     def test_no_entailment_returns_false(self) -> None:
-        from llm_judge.calibration.hallucination import _l2_nli_check
-        import llm_judge.calibration.hallucination as hal
-
         import torch
+
+        import llm_judge.calibration.hallucination as hal
+        from llm_judge.calibration.hallucination import _l2_nli_check
         mock_tokenizer = MagicMock()
         mock_tokenizer.return_value = {"input_ids": torch.zeros(1, 10, dtype=torch.long)}
         mock_model = MagicMock()
@@ -210,8 +206,8 @@ class TestL3GraphRAGCheck:
     """L3 uses spaCy SVO extraction — mocked to avoid model dependency."""
 
     def test_exact_triplet_match_returns_true(self) -> None:
-        from llm_judge.calibration.hallucination import _l3_graphrag_check
         from llm_judge.benchmarks.graphrag_science_gate import Triplet
+        from llm_judge.calibration.hallucination import _l3_graphrag_check
 
         resp_triplets = [Triplet(subject="Blue Bell", predicate="recall", obj="products")]
         src_triplets = [Triplet(subject="Blue Bell", predicate="recall", obj="products")]
@@ -224,8 +220,8 @@ class TestL3GraphRAGCheck:
         assert result is True
 
     def test_no_match_returns_false(self) -> None:
-        from llm_judge.calibration.hallucination import _l3_graphrag_check
         from llm_judge.benchmarks.graphrag_science_gate import Triplet
+        from llm_judge.calibration.hallucination import _l3_graphrag_check
 
         resp_triplets = [Triplet(subject="Thomas", predicate="arrest", obj="March 26")]
         src_triplets = [Triplet(subject="Thomas", predicate="purchase", obj="ticket")]
@@ -238,8 +234,8 @@ class TestL3GraphRAGCheck:
         assert result is False
 
     def test_intransitive_triplets_filtered(self) -> None:
-        from llm_judge.calibration.hallucination import _l3_graphrag_check
         from llm_judge.benchmarks.graphrag_science_gate import Triplet
+        from llm_judge.calibration.hallucination import _l3_graphrag_check
 
         # All response triplets are intransitive — should return False (nothing to match)
         resp_triplets = [Triplet(subject="police", predicate="say", obj="(intransitive)")]
@@ -397,8 +393,8 @@ class TestLayeredPipeline:
 
     def test_layered_flow_with_mocked_l2_l3_l4(self) -> None:
         """Full pipeline with mocked L2/L3/L4 — tests the flow logic."""
-        from llm_judge.calibration.hallucination import check_hallucination
         import llm_judge.calibration.hallucination as hal
+        from llm_judge.calibration.hallucination import check_hallucination
 
         # Response has 2 sentences — one will be L0-matched, one needs deeper analysis
         response = "Paris is the capital of France. Tokyo has the largest metropolitan population."
@@ -463,8 +459,8 @@ class TestLayeredPipeline:
 
     def test_l4_all_supported_passes(self) -> None:
         """When L4 Gemini returns supported for all sentences, case passes."""
-        from llm_judge.calibration.hallucination import check_hallucination
         import llm_judge.calibration.hallucination as hal
+        from llm_judge.calibration.hallucination import check_hallucination
 
         response = "Paris is the capital of France. It is a beautiful city in Europe."
         context = "Paris is the capital of France. Paris is known as a beautiful European city."
@@ -486,8 +482,8 @@ class TestLayeredPipeline:
 
     def test_sentence_results_tracking(self) -> None:
         """Verify that sentence_results tracks which layer resolved each sentence."""
-        from llm_judge.calibration.hallucination import check_hallucination
         import llm_judge.calibration.hallucination as hal
+        from llm_judge.calibration.hallucination import check_hallucination
 
         response = "Paris is the capital of France. Tokyo is in Japan. Berlin is in Germany."
         context = "Paris is the capital of France. Tokyo is located in Japan. Berlin is the capital of Germany."
@@ -599,8 +595,8 @@ class TestEdgeCases:
 
     def test_source_context_parameter(self) -> None:
         """source_context should be used for L3/L4 when provided."""
-        from llm_judge.calibration.hallucination import check_hallucination
         import llm_judge.calibration.hallucination as hal
+        from llm_judge.calibration.hallucination import check_hallucination
 
         response = "The company shut down its plant."
         context = "User asked about Blue Bell. The company shut down its Broken Arrow plant."
