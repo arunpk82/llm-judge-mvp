@@ -34,5 +34,7 @@ def test_llm_correctness_exception_is_caught(monkeypatch) -> None:
 
     monkeypatch.setattr(lc, "_judge_correctness_llm_async", _boom)
 
-    out = lc.judge_correctness_llm(_make_req("Define blockchain", "Blockchain is blockchain."))
+    out = lc.judge_correctness_llm(
+        _make_req("Define blockchain", "Blockchain is blockchain.")
+    )
     assert out is None or out is not None  # "no crash" contract

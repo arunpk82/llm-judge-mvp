@@ -13,6 +13,7 @@ Models:
 Usage:
     poetry run python -m llm_judge.benchmarks.qgqa_science_gate --max-fn 10
 """
+
 from __future__ import annotations
 
 import argparse
@@ -31,7 +32,10 @@ from transformers import (
 )
 
 from llm_judge.benchmarks.ragtruth import RAGTruthAdapter
-from llm_judge.calibration.hallucination import _compute_grounding_ratio, _split_sentences
+from llm_judge.calibration.hallucination import (
+    _compute_grounding_ratio,
+    _split_sentences,
+)
 from llm_judge.properties import get_embedding_provider
 
 logger = logging.getLogger(__name__)
@@ -43,6 +47,7 @@ QA_MODEL = "deepset/roberta-base-squad2"
 @dataclass
 class QGQASentenceResult:
     """QG-QA result for one response sentence."""
+
     sentence: str
     sentence_idx: int
     generated_questions: list[str]
@@ -54,6 +59,7 @@ class QGQASentenceResult:
 @dataclass
 class QGQACaseResult:
     """QG-QA result for one RAGTruth case."""
+
     case_id: str
     ground_truth: str
     gate1_ratio: float
@@ -100,8 +106,10 @@ def generate_questions(
     # Strategy 1: Direct question generation from full sentence
     input_text = f"generate question: {sentence}"
     input_ids = qg_tokenizer(
-        input_text, return_tensors="pt",
-        max_length=512, truncation=True,
+        input_text,
+        return_tensors="pt",
+        max_length=512,
+        truncation=True,
     ).input_ids
 
     with torch.no_grad():
@@ -135,8 +143,11 @@ def answer_question(
     qa_tokenizer, qa_model = qa_pipe
     try:
         inputs = qa_tokenizer(
-            question, context[:4096],
-            return_tensors="pt", truncation=True, max_length=512,
+            question,
+            context[:4096],
+            return_tensors="pt",
+            truncation=True,
+            max_length=512,
         )
         with torch.no_grad():
             outputs = qa_model(**inputs)
@@ -164,7 +175,7 @@ def answer_question(
 
         # Extract answer text
         if end_idx >= start_idx:
-            answer_ids = inputs["input_ids"][0][int(start_idx):int(end_idx) + 1]
+            answer_ids = inputs["input_ids"][0][int(start_idx) : int(end_idx) + 1]
             answer = qa_tokenizer.decode(answer_ids, skip_special_tokens=True).strip()
         else:
             answer = ""
@@ -232,7 +243,9 @@ def compare_answer_to_claim(
     }
 
 
-def find_test_cases(max_cases: int = 500, max_fn: int = 10, max_tn: int = 10) -> tuple[list, list]:
+def find_test_cases(
+    max_cases: int = 500, max_fn: int = 10, max_tn: int = 10
+) -> tuple[list, list]:
     """Find both false negatives AND true negatives from Gate 1 PASS cases."""
     adapter = RAGTruthAdapter()
     get_embedding_provider()  # init singleton
@@ -249,7 +262,9 @@ def find_test_cases(max_cases: int = 500, max_fn: int = 10, max_tn: int = 10) ->
         context = conv + ("\n\n" + "\n".join(ctx_parts) if ctx_parts else "")
         response = case.request.candidate_answer
 
-        ratio, min_sim = _compute_grounding_ratio(response, context, similarity_threshold=0.60)
+        ratio, min_sim = _compute_grounding_ratio(
+            response, context, similarity_threshold=0.60
+        )
 
         if ratio >= 0.80 and min_sim >= 0.30:
             source_doc = "\n".join(ctx_parts) if ctx_parts else context
@@ -281,9 +296,13 @@ def run_qgqa_on_case(
 
     if not resp_sents:
         return QGQACaseResult(
-            case_id=case.case_id, ground_truth=gt,
-            gate1_ratio=ratio, gate1_min_sim=min_sim,
-            has_mismatch=False, qgqa_decision="pass", correct=(gt == "pass"),
+            case_id=case.case_id,
+            ground_truth=gt,
+            gate1_ratio=ratio,
+            gate1_min_sim=min_sim,
+            has_mismatch=False,
+            qgqa_decision="pass",
+            correct=(gt == "pass"),
             sentences=[],
         )
 
@@ -302,15 +321,17 @@ def run_qgqa_on_case(
         for q in questions:
             qa_result = answer_question(q, source_doc, qa_pipe)
             comparison = compare_answer_to_claim(sent, q, qa_result)
-            qa_results.append({
-                "question": q,
-                "answer": qa_result.get("answer", ""),
-                "score": qa_result.get("score", 0.0),
-                "answerable": qa_result.get("answerable", False),
-                "match": comparison["match"],
-                "reason": comparison["reason"],
-                "detail": comparison["detail"],
-            })
+            qa_results.append(
+                {
+                    "question": q,
+                    "answer": qa_result.get("answer", ""),
+                    "score": qa_result.get("score", 0.0),
+                    "answerable": qa_result.get("answerable", False),
+                    "match": comparison["match"],
+                    "reason": comparison["reason"],
+                    "detail": comparison["detail"],
+                }
+            )
             if not comparison["match"]:
                 sent_has_mismatch = True
                 mismatch_detail = comparison["detail"]
@@ -318,17 +339,19 @@ def run_qgqa_on_case(
         if sent_has_mismatch:
             has_mismatch = True
 
-        sentence_results.append(QGQASentenceResult(
-            sentence=sent,
-            sentence_idx=i,
-            generated_questions=questions,
-            qa_results=qa_results,
-            has_mismatch=sent_has_mismatch,
-            mismatch_details=mismatch_detail,
-        ))
+        sentence_results.append(
+            QGQASentenceResult(
+                sentence=sent,
+                sentence_idx=i,
+                generated_questions=questions,
+                qa_results=qa_results,
+                has_mismatch=sent_has_mismatch,
+                mismatch_details=mismatch_detail,
+            )
+        )
 
     qgqa_decision = "fail" if has_mismatch else "pass"
-    correct = (qgqa_decision == gt)
+    correct = qgqa_decision == gt
 
     return QGQACaseResult(
         case_id=case.case_id,
@@ -342,7 +365,9 @@ def run_qgqa_on_case(
     )
 
 
-def print_report(fn_results: list[QGQACaseResult], tn_results: list[QGQACaseResult]) -> None:
+def print_report(
+    fn_results: list[QGQACaseResult], tn_results: list[QGQACaseResult]
+) -> None:
     """Print Science Gate report for both FN and TN."""
     fn_caught = sum(1 for r in fn_results if r.qgqa_decision == "fail")
     tn_correct = sum(1 for r in tn_results if r.qgqa_decision == "pass")
@@ -363,33 +388,46 @@ def print_report(fn_results: list[QGQACaseResult], tn_results: list[QGQACaseResu
     tp, fp, fn, tn = fn_caught, tn_fp, len(fn_results) - fn_caught, tn_correct
     precision = tp / (tp + fp) if (tp + fp) > 0 else 0
     recall = tp / (tp + fn) if (tp + fn) > 0 else 0
-    f1 = 2 * precision * recall / (precision + recall) if (precision + recall) > 0 else 0
+    f1 = (
+        2 * precision * recall / (precision + recall) if (precision + recall) > 0 else 0
+    )
 
     print("\nOVERALL:")
     print(f"  TP={tp} FP={fp} TN={tn} FN={fn}")
     print(f"  Precision: {precision:.3f}  Recall: {recall:.3f}  F1: {f1:.3f}")
     print("  Pass criteria: catch >= 70% AND FP <= 30%")
-    pass_criteria = fn_caught >= len(fn_results) * 0.7 and tn_fp <= len(tn_results) * 0.3
+    pass_criteria = (
+        fn_caught >= len(fn_results) * 0.7 and tn_fp <= len(tn_results) * 0.3
+    )
     print(f"  Result: {'PASS' if pass_criteria else 'FAIL'}")
     print("=" * 70)
 
     all_results = fn_results + tn_results
-    total_questions = sum(len(s.generated_questions) for r in all_results for s in r.sentences)
-    total_mismatches = sum(1 for r in all_results for s in r.sentences if s.has_mismatch)
+    total_questions = sum(
+        len(s.generated_questions) for r in all_results for s in r.sentences
+    )
+    total_mismatches = sum(
+        1 for r in all_results for s in r.sentences if s.has_mismatch
+    )
     total_sents = sum(len(r.sentences) for r in all_results)
     print("\nSTATISTICS")
     print(f"  Total sentences: {total_sents}")
     print(f"  Total questions generated: {total_questions}")
     print(f"  Sentences with mismatches: {total_mismatches}/{total_sents}")
 
-    for label, results in [("FALSE NEGATIVES (gt=fail)", fn_results), ("TRUE NEGATIVES (gt=pass)", tn_results)]:
+    for label, results in [
+        ("FALSE NEGATIVES (gt=fail)", fn_results),
+        ("TRUE NEGATIVES (gt=pass)", tn_results),
+    ]:
         print(f"\n--- {label} ---")
         for r in results:
             if r.ground_truth == "fail":
                 marker = "CAUGHT" if r.qgqa_decision == "fail" else "MISSED"
             else:
                 marker = "OK" if r.qgqa_decision == "pass" else "FALSE POSITIVE"
-            print(f"\n  {r.case_id} [{marker}] gt={r.ground_truth} decision={r.qgqa_decision}")
+            print(
+                f"\n  {r.case_id} [{marker}] gt={r.ground_truth} decision={r.qgqa_decision}"
+            )
             for s in r.sentences:
                 flag = " <<<< MISMATCH" if s.has_mismatch else ""
                 print(f"    [{s.sentence_idx+1}]{flag}")
@@ -397,7 +435,9 @@ def print_report(fn_results: list[QGQACaseResult], tn_results: list[QGQACaseResu
                 for qa in s.qa_results:
                     if not qa["match"]:
                         print(f"      Q: {qa['question']}")
-                        print(f"      A: '{qa['answer']}' (score={qa['score']:.3f}, {qa['reason']})")
+                        print(
+                            f"      A: '{qa['answer']}' (score={qa['score']:.3f}, {qa['reason']})"
+                        )
                         print(f"      >> {qa['detail']}")
 
 
@@ -415,7 +455,9 @@ def main() -> None:
     # Step 1: Find test cases
     print("Finding test cases (FN + TN from Gate 1 PASS)...")
     fn_cases, tn_cases = find_test_cases(
-        max_cases=args.max_cases, max_fn=args.max_fn, max_tn=args.max_tn,
+        max_cases=args.max_cases,
+        max_fn=args.max_fn,
+        max_tn=args.max_tn,
     )
     print(f"Found {len(fn_cases)} FN + {len(tn_cases)} TN")
 
@@ -437,8 +479,17 @@ def main() -> None:
         for idx, (case, source_doc, response, ratio, min_sim) in enumerate(cases):
             print(f"\n{label} {idx+1}/{len(cases)}: {case.case_id}")
             start = time.time()
-            result = run_qgqa_on_case(case, source_doc, response, ratio, min_sim, gt_val,
-                                      qg_tokenizer, qg_model, qa_pipe)
+            result = run_qgqa_on_case(
+                case,
+                source_doc,
+                response,
+                ratio,
+                min_sim,
+                gt_val,
+                qg_tokenizer,
+                qg_model,
+                qa_pipe,
+            )
             elapsed = time.time() - start
             marker = "CORRECT" if result.correct else "WRONG"
             print(f"  {result.qgqa_decision} ({elapsed:.1f}s) {marker}")
@@ -455,24 +506,34 @@ def main() -> None:
     fn_missed = len(fn_results) - fn_caught
     precision = tp / (tp + fp) if (tp + fp) > 0 else 0
     recall = tp / (tp + fn_missed) if (tp + fn_missed) > 0 else 0
-    f1 = 2 * precision * recall / (precision + recall) if (precision + recall) > 0 else 0
+    f1 = (
+        2 * precision * recall / (precision + recall) if (precision + recall) > 0 else 0
+    )
 
     save_data = {
         "experiment": "Experiment 16: QG-QA Science Gate",
         "qg_model": QG_MODEL,
         "qa_model": QA_MODEL,
-        "fn_tested": len(fn_results), "fn_caught": fn_caught,
-        "tn_tested": len(tn_results), "tn_false_positives": tn_fp,
+        "fn_tested": len(fn_results),
+        "fn_caught": fn_caught,
+        "tn_tested": len(tn_results),
+        "tn_false_positives": tn_fp,
         "precision": round(precision, 4),
         "recall": round(recall, 4),
         "f1": round(f1, 4),
         "cases": [
             {
-                "case_id": r.case_id, "ground_truth": r.ground_truth,
-                "qgqa_decision": r.qgqa_decision, "correct": r.correct,
+                "case_id": r.case_id,
+                "ground_truth": r.ground_truth,
+                "qgqa_decision": r.qgqa_decision,
+                "correct": r.correct,
                 "sentences": [
-                    {"sentence": s.sentence[:150], "questions": s.generated_questions,
-                     "has_mismatch": s.has_mismatch, "qa_results": s.qa_results}
+                    {
+                        "sentence": s.sentence[:150],
+                        "questions": s.generated_questions,
+                        "has_mismatch": s.has_mismatch,
+                        "qa_results": s.qa_results,
+                    }
                     for s in r.sentences
                 ],
             }

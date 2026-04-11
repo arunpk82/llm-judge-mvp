@@ -34,7 +34,10 @@ def _find_detector():
             for p in sig.parameters.values()
             if p.default is inspect._empty
             and p.kind
-            in (inspect.Parameter.POSITIONAL_ONLY, inspect.Parameter.POSITIONAL_OR_KEYWORD)
+            in (
+                inspect.Parameter.POSITIONAL_ONLY,
+                inspect.Parameter.POSITIONAL_OR_KEYWORD,
+            )
         ]
         if len(req_pos) in (1, 2):
             candidates.append((name, fn, sig))
@@ -57,7 +60,8 @@ def _call_detector(prompt: str, answer: str):
         p
         for p in sig.parameters.values()
         if p.default is inspect._empty
-        and p.kind in (inspect.Parameter.POSITIONAL_ONLY, inspect.Parameter.POSITIONAL_OR_KEYWORD)
+        and p.kind
+        in (inspect.Parameter.POSITIONAL_ONLY, inspect.Parameter.POSITIONAL_OR_KEYWORD)
     ]
     if len(req_pos) == 2:
         return fn(prompt, answer)

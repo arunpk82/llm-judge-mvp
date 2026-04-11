@@ -7,6 +7,7 @@ Human decisions feed back into calibration data, creating a closed loop:
 
 Queue states: pending → claimed → resolved
 """
+
 from __future__ import annotations
 
 import json
@@ -42,6 +43,7 @@ def _utc_now_iso() -> str:
 @dataclass(frozen=True)
 class AdjudicationCase:
     """A case routed to human adjudication."""
+
     case_id: str
     run_id: str
     rubric_id: str
@@ -71,6 +73,7 @@ class AdjudicationCase:
 # Confidence Router
 # =====================================================================
 
+
 def should_route_to_human(
     *,
     confidence: float,
@@ -98,6 +101,7 @@ def should_route_to_human(
 # =====================================================================
 # Adjudication Queue
 # =====================================================================
+
 
 def enqueue_case(
     *,
@@ -266,7 +270,6 @@ def get_queue_stats(queue_path: Path = DEFAULT_QUEUE_PATH) -> dict[str, Any]:
         "by_state": state_counts,
         "resolved": resolved_count,
         "llm_human_agreement_rate": (
-            round(agreement_count / resolved_count, 4)
-            if resolved_count > 0 else None
+            round(agreement_count / resolved_count, 4) if resolved_count > 0 else None
         ),
     }

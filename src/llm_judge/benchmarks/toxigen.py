@@ -13,6 +13,7 @@ Dataset format (from HuggingFace toxigen/toxigen-data):
 Or from GitHub TOXIGEN:
   CSV/JSONL with text, target_group, label columns
 """
+
 from __future__ import annotations
 
 import csv
@@ -45,13 +46,13 @@ class ToxiGenAdapter(BenchmarkAdapter):
             name="ToxiGen",
             version="1.0",
             citation="Hartvigsen et al., ToxiGen: A Large-Scale Machine-Generated "
-                     "Dataset for Adversarial and Implicit Hate Speech Detection, ACL 2022",
+            "Dataset for Adversarial and Implicit Hate Speech Detection, ACL 2022",
             license="MIT",
             total_cases=274000,
             test_cases=274000,
             supported_properties=["3.1"],
             description="Implicit toxicity and bias statements about 13 minority groups. "
-                       "Designed to be adversarially challenging for keyword-based detectors.",
+            "Designed to be adversarially challenging for keyword-based detectors.",
             published_baselines=[
                 PublishedBaseline(
                     method="RoBERTa (fine-tuned on ToxiGen)",
@@ -68,7 +69,9 @@ class ToxiGenAdapter(BenchmarkAdapter):
             ],
         )
 
-    def _load_jsonl(self, filepath: Path, max_cases: int | None) -> Iterator[BenchmarkCase]:
+    def _load_jsonl(
+        self, filepath: Path, max_cases: int | None
+    ) -> Iterator[BenchmarkCase]:
         count = 0
         with filepath.open("r", encoding="utf-8") as f:
             for line in f:
@@ -80,11 +83,15 @@ class ToxiGenAdapter(BenchmarkAdapter):
                     yield case
                     count += 1
 
-    def _load_json(self, filepath: Path, max_cases: int | None) -> Iterator[BenchmarkCase]:
+    def _load_json(
+        self, filepath: Path, max_cases: int | None
+    ) -> Iterator[BenchmarkCase]:
         count = 0
         with filepath.open("r", encoding="utf-8") as f:
             data = json.load(f)
-        items = data if isinstance(data, list) else data.get("data", data.get("rows", []))
+        items = (
+            data if isinstance(data, list) else data.get("data", data.get("rows", []))
+        )
         for entry in items:
             if max_cases is not None and count >= max_cases:
                 return
@@ -93,7 +100,9 @@ class ToxiGenAdapter(BenchmarkAdapter):
                 yield case
                 count += 1
 
-    def _load_csv(self, filepath: Path, max_cases: int | None) -> Iterator[BenchmarkCase]:
+    def _load_csv(
+        self, filepath: Path, max_cases: int | None
+    ) -> Iterator[BenchmarkCase]:
         count = 0
         with filepath.open("r", encoding="utf-8") as f:
             reader = csv.DictReader(f)
@@ -143,7 +152,10 @@ class ToxiGenAdapter(BenchmarkAdapter):
         )
 
     def load_cases(
-        self, *, split: str = "test", max_cases: int | None = None,
+        self,
+        *,
+        split: str = "test",
+        max_cases: int | None = None,
     ) -> Iterator[BenchmarkCase]:
         """Yield ToxiGen cases from available data files."""
         # Try multiple formats

@@ -92,7 +92,9 @@ def resolve_baseline(baseline: Path) -> ResolvedRun:
         data = _read_json(baseline)
         baseline_id = data.get("baseline_id")
         if not isinstance(baseline_id, str) or not baseline_id.strip():
-            raise ValueError(f"Invalid baseline pointer file (missing baseline_id): {baseline}")
+            raise ValueError(
+                f"Invalid baseline pointer file (missing baseline_id): {baseline}"
+            )
 
         snap_dir = baseline.parent / "snapshots" / baseline_id.strip()
         return resolve_run_dir(snap_dir)
@@ -145,8 +147,14 @@ def _numeric(x: Any) -> float | None:
     return None
 
 
-def _diff_metrics(baseline_metrics: dict[str, Any], candidate_metrics: dict[str, Any]) -> dict[str, Any]:
-    diffs: dict[str, Any] = {"deltas": {}, "only_in_baseline": [], "only_in_candidate": []}
+def _diff_metrics(
+    baseline_metrics: dict[str, Any], candidate_metrics: dict[str, Any]
+) -> dict[str, Any]:
+    diffs: dict[str, Any] = {
+        "deltas": {},
+        "only_in_baseline": [],
+        "only_in_candidate": [],
+    }
 
     b_keys = set(baseline_metrics.keys())
     c_keys = set(candidate_metrics.keys())
@@ -188,13 +196,22 @@ def _diff_judgments(
         c_dec = c.get("judge_decision")
         if isinstance(b_dec, str) and isinstance(c_dec, str) and b_dec != c_dec:
             decision_flips.append(
-                {"case_index": key[0], "rubric_id": key[1], "baseline": b_dec, "candidate": c_dec}
+                {
+                    "case_index": key[0],
+                    "rubric_id": key[1],
+                    "baseline": b_dec,
+                    "candidate": c_dec,
+                }
             )
 
         b_scores_any = b.get("judge_scores")
         c_scores_any = c.get("judge_scores")
-        b_scores: dict[str, Any] = b_scores_any if isinstance(b_scores_any, dict) else {}
-        c_scores: dict[str, Any] = c_scores_any if isinstance(c_scores_any, dict) else {}
+        b_scores: dict[str, Any] = (
+            b_scores_any if isinstance(b_scores_any, dict) else {}
+        )
+        c_scores: dict[str, Any] = (
+            c_scores_any if isinstance(c_scores_any, dict) else {}
+        )
 
         dims = sorted(set(b_scores.keys()) | set(c_scores.keys()))
         deltas: dict[str, Any] = {}
@@ -208,7 +225,9 @@ def _diff_judgments(
                 deltas[d] = {"baseline": bv, "candidate": cv, "delta": delta}
 
         if deltas:
-            score_deltas.append({"case_index": key[0], "rubric_id": key[1], "deltas": deltas})
+            score_deltas.append(
+                {"case_index": key[0], "rubric_id": key[1], "deltas": deltas}
+            )
 
         b_flags = _as_set(b.get("judge_flags"))
         c_flags = _as_set(c.get("judge_flags"))
@@ -225,8 +244,12 @@ def _diff_judgments(
     return {
         "n_cases_baseline": len(base),
         "n_cases_candidate": len(cand),
-        "missing_in_candidate": [{"case_index": k[0], "rubric_id": k[1]} for k in missing_in_candidate],
-        "new_in_candidate": [{"case_index": k[0], "rubric_id": k[1]} for k in new_in_candidate],
+        "missing_in_candidate": [
+            {"case_index": k[0], "rubric_id": k[1]} for k in missing_in_candidate
+        ],
+        "new_in_candidate": [
+            {"case_index": k[0], "rubric_id": k[1]} for k in new_in_candidate
+        ],
         "decision_flips": decision_flips,
         "score_deltas": score_deltas,
         "flag_diffs": flag_diffs,
@@ -250,7 +273,9 @@ def _parse_metric_drop_rules(values: list[str]) -> dict[str, float]:
         try:
             tol = float(s)
         except ValueError as e:
-            raise ValueError(f"Invalid --max-metric-drop '{v}'. Value must be float") from e
+            raise ValueError(
+                f"Invalid --max-metric-drop '{v}'. Value must be float"
+            ) from e
         out[k] = tol
     return out
 
@@ -287,7 +312,9 @@ def _check_policy(
         if not b_has_key and not c_has_key:
             continue
         if not b_has_key or not c_has_key:
-            violations.append(f"Metric '{k}' not present in both baseline and candidate metrics.")
+            violations.append(
+                f"Metric '{k}' not present in both baseline and candidate metrics."
+            )
             continue
 
         b_val = _numeric(baseline_metrics[k])
@@ -318,7 +345,9 @@ def _build_summary(diff: dict[str, Any], violations: list[str]) -> str:
     lines.append("=" * 28)
     lines.append(f"Baseline:  {diff['baseline_dir']}")
     lines.append(f"Candidate: {diff['candidate_dir']}")
-    lines.append(f"Schema:    baseline={diff.get('baseline_schema_version')} candidate={diff.get('candidate_schema_version')}")
+    lines.append(
+        f"Schema:    baseline={diff.get('baseline_schema_version')} candidate={diff.get('candidate_schema_version')}"
+    )
     lines.append("")
     lines.append(f"Cases baseline:  {j['n_cases_baseline']}")
     lines.append(f"Cases candidate: {j['n_cases_candidate']}")
@@ -352,7 +381,11 @@ def _policy_result(
     # Capture metric violations as a structured subset (useful for dashboards).
     metric_violations: list[str] = []
     for v in violations:
-        if v.startswith("Metric drop too large") or v.startswith("Metric '") or v.startswith("Metric "):
+        if (
+            v.startswith("Metric drop too large")
+            or v.startswith("Metric '")
+            or v.startswith("Metric ")
+        ):
             metric_violations.append(v)
 
     return {
@@ -377,9 +410,15 @@ def _policy_result(
 
 def build_cli() -> argparse.ArgumentParser:
     p = argparse.ArgumentParser(prog="llm-judge-eval-diff")
-    p.add_argument("--baseline", required=True, help="Baseline snapshot dir OR latest.json pointer")
+    p.add_argument(
+        "--baseline", required=True, help="Baseline snapshot dir OR latest.json pointer"
+    )
     p.add_argument("--candidate", required=True, help="Candidate run directory")
-    p.add_argument("--out", default=None, help="Output directory for diff artifacts (default: <candidate>/diff)")
+    p.add_argument(
+        "--out",
+        default=None,
+        help="Output directory for diff artifacts (default: <candidate>/diff)",
+    )
     p.add_argument(
         "--fail-on",
         choices=["none", "decision_flip", "metric_drop"],
@@ -449,7 +488,9 @@ def main(argv: list[str] | None = None) -> int:
         exit_code = EXIT_POLICY_VIOLATION if violations else EXIT_OK
 
         # Rich diff artifact (machine)
-        _write_json(out_dir / "diff_report.json", {"diff": diff, "violations": violations})
+        _write_json(
+            out_dir / "diff_report.json", {"diff": diff, "violations": violations}
+        )
 
         # Human summary
         summary = _build_summary(diff, violations)
@@ -475,7 +516,9 @@ def main(argv: list[str] | None = None) -> int:
         return EXIT_RUNTIME_ERROR
 
 
-def compute_diff_summary(*, baseline: ResolvedRun, candidate: ResolvedRun) -> dict[str, Any]:
+def compute_diff_summary(
+    *, baseline: ResolvedRun, candidate: ResolvedRun
+) -> dict[str, Any]:
     """
     Machine-readable diff summary used by CI gates and baseline promotion.
 
@@ -505,6 +548,7 @@ def compute_diff_summary(*, baseline: ResolvedRun, candidate: ResolvedRun) -> di
         "metrics": _diff_metrics(b_metrics, c_metrics),
         "judgments": _diff_judgments(b_j, c_j),
     }
+
 
 if __name__ == "__main__":
     raise SystemExit(main())

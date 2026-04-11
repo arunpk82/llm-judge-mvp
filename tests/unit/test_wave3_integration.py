@@ -2,6 +2,7 @@
 Wave 3 Integration Tests — smoke test, hit-rate tracking,
 streaming progress, event queries, structured alerts.
 """
+
 from __future__ import annotations
 
 import json
@@ -12,6 +13,7 @@ import pytest
 # =====================================================================
 # EPIC 2.2: Smoke test + hit-rate tracking
 # =====================================================================
+
 
 class TestSmokeTestSpec:
     """RunSpec smoke test configuration."""
@@ -67,6 +69,7 @@ class TestSmokeTestSpec:
 # EPIC 5.2: Event trace queries
 # =====================================================================
 
+
 class TestEventTrace:
     """Trace queries for run lineage."""
 
@@ -75,17 +78,20 @@ class TestEventTrace:
 
         reg = tmp_path / "events.jsonl"
         append_event(
-            event_type="eval_run", source="test",
+            event_type="eval_run",
+            source="test",
             related_ids={"run_id": "run-42", "rubric_id": "math_basic"},
             registry_path=reg,
         )
         append_event(
-            event_type="rule_change", source="test",
+            event_type="rule_change",
+            source="test",
             related_ids={"run_id": "run-42"},
             registry_path=reg,
         )
         append_event(
-            event_type="eval_run", source="test",
+            event_type="eval_run",
+            source="test",
             related_ids={"run_id": "run-99"},
             registry_path=reg,
         )
@@ -99,7 +105,8 @@ class TestEventTrace:
 
         reg = tmp_path / "events.jsonl"
         append_event(
-            event_type="eval_run", source="test",
+            event_type="eval_run",
+            source="test",
             related_ids={"run_id": "run-1"},
             registry_path=reg,
         )
@@ -111,6 +118,7 @@ class TestEventTrace:
 # =====================================================================
 # EPIC 8.2: Structured alerts
 # =====================================================================
+
 
 class TestStructuredAlerts:
     """Alert output to reports/alerts/ directory."""
@@ -142,14 +150,20 @@ class TestStructuredAlerts:
 
         alerts_dir = tmp_path / "alerts"
         p1 = write_structured_alert(
-            alert_type="drift_alert", severity="high",
-            persona="engineer", title="Alert 1",
-            recommended_action="Fix", alerts_dir=alerts_dir,
+            alert_type="drift_alert",
+            severity="high",
+            persona="engineer",
+            title="Alert 1",
+            recommended_action="Fix",
+            alerts_dir=alerts_dir,
         )
         p2 = write_structured_alert(
-            alert_type="heartbeat", severity="medium",
-            persona="qa_lead", title="Alert 2",
-            recommended_action="Check", alerts_dir=alerts_dir,
+            alert_type="heartbeat",
+            severity="medium",
+            persona="qa_lead",
+            title="Alert 2",
+            recommended_action="Check",
+            alerts_dir=alerts_dir,
         )
 
         assert p1 != p2
@@ -160,13 +174,16 @@ class TestStructuredAlerts:
 # EPIC 8.1: Documentation completeness
 # =====================================================================
 
+
 class TestWave3Documentation:
     """GETTING_STARTED.md and documentation completeness."""
 
     def test_getting_started_exists(self) -> None:
         path = Path("docs/GETTING_STARTED.md")
         if not path.exists():
-            pytest.skip("docs/GETTING_STARTED.md not found (running outside project root)")
+            pytest.skip(
+                "docs/GETTING_STARTED.md not found (running outside project root)"
+            )
         assert path.stat().st_size > 500, "GETTING_STARTED.md should be substantial"
 
     def test_all_docs_populated(self) -> None:

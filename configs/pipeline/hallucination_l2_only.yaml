@@ -1,0 +1,24 @@
+# L2 Benchmark Configuration — L0 + L1 + L2a + L2b enabled, L3 + L4 disabled
+# Usage: set HALLUCINATION_PIPELINE_CONFIG=configs/pipeline/hallucination_l2_only.yaml
+
+layers:
+  L0_deterministic: true
+  L1_gate1_minilm: true
+  L2a_minicheck: true
+  L2b_deberta_nli: true
+  L3_graphrag: false
+  L4_gemini: false
+
+gate1_mode: signal
+
+source_chunking: false
+chunk_size: 3000
+chunk_overlap: 500
+
+thresholds:
+  gate1_grounding_ratio: 0.80
+  gate1_min_sentence_sim: 0.30
+  gate1_similarity: 0.60
+  minicheck: 0.50
+  nli_entailment: 0.70
+  max_ungrounded_claims: 2

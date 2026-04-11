@@ -45,7 +45,12 @@ class RunRegistryEntry:
 
 
 def _utc_now_iso() -> str:
-    return datetime.now(timezone.utc).replace(microsecond=0).isoformat().replace("+00:00", "Z")
+    return (
+        datetime.now(timezone.utc)
+        .replace(microsecond=0)
+        .isoformat()
+        .replace("+00:00", "Z")
+    )
 
 
 def _read_json(path: Path) -> dict[str, Any]:
@@ -112,7 +117,11 @@ def append_run_registry_entry(
         dataset_hash=dataset_hash,
         run_dir=str(run_dir),
         metrics=metrics if isinstance(metrics, dict) else {},
-        git_sha=str(manifest.get("git_sha")) if isinstance(manifest.get("git_sha"), str) else None,
+        git_sha=(
+            str(manifest.get("git_sha"))
+            if isinstance(manifest.get("git_sha"), str)
+            else None
+        ),
     )
 
     registry_path.parent.mkdir(parents=True, exist_ok=True)
@@ -140,12 +149,18 @@ def _print_table(rows: list[dict[str, Any]], *, metric: str = "f1") -> None:
 
         m = r.get("metrics", {})
         mv = ""
-        if isinstance(m, dict) and metric in m and isinstance(m.get(metric), (int, float)):
+        if (
+            isinstance(m, dict)
+            and metric in m
+            and isinstance(m.get(metric), (int, float))
+        ):
             mv = f"{float(m[metric]):.4f}"
         else:
             mv = "n/a"
 
-        print(f"{run_id:<28}  {ds:<16}  {rubric:<16}  {mv:<8}  {cases:<6}  {engine:<14}  {created:<20}")
+        print(
+            f"{run_id:<28}  {ds:<16}  {rubric:<16}  {mv:<8}  {cases:<6}  {engine:<14}  {created:<20}"
+        )
 
 
 def cmd_list(args: argparse.Namespace) -> int:
@@ -213,14 +228,24 @@ def cmd_trend(args: argparse.Namespace) -> int:
 
 
 def build_cli() -> argparse.ArgumentParser:
-    p = argparse.ArgumentParser(description="Run registry / observability utilities for LLM-Judge.")
-    p.add_argument("--registry", default=str(DEFAULT_REGISTRY_PATH), help="Path to run_registry.jsonl")
+    p = argparse.ArgumentParser(
+        description="Run registry / observability utilities for LLM-Judge."
+    )
+    p.add_argument(
+        "--registry",
+        default=str(DEFAULT_REGISTRY_PATH),
+        help="Path to run_registry.jsonl",
+    )
 
     sub = p.add_subparsers(dest="cmd", required=True)
 
     p_list = sub.add_parser("list", help="List recent runs from the registry")
-    p_list.add_argument("--limit", type=int, default=25, help="Max number of rows (default: 25)")
-    p_list.add_argument("--metric", default="f1", help="Metric column to display (default: f1)")
+    p_list.add_argument(
+        "--limit", type=int, default=25, help="Max number of rows (default: 25)"
+    )
+    p_list.add_argument(
+        "--metric", default="f1", help="Metric column to display (default: f1)"
+    )
     p_list.add_argument("--dataset-id", default=None, help="Filter by dataset_id")
     p_list.add_argument("--rubric-id", default=None, help="Filter by rubric_id")
     p_list.add_argument("--engine", default=None, help="Filter by judge_engine")
@@ -231,10 +256,14 @@ def build_cli() -> argparse.ArgumentParser:
     p_show.set_defaults(func=cmd_show)
 
     p_trend = sub.add_parser("trend", help="Print a simple metric trend over time")
-    p_trend.add_argument("--metric", required=True, help="Metric name (e.g., f1, accuracy, cohen_kappa)")
+    p_trend.add_argument(
+        "--metric", required=True, help="Metric name (e.g., f1, accuracy, cohen_kappa)"
+    )
     p_trend.add_argument("--dataset-id", default=None, help="Filter by dataset_id")
     p_trend.add_argument("--rubric-id", default=None, help="Filter by rubric_id")
-    p_trend.add_argument("--last", type=int, default=20, help="Last N points (default: 20)")
+    p_trend.add_argument(
+        "--last", type=int, default=20, help="Last N points (default: 20)"
+    )
     p_trend.set_defaults(func=cmd_trend)
 
     return p

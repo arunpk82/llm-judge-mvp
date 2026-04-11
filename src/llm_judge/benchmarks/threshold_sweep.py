@@ -11,6 +11,7 @@ This makes the 78-combination sweep fast (~seconds after initial embedding).
 Usage:
     poetry run python -m llm_judge.benchmarks.threshold_sweep --max-cases 500
 """
+
 from __future__ import annotations
 
 import json
@@ -34,6 +35,7 @@ def _split_sentences(text: str) -> list[str]:
 @dataclass
 class SweepCase:
     """Pre-computed similarities for a single case."""
+
     case_id: str
     expected: str  # "pass" or "fail"
     injection_type: str
@@ -46,6 +48,7 @@ class SweepCase:
 @dataclass
 class ThresholdResult:
     """Result for a single threshold combination."""
+
     sim_threshold: float
     ratio_threshold: float
     tp: int = 0
@@ -95,7 +98,9 @@ def compute_similarities(max_cases: int = 500) -> list[SweepCase]:
         response_text = bc.request.candidate_answer
         context_parts = list(bc.request.source_context or [])
         conversation = " ".join(msg.content for msg in bc.request.conversation)
-        context = conversation + ("\n\n" + "\n".join(context_parts) if context_parts else "")
+        context = conversation + (
+            "\n\n" + "\n".join(context_parts) if context_parts else ""
+        )
 
         response_sents = _split_sentences(response_text)
         context_sents = _split_sentences(context)
@@ -113,14 +118,16 @@ def compute_similarities(max_cases: int = 500) -> list[SweepCase]:
             max_sim = provider.max_similarity(r_emb, ctx_embs)
             max_sims.append(round(max_sim, 4))
 
-        cases.append(SweepCase(
-            case_id=bc.case_id,
-            expected=expected,
-            injection_type=bc.metadata.get("injection_type", ""),
-            num_response_sentences=len(response_sents),
-            num_context_sentences=len(context_sents),
-            sentence_max_similarities=max_sims,
-        ))
+        cases.append(
+            SweepCase(
+                case_id=bc.case_id,
+                expected=expected,
+                injection_type=bc.metadata.get("injection_type", ""),
+                num_response_sentences=len(response_sents),
+                num_context_sentences=len(context_sents),
+                sentence_max_similarities=max_sims,
+            )
+        )
 
         count += 1
         if count % 100 == 0:
@@ -140,7 +147,21 @@ def sweep_thresholds(
     """Step 2: Apply every threshold combination post-hoc."""
 
     if sim_thresholds is None:
-        sim_thresholds = [0.20, 0.25, 0.30, 0.35, 0.40, 0.45, 0.50, 0.55, 0.60, 0.65, 0.70, 0.75, 0.80]
+        sim_thresholds = [
+            0.20,
+            0.25,
+            0.30,
+            0.35,
+            0.40,
+            0.45,
+            0.50,
+            0.55,
+            0.60,
+            0.65,
+            0.70,
+            0.75,
+            0.80,
+        ]
     if ratio_thresholds is None:
         ratio_thresholds = [0.10, 0.20, 0.30, 0.40, 0.50, 0.60, 0.70]
 
@@ -206,13 +227,13 @@ def print_report(
         return {
             "count": n,
             "min": sv[0],
-            "p10": sv[int(n*0.1)],
-            "p25": sv[int(n*0.25)],
-            "median": sv[int(n*0.5)],
-            "p75": sv[int(n*0.75)],
-            "p90": sv[int(n*0.9)],
+            "p10": sv[int(n * 0.1)],
+            "p25": sv[int(n * 0.25)],
+            "median": sv[int(n * 0.5)],
+            "p75": sv[int(n * 0.75)],
+            "p90": sv[int(n * 0.9)],
             "max": sv[-1],
-            "mean": round(sum(sv)/n, 4),
+            "mean": round(sum(sv) / n, 4),
         }
 
     print("\n" + "=" * 80)
@@ -221,7 +242,9 @@ def print_report(
 
     # Purpose
     print("\nPURPOSE")
-    print("  Find the optimal (sentence_similarity_threshold, grounding_ratio_threshold)")
+    print(
+        "  Find the optimal (sentence_similarity_threshold, grounding_ratio_threshold)"
+    )
     print("  combination that maximises F1 on CS domain ground truth.")
 
     # Data collected
@@ -240,22 +263,36 @@ def print_report(
 
     # Top 10 results
     print("\nTOP 10 THRESHOLD COMBINATIONS (by F1)")
-    print(f"  {'Sim Thresh':>10} {'Ratio Thresh':>12} {'F1':>8} {'P':>8} {'R':>8} {'Fire%':>8} {'TP':>5} {'FP':>5} {'TN':>5} {'FN':>5}")
-    print(f"  {'-'*10} {'-'*12} {'-'*8} {'-'*8} {'-'*8} {'-'*8} {'-'*5} {'-'*5} {'-'*5} {'-'*5}")
+    print(
+        f"  {'Sim Thresh':>10} {'Ratio Thresh':>12} {'F1':>8} {'P':>8} {'R':>8} {'Fire%':>8} {'TP':>5} {'FP':>5} {'TN':>5} {'FN':>5}"
+    )
+    print(
+        f"  {'-'*10} {'-'*12} {'-'*8} {'-'*8} {'-'*8} {'-'*8} {'-'*5} {'-'*5} {'-'*5} {'-'*5}"
+    )
     for r in results[:10]:
-        print(f"  {r.sim_threshold:>10.2f} {r.ratio_threshold:>12.2f} {r.f1:>8.3f} {r.precision:>8.3f} {r.recall:>8.3f} {r.fire_rate:>7.1%} {r.tp:>5} {r.fp:>5} {r.tn:>5} {r.fn:>5}")
+        print(
+            f"  {r.sim_threshold:>10.2f} {r.ratio_threshold:>12.2f} {r.f1:>8.3f} {r.precision:>8.3f} {r.recall:>8.3f} {r.fire_rate:>7.1%} {r.tp:>5} {r.fp:>5} {r.tn:>5} {r.fn:>5}"
+        )
 
     # Bottom 5 for contrast
     print("\n  WORST 5 (for contrast)")
     for r in results[-5:]:
-        print(f"  {r.sim_threshold:>10.2f} {r.ratio_threshold:>12.2f} {r.f1:>8.3f} {r.precision:>8.3f} {r.recall:>8.3f} {r.fire_rate:>7.1%} {r.tp:>5} {r.fp:>5} {r.tn:>5} {r.fn:>5}")
+        print(
+            f"  {r.sim_threshold:>10.2f} {r.ratio_threshold:>12.2f} {r.f1:>8.3f} {r.precision:>8.3f} {r.recall:>8.3f} {r.fire_rate:>7.1%} {r.tp:>5} {r.fp:>5} {r.tn:>5} {r.fn:>5}"
+        )
 
     # Experiment 1 comparison point
     print("\n  EXPERIMENT 1 COMPARISON (sim=0.50, ratio=0.30)")
-    exp1 = [r for r in results if abs(r.sim_threshold - 0.50) < 0.01 and abs(r.ratio_threshold - 0.30) < 0.01]
+    exp1 = [
+        r
+        for r in results
+        if abs(r.sim_threshold - 0.50) < 0.01 and abs(r.ratio_threshold - 0.30) < 0.01
+    ]
     if exp1:
         r = exp1[0]
-        print(f"  {r.sim_threshold:>10.2f} {r.ratio_threshold:>12.2f} {r.f1:>8.3f} {r.precision:>8.3f} {r.recall:>8.3f} {r.fire_rate:>7.1%} {r.tp:>5} {r.fp:>5} {r.tn:>5} {r.fn:>5}")
+        print(
+            f"  {r.sim_threshold:>10.2f} {r.ratio_threshold:>12.2f} {r.f1:>8.3f} {r.precision:>8.3f} {r.recall:>8.3f} {r.fire_rate:>7.1%} {r.tp:>5} {r.fp:>5} {r.tn:>5} {r.fn:>5}"
+        )
 
     # Best result detail
     print("\nBEST RESULT")
@@ -272,8 +309,12 @@ def print_report(
         e1 = exp1[0]
         print("\n  DELTA FROM EXPERIMENT 1")
         print(f"  F1:        {e1.f1:.3f} \u2192 {best.f1:.3f} ({best.f1 - e1.f1:+.3f})")
-        print(f"  Precision: {e1.precision:.3f} \u2192 {best.precision:.3f} ({best.precision - e1.precision:+.3f})")
-        print(f"  Recall:    {e1.recall:.3f} \u2192 {best.recall:.3f} ({best.recall - e1.recall:+.3f})")
+        print(
+            f"  Precision: {e1.precision:.3f} \u2192 {best.precision:.3f} ({best.precision - e1.precision:+.3f})"
+        )
+        print(
+            f"  Recall:    {e1.recall:.3f} \u2192 {best.recall:.3f} ({best.recall - e1.recall:+.3f})"
+        )
         print(f"  Fire rate: {e1.fire_rate:.1%} \u2192 {best.fire_rate:.1%}")
 
     # Observations
@@ -282,13 +323,19 @@ def print_report(
     # Find precision-recall tradeoff extremes
     high_p = max(results, key=lambda r: r.precision if r.f1 > 0.1 else 0)
     high_r = max(results, key=lambda r: r.recall if r.f1 > 0.1 else 0)
-    print(f"  1. Highest precision (with F1>0.1): sim={high_p.sim_threshold}, ratio={high_p.ratio_threshold} \u2192 P={high_p.precision:.3f} R={high_p.recall:.3f}")
-    print(f"  2. Highest recall    (with F1>0.1): sim={high_r.sim_threshold}, ratio={high_r.ratio_threshold} \u2192 P={high_r.precision:.3f} R={high_r.recall:.3f}")
+    print(
+        f"  1. Highest precision (with F1>0.1): sim={high_p.sim_threshold}, ratio={high_p.ratio_threshold} \u2192 P={high_p.precision:.3f} R={high_p.recall:.3f}"
+    )
+    print(
+        f"  2. Highest recall    (with F1>0.1): sim={high_r.sim_threshold}, ratio={high_r.ratio_threshold} \u2192 P={high_r.precision:.3f} R={high_r.recall:.3f}"
+    )
 
     # Check if pass/fail distributions are separable
     pass_mean = sum(pass_sims) / len(pass_sims) if pass_sims else 0
     fail_mean = sum(fail_sims) / len(fail_sims) if fail_sims else 0
-    print(f"  3. Mean similarity \u2014 pass: {pass_mean:.4f}, fail: {fail_mean:.4f}, gap: {pass_mean - fail_mean:.4f}")
+    print(
+        f"  3. Mean similarity \u2014 pass: {pass_mean:.4f}, fail: {fail_mean:.4f}, gap: {pass_mean - fail_mean:.4f}"
+    )
 
     print(f"\n{'=' * 80}")
 
@@ -316,10 +363,16 @@ def print_report(
         },
         "all_results": [
             {
-                "sim": r.sim_threshold, "ratio": r.ratio_threshold,
-                "f1": round(r.f1, 4), "p": round(r.precision, 4),
-                "r": round(r.recall, 4), "fire": round(r.fire_rate, 4),
-                "tp": r.tp, "fp": r.fp, "tn": r.tn, "fn": r.fn,
+                "sim": r.sim_threshold,
+                "ratio": r.ratio_threshold,
+                "f1": round(r.f1, 4),
+                "p": round(r.precision, 4),
+                "r": round(r.recall, 4),
+                "fire": round(r.fire_rate, 4),
+                "tp": r.tp,
+                "fp": r.fp,
+                "tn": r.tn,
+                "fn": r.fn,
             }
             for r in results
         ],
@@ -333,6 +386,7 @@ def print_report(
 
 def main() -> None:
     import argparse
+
     parser = argparse.ArgumentParser(description="Experiment 2: Threshold Sweep")
     parser.add_argument("--max-cases", type=int, default=500)
     args = parser.parse_args()

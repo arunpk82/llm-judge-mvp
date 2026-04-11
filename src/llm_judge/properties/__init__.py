@@ -10,6 +10,7 @@ Usage:
     embeddings = provider.encode(["sentence one", "sentence two"])
     similarity = provider.cosine_similarity(emb1, emb2)
 """
+
 from __future__ import annotations
 
 import logging
@@ -43,7 +44,9 @@ class EmbeddingProvider(ABC):
         return dot / (norm_a * norm_b)
 
     def max_similarity(
-        self, query: list[float], candidates: list[list[float]],
+        self,
+        query: list[float],
+        candidates: list[list[float]],
     ) -> float:
         """Find maximum cosine similarity between query and candidates."""
         if not candidates:
@@ -62,6 +65,7 @@ class SentenceTransformerProvider(EmbeddingProvider):
         if self._model is None:
             try:
                 from sentence_transformers import SentenceTransformer
+
                 self._model = SentenceTransformer(self._model_name)
                 logger.info(
                     "embedding.model_loaded",
@@ -98,13 +102,17 @@ class TokenOverlapFallback(EmbeddingProvider):
         self._dim = dimension
 
     def encode(self, sentences: list[str]) -> list[list[float]]:
-        logger.warning("embedding.using_fallback", extra={
-            "reason": "sentence-transformers not available",
-        })
+        logger.warning(
+            "embedding.using_fallback",
+            extra={
+                "reason": "sentence-transformers not available",
+            },
+        )
         result = []
         for s in sentences:
             tokens = {
-                w.lower().strip(".,!?;:\"'()[]{}") for w in s.split()
+                w.lower().strip(".,!?;:\"'()[]{}")
+                for w in s.split()
                 if len(w.strip(".,!?;:\"'()[]{}")) > 2
             }
             vec = [0.0] * self._dim

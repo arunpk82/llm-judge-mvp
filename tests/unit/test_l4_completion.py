@@ -4,6 +4,7 @@ L4 Completion Tests — Steps 3, 6, 9, 10.
 Tests prompt versioning, hallucination detection, test case generation,
 and feedback loop analysis.
 """
+
 from __future__ import annotations
 
 import json
@@ -15,6 +16,7 @@ import pytest
 # =====================================================================
 # Step 3: Prompt Versioning
 # =====================================================================
+
 
 class TestPromptVersioning:
     """Versioned adjudication prompts."""
@@ -91,6 +93,7 @@ class TestPromptVersioning:
 # Step 6: Hallucination Detection
 # =====================================================================
 
+
 class TestHallucinationDetection:
     """Detect ungrounded claims and fabricated citations."""
 
@@ -162,6 +165,7 @@ class TestHallucinationDetection:
 # Step 9: Test Case Generation
 # =====================================================================
 
+
 class TestCaseGeneration:
     """Generate evaluation test cases from templates and documents."""
 
@@ -227,7 +231,9 @@ class TestCaseGeneration:
 
         cases = generate_template_cases(max_per_category=3)
         ds_dir = export_generated_dataset(
-            cases, dataset_id="test_gen", output_dir=tmp_path,
+            cases,
+            dataset_id="test_gen",
+            output_dir=tmp_path,
         )
 
         assert (ds_dir / "data.jsonl").exists()
@@ -246,6 +252,7 @@ class TestCaseGeneration:
 # Step 10: Feedback Loop
 # =====================================================================
 
+
 class TestFeedbackLoop:
     """Analyze LLM-human disagreements and generate recommendations."""
 
@@ -255,22 +262,52 @@ class TestFeedbackLoop:
                 "state": "resolved",
                 "llm_decision": "pass",
                 "human_decision": "pass",
-                "llm_scores": {"relevance": 4, "clarity": 4, "correctness": 4, "tone": 4},
-                "human_scores": {"relevance": 4, "clarity": 3, "correctness": 5, "tone": 4},
+                "llm_scores": {
+                    "relevance": 4,
+                    "clarity": 4,
+                    "correctness": 4,
+                    "tone": 4,
+                },
+                "human_scores": {
+                    "relevance": 4,
+                    "clarity": 3,
+                    "correctness": 5,
+                    "tone": 4,
+                },
             },
             {
                 "state": "resolved",
                 "llm_decision": "pass",
                 "human_decision": "fail",  # disagreement
-                "llm_scores": {"relevance": 4, "clarity": 4, "correctness": 4, "tone": 4},
-                "human_scores": {"relevance": 2, "clarity": 2, "correctness": 2, "tone": 3},
+                "llm_scores": {
+                    "relevance": 4,
+                    "clarity": 4,
+                    "correctness": 4,
+                    "tone": 4,
+                },
+                "human_scores": {
+                    "relevance": 2,
+                    "clarity": 2,
+                    "correctness": 2,
+                    "tone": 3,
+                },
             },
             {
                 "state": "resolved",
                 "llm_decision": "pass",
                 "human_decision": "pass",
-                "llm_scores": {"relevance": 5, "clarity": 5, "correctness": 5, "tone": 5},
-                "human_scores": {"relevance": 3, "clarity": 3, "correctness": 4, "tone": 3},
+                "llm_scores": {
+                    "relevance": 5,
+                    "clarity": 5,
+                    "correctness": 5,
+                    "tone": 5,
+                },
+                "human_scores": {
+                    "relevance": 3,
+                    "clarity": 3,
+                    "correctness": 4,
+                    "tone": 3,
+                },
             },
             {
                 "state": "pending",  # not resolved — should be excluded
@@ -306,7 +343,8 @@ class TestFeedbackLoop:
 
         # With these test cases, LLM is generally lenient (scores higher than human)
         lenient_dims = [
-            dim for dim, df in report.dimension_feedback.items()
+            dim
+            for dim, df in report.dimension_feedback.items()
             if df.bias_direction == "lenient"
         ]
         assert len(lenient_dims) > 0
@@ -327,7 +365,10 @@ class TestFeedbackLoop:
         assert len(report.recommendations) > 0  # should recommend getting data
 
     def test_save_report(self, tmp_path: Path) -> None:
-        from llm_judge.calibration.feedback import analyze_feedback, save_feedback_report
+        from llm_judge.calibration.feedback import (
+            analyze_feedback,
+            save_feedback_report,
+        )
 
         data = self._make_adjudication_data()
         report = analyze_feedback(adjudication_data=data)

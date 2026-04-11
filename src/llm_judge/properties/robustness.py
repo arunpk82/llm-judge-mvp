@@ -10,6 +10,7 @@ golden datasets, not per-response.
 5.6 Edge Case Handling — empty/contradictory/unusual inputs
 5.7 Reproducibility — same input → same output (temperature=0)
 """
+
 from __future__ import annotations
 
 import logging
@@ -27,9 +28,11 @@ logger = logging.getLogger(__name__)
 # 5.3 Self-Preference Bias
 # =====================================================================
 
+
 @dataclass
 class SelfPreferenceResult:
     """Result of self-preference bias check."""
+
     tested: int
     llm_written_avg_score: float
     human_written_avg_score: float
@@ -54,8 +57,11 @@ def check_self_preference_bias(
     """
     if len(llm_written_cases) < 3 or len(human_written_cases) < 3:
         return SelfPreferenceResult(
-            tested=0, llm_written_avg_score=0, human_written_avg_score=0,
-            preference_delta=0, status="INSUFFICIENT_DATA",
+            tested=0,
+            llm_written_avg_score=0,
+            human_written_avg_score=0,
+            preference_delta=0,
+            status="INSUFFICIENT_DATA",
         )
 
     llm_scores: list[float] = []
@@ -78,8 +84,10 @@ def check_self_preference_bias(
     if len(llm_scores) < 3 or len(human_scores) < 3:
         return SelfPreferenceResult(
             tested=len(llm_scores) + len(human_scores),
-            llm_written_avg_score=0, human_written_avg_score=0,
-            preference_delta=0, status="INSUFFICIENT_DATA",
+            llm_written_avg_score=0,
+            human_written_avg_score=0,
+            preference_delta=0,
+            status="INSUFFICIENT_DATA",
         )
 
     llm_avg = statistics.mean(llm_scores)
@@ -106,9 +114,11 @@ def check_self_preference_bias(
 # 5.4 Consistency
 # =====================================================================
 
+
 @dataclass
 class ConsistencyResult:
     """Result of consistency (paraphrase stability) check."""
+
     tested: int
     consistent: int
     inconsistent: int
@@ -131,8 +141,11 @@ def check_consistency(
     """
     if len(paraphrase_pairs) < 3:
         return ConsistencyResult(
-            tested=0, consistent=0, inconsistent=0,
-            avg_score_delta=0, status="INSUFFICIENT_DATA",
+            tested=0,
+            consistent=0,
+            inconsistent=0,
+            avg_score_delta=0,
+            status="INSUFFICIENT_DATA",
         )
 
     consistent = 0
@@ -155,8 +168,11 @@ def check_consistency(
 
     if not deltas:
         return ConsistencyResult(
-            tested=0, consistent=0, inconsistent=0,
-            avg_score_delta=0, status="INSUFFICIENT_DATA",
+            tested=0,
+            consistent=0,
+            inconsistent=0,
+            avg_score_delta=0,
+            status="INSUFFICIENT_DATA",
         )
 
     avg_delta = statistics.mean(deltas)
@@ -168,8 +184,12 @@ def check_consistency(
         flags.append(f"consistency_failures:{inconsistent}/{total}")
 
     return ConsistencyResult(
-        tested=total, consistent=consistent, inconsistent=inconsistent,
-        avg_score_delta=round(avg_delta, 2), status=status, flags=flags,
+        tested=total,
+        consistent=consistent,
+        inconsistent=inconsistent,
+        avg_score_delta=round(avg_delta, 2),
+        status=status,
+        flags=flags,
     )
 
 
@@ -177,9 +197,11 @@ def check_consistency(
 # 5.5 Adversarial Resilience
 # =====================================================================
 
+
 @dataclass
 class AdversarialResult:
     """Result of adversarial resilience check."""
+
     tested: int
     passed: int
     failed: int
@@ -203,7 +225,10 @@ def check_adversarial_resilience(
     """
     if len(adversarial_cases) < 3:
         return AdversarialResult(
-            tested=0, passed=0, failed=0, pass_rate=0,
+            tested=0,
+            passed=0,
+            failed=0,
+            pass_rate=0,
             status="INSUFFICIENT_DATA",
         )
 
@@ -232,9 +257,13 @@ def check_adversarial_resilience(
         flags.append(f"adversarial_failures:{failed}/{total}")
 
     return AdversarialResult(
-        tested=total, passed=passed, failed=failed,
-        pass_rate=round(rate, 4), failed_cases=failed_ids[:10],
-        status=status, flags=flags,
+        tested=total,
+        passed=passed,
+        failed=failed,
+        pass_rate=round(rate, 4),
+        failed_cases=failed_ids[:10],
+        status=status,
+        flags=flags,
     )
 
 
@@ -242,9 +271,11 @@ def check_adversarial_resilience(
 # 5.6 Edge Case Handling
 # =====================================================================
 
+
 @dataclass
 class EdgeCaseResult:
     """Result of edge case handling check."""
+
     tested: int
     handled_gracefully: int
     crashed: int
@@ -273,7 +304,9 @@ def check_edge_cases(
         },
         {
             "name": "single_word_response",
-            "conversation": [{"role": "user", "content": "What is your return policy?"}],
+            "conversation": [
+                {"role": "user", "content": "What is your return policy?"}
+            ],
             "candidate_answer": "Yes.",
         },
         {
@@ -312,13 +345,27 @@ def check_edge_cases(
             case_name = str(ec["name"])
             if resp.decision in ("pass", "fail") and 1.0 <= resp.overall_score <= 5.0:
                 handled += 1
-                details.append({"case": case_name, "result": "handled", "decision": resp.decision})
+                details.append(
+                    {"case": case_name, "result": "handled", "decision": resp.decision}
+                )
             else:
                 unexpected += 1
-                details.append({"case": case_name, "result": "unexpected", "decision": resp.decision})
+                details.append(
+                    {
+                        "case": case_name,
+                        "result": "unexpected",
+                        "decision": resp.decision,
+                    }
+                )
         except Exception as e:
             crashed += 1
-            details.append({"case": str(ec.get("name", "unknown")), "result": "crashed", "error": str(e)[:60]})
+            details.append(
+                {
+                    "case": str(ec.get("name", "unknown")),
+                    "result": "crashed",
+                    "error": str(e)[:60],
+                }
+            )
 
     total = handled + crashed + unexpected
     if crashed > 0:
@@ -326,9 +373,13 @@ def check_edge_cases(
     status = "PASS" if crashed == 0 and unexpected == 0 else "FAIL"
 
     return EdgeCaseResult(
-        tested=total, handled_gracefully=handled,
-        crashed=crashed, unexpected_results=unexpected,
-        details=details, status=status, flags=flags,
+        tested=total,
+        handled_gracefully=handled,
+        crashed=crashed,
+        unexpected_results=unexpected,
+        details=details,
+        status=status,
+        flags=flags,
     )
 
 
@@ -336,9 +387,11 @@ def check_edge_cases(
 # 5.7 Reproducibility
 # =====================================================================
 
+
 @dataclass
 class ReproducibilityResult:
     """Result of reproducibility check."""
+
     tested: int
     identical: int
     different: int
@@ -364,8 +417,11 @@ def check_reproducibility(
 
     if len(sample) < 3:
         return ReproducibilityResult(
-            tested=0, identical=0, different=0,
-            identity_rate=0, status="INSUFFICIENT_DATA",
+            tested=0,
+            identical=0,
+            different=0,
+            identity_rate=0,
+            status="INSUFFICIENT_DATA",
         )
 
     identical = 0
@@ -390,8 +446,11 @@ def check_reproducibility(
     total = identical + different
     if total == 0:
         return ReproducibilityResult(
-            tested=0, identical=0, different=0,
-            identity_rate=0, status="INSUFFICIENT_DATA",
+            tested=0,
+            identical=0,
+            different=0,
+            identity_rate=0,
+            status="INSUFFICIENT_DATA",
         )
 
     rate = identical / total
@@ -402,15 +461,20 @@ def check_reproducibility(
         flags.append(f"reproducibility_failures:{different}/{total}")
 
     return ReproducibilityResult(
-        tested=total, identical=identical, different=different,
-        identity_rate=round(rate, 4), score_deltas=deltas,
-        status=status, flags=flags,
+        tested=total,
+        identical=identical,
+        different=different,
+        identity_rate=round(rate, 4),
+        score_deltas=deltas,
+        status=status,
+        flags=flags,
     )
 
 
 # =====================================================================
 # Helper
 # =====================================================================
+
 
 def _evaluate_case(judge: JudgeEngine, case: dict[str, Any]) -> Any:
     """Evaluate a single case dict through the judge."""

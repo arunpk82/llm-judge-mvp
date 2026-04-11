@@ -7,6 +7,7 @@ Advanced Faithfulness Properties (Category 1, Properties 1.4–1.5).
 Both use embedding distance for semantic analysis. Falls back to
 token overlap when sentence-transformers is not installed.
 """
+
 from __future__ import annotations
 
 import logging
@@ -29,6 +30,7 @@ _CITATION_PATTERNS = [
 @dataclass
 class AttributionResult:
     """Result of attribution accuracy check (Property 1.4)."""
+
     case_id: str
     claims_checked: int
     claims_supported: int
@@ -47,6 +49,7 @@ class AttributionResult:
 @dataclass
 class FabricationResult:
     """Result of fabrication detection (Property 1.5)."""
+
     case_id: str
     sentences_checked: int
     fabrication_suspects: int
@@ -86,7 +89,8 @@ def check_attribution_accuracy(
     from llm_judge.properties import EmbeddingProvider, get_embedding_provider
 
     provider: EmbeddingProvider = (
-        embedding_provider if isinstance(embedding_provider, EmbeddingProvider)
+        embedding_provider
+        if isinstance(embedding_provider, EmbeddingProvider)
         else get_embedding_provider()
     )
 
@@ -123,8 +127,8 @@ def check_attribution_accuracy(
     # Embed everything
     all_texts = cited_sentences + context_sentences
     all_embeddings = provider.encode(all_texts)
-    claim_embeddings = all_embeddings[:len(cited_sentences)]
-    context_embeddings = all_embeddings[len(cited_sentences):]
+    claim_embeddings = all_embeddings[: len(cited_sentences)]
+    context_embeddings = all_embeddings[len(cited_sentences) :]
 
     supported = 0
     contradicted = 0
@@ -177,7 +181,8 @@ def check_fabrication(
     from llm_judge.properties import EmbeddingProvider, get_embedding_provider
 
     provider: EmbeddingProvider = (
-        embedding_provider if isinstance(embedding_provider, EmbeddingProvider)
+        embedding_provider
+        if isinstance(embedding_provider, EmbeddingProvider)
         else get_embedding_provider()
     )
 
@@ -203,8 +208,8 @@ def check_fabrication(
 
     all_texts = response_sentences + context_sentences
     all_embeddings = provider.encode(all_texts)
-    resp_embeddings = all_embeddings[:len(response_sentences)]
-    ctx_embeddings = all_embeddings[len(response_sentences):]
+    resp_embeddings = all_embeddings[: len(response_sentences)]
+    ctx_embeddings = all_embeddings[len(response_sentences) :]
 
     suspects = 0
     low_sim_sentences: list[str] = []

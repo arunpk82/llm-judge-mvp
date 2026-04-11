@@ -53,6 +53,7 @@ async def on_shutdown() -> None:
 # Health endpoints (EPIC-D2)
 # =====================================================================
 
+
 @app.get("/health")
 async def health() -> dict[str, str]:
     """Liveness probe — always returns 200 if the process is running."""

@@ -4,6 +4,7 @@ L4 Integration Tests — Hybrid Adjudication Engine.
 Tests judge registry, calibration pipeline, trust gate, bias detection,
 confidence routing, and human adjudication queue.
 """
+
 from __future__ import annotations
 
 import json
@@ -20,10 +21,13 @@ from llm_judge.schemas import PredictRequest, PredictResponse
 # Mock judge for testing (no API calls)
 # =====================================================================
 
+
 class MockLLMJudge(JudgeEngine):
     """Deterministic mock that returns configurable responses."""
 
-    def __init__(self, decision: Literal["pass", "fail"] = "pass", confidence: float = 0.8) -> None:
+    def __init__(
+        self, decision: Literal["pass", "fail"] = "pass", confidence: float = 0.8
+    ) -> None:
         self._decision = decision
         self._confidence = confidence
         self._call_count = 0
@@ -73,6 +77,7 @@ def _make_golden_case(case_id: str, decision: str = "pass") -> dict[str, Any]:
 # EPIC 7.1: Judge Registry
 # =====================================================================
 
+
 class TestJudgeRegistry:
     """Judge registration and configuration."""
 
@@ -113,6 +118,7 @@ class TestJudgeRegistry:
 # EPIC 7.1: Calibration Pipeline
 # =====================================================================
 
+
 class TestCalibrationPipeline:
     """Calibration against golden dataset."""
 
@@ -125,10 +131,15 @@ class TestCalibrationPipeline:
 
         judge = MockLLMJudge(decision="pass", confidence=0.9)
         meta = JudgeMeta(
-            judge_id="test-judge", provider="mock", model="mock-v1",
-            prompt_version="v1", domain="general", status="registered",
+            judge_id="test-judge",
+            provider="mock",
+            model="mock-v1",
+            prompt_version="v1",
+            domain="general",
+            status="registered",
             calibration_config=JudgeCalibrationConfig(
-                min_accuracy=0.50, min_dimension_accuracy=0.40,
+                min_accuracy=0.50,
+                min_dimension_accuracy=0.40,
             ),
         )
         cases = [_make_golden_case(f"c{i}", "pass") for i in range(10)]
@@ -147,8 +158,12 @@ class TestCalibrationPipeline:
 
         judge = MockLLMJudge(decision="fail", confidence=0.9)  # always "fail"
         meta = JudgeMeta(
-            judge_id="bad-judge", provider="mock", model="mock-v1",
-            prompt_version="v1", domain="general", status="registered",
+            judge_id="bad-judge",
+            provider="mock",
+            model="mock-v1",
+            prompt_version="v1",
+            domain="general",
+            status="registered",
             calibration_config=JudgeCalibrationConfig(min_accuracy=0.80),
         )
         # All golden cases expect "pass" — judge says "fail"
@@ -169,8 +184,12 @@ class TestCalibrationPipeline:
 
         judge = MockLLMJudge()
         meta = JudgeMeta(
-            judge_id="test-ser", provider="mock", model="mock",
-            prompt_version="v1", domain="general", status="registered",
+            judge_id="test-ser",
+            provider="mock",
+            model="mock",
+            prompt_version="v1",
+            domain="general",
+            status="registered",
             calibration_config=JudgeCalibrationConfig(min_accuracy=0.50),
         )
         cases = [_make_golden_case("c1", "pass")]
@@ -188,6 +207,7 @@ class TestCalibrationPipeline:
 # EPIC 7.1: Trust Gate
 # =====================================================================
 
+
 class TestTrustGate:
     """Block uncalibrated judges from production."""
 
@@ -195,7 +215,8 @@ class TestTrustGate:
         from llm_judge.calibration import check_trust_gate
 
         allowed, reason = check_trust_gate(
-            judge_id="anything", engine_choice="deterministic",
+            judge_id="anything",
+            engine_choice="deterministic",
         )
         assert allowed
 
@@ -204,14 +225,19 @@ class TestTrustGate:
 
         # Create minimal registry
         reg = tmp_path / "registry.yaml"
-        reg.write_text(yaml.dump({
-            "schema_version": "1",
-            "judges": {},
-            "trust_gate": {"enforce": True},
-        }))
+        reg.write_text(
+            yaml.dump(
+                {
+                    "schema_version": "1",
+                    "judges": {},
+                    "trust_gate": {"enforce": True},
+                }
+            )
+        )
 
         allowed, reason = check_trust_gate(
-            judge_id="unknown-judge", engine_choice="llm",
+            judge_id="unknown-judge",
+            engine_choice="llm",
             registry_path=reg,
         )
         assert not allowed
@@ -226,18 +252,24 @@ class TestTrustGate:
 
         # Create registry with calibrated judge
         reg = tmp_path / "registry.yaml"
-        reg.write_text(yaml.dump({
-            "schema_version": "1",
-            "judges": {
-                "test-judge": {
-                    "provider": "mock", "model": "mock",
-                    "prompt_version": "v1", "domain": "general",
-                    "status": "calibrated",
-                    "calibration": {"min_accuracy": 0.50},
-                },
-            },
-            "trust_gate": {"enforce": True},
-        }))
+        reg.write_text(
+            yaml.dump(
+                {
+                    "schema_version": "1",
+                    "judges": {
+                        "test-judge": {
+                            "provider": "mock",
+                            "model": "mock",
+                            "prompt_version": "v1",
+                            "domain": "general",
+                            "status": "calibrated",
+                            "calibration": {"min_accuracy": 0.50},
+                        },
+                    },
+                    "trust_gate": {"enforce": True},
+                }
+            )
+        )
 
         # Save passing calibration result
         cal_dir = tmp_path / "calibration"
@@ -253,8 +285,10 @@ class TestTrustGate:
         save_calibration_result(result, calibration_dir=cal_dir)
 
         allowed, reason = check_trust_gate(
-            judge_id="test-judge", engine_choice="llm",
-            registry_path=reg, calibration_dir=cal_dir,
+            judge_id="test-judge",
+            engine_choice="llm",
+            registry_path=reg,
+            calibration_dir=cal_dir,
         )
         assert allowed
 
@@ -267,7 +301,8 @@ class TestTrustGate:
         # In real usage, the registry would have a calibrated judge
         with pytest.raises(RuntimeError, match="Trust gate blocked"):
             CalibratedJudge(
-                judge, "nonexistent-judge",
+                judge,
+                "nonexistent-judge",
                 registry_path=Path("/nonexistent/registry.yaml"),
             )
 
@@ -275,6 +310,7 @@ class TestTrustGate:
 # =====================================================================
 # EPIC 7.2: Bias Detection
 # =====================================================================
+
 
 class TestBiasDetection:
     """Position and length bias detection."""
@@ -303,8 +339,7 @@ class TestBiasDetection:
         from llm_judge.calibration.bias import check_length_bias
 
         cases = [
-            {"case_id": f"c{i}", "candidate_answer": "x" * (10 + i)}
-            for i in range(10)
+            {"case_id": f"c{i}", "candidate_answer": "x" * (10 + i)} for i in range(10)
         ]
         # Scores don't correlate with length
         judgments = [
@@ -323,6 +358,7 @@ class TestBiasDetection:
         debiased = DebiasedJudge(judge, n_evaluations=3)
 
         from llm_judge.schemas import Message
+
         req = PredictRequest(
             conversation=[Message(role="user", content="Hi")],
             candidate_answer="Hello",
@@ -336,6 +372,7 @@ class TestBiasDetection:
 # =====================================================================
 # EPIC 7.3: Human Adjudication
 # =====================================================================
+
 
 class TestHumanAdjudication:
     """Confidence routing and adjudication queue."""
@@ -357,7 +394,8 @@ class TestHumanAdjudication:
         from llm_judge.calibration.adjudication import should_route_to_human
 
         route, reason = should_route_to_human(
-            confidence=0.8, threshold=0.6,
+            confidence=0.8,
+            threshold=0.6,
             flags=["position_bias_disagreement:2/3"],
         )
         assert route
@@ -373,8 +411,11 @@ class TestHumanAdjudication:
 
         # Enqueue
         case = enqueue_case(
-            case_id="c1", run_id="run-1", rubric_id="chat_quality",
-            llm_decision="pass", llm_confidence=0.4,
+            case_id="c1",
+            run_id="run-1",
+            rubric_id="chat_quality",
+            llm_decision="pass",
+            llm_confidence=0.4,
             llm_scores={"relevance": 4, "clarity": 3},
             conversation=[{"role": "user", "content": "Hi"}],
             candidate_answer="Hello",
@@ -407,18 +448,27 @@ class TestHumanAdjudication:
 
         queue = tmp_path / "queue.jsonl"
         enqueue_case(
-            case_id="c2", run_id="r", rubric_id="r",
-            llm_decision="pass", llm_confidence=0.3,
-            llm_scores={}, conversation=[], candidate_answer="x",
+            case_id="c2",
+            run_id="r",
+            rubric_id="r",
+            llm_decision="pass",
+            llm_confidence=0.3,
+            llm_scores={},
+            conversation=[],
+            candidate_answer="x",
             queue_path=queue,
         )
         resolve_case(
-            case_id="c2", human_decision="pass", queue_path=queue,
+            case_id="c2",
+            human_decision="pass",
+            queue_path=queue,
         )
 
         with pytest.raises(ValueError, match="already resolved"):
             resolve_case(
-                case_id="c2", human_decision="fail", queue_path=queue,
+                case_id="c2",
+                human_decision="fail",
+                queue_path=queue,
             )
 
     def test_queue_stats(self, tmp_path: Path) -> None:
@@ -430,19 +480,31 @@ class TestHumanAdjudication:
 
         queue = tmp_path / "queue.jsonl"
         enqueue_case(
-            case_id="s1", run_id="r", rubric_id="r",
-            llm_decision="pass", llm_confidence=0.3,
-            llm_scores={}, conversation=[], candidate_answer="x",
+            case_id="s1",
+            run_id="r",
+            rubric_id="r",
+            llm_decision="pass",
+            llm_confidence=0.3,
+            llm_scores={},
+            conversation=[],
+            candidate_answer="x",
             queue_path=queue,
         )
         enqueue_case(
-            case_id="s2", run_id="r", rubric_id="r",
-            llm_decision="fail", llm_confidence=0.4,
-            llm_scores={}, conversation=[], candidate_answer="y",
+            case_id="s2",
+            run_id="r",
+            rubric_id="r",
+            llm_decision="fail",
+            llm_confidence=0.4,
+            llm_scores={},
+            conversation=[],
+            candidate_answer="y",
             queue_path=queue,
         )
         resolve_case(
-            case_id="s1", human_decision="pass", queue_path=queue,
+            case_id="s1",
+            human_decision="pass",
+            queue_path=queue,
         )
 
         stats = get_queue_stats(queue_path=queue)

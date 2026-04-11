@@ -8,6 +8,7 @@ Usage:
     python -m llm_judge.benchmarks.run_all --max-cases 100       # quick test
     python -m llm_judge.benchmarks.run_all --output-dir reports/benchmarks
 """
+
 from __future__ import annotations
 
 import argparse
@@ -35,47 +36,68 @@ def _get_available_adapters(data_root: Path) -> dict[str, BenchmarkAdapter]:
     halueval_dir = data_root / "halueval"
     if any((halueval_dir / f).exists() for f in ["qa_data.json", "general_data.json"]):
         from llm_judge.benchmarks.halueval import HaluEvalAdapter
+
         adapters["halueval"] = HaluEvalAdapter(data_dir=halueval_dir)
 
     # IFEval
     ifeval_dir = data_root / "ifeval"
     if any((ifeval_dir / f).exists() for f in ["ifeval.jsonl", "input_data.jsonl"]):
         from llm_judge.benchmarks.ifeval import IFEvalAdapter
+
         adapters["ifeval"] = IFEvalAdapter(data_dir=ifeval_dir)
 
     # ToxiGen
     toxigen_dir = data_root / "toxigen"
-    if any((toxigen_dir / f).exists() for f in
-           ["toxigen_data.jsonl", "toxigen.jsonl", "data.jsonl",
-            "toxigen_data.json", "toxigen.csv", "data.csv"]):
+    if any(
+        (toxigen_dir / f).exists()
+        for f in [
+            "toxigen_data.jsonl",
+            "toxigen.jsonl",
+            "data.jsonl",
+            "toxigen_data.json",
+            "toxigen.csv",
+            "data.csv",
+        ]
+    ):
         from llm_judge.benchmarks.toxigen import ToxiGenAdapter
+
         adapters["toxigen"] = ToxiGenAdapter(data_dir=toxigen_dir)
 
     # FaithDial
     faithdial_dir = data_root / "faithdial"
-    if any((faithdial_dir / f).exists() for f in
-           ["test.json", "test.jsonl", "faithdial_test.json", "data.json"]):
+    if any(
+        (faithdial_dir / f).exists()
+        for f in ["test.json", "test.jsonl", "faithdial_test.json", "data.json"]
+    ):
         from llm_judge.benchmarks.faithdial import FaithDialAdapter
+
         adapters["faithdial"] = FaithDialAdapter(data_dir=faithdial_dir)
 
     # Jigsaw / Civil Comments
     jigsaw_dir = data_root / "jigsaw"
-    if any((jigsaw_dir / f).exists() for f in
-           ["train.csv", "all_data.csv", "test.csv", "civil_comments.csv"]):
+    if any(
+        (jigsaw_dir / f).exists()
+        for f in ["train.csv", "all_data.csv", "test.csv", "civil_comments.csv"]
+    ):
         from llm_judge.benchmarks.jigsaw import JigsawAdapter
+
         adapters["jigsaw"] = JigsawAdapter(data_dir=jigsaw_dir)
 
     # FEVER
     fever_dir = data_root / "fever"
-    if any((fever_dir / f).exists() for f in
-           ["paper_test.jsonl", "test.jsonl", "dev.jsonl", "paper_dev.jsonl"]):
+    if any(
+        (fever_dir / f).exists()
+        for f in ["paper_test.jsonl", "test.jsonl", "dev.jsonl", "paper_dev.jsonl"]
+    ):
         from llm_judge.benchmarks.fever import FEVERAdapter
+
         adapters["fever"] = FEVERAdapter(data_dir=fever_dir)
 
     # Master Ground Truth (internal — all deterministic properties)
     master_dir = data_root / "master_ground_truth"
     if (master_dir / "ground_truth.jsonl").exists():
         from llm_judge.benchmarks.master_gt import MasterGroundTruthAdapter
+
         adapters["master"] = MasterGroundTruthAdapter(data_dir=master_dir)
 
     return adapters
@@ -83,23 +105,53 @@ def _get_available_adapters(data_root: Path) -> dict[str, BenchmarkAdapter]:
 
 def main() -> None:
     parser = argparse.ArgumentParser(description="Run industry benchmark validation")
-    parser.add_argument("--benchmark", type=str, default=None,
-                        help="Run a single benchmark (ragtruth, halueval, ifeval, toxigen)")
-    parser.add_argument("--max-cases", type=int, default=None,
-                        help="Limit cases per benchmark (for quick tests)")
-    parser.add_argument("--split", type=str, default="test",
-                        help="Dataset split to evaluate (default: test)")
-    parser.add_argument("--data-dir", type=str, default="datasets/benchmarks",
-                        help="Root directory for benchmark datasets")
-    parser.add_argument("--output-dir", type=str, default="experiments",
-                        help="Directory for output reports")
-    parser.add_argument("--skip-embeddings", action="store_true",
-                        help="Skip embedding-based checks (1.4, 1.5) for faster runs")
-    parser.add_argument("--with-llm", action="store_true",
-                        help="Include Cat 2 LLM-based evaluation (requires GEMINI_API_KEY)")
-    parser.add_argument("--gate2", type=str, default="none",
-                        choices=["none", "ambiguous", "fail", "ambiguous+fail", "all"],
-                        help="Gate 2 routing for Property 1.1: which cases to send to Gemini")
+    parser.add_argument(
+        "--benchmark",
+        type=str,
+        default=None,
+        help="Run a single benchmark (ragtruth, halueval, ifeval, toxigen)",
+    )
+    parser.add_argument(
+        "--max-cases",
+        type=int,
+        default=None,
+        help="Limit cases per benchmark (for quick tests)",
+    )
+    parser.add_argument(
+        "--split",
+        type=str,
+        default="test",
+        help="Dataset split to evaluate (default: test)",
+    )
+    parser.add_argument(
+        "--data-dir",
+        type=str,
+        default="datasets/benchmarks",
+        help="Root directory for benchmark datasets",
+    )
+    parser.add_argument(
+        "--output-dir",
+        type=str,
+        default="experiments",
+        help="Directory for output reports",
+    )
+    parser.add_argument(
+        "--skip-embeddings",
+        action="store_true",
+        help="Skip embedding-based checks (1.4, 1.5) for faster runs",
+    )
+    parser.add_argument(
+        "--with-llm",
+        action="store_true",
+        help="Include Cat 2 LLM-based evaluation (requires GEMINI_API_KEY)",
+    )
+    parser.add_argument(
+        "--gate2",
+        type=str,
+        default="none",
+        choices=["none", "ambiguous", "fail", "ambiguous+fail", "all"],
+        help="Gate 2 routing for Property 1.1: which cases to send to Gemini",
+    )
     args = parser.parse_args()
 
     data_root = Path(args.data_dir)
@@ -140,8 +192,11 @@ def main() -> None:
 
         # Run
         result = run_benchmark(
-            adapter, split=args.split, max_cases=args.max_cases,
-            skip_embeddings=args.skip_embeddings, with_llm=args.with_llm,
+            adapter,
+            split=args.split,
+            max_cases=args.max_cases,
+            skip_embeddings=args.skip_embeddings,
+            with_llm=args.with_llm,
             gate2_routing=args.gate2,
         )
 
@@ -169,8 +224,10 @@ def main() -> None:
         print(f"{'=' * 70}")
         for name, report in all_reports.items():
             rl = report["response_level"]
-            print(f"  {name}: F1={rl['f1']:.3f} P={rl['precision']:.3f} "
-                  f"R={rl['recall']:.3f} (n={rl['total']})")
+            print(
+                f"  {name}: F1={rl['f1']:.3f} P={rl['precision']:.3f} "
+                f"R={rl['recall']:.3f} (n={rl['total']})"
+            )
 
         # Merge per-property results across all benchmarks
         print("\n  Per-property (merged):")
@@ -187,8 +244,10 @@ def main() -> None:
 
         for pid in sorted(all_properties.keys()):
             pm = all_properties[pid]
-            print(f"    Property {pid}: F1={pm['f1']:.3f} P={pm['precision']:.3f} "
-                  f"R={pm['recall']:.3f}")
+            print(
+                f"    Property {pid}: F1={pm['f1']:.3f} P={pm['precision']:.3f} "
+                f"R={pm['recall']:.3f}"
+            )
 
     # Save combined summary
     summary_path = output_dir / "benchmark_summary.json"

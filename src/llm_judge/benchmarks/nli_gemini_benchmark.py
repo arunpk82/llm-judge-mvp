@@ -16,6 +16,7 @@ Usage:
     export GEMINI_API_KEY=your_key
     poetry run python -m llm_judge.benchmarks.nli_gemini_benchmark --max-cases 50
 """
+
 from __future__ import annotations
 
 import argparse
@@ -80,13 +81,17 @@ def load_nli_model():
     tokenizer = AutoTokenizer.from_pretrained(NLI_MODEL)
     model = AutoModelForSequenceClassification.from_pretrained(NLI_MODEL)
     model.eval()
-    labels = [model.config.id2label[i].upper() for i in range(len(model.config.id2label))]
+    labels = [
+        model.config.id2label[i].upper() for i in range(len(model.config.id2label))
+    ]
     print(f"  Loaded in {time.time() - start:.1f}s, labels: {labels}")
     return tokenizer, model, labels
 
 
 def nli_classify(tokenizer, model, premise: str, hypothesis: str, labels: list[str]):
-    inputs = tokenizer(premise, hypothesis, return_tensors="pt", truncation=True, max_length=512)
+    inputs = tokenizer(
+        premise, hypothesis, return_tensors="pt", truncation=True, max_length=512
+    )
     with torch.no_grad():
         probs = torch.softmax(model(**inputs).logits, dim=-1)[0].tolist()
     return {label: round(prob, 4) for label, prob in zip(labels, probs)}
@@ -105,7 +110,9 @@ def gemini_check_sentence(sentence: str, source: str) -> str:
     }
     try:
         with httpx.Client(timeout=30.0) as client:
-            resp = client.post(url, json=payload, headers={"Content-Type": "application/json"})
+            resp = client.post(
+                url, json=payload, headers={"Content-Type": "application/json"}
+            )
             resp.raise_for_status()
             data = resp.json()
             raw = data["candidates"][0]["content"]["parts"][-1]["text"].strip().upper()
@@ -137,7 +144,9 @@ def evaluate_case(
     response = case.request.candidate_answer
 
     # Gate 1: MiniLM dual threshold
-    ratio, min_sim = _compute_grounding_ratio(response, context, similarity_threshold=0.60)
+    ratio, min_sim = _compute_grounding_ratio(
+        response, context, similarity_threshold=0.60
+    )
     fail_ratio = ratio < 0.80
     fail_min = min_sim < 0.30
 
@@ -145,11 +154,16 @@ def evaluate_case(
         # Gate 1 FAIL — no further checks needed
         elapsed = time.time() - start
         return CaseResult(
-            case_id=case.case_id, ground_truth=gt,
-            gate1_decision="fail", nli_gemini_decision="",
+            case_id=case.case_id,
+            ground_truth=gt,
+            gate1_decision="fail",
+            nli_gemini_decision="",
             final_decision="fail",
-            total_sentences=0, gemini_calls=0,
-            nli_entailments=0, nli_contradictions=0, nli_neutrals=0,
+            total_sentences=0,
+            gemini_calls=0,
+            nli_entailments=0,
+            nli_contradictions=0,
+            nli_neutrals=0,
             elapsed=elapsed,
         )
 
@@ -160,11 +174,16 @@ def evaluate_case(
     if not resp_sents or not ctx_sents:
         elapsed = time.time() - start
         return CaseResult(
-            case_id=case.case_id, ground_truth=gt,
-            gate1_decision="pass", nli_gemini_decision="pass",
+            case_id=case.case_id,
+            ground_truth=gt,
+            gate1_decision="pass",
+            nli_gemini_decision="pass",
             final_decision="pass",
-            total_sentences=0, gemini_calls=0,
-            nli_entailments=0, nli_contradictions=0, nli_neutrals=0,
+            total_sentences=0,
+            gemini_calls=0,
+            nli_entailments=0,
+            nli_contradictions=0,
+            nli_neutrals=0,
             elapsed=elapsed,
         )
 
@@ -179,7 +198,9 @@ def evaluate_case(
 
     for i, (sent, emb) in enumerate(zip(resp_sents, resp_embs)):
         # Find top-3 source sentences
-        sims = [(j, provider.max_similarity(emb, [ce])) for j, ce in enumerate(ctx_embs)]
+        sims = [
+            (j, provider.max_similarity(emb, [ce])) for j, ce in enumerate(ctx_embs)
+        ]
         sims.sort(key=lambda x: x[1], reverse=True)
         top3 = sims[:3]
 
@@ -209,11 +230,15 @@ def evaluate_case(
     elapsed = time.time() - start
 
     return CaseResult(
-        case_id=case.case_id, ground_truth=gt,
-        gate1_decision="pass", nli_gemini_decision=nli_gemini_decision,
+        case_id=case.case_id,
+        ground_truth=gt,
+        gate1_decision="pass",
+        nli_gemini_decision=nli_gemini_decision,
         final_decision=nli_gemini_decision,
-        total_sentences=len(resp_sents), gemini_calls=gemini_calls,
-        nli_entailments=entailments, nli_contradictions=contradictions,
+        total_sentences=len(resp_sents),
+        gemini_calls=gemini_calls,
+        nli_entailments=entailments,
+        nli_contradictions=contradictions,
         nli_neutrals=neutrals,
         elapsed=elapsed,
     )
@@ -265,7 +290,9 @@ def main():
 
     precision = tp / (tp + fp) if (tp + fp) > 0 else 0
     recall = tp / (tp + fn) if (tp + fn) > 0 else 0
-    f1 = 2 * precision * recall / (precision + recall) if (precision + recall) > 0 else 0
+    f1 = (
+        2 * precision * recall / (precision + recall) if (precision + recall) > 0 else 0
+    )
 
     total_sents = sum(r.total_sentences for r in results)
     total_gemini = sum(r.gemini_calls for r in results)
@@ -291,20 +318,32 @@ def main():
     print("PUBLISHED BASELINES (comparison)")
     print(f"  GPT-4-turbo: F1=0.635 [ours: {f1:.3f}, delta: {f1 - 0.635:+.3f}]")
     print(f"  GPT-3.5-turbo: F1=0.543 [ours: {f1:.3f}, delta: {f1 - 0.543:+.3f}]")
-    print(f"  Llama-2-13B (fine-tuned): F1=0.622 [ours: {f1:.3f}, delta: {f1 - 0.622:+.3f}]")
+    print(
+        f"  Llama-2-13B (fine-tuned): F1=0.622 [ours: {f1:.3f}, delta: {f1 - 0.622:+.3f}]"
+    )
     print()
     print("ARCHITECTURE BREAKDOWN")
-    print(f"  Gate 1 FAIL (embeddings only): {gate1_fails} cases — no NLI or Gemini needed")
+    print(
+        f"  Gate 1 FAIL (embeddings only): {gate1_fails} cases — no NLI or Gemini needed"
+    )
     print(f"  Gate 1 PASS → NLI + Gemini: {len(results) - gate1_fails} cases")
     print()
     print("COST ANALYSIS (sentences)")
     print(f"  Total sentences analysed by NLI: {total_sents}")
-    print(f"  ENTAILMENT (no LLM):     {total_entail} ({total_entail/max(1,total_sents)*100:.0f}%)")
-    print(f"  CONTRADICTION (no LLM):  {total_contra} ({total_contra/max(1,total_sents)*100:.0f}%)")
-    print(f"  NEUTRAL → Gemini:        {total_neutral} ({total_neutral/max(1,total_sents)*100:.0f}%)")
+    print(
+        f"  ENTAILMENT (no LLM):     {total_entail} ({total_entail/max(1,total_sents)*100:.0f}%)"
+    )
+    print(
+        f"  CONTRADICTION (no LLM):  {total_contra} ({total_contra/max(1,total_sents)*100:.0f}%)"
+    )
+    print(
+        f"  NEUTRAL → Gemini:        {total_neutral} ({total_neutral/max(1,total_sents)*100:.0f}%)"
+    )
     print(f"  Gemini calls:            {total_gemini}")
     nli_handled = total_entail + total_contra
-    print(f"  NLI handled (no LLM):    {nli_handled} ({nli_handled/max(1,total_sents)*100:.0f}%)")
+    print(
+        f"  NLI handled (no LLM):    {nli_handled} ({nli_handled/max(1,total_sents)*100:.0f}%)"
+    )
     print(f"  Cost savings vs all-LLM: {nli_handled/max(1,total_sents)*100:.0f}%")
     print()
 
@@ -325,7 +364,10 @@ def main():
         "precision": round(precision, 4),
         "recall": round(recall, 4),
         "f1": round(f1, 4),
-        "tp": tp, "fp": fp, "tn": tn, "fn": fn,
+        "tp": tp,
+        "fp": fp,
+        "tn": tn,
+        "fn": fn,
         "published_gpt4_f1": 0.635,
         "delta_vs_gpt4": round(f1 - 0.635, 4),
         "gate1_fails": gate1_fails,

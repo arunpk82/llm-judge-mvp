@@ -61,7 +61,9 @@ def load_manifest(dataset_path: Path) -> DatasetManifest:
     return DatasetManifest.from_path(manifest_path)
 
 
-def validate_dataset_rows(*, rows: list[dict[str, Any]], manifest: DatasetManifest) -> None:
+def validate_dataset_rows(
+    *, rows: list[dict[str, Any]], manifest: DatasetManifest
+) -> None:
     """
     Deterministic dataset contract enforcement:
       - manifest.row_count matches actual row count
@@ -96,7 +98,9 @@ def validate_dataset_rows(*, rows: list[dict[str, Any]], manifest: DatasetManife
         seen.add(cid)
 
 
-def load_and_validate_dataset(dataset_path: Path) -> tuple[DatasetManifest, list[dict[str, Any]]]:
+def load_and_validate_dataset(
+    dataset_path: Path,
+) -> tuple[DatasetManifest, list[dict[str, Any]]]:
     """
     Load a dataset and enforce deterministic dataset contract.
 

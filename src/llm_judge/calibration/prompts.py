@@ -6,6 +6,7 @@ plans — immutable files in configs/prompts/{prompt_id}/v{N}.yaml.
 
 Provides: load, list, diff between versions, and event emission on change.
 """
+
 from __future__ import annotations
 
 import logging
@@ -25,6 +26,7 @@ PROMPTS_DIR = config_root() / "prompts"
 @dataclass(frozen=True)
 class PromptTemplate:
     """A versioned adjudication prompt template."""
+
     prompt_id: str
     version: str
     system_prompt: str
@@ -34,7 +36,9 @@ class PromptTemplate:
     author: str
 
 
-def load_prompt(prompt_id: str, version: str, prompts_dir: Path = PROMPTS_DIR) -> PromptTemplate:
+def load_prompt(
+    prompt_id: str, version: str, prompts_dir: Path = PROMPTS_DIR
+) -> PromptTemplate:
     """Load a specific prompt version."""
     path = prompts_dir / prompt_id / f"{version}.yaml"
     if not path.exists():
@@ -55,7 +59,9 @@ def load_prompt(prompt_id: str, version: str, prompts_dir: Path = PROMPTS_DIR) -
     )
 
 
-def load_latest_prompt(prompt_id: str, prompts_dir: Path = PROMPTS_DIR) -> PromptTemplate:
+def load_latest_prompt(
+    prompt_id: str, prompts_dir: Path = PROMPTS_DIR
+) -> PromptTemplate:
     """Load the highest-numbered version for a prompt_id."""
     prompt_dir = prompts_dir / prompt_id
     if not prompt_dir.exists():
@@ -83,13 +89,15 @@ def list_prompts(prompts_dir: Path = PROMPTS_DIR) -> list[dict[str, Any]]:
         for v_path in versions:
             try:
                 pt = load_prompt(prompt_dir.name, v_path.stem, prompts_dir)
-                results.append({
-                    "prompt_id": pt.prompt_id,
-                    "version": pt.version,
-                    "dimensions": pt.dimensions,
-                    "created_at": pt.created_at,
-                    "author": pt.author,
-                })
+                results.append(
+                    {
+                        "prompt_id": pt.prompt_id,
+                        "version": pt.version,
+                        "dimensions": pt.dimensions,
+                        "created_at": pt.created_at,
+                        "author": pt.author,
+                    }
+                )
             except Exception:
                 continue
 
@@ -114,30 +122,36 @@ def diff_prompts(
     changes: list[dict[str, Any]] = []
 
     if a.system_prompt != b.system_prompt:
-        changes.append({
-            "field": "system_prompt",
-            "type": "modified",
-            "old_length": len(a.system_prompt),
-            "new_length": len(b.system_prompt),
-        })
+        changes.append(
+            {
+                "field": "system_prompt",
+                "type": "modified",
+                "old_length": len(a.system_prompt),
+                "new_length": len(b.system_prompt),
+            }
+        )
 
     if a.user_template != b.user_template:
-        changes.append({
-            "field": "user_template",
-            "type": "modified",
-            "old_length": len(a.user_template),
-            "new_length": len(b.user_template),
-        })
+        changes.append(
+            {
+                "field": "user_template",
+                "type": "modified",
+                "old_length": len(a.user_template),
+                "new_length": len(b.user_template),
+            }
+        )
 
     if set(a.dimensions) != set(b.dimensions):
         added = set(b.dimensions) - set(a.dimensions)
         removed = set(a.dimensions) - set(b.dimensions)
-        changes.append({
-            "field": "dimensions",
-            "type": "modified",
-            "added": sorted(added),
-            "removed": sorted(removed),
-        })
+        changes.append(
+            {
+                "field": "dimensions",
+                "type": "modified",
+                "added": sorted(added),
+                "removed": sorted(removed),
+            }
+        )
 
     return {
         "prompt_id": prompt_id,

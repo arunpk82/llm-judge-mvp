@@ -13,6 +13,7 @@ class DatasetSpec:
     dataset_id: str
     version: str
 
+
 @dataclass(frozen=True)
 class SampleSpec:
     """
@@ -22,13 +23,16 @@ class SampleSpec:
       - "stable_hash": deterministic sampling that remains stable as dataset grows,
                        assuming each row has a stable unique case_id.
     """
+
     n: int
     seed: int = 42
     strategy: str = "stable_hash"
 
+
 @dataclass(frozen=True)
 class SmokeTestSpec:
     """Fast-fail gate: run N cases, abort if pass rate below threshold."""
+
     n: int = 10
     min_pass_rate: float = 0.5
 
@@ -75,7 +79,9 @@ class RunSpec:
                 if strategy_val != "stable_hash":
                     raise ValueError(f"Unsupported sample.strategy: {strategy_val}")
 
-                sample_obj = SampleSpec(n=int(n_val), seed=int(seed_val), strategy=strategy_val)
+                sample_obj = SampleSpec(
+                    n=int(n_val), seed=int(seed_val), strategy=strategy_val
+                )
 
         # Optional smoke test config
         smoke_obj: SmokeTestSpec | None = None

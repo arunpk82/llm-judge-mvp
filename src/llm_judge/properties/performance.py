@@ -5,6 +5,7 @@ Performance Properties (Category 6, Properties 6.1, 6.3, 6.4).
 6.3 Explainability — are judge explanations specific and verifiable?
 6.4 Judge Reasoning Fidelity — are explanations grounded in the actual response?
 """
+
 from __future__ import annotations
 
 import logging
@@ -18,9 +19,11 @@ logger = logging.getLogger(__name__)
 # 6.1 Latency & Cost
 # =====================================================================
 
+
 @dataclass
 class LatencyResult:
     """Result of latency & cost measurement."""
+
     case_id: str
     pipeline_latency_ms: float
     estimated_input_tokens: int
@@ -58,9 +61,11 @@ def measure_latency(
 # 6.3 Explainability
 # =====================================================================
 
+
 @dataclass
 class ExplainabilityResult:
     """Result of explainability check."""
+
     case_id: str
     dimensions_explained: int
     dimensions_expected: int
@@ -150,9 +155,11 @@ def check_explainability(
 # 6.4 Judge Reasoning Fidelity
 # =====================================================================
 
+
 @dataclass
 class ReasoningFidelityResult:
     """Result of judge reasoning fidelity check."""
+
     case_id: str
     dimensions_checked: int
     grounded_explanations: int
@@ -192,7 +199,8 @@ def check_reasoning_fidelity(
 
     combined_source = (response + " " + context).lower()
     source_tokens = {
-        w.strip(".,!?;:\"'()[]{}") for w in combined_source.split()
+        w.strip(".,!?;:\"'()[]{}")
+        for w in combined_source.split()
         if len(w.strip(".,!?;:\"'()[]{}")) > 3
     }
 
@@ -206,7 +214,8 @@ def check_reasoning_fidelity(
             continue
 
         expl_tokens = {
-            w.lower().strip(".,!?;:\"'()[]{}") for w in expl.split()
+            w.lower().strip(".,!?;:\"'()[]{}")
+            for w in expl.split()
             if len(w.strip(".,!?;:\"'()[]{}")) > 3
         }
 
@@ -215,10 +224,29 @@ def check_reasoning_fidelity(
 
         # Filter out common evaluation words that don't need grounding
         eval_words = {
-            "response", "answer", "question", "score", "rating", "evaluation",
-            "dimension", "quality", "provides", "addresses", "clear", "unclear",
-            "relevant", "irrelevant", "correct", "incorrect", "tone", "clarity",
-            "overall", "candidate", "user", "appropriate", "inappropriate",
+            "response",
+            "answer",
+            "question",
+            "score",
+            "rating",
+            "evaluation",
+            "dimension",
+            "quality",
+            "provides",
+            "addresses",
+            "clear",
+            "unclear",
+            "relevant",
+            "irrelevant",
+            "correct",
+            "incorrect",
+            "tone",
+            "clarity",
+            "overall",
+            "candidate",
+            "user",
+            "appropriate",
+            "inappropriate",
         }
         content_tokens = expl_tokens - eval_words
 

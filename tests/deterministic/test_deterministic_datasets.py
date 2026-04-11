@@ -20,7 +20,9 @@ def _validate_case_schema(row: dict[str, Any]) -> None:
     assert isinstance(row.get("conversation"), list) and row["conversation"]
     assert isinstance(row.get("candidate_answer"), str)
     assert isinstance(row.get("expected"), dict)
-    assert isinstance(row["expected"].get("decision"), str) and row["expected"]["decision"] in {
+    assert isinstance(row["expected"].get("decision"), str) and row["expected"][
+        "decision"
+    ] in {
         "pass",
         "fail",
     }
@@ -81,14 +83,22 @@ def test_deterministic_datasets_ci_sampled() -> None:
         rows = list(iter_jsonl(spec.path))
         assert rows, f"dataset is empty: {spec.dataset_id}"
         sampled = stable_sample(rows, sample_size=spec.ci_sample_size)
-        _run_cases(sampled, dataset_id=spec.dataset_id, mode=f"sampled(ci_sample_size={spec.ci_sample_size})")
+        _run_cases(
+            sampled,
+            dataset_id=spec.dataset_id,
+            mode=f"sampled(ci_sample_size={spec.ci_sample_size})",
+        )
 
 
 @pytest.mark.nightly
 def test_deterministic_datasets_nightly_full() -> None:
     """Deep-lane regression: full dataset run (scheduled CI only)."""
     # Allow opting out locally if someone accidentally triggers the marker.
-    if os.getenv("LLM_JUDGE_DATASET_FULL", "1").strip().lower() not in {"1", "true", "yes"}:
+    if os.getenv("LLM_JUDGE_DATASET_FULL", "1").strip().lower() not in {
+        "1",
+        "true",
+        "yes",
+    }:
         pytest.skip("LLM_JUDGE_DATASET_FULL disabled")
 
     specs = load_manifest(MANIFEST)

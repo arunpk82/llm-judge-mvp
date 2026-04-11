@@ -62,7 +62,9 @@ def generate_math_basic_cases(
 
         # Candidate variants: sometimes bare number, sometimes sentence.
         # IMPORTANT: keep a “bare number” variant so detector parsing stays reliable.
-        correct_candidate = rng.choice([str(correct), f"{correct}", f"The answer is {correct}."])
+        correct_candidate = rng.choice(
+            [str(correct), f"{correct}", f"The answer is {correct}."]
+        )
         incorrect_candidate = rng.choice(
             [str(incorrect), f"{incorrect}", f"The answer is {incorrect}."]
         )

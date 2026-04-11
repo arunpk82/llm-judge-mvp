@@ -84,7 +84,9 @@ def _parse_and_validate_cases_jsonl(
     try:
         text = path.read_text(encoding="utf-8")
     except OSError as exc:
-        return [], [ValidationError(code="FILE_NOT_FOUND", message=str(exc), file=str(path))]
+        return [], [
+            ValidationError(code="FILE_NOT_FOUND", message=str(exc), file=str(path))
+        ]
 
     for line_num, raw in enumerate(text.splitlines(), start=1):
         stripped = raw.strip()
@@ -177,9 +179,7 @@ def _parse_and_validate_cases_yaml(
     return raw_cases, errors
 
 
-def _check_integrity(
-    cases: list[dict[str, Any]], path: Path
-) -> list[ValidationError]:
+def _check_integrity(cases: list[dict[str, Any]], path: Path) -> list[ValidationError]:
     """Integrity checks: empty dataset, duplicate IDs, case_id completeness."""
     errors: list[ValidationError] = []
 
@@ -259,28 +259,38 @@ def _check_integrity(
 # These catch prompt injection, system prompt overrides, and common
 # jailbreak patterns that could poison evaluation results.
 _INJECTION_PATTERNS: list[tuple[str, _re.Pattern[str]]] = [
-    ("SYSTEM_OVERRIDE", _re.compile(
-        r"(?:ignore|disregard|forget)\s+(?:all\s+)?(?:previous|prior|above)\s+(?:instructions|prompts|rules)",
-        _re.IGNORECASE,
-    )),
-    ("ROLE_INJECTION", _re.compile(
-        r"\[\s*(?:SYSTEM|INST|SYS)\s*\]|\{\{?\s*(?:system|role)\s*[:=]",
-        _re.IGNORECASE,
-    )),
-    ("JAILBREAK_PATTERN", _re.compile(
-        r"(?:DAN|do\s+anything\s+now|you\s+are\s+now|act\s+as\s+if|pretend\s+you\s+are)\s+",
-        _re.IGNORECASE,
-    )),
-    ("XML_INJECTION", _re.compile(
-        r"<\s*/?(?:script|iframe|object|embed|form|input)\b",
-        _re.IGNORECASE,
-    )),
+    (
+        "SYSTEM_OVERRIDE",
+        _re.compile(
+            r"(?:ignore|disregard|forget)\s+(?:all\s+)?(?:previous|prior|above)\s+(?:instructions|prompts|rules)",
+            _re.IGNORECASE,
+        ),
+    ),
+    (
+        "ROLE_INJECTION",
+        _re.compile(
+            r"\[\s*(?:SYSTEM|INST|SYS)\s*\]|\{\{?\s*(?:system|role)\s*[:=]",
+            _re.IGNORECASE,
+        ),
+    ),
+    (
+        "JAILBREAK_PATTERN",
+        _re.compile(
+            r"(?:DAN|do\s+anything\s+now|you\s+are\s+now|act\s+as\s+if|pretend\s+you\s+are)\s+",
+            _re.IGNORECASE,
+        ),
+    ),
+    (
+        "XML_INJECTION",
+        _re.compile(
+            r"<\s*/?(?:script|iframe|object|embed|form|input)\b",
+            _re.IGNORECASE,
+        ),
+    ),
 ]
 
 
-def _check_security(
-    cases: list[dict[str, Any]], path: Path
-) -> list[ValidationError]:
+def _check_security(cases: list[dict[str, Any]], path: Path) -> list[ValidationError]:
     """
     TASK-1.1.3: Scan dataset content fields for injection patterns.
 

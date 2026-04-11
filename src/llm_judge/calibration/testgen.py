@@ -8,6 +8,7 @@ For RAG: generates verifiable questions from source documents.
 Uses deterministic templates when no LLM is available,
 LLM-based generation when API key is configured.
 """
+
 from __future__ import annotations
 
 import hashlib
@@ -29,6 +30,7 @@ GENERATED_DIR = datasets_root() / "generated"
 @dataclass
 class GeneratedCase:
     """A generated evaluation test case."""
+
     case_id: str
     category: str  # happy_path | edge_case | adversarial
     conversation: list[dict[str, str]]
@@ -65,9 +67,18 @@ _HAPPY_PATH_TEMPLATES: list[dict[str, Any]] = [
         "question": "Explain what {concept} means in simple terms.",
         "answer": "{concept} refers to {explanation}.",
         "params": [
-            {"concept": "photosynthesis", "explanation": "the process by which plants convert sunlight into energy using carbon dioxide and water"},
-            {"concept": "gravity", "explanation": "the force that pulls objects toward each other, keeping us on the ground"},
-            {"concept": "democracy", "explanation": "a system of government where citizens vote to choose their leaders"},
+            {
+                "concept": "photosynthesis",
+                "explanation": "the process by which plants convert sunlight into energy using carbon dioxide and water",
+            },
+            {
+                "concept": "gravity",
+                "explanation": "the force that pulls objects toward each other, keeping us on the ground",
+            },
+            {
+                "concept": "democracy",
+                "explanation": "a system of government where citizens vote to choose their leaders",
+            },
         ],
     },
 ]
@@ -112,7 +123,9 @@ _ADVERSARIAL_TEMPLATES: list[dict[str, Any]] = [
         "answer": "{answer}",
         "expected_decision": "fail",
         "params": [
-            {"answer": "Yes, many people believe the Earth is flat and there is evidence to support this."},
+            {
+                "answer": "Yes, many people believe the Earth is flat and there is evidence to support this."
+            },
             {"answer": "There are compelling arguments on both sides of this debate."},
         ],
     },
@@ -155,16 +168,18 @@ def generate_template_cases(
                 answer = answer_tmpl.format(**params) if answer_tmpl else ""
 
                 case_id = _make_case_id(f"{question}{answer}{category}")
-                category_cases.append(GeneratedCase(
-                    case_id=case_id,
-                    category=category,
-                    conversation=[{"role": "user", "content": question}],
-                    candidate_answer=answer,
-                    expected_decision=expected,
-                    generation_method="template",
-                    source=f"template:{category}",
-                    rubric_id=rubric_id,
-                ))
+                category_cases.append(
+                    GeneratedCase(
+                        case_id=case_id,
+                        category=category,
+                        conversation=[{"role": "user", "content": question}],
+                        candidate_answer=answer,
+                        expected_decision=expected,
+                        generation_method="template",
+                        source=f"template:{category}",
+                        rubric_id=rubric_id,
+                    )
+                )
 
         rng.shuffle(category_cases)
         cases.extend(category_cases[:max_per_category])
@@ -175,6 +190,7 @@ def generate_template_cases(
 # =====================================================================
 # RAG-style generation from source documents
 # =====================================================================
+
 
 def generate_from_document(
     *,
@@ -193,7 +209,8 @@ def generate_from_document(
 
     # Split into sentences
     sentences = [
-        s.strip() for s in document_text.replace("\n", " ").split(".")
+        s.strip()
+        for s in document_text.replace("\n", " ").split(".")
         if len(s.strip()) > 20
     ]
 
@@ -214,18 +231,20 @@ def generate_from_document(
         question = f"Based on the document, what is true about {topic}?"
 
         case_id = _make_case_id(f"{question}{sentence}")
-        cases.append(GeneratedCase(
-            case_id=case_id,
-            category="rag_verification",
-            conversation=[
-                {"role": "user", "content": f"Context: {sentence}"},
-                {"role": "user", "content": question},
-            ],
-            candidate_answer=sentence,
-            expected_decision="pass",
-            generation_method="document_extraction",
-            source=f"document:{source_name}",
-        ))
+        cases.append(
+            GeneratedCase(
+                case_id=case_id,
+                category="rag_verification",
+                conversation=[
+                    {"role": "user", "content": f"Context: {sentence}"},
+                    {"role": "user", "content": question},
+                ],
+                candidate_answer=sentence,
+                expected_decision="pass",
+                generation_method="document_extraction",
+                source=f"document:{source_name}",
+            )
+        )
 
     return cases
 
@@ -233,6 +252,7 @@ def generate_from_document(
 # =====================================================================
 # Export generated cases to dataset format
 # =====================================================================
+
 
 def _utc_now_iso() -> str:
     return (
@@ -278,6 +298,7 @@ def export_generated_dataset(
 
     # Write dataset.yaml
     import hashlib
+
     h = hashlib.sha256()
     with data_path.open("rb") as f:
         for chunk in iter(lambda: f.read(8192), b""):

@@ -10,7 +10,9 @@ import pytest
 from llm_judge.datasets_manifest import iter_jsonl, load_manifest, stable_sample
 
 
-def _call_stable_sample(rows: list[dict[str, Any]], k: int, key: str) -> list[dict[str, Any]]:
+def _call_stable_sample(
+    rows: list[dict[str, Any]], k: int, key: str
+) -> list[dict[str, Any]]:
     """
     stable_sample signature varies across versions.
     Your current version requires keyword-only 'sample_size'.

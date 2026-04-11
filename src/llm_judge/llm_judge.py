@@ -9,6 +9,7 @@ available — and a warning is logged to make the fallback visible.
 One judge class, multiple providers. Provider is a config choice, not a code change.
 Supports: Gemini (free), OpenAI-compatible (OpenAI/Groq), Ollama (local).
 """
+
 from __future__ import annotations
 
 import json
@@ -128,7 +129,9 @@ class ProviderAdapter(ABC):
     """Thin adapter: translate between our format and a provider's API."""
 
     @abstractmethod
-    def build_request(self, prompt: str, system_prompt: str) -> tuple[str, dict[str, str], dict]:
+    def build_request(
+        self, prompt: str, system_prompt: str
+    ) -> tuple[str, dict[str, str], dict]:
         """Return (url, headers, payload) for the provider."""
 
     @abstractmethod
@@ -144,7 +147,9 @@ class OpenAIAdapter(ProviderAdapter):
         self._api_key = api_key
         self._model = model
 
-    def build_request(self, prompt: str, system_prompt: str) -> tuple[str, dict[str, str], dict]:
+    def build_request(
+        self, prompt: str, system_prompt: str
+    ) -> tuple[str, dict[str, str], dict]:
         headers = {
             "Authorization": f"Bearer {self._api_key}",
             "Content-Type": "application/json",
@@ -171,7 +176,9 @@ class GeminiAdapter(ProviderAdapter):
         self._model = model
         self._base = "https://generativelanguage.googleapis.com/v1beta/models"
 
-    def build_request(self, prompt: str, system_prompt: str) -> tuple[str, dict[str, str], dict]:
+    def build_request(
+        self, prompt: str, system_prompt: str
+    ) -> tuple[str, dict[str, str], dict]:
         url = f"{self._base}/{self._model}:generateContent?key={self._api_key}"
         headers = {"Content-Type": "application/json"}
         payload: dict[str, Any] = {
@@ -196,7 +203,9 @@ class OllamaAdapter(ProviderAdapter):
         self._url = f"{base_url.rstrip('/')}/api/chat"
         self._model = model
 
-    def build_request(self, prompt: str, system_prompt: str) -> tuple[str, dict[str, str], dict]:
+    def build_request(
+        self, prompt: str, system_prompt: str
+    ) -> tuple[str, dict[str, str], dict]:
         headers = {"Content-Type": "application/json"}
         payload = {
             "model": self._model,
@@ -271,9 +280,7 @@ class LLMJudge(JudgeEngine):
         if timeout_ms is not None:
             self._timeout_s = max(timeout_ms, 1) / 1000.0
         else:
-            self._timeout_s = float(
-                os.getenv("LLM_TIMEOUT_S", str(_DEFAULT_TIMEOUT_S))
-            )
+            self._timeout_s = float(os.getenv("LLM_TIMEOUT_S", str(_DEFAULT_TIMEOUT_S)))
         if engine is not None:
             self._engine: str = engine
         else:

@@ -4,6 +4,7 @@ Benchmark Metrics (EPIC 7.16).
 Computes precision, recall, F1, accuracy per property and overall
 response-level metrics from benchmark run results.
 """
+
 from __future__ import annotations
 
 from dataclasses import dataclass, field
@@ -15,6 +16,7 @@ from llm_judge.benchmarks.runner import BenchmarkRunResult, PropertyResult
 @dataclass
 class ClassificationMetrics:
     """Standard binary classification metrics."""
+
     tp: int = 0
     fp: int = 0
     tn: int = 0
@@ -45,7 +47,10 @@ class ClassificationMetrics:
 
     def to_dict(self) -> dict[str, Any]:
         return {
-            "tp": self.tp, "fp": self.fp, "tn": self.tn, "fn": self.fn,
+            "tp": self.tp,
+            "fp": self.fp,
+            "tn": self.tn,
+            "fn": self.fn,
             "precision": round(self.precision, 4),
             "recall": round(self.recall, 4),
             "f1": round(self.f1, 4),
@@ -57,6 +62,7 @@ class ClassificationMetrics:
 @dataclass
 class BenchmarkMetricsResult:
     """Complete metrics from a benchmark evaluation."""
+
     benchmark_name: str
     cases_evaluated: int
     elapsed_seconds: float
@@ -77,15 +83,9 @@ class BenchmarkMetricsResult:
             "elapsed_seconds": self.elapsed_seconds,
             "error_count": self.error_count,
             "response_level": self.response_level.to_dict(),
-            "per_property": {
-                pid: m.to_dict() for pid, m in self.per_property.items()
-            },
-            "per_model": {
-                model: m.to_dict() for model, m in self.per_model.items()
-            },
-            "per_task_type": {
-                tt: m.to_dict() for tt, m in self.per_task_type.items()
-            },
+            "per_property": {pid: m.to_dict() for pid, m in self.per_property.items()},
+            "per_model": {model: m.to_dict() for model, m in self.per_model.items()},
+            "per_task_type": {tt: m.to_dict() for tt, m in self.per_task_type.items()},
         }
 
 
@@ -159,8 +159,7 @@ def compute_metrics(run_result: BenchmarkRunResult) -> BenchmarkMetricsResult:
         tt = r.get("task_type", "unknown")
         task_groups.setdefault(tt, []).append(r)
     per_task_type = {
-        tt: _compute_binary_metrics(results)
-        for tt, results in task_groups.items()
+        tt: _compute_binary_metrics(results) for tt, results in task_groups.items()
     }
 
     return BenchmarkMetricsResult(

@@ -17,6 +17,7 @@ Usage:
     # Without MiniCheck (DeBERTa only, faster)
     poetry run python experiments/ragtruth_benchmark.py --no-minicheck
 """
+
 from __future__ import annotations
 
 import argparse
@@ -43,8 +44,9 @@ class BenchmarkResult:
 def main() -> None:
     parser = argparse.ArgumentParser(description="RAGTruth Benchmark Runner")
     parser.add_argument("--max-cases", type=int, default=50)
-    parser.add_argument("--no-minicheck", action="store_true",
-                        help="Skip MiniCheck, use DeBERTa only")
+    parser.add_argument(
+        "--no-minicheck", action="store_true", help="Skip MiniCheck, use DeBERTa only"
+    )
     parser.add_argument("--output-dir", type=str, default="experiments")
     args = parser.parse_args()
 
@@ -58,8 +60,9 @@ def main() -> None:
     # If --no-minicheck, monkeypatch to skip MiniCheck
     if args.no_minicheck:
         import llm_judge.calibration.hallucination as hal
-        hal._l2a_minicheck = lambda sentence, source_doc: False  
-        hal._load_minicheck = lambda: None  
+
+        hal._l2a_minicheck = lambda sentence, source_doc: False
+        hal._load_minicheck = lambda: None
         print("MiniCheck DISABLED — using DeBERTa NLI only")
 
     total = 0
@@ -103,21 +106,25 @@ def main() -> None:
         else:
             predicted = "pass"
 
-        results.append(BenchmarkResult(
-            case_id=case.case_id,
-            ground_truth=gt,
-            predicted=predicted,
-            gate1_decision=result.gate1_decision,
-            gate2_decision=result.gate2_decision,
-            layer_stats=result.layer_stats,
-            correct=(predicted == gt),
-        ))
+        results.append(
+            BenchmarkResult(
+                case_id=case.case_id,
+                ground_truth=gt,
+                predicted=predicted,
+                gate1_decision=result.gate1_decision,
+                gate2_decision=result.gate2_decision,
+                layer_stats=result.layer_stats,
+                correct=(predicted == gt),
+            )
+        )
 
         if total % 10 == 0:
             elapsed = time.time() - start_time
             correct_so_far = sum(1 for r in results if r.correct)
-            print(f"  {total} cases | {correct_so_far}/{total} correct "
-                  f"({correct_so_far/total*100:.0f}%) | {elapsed:.0f}s")
+            print(
+                f"  {total} cases | {correct_so_far}/{total} correct "
+                f"({correct_so_far/total*100:.0f}%) | {elapsed:.0f}s"
+            )
 
     elapsed = time.time() - start_time
 
@@ -129,7 +136,11 @@ def main() -> None:
 
     precision = tp / (tp + fp) if (tp + fp) > 0 else 0.0
     recall = tp / (tp + fn) if (tp + fn) > 0 else 0.0
-    f1 = 2 * precision * recall / (precision + recall) if (precision + recall) > 0 else 0.0
+    f1 = (
+        2 * precision * recall / (precision + recall)
+        if (precision + recall) > 0
+        else 0.0
+    )
     accuracy = (tp + tn) / len(results) if results else 0.0
 
     gt_fail = sum(1 for r in results if r.ground_truth == "fail")
@@ -186,20 +197,28 @@ def main() -> None:
     print(f"  L4 unsupported:   {total_l4u:>4} sentences")
 
     # Show misclassifications
-    false_negatives = [r for r in results if r.ground_truth == "fail" and r.predicted == "pass"]
-    false_positives = [r for r in results if r.ground_truth == "pass" and r.predicted == "fail"]
+    false_negatives = [
+        r for r in results if r.ground_truth == "fail" and r.predicted == "pass"
+    ]
+    false_positives = [
+        r for r in results if r.ground_truth == "pass" and r.predicted == "fail"
+    ]
 
     if false_negatives:
         print(f"\nFALSE NEGATIVES (hallucinations we missed, {len(false_negatives)}):")
         for r in false_negatives[:5]:
-            print(f"  {r.case_id}: G1={r.gate1_decision} G2={r.gate2_decision} "
-                  f"stats={r.layer_stats}")
+            print(
+                f"  {r.case_id}: G1={r.gate1_decision} G2={r.gate2_decision} "
+                f"stats={r.layer_stats}"
+            )
 
     if false_positives:
         print(f"\nFALSE POSITIVES (clean responses flagged, {len(false_positives)}):")
         for r in false_positives[:5]:
-            print(f"  {r.case_id}: G1={r.gate1_decision} G2={r.gate2_decision} "
-                  f"stats={r.layer_stats}")
+            print(
+                f"  {r.case_id}: G1={r.gate1_decision} G2={r.gate2_decision} "
+                f"stats={r.layer_stats}"
+            )
 
     print(f"{'='*70}")
 
@@ -212,8 +231,12 @@ def main() -> None:
         "recall": round(recall, 4),
         "f1": round(f1, 4),
         "accuracy": round(accuracy, 4),
-        "tp": tp, "fp": fp, "fn": fn, "tn": tn,
-        "gt_fail": gt_fail, "gt_pass": gt_pass,
+        "tp": tp,
+        "fp": fp,
+        "fn": fn,
+        "tn": tn,
+        "gt_fail": gt_fail,
+        "gt_pass": gt_pass,
         "elapsed_seconds": round(elapsed, 1),
         "comparison": {
             "gpt4_turbo_f1": 0.634,
@@ -223,9 +246,12 @@ def main() -> None:
         },
         "layer_totals": {
             "gate1_fail": total_g1f,
-            "L0": total_l0, "L2a_minicheck": total_l2a,
-            "L2b_nli": total_l2b, "L3": total_l3,
-            "L4_supported": total_l4s, "L4_unsupported": total_l4u,
+            "L0": total_l0,
+            "L2a_minicheck": total_l2a,
+            "L2b_nli": total_l2b,
+            "L3": total_l3,
+            "L4_supported": total_l4s,
+            "L4_unsupported": total_l4u,
         },
         "cases": [asdict(r) for r in results],
     }

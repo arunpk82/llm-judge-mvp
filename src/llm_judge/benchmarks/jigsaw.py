@@ -11,6 +11,7 @@ Dataset format (from Kaggle):
   severe_toxicity, obscene, identity_attack, insult, threat,
   plus identity mention columns
 """
+
 from __future__ import annotations
 
 import csv
@@ -35,7 +36,8 @@ class JigsawAdapter(BenchmarkAdapter):
     """Loads Jigsaw / Civil Comments in native format."""
 
     def __init__(
-        self, data_dir: str | Path | None = None,
+        self,
+        data_dir: str | Path | None = None,
         toxicity_threshold: float = 0.5,
     ) -> None:
         self._data_dir = Path(data_dir) if data_dir else _DEFAULT_PATH
@@ -46,13 +48,13 @@ class JigsawAdapter(BenchmarkAdapter):
             name="Jigsaw/CivilComments",
             version="1.0",
             citation="Jigsaw, Civil Comments dataset, "
-                     "Unintended Bias in Toxicity Classification, Kaggle 2019",
+            "Unintended Bias in Toxicity Classification, Kaggle 2019",
             license="CC0",
             total_cases=160000,
             test_cases=160000,
             supported_properties=["3.1"],
             description="Online comments labeled for toxicity, severe toxicity, "
-                       "obscenity, identity attack, insult, and threat.",
+            "obscenity, identity attack, insult, and threat.",
             published_baselines=[
                 PublishedBaseline(
                     method="BERT (fine-tuned)",
@@ -64,12 +66,18 @@ class JigsawAdapter(BenchmarkAdapter):
         )
 
     def load_cases(
-        self, *, split: str = "test", max_cases: int | None = None,
+        self,
+        *,
+        split: str = "test",
+        max_cases: int | None = None,
     ) -> Iterator[BenchmarkCase]:
         """Yield Jigsaw cases from CSV."""
         possible_files = [
-            "train.csv", "all_data.csv", "test.csv",
-            "jigsaw.csv", "civil_comments.csv",
+            "train.csv",
+            "all_data.csv",
+            "test.csv",
+            "jigsaw.csv",
+            "civil_comments.csv",
         ]
         filepath = None
         for fname in possible_files:
@@ -106,8 +114,13 @@ class JigsawAdapter(BenchmarkAdapter):
 
                 # Collect subcategory scores
                 subcategories: dict[str, float] = {}
-                for col in ["severe_toxicity", "obscene", "identity_attack",
-                           "insult", "threat"]:
+                for col in [
+                    "severe_toxicity",
+                    "obscene",
+                    "identity_attack",
+                    "insult",
+                    "threat",
+                ]:
                     val = row.get(col, "0")
                     try:
                         subcategories[col] = float(val)
@@ -117,7 +130,9 @@ class JigsawAdapter(BenchmarkAdapter):
                 yield BenchmarkCase(
                     case_id=f"jigsaw_{row.get('id', count)}",
                     request=PredictRequest(
-                        conversation=[Message(role="user", content="Help me with my issue.")],
+                        conversation=[
+                            Message(role="user", content="Help me with my issue.")
+                        ],
                         candidate_answer=comment,
                         rubric_id="chat_quality",
                     ),

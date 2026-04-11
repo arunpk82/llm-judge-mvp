@@ -18,6 +18,7 @@ Usage:
     # Run experiment:
     poetry run python -m llm_judge.benchmarks.slm_gguf_science_gate --max-fn 10 --max-tn 10
 """
+
 from __future__ import annotations
 
 import argparse
@@ -34,7 +35,10 @@ import torch
 from transformers import AutoModelForSequenceClassification, AutoTokenizer
 
 from llm_judge.benchmarks.ragtruth import RAGTruthAdapter
-from llm_judge.calibration.hallucination import _compute_grounding_ratio, _split_sentences
+from llm_judge.calibration.hallucination import (
+    _compute_grounding_ratio,
+    _split_sentences,
+)
 from llm_judge.properties import get_embedding_provider
 
 logger = logging.getLogger(__name__)
@@ -64,6 +68,7 @@ _llm: Any = None
 def load_gguf_model(model_path: str, n_ctx: int = 4096):
     global _llm
     from llama_cpp import Llama
+
     print(f"Loading GGUF model: {model_path}")
     start = time.time()
     _llm = Llama(
@@ -79,6 +84,7 @@ def load_gguf_model(model_path: str, n_ctx: int = 4096):
 def download_model(repo_id: str, filename: str) -> str:
     """Download GGUF model from HuggingFace and return local path."""
     from huggingface_hub import hf_hub_download
+
     print(f"Downloading {repo_id}/{filename}...")
     path = hf_hub_download(repo_id=repo_id, filename=filename)
     print(f"  Downloaded to: {path}")
@@ -112,8 +118,11 @@ def slm_check_sentence(sentence: str, source: str) -> tuple[str, float]:
 
 # --- Layer filters ---
 
+
 def nli_classify(tokenizer, model, premise, hypothesis, labels):
-    inputs = tokenizer(premise, hypothesis, return_tensors="pt", truncation=True, max_length=512)
+    inputs = tokenizer(
+        premise, hypothesis, return_tensors="pt", truncation=True, max_length=512
+    )
     with torch.no_grad():
         probs = torch.softmax(model(**inputs).logits, dim=-1)[0].tolist()
     return {label: round(p, 4) for label, p in zip(labels, probs)}
@@ -188,17 +197,26 @@ GGUF_MODELS = {
 
 
 def main():
-    parser = argparse.ArgumentParser(description="Experiment 14b: SLM GGUF Science Gate")
+    parser = argparse.ArgumentParser(
+        description="Experiment 14b: SLM GGUF Science Gate"
+    )
     parser.add_argument("--max-fn", type=int, default=10)
     parser.add_argument("--max-tn", type=int, default=10)
     parser.add_argument("--max-cases", type=int, default=500)
-    parser.add_argument("--model", type=str, default="qwen2.5-7b",
-                        choices=list(GGUF_MODELS.keys()),
-                        help="GGUF model to use")
-    parser.add_argument("--model-path", type=str, default=None,
-                        help="Path to local GGUF file (overrides --model)")
-    parser.add_argument("--n-ctx", type=int, default=4096,
-                        help="Context window size")
+    parser.add_argument(
+        "--model",
+        type=str,
+        default="qwen2.5-7b",
+        choices=list(GGUF_MODELS.keys()),
+        help="GGUF model to use",
+    )
+    parser.add_argument(
+        "--model-path",
+        type=str,
+        default=None,
+        help="Path to local GGUF file (overrides --model)",
+    )
+    parser.add_argument("--n-ctx", type=int, default=4096, help="Context window size")
     parser.add_argument("--output-dir", type=str, default="experiments")
     args = parser.parse_args()
     output_dir = Path(args.output_dir)
@@ -217,7 +235,10 @@ def main():
     nli_tokenizer = AutoTokenizer.from_pretrained(NLI_MODEL)
     nli_model = AutoModelForSequenceClassification.from_pretrained(NLI_MODEL)
     nli_model.eval()
-    nli_labels = [nli_model.config.id2label[i].upper() for i in range(len(nli_model.config.id2label))]
+    nli_labels = [
+        nli_model.config.id2label[i].upper()
+        for i in range(len(nli_model.config.id2label))
+    ]
     provider = get_embedding_provider()
 
     # Load GGUF model
@@ -257,11 +278,16 @@ def main():
                     continue
 
                 # L2: NLI
-                sims = [(j, provider.max_similarity(emb, [ce])) for j, ce in enumerate(ctx_embs)]
+                sims = [
+                    (j, provider.max_similarity(emb, [ce]))
+                    for j, ce in enumerate(ctx_embs)
+                ]
                 sims.sort(key=lambda x: x[1], reverse=True)
                 best_e = 0.0
                 for src_idx, _ in sims[:3]:
-                    nli = nli_classify(nli_tokenizer, nli_model, ctx_sents[src_idx], sent, nli_labels)
+                    nli = nli_classify(
+                        nli_tokenizer, nli_model, ctx_sents[src_idx], sent, nli_labels
+                    )
                     best_e = max(best_e, nli.get("ENTAILMENT", 0))
 
                 if best_e > 0.7:
@@ -276,28 +302,34 @@ def main():
                 if decision == "unsupported":
                     has_hallucination = True
 
-                l4_details.append({
-                    "sentence_idx": i,
-                    "sentence": sent[:120],
-                    "decision": decision,
-                    "elapsed": round(slm_elapsed, 1),
-                })
+                l4_details.append(
+                    {
+                        "sentence_idx": i,
+                        "sentence": sent[:120],
+                        "decision": decision,
+                        "elapsed": round(slm_elapsed, 1),
+                    }
+                )
 
             case_decision = "fail" if has_hallucination else "pass"
-            correct = (case_decision == gt_val)
+            correct = case_decision == gt_val
             case_elapsed = time.time() - case_start
 
-            print(f"  decision={case_decision} gt={gt_val} L4={l4_count} "
-                  f"{'CORRECT' if correct else 'WRONG'} ({case_elapsed:.1f}s)")
+            print(
+                f"  decision={case_decision} gt={gt_val} L4={l4_count} "
+                f"{'CORRECT' if correct else 'WRONG'} ({case_elapsed:.1f}s)"
+            )
 
-            all_results.append({
-                "case_id": case.case_id,
-                "gt": gt_val,
-                "decision": case_decision,
-                "correct": correct,
-                "l4_count": l4_count,
-                "l4_details": l4_details,
-            })
+            all_results.append(
+                {
+                    "case_id": case.case_id,
+                    "gt": gt_val,
+                    "decision": case_decision,
+                    "correct": correct,
+                    "l4_count": l4_count,
+                    "l4_details": l4_details,
+                }
+            )
 
     # Compute metrics
     fn_results = [r for r in all_results if r["gt"] == "fail"]
@@ -310,13 +342,17 @@ def main():
 
     precision = tp / (tp + fp) if (tp + fp) > 0 else 0
     recall = tp / (tp + fn) if (tp + fn) > 0 else 0
-    f1 = 2 * precision * recall / (precision + recall) if (precision + recall) > 0 else 0
+    f1 = (
+        2 * precision * recall / (precision + recall) if (precision + recall) > 0 else 0
+    )
 
     print(f"\n{'='*70}")
     print("EXPERIMENT 14b: SLM GGUF SCIENCE GATE")
     print(f"{'='*70}")
     print(f"Model: {model_name} (GGUF Q4_K_M)")
-    print(f"Cases: {len(fn_results)} FN + {len(tn_results)} TN = {len(all_results)} total")
+    print(
+        f"Cases: {len(fn_results)} FN + {len(tn_results)} TN = {len(all_results)} total"
+    )
     print(f"L4 sentences: {total_l4}")
     print(f"Avg SLM latency: {total_slm_time/max(1,total_l4):.1f}s per sentence")
     print()
@@ -341,19 +377,28 @@ def main():
         marker = "CORRECT" if r["correct"] else "WRONG"
         print(f"\n  {r['case_id']} (gt={r['gt']}) [{marker}]")
         for d in r["l4_details"]:
-            print(f"    [{d['sentence_idx']+1}] {d['decision']:>11} ({d['elapsed']:.1f}s) {d['sentence']}")
+            print(
+                f"    [{d['sentence_idx']+1}] {d['decision']:>11} ({d['elapsed']:.1f}s) {d['sentence']}"
+            )
 
     # Save
     save_data = {
         "experiment": "Experiment 14b: SLM GGUF Science Gate",
         "model": model_name,
         "quantization": "Q4_K_M",
-        "fn_tested": len(fn_results), "tn_tested": len(tn_results),
+        "fn_tested": len(fn_results),
+        "tn_tested": len(tn_results),
         "l4_sentences": total_l4,
         "avg_slm_latency": round(total_slm_time / max(1, total_l4), 1),
-        "tp": tp, "fp": fp, "tn": tn, "fn": fn,
-        "precision": round(precision, 4), "recall": round(recall, 4), "f1": round(f1, 4),
-        "gemini_f1": 0.900, "qwen_1_5b_f1": 0.700,
+        "tp": tp,
+        "fp": fp,
+        "tn": tn,
+        "fn": fn,
+        "precision": round(precision, 4),
+        "recall": round(recall, 4),
+        "f1": round(f1, 4),
+        "gemini_f1": 0.900,
+        "qwen_1_5b_f1": 0.700,
         "pass_criteria": "F1 >= 0.800",
         "result": "PASS" if f1 >= 0.800 else "FAIL",
         "cases": all_results,

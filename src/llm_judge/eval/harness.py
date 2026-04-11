@@ -118,7 +118,9 @@ async def run_eval(path: str = "datasets/golden/v1.jsonl") -> None:
             mae_count += 1
             for dim, truth_val in row["human_scores"].items():
                 pred_val = result.scores.get(dim, 3)
-                mae_totals[str(dim)] += mean_absolute_error(int(pred_val), int(truth_val))
+                mae_totals[str(dim)] += mean_absolute_error(
+                    int(pred_val), int(truth_val)
+                )
 
         print(
             f"[{i}] Human={human_decision} | Judge={judge_decision} "
@@ -175,7 +177,8 @@ async def run_eval(path: str = "datasets/golden/v1.jsonl") -> None:
         "accuracy": accuracy,
         "confusion_matrix": {"tp": tp, "fn": fn, "fp": fp, "tn": tn},
         "mae": {
-            dim: (mae_totals[dim] / mae_count if mae_count > 0 else None) for dim in mae_totals
+            dim: (mae_totals[dim] / mae_count if mae_count > 0 else None)
+            for dim in mae_totals
         },
         "calibration": {
             name: (stats["correct"] / stats["total"] if stats["total"] > 0 else None)

@@ -6,6 +6,7 @@ Task Fidelity Properties (Category 4).
 
 Almost entirely deterministic — no LLM needed.
 """
+
 from __future__ import annotations
 
 import json
@@ -21,28 +22,35 @@ logger = logging.getLogger(__name__)
 
 _CONSTRAINT_PATTERNS = {
     "json_format": re.compile(
-        r"\b(?:respond\s+in\s+json|return\s+json|json\s+format|as\s+json)\b", re.I,
+        r"\b(?:respond\s+in\s+json|return\s+json|json\s+format|as\s+json)\b",
+        re.I,
     ),
     "bullet_limit": re.compile(
         r"\b(?:limit\s+to|at\s+most|no\s+more\s+than|maximum\s+of)\s+(\d+)\s+"
-        r"(?:bullet|point|item|step)", re.I,
+        r"(?:bullet|point|item|step)",
+        re.I,
     ),
     "word_limit": re.compile(
         r"\b(?:limit\s+to|at\s+most|no\s+more\s+than|maximum\s+of|under)\s+"
-        r"(\d+)\s+words?\b", re.I,
+        r"(\d+)\s+words?\b",
+        re.I,
     ),
     "no_jargon": re.compile(
         r"\b(?:no\s+(?:technical\s+)?jargon|simple\s+language|plain\s+english|"
-        r"avoid\s+technical\s+terms)\b", re.I,
+        r"avoid\s+technical\s+terms)\b",
+        re.I,
     ),
     "language": re.compile(
-        r"\b(?:respond|answer|reply)\s+in\s+(english|spanish|french|german|hindi)\b", re.I,
+        r"\b(?:respond|answer|reply)\s+in\s+(english|spanish|french|german|hindi)\b",
+        re.I,
     ),
     "list_format": re.compile(
-        r"\b(?:as\s+a\s+list|in\s+list\s+form|numbered\s+list|bullet\s+list)\b", re.I,
+        r"\b(?:as\s+a\s+list|in\s+list\s+form|numbered\s+list|bullet\s+list)\b",
+        re.I,
     ),
     "step_by_step": re.compile(
-        r"\b(?:step\s+by\s+step|step-by-step)\b", re.I,
+        r"\b(?:step\s+by\s+step|step-by-step)\b",
+        re.I,
     ),
 }
 
@@ -50,6 +58,7 @@ _CONSTRAINT_PATTERNS = {
 @dataclass
 class InstructionResult:
     """Result of instruction following check."""
+
     case_id: str
     constraints_detected: list[str] = field(default_factory=list)
     constraints_violated: list[str] = field(default_factory=list)
@@ -122,9 +131,11 @@ def check_instruction_following(
 # 4.2 Format & Structure
 # =====================================================================
 
+
 @dataclass
 class FormatResult:
     """Result of format & structure check."""
+
     case_id: str
     is_valid_json: bool = False
     has_required_fields: bool = True

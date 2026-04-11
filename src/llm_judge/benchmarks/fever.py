@@ -10,6 +10,7 @@ Dataset format:
   JSONL with: {"id": int, "claim": "...", "label": "SUPPORTS|REFUTES|NOT ENOUGH INFO",
                "evidence": [[annotation_id, evidence_id, wiki_title, sentence_idx]], ...}
 """
+
 from __future__ import annotations
 
 import json
@@ -41,13 +42,13 @@ class FEVERAdapter(BenchmarkAdapter):
             name="FEVER",
             version="1.0",
             citation="Thorne et al., FEVER: a Large-scale Dataset for Fact "
-                     "Extraction and VERification, NAACL 2018",
+            "Extraction and VERification, NAACL 2018",
             license="Open",
             total_cases=185445,
             test_cases=19998,
             supported_properties=["1.2", "1.3"],
             description="Fact verification benchmark. Claims labeled as "
-                       "SUPPORTS, REFUTES, or NOT ENOUGH INFO against Wikipedia evidence.",
+            "SUPPORTS, REFUTES, or NOT ENOUGH INFO against Wikipedia evidence.",
             published_baselines=[
                 PublishedBaseline(
                     method="DREAM (decompose-and-verify)",
@@ -65,7 +66,10 @@ class FEVERAdapter(BenchmarkAdapter):
         )
 
     def load_cases(
-        self, *, split: str = "test", max_cases: int | None = None,
+        self,
+        *,
+        split: str = "test",
+        max_cases: int | None = None,
     ) -> Iterator[BenchmarkCase]:
         """Yield FEVER cases."""
         possible_files = [
@@ -127,7 +131,9 @@ class FEVERAdapter(BenchmarkAdapter):
                 yield BenchmarkCase(
                     case_id=f"fever_{fever_id}",
                     request=PredictRequest(
-                        conversation=[Message(role="user", content="Is this claim accurate?")],
+                        conversation=[
+                            Message(role="user", content="Is this claim accurate?")
+                        ],
                         candidate_answer=claim,
                         rubric_id="chat_quality",
                         source_context=evidence_texts if evidence_texts else None,

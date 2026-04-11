@@ -12,6 +12,7 @@ What it does:
     4. Recommends property lifecycle status (auto-gated / calibrate / human-gated)
     5. Saves detailed results to reports/validation/
 """
+
 from __future__ import annotations
 
 import argparse
@@ -46,8 +47,12 @@ def load_validation_dataset(path: Path) -> list[dict]:
                 cases.append(json.loads(line))
     for case in cases:
         assert "case_id" in case, f"Missing case_id in {case}"
-        assert "human_scores" in case, f"Missing human_scores in {case.get('case_id', '?')}"
-        assert "human_decision" in case, f"Missing human_decision in {case.get('case_id', '?')}"
+        assert (
+            "human_scores" in case
+        ), f"Missing human_scores in {case.get('case_id', '?')}"
+        assert (
+            "human_decision" in case
+        ), f"Missing human_decision in {case.get('case_id', '?')}"
     return cases
 
 
@@ -56,8 +61,7 @@ def run_platform(cases: list[dict]) -> list[dict]:
     results = []
     for case in cases:
         messages = [
-            Message(role=m["role"], content=m["content"])
-            for m in case["conversation"]
+            Message(role=m["role"], content=m["content"]) for m in case["conversation"]
         ]
         request = PredictRequest(
             conversation=messages,
@@ -65,17 +69,19 @@ def run_platform(cases: list[dict]) -> list[dict]:
             rubric_id=case["rubric_id"],
         )
         response = judge.evaluate(request)
-        results.append({
-            "case_id": case["case_id"],
-            "platform_scores": response.scores,
-            "platform_decision": response.decision,
-            "platform_overall": response.overall_score,
-            "platform_confidence": response.confidence,
-            "platform_flags": response.flags,
-            "human_scores": case["human_scores"],
-            "human_decision": case["human_decision"],
-            "rationale": case.get("rationale", ""),
-        })
+        results.append(
+            {
+                "case_id": case["case_id"],
+                "platform_scores": response.scores,
+                "platform_decision": response.decision,
+                "platform_overall": response.overall_score,
+                "platform_confidence": response.confidence,
+                "platform_flags": response.flags,
+                "human_scores": case["human_scores"],
+                "human_decision": case["human_decision"],
+                "rationale": case.get("rationale", ""),
+            }
+        )
     return results
 
 
@@ -84,19 +90,23 @@ def analyze(results: list[dict]) -> dict:
     n = len(results)
 
     tp = sum(
-        1 for r in results
+        1
+        for r in results
         if r["human_decision"] == "pass" and r["platform_decision"] == "pass"
     )
     tn = sum(
-        1 for r in results
+        1
+        for r in results
         if r["human_decision"] == "fail" and r["platform_decision"] == "fail"
     )
     fp = sum(
-        1 for r in results
+        1
+        for r in results
         if r["human_decision"] == "fail" and r["platform_decision"] == "pass"
     )
     fn = sum(
-        1 for r in results
+        1
+        for r in results
         if r["human_decision"] == "pass" and r["platform_decision"] == "fail"
     )
 
@@ -159,28 +169,32 @@ def analyze(results: list[dict]) -> dict:
         for dim in dims:
             delta = r["platform_scores"][dim] - r["human_scores"][dim]
             if abs(delta) >= 3:
-                worst.append({
-                    "case_id": r["case_id"],
-                    "dimension": dim,
-                    "human": r["human_scores"][dim],
-                    "platform": r["platform_scores"][dim],
-                    "delta": delta,
-                    "rationale": r["rationale"],
-                })
+                worst.append(
+                    {
+                        "case_id": r["case_id"],
+                        "dimension": dim,
+                        "human": r["human_scores"][dim],
+                        "platform": r["platform_scores"][dim],
+                        "delta": delta,
+                        "rationale": r["rationale"],
+                    }
+                )
 
     decision_disagreements = []
     for r in results:
         if r["human_decision"] != r["platform_decision"]:
             h_avg = sum(r["human_scores"].values()) / 4
             p_avg = sum(r["platform_scores"].values()) / 4
-            decision_disagreements.append({
-                "case_id": r["case_id"],
-                "human_decision": r["human_decision"],
-                "platform_decision": r["platform_decision"],
-                "human_avg": round(h_avg, 1),
-                "platform_avg": round(p_avg, 1),
-                "rationale": r["rationale"],
-            })
+            decision_disagreements.append(
+                {
+                    "case_id": r["case_id"],
+                    "human_decision": r["human_decision"],
+                    "platform_decision": r["platform_decision"],
+                    "human_avg": round(h_avg, 1),
+                    "platform_avg": round(p_avg, 1),
+                    "rationale": r["rationale"],
+                }
+            )
 
     return {
         "timestamp": _utc_now_iso(),
@@ -299,7 +313,9 @@ def main() -> int:
         print(f"ERROR: Dataset not found: {dataset_path}", file=sys.stderr)
         return 1
 
-    output_dir = Path(args.output_dir) if args.output_dir else state_root() / "validation"
+    output_dir = (
+        Path(args.output_dir) if args.output_dir else state_root() / "validation"
+    )
     output_dir.mkdir(parents=True, exist_ok=True)
 
     cases = load_validation_dataset(dataset_path)
@@ -323,7 +339,8 @@ def main() -> int:
         print(f"Report saved to:  {report_path}")
 
     human_gated = sum(
-        1 for d in analysis["dimensions"].values()
+        1
+        for d in analysis["dimensions"].values()
         if d["lifecycle_recommendation"] == "HUMAN-GATED"
     )
 

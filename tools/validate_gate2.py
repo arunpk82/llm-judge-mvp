@@ -16,6 +16,7 @@ Usage:
 
     Add --raw to use the old LLMJudge without properties (for comparison).
 """
+
 from __future__ import annotations
 
 import argparse
@@ -48,8 +49,7 @@ def run_gate1(cases: list[dict]) -> list[dict]:
     results = []
     for case in cases:
         messages = [
-            Message(role=m["role"], content=m["content"])
-            for m in case["conversation"]
+            Message(role=m["role"], content=m["content"]) for m in case["conversation"]
         ]
         request = PredictRequest(
             conversation=messages,
@@ -57,18 +57,20 @@ def run_gate1(cases: list[dict]) -> list[dict]:
             rubric_id=case["rubric_id"],
         )
         response = judge.evaluate(request)
-        results.append({
-            "case_id": case["case_id"],
-            "gate1_scores": response.scores,
-            "gate1_decision": response.decision,
-            "gate1_flags": response.flags,
-            "human_scores": case["human_scores"],
-            "human_decision": case["human_decision"],
-            "rationale": case.get("rationale", ""),
-            "conversation": case["conversation"],
-            "candidate_answer": case["candidate_answer"],
-            "rubric_id": case["rubric_id"],
-        })
+        results.append(
+            {
+                "case_id": case["case_id"],
+                "gate1_scores": response.scores,
+                "gate1_decision": response.decision,
+                "gate1_flags": response.flags,
+                "human_scores": case["human_scores"],
+                "human_decision": case["human_decision"],
+                "rationale": case.get("rationale", ""),
+                "conversation": case["conversation"],
+                "candidate_answer": case["candidate_answer"],
+                "rubric_id": case["rubric_id"],
+            }
+        )
     return results
 
 
@@ -84,8 +86,7 @@ def run_gate2_integrated(
 
     for i, case in enumerate(disagreements):
         messages = [
-            Message(role=m["role"], content=m["content"])
-            for m in case["conversation"]
+            Message(role=m["role"], content=m["content"]) for m in case["conversation"]
         ]
         request = PredictRequest(
             conversation=messages,
@@ -163,13 +164,13 @@ def run_gate2_raw(
 ) -> list[dict]:
     """Run raw LLMJudge on disagreement cases (legacy, for comparison)."""
     from llm_judge.llm_judge import LLMJudge
+
     judge = LLMJudge(engine=engine)
 
     results = []
     for i, case in enumerate(disagreements):
         messages = [
-            Message(role=m["role"], content=m["content"])
-            for m in case["conversation"]
+            Message(role=m["role"], content=m["content"]) for m in case["conversation"]
         ]
         request = PredictRequest(
             conversation=messages,
@@ -216,8 +217,10 @@ def print_comparison(results: list[dict], integrated: bool = False) -> None:
     print("=" * 90)
 
     # Per-case comparison
-    print(f"\n{'Case':<10} {'Dim':<12} {'Human':>6} {'Gate1':>6} {'Gate2':>6} "
-          f"{'G1Δ':>5} {'G2Δ':>5} {'Winner':<8}")
+    print(
+        f"\n{'Case':<10} {'Dim':<12} {'Human':>6} {'Gate1':>6} {'Gate2':>6} "
+        f"{'G1Δ':>5} {'G2Δ':>5} {'Winner':<8}"
+    )
     print("-" * 80)
 
     gate1_wins = 0
@@ -227,7 +230,9 @@ def print_comparison(results: list[dict], integrated: bool = False) -> None:
 
     for r in results:
         if r["gate2_error"]:
-            print(f"{r['case_id']:<10} {'ERROR':<12} — Gate 2 failed: {r['gate2_error'][:40]}")
+            print(
+                f"{r['case_id']:<10} {'ERROR':<12} — Gate 2 failed: {r['gate2_error'][:40]}"
+            )
             gate2_errors += 1
             continue
 
@@ -299,10 +304,14 @@ def print_comparison(results: list[dict], integrated: bool = False) -> None:
             1 for r in valid if r["gate2_decision"] == r["human_decision"]
         )
         print("\n  Decision agreement on disagreement cases:")
-        print(f"    Gate 1: {g1_dec_match}/{len(valid)} "
-              f"({g1_dec_match / len(valid) * 100:.0f}%)")
-        print(f"    Gate 2: {g2_dec_match}/{len(valid)} "
-              f"({g2_dec_match / len(valid) * 100:.0f}%)")
+        print(
+            f"    Gate 1: {g1_dec_match}/{len(valid)} "
+            f"({g1_dec_match / len(valid) * 100:.0f}%)"
+        )
+        print(
+            f"    Gate 2: {g2_dec_match}/{len(valid)} "
+            f"({g2_dec_match / len(valid) * 100:.0f}%)"
+        )
 
     # PCT-1: Detection coverage and prompt version
     if integrated and valid:
@@ -395,8 +404,7 @@ def main() -> int:
         print(f"\nRunning Gate 2 on ALL {len(targets)} cases...")
     else:
         targets = [
-            r for r in gate1_results
-            if r["gate1_decision"] != r["human_decision"]
+            r for r in gate1_results if r["gate1_decision"] != r["human_decision"]
         ]
         print(f"\nFound {len(targets)} decision disagreements")
 
@@ -417,7 +425,9 @@ def main() -> int:
     print_comparison(gate2_results, integrated=use_integrated)
 
     # 6. Save results
-    output_dir = Path(args.output_dir) if args.output_dir else state_root() / "validation"
+    output_dir = (
+        Path(args.output_dir) if args.output_dir else state_root() / "validation"
+    )
     output_dir.mkdir(parents=True, exist_ok=True)
 
     suffix = "_integrated" if use_integrated else "_raw"

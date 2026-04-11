@@ -333,7 +333,9 @@ def test_diff_policy_violation_when_candidate_metric_missing(tmp_path: Path) -> 
         ["0.7"],
     ],
 )
-def test_diff_policy_violation_when_candidate_metric_not_numeric(tmp_path: Path, bad_value: object) -> None:
+def test_diff_policy_violation_when_candidate_metric_not_numeric(
+    tmp_path: Path, bad_value: object
+) -> None:
     """
     P0: defend against schema corruption.
     Non-numeric metric values must not silently pass.

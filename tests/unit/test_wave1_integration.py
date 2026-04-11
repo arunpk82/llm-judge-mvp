@@ -7,6 +7,7 @@ These tests validate the cross-cutting pattern fix:
 Each test verifies that a governance check that previously only ran
 during manual CLI steps now runs automatically in the critical path.
 """
+
 from __future__ import annotations
 
 import json
@@ -19,6 +20,7 @@ import yaml
 # =====================================================================
 # Fixtures
 # =====================================================================
+
 
 def _write_jsonl(path: Path, rows: list[dict[str, Any]]) -> None:
     with path.open("w", encoding="utf-8") as f:
@@ -68,6 +70,7 @@ def _make_dataset_dir(
 
 def _compute_hash(path: Path) -> str:
     import hashlib
+
     h = hashlib.sha256()
     with path.open("rb") as f:
         for chunk in iter(lambda: f.read(8192), b""):
@@ -78,6 +81,7 @@ def _compute_hash(path: Path) -> str:
 # =====================================================================
 # EPIC-1.2: Hash verification on read
 # =====================================================================
+
 
 class TestHashVerification:
     """P02 Trust Architecture: hash verified on every read."""
@@ -123,6 +127,7 @@ class TestHashVerification:
 # EPIC-1.1: Validator wired into registry
 # =====================================================================
 
+
 class TestValidatorWiring:
     """Validation runs automatically in resolve() — non-bypassable."""
 
@@ -133,9 +138,11 @@ class TestValidatorWiring:
         ds_dir = tmp_path / "bad_ds"
         ds_dir.mkdir()
         (ds_dir / "data.jsonl").write_text("not json at all\n")
-        (ds_dir / "dataset.yaml").write_text(yaml.dump({
-            "dataset_id": "bad_ds", "version": "v1", "data_file": "data.jsonl"
-        }))
+        (ds_dir / "dataset.yaml").write_text(
+            yaml.dump(
+                {"dataset_id": "bad_ds", "version": "v1", "data_file": "data.jsonl"}
+            )
+        )
 
         reg = DatasetRegistry(root_dir=tmp_path)
         with pytest.raises(ValueError, match="MALFORMED_JSON"):
@@ -187,6 +194,7 @@ class TestValidatorWiring:
 # EPIC-2.1: Config-driven rule plan loading
 # =====================================================================
 
+
 class TestRulePlanLoading:
     """Rule plans load from config files, not hardcoded defaults."""
 
@@ -232,6 +240,7 @@ class TestRulePlanLoading:
 # EPIC-3.1: Manifest integrity
 # =====================================================================
 
+
 class TestManifestIntegrity:
     """Rules manifest has no duplicates and matches runtime registry."""
 
@@ -244,7 +253,9 @@ class TestManifestIntegrity:
         raw = yaml.safe_load(manifest_path.read_text())
         rules = raw.get("rules", {})
         # YAML dict keys are unique by spec — if we got here, no duplicates
-        assert len(rules) == 4, f"Expected 4 rules, got {len(rules)}: {sorted(rules.keys())}"
+        assert (
+            len(rules) == 4
+        ), f"Expected 4 rules, got {len(rules)}: {sorted(rules.keys())}"
 
     def test_manifest_all_statuses_valid(self) -> None:
         """Given manifest rules, all have valid lifecycle statuses."""
@@ -256,12 +267,15 @@ class TestManifestIntegrity:
 
         rules = load_manifest()
         for name, meta in rules.items():
-            assert meta.status in VALID_STATUSES, f"Rule '{name}' has invalid status: '{meta.status}'"
+            assert (
+                meta.status in VALID_STATUSES
+            ), f"Rule '{name}' has invalid status: '{meta.status}'"
 
 
 # =====================================================================
 # EPIC-3.3: Rule governance check
 # =====================================================================
+
 
 class TestRuleGovernance:
     """Rule governance check catches ungoverned rules."""
@@ -279,10 +293,11 @@ class TestRuleGovernance:
         # Filter to production rules only (dotted names like 'quality.nonsense_basic')
         # Test stubs use short names ('boom_rule', 'nonsense_basic') without dot prefix
         production_errors = [
-            e for e in errors
-            if "Ungoverned" not in e or "." in e.split("'")[1]
+            e for e in errors if "Ungoverned" not in e or "." in e.split("'")[1]
         ]
-        assert production_errors == [], f"Production governance errors: {production_errors}"
+        assert (
+            production_errors == []
+        ), f"Production governance errors: {production_errors}"
 
     def test_ungoverned_rule_detected(self) -> None:
         """Given a rule in RULE_REGISTRY but not manifest, check catches it."""
@@ -306,6 +321,7 @@ class TestRuleGovernance:
 # EPIC-8.1: Documentation completeness
 # =====================================================================
 
+
 class TestDocumentation:
     """No empty doc stubs — every .md file has real content."""
 
@@ -327,4 +343,6 @@ class TestDocumentation:
         for name in ("API.md", "DEV_GUIDE.md", "RUNBOOK.md"):
             path = docs_dir / name
             assert path.exists(), f"Missing: {path}"
-            assert path.stat().st_size > 100, f"{name} is too small ({path.stat().st_size} bytes)"
+            assert (
+                path.stat().st_size > 100
+            ), f"{name} is too small ({path.stat().st_size} bytes)"

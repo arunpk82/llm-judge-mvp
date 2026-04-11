@@ -22,6 +22,7 @@ Usage:
     # With local SLM (production target):
     poetry run python -m llm_judge.benchmarks.slm_graphrag_science_gate --max-fn 10 --max-tn 10 --backend slm
 """
+
 from __future__ import annotations
 
 import argparse
@@ -45,7 +46,10 @@ from llm_judge.benchmarks.graphrag_science_gate import (
     extract_svo_triplets,
 )
 from llm_judge.benchmarks.ragtruth import RAGTruthAdapter
-from llm_judge.calibration.hallucination import _compute_grounding_ratio, _split_sentences
+from llm_judge.calibration.hallucination import (
+    _compute_grounding_ratio,
+    _split_sentences,
+)
 from llm_judge.properties import get_embedding_provider
 
 logger = logging.getLogger(__name__)
@@ -111,7 +115,9 @@ class CaseResult:
 
 
 def nli_classify(tokenizer, model, premise, hypothesis, labels):
-    inputs = tokenizer(premise, hypothesis, return_tensors="pt", truncation=True, max_length=512)
+    inputs = tokenizer(
+        premise, hypothesis, return_tensors="pt", truncation=True, max_length=512
+    )
     with torch.no_grad():
         probs = torch.softmax(model(**inputs).logits, dim=-1)[0].tolist()
     return {label: round(p, 4) for label, p in zip(labels, probs)}
@@ -127,6 +133,7 @@ def _token_set(text):
 
 def deterministic_match(sentence, source_sentences, source_full):
     from difflib import SequenceMatcher
+
     norm_sent = _normalize_text(sentence)
     norm_source = _normalize_text(source_full)
     if norm_sent in norm_source:
@@ -202,7 +209,9 @@ def _call_gemini(prompt: str) -> str:
     }
     try:
         with httpx.Client(timeout=30.0) as client:
-            resp = client.post(url, json=payload, headers={"Content-Type": "application/json"})
+            resp = client.post(
+                url, json=payload, headers={"Content-Type": "application/json"}
+            )
             resp.raise_for_status()
             data = resp.json()
             raw = data["candidates"][0]["content"]["parts"][-1]["text"].strip().upper()
@@ -222,12 +231,15 @@ def _load_slm():
     if _slm_model is not None:
         return
     from transformers import AutoModelForCausalLM
+
     slm_name = os.environ.get("SLM_MODEL", "Qwen/Qwen2.5-1.5B-Instruct")
     print(f"  Loading SLM: {slm_name}")
     start = time.time()
     _slm_tokenizer = AutoTokenizer.from_pretrained(slm_name)
     _slm_model = AutoModelForCausalLM.from_pretrained(
-        slm_name, torch_dtype=torch.float32, device_map="cpu",
+        slm_name,
+        torch_dtype=torch.float32,
+        device_map="cpu",
     )
     _slm_model.eval()
     print(f"  SLM loaded in {time.time() - start:.1f}s")
@@ -237,16 +249,26 @@ def _call_slm(prompt: str) -> str:
     _load_slm()
     messages = [{"role": "user", "content": prompt}]
     text = _slm_tokenizer.apply_chat_template(
-        messages, tokenize=False, add_generation_prompt=True,
+        messages,
+        tokenize=False,
+        add_generation_prompt=True,
     )
     inputs = _slm_tokenizer([text], return_tensors="pt")
     with torch.no_grad():
         outputs = _slm_model.generate(
-            **inputs, max_new_tokens=10, temperature=0.0, do_sample=False,
+            **inputs,
+            max_new_tokens=10,
+            temperature=0.0,
+            do_sample=False,
         )
-    response = _slm_tokenizer.decode(
-        outputs[0][inputs["input_ids"].shape[1]:], skip_special_tokens=True,
-    ).strip().upper()
+    response = (
+        _slm_tokenizer.decode(
+            outputs[0][inputs["input_ids"].shape[1] :],
+            skip_special_tokens=True,
+        )
+        .strip()
+        .upper()
+    )
     return "unsupported" if "UNSUPPORTED" in response else "supported"
 
 
@@ -276,8 +298,21 @@ def find_test_cases(max_cases=500, max_fn=10, max_tn=10):
     return fns, tns
 
 
-def evaluate_case(case, source_doc, full_context, response, ratio, min_sim, gt,
-                  nli_tokenizer, nli_model, nli_labels, provider, nlp, backend):
+def evaluate_case(
+    case,
+    source_doc,
+    full_context,
+    response,
+    ratio,
+    min_sim,
+    gt,
+    nli_tokenizer,
+    nli_model,
+    nli_labels,
+    provider,
+    nlp,
+    backend,
+):
     resp_sents = _split_sentences(response)
     ctx_sents = _split_sentences(full_context)
     if not resp_sents or not ctx_sents:
@@ -296,26 +331,42 @@ def evaluate_case(case, source_doc, full_context, response, ratio, min_sim, gt,
     for i, (sent, emb) in enumerate(zip(resp_sents, resp_embs)):
         # L0: Deterministic
         if deterministic_match(sent, ctx_sents, source_doc):
-            sentences.append(SentenceResult(
-                sentence=sent, sentence_idx=i, layer="L0_deterministic",
-                raw_decision="", graphrag_decision="", relevant_triplets=[],
-            ))
+            sentences.append(
+                SentenceResult(
+                    sentence=sent,
+                    sentence_idx=i,
+                    layer="L0_deterministic",
+                    raw_decision="",
+                    graphrag_decision="",
+                    relevant_triplets=[],
+                )
+            )
             continue
 
         # L2: NLI
-        sims = [(j, provider.max_similarity(emb, [ce])) for j, ce in enumerate(ctx_embs)]
+        sims = [
+            (j, provider.max_similarity(emb, [ce])) for j, ce in enumerate(ctx_embs)
+        ]
         sims.sort(key=lambda x: x[1], reverse=True)
         best_e, best_c = 0.0, 0.0
         for src_idx, _ in sims[:3]:
-            nli = nli_classify(nli_tokenizer, nli_model, ctx_sents[src_idx], sent, nli_labels)
+            nli = nli_classify(
+                nli_tokenizer, nli_model, ctx_sents[src_idx], sent, nli_labels
+            )
             best_e = max(best_e, nli.get("ENTAILMENT", 0))
             best_c = max(best_c, nli.get("CONTRADICTION", 0))
 
         if best_e > 0.7:
-            sentences.append(SentenceResult(
-                sentence=sent, sentence_idx=i, layer="L2_entailment",
-                raw_decision="", graphrag_decision="", relevant_triplets=[],
-            ))
+            sentences.append(
+                SentenceResult(
+                    sentence=sent,
+                    sentence_idx=i,
+                    layer="L2_entailment",
+                    raw_decision="",
+                    graphrag_decision="",
+                    relevant_triplets=[],
+                )
+            )
             continue
 
         # L2 CONTRADICTION — still route to L4 (unreliable)
@@ -342,10 +393,16 @@ def evaluate_case(case, source_doc, full_context, response, ratio, min_sim, gt,
                 all_matched = False
 
         if not best_c > 0.7 and resp_triplets and all_matched and has_exact:
-            sentences.append(SentenceResult(
-                sentence=sent, sentence_idx=i, layer="L3_graphrag_exact",
-                raw_decision="", graphrag_decision="", relevant_triplets=[],
-            ))
+            sentences.append(
+                SentenceResult(
+                    sentence=sent,
+                    sentence_idx=i,
+                    layer="L3_graphrag_exact",
+                    raw_decision="",
+                    graphrag_decision="",
+                    relevant_triplets=[],
+                )
+            )
             continue
 
         # L4: Needs reasoning — test BOTH strategies
@@ -360,36 +417,54 @@ def evaluate_case(case, source_doc, full_context, response, ratio, min_sim, gt,
 
         # Strategy B: GraphRAG structured context
         relevant = find_relevant_triplets(resp_triplets, source_triplets, sent)
-        triplet_text = "\n".join(f"  - {t}" for t in relevant) if relevant else "  (No relevant source facts found for this sentence)"
+        triplet_text = (
+            "\n".join(f"  - {t}" for t in relevant)
+            if relevant
+            else "  (No relevant source facts found for this sentence)"
+        )
         graphrag_prompt = GRAPHRAG_PROMPT.format(triplets=triplet_text, sentence=sent)
         graphrag_decision = call_reasoning_model(graphrag_prompt, backend)
         if graphrag_decision == "unsupported":
             graphrag_has_hallucination = True
 
-        sentences.append(SentenceResult(
-            sentence=sent, sentence_idx=i, layer="L4_reasoning",
-            raw_decision=raw_decision, graphrag_decision=graphrag_decision,
-            relevant_triplets=[str(t) for t in relevant],
-        ))
+        sentences.append(
+            SentenceResult(
+                sentence=sent,
+                sentence_idx=i,
+                layer="L4_reasoning",
+                raw_decision=raw_decision,
+                graphrag_decision=graphrag_decision,
+                relevant_triplets=[str(t) for t in relevant],
+            )
+        )
 
     raw_final = "fail" if raw_has_hallucination else "pass"
     graphrag_final = "fail" if graphrag_has_hallucination else "pass"
 
     return CaseResult(
-        case_id=case.case_id, ground_truth=gt,
+        case_id=case.case_id,
+        ground_truth=gt,
         gate1_decision="pass",
-        raw_final=raw_final, graphrag_final=graphrag_final,
-        correct_raw=(raw_final == gt), correct_graphrag=(graphrag_final == gt),
-        sentences=sentences, l4_count=l4_count, gemini_calls=gemini_calls,
+        raw_final=raw_final,
+        graphrag_final=graphrag_final,
+        correct_raw=(raw_final == gt),
+        correct_graphrag=(graphrag_final == gt),
+        sentences=sentences,
+        l4_count=l4_count,
+        gemini_calls=gemini_calls,
     )
 
 
 def main():
-    parser = argparse.ArgumentParser(description="Experiment 13: SLM + GraphRAG Science Gate")
+    parser = argparse.ArgumentParser(
+        description="Experiment 13: SLM + GraphRAG Science Gate"
+    )
     parser.add_argument("--max-fn", type=int, default=10)
     parser.add_argument("--max-tn", type=int, default=10)
     parser.add_argument("--max-cases", type=int, default=500)
-    parser.add_argument("--backend", type=str, default="gemini", choices=["gemini", "slm"])
+    parser.add_argument(
+        "--backend", type=str, default="gemini", choices=["gemini", "slm"]
+    )
     parser.add_argument("--output-dir", type=str, default="experiments")
     args = parser.parse_args()
     output_dir = Path(args.output_dir)
@@ -405,7 +480,10 @@ def main():
     nli_tokenizer = AutoTokenizer.from_pretrained(NLI_MODEL)
     nli_model = AutoModelForSequenceClassification.from_pretrained(NLI_MODEL)
     nli_model.eval()
-    nli_labels = [nli_model.config.id2label[i].upper() for i in range(len(nli_model.config.id2label))]
+    nli_labels = [
+        nli_model.config.id2label[i].upper()
+        for i in range(len(nli_model.config.id2label))
+    ]
     provider = get_embedding_provider()
     nlp = spacy.load(SPACY_MODEL)
 
@@ -418,14 +496,27 @@ def main():
             print(f"\n{label} {idx+1}/{len(cases)}: {case.case_id}")
             start = time.time()
             r = evaluate_case(
-                case, src, ctx, resp, ratio, min_sim, gt_val,
-                nli_tokenizer, nli_model, nli_labels, provider, nlp, args.backend,
+                case,
+                src,
+                ctx,
+                resp,
+                ratio,
+                min_sim,
+                gt_val,
+                nli_tokenizer,
+                nli_model,
+                nli_labels,
+                provider,
+                nlp,
+                args.backend,
             )
             if r is None:
                 continue
             elapsed = time.time() - start
-            print(f"  raw={r.raw_final} graphrag={r.graphrag_final} gt={gt_val} "
-                  f"L4={r.l4_count} ({elapsed:.1f}s)")
+            print(
+                f"  raw={r.raw_final} graphrag={r.graphrag_final} gt={gt_val} "
+                f"L4={r.l4_count} ({elapsed:.1f}s)"
+            )
             results.append(r)
 
     # Compute metrics
@@ -487,11 +578,21 @@ def main():
             continue
         print(f"\n  {r.case_id} (gt={r.ground_truth})")
         for s in l4_sents:
-            _ = "OK" if (s.raw_decision == "unsupported") == (r.ground_truth == "fail") else "WRONG"
-            _ = "OK" if (s.graphrag_decision == "unsupported") == (r.ground_truth == "fail") else "WRONG"
+            _ = (
+                "OK"
+                if (s.raw_decision == "unsupported") == (r.ground_truth == "fail")
+                else "WRONG"
+            )
+            _ = (
+                "OK"
+                if (s.graphrag_decision == "unsupported") == (r.ground_truth == "fail")
+                else "WRONG"
+            )
             # For gt=pass, supported=correct. For gt=fail, unsupported on at least one = correct.
             print(f"    [{s.sentence_idx+1}] {s.sentence[:100]}")
-            print(f"      Raw: {s.raw_decision:>11}  GraphRAG: {s.graphrag_decision:>11}")
+            print(
+                f"      Raw: {s.raw_decision:>11}  GraphRAG: {s.graphrag_decision:>11}"
+            )
             if s.relevant_triplets:
                 for t in s.relevant_triplets[:3]:
                     print(f"      Source fact: {t}")
@@ -502,12 +603,27 @@ def main():
     save_data = {
         "experiment": "Experiment 13: SLM + GraphRAG Science Gate",
         "backend": args.backend,
-        "fn_tested": len(fn_results), "tn_tested": len(tn_results),
+        "fn_tested": len(fn_results),
+        "tn_tested": len(tn_results),
         "l4_sentences": total_l4,
-        "raw_text": {"tp": raw_tp, "fp": raw_fp, "tn": raw_tn, "fn": raw_fn,
-                     "precision": round(raw_p, 4), "recall": round(raw_r, 4), "f1": round(raw_f1, 4)},
-        "graphrag": {"tp": gr_tp, "fp": gr_fp, "tn": gr_tn, "fn": gr_fn,
-                     "precision": round(gr_p, 4), "recall": round(gr_r, 4), "f1": round(gr_f1, 4)},
+        "raw_text": {
+            "tp": raw_tp,
+            "fp": raw_fp,
+            "tn": raw_tn,
+            "fn": raw_fn,
+            "precision": round(raw_p, 4),
+            "recall": round(raw_r, 4),
+            "f1": round(raw_f1, 4),
+        },
+        "graphrag": {
+            "tp": gr_tp,
+            "fp": gr_fp,
+            "tn": gr_tn,
+            "fn": gr_fn,
+            "precision": round(gr_p, 4),
+            "recall": round(gr_r, 4),
+            "f1": round(gr_f1, 4),
+        },
         "winner": winner,
     }
     save_path = output_dir / "slm_graphrag_science_gate_results.json"

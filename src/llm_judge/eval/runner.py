@@ -58,7 +58,9 @@ def load_runspec(path: str) -> RunSpec:
 
 def _git_head() -> str | None:
     try:
-        out = subprocess.check_output(["git", "rev-parse", "HEAD"], stderr=subprocess.DEVNULL)
+        out = subprocess.check_output(
+            ["git", "rev-parse", "HEAD"], stderr=subprocess.DEVNULL
+        )
         return out.decode("utf-8").strip()
     except Exception:  # noqa: BLE001
         return None

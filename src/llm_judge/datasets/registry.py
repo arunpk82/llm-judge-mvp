@@ -104,12 +104,17 @@ class DatasetRegistry:
 
             if data_path.suffix in (".yaml", ".yml"):
                 from llm_judge.dataset_validator import _parse_and_validate_cases_yaml
+
                 raw_cases, parse_errors = _parse_and_validate_cases_yaml(data_path)
             else:
                 raw_cases, parse_errors = _parse_and_validate_cases_jsonl(data_path)
 
             # Parse errors (malformed JSON/YAML) are hard failures
-            hard_errors = [e for e in parse_errors if e.code in ("MALFORMED_JSON", "MALFORMED_YAML")]
+            hard_errors = [
+                e
+                for e in parse_errors
+                if e.code in ("MALFORMED_JSON", "MALFORMED_YAML")
+            ]
             if hard_errors:
                 error_lines = "; ".join(
                     f"[{e.code}] {e.message}" for e in hard_errors[:5]
@@ -126,7 +131,11 @@ class DatasetRegistry:
                 )
                 raise ValueError(
                     f"Dataset integrity check failed for {dataset_id}@{version}: {error_lines}"
-                    + (f" (+{len(integrity_errors) - 5} more)" if len(integrity_errors) > 5 else "")
+                    + (
+                        f" (+{len(integrity_errors) - 5} more)"
+                        if len(integrity_errors) > 5
+                        else ""
+                    )
                 )
 
             # TASK-1.1.3: Security scanning (warnings, not hard failures)
@@ -135,7 +144,11 @@ class DatasetRegistry:
                 for sw in security_warnings[:5]:
                     logger.warning(
                         "dataset.security_warning",
-                        extra={"dataset_id": dataset_id, "code": sw.code, "message": sw.message},
+                        extra={
+                            "dataset_id": dataset_id,
+                            "code": sw.code,
+                            "message": sw.message,
+                        },
                     )
         except ImportError:
             # Graceful degradation: if validator module is unavailable,

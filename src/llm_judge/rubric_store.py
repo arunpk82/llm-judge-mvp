@@ -83,7 +83,9 @@ def _normalize_str_list(value: Any, *, ctx: str) -> list[str]:
     return deduped
 
 
-def _resolve_metrics_schema_from_registry(rubric_id: str, version: str) -> tuple[list[str], list[str]]:
+def _resolve_metrics_schema_from_registry(
+    rubric_id: str, version: str
+) -> tuple[list[str], list[str]]:
     """
     EPIC-2: Resolve declared metric schema for a rubric version.
 
@@ -121,13 +123,17 @@ def _resolve_metrics_schema_from_registry(rubric_id: str, version: str) -> tuple
     if versions is None:
         return [], []
     if not isinstance(versions, dict):
-        raise ValueError(f"registry.yaml: rubrics.{rubric_id}.versions must be a mapping")
+        raise ValueError(
+            f"registry.yaml: rubrics.{rubric_id}.versions must be a mapping"
+        )
 
     v = versions.get(version)
     if v is None:
         return [], []
     if not isinstance(v, dict):
-        raise ValueError(f"registry.yaml: rubrics.{rubric_id}.versions.{version} must be a mapping")
+        raise ValueError(
+            f"registry.yaml: rubrics.{rubric_id}.versions.{version} must be a mapping"
+        )
 
     ms = v.get("metrics_schema")
     if ms is None:
@@ -137,8 +143,14 @@ def _resolve_metrics_schema_from_registry(rubric_id: str, version: str) -> tuple
             f"registry.yaml: rubrics.{rubric_id}.versions.{version}.metrics_schema must be a mapping"
         )
 
-    required = _normalize_str_list(ms.get("required"), ctx=f"registry.yaml metrics_schema.required for {rubric_id}@{version}")
-    optional = _normalize_str_list(ms.get("optional"), ctx=f"registry.yaml metrics_schema.optional for {rubric_id}@{version}")
+    required = _normalize_str_list(
+        ms.get("required"),
+        ctx=f"registry.yaml metrics_schema.required for {rubric_id}@{version}",
+    )
+    optional = _normalize_str_list(
+        ms.get("optional"),
+        ctx=f"registry.yaml metrics_schema.optional for {rubric_id}@{version}",
+    )
 
     # Ensure no overlap
     overlap = set(required) & set(optional)
@@ -201,7 +213,9 @@ def get_rubric(rubric_ref: str) -> Rubric:
     resolved_version = str(raw.get("version", version))
 
     # Governance: registry-declared metrics schema (optional until you extend registry.yaml)
-    metrics_required, metrics_optional = _resolve_metrics_schema_from_registry(rubric_id, version)
+    metrics_required, metrics_optional = _resolve_metrics_schema_from_registry(
+        rubric_id, version
+    )
 
     return Rubric(
         rubric_id=resolved_rubric_id,

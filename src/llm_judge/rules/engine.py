@@ -219,6 +219,7 @@ def load_plan_for_rubric(rubric_id: str, version: str) -> RulePlan:
     excluded: set[str] = set()
     try:
         from llm_judge.rules.lifecycle import get_deprecated_enforced_rules
+
         excluded = get_deprecated_enforced_rules()
     except Exception:
         pass  # graceful — if lifecycle unavailable, skip filtering
@@ -242,7 +243,12 @@ def load_plan_for_rubric(rubric_id: str, version: str) -> RulePlan:
                 )
                 continue
             rules.append(
-                {"id": rid, "params": r.get("params") if isinstance(r.get("params"), dict) else {}}
+                {
+                    "id": rid,
+                    "params": (
+                        r.get("params") if isinstance(r.get("params"), dict) else {}
+                    ),
+                }
             )
 
     return RulePlan(

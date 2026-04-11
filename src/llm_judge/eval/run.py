@@ -74,7 +74,12 @@ def _sample_rows_stable_hash(
     Returns sampled_rows and sampling_metadata.
     """
     if n <= 0:
-        return [], {"strategy": "stable_hash", "requested_n": 0, "actual_n": 0, "seed": seed}
+        return [], {
+            "strategy": "stable_hash",
+            "requested_n": 0,
+            "actual_n": 0,
+            "seed": seed,
+        }
 
     # Enforce case_id to guarantee stability as datasets scale/grow.
     missing_case_id = [
@@ -135,6 +140,7 @@ def _enforce_metrics_schema(*, rubric_ref: str, metrics: dict[str, Any]) -> None
             f"Present keys={sorted(list(metrics.keys()))}"
         )
 
+
 def _resolve_dataset_path(spec: RunSpec) -> Path:
     # Backward compatible: allow explicit path — but warn about bypass.
     if spec.dataset.path:
@@ -150,11 +156,16 @@ def _resolve_dataset_path(spec: RunSpec) -> Path:
     # Governed path: resolve by dataset_id + version
     # Includes: metadata validation, hash verification, content validation
     reg = DatasetRegistry()
-    resolved = reg.resolve(dataset_id=spec.dataset.dataset_id, version=spec.dataset.version)
+    resolved = reg.resolve(
+        dataset_id=spec.dataset.dataset_id, version=spec.dataset.version
+    )
     return resolved.data_path
 
+
 def main() -> int:
-    parser = argparse.ArgumentParser(description="Run reproducible evaluation benchmark.")
+    parser = argparse.ArgumentParser(
+        description="Run reproducible evaluation benchmark."
+    )
     parser.add_argument("--spec", required=True, help="Path to RunSpec YAML.")
     args = parser.parse_args()
 
@@ -187,6 +198,7 @@ def main() -> int:
 
     try:
         from llm_judge.rules.engine import load_plan_for_rubric
+
         plan = load_plan_for_rubric(rubric.rubric_id, rubric.version)
         preflight_notes.append(f"rule_plan=config({len(plan.rules)} rules)")
     except (FileNotFoundError, ValueError):
@@ -211,12 +223,15 @@ def main() -> int:
     # Catches ungoverned rules before scoring — not just in preflight.
     try:
         from llm_judge.rules.lifecycle import check_rules_governed, emit_rule_snapshot
+
         governance_errors = check_rules_governed()
         if governance_errors:
             print("WARNING: Rule governance issues detected:")
             for ge in governance_errors:
                 print(f"  - {ge}")
-            preflight_notes.append(f"rule_governance=WARN({len(governance_errors)} issues)")
+            preflight_notes.append(
+                f"rule_governance=WARN({len(governance_errors)} issues)"
+            )
         else:
             preflight_notes.append("rule_governance=OK")
         # EPIC-5.1: Record which rules were active for this evaluation
@@ -233,7 +248,9 @@ def main() -> int:
         # spec.py already validates strategy; keep guardrail here too.
         if spec.sample.strategy != "stable_hash":
             raise ValueError(f"Unsupported sample.strategy: {spec.sample.strategy}")
-        rows, sampling_meta = _sample_rows_stable_hash(rows, n=spec.sample.n, seed=spec.sample.seed)
+        rows, sampling_meta = _sample_rows_stable_hash(
+            rows, n=spec.sample.n, seed=spec.sample.seed
+        )
         sampling_seconds = time.perf_counter() - sampling_start
     else:
         sampling_seconds = 0.0
@@ -248,6 +265,7 @@ def main() -> int:
     # Records what was checked and that it passed. Makes validation auditable
     # for CAP-5 (Artifact Governance) to index.
     import datetime as _dt
+
     validation_report = {
         "schema_version": "1.0",
         "artifact_type": "validation_report",
@@ -261,7 +279,9 @@ def main() -> int:
             "hash_verified": bool(dataset_hash),
             "integrity_checked": True,
             "rubric_exists": True,
-            "rule_plan_source": preflight_notes[1] if len(preflight_notes) > 1 else "unknown",
+            "rule_plan_source": (
+                preflight_notes[1] if len(preflight_notes) > 1 else "unknown"
+            ),
             "dataset_fields_compatible": True,
         },
         "result": "PASS",
@@ -337,9 +357,14 @@ def main() -> int:
             )
 
         # EPIC-2.2: Smoke test gate — fast-fail after N cases
-        if spec.smoke_test and (i + 1) == spec.smoke_test.n and total_cases > spec.smoke_test.n:
+        if (
+            spec.smoke_test
+            and (i + 1) == spec.smoke_test.n
+            and total_cases > spec.smoke_test.n
+        ):
             pass_count = sum(
-                1 for j in judgments
+                1
+                for j in judgments
                 if j.get("judge_decision") == j.get("human_decision")
             )
             pass_rate = pass_count / len(judgments) if judgments else 0
@@ -375,7 +400,7 @@ def main() -> int:
     _enforce_metrics_schema(rubric_ref=str(spec.rubric_id), metrics=metrics)
 
     write_json(run_dir / "metrics.json", metrics)
-    
+
     # --- L3 Observability: append to run registry (append-only) ---
     # Dataset identifiers come from RunSpec (governed) and stay stable.
     dataset_id = str(spec.dataset.dataset_id)

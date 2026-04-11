@@ -58,7 +58,9 @@ def _normalize_expected(row: dict[str, Any]) -> None:
         if isinstance(row.get("expected"), str):
             decision = row["expected"]
         else:
-            raise SystemExit(f"Row missing expected/expected_decision: keys={list(row.keys())}")
+            raise SystemExit(
+                f"Row missing expected/expected_decision: keys={list(row.keys())}"
+            )
 
     flags = row.get("expected_flags", [])
     if not isinstance(flags, list):
@@ -73,14 +75,26 @@ def _normalize_expected(row: dict[str, Any]) -> None:
 
 
 def main() -> int:
-    ap = argparse.ArgumentParser(description="Patch math_basic_v1.jsonl with case_id (+ optional rubric_id/expected normalization).")
+    ap = argparse.ArgumentParser(
+        description="Patch math_basic_v1.jsonl with case_id (+ optional rubric_id/expected normalization)."
+    )
     ap.add_argument("--in", dest="inp", required=True, help="Input JSONL path")
     ap.add_argument("--out", dest="out", required=True, help="Output JSONL path")
     ap.add_argument("--prefix", default="mbv1_", help="case_id prefix (default: mbv1_)")
-    ap.add_argument("--start", type=int, default=1, help="starting sequence number (default: 1)")
+    ap.add_argument(
+        "--start", type=int, default=1, help="starting sequence number (default: 1)"
+    )
     ap.add_argument("--width", type=int, default=8, help="zero-pad width (default: 8)")
-    ap.add_argument("--force-rubric-id", default=None, help='If set, overwrite rubric_id for all rows (e.g., "math_basic")')
-    ap.add_argument("--normalize-expected", action="store_true", help="Normalize expected fields into expected:{decision,flags}")
+    ap.add_argument(
+        "--force-rubric-id",
+        default=None,
+        help='If set, overwrite rubric_id for all rows (e.g., "math_basic")',
+    )
+    ap.add_argument(
+        "--normalize-expected",
+        action="store_true",
+        help="Normalize expected fields into expected:{decision,flags}",
+    )
 
     args = ap.parse_args()
     inp = Path(args.inp)

@@ -5,6 +5,7 @@ Loads the internally generated ground truth dataset covering
 all deterministic properties (1.1, 1.5, 3.1, 3.2, 3.3, 4.1, 4.2)
 with 3000 cases from Bitext CS data + synthetic injections.
 """
+
 from __future__ import annotations
 
 import json
@@ -39,18 +40,29 @@ class MasterGroundTruthAdapter(BenchmarkAdapter):
             total_cases=3000,
             test_cases=3000,
             supported_properties=[
-                "1.1", "1.2", "1.3", "1.4", "1.5",
-                "3.1", "3.2", "3.3", "4.1", "4.2",
+                "1.1",
+                "1.2",
+                "1.3",
+                "1.4",
+                "1.5",
+                "3.1",
+                "3.2",
+                "3.3",
+                "4.1",
+                "4.2",
             ],
             description="3000 CS cases with known ground truth labels for all "
-                       "deterministic properties. Includes clean cases, PII injections, "
-                       "boundary violations, toxicity injections, fabrications, and "
-                       "instruction violations.",
+            "deterministic properties. Includes clean cases, PII injections, "
+            "boundary violations, toxicity injections, fabrications, and "
+            "instruction violations.",
             published_baselines=[],  # Internal — no published baseline
         )
 
     def load_cases(
-        self, *, split: str = "test", max_cases: int | None = None,
+        self,
+        *,
+        split: str = "test",
+        max_cases: int | None = None,
     ) -> Iterator[BenchmarkCase]:
         """Yield ground truth cases."""
         filepath = self._data_dir / "ground_truth.jsonl"
@@ -82,7 +94,11 @@ class MasterGroundTruthAdapter(BenchmarkAdapter):
                         conversation=[Message(role="user", content=entry["query"])],
                         candidate_answer=entry["response"],
                         rubric_id="chat_quality",
-                        source_context=[entry["source_context"]] if entry.get("source_context") else None,
+                        source_context=(
+                            [entry["source_context"]]
+                            if entry.get("source_context")
+                            else None
+                        ),
                     ),
                     ground_truth=GroundTruth(
                         response_level=cast(Literal["pass", "fail"], response_level),

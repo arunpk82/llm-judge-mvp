@@ -1,25 +1,27 @@
 """
-Hallucination Detection — 5-Layer Groundedness Pipeline.
+Hallucination Detection — 4-Layer Groundedness Pipeline.
 
-Validated architecture from 20 experiments (RAGTruth benchmark):
+LAYER RENAMING (April 2026):
+  Old L0 Deterministic  → L1 Rules (exact match, B-flags)
+  Old L3 GraphRAG       → L2 Patterns (multi-pass knowledge graph ensemble)
+  Old L1+L2a+L2b        → L3 Classifiers (MiniLM + MiniCheck + DeBERTa)
+  Old L4 Gemini         → L4 LLM-as-Judge
 
-  L0: Deterministic text match (exact substring, near-exact, Jaccard)
-      → 9% of sentences confirmed grounded. Free, instant, no models.
-  L1: Gate 1 MiniLM embeddings (whole-response dual threshold)
-      → 44% of cases stopped as hallucinated. Free, 80MB model.
-  L2a: MiniCheck Flan-T5-Large (purpose-built factual consistency)
-      → 78% of sentences confirmed grounded. Free, 3.1GB model.
-      Breakthrough from Exp 17b: +97% improvement over DeBERTa NLI.
-  L2b: NLI DeBERTa ENTAILMENT (fallback on MiniCheck "unsupported")
-      → Catches 10 additional sentences MiniCheck misses. 400MB model.
-  L3: GraphRAG spaCy SVO exact match (per-sentence)
-      → Handles remaining structural matches. Free, 50MB model.
-  L4: Gemini per-sentence reasoning
-      → ~4% of sentences need LLM. F1=0.900. Per-call cost.
+New pipeline order (config-driven enable/disable):
+  L1: Rules — exact substring match → 7.4% cleared. Free, instant.
+  L2: Patterns — 5-graph ensemble traversal → 21.6% cleared. $0.01/source, cached.
+  L3: Classifiers — MiniCheck + DeBERTa NLI → handles remaining unknowns.
+  L4: LLM-as-Judge — Gemini per-sentence → last resort, ~4% of sentences.
 
-Total free: ~96% of sentences resolved locally.
-Total local model footprint: ~3.6GB (MiniLM 80MB + MiniCheck 3.1GB + DeBERTa 400MB).
+Science Gate results (Exp 31, 50 RAGTruth cases):
+  L1+L2 combined: 78 cleared (27.6%) at 100% precision, 0 safety violations.
+  11/16 hallucinations caught (69% recall) before L3/L4.
+
+Config: Set via hallucination_pipeline_config in pipeline YAML or per-call kwargs.
+  l1_enabled (default True), l2_enabled (default True),
+  l3_enabled (default True), l4_enabled (default True).
 """
+
 from __future__ import annotations
 
 import logging
@@ -43,9 +45,14 @@ def _split_sentences(text: str) -> list[str]:
 
 # Patterns for legacy claim/citation detection
 _CLAIM_PATTERNS = [
-    re.compile(r"(?:according to|studies show|research indicates|data shows|statistics show)", re.I),
+    re.compile(
+        r"(?:according to|studies show|research indicates|data shows|statistics show)",
+        re.I,
+    ),
     re.compile(r"(?:it is (?:known|proven|established) that)", re.I),
-    re.compile(r"(?:the (?:official|published|documented) (?:number|figure|rate|data))", re.I),
+    re.compile(
+        r"(?:the (?:official|published|documented) (?:number|figure|rate|data))", re.I
+    ),
     re.compile(r"\d{1,3}(?:\.\d+)?%", re.I),
 ]
 _CITATION_PATTERNS = [
@@ -57,26 +64,31 @@ _CITATION_PATTERNS = [
 
 def _tokenize(text: str) -> set[str]:
     return {
-        w.lower().strip(".,!?;:\"'()[]{}") 
-        for w in text.split() 
+        w.lower().strip(".,!?;:\"'()[]{}")
+        for w in text.split()
         if len(w.strip(".,!?;:\"'()[]{}")) > 2
     }
 
 
 # --- Dataclasses ---
 
+
 @dataclass
 class SentenceLayerResult:
     """Tracking which layer resolved each sentence."""
+
     sentence_idx: int
     sentence: str
-    resolved_by: str  # "L0", "L2_entailment", "L3_graphrag", "L4_supported", "L4_unsupported"
+    resolved_by: (
+        str  # "L0", "L2_entailment", "L3_graphrag", "L4_supported", "L4_unsupported"
+    )
     detail: str = ""
 
 
 @dataclass
 class HallucinationResult:
     """Result of hallucination check for a single response."""
+
     case_id: str
     risk_score: float
     grounding_ratio: float
@@ -92,7 +104,10 @@ class HallucinationResult:
 
 # --- L0: Deterministic text match ---
 
-def _l0_deterministic_match(sentence: str, source_sentences: list[str], source_full: str) -> bool:
+
+def _l0_deterministic_match(
+    sentence: str, source_sentences: list[str], source_full: str
+) -> bool:
     """
     L0: Cheapest check. Exact substring, near-exact ratio, or high Jaccard overlap.
     Confirmed: handles 9% of sentences (Experiment 12).
@@ -122,6 +137,7 @@ def _l0_deterministic_match(sentence: str, source_sentences: list[str], source_f
 
 # --- L1: Gate 1 MiniLM embeddings ---
 
+
 def _l1_gate1_check(
     response: str,
     context: str,
@@ -137,7 +153,8 @@ def _l1_gate1_check(
     Returns: (decision, grounding_ratio, min_sim)
     """
     grounding, min_sim = _compute_grounding_ratio(
-        response, context,
+        response,
+        context,
         skip_embeddings=skip_embeddings,
         similarity_threshold=similarity_threshold,
     )
@@ -178,6 +195,7 @@ def _compute_grounding_ratio(
 
     try:
         from llm_judge.properties import get_embedding_provider
+
         provider = get_embedding_provider()
         response_embeddings = provider.encode(response_sentences)
         context_embeddings = provider.encode(context_sentences)
@@ -247,10 +265,14 @@ def _l2a_minicheck(sentence: str, source_doc: str) -> bool:
     _load_minicheck()
 
     prompt = _MINICHECK_PROMPT.format(
-        document=source_doc[:3500], claim=sentence,
+        document=source_doc[:3500],
+        claim=sentence,
     )
     inputs = _mc_tokenizer(
-        prompt, return_tensors="pt", truncation=True, max_length=2048,
+        prompt,
+        return_tensors="pt",
+        truncation=True,
+        max_length=2048,
     )
 
     with torch.no_grad():
@@ -279,11 +301,15 @@ def _load_nli():
     _nli_tokenizer = AutoTokenizer.from_pretrained(model_name)
     _nli_model = AutoModelForSequenceClassification.from_pretrained(model_name)
     _nli_model.eval()
-    _nli_labels = [_nli_model.config.id2label[i].upper()
-                   for i in range(len(_nli_model.config.id2label))]
+    _nli_labels = [
+        _nli_model.config.id2label[i].upper()
+        for i in range(len(_nli_model.config.id2label))
+    ]
 
 
-def _l2_nli_check(sentence: str, context_sentences: list[str], ctx_embeddings: Any, resp_emb: Any) -> bool:
+def _l2_nli_check(
+    sentence: str, context_sentences: list[str], ctx_embeddings: Any, resp_emb: Any
+) -> bool:
     """
     L2: NLI ENTAILMENT check against top-3 most similar source sentences.
     Confirmed: handles 36% of sentences (Experiment 12).
@@ -295,16 +321,23 @@ def _l2_nli_check(sentence: str, context_sentences: list[str], ctx_embeddings: A
     _load_nli()
 
     from llm_judge.properties import get_embedding_provider
+
     provider = get_embedding_provider()
 
-    sims = [(j, provider.max_similarity(resp_emb, [ce])) for j, ce in enumerate(ctx_embeddings)]
+    sims = [
+        (j, provider.max_similarity(resp_emb, [ce]))
+        for j, ce in enumerate(ctx_embeddings)
+    ]
     sims.sort(key=lambda x: x[1], reverse=True)
 
     best_entailment = 0.0
     for src_idx, _ in sims[:3]:
         inputs = _nli_tokenizer(
-            context_sentences[src_idx], sentence,
-            return_tensors="pt", truncation=True, max_length=512,
+            context_sentences[src_idx],
+            sentence,
+            return_tensors="pt",
+            truncation=True,
+            max_length=512,
         )
         with torch.no_grad():
             probs = torch.softmax(_nli_model(**inputs).logits, dim=-1)[0].tolist()
@@ -326,6 +359,7 @@ def _load_spacy():
         return
 
     import spacy
+
     _spacy_nlp = spacy.load("en_core_web_sm")
 
 
@@ -406,7 +440,9 @@ def _l4_gemini_check(sentence: str, source_doc: str, case_id: str = "") -> str:
 
     api_key = os.environ.get("GEMINI_API_KEY")
     if not api_key:
-        logger.warning("l4_gemini.no_api_key: GEMINI_API_KEY not set, defaulting to supported")
+        logger.warning(
+            "l4_gemini.no_api_key: GEMINI_API_KEY not set, defaulting to supported"
+        )
         return "supported"
 
     model = os.environ.get("GEMINI_MODEL", "gemini-2.5-flash")
@@ -420,7 +456,9 @@ def _l4_gemini_check(sentence: str, source_doc: str, case_id: str = "") -> str:
 
     try:
         with httpx.Client(timeout=30.0) as client:
-            resp = client.post(url, json=payload, headers={"Content-Type": "application/json"})
+            resp = client.post(
+                url, json=payload, headers={"Content-Type": "application/json"}
+            )
             resp.raise_for_status()
             data = resp.json()
             raw = data["candidates"][0]["content"]["parts"][-1]["text"].strip().upper()
@@ -439,6 +477,7 @@ def _l4_gemini_check(sentence: str, source_doc: str, case_id: str = "") -> str:
 
 
 # --- Legacy helpers ---
+
 
 def _count_ungrounded_claims(response: str, context: str) -> tuple[int, list[str]]:
     claims: list[str] = []
@@ -470,6 +509,7 @@ def _count_unverifiable_citations(response: str, context: str) -> int:
 
 # --- Main entry point ---
 
+
 def check_hallucination(
     *,
     response: str,
@@ -483,27 +523,40 @@ def check_hallucination(
     skip_embeddings: bool = False,
     gate2_routing: str = "none",
     layered: bool = True,
+    # New L2 Patterns parameters
+    fact_tables: dict | None = None,
+    knowledge_graphs: dict | None = None,
+    # Layer enable/disable (config-driven)
+    l1_enabled: bool = True,
+    l2_enabled: bool = True,
+    l3_enabled: bool = True,
+    l4_enabled: bool = True,
 ) -> HallucinationResult:
     """
     Check a single response for hallucination risk.
 
-    5-layer architecture (validated across 16 experiments, F1=0.900):
-      L0: Deterministic text match - instant, no models
-      L1: Gate 1 MiniLM embeddings - whole-response dual threshold
-      L2: NLI DeBERTa ENTAILMENT - per-sentence, free
-      L3: GraphRAG spaCy exact match - per-sentence, free
-      L4: Gemini per-sentence reasoning - API call, only for unresolved
+    4-layer architecture (config-driven):
+      L1: Rules — exact substring match (free, instant)
+      L2: Patterns — knowledge graph ensemble (requires fact_tables)
+      L3: Classifiers — MiniCheck + DeBERTa NLI (3.6GB models)
+      L4: LLM-as-Judge — Gemini per-sentence (API cost)
+
+    Sentences cascade: L1 → L2 → L3 → L4. Each sentence skips remaining
+    layers once resolved (grounded or flagged at L2, confirmed at L3/L4).
 
     Args:
         response: The LLM-generated response to check.
         context: Full context (conversation + source).
-        source_context: Source document only (for L3/L4). Falls back to context.
+        source_context: Source document only (for L2/L3/L4). Falls back to context.
         case_id: Identifier for logging.
-        gate2_routing: When to invoke L4 Gemini.
-            "none"  - No LLM calls. L0+L1 only.
-            "pass"  - Gate 1 PASS cases get L2->L3->L4 per-sentence analysis.
-            "all"   - Every case gets full 5-layer analysis.
-        layered: Use 5-layer architecture (True) or legacy L0+L1 only (False).
+        fact_tables: Pre-extracted multi-pass fact tables for L2 ensemble.
+        knowledge_graphs: Pre-built knowledge graphs for L2 (overrides fact_tables).
+        l1_enabled: Enable L1 Rules layer (default True).
+        l2_enabled: Enable L2 Patterns layer (default True, requires fact_tables).
+        l3_enabled: Enable L3 Classifiers layer (default True).
+        l4_enabled: Enable L4 LLM-as-Judge layer (default True).
+        gate2_routing: Legacy parameter. "none" disables L3+L4. "pass"/"all" enables.
+        layered: Legacy parameter. False = L1 only.
     """
     source_doc = source_context if source_context else context
 
@@ -513,43 +566,128 @@ def check_hallucination(
     citation_count = _count_unverifiable_citations(response, context)
     flags: list[str] = []
     sentence_results: list[SentenceLayerResult] = []
-    layer_stats = {"L0": 0, "L1_fail": 0, "L2a_minicheck": 0, "L2b_nli": 0, "L3": 0, "L4_supported": 0, "L4_unsupported": 0}
+    layer_stats = {
+        "L1": 0,
+        "L2": 0,
+        "L2_flagged": 0,
+        "L3_gate1_fail": 0,
+        "L3a_minicheck": 0,
+        "L3b_nli": 0,
+        "L4_supported": 0,
+        "L4_unsupported": 0,
+    }
 
     if not resp_sents or not ctx_sents:
         return HallucinationResult(
-            case_id=case_id, risk_score=0.0, grounding_ratio=1.0, min_sentence_sim=1.0,
-            ungrounded_claims=ungrounded_count, unverifiable_citations=citation_count,
-            gate1_decision="pass", layer_stats=layer_stats,
+            case_id=case_id,
+            risk_score=0.0,
+            grounding_ratio=1.0,
+            min_sentence_sim=1.0,
+            ungrounded_claims=ungrounded_count,
+            unverifiable_citations=citation_count,
+            gate1_decision="pass",
+            layer_stats=layer_stats,
         )
 
-    # -- L0: Deterministic text match (cheapest, runs first) --
-    l0_resolved = set()
-    for i, sent in enumerate(resp_sents):
-        if _l0_deterministic_match(sent, ctx_sents, source_doc):
-            l0_resolved.add(i)
-            layer_stats["L0"] += 1
-            sentence_results.append(SentenceLayerResult(
-                sentence_idx=i, sentence=sent[:120],
-                resolved_by="L0", detail="deterministic_match",
-            ))
+    # -- L1: Rules — exact substring match (cheapest, runs first) --
+    l1_resolved = set()
+    if l1_enabled:
+        for i, sent in enumerate(resp_sents):
+            if _l0_deterministic_match(sent, ctx_sents, source_doc):
+                l1_resolved.add(i)
+                layer_stats["L1"] += 1
+                sentence_results.append(
+                    SentenceLayerResult(
+                        sentence_idx=i,
+                        sentence=sent[:120],
+                        resolved_by="L1",
+                        detail="exact_match",
+                    )
+                )
 
-    # If ALL sentences resolved by L0, skip everything else
-    if len(l0_resolved) == len(resp_sents):
+    # If ALL sentences resolved by L1, skip everything else
+    if len(l1_resolved) == len(resp_sents):
         return HallucinationResult(
-            case_id=case_id, risk_score=0.0, grounding_ratio=1.0, min_sentence_sim=1.0,
-            ungrounded_claims=ungrounded_count, unverifiable_citations=citation_count,
-            gate1_decision="pass", flags=flags, layer_stats=layer_stats,
+            case_id=case_id,
+            risk_score=0.0,
+            grounding_ratio=1.0,
+            min_sentence_sim=1.0,
+            ungrounded_claims=ungrounded_count,
+            unverifiable_citations=citation_count,
+            gate1_decision="pass",
+            flags=flags,
+            layer_stats=layer_stats,
             sentence_results=sentence_results,
         )
 
-    # -- L1: Gate 1 MiniLM whole-response --
-    gate1_decision, grounding, min_sim = _l1_gate1_check(
-        response, context,
-        grounding_threshold=grounding_threshold,
-        min_sentence_threshold=min_sentence_threshold,
-        similarity_threshold=similarity_threshold,
-        skip_embeddings=skip_embeddings,
-    )
+    # -- L2: Patterns — knowledge graph ensemble (new, replaces old L3 GraphRAG) --
+    l2_grounded = set()  # Only grounded (100% precision) stops here
+    l2_flagged = set()  # Flagged cascades to L3 with evidence (cascade rule)
+    l2_graphs = knowledge_graphs
+
+    if l2_enabled and (fact_tables or knowledge_graphs):
+        try:
+            from llm_judge.calibration.hallucination_graphs import (
+                build_all_graphs,
+                l2_ensemble_check,
+            )
+
+            # Build graphs from fact tables if not pre-built
+            if l2_graphs is None and fact_tables:
+                l2_graphs = build_all_graphs(fact_tables)
+
+            if l2_graphs:
+                _load_spacy()
+                for i, sent in enumerate(resp_sents):
+                    if i in l1_resolved:
+                        continue
+
+                    result = l2_ensemble_check(sent, l2_graphs, nlp=_spacy_nlp)
+                    if result["verdict"] == "grounded":
+                        l2_grounded.add(i)
+                        layer_stats["L2"] += 1
+                        sentence_results.append(
+                            SentenceLayerResult(
+                                sentence_idx=i,
+                                sentence=sent[:120],
+                                resolved_by="L2",
+                                detail=f"ensemble_{result['confidence']}",
+                            )
+                        )
+                    elif result["verdict"] == "flagged":
+                        # CASCADE RULE: flagged sentences pass to L3 with evidence
+                        # They are NOT resolved — L3 will verify or overturn
+                        l2_flagged.add(i)
+                        layer_stats["L2_flagged"] += 1
+                        evidence_str = "; ".join(result.get("evidence", [])[:3])
+                        flags.append(f"l2_flagged:{sent[:60]}")
+                        sentence_results.append(
+                            SentenceLayerResult(
+                                sentence_idx=i,
+                                sentence=sent[:120],
+                                resolved_by="L2_flagged",
+                                detail=evidence_str[:200],
+                            )
+                        )
+        except ImportError:
+            logger.debug("L2 ensemble: hallucination_graphs not available, skipping")
+        except Exception as e:
+            logger.warning(f"L2 ensemble error: {str(e)[:80]}")
+
+    # -- L3: Gate 1 MiniLM whole-response (was L1) --
+    gate1_decision = "pass"
+    grounding = 1.0
+    min_sim = 1.0
+
+    if l3_enabled:
+        gate1_decision, grounding, min_sim = _l1_gate1_check(
+            response,
+            context,
+            grounding_threshold=grounding_threshold,
+            min_sentence_threshold=min_sentence_threshold,
+            similarity_threshold=similarity_threshold,
+            skip_embeddings=skip_embeddings,
+        )
 
     if gate1_decision in ("fail", "ambiguous"):
         if grounding < grounding_threshold:
@@ -557,18 +695,26 @@ def check_hallucination(
         if min_sim < min_sentence_threshold:
             flags.append(f"low_min_sentence_sim:{min_sim:.3f}")
 
-        layer_stats["L1_fail"] = 1
+        layer_stats["L3_gate1_fail"] = 1
 
         # When gate2_routing is "none", Gate 1 is the final verdict.
         # When gate2_routing is "pass"/"all", continue to L2+ for verification.
         # Gate 1 fail/ambiguous becomes a signal, not a stopper.
         if gate2_routing == "none":
-            risk = max(0, (grounding_threshold - grounding) / grounding_threshold) * 0.5 + 0.3
+            risk = (
+                max(0, (grounding_threshold - grounding) / grounding_threshold) * 0.5
+                + 0.3
+            )
             return HallucinationResult(
-                case_id=case_id, risk_score=round(min(1.0, risk), 4),
-                grounding_ratio=round(grounding, 4), min_sentence_sim=round(min_sim, 4),
-                ungrounded_claims=ungrounded_count, unverifiable_citations=citation_count,
-                gate1_decision=gate1_decision, flags=flags, layer_stats=layer_stats,
+                case_id=case_id,
+                risk_score=round(min(1.0, risk), 4),
+                grounding_ratio=round(grounding, 4),
+                min_sentence_sim=round(min_sim, 4),
+                ungrounded_claims=ungrounded_count,
+                unverifiable_citations=citation_count,
+                gate1_decision=gate1_decision,
+                flags=flags,
+                layer_stats=layer_stats,
                 sentence_results=sentence_results,
             )
         # else: fall through to L2+ analysis
@@ -582,88 +728,106 @@ def check_hallucination(
             risk = 0.15
 
         return HallucinationResult(
-            case_id=case_id, risk_score=round(risk, 4),
-            grounding_ratio=round(grounding, 4), min_sentence_sim=round(min_sim, 4),
-            ungrounded_claims=ungrounded_count, unverifiable_citations=citation_count,
-            gate1_decision=gate1_decision, flags=flags, layer_stats=layer_stats,
+            case_id=case_id,
+            risk_score=round(risk, 4),
+            grounding_ratio=round(grounding, 4),
+            min_sentence_sim=round(min_sim, 4),
+            ungrounded_claims=ungrounded_count,
+            unverifiable_citations=citation_count,
+            gate1_decision=gate1_decision,
+            flags=flags,
+            layer_stats=layer_stats,
             sentence_results=sentence_results,
         )
 
-    # -- L2 + L3 + L4: Per-sentence analysis --
+    # -- L3 + L4: Per-sentence analysis (classifiers + LLM) --
+    # Cascade rule: only grounded sentences are resolved
+    # Flagged sentences from L1 (B-flags) and L2 cascade to L3 for verification
+    resolved = l1_resolved | l2_grounded  # NOT l2_flagged — those cascade
 
     resp_embs: list[Any] = []
     ctx_embs: list[Any] = []
-    try:
-        from llm_judge.properties import get_embedding_provider
-        provider = get_embedding_provider()
-        resp_embs = provider.encode(resp_sents)
-        ctx_embs = provider.encode(ctx_sents)
-    except Exception:
-        resp_embs = [None] * len(resp_sents)
+    if l3_enabled:
+        try:
+            from llm_judge.properties import get_embedding_provider
+
+            provider = get_embedding_provider()
+            resp_embs = provider.encode(resp_sents)
+            ctx_embs = provider.encode(ctx_sents)
+        except Exception:
+            resp_embs = [None] * len(resp_sents)
 
     has_unsupported = False
 
     for i, sent in enumerate(resp_sents):
-        if i in l0_resolved:
+        if i in resolved:
             continue
 
-        # L2a: MiniCheck (primary — 78% coverage, Exp 17b)
-        try:
-            if _l2a_minicheck(sent, source_doc):
-                layer_stats["L2a_minicheck"] = layer_stats.get("L2a_minicheck", 0) + 1
-                sentence_results.append(SentenceLayerResult(
-                    sentence_idx=i, sentence=sent[:120],
-                    resolved_by="L2a_minicheck",
-                ))
-                continue
-        except Exception as e:
-            logger.debug(f"l2a_minicheck.error: {str(e)[:60]}")
-
-        # L2b: NLI DeBERTa ENTAILMENT (fallback — catches 10 more, Exp 17b)
-        if resp_embs[i] is not None and ctx_embs:
+        # L3a: MiniCheck (primary classifier — 78% coverage, Exp 17b)
+        if l3_enabled:
             try:
-                if _l2_nli_check(sent, ctx_sents, ctx_embs, resp_embs[i]):
-                    layer_stats["L2b_nli"] = layer_stats.get("L2b_nli", 0) + 1
-                    sentence_results.append(SentenceLayerResult(
-                        sentence_idx=i, sentence=sent[:120],
-                        resolved_by="L2b_nli",
-                    ))
+                if _l2a_minicheck(sent, source_doc):
+                    layer_stats["L3a_minicheck"] = (
+                        layer_stats.get("L3a_minicheck", 0) + 1
+                    )
+                    sentence_results.append(
+                        SentenceLayerResult(
+                            sentence_idx=i,
+                            sentence=sent[:120],
+                            resolved_by="L3a_minicheck",
+                        )
+                    )
                     continue
             except Exception as e:
-                logger.debug(f"l2b_nli.error: {str(e)[:60]}")
+                logger.debug(f"l3a_minicheck.error: {str(e)[:60]}")
 
-        # L3: GraphRAG exact match
-        try:
-            if _l3_graphrag_check(sent, source_doc):
-                layer_stats["L3"] += 1
-                sentence_results.append(SentenceLayerResult(
-                    sentence_idx=i, sentence=sent[:120],
-                    resolved_by="L3_graphrag",
-                ))
-                continue
-        except Exception as e:
-            logger.debug(f"l3_graphrag.error: {str(e)[:60]}")
+            # L3b: NLI DeBERTa ENTAILMENT (fallback — catches 10 more, Exp 17b)
+            if resp_embs and resp_embs[i] is not None and ctx_embs:
+                try:
+                    if _l2_nli_check(sent, ctx_sents, ctx_embs, resp_embs[i]):
+                        layer_stats["L3b_nli"] = layer_stats.get("L3b_nli", 0) + 1
+                        sentence_results.append(
+                            SentenceLayerResult(
+                                sentence_idx=i,
+                                sentence=sent[:120],
+                                resolved_by="L3b_nli",
+                            )
+                        )
+                        continue
+                except Exception as e:
+                    logger.debug(f"l3b_nli.error: {str(e)[:60]}")
 
-        # L4: Gemini per-sentence reasoning
-        decision = _l4_gemini_check(sent, source_doc, case_id)
+        # L4: Gemini per-sentence reasoning (last resort)
+        if l4_enabled:
+            decision = _l4_gemini_check(sent, source_doc, case_id)
 
         if decision == "unsupported":
             has_unsupported = True
             layer_stats["L4_unsupported"] += 1
-            sentence_results.append(SentenceLayerResult(
-                sentence_idx=i, sentence=sent[:120],
-                resolved_by="L4_unsupported",
-            ))
+            sentence_results.append(
+                SentenceLayerResult(
+                    sentence_idx=i,
+                    sentence=sent[:120],
+                    resolved_by="L4_unsupported",
+                )
+            )
             flags.append(f"l4_unsupported:{sent[:60]}")
         else:
             layer_stats["L4_supported"] += 1
-            sentence_results.append(SentenceLayerResult(
-                sentence_idx=i, sentence=sent[:120],
-                resolved_by="L4_supported",
-            ))
+            sentence_results.append(
+                SentenceLayerResult(
+                    sentence_idx=i,
+                    sentence=sent[:120],
+                    resolved_by="L4_supported",
+                )
+            )
 
     final_decision = "fail" if has_unsupported else "pass"
-    gate2_decision = final_decision if (layer_stats["L4_supported"] + layer_stats["L4_unsupported"]) > 0 else ""
+    gate2_decision = (
+        final_decision
+        if (layer_stats["L4_supported"] + layer_stats["L4_unsupported"]) > 0
+        else ""
+    )
 
     if has_unsupported:
         unsupported_ratio = layer_stats["L4_unsupported"] / max(1, len(resp_sents))
@@ -675,15 +839,22 @@ def check_hallucination(
         flags.append(f"ungrounded_claims:{ungrounded_count}")
 
     return HallucinationResult(
-        case_id=case_id, risk_score=round(min(1.0, risk), 4),
-        grounding_ratio=round(grounding, 4), min_sentence_sim=round(min_sim, 4),
-        ungrounded_claims=ungrounded_count, unverifiable_citations=citation_count,
-        gate1_decision=gate1_decision, gate2_decision=gate2_decision,
-        flags=flags, layer_stats=layer_stats, sentence_results=sentence_results,
+        case_id=case_id,
+        risk_score=round(min(1.0, risk), 4),
+        grounding_ratio=round(grounding, 4),
+        min_sentence_sim=round(min_sim, 4),
+        ungrounded_claims=ungrounded_count,
+        unverifiable_citations=citation_count,
+        gate1_decision=gate1_decision,
+        gate2_decision=gate2_decision,
+        flags=flags,
+        layer_stats=layer_stats,
+        sentence_results=sentence_results,
     )
 
 
 # --- Batch interface ---
+
 
 def check_hallucinations_batch(
     *,
@@ -709,13 +880,17 @@ def check_hallucinations_batch(
             continue
 
         result = check_hallucination(
-            response=response, context=context,
-            case_id=case_id, grounding_threshold=grounding_threshold,
+            response=response,
+            context=context,
+            case_id=case_id,
+            grounding_threshold=grounding_threshold,
         )
         results.append(result)
 
     flagged = [r for r in results if r.flags]
-    avg_grounding = sum(r.grounding_ratio for r in results) / len(results) if results else 0
+    avg_grounding = (
+        sum(r.grounding_ratio for r in results) / len(results) if results else 0
+    )
     avg_risk = sum(r.risk_score for r in results) / len(results) if results else 0
 
     return {

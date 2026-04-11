@@ -17,7 +17,9 @@ def _cmd_baseline_create(args: argparse.Namespace) -> int:
         baseline_id=args.baseline_id,
         set_latest=not args.no_latest,
     )
-    print(f"Baseline created: baselines/{ref.suite}/{ref.rubric_id}/snapshots/{ref.baseline_id}")
+    print(
+        f"Baseline created: baselines/{ref.suite}/{ref.rubric_id}/snapshots/{ref.baseline_id}"
+    )
     if not args.no_latest:
         print(f"Latest updated:  baselines/{ref.suite}/{ref.rubric_id}/latest.json")
     return 0
@@ -36,7 +38,9 @@ def _cmd_baseline_promote(args: argparse.Namespace) -> int:
     except Exception as e:
         print(str(e))
         return 2
-    print(f"Baseline promoted: baselines/{ref.suite}/{ref.rubric_id}/snapshots/{ref.baseline_id}")
+    print(
+        f"Baseline promoted: baselines/{ref.suite}/{ref.rubric_id}/snapshots/{ref.baseline_id}"
+    )
     print(f"Latest updated:    baselines/{ref.suite}/{ref.rubric_id}/latest.json")
     return 0
 

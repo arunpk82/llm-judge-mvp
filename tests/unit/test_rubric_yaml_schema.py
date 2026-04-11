@@ -22,7 +22,9 @@ def test_rubric_registry_yamls_validate() -> None:
     if not rubric_dir.exists():
         return
 
-    yaml_files = sorted(list(rubric_dir.rglob("*.yaml")) + list(rubric_dir.rglob("*.yml")))
+    yaml_files = sorted(
+        list(rubric_dir.rglob("*.yaml")) + list(rubric_dir.rglob("*.yml"))
+    )
     assert yaml_files, "No YAML files found under ./rubrics"
 
     validated = 0

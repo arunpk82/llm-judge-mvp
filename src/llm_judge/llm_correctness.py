@@ -72,7 +72,9 @@ def _coerce_result(data: Any) -> LLMCorrectnessResult:
     if not (0.0 <= confidence_f <= 1.0):
         raise ValueError("confidence out of range (0-1)")
 
-    return LLMCorrectnessResult(score=score, explanation=explanation, confidence=confidence_f)
+    return LLMCorrectnessResult(
+        score=score, explanation=explanation, confidence=confidence_f
+    )
 
 
 async def _judge_correctness_llm_async(request: PredictRequest) -> LLMCorrectnessResult:

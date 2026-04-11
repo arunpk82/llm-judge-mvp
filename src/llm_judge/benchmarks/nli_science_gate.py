@@ -9,6 +9,7 @@ Pass criteria: >= 7/10 false negatives correctly identified by NLI contradiction
 Usage:
     poetry run python -m llm_judge.benchmarks.nli_science_gate --max-fn 10
 """
+
 from __future__ import annotations
 
 import argparse
@@ -23,7 +24,10 @@ import torch
 from transformers import AutoModelForSequenceClassification, AutoTokenizer
 
 from llm_judge.benchmarks.ragtruth import RAGTruthAdapter
-from llm_judge.calibration.hallucination import _compute_grounding_ratio, _split_sentences
+from llm_judge.calibration.hallucination import (
+    _compute_grounding_ratio,
+    _split_sentences,
+)
 from llm_judge.properties import get_embedding_provider
 
 logger = logging.getLogger(__name__)
@@ -35,6 +39,7 @@ NLI_LABELS = ["CONTRADICTION", "NEUTRAL", "ENTAILMENT"]
 @dataclass
 class NLISentenceResult:
     """NLI result for one response sentence."""
+
     sentence: str
     sentence_idx: int
     cosine_sim: float
@@ -47,6 +52,7 @@ class NLISentenceResult:
 @dataclass
 class NLICaseResult:
     """NLI result for one RAGTruth case."""
+
     case_id: str
     ground_truth: str  # "pass" or "fail"
     gate1_ratio: float
@@ -66,7 +72,9 @@ def load_nli_model():
     model = AutoModelForSequenceClassification.from_pretrained(NLI_MODEL)
     model.eval()
     elapsed = time.time() - start
-    labels = [model.config.id2label[i].upper() for i in range(len(model.config.id2label))]
+    labels = [
+        model.config.id2label[i].upper() for i in range(len(model.config.id2label))
+    ]
     print(f"  Model loaded in {elapsed:.1f}s, labels: {labels}")
     return tokenizer, model, labels
 
@@ -86,7 +94,8 @@ def nli_classify(
     if labels is None:
         labels = NLI_LABELS
     inputs = tokenizer(
-        premise, hypothesis,
+        premise,
+        hypothesis,
         return_tensors="pt",
         truncation=True,
         max_length=512,
@@ -114,7 +123,9 @@ def find_false_negatives(max_cases: int = 500, max_fn: int = 10) -> list[tuple]:
         context = conv + ("\n\n" + "\n".join(ctx_parts) if ctx_parts else "")
         response = case.request.candidate_answer
 
-        ratio, min_sim = _compute_grounding_ratio(response, context, similarity_threshold=0.60)
+        ratio, min_sim = _compute_grounding_ratio(
+            response, context, similarity_threshold=0.60
+        )
 
         # Gate 1 says PASS (both above threshold) — false negative
         if ratio >= 0.80 and min_sim >= 0.30:
@@ -142,9 +153,14 @@ def run_nli_on_case(
 
     if not resp_sents or not ctx_sents:
         return NLICaseResult(
-            case_id=case.case_id, ground_truth="fail",
-            gate1_ratio=ratio, gate1_min_sim=min_sim, gate1_decision="pass",
-            nli_has_contradiction=False, nli_decision="pass", correct=False,
+            case_id=case.case_id,
+            ground_truth="fail",
+            gate1_ratio=ratio,
+            gate1_min_sim=min_sim,
+            gate1_decision="pass",
+            nli_has_contradiction=False,
+            nli_decision="pass",
+            correct=False,
             sentences=[],
         )
 
@@ -157,7 +173,9 @@ def run_nli_on_case(
 
     for i, (sent, emb) in enumerate(zip(resp_sents, resp_embs)):
         # Find top-3 source sentences by cosine similarity
-        sims = [(j, provider.max_similarity(emb, [ce])) for j, ce in enumerate(ctx_embs)]
+        sims = [
+            (j, provider.max_similarity(emb, [ce])) for j, ce in enumerate(ctx_embs)
+        ]
         sims.sort(key=lambda x: x[1], reverse=True)
         top3 = sims[:3]
 
@@ -167,16 +185,22 @@ def run_nli_on_case(
         worst_contradiction = 0.0
 
         for src_idx, sim_score in top3:
-            nli_result = nli_classify(tokenizer, model, ctx_sents[src_idx], sent, labels=labels)
-            top3_nli.append({
-                "source_idx": src_idx,
-                "source_sentence": ctx_sents[src_idx][:100],
-                "cosine_sim": round(sim_score, 4),
-                "nli": nli_result,
-                "label": max(nli_result, key=lambda k: nli_result.get(k, 0.0)),
-            })
+            nli_result = nli_classify(
+                tokenizer, model, ctx_sents[src_idx], sent, labels=labels
+            )
+            top3_nli.append(
+                {
+                    "source_idx": src_idx,
+                    "source_sentence": ctx_sents[src_idx][:100],
+                    "cosine_sim": round(sim_score, 4),
+                    "nli": nli_result,
+                    "label": max(nli_result, key=lambda k: nli_result.get(k, 0.0)),
+                }
+            )
             best_entailment = max(best_entailment, nli_result.get("ENTAILMENT", 0))
-            worst_contradiction = max(worst_contradiction, nli_result.get("CONTRADICTION", 0))
+            worst_contradiction = max(
+                worst_contradiction, nli_result.get("CONTRADICTION", 0)
+            )
 
         # Aggregate: best-case — if ANY source entails, it's grounded
         # Use the NLI result from the most similar source sentence for reporting
@@ -190,18 +214,22 @@ def run_nli_on_case(
         if worst_contradiction > 0.5 and not any_entail:
             has_contradiction = True
 
-        sentence_results.append(NLISentenceResult(
-            sentence=sent,
-            sentence_idx=i,
-            cosine_sim=round(top3[0][1], 4),
-            best_source_sentence=ctx_sents[top3[0][0]][:120],
-            nli_label=primary_label,
-            nli_probs=primary_nli,
-            top3_nli=top3_nli,
-        ))
+        sentence_results.append(
+            NLISentenceResult(
+                sentence=sent,
+                sentence_idx=i,
+                cosine_sim=round(top3[0][1], 4),
+                best_source_sentence=ctx_sents[top3[0][0]][:120],
+                nli_label=primary_label,
+                nli_probs=primary_nli,
+                top3_nli=top3_nli,
+            )
+        )
 
     nli_decision = "fail" if has_contradiction else "pass"
-    correct = (nli_decision == "fail")  # ground truth is fail, so correct if NLI says fail
+    correct = (
+        nli_decision == "fail"
+    )  # ground truth is fail, so correct if NLI says fail
 
     return NLICaseResult(
         case_id=case.case_id,
@@ -234,7 +262,9 @@ def print_report(results: list[NLICaseResult]) -> None:
     for r in results:
         marker = "CAUGHT" if r.correct else "MISSED"
         print(f"\n--- {r.case_id} [{marker}] ---")
-        print(f"  Gate 1: ratio={r.gate1_ratio:.3f} min_sim={r.gate1_min_sim:.3f} → PASS (wrong)")
+        print(
+            f"  Gate 1: ratio={r.gate1_ratio:.3f} min_sim={r.gate1_min_sim:.3f} → PASS (wrong)"
+        )
         print(f"  NLI decision: {r.nli_decision}")
 
         for s in r.sentences:
@@ -243,10 +273,12 @@ def print_report(results: list[NLICaseResult]) -> None:
                 flag = " <<<< CONTRADICTION"
             elif s.nli_label == "ENTAILMENT":
                 flag = " (entailed)"
-            print(f"  [{s.sentence_idx+1}] sim={s.cosine_sim:.3f} NLI={s.nli_label} "
-                  f"(C={s.nli_probs.get('CONTRADICTION', 0):.3f} "
-                  f"N={s.nli_probs.get('NEUTRAL', 0):.3f} "
-                  f"E={s.nli_probs.get('ENTAILMENT', 0):.3f}){flag}")
+            print(
+                f"  [{s.sentence_idx+1}] sim={s.cosine_sim:.3f} NLI={s.nli_label} "
+                f"(C={s.nli_probs.get('CONTRADICTION', 0):.3f} "
+                f"N={s.nli_probs.get('NEUTRAL', 0):.3f} "
+                f"E={s.nli_probs.get('ENTAILMENT', 0):.3f}){flag}"
+            )
             print(f"      Response: {s.sentence[:100]}")
             print(f"      Source:   {s.best_source_sentence[:100]}")
 
@@ -265,12 +297,21 @@ def print_report(results: list[NLICaseResult]) -> None:
 
 def main() -> None:
     parser = argparse.ArgumentParser(description="EPIC 7.20: NLI Science Gate")
-    parser.add_argument("--max-fn", type=int, default=10,
-                        help="Number of false negatives to test (default: 10)")
-    parser.add_argument("--max-cases", type=int, default=500,
-                        help="Max RAGTruth cases to scan for false negatives")
-    parser.add_argument("--output-dir", type=str, default="experiments",
-                        help="Directory for output")
+    parser.add_argument(
+        "--max-fn",
+        type=int,
+        default=10,
+        help="Number of false negatives to test (default: 10)",
+    )
+    parser.add_argument(
+        "--max-cases",
+        type=int,
+        default=500,
+        help="Max RAGTruth cases to scan for false negatives",
+    )
+    parser.add_argument(
+        "--output-dir", type=str, default="experiments", help="Directory for output"
+    )
     args = parser.parse_args()
 
     output_dir = Path(args.output_dir)
@@ -294,11 +335,22 @@ def main() -> None:
     for idx, (case, context, response, ratio, min_sim) in enumerate(fn_cases):
         print(f"\nProcessing {idx+1}/{len(fn_cases)}: {case.case_id}")
         start = time.time()
-        result = run_nli_on_case(case, context, response, ratio, min_sim,
-                                tokenizer, model, provider, labels=nli_labels)
+        result = run_nli_on_case(
+            case,
+            context,
+            response,
+            ratio,
+            min_sim,
+            tokenizer,
+            model,
+            provider,
+            labels=nli_labels,
+        )
         elapsed = time.time() - start
-        print(f"  {result.nli_decision} ({elapsed:.1f}s) "
-              f"{'CAUGHT' if result.correct else 'MISSED'}")
+        print(
+            f"  {result.nli_decision} ({elapsed:.1f}s) "
+            f"{'CAUGHT' if result.correct else 'MISSED'}"
+        )
         results.append(result)
 
     # Step 4: Report
@@ -311,7 +363,11 @@ def main() -> None:
         "false_negatives_tested": len(results),
         "caught": sum(1 for r in results if r.correct),
         "pass_criteria": f">= {int(len(results) * 0.7)}/{len(results)}",
-        "result": "PASS" if sum(1 for r in results if r.correct) >= len(results) * 0.7 else "FAIL",
+        "result": (
+            "PASS"
+            if sum(1 for r in results if r.correct) >= len(results) * 0.7
+            else "FAIL"
+        ),
         "cases": [
             {
                 "case_id": r.case_id,

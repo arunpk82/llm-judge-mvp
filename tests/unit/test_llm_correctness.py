@@ -52,7 +52,11 @@ async def test_judge_correctness_llm_parses_openai_shape(monkeypatch) -> None:
             return None
 
         def json(self) -> Any:
-            payload = {"score": 5, "explanation": "Math checks out.", "confidence": 0.95}
+            payload = {
+                "score": 5,
+                "explanation": "Math checks out.",
+                "confidence": 0.95,
+            }
             return {"choices": [{"message": {"content": json.dumps(payload)}}]}
 
     class _FakeClient:

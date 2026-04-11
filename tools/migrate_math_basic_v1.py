@@ -58,7 +58,10 @@ def main() -> int:
     OUT_PATH.parent.mkdir(parents=True, exist_ok=True)
 
     n = 0
-    with IN_PATH.open("r", encoding="utf-8") as fin, OUT_PATH.open("w", encoding="utf-8") as fout:
+    with (
+        IN_PATH.open("r", encoding="utf-8") as fin,
+        OUT_PATH.open("w", encoding="utf-8") as fout,
+    ):
         for line_no, line in enumerate(fin, start=1):
             line = line.strip()
             if not line:

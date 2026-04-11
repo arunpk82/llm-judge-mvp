@@ -6,6 +6,7 @@ Usage:
     python -m llm_judge.datasets validate
     python -m llm_judge.datasets inspect <dataset_id> <version>
 """
+
 from __future__ import annotations
 
 import argparse
@@ -59,17 +60,19 @@ def _find_datasets(root: Path) -> list[dict[str, Any]]:
         if data_path and data_path.exists():
             cases = _count_lines(data_path)
 
-        datasets.append({
-            "dataset_id": meta.get("dataset_id", "?"),
-            "version": meta.get("version", "?"),
-            "data_file": data_file,
-            "data_path": str(data_path) if data_path else "?",
-            "cases": cases,
-            "content_hash": meta.get("content_hash"),
-            "owner": meta.get("owner"),
-            "task_type": meta.get("task_type"),
-            "dir": str(ds_dir),
-        })
+        datasets.append(
+            {
+                "dataset_id": meta.get("dataset_id", "?"),
+                "version": meta.get("version", "?"),
+                "data_file": data_file,
+                "data_path": str(data_path) if data_path else "?",
+                "cases": cases,
+                "content_hash": meta.get("content_hash"),
+                "owner": meta.get("owner"),
+                "task_type": meta.get("task_type"),
+                "dir": str(ds_dir),
+            }
+        )
 
     return datasets
 
@@ -83,10 +86,7 @@ def cmd_list(args: argparse.Namespace) -> int:
     print("")
     print("Registered Datasets")
     print("-" * 80)
-    print(
-        f"{'DATASET_ID':<18} {'VER':<6} {'CASES':>6}  "
-        f"{'OWNER':<12} {'HASH':<24}"
-    )
+    print(f"{'DATASET_ID':<18} {'VER':<6} {'CASES':>6}  " f"{'OWNER':<12} {'HASH':<24}")
     print("-" * 80)
 
     for ds in datasets:
@@ -167,7 +167,9 @@ def cmd_inspect(args: argparse.Namespace) -> int:
 
 def main() -> int:
     parser = argparse.ArgumentParser(description="Dataset management for LLM-Judge.")
-    parser.add_argument("--root", default=str(DEFAULT_DATASETS_DIR), help="Datasets root directory")
+    parser.add_argument(
+        "--root", default=str(DEFAULT_DATASETS_DIR), help="Datasets root directory"
+    )
     sub = parser.add_subparsers(dest="cmd")
 
     sub.add_parser("list", help="List all registered datasets")

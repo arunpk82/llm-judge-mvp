@@ -101,7 +101,10 @@ def main() -> int:
     n_in = 0
     n_out = 0
 
-    with in_path.open("r", encoding="utf-8") as fin, out_path.open("w", encoding="utf-8") as fout:
+    with (
+        in_path.open("r", encoding="utf-8") as fin,
+        out_path.open("w", encoding="utf-8") as fout,
+    ):
         for line_no, line in enumerate(fin, start=1):
             line = line.strip()
             if not line:
@@ -110,15 +113,21 @@ def main() -> int:
             try:
                 row = json.loads(line)
             except json.JSONDecodeError as e:
-                raise SystemExit(f"ERROR: {in_path}:{line_no}: invalid JSON: {e}") from e
+                raise SystemExit(
+                    f"ERROR: {in_path}:{line_no}: invalid JSON: {e}"
+                ) from e
 
             if not isinstance(row, dict):
-                raise SystemExit(f"ERROR: {in_path}:{line_no}: expected JSON object per line")
+                raise SystemExit(
+                    f"ERROR: {in_path}:{line_no}: expected JSON object per line"
+                )
 
             n_in += 1
 
             if args.fail_if_case_id_exists and "case_id" in row:
-                raise SystemExit(f"ERROR: {in_path}:{line_no}: case_id already exists; aborting.")
+                raise SystemExit(
+                    f"ERROR: {in_path}:{line_no}: case_id already exists; aborting."
+                )
 
             # Add / overwrite case_id deterministically
             cid = make_case_id(args.prefix, args.start + (n_in - 1), args.width)

@@ -10,6 +10,7 @@ Note: Full acceptance (docker-compose up → /ready returns 200) requires
 a Docker-capable environment. These tests validate the configuration
 files themselves.
 """
+
 from __future__ import annotations
 
 from pathlib import Path
@@ -42,8 +43,7 @@ class TestDockerCompose:
         svc = compose["services"]["llm-judge"]
         volumes = svc.get("volumes", [])
         # Must mount persistent data volume to /data
-        assert any("/data" in str(v) for v in volumes), \
-            "No volume mounted to /data"
+        assert any("/data" in str(v) for v in volumes), "No volume mounted to /data"
 
     def test_named_volume_defined(self, compose: dict) -> None:
         volumes = compose.get("volumes", {})

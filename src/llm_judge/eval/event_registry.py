@@ -19,6 +19,7 @@ Design principles:
   - Retry with exponential backoff on write failure
   - Backward compatible — existing run_registry.jsonl untouched
 """
+
 from __future__ import annotations
 
 import json
@@ -37,14 +38,16 @@ EVENT_REGISTRY_SCHEMA_VERSION = "1.0"
 DEFAULT_EVENT_REGISTRY_PATH = state_root() / "event_registry.jsonl"
 
 # Valid event types — enforced at append time
-VALID_EVENT_TYPES = frozenset({
-    "eval_run",
-    "baseline_promotion",
-    "rule_change",
-    "dataset_registration",
-    "drift_alert",
-    "drift_response",
-})
+VALID_EVENT_TYPES = frozenset(
+    {
+        "eval_run",
+        "baseline_promotion",
+        "rule_change",
+        "dataset_registration",
+        "drift_alert",
+        "drift_response",
+    }
+)
 
 
 def _utc_now_iso() -> str:
@@ -66,7 +69,7 @@ class GovernanceEvent:
 
     # Who/what produced the event
     source: str  # e.g. "eval/run.py", "eval/baseline.py", "rules/lifecycle.py"
-    actor: str   # e.g. "ci", "operator", "system"
+    actor: str  # e.g. "ci", "operator", "system"
 
     # Cross-capability relationship links
     related_ids: dict[str, str] = field(default_factory=dict)
@@ -101,7 +104,7 @@ def _append_with_retry(
             return True
         except OSError as e:
             if attempt < max_retries - 1:
-                delay = base_delay * (2 ** attempt)
+                delay = base_delay * (2**attempt)
                 logger.warning(
                     "event_registry.write_retry",
                     extra={"attempt": attempt + 1, "delay": delay, "error": str(e)},
@@ -161,6 +164,7 @@ def append_event(
 # =====================================================================
 # Query helpers
 # =====================================================================
+
 
 def iter_events(
     registry_path: Path = DEFAULT_EVENT_REGISTRY_PATH,
@@ -243,8 +247,12 @@ def query_events_in_window(
     from datetime import timedelta
 
     center = datetime.fromisoformat(center_timestamp.replace("Z", "+00:00"))
-    window_start = (center - timedelta(hours=window_hours)).isoformat().replace("+00:00", "Z")
-    window_end = (center + timedelta(hours=window_hours)).isoformat().replace("+00:00", "Z")
+    window_start = (
+        (center - timedelta(hours=window_hours)).isoformat().replace("+00:00", "Z")
+    )
+    window_end = (
+        (center + timedelta(hours=window_hours)).isoformat().replace("+00:00", "Z")
+    )
 
     results = query_events(
         since=window_start,
@@ -263,6 +271,7 @@ def query_events_in_window(
 # =====================================================================
 # EPIC 5.2: Trace queries
 # =====================================================================
+
 
 def trace_by_run_id(
     *,
@@ -308,7 +317,9 @@ def write_structured_alert(
     import hashlib
 
     ts = _utc_now_iso()
-    alert_id = "alert-" + hashlib.sha256(f"{ts}{alert_type}{title}".encode()).hexdigest()[:12]
+    alert_id = (
+        "alert-" + hashlib.sha256(f"{ts}{alert_type}{title}".encode()).hexdigest()[:12]
+    )
 
     alert = {
         "schema_version": "1.0",
@@ -335,15 +346,22 @@ def write_structured_alert(
 # CLI
 # =====================================================================
 
+
 def main() -> int:
     import argparse
 
-    parser = argparse.ArgumentParser(description="Event registry queries for LLM-Judge.")
+    parser = argparse.ArgumentParser(
+        description="Event registry queries for LLM-Judge."
+    )
     sub = parser.add_subparsers(dest="cmd")
 
     p_query = sub.add_parser("query", help="Query events with filters")
-    p_query.add_argument("--since", default=None, help="ISO timestamp (events at or after)")
-    p_query.add_argument("--until", default=None, help="ISO timestamp (events at or before)")
+    p_query.add_argument(
+        "--since", default=None, help="ISO timestamp (events at or after)"
+    )
+    p_query.add_argument(
+        "--until", default=None, help="ISO timestamp (events at or before)"
+    )
     p_query.add_argument("--event-type", default=None, help="Filter by event type")
     p_query.add_argument("--registry", default=str(DEFAULT_EVENT_REGISTRY_PATH))
     p_query.add_argument("--limit", type=int, default=50)
@@ -364,7 +382,7 @@ def main() -> int:
             until=args.until,
             registry_path=Path(args.registry),
         )
-        events = events[-args.limit:]
+        events = events[-args.limit :]
         print(f"\nEvents ({len(events)} results):")
         print("-" * 80)
         for e in events:

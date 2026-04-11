@@ -8,6 +8,7 @@ Implementations:
 Both implementations use the EmbeddingProvider interface from
 llm_judge.properties for consistent embedding generation.
 """
+
 from __future__ import annotations
 
 import logging
@@ -21,6 +22,7 @@ logger = logging.getLogger(__name__)
 @dataclass
 class Document:
     """A retrievable document in the knowledge base."""
+
     doc_id: str
     content: str
     metadata: dict[str, Any] = field(default_factory=dict)
@@ -29,6 +31,7 @@ class Document:
 @dataclass
 class RetrievalResult:
     """A document matched by retrieval with its similarity score."""
+
     document: Document
     score: float
 
@@ -38,7 +41,8 @@ class VectorStore(ABC):
 
     @abstractmethod
     def add_documents(
-        self, documents: list[Document],
+        self,
+        documents: list[Document],
         embeddings: list[list[float]] | None = None,
     ) -> int:
         """Add documents to the store. Returns count added."""
@@ -46,7 +50,9 @@ class VectorStore(ABC):
 
     @abstractmethod
     def search(
-        self, query_embedding: list[float], top_k: int = 3,
+        self,
+        query_embedding: list[float],
+        top_k: int = 3,
     ) -> list[RetrievalResult]:
         """Search for nearest documents by embedding similarity."""
         raise NotImplementedError
@@ -75,7 +81,8 @@ class InMemoryVectorStore(VectorStore):
         self._embeddings: list[list[float]] = []
 
     def add_documents(
-        self, documents: list[Document],
+        self,
+        documents: list[Document],
         embeddings: list[list[float]] | None = None,
     ) -> int:
         if embeddings and len(embeddings) != len(documents):
@@ -89,7 +96,9 @@ class InMemoryVectorStore(VectorStore):
         return len(documents)
 
     def search(
-        self, query_embedding: list[float], top_k: int = 3,
+        self,
+        query_embedding: list[float],
+        top_k: int = 3,
     ) -> list[RetrievalResult]:
         if not self._embeddings:
             return []
@@ -103,10 +112,12 @@ class InMemoryVectorStore(VectorStore):
 
         results = []
         for idx, score in scores[:top_k]:
-            results.append(RetrievalResult(
-                document=self._documents[idx],
-                score=round(score, 4),
-            ))
+            results.append(
+                RetrievalResult(
+                    document=self._documents[idx],
+                    score=round(score, 4),
+                )
+            )
         return results
 
     def document_count(self) -> int:
@@ -135,9 +146,14 @@ class FAISSVectorStore(VectorStore):
     def _ensure_faiss(self) -> None:
         try:
             import faiss
-            self._index = faiss.IndexFlatIP(self._dimension)  # inner product (cosine on normalized)
+
+            self._index = faiss.IndexFlatIP(
+                self._dimension
+            )  # inner product (cosine on normalized)
             self._faiss = faiss
-            logger.info("vectorstore.faiss_initialized", extra={"dimension": self._dimension})
+            logger.info(
+                "vectorstore.faiss_initialized", extra={"dimension": self._dimension}
+            )
         except ImportError:
             logger.warning(
                 "vectorstore.faiss_not_available",
@@ -147,7 +163,8 @@ class FAISSVectorStore(VectorStore):
             self._faiss = None
 
     def add_documents(
-        self, documents: list[Document],
+        self,
+        documents: list[Document],
         embeddings: list[list[float]] | None = None,
     ) -> int:
         if not embeddings:
@@ -162,6 +179,7 @@ class FAISSVectorStore(VectorStore):
 
         if self._index is not None and self._faiss is not None:
             import numpy as np
+
             vectors = np.array(embeddings, dtype=np.float32)
             # L2-normalize for cosine similarity via inner product
             norms = np.linalg.norm(vectors, axis=1, keepdims=True)
@@ -177,13 +195,16 @@ class FAISSVectorStore(VectorStore):
         return len(documents)
 
     def search(
-        self, query_embedding: list[float], top_k: int = 3,
+        self,
+        query_embedding: list[float],
+        top_k: int = 3,
     ) -> list[RetrievalResult]:
         if not self._documents:
             return []
 
         if self._index is not None and self._faiss is not None:
             import numpy as np
+
             query = np.array([query_embedding], dtype=np.float32)
             norm = np.linalg.norm(query)
             if norm > 0:
@@ -195,10 +216,12 @@ class FAISSVectorStore(VectorStore):
             for score, idx in zip(scores[0], indices[0]):
                 if idx < 0:
                     continue
-                results.append(RetrievalResult(
-                    document=self._documents[idx],
-                    score=round(float(score), 4),
-                ))
+                results.append(
+                    RetrievalResult(
+                        document=self._documents[idx],
+                        score=round(float(score), 4),
+                    )
+                )
             return results
         else:
             # Fallback to linear search
@@ -230,6 +253,7 @@ class FAISSVectorStore(VectorStore):
 def _cosine_similarity(a: list[float], b: list[float]) -> float:
     """Cosine similarity between two vectors."""
     import math
+
     dot = sum(x * y for x, y in zip(a, b))
     norm_a = math.sqrt(sum(x * x for x in a))
     norm_b = math.sqrt(sum(x * x for x in b))
@@ -239,12 +263,14 @@ def _cosine_similarity(a: list[float], b: list[float]) -> float:
 
 
 def get_vector_store(
-    dimension: int = 384, prefer_faiss: bool = True,
+    dimension: int = 384,
+    prefer_faiss: bool = True,
 ) -> VectorStore:
     """Get the best available vector store implementation."""
     if prefer_faiss:
         try:
             import faiss  # noqa: F401
+
             return FAISSVectorStore(dimension=dimension)
         except ImportError:
             pass

@@ -1,0 +1,120 @@
+# hallucination_pipeline_config.yaml
+# ============================================================
+# Hallucination Detection Pipeline — Layer Configuration
+# ============================================================
+# Each layer can be independently enabled/disabled.
+# Sentences flow through enabled layers in order: L1 → L2 → L3 → L4
+# Once a sentence gets a grounded/flagged verdict, it skips remaining layers.
+# Only "unknown" verdicts cascade to the next layer.
+#
+# LAYER RENAMING (from old codebase):
+#   Old L0 Deterministic  → New L1 Rules
+#   Old L3 GraphRAG       → New L2 Patterns (multi-pass ensemble)
+#   Old L1+L2a+L2b        → New L3 Classifiers (MiniLM + MiniCheck + DeBERTa)
+#   Old L4 Gemini         → New L4 LLM-as-Judge
+# ============================================================
+
+pipeline:
+  # Global settings
+  sentence_splitter: "default"  # or "spacy" for spaCy-based splitting
+  log_level: "INFO"
+  evidence_trail: true          # attach evidence to every verdict
+
+  # --------------------------------------------------------
+  # L1: Rules (deterministic, free, microseconds)
+  # --------------------------------------------------------
+  l1_rules:
+    enabled: true
+    checks:
+      a1_exact_match: true      # verbatim sentence in source → GROUNDED
+      b1_number_mismatch: true  # number in response not in source → FLAG
+      b2_entity_missing: true   # proper noun not in source → FLAG
+      b3_negation_flip: true    # negation mismatch → FLAG
+      b4_qualifier_shift: true  # "all" vs "some" → FLAG
+
+  # --------------------------------------------------------
+  # L2: Patterns — Knowledge Graph Ensemble (spaCy + NetworkX)
+  # Requires pre-extracted fact tables (offline extraction)
+  # --------------------------------------------------------
+  l2_patterns:
+    enabled: true
+    extraction:
+      model: "gemini-2.5-flash"
+      passes:
+        - P1_entities
+        - P2_events
+        - P3_relationships
+        - P4_numbers
+        - P5_negations
+        - P6_verification
+      timeout_seconds: 120
+      retry_max: 2
+      source_dedup: true        # hash-based deduplication
+    graph:
+      cross_reference_p1: true  # resolve P2 actors via P1 entities
+      graphs_enabled:
+        - G2_events             # entity → action → target paths
+        - G3_relationships      # entity → relationship → entity + NOT
+        - G4_numbers            # entity → number nodes
+        - G5_negations          # negation statements + corrections
+    traversal:
+      pronoun_resolution: true
+      passive_voice: true
+      verb_synonym_map: true
+      skip_generic_verbs: true
+      generic_verbs:
+        - be
+        - have
+        - do
+        - go
+        - get
+        - make
+        - take
+        - come
+        - give
+        - say
+        - know
+        - think
+        - see
+        - seem
+        - become
+    aggregation:
+      flag_wins: true           # specific flag always beats general grounded
+      grounded_threshold: 1     # min graphs grounded (with 0 flagged) to clear
+      high_confidence_grounded: 3  # graphs needed for high confidence
+      high_confidence_flagged: 2   # flags needed for high confidence
+    cache:
+      enabled: true
+      backend: "filesystem"     # or "redis" for production
+      ttl_hours: 168            # 7 days — graphs invalidated after this
+      directory: ".cache/hallucination_graphs"
+
+  # --------------------------------------------------------
+  # L3: Classifiers (MiniLM + MiniCheck + DeBERTa)
+  # Handles sentences L1+L2 couldn't resolve (currently ~35%)
+  # --------------------------------------------------------
+  l3_classifiers:
+    enabled: false              # NOT YET VALIDATED with graph context
+    minicheck:
+      enabled: true
+      model: "minicheck-flan-t5-large"
+      chunk_strategy: "sentence"
+      threshold: 0.5
+    deberta:
+      enabled: true
+      model: "deberta-v3-base-mnli"
+      fallback_only: true       # only runs if MiniCheck returns "unknown"
+    context_source: "fact_table" # "raw_text" or "fact_table" (from L2 extraction)
+
+  # --------------------------------------------------------
+  # L4: LLM-as-Judge (Gemini, last resort)
+  # Handles the hardest ~5% of sentences
+  # --------------------------------------------------------
+  l4_llm_judge:
+    enabled: false              # NOT YET VALIDATED at sentence level
+    model: "gemini-2.5-flash"
+    prompt_version: "v1"
+    context_source: "fact_table" # compact structured context vs raw source
+    confidence_threshold: 0.7   # below this → escalate to human
+    max_sentences_per_call: 5   # batch for cost efficiency
+    timeout_seconds: 60
