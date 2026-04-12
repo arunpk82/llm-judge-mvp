@@ -9,6 +9,7 @@ HaluEval: Li et al., EMNLP 2023
 Dataset format (qa_data.json):
   {"knowledge": "...", "question": "...", "right_answer": "...", "hallucinated_answer": "..."}
 """
+
 from __future__ import annotations
 
 import json
@@ -40,13 +41,13 @@ class HaluEvalAdapter(BenchmarkAdapter):
             name="HaluEval",
             version="1.0",
             citation="Li et al., HaluEval: A Large-Scale Hallucination Evaluation "
-                     "Benchmark for Large Language Models, EMNLP 2023",
+            "Benchmark for Large Language Models, EMNLP 2023",
             license="MIT",
             total_cases=35000,
             test_cases=35000,
             supported_properties=["1.1", "1.5"],
             description="Hallucination evaluation with factual/hallucinated answer pairs "
-                       "across QA, dialogue, and summarization tasks.",
+            "across QA, dialogue, and summarization tasks.",
             published_baselines=[
                 PublishedBaseline(
                     method="ChatGPT (zero-shot)",
@@ -58,8 +59,13 @@ class HaluEvalAdapter(BenchmarkAdapter):
         )
 
     def _load_task_file(
-        self, filename: str, task_type: str, *,
-        split: str, max_cases: int | None, offset: int,
+        self,
+        filename: str,
+        task_type: str,
+        *,
+        split: str,
+        max_cases: int | None,
+        offset: int,
     ) -> Iterator[BenchmarkCase]:
         """Load a single HaluEval task file, yielding two cases per entry."""
         filepath = self._data_dir / filename
@@ -95,7 +101,9 @@ class HaluEvalAdapter(BenchmarkAdapter):
                 question = "Summarize the following document."
                 knowledge = entry.get("document", knowledge)
                 right_answer = entry.get("right_summary", right_answer)
-                hallucinated_answer = entry.get("hallucinated_summary", hallucinated_answer)
+                hallucinated_answer = entry.get(
+                    "hallucinated_summary", hallucinated_answer
+                )
 
             context = knowledge if knowledge else question
 
@@ -139,7 +147,10 @@ class HaluEvalAdapter(BenchmarkAdapter):
                 count += 1
 
     def load_cases(
-        self, *, split: str = "test", max_cases: int | None = None,
+        self,
+        *,
+        split: str = "test",
+        max_cases: int | None = None,
     ) -> Iterator[BenchmarkCase]:
         """Yield HaluEval cases from all available task files."""
         per_task_limit = max_cases // 3 if max_cases else None
@@ -152,8 +163,11 @@ class HaluEvalAdapter(BenchmarkAdapter):
         for filename, task_type in task_files:
             count = 0
             for case in self._load_task_file(
-                filename, task_type, split=split,
-                max_cases=per_task_limit, offset=offset,
+                filename,
+                task_type,
+                split=split,
+                max_cases=per_task_limit,
+                offset=offset,
             ):
                 yield case
                 count += 1

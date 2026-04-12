@@ -72,7 +72,12 @@ def _sample_rows_stable_hash(
     Returns sampled_rows and sampling_metadata.
     """
     if n <= 0:
-        return [], {"strategy": "stable_hash", "requested_n": 0, "actual_n": 0, "seed": seed}
+        return [], {
+            "strategy": "stable_hash",
+            "requested_n": 0,
+            "actual_n": 0,
+            "seed": seed,
+        }
 
     # Enforce case_id to guarantee stability as datasets scale/grow.
     missing_case_id = [
@@ -133,6 +138,7 @@ def _enforce_metrics_schema(*, rubric_ref: str, metrics: dict[str, Any]) -> None
             f"Present keys={sorted(list(metrics.keys()))}"
         )
 
+
 def _resolve_dataset_path(spec: RunSpec) -> Path:
     # Backward compatible: allow explicit path
     if spec.dataset.path:
@@ -140,11 +146,16 @@ def _resolve_dataset_path(spec: RunSpec) -> Path:
 
     # Governed path: resolve by dataset_id + version
     reg = DatasetRegistry()
-    resolved = reg.resolve(dataset_id=spec.dataset.dataset_id, version=spec.dataset.version)
+    resolved = reg.resolve(
+        dataset_id=spec.dataset.dataset_id, version=spec.dataset.version
+    )
     return resolved.data_path
 
+
 def main() -> int:
-    parser = argparse.ArgumentParser(description="Run reproducible evaluation benchmark.")
+    parser = argparse.ArgumentParser(
+        description="Run reproducible evaluation benchmark."
+    )
     parser.add_argument("--spec", required=True, help="Path to RunSpec YAML.")
     args = parser.parse_args()
 
@@ -169,7 +180,9 @@ def main() -> int:
         # spec.py already validates strategy; keep guardrail here too.
         if spec.sample.strategy != "stable_hash":
             raise ValueError(f"Unsupported sample.strategy: {spec.sample.strategy}")
-        rows, sampling_meta = _sample_rows_stable_hash(rows, n=spec.sample.n, seed=spec.sample.seed)
+        rows, sampling_meta = _sample_rows_stable_hash(
+            rows, n=spec.sample.n, seed=spec.sample.seed
+        )
         sampling_seconds = time.perf_counter() - sampling_start
     else:
         sampling_seconds = 0.0
@@ -233,7 +246,7 @@ def main() -> int:
     _enforce_metrics_schema(rubric_ref=str(spec.rubric_id), metrics=metrics)
 
     write_json(run_dir / "metrics.json", metrics)
-    
+
     # --- L3 Observability: append to run registry (append-only) ---
     # Dataset identifiers come from RunSpec (governed) and stay stable.
     dataset_id = str(spec.dataset.dataset_id)

@@ -10,6 +10,7 @@ Zero cost: same model, same sentences, just different threshold.
 Usage:
     python experiments/nli_improvements/exp20_threshold_sweep.py
 """
+
 from __future__ import annotations
 
 import argparse
@@ -23,13 +24,18 @@ import torch
 from transformers import AutoModelForSequenceClassification, AutoTokenizer
 
 from llm_judge.benchmarks.ragtruth import RAGTruthAdapter
-from llm_judge.calibration.hallucination import _compute_grounding_ratio, _split_sentences
+from llm_judge.calibration.hallucination import (
+    _compute_grounding_ratio,
+    _split_sentences,
+)
 from llm_judge.properties import get_embedding_provider
 
 NLI_MODEL = "cross-encoder/nli-deberta-v3-large"
 
 
-def deterministic_match(sentence: str, source_sentences: list[str], source_full: str) -> bool:
+def deterministic_match(
+    sentence: str, source_sentences: list[str], source_full: str
+) -> bool:
     norm_sent = re.sub(r"\s+", " ", sentence.lower().strip())
     norm_source = re.sub(r"\s+", " ", source_full.lower().strip())
     if norm_sent in norm_source:
@@ -52,7 +58,9 @@ def deterministic_match(sentence: str, source_sentences: list[str], source_full:
 def main() -> None:
     parser = argparse.ArgumentParser(description="Exp 20: NLI Threshold Sweep")
     parser.add_argument("--max-cases", type=int, default=50)
-    parser.add_argument("--output-dir", type=str, default="experiments/nli_improvements")
+    parser.add_argument(
+        "--output-dir", type=str, default="experiments/nli_improvements"
+    )
     args = parser.parse_args()
     output_dir = Path(args.output_dir)
     output_dir.mkdir(parents=True, exist_ok=True)
@@ -62,7 +70,10 @@ def main() -> None:
     nli_tokenizer = AutoTokenizer.from_pretrained(NLI_MODEL)
     nli_model = AutoModelForSequenceClassification.from_pretrained(NLI_MODEL)
     nli_model.eval()
-    nli_labels = [nli_model.config.id2label[i].upper() for i in range(len(nli_model.config.id2label))]
+    nli_labels = [
+        nli_model.config.id2label[i].upper()
+        for i in range(len(nli_model.config.id2label))
+    ]
 
     # Collect all entailment scores for sentences that pass L0
     print("Collecting entailment scores...")
@@ -84,7 +95,9 @@ def main() -> None:
         source_doc = "\n".join(ctx_parts) if ctx_parts else context
         response = case.request.candidate_answer
 
-        ratio, min_sim = _compute_grounding_ratio(response, context, similarity_threshold=0.60)
+        ratio, min_sim = _compute_grounding_ratio(
+            response, context, similarity_threshold=0.60
+        )
         if ratio < 0.80 or min_sim < 0.30:
             gate1_fail += 1
             continue
@@ -103,32 +116,43 @@ def main() -> None:
                 continue
 
             # Get best entailment score
-            sims = [(j, provider.max_similarity(emb, [ce])) for j, ce in enumerate(ctx_embs)]
+            sims = [
+                (j, provider.max_similarity(emb, [ce])) for j, ce in enumerate(ctx_embs)
+            ]
             sims.sort(key=lambda x: x[1], reverse=True)
             best_entailment = 0.0
             for src_idx, _ in sims[:3]:
                 inputs = nli_tokenizer(
-                    ctx_sents[src_idx], sent,
-                    return_tensors="pt", truncation=True, max_length=512,
+                    ctx_sents[src_idx],
+                    sent,
+                    return_tensors="pt",
+                    truncation=True,
+                    max_length=512,
                 )
                 with torch.no_grad():
-                    probs = torch.softmax(nli_model(**inputs).logits, dim=-1)[0].tolist()
+                    probs = torch.softmax(nli_model(**inputs).logits, dim=-1)[
+                        0
+                    ].tolist()
                 nli_scores = {label: round(p, 4) for label, p in zip(nli_labels, probs)}
                 best_entailment = max(best_entailment, nli_scores.get("ENTAILMENT", 0))
 
-            all_scores.append({
-                "case_id": case.case_id,
-                "gt": gt,
-                "sentence_idx": i,
-                "sentence": sent[:100],
-                "best_entailment": round(best_entailment, 4),
-            })
+            all_scores.append(
+                {
+                    "case_id": case.case_id,
+                    "gt": gt,
+                    "sentence_idx": i,
+                    "sentence": sent[:100],
+                    "best_entailment": round(best_entailment, 4),
+                }
+            )
 
         if total_cases % 10 == 0:
             print(f"  Processed {total_cases} cases...")
 
     total_sentences = l0_count + len(all_scores)
-    print(f"\nCollected {len(all_scores)} entailment scores from {total_sentences} sentences")
+    print(
+        f"\nCollected {len(all_scores)} entailment scores from {total_sentences} sentences"
+    )
     print(f"  L0 deterministic: {l0_count}")
     print(f"  Gate 1 fail: {gate1_fail}")
 
@@ -142,10 +166,14 @@ def main() -> None:
     print(f"\n{'='*80}")
     print("EXPERIMENT 20: NLI ENTAILMENT THRESHOLD SWEEP")
     print(f"{'='*80}")
-    print(f"Sentences: {len(all_scores)} (grounded={len(grounded_scores)}, hallucinated={len(hallucinated_scores)})")
+    print(
+        f"Sentences: {len(all_scores)} (grounded={len(grounded_scores)}, hallucinated={len(hallucinated_scores)})"
+    )
     print(f"L0 deterministic: {l0_count}")
     print()
-    print(f"{'Threshold':>10} {'L2 catches':>12} {'L2 %':>8} {'Grounded→L2':>14} {'Halluc→L2':>12} {'FP risk':>10}")
+    print(
+        f"{'Threshold':>10} {'L2 catches':>12} {'L2 %':>8} {'Grounded→L2':>14} {'Halluc→L2':>12} {'FP risk':>10}"
+    )
     print("-" * 80)
 
     sweep_results = []
@@ -158,16 +186,20 @@ def main() -> None:
         fp_risk = l2_halluc / max(1, len(hallucinated_scores)) * 100
 
         marker = " <<<" if t == 0.7 else ""
-        print(f"  {t:>8.2f} {l2_total:>12} {l2_pct:>7.1f}% {l2_grounded:>14} {l2_halluc:>12} {fp_risk:>9.1f}%{marker}")
+        print(
+            f"  {t:>8.2f} {l2_total:>12} {l2_pct:>7.1f}% {l2_grounded:>14} {l2_halluc:>12} {fp_risk:>9.1f}%{marker}"
+        )
 
-        sweep_results.append({
-            "threshold": t,
-            "l2_total": l2_total,
-            "l2_pct": round(l2_pct, 1),
-            "l2_grounded": l2_grounded,
-            "l2_hallucinated": l2_halluc,
-            "fp_risk_pct": round(fp_risk, 1),
-        })
+        sweep_results.append(
+            {
+                "threshold": t,
+                "l2_total": l2_total,
+                "l2_pct": round(l2_pct, 1),
+                "l2_grounded": l2_grounded,
+                "l2_hallucinated": l2_halluc,
+                "fp_risk_pct": round(fp_risk, 1),
+            }
+        )
 
     print()
     print("  <<< = current threshold (0.7)")
@@ -181,9 +213,13 @@ def main() -> None:
         default=None,
     )
     if optimal:
-        print(f"OPTIMAL THRESHOLD: {optimal['threshold']} (L2={optimal['l2_total']}, FP risk={optimal['fp_risk_pct']}%)")
+        print(
+            f"OPTIMAL THRESHOLD: {optimal['threshold']} (L2={optimal['l2_total']}, FP risk={optimal['fp_risk_pct']}%)"
+        )
         current = next(r for r in sweep_results if r["threshold"] == 0.7)
-        print(f"  vs current 0.7: L2={current['l2_total']}, improvement={optimal['l2_total'] - current['l2_total']:+d}")
+        print(
+            f"  vs current 0.7: L2={current['l2_total']}, improvement={optimal['l2_total'] - current['l2_total']:+d}"
+        )
     print(f"{'='*80}")
 
     # Save

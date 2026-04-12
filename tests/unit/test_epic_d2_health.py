@@ -6,6 +6,7 @@ Acceptance criteria verified:
   AC-2: /health/dependencies checks LLM provider when JUDGE_ENGINE=llm
   AC-3: All responses include per-check detail in JSON body
 """
+
 from __future__ import annotations
 
 from pathlib import Path
@@ -26,13 +27,16 @@ def client() -> TestClient:
 # /health — liveness (always 200)
 # =====================================================================
 
+
 class TestHealthEndpoint:
     def test_health_returns_200(self, client: TestClient) -> None:
         resp = client.get("/health")
         assert resp.status_code == 200
         assert resp.json() == {"status": "ok"}
 
-    def test_health_always_ok(self, client: TestClient, monkeypatch: pytest.MonkeyPatch) -> None:
+    def test_health_always_ok(
+        self, client: TestClient, monkeypatch: pytest.MonkeyPatch
+    ) -> None:
         """Health is a liveness check — env vars don't affect it."""
         monkeypatch.setenv("LLM_JUDGE_CONFIGS_DIR", "/nonexistent")
         resp = client.get("/health")
@@ -43,9 +47,13 @@ class TestHealthEndpoint:
 # /ready — readiness (503 on failure)
 # =====================================================================
 
+
 class TestReadyEndpoint:
     def test_ready_returns_200_when_all_ok(
-        self, client: TestClient, tmp_path: Path, monkeypatch: pytest.MonkeyPatch,
+        self,
+        client: TestClient,
+        tmp_path: Path,
+        monkeypatch: pytest.MonkeyPatch,
     ) -> None:
         cfg = tmp_path / "configs"
         cfg.mkdir()
@@ -67,7 +75,10 @@ class TestReadyEndpoint:
         assert body["state_root"]["writable"] is True
 
     def test_ready_returns_503_missing_config(
-        self, client: TestClient, tmp_path: Path, monkeypatch: pytest.MonkeyPatch,
+        self,
+        client: TestClient,
+        tmp_path: Path,
+        monkeypatch: pytest.MonkeyPatch,
     ) -> None:
         monkeypatch.setenv("LLM_JUDGE_CONFIGS_DIR", str(tmp_path / "nonexistent"))
         monkeypatch.setenv("LLM_JUDGE_DATA_DIR", str(tmp_path))
@@ -82,7 +93,10 @@ class TestReadyEndpoint:
         assert body["config_root"]["ok"] is False
 
     def test_ready_returns_503_missing_state(
-        self, client: TestClient, tmp_path: Path, monkeypatch: pytest.MonkeyPatch,
+        self,
+        client: TestClient,
+        tmp_path: Path,
+        monkeypatch: pytest.MonkeyPatch,
     ) -> None:
         cfg = tmp_path / "configs"
         cfg.mkdir()
@@ -95,7 +109,10 @@ class TestReadyEndpoint:
         assert body["state_root"]["ok"] is False
 
     def test_ready_includes_resolved_paths(
-        self, client: TestClient, tmp_path: Path, monkeypatch: pytest.MonkeyPatch,
+        self,
+        client: TestClient,
+        tmp_path: Path,
+        monkeypatch: pytest.MonkeyPatch,
     ) -> None:
         """AC-3: Responses include per-check detail — including resolved paths."""
         cfg = tmp_path / "configs"
@@ -122,9 +139,12 @@ class TestReadyEndpoint:
 # /health/dependencies — LLM provider check
 # =====================================================================
 
+
 class TestHealthDependenciesEndpoint:
     def test_deterministic_engine_returns_200_not_configured(
-        self, client: TestClient, monkeypatch: pytest.MonkeyPatch,
+        self,
+        client: TestClient,
+        monkeypatch: pytest.MonkeyPatch,
     ) -> None:
         monkeypatch.setenv("JUDGE_ENGINE", "deterministic")
         resp = client.get("/health/dependencies")
@@ -135,7 +155,9 @@ class TestHealthDependenciesEndpoint:
         assert body["dependencies"]["llm_provider"]["ok"] is True
 
     def test_default_engine_is_deterministic(
-        self, client: TestClient, monkeypatch: pytest.MonkeyPatch,
+        self,
+        client: TestClient,
+        monkeypatch: pytest.MonkeyPatch,
     ) -> None:
         monkeypatch.delenv("JUDGE_ENGINE", raising=False)
         resp = client.get("/health/dependencies")
@@ -144,7 +166,9 @@ class TestHealthDependenciesEndpoint:
         assert body["dependencies"]["llm_provider"]["engine"] == "deterministic"
 
     def test_llm_engine_no_api_key_returns_503(
-        self, client: TestClient, monkeypatch: pytest.MonkeyPatch,
+        self,
+        client: TestClient,
+        monkeypatch: pytest.MonkeyPatch,
     ) -> None:
         monkeypatch.setenv("JUDGE_ENGINE", "openai")
         monkeypatch.delenv("LLM_API_KEY", raising=False)
@@ -156,7 +180,9 @@ class TestHealthDependenciesEndpoint:
         assert "LLM_API_KEY" in body["dependencies"]["llm_provider"]["error"]
 
     def test_gemini_no_api_key_returns_503(
-        self, client: TestClient, monkeypatch: pytest.MonkeyPatch,
+        self,
+        client: TestClient,
+        monkeypatch: pytest.MonkeyPatch,
     ) -> None:
         monkeypatch.setenv("JUDGE_ENGINE", "gemini")
         monkeypatch.delenv("GEMINI_API_KEY", raising=False)
@@ -167,7 +193,9 @@ class TestHealthDependenciesEndpoint:
         assert "GEMINI_API_KEY" in body["dependencies"]["llm_provider"]["error"]
 
     def test_groq_no_api_key_returns_503(
-        self, client: TestClient, monkeypatch: pytest.MonkeyPatch,
+        self,
+        client: TestClient,
+        monkeypatch: pytest.MonkeyPatch,
     ) -> None:
         monkeypatch.setenv("JUDGE_ENGINE", "groq")
         monkeypatch.delenv("GROQ_API_KEY", raising=False)
@@ -177,7 +205,9 @@ class TestHealthDependenciesEndpoint:
         assert body["dependencies"]["llm_provider"]["ok"] is False
 
     def test_unknown_engine_returns_503(
-        self, client: TestClient, monkeypatch: pytest.MonkeyPatch,
+        self,
+        client: TestClient,
+        monkeypatch: pytest.MonkeyPatch,
     ) -> None:
         monkeypatch.setenv("JUDGE_ENGINE", "unknown_provider")
         resp = client.get("/health/dependencies")
@@ -187,12 +217,13 @@ class TestHealthDependenciesEndpoint:
         assert "Unknown engine" in body["dependencies"]["llm_provider"]["error"]
 
     def test_llm_provider_reachable_returns_200(
-        self, client: TestClient, monkeypatch: pytest.MonkeyPatch,
+        self,
+        client: TestClient,
+        monkeypatch: pytest.MonkeyPatch,
     ) -> None:
         """Simulate a reachable provider via mock."""
         monkeypatch.setenv("JUDGE_ENGINE", "openai")
         monkeypatch.setenv("LLM_API_KEY", "test-key")
-
 
         class FakeResponse:
             status_code = 200
@@ -216,7 +247,9 @@ class TestHealthDependenciesEndpoint:
         assert body["dependencies"]["llm_provider"]["http_status"] == 200
 
     def test_llm_provider_unreachable_returns_503(
-        self, client: TestClient, monkeypatch: pytest.MonkeyPatch,
+        self,
+        client: TestClient,
+        monkeypatch: pytest.MonkeyPatch,
     ) -> None:
         """Simulate connection failure via mock."""
         monkeypatch.setenv("JUDGE_ENGINE", "openai")
@@ -243,7 +276,9 @@ class TestHealthDependenciesEndpoint:
         assert "Connection refused" in body["dependencies"]["llm_provider"]["error"]
 
     def test_response_includes_engine_field(
-        self, client: TestClient, monkeypatch: pytest.MonkeyPatch,
+        self,
+        client: TestClient,
+        monkeypatch: pytest.MonkeyPatch,
     ) -> None:
         """AC-3: Per-check detail includes engine name."""
         monkeypatch.setenv("JUDGE_ENGINE", "gemini")

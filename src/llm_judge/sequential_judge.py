@@ -13,6 +13,7 @@ Escalation criteria (Gate 1 → Gate 2):
 When Gate 2 runs, its result replaces Gate 1's result entirely.
 When Gate 1 is confident (flags fired, clear signal), Gate 2 is skipped.
 """
+
 from __future__ import annotations
 
 import structlog
@@ -39,8 +40,7 @@ def _is_low_confidence(response: PredictResponse) -> bool:
     """
     # Strong signal: quality or correctness flags fired
     has_quality_flags = any(
-        f.startswith("quality.") or f.startswith("correctness.")
-        for f in response.flags
+        f.startswith("quality.") or f.startswith("correctness.") for f in response.flags
     )
     if has_quality_flags:
         return False  # Gate 1 is confident — flags fired

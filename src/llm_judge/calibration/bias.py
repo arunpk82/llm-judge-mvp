@@ -11,6 +11,7 @@ Mitigation strategies:
   - Length: compute correlation between length and score, flag if > threshold
   - Self-preference: detected via calibration against human scores
 """
+
 from __future__ import annotations
 
 import logging
@@ -29,9 +30,11 @@ logger = logging.getLogger(__name__)
 # Position Bias Detection
 # =====================================================================
 
+
 @dataclass
 class PositionBiasResult:
     """Result of position bias test for a single case."""
+
     case_id: str
     original_decision: str
     swapped_decision: str
@@ -88,15 +91,19 @@ def check_position_bias(
             )
             resp_swapped = judge.evaluate(req_swapped)
 
-            results.append(PositionBiasResult(
-                case_id=case_id,
-                original_decision=resp_original.decision,
-                swapped_decision=resp_swapped.decision,
-                consistent=resp_original.decision == resp_swapped.decision,
-                original_score=resp_original.overall_score,
-                swapped_score=resp_swapped.overall_score,
-                score_delta=abs(resp_original.overall_score - resp_swapped.overall_score),
-            ))
+            results.append(
+                PositionBiasResult(
+                    case_id=case_id,
+                    original_decision=resp_original.decision,
+                    swapped_decision=resp_swapped.decision,
+                    consistent=resp_original.decision == resp_swapped.decision,
+                    original_score=resp_original.overall_score,
+                    swapped_score=resp_swapped.overall_score,
+                    score_delta=abs(
+                        resp_original.overall_score - resp_swapped.overall_score
+                    ),
+                )
+            )
 
         except Exception as e:
             logger.warning(
@@ -124,7 +131,8 @@ def check_position_bias(
                 "consistent": r.consistent,
                 "score_delta": round(r.score_delta, 2),
             }
-            for r in results if not r.consistent
+            for r in results
+            if not r.consistent
         ][:10],
     }
 
@@ -132,6 +140,7 @@ def check_position_bias(
 # =====================================================================
 # Length Bias Detection
 # =====================================================================
+
 
 def check_length_bias(
     *,
@@ -163,7 +172,11 @@ def check_length_bias(
                 scores.append(statistics.mean(vals))
 
     if len(lengths) < 5:
-        return {"tested": len(lengths), "correlation": 0.0, "status": "INSUFFICIENT_DATA"}
+        return {
+            "tested": len(lengths),
+            "correlation": 0.0,
+            "status": "INSUFFICIENT_DATA",
+        }
 
     # Compute Pearson correlation
     n = len(lengths)
@@ -191,6 +204,7 @@ def check_length_bias(
 # =====================================================================
 # Debiased Judge Wrapper
 # =====================================================================
+
 
 class DebiasedJudge(JudgeEngine):
     """
@@ -235,7 +249,9 @@ class DebiasedJudge(JudgeEngine):
 
         # Majority decision
         pass_count = sum(1 for r in responses if r.decision == "pass")
-        decision: Literal["pass", "fail"] = "pass" if pass_count > len(responses) / 2 else "fail"
+        decision: Literal["pass", "fail"] = (
+            "pass" if pass_count > len(responses) / 2 else "fail"
+        )
 
         # Average scores
         avg_overall = statistics.mean(r.overall_score for r in responses)

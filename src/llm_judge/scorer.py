@@ -21,11 +21,54 @@ _NUMERIC_RE = re.compile(r"^\s*[-+]?\d+(?:\.\d+)?\s*$")
 
 # Keep this small + high-signal (don't overdo it)
 _STOPWORDS: set[str] = {
-    "a", "an", "and", "are", "as", "at", "be", "but", "by", "can", "could",
-    "do", "does", "did", "for", "from", "how", "i", "in", "is", "it", "me",
-    "my", "of", "on", "or", "please", "should", "so", "that", "the", "their",
-    "then", "this", "to", "try", "up", "we", "what", "when", "where", "why",
-    "will", "with", "you", "your", "thanks", "thank",
+    "a",
+    "an",
+    "and",
+    "are",
+    "as",
+    "at",
+    "be",
+    "but",
+    "by",
+    "can",
+    "could",
+    "do",
+    "does",
+    "did",
+    "for",
+    "from",
+    "how",
+    "i",
+    "in",
+    "is",
+    "it",
+    "me",
+    "my",
+    "of",
+    "on",
+    "or",
+    "please",
+    "should",
+    "so",
+    "that",
+    "the",
+    "their",
+    "then",
+    "this",
+    "to",
+    "try",
+    "up",
+    "we",
+    "what",
+    "when",
+    "where",
+    "why",
+    "will",
+    "with",
+    "you",
+    "your",
+    "thanks",
+    "thank",
 }
 
 # Normalize common intent synonyms (improves overlap without an LLM)
@@ -106,16 +149,29 @@ def _heuristic_tone(candidate: str, user_text: str = "") -> int:
     # ================================================================
     dismissive_phrases = [
         # Impatient callbacks
-        "as i mentioned", "as i said", "like i said", "as previously stated",
-        "as i just", "i already told you", "i just explained",
+        "as i mentioned",
+        "as i said",
+        "like i said",
+        "as previously stated",
+        "as i just",
+        "i already told you",
+        "i just explained",
         # Dead-end deflections
-        "refer to the documentation", "check the website", "google it",
-        "contact support", "contact billing", "call this number",
-        "email support@", "email us at",
+        "refer to the documentation",
+        "check the website",
+        "google it",
+        "contact support",
+        "contact billing",
+        "call this number",
+        "email support@",
+        "email us at",
         # Abrupt shutdowns
-        "that's just how it is", "nothing else i can do",
-        "there is nothing else", "cannot help with that",
-        "can't help with that", "not something we can",
+        "that's just how it is",
+        "nothing else i can do",
+        "there is nothing else",
+        "cannot help with that",
+        "can't help with that",
+        "not something we can",
     ]
 
     # ================================================================
@@ -124,17 +180,29 @@ def _heuristic_tone(candidate: str, user_text: str = "") -> int:
     # ================================================================
     blame_phrases = [
         # Accusatory conditionals
-        "if you had read", "if you had checked", "next time make sure",
-        "next time, make sure", "you should have",
+        "if you had read",
+        "if you had checked",
+        "next time make sure",
+        "next time, make sure",
+        "you should have",
         # Direct accusations
-        "you didn't", "you failed to", "you must have entered",
-        "you forgot to", "you neglected",
+        "you didn't",
+        "you failed to",
+        "you must have entered",
+        "you forgot to",
+        "you neglected",
         # Corporate wall
-        "not our policy", "not our problem", "not my problem",
-        "we are not responsible", "not responsible for",
-        "outside of our control", "outside our control",
+        "not our policy",
+        "not our problem",
+        "not my problem",
+        "we are not responsible",
+        "not responsible for",
+        "outside of our control",
+        "outside our control",
         # Externalizer
-        "issue with your", "problem with your", "fault on your end",
+        "issue with your",
+        "problem with your",
+        "fault on your end",
         "on your end",
     ]
 
@@ -144,17 +212,28 @@ def _heuristic_tone(candidate: str, user_text: str = "") -> int:
     # ================================================================
     pushy_phrases = [
         # Unwarranted imperatives
-        "you need to upgrade", "you must switch", "you have to buy",
+        "you need to upgrade",
+        "you must switch",
+        "you have to buy",
         # False consensus
-        "everyone is using", "all our best customers",
-        "most people prefer", "everyone upgrades",
+        "everyone is using",
+        "all our best customers",
+        "most people prefer",
+        "everyone upgrades",
         # Argumentative
-        "why wouldn't you", "it makes no sense", "why would you not",
+        "why wouldn't you",
+        "it makes no sense",
+        "why would you not",
         # Unearned authority
-        "trust me", "believe me", "i guarantee",
+        "trust me",
+        "believe me",
+        "i guarantee",
         # Artificial urgency
-        "don't miss out", "act now", "before it's too late",
-        "limited time", "hurry",
+        "don't miss out",
+        "act now",
+        "before it's too late",
+        "limited time",
+        "hurry",
     ]
 
     # ================================================================
@@ -163,14 +242,20 @@ def _heuristic_tone(candidate: str, user_text: str = "") -> int:
     # ================================================================
     condescending_phrases = [
         # Competence doubters
-        "maybe you're using it wrong", "are you sure you",
-        "did you even try", "did you even read",
+        "maybe you're using it wrong",
+        "are you sure you",
+        "did you even try",
+        "did you even read",
         # Patronizing
-        "as you can clearly see", "it's actually quite simple",
-        "it's really not that hard", "this is basic",
+        "as you can clearly see",
+        "it's actually quite simple",
+        "it's really not that hard",
+        "this is basic",
         # Masked insults
-        "even a beginner", "standard practice dictates",
-        "any user would know", "common sense",
+        "even a beginner",
+        "standard practice dictates",
+        "any user would know",
+        "common sense",
     ]
 
     # Trivializers - check these separately as they're single words
@@ -192,7 +277,7 @@ def _heuristic_tone(candidate: str, user_text: str = "") -> int:
                 return 1
 
     # Check trivializers at sentence boundaries
-    sentences = re.split(r'[.!?]\s+', text_lower)
+    sentences = re.split(r"[.!?]\s+", text_lower)
     for sent in sentences:
         sent_stripped = sent.strip()
         for word in trivializer_words:
@@ -214,13 +299,20 @@ def _heuristic_tone(candidate: str, user_text: str = "") -> int:
 
     # Short response to detailed question → dismissive tone
     # EXCEPT: if response contains empathy/polite signals, short is not dismissive
-    response_words = len(re.findall(r'\b\w+\b', text_lower))
-    question_words = len(re.findall(r'\b\w+\b', user_text.lower())) if user_text else 0
+    response_words = len(re.findall(r"\b\w+\b", text_lower))
+    question_words = len(re.findall(r"\b\w+\b", user_text.lower())) if user_text else 0
 
-    has_empathy = any(e in text_lower for e in [
-        "i understand", "i'm sorry", "i apologize", "let me help",
-        "let me look into", "let me check",
-    ])
+    has_empathy = any(
+        e in text_lower
+        for e in [
+            "i understand",
+            "i'm sorry",
+            "i apologize",
+            "let me help",
+            "let me look into",
+            "let me check",
+        ]
+    )
 
     # Very short response (under 10 words) to a substantial question (over 15 words)
     # BUT NOT if the response shows empathy (short empathetic acknowledgment is OK)
@@ -232,9 +324,12 @@ def _heuristic_tone(candidate: str, user_text: str = "") -> int:
     # These need surrounding context to distinguish rude from non-rude usage
     # ================================================================
     context_rude_patterns = [
-        r"\byou'?re\s+trash\b",          # "you're trash" is rude
-        r"\bthat'?s?\s+trash\b",          # "that's trash" is rude
-        r"\bstupid\b", r"\bidiot\b", r"\bmoron\b", r"\bdumb\b",
+        r"\byou'?re\s+trash\b",  # "you're trash" is rude
+        r"\bthat'?s?\s+trash\b",  # "that's trash" is rude
+        r"\bstupid\b",
+        r"\bidiot\b",
+        r"\bmoron\b",
+        r"\bdumb\b",
         r"\bshut\s+up\b",
     ]
 
@@ -247,17 +342,29 @@ def _heuristic_tone(candidate: str, user_text: str = "") -> int:
     # Polite words alone don't make good tone — they need substance
     # ================================================================
     polite_phrases = [
-        "i understand", "i'm sorry", "i apologize",
-        "let me help", "happy to help", "glad to help",
-        "i can help", "let me look into", "let me check",
-        "thank you for", "thanks for your patience",
-        "is there anything else", "don't hesitate to",
-        "i appreciate", "great question",
+        "i understand",
+        "i'm sorry",
+        "i apologize",
+        "let me help",
+        "happy to help",
+        "glad to help",
+        "i can help",
+        "let me look into",
+        "let me check",
+        "thank you for",
+        "thanks for your patience",
+        "is there anything else",
+        "don't hesitate to",
+        "i appreciate",
+        "great question",
     ]
 
     empathy_markers = [
-        "frustrating", "understand your concern",
-        "sorry to hear", "i can see how", "that must be",
+        "frustrating",
+        "understand your concern",
+        "sorry to hear",
+        "i can see how",
+        "that must be",
     ]
 
     polite_count = sum(1 for p in polite_phrases if p in text_lower)
@@ -289,6 +396,7 @@ def _heuristic_tone(candidate: str, user_text: str = "") -> int:
         return 4  # Substantive response with no negative signals
     return 3
 
+
 def _apply_rubric_rules(request: PredictRequest, rubric: Any) -> list[str]:
     """
     Run all rules associated with the rubric against the request.
@@ -314,8 +422,12 @@ def _apply_rubric_rules(request: PredictRequest, rubric: Any) -> list[str]:
             engine.run(ctx)
             logger.debug(
                 "rules.plan.loaded",
-                extra={"rubric_id": rubric_id, "version": rubric_version,
-                       "source": "config", "rule_count": len(plan.rules)},
+                extra={
+                    "rubric_id": rubric_id,
+                    "version": rubric_version,
+                    "source": "config",
+                    "rule_count": len(plan.rules),
+                },
             )
             return list(getattr(ctx, "flags", []))
     except (FileNotFoundError, ValueError, OSError):
@@ -328,16 +440,22 @@ def _apply_rubric_rules(request: PredictRequest, rubric: Any) -> list[str]:
         engine.run(ctx)
         logger.debug(
             "rules.plan.loaded",
-            extra={"rubric_id": rubric_id, "source": "inline",
-                   "rule_count": len(rules_config)},
+            extra={
+                "rubric_id": rubric_id,
+                "source": "inline",
+                "rule_count": len(rules_config),
+            },
         )
         return list(getattr(ctx, "flags", []))
 
     # 3. Hardcoded defaults (backward compat — deprecated)
     logger.warning(
         "rules.plan.fallback_to_hardcoded",
-        extra={"rubric_id": rubric_id, "version": rubric_version,
-               "hint": "Create configs/rules/{rubric_id}_{version}.yaml"},
+        extra={
+            "rubric_id": rubric_id,
+            "version": rubric_version,
+            "hint": "Create configs/rules/{rubric_id}_{version}.yaml",
+        },
     )
     default_rules: list[dict[str, Any]] = [
         {"id": "correctness.basic"},
@@ -424,7 +542,9 @@ def score_candidate(request: PredictRequest) -> PredictResponse:
 
     # Pull policy if present
     policy = getattr(rubric, "decision_policy", None)
-    pass_if = float(getattr(policy, "pass_if_overall_score_gte", 3.0)) if policy else 3.0
+    pass_if = (
+        float(getattr(policy, "pass_if_overall_score_gte", 3.0)) if policy else 3.0
+    )
     fail_if_any = int(getattr(policy, "fail_if_any_dimension_lte", 1)) if policy else 1
 
     overall_score = sum(scores.values()) / 4.0
@@ -449,9 +569,13 @@ def score_candidate(request: PredictRequest) -> PredictResponse:
     if _any_strong_under_namespace(flags, "correctness."):
         decision = "fail"
     # Only apply quality hard-fail for non-math rubrics
-    if rubric_id not in _MATH_RUBRICS and _has_strong_flag(flags, "quality.nonsense_basic"):
+    if rubric_id not in _MATH_RUBRICS and _has_strong_flag(
+        flags, "quality.nonsense_basic"
+    ):
         decision = "fail"
-    if rubric_id not in _MATH_RUBRICS and _has_strong_flag(flags, "quality.repetition_basic"):
+    if rubric_id not in _MATH_RUBRICS and _has_strong_flag(
+        flags, "quality.repetition_basic"
+    ):
         decision = "fail"
 
     # Rule flags influence dimensional scores (not just decision).
@@ -499,6 +623,7 @@ def score_candidate(request: PredictRequest) -> PredictResponse:
         flags=flags,
         explanations=explanations,
     )
+
 
 def _has_flag(flags: list[str], prefix: str) -> bool:
     """True if any flag matches the prefix (any severity)."""

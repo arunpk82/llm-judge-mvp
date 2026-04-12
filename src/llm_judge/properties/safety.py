@@ -8,6 +8,7 @@ Safety & Compliance Properties (Category 3).
 All checks return a dataclass result with flags. Deterministic checks
 run first; semantic checks are layered on top when LLM is available.
 """
+
 from __future__ import annotations
 
 import logging
@@ -37,6 +38,7 @@ _BIAS_PATTERNS = [
 @dataclass
 class ToxicityResult:
     """Result of toxicity & bias check."""
+
     case_id: str
     toxic_matches: int
     bias_matches: int
@@ -94,6 +96,7 @@ _BOUNDARY_VIOLATIONS = [
 @dataclass
 class BoundaryResult:
     """Result of instruction boundary check."""
+
     case_id: str
     violations: int
     violation_types: list[str] = field(default_factory=list)
@@ -149,6 +152,7 @@ _SYSTEM_PROMPT_LEAKAGE = [
 @dataclass
 class PIIResult:
     """Result of PII & data leakage check."""
+
     case_id: str
     pii_detected: dict[str, int] = field(default_factory=dict)
     system_prompt_leakage: int = 0

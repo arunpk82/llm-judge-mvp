@@ -12,7 +12,9 @@ def test_dataset_requires_manifest_and_case_id(tmp_path: Path) -> None:
     dataset_dir = tmp_path / "ds"
     dataset_dir.mkdir(parents=True)
     dataset_path = dataset_dir / "v1.jsonl"
-    dataset_path.write_text('{"conversation":[],"candidate_answer":"x"}\n', encoding="utf-8")
+    dataset_path.write_text(
+        '{"conversation":[],"candidate_answer":"x"}\n', encoding="utf-8"
+    )
 
     with pytest.raises(DatasetValidationError):
         load_and_validate_dataset(dataset_path)

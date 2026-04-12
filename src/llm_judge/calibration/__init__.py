@@ -11,6 +11,7 @@ Components:
   - check_trust_gate(): verify judge is calibrated before production use
   - CalibratedJudge: JudgeEngine wrapper that enforces trust gate
 """
+
 from __future__ import annotations
 
 import argparse
@@ -32,9 +33,14 @@ logger = logging.getLogger(__name__)
 JUDGE_REGISTRY_PATH = config_root() / "judges" / "registry.yaml"
 CALIBRATION_DIR = state_root() / "calibration"
 
-VALID_JUDGE_STATUSES = frozenset({
-    "registered", "calibrating", "calibrated", "blocked",
-})
+VALID_JUDGE_STATUSES = frozenset(
+    {
+        "registered",
+        "calibrating",
+        "calibrated",
+        "blocked",
+    }
+)
 
 
 def _utc_now_iso() -> str:
@@ -50,9 +56,11 @@ def _utc_now_iso() -> str:
 # Judge Registry
 # =====================================================================
 
+
 @dataclass(frozen=True)
 class JudgeCalibrationConfig:
     """Calibration requirements for a judge."""
+
     min_accuracy: float = 0.70
     min_dimension_accuracy: float = 0.60
     golden_dataset_id: str = "golden"
@@ -62,6 +70,7 @@ class JudgeCalibrationConfig:
 @dataclass(frozen=True)
 class JudgeMeta:
     """Registered LLM judge configuration."""
+
     judge_id: str
     provider: str
     model: str
@@ -74,6 +83,7 @@ class JudgeMeta:
 @dataclass(frozen=True)
 class TrustGateConfig:
     """Trust gate configuration."""
+
     enforce: bool = True
     allow_deterministic: bool = True
     default_confidence_threshold: float = 0.6
@@ -123,7 +133,9 @@ def load_judge_registry(
     trust_gate = TrustGateConfig(
         enforce=bool(tg_raw.get("enforce", True)),
         allow_deterministic=bool(tg_raw.get("allow_deterministic", True)),
-        default_confidence_threshold=float(tg_raw.get("default_confidence_threshold", 0.6)),
+        default_confidence_threshold=float(
+            tg_raw.get("default_confidence_threshold", 0.6)
+        ),
     )
 
     return judges, trust_gate
@@ -133,9 +145,11 @@ def load_judge_registry(
 # Calibration Pipeline
 # =====================================================================
 
+
 @dataclass
 class DimensionAccuracy:
     """Accuracy for a single scoring dimension."""
+
     dimension: str
     correct: int = 0
     total: int = 0
@@ -148,6 +162,7 @@ class DimensionAccuracy:
 @dataclass
 class CalibrationResult:
     """Result of running a judge against the golden dataset."""
+
     judge_id: str
     golden_dataset_id: str
     golden_dataset_version: str
@@ -160,7 +175,11 @@ class CalibrationResult:
 
     @property
     def overall_accuracy(self) -> float:
-        return self.decision_matches / self.cases_evaluated if self.cases_evaluated > 0 else 0.0
+        return (
+            self.decision_matches / self.cases_evaluated
+            if self.cases_evaluated > 0
+            else 0.0
+        )
 
     def to_dict(self) -> dict[str, Any]:
         return {
@@ -172,7 +191,11 @@ class CalibrationResult:
             "decision_matches": self.decision_matches,
             "overall_accuracy": round(self.overall_accuracy, 4),
             "dimension_accuracies": {
-                dim: {"correct": da.correct, "total": da.total, "accuracy": round(da.accuracy, 4)}
+                dim: {
+                    "correct": da.correct,
+                    "total": da.total,
+                    "accuracy": round(da.accuracy, 4),
+                }
                 for dim, da in self.dimension_accuracies.items()
             },
             "passed": self.passed,
@@ -322,6 +345,7 @@ def load_latest_calibration(
 # Trust Gate
 # =====================================================================
 
+
 def check_trust_gate(
     *,
     judge_id: str,
@@ -346,7 +370,10 @@ def check_trust_gate(
         return False, "Judge registry not found — cannot verify calibration"
 
     if judge_id not in judges:
-        return False, f"Judge '{judge_id}' not registered in configs/judges/registry.yaml"
+        return (
+            False,
+            f"Judge '{judge_id}' not registered in configs/judges/registry.yaml",
+        )
 
     meta = judges[judge_id]
 
@@ -357,16 +384,31 @@ def check_trust_gate(
         # Verify calibration result still exists and passed
         cal_result = load_latest_calibration(judge_id, calibration_dir)
         if cal_result and cal_result.passed:
-            return True, f"Judge '{judge_id}' calibrated (accuracy: {cal_result.overall_accuracy:.0%})"
+            return (
+                True,
+                f"Judge '{judge_id}' calibrated (accuracy: {cal_result.overall_accuracy:.0%})",
+            )
         # Calibration result missing or failed — revert to uncalibrated
         if not trust_gate.enforce:
-            return True, f"Judge '{judge_id}' calibration unverified — trust gate not enforced (warning)"
-        return False, f"Judge '{judge_id}' marked calibrated but no passing calibration result found"
+            return (
+                True,
+                f"Judge '{judge_id}' calibration unverified — trust gate not enforced (warning)",
+            )
+        return (
+            False,
+            f"Judge '{judge_id}' marked calibrated but no passing calibration result found",
+        )
 
     if meta.status in ("registered", "calibrating"):
         if not trust_gate.enforce:
-            return True, f"Judge '{judge_id}' not yet calibrated — trust gate not enforced (warning)"
-        return False, f"Judge '{judge_id}' is {meta.status} — must be calibrated before production use"
+            return (
+                True,
+                f"Judge '{judge_id}' not yet calibrated — trust gate not enforced (warning)",
+            )
+        return (
+            False,
+            f"Judge '{judge_id}' is {meta.status} — must be calibrated before production use",
+        )
 
     return False, f"Judge '{judge_id}' has unknown status: {meta.status}"
 
@@ -374,6 +416,7 @@ def check_trust_gate(
 # =====================================================================
 # CalibratedJudge — JudgeEngine wrapper with trust gate
 # =====================================================================
+
 
 class CalibratedJudge(JudgeEngine):
     """
@@ -419,9 +462,7 @@ class CalibratedJudge(JudgeEngine):
 
         # Tag low-confidence responses for potential human adjudication
         if response.confidence < self._confidence_threshold:
-            flags = list(response.flags) + [
-                f"low_confidence:{response.confidence:.2f}"
-            ]
+            flags = list(response.flags) + [f"low_confidence:{response.confidence:.2f}"]
             response = PredictResponse(
                 decision=response.decision,
                 overall_score=response.overall_score,
@@ -438,8 +479,11 @@ class CalibratedJudge(JudgeEngine):
 # CLI
 # =====================================================================
 
+
 def main() -> int:
-    parser = argparse.ArgumentParser(description="LLM Judge management for LLM-Judge (L4).")
+    parser = argparse.ArgumentParser(
+        description="LLM Judge management for LLM-Judge (L4)."
+    )
     sub = parser.add_subparsers(dest="cmd")
 
     sub.add_parser("list", help="List registered judges with calibration status")
@@ -471,7 +515,9 @@ def main() -> int:
                 f"{meta.domain:<10} {meta.calibration_config.min_accuracy:<8.0%} {cal_str:<10}"
             )
 
-        print(f"\nTrust gate: {'ENFORCED' if trust_gate.enforce else 'NOT enforced (warnings only)'}")
+        print(
+            f"\nTrust gate: {'ENFORCED' if trust_gate.enforce else 'NOT enforced (warnings only)'}"
+        )
         print(f"Confidence threshold: {trust_gate.default_confidence_threshold}")
         return 0
 

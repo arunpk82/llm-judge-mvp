@@ -1,4 +1,5 @@
 """Tests for Gate 2 pipeline: SequentialJudge, LLM adapters, runtime wiring."""
+
 from __future__ import annotations
 
 import json

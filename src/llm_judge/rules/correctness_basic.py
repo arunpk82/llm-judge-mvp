@@ -20,7 +20,9 @@ class CorrectnessBasicRule:
 
     rule_id = "correctness.basic"
 
-    def apply(self, ctx: RuleContext, params: dict[str, Any] | None = None) -> RuleResult:
+    def apply(
+        self, ctx: RuleContext, params: dict[str, Any] | None = None
+    ) -> RuleResult:
         params = params or {}
         user_text = (ctx.user_text or "").strip()
         candidate = (ctx.candidate or "").strip()

@@ -116,7 +116,10 @@ def test_validate_latest_baseline_happy_path(tmp_path: Path) -> None:
         baselines_dir=baselines,
     )
 
-    assert snap_dir == baselines / ref.suite / ref.rubric_id / "snapshots" / ref.baseline_id
+    assert (
+        snap_dir
+        == baselines / ref.suite / ref.rubric_id / "snapshots" / ref.baseline_id
+    )
 
 
 def test_validate_latest_baseline_fails_when_manifest_missing(tmp_path: Path) -> None:
@@ -131,7 +134,12 @@ def test_validate_latest_baseline_fails_when_manifest_missing(tmp_path: Path) ->
 
     # Write latest.json pointer
     latest_path = baselines / suite / rubric_id / "latest.json"
-    _write(latest_path, json.dumps({"suite": suite, "rubric_id": rubric_id, "baseline_id": baseline_id}))
+    _write(
+        latest_path,
+        json.dumps(
+            {"suite": suite, "rubric_id": rubric_id, "baseline_id": baseline_id}
+        ),
+    )
 
     # Create an incomplete snapshot (missing manifest.json)
     snap_dir = baselines / suite / rubric_id / "snapshots" / baseline_id
@@ -139,4 +147,6 @@ def test_validate_latest_baseline_fails_when_manifest_missing(tmp_path: Path) ->
     _write(snap_dir / "metrics.json", json.dumps({"total": 1}))
 
     with pytest.raises(BaselineIntegrityError):
-        validate_latest_baseline(suite=suite, rubric_id=rubric_id, baselines_dir=baselines)
+        validate_latest_baseline(
+            suite=suite, rubric_id=rubric_id, baselines_dir=baselines
+        )

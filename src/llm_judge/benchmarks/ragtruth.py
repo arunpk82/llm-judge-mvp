@@ -10,6 +10,7 @@ RAGTruth: Niu et al., ACL 2024
   - 3 task types: Summary, QA, Data2txt
   - Published baseline: GPT-4 response-level F1 = 63-64%
 """
+
 from __future__ import annotations
 
 import json
@@ -44,13 +45,13 @@ class RAGTruthAdapter(BenchmarkAdapter):
             name="RAGTruth",
             version="1.0",
             citation="Niu et al., RAGTruth: A Hallucination Corpus for Developing "
-                     "Trustworthy Retrieval-Augmented Language Models, ACL 2024",
+            "Trustworthy Retrieval-Augmented Language Models, ACL 2024",
             license="Apache 2.0",
             total_cases=17790,
             test_cases=2700,
             supported_properties=["1.1", "1.2", "1.3", "1.5"],
             description="Word-level hallucination corpus for RAG evaluation. "
-                       "Covers Summary, QA, and Data-to-text tasks.",
+            "Covers Summary, QA, and Data-to-text tasks.",
             published_baselines=[
                 PublishedBaseline(
                     method="GPT-4-turbo (prompt-based)",
@@ -80,7 +81,9 @@ class RAGTruthAdapter(BenchmarkAdapter):
 
         source_path = self._data_dir / "source_info.jsonl"
         if not source_path.exists():
-            raise FileNotFoundError(f"RAGTruth source_info.jsonl not found: {source_path}")
+            raise FileNotFoundError(
+                f"RAGTruth source_info.jsonl not found: {source_path}"
+            )
 
         self._source_cache = {}
         with source_path.open("r", encoding="utf-8") as f:
@@ -134,22 +137,22 @@ class RAGTruthAdapter(BenchmarkAdapter):
         for label in labels:
             label_type = label.get("label_type", "unknown")
             type_counts[label_type] = type_counts.get(label_type, 0) + 1
-            span_annotations.append(SpanAnnotation(
-                start=label.get("start", 0),
-                end=label.get("end", 0),
-                text=label.get("text", ""),
-                label_type=label_type,
-                meta=label.get("meta", ""),
-            ))
+            span_annotations.append(
+                SpanAnnotation(
+                    start=label.get("start", 0),
+                    end=label.get("end", 0),
+                    text=label.get("text", ""),
+                    label_type=label_type,
+                    meta=label.get("meta", ""),
+                )
+            )
 
         # Map to property-level labels
-        baseless_count = (
-            type_counts.get("Evident Baseless Info", 0)
-            + type_counts.get("Subtle Baseless Info", 0)
+        baseless_count = type_counts.get("Evident Baseless Info", 0) + type_counts.get(
+            "Subtle Baseless Info", 0
         )
-        conflict_count = (
-            type_counts.get("Evident Conflict", 0)
-            + type_counts.get("Subtle Conflict", 0)
+        conflict_count = type_counts.get("Evident Conflict", 0) + type_counts.get(
+            "Subtle Conflict", 0
         )
 
         property_labels: dict[str, Any] = {
@@ -161,7 +164,9 @@ class RAGTruthAdapter(BenchmarkAdapter):
             #      (claims that contradict source — misstated facts)
             "1.3": conflict_count,
             # 1.5 Fabrication detection: any evident baseless info
-            "1.5": "fail" if type_counts.get("Evident Baseless Info", 0) > 0 else "pass",
+            "1.5": (
+                "fail" if type_counts.get("Evident Baseless Info", 0) > 0 else "pass"
+            ),
         }
 
         return GroundTruth(
@@ -172,13 +177,18 @@ class RAGTruthAdapter(BenchmarkAdapter):
         )
 
     def load_cases(
-        self, *, split: str = "test", max_cases: int | None = None,
+        self,
+        *,
+        split: str = "test",
+        max_cases: int | None = None,
     ) -> Iterator[BenchmarkCase]:
         """Yield RAGTruth cases in platform-native format."""
         sources = self._load_sources()
         response_path = self._data_dir / "response.jsonl"
         if not response_path.exists():
-            raise FileNotFoundError(f"RAGTruth response.jsonl not found: {response_path}")
+            raise FileNotFoundError(
+                f"RAGTruth response.jsonl not found: {response_path}"
+            )
 
         count = 0
         with response_path.open("r", encoding="utf-8") as f:

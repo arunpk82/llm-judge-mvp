@@ -20,6 +20,7 @@ Since IFEval doesn't include responses, we generate two cases per prompt:
   1. A constraint-satisfying response (pass) — constructed from prompt
   2. The raw prompt text serves as the query for our 4.1/4.2 checks
 """
+
 from __future__ import annotations
 
 import json
@@ -51,13 +52,13 @@ class IFEvalAdapter(BenchmarkAdapter):
             name="IFEval",
             version="1.0",
             citation="Zhou et al., Instruction-Following Evaluation for "
-                     "Large Language Models, 2023",
+            "Large Language Models, 2023",
             license="Apache 2.0",
             total_cases=541,
             test_cases=541,
             supported_properties=["4.1", "4.2"],
             description="Verifiable instruction-following prompts with 25 constraint "
-                       "types including word limits, keyword requirements, and format.",
+            "types including word limits, keyword requirements, and format.",
             published_baselines=[
                 PublishedBaseline(
                     method="GPT-4 (strict)",
@@ -69,7 +70,10 @@ class IFEvalAdapter(BenchmarkAdapter):
         )
 
     def load_cases(
-        self, *, split: str = "test", max_cases: int | None = None,
+        self,
+        *,
+        split: str = "test",
+        max_cases: int | None = None,
     ) -> Iterator[BenchmarkCase]:
         """Yield IFEval cases."""
         # Try multiple possible filenames

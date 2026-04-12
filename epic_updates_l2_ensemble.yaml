@@ -1,0 +1,271 @@
+# ==============================================================
+# EPIC UPDATES — L2 Ensemble Pipeline + Funnel Report
+# ==============================================================
+# Apply these changes to epics_v8.yaml
+#
+# 2 EPICs UPDATED: 7.17/7.18, 7.21
+# 3 EPICs ADDED:   7.22, 7.23, 7.24
+# ==============================================================
+
+# ==============================================================
+# UPDATE: EPIC 7.17/7.18 — rename + layer reorder
+# REPLACE the existing epic_7_17_7_18 block with:
+# ==============================================================
+
+  epic_7_17_7_18:
+    name: "4-Layer Groundedness Pipeline (Production)"
+    capability: CAP-7A
+    pct: PCT-5+
+    status: complete
+    priority: critical
+    completed_date: "2026-04-07"
+    pr: "#145"
+    description: >
+      Production 4-layer pipeline in hallucination.py. Config-driven enable/disable.
+
+      Layer renaming (April 2026):
+        Old L0 Deterministic  → L1 Rules
+        Old L3 GraphRAG       → L2 Patterns (multi-pass knowledge graph ensemble)
+        Old L1+L2a+L2b        → L3 Classifiers (MiniLM + MiniCheck + DeBERTa)
+        Old L4 Gemini         → L4 LLM-as-Judge
+
+      Pipeline order: L1 → L2 → L3 → L4
+      Cascade rule: Grounded (100% precision) stops. Flagged cascades for verification.
+      Config: l1_enabled, l2_enabled, l3_enabled, l4_enabled (all default True).
+
+      Science Gate results (Exp 31, 50 RAGTruth cases):
+        L1+L2: 78 cleared (27.6%) at 100% precision, 0 safety violations.
+        11/16 hallucinations caught (69% recall) before L3/L4.
+
+    layer_renaming:
+      L0_to_L1: "Deterministic text match → L1 Rules"
+      L1_to_L3: "Gate 1 MiniLM → L3 Classifiers (part)"
+      L2a_to_L3a: "MiniCheck Flan-T5 → L3a Classifiers (primary)"
+      L2b_to_L3b: "DeBERTa NLI → L3b Classifiers (fallback)"
+      L3_to_L2: "GraphRAG spaCy → L2 Patterns (REPLACED with multi-pass ensemble)"
+      L4_stays: "Gemini → L4 LLM-as-Judge"
+
+    layer_stats_keys:
+      old: ["L0", "L1_fail", "L2a_minicheck", "L2b_nli", "L3", "L4_supported", "L4_unsupported"]
+      new: ["L1", "L2", "L2_flagged", "L3_gate1_fail", "L3a_minicheck", "L3b_nli", "L4_supported", "L4_unsupported"]
+
+    files_changed:
+      - "src/llm_judge/calibration/hallucination.py"
+      - "src/llm_judge/calibration/hallucination_graphs.py (NEW)"
+      - "tests/unit/test_5layer_pipeline.py"
+
+# ==============================================================
+# UPDATE: EPIC 7.21 — update layer references
+# REPLACE the existing epic_7_21 block with:
+# ==============================================================
+
+  epic_7_21:
+    name: "MiniCheck Integration + Gate 1 Routing Fix"
+    capability: CAP-7A
+    pct: PCT-5+
+    status: complete
+    priority: critical
+    completed_date: "2026-04-08"
+    description: >
+      Added MiniCheck Flan-T5-Large as L3a (was L2a — primary factual consistency, 78%
+      coverage). DeBERTa NLI becomes L3b (was L2b — fallback, +6%). Gate 1 fail/ambiguous
+      now continues to L3+ when gate2_routing="pass" (was bug: always returned
+      early). RAGTruth benchmark: F1=0.542 pre-fix.
+
+      NOTE: Layer naming updated per EPIC 7.17/7.18 layer renaming.
+      MiniCheck is now L3a (was L2a). DeBERTa is now L3b (was L2b).
+    files_changed:
+      - "src/llm_judge/calibration/hallucination.py"
+      - "tests/unit/test_5layer_pipeline.py"
+
+# ==============================================================
+# ADD: EPIC 7.22 — L2 Knowledge Graph Ensemble
+# ==============================================================
+
+  epic_7_22:
+    name: "L2 Knowledge Graph Ensemble Pipeline"
+    capability: CAP-7A
+    pct: PCT-5+
+    status: code-complete
+    priority: critical
+    description: >
+      Multi-pass knowledge graph extraction + ensemble traversal. Replaces old
+      L3 GraphRAG (simple spaCy SVO exact match) with a 5-graph ensemble system.
+
+      Architecture:
+        1. Multi-pass extraction: 5 Gemini passes per source document
+           P1: Entity profiles (who + attributes + aliases)
+           P2: Event timeline (who did what, when, where)
+           P3: Relationships (how entities connect + NOT relationships)
+           P4: Numbers and dates (every quantity with context)
+           P5: Negations and boundaries (what is NOT said)
+           P6: Verification (compare source against P1-P5, find gaps)
+
+        2. Graph construction: 5 NetworkX DiGraphs per source
+           G1: Entity graph (entities + attributes + alias edges)
+           G2: Event graph (entity → action → target paths, P1 cross-referenced)
+           G3: Relationship graph (entity → relationship → entity + NOT edges)
+           G4: Number graph (entity → number nodes)
+           G5: Negation graph (negation statements, absent info, corrections)
+
+        3. Sentence parsing: spaCy en_core_web_sm
+           SVO triples with passive voice detection
+           Pronoun resolution (same-sentence entity + main character fallback)
+           Verb synonym map (18 pairs)
+           Skip generic verbs (be, have, do, etc.)
+
+        4. Graph traversal: per-sentence, per-graph
+           Entity resolution (exact → alias → substring → word overlap)
+           Passive voice (entity as target, not actor)
+           Object verification (response objects against graph targets/where)
+           Contradiction detection (graph has different targets → FLAG)
+           Zero-action flagging (entity has 0 actions → FLAG)
+
+        5. Ensemble aggregation:
+           Flag always wins over grounded (specific beats general)
+           1+ grounded + 0 flagged = grounded (low/medium/high confidence)
+           All unknown = unknown (passes to L3/L4)
+
+      Science Gate results (Exp 31):
+        61 cleared at 100% precision, 0 safety violations
+        11/16 hallucinations caught (69% recall)
+        Combined with L1: 78 cleared, 11/16 caught
+        Cost: $0.01 per source (cached), 2.1s traversal for 283 sentences
+
+    science_gate_date: "2026-04-10"
+    science_gate_results:
+      experiment: "exp31_multipass_ensemble"
+      dataset: "RAGTruth 50 cases, 283 sentences, 16 hallucinated"
+      unique_sources: 9
+      extraction_passes: 6
+      extraction_cost: "$0.09 total ($0.01/source)"
+      extraction_completeness: "~95% (vs ~80% single-pass)"
+      grounded: 61
+      grounded_precision: 1.0
+      safety_violations: 0
+      catches: "11/16 (69%)"
+      flag_precision: 0.105
+      missed_hallucinations:
+        - "ragtruth_58 S4: abstract subject (spaCy parse failure)"
+        - "ragtruth_121 S2: garbled subject (spaCy parse failure)"
+        - "ragtruth_123 S1: pronoun + verb not in graph"
+        - "ragtruth_146 S2: abstract subject (spaCy parse failure)"
+        - "ragtruth_185 S3: pronoun + extraction error (Saltara in graph)"
+
+    cascade_rule: >
+      Grounded (100% precision) STOPS — sentence cleared, skips remaining layers.
+      Flagged (<100% precision) CASCADES — passes to next layer with evidence.
+      Unknown CASCADES — passes to next layer.
+
+    kpi_gate:
+      direct: "Clearance precision 100% (0 safety violations)"
+      direct: "Recall ≥69% (11/16 before L3/L4)"
+      prerequisite: "Flag precision — graph completeness determines FP rate"
+
+    files_changed:
+      - "src/llm_judge/calibration/hallucination_graphs.py (NEW — 550 lines)"
+      - "src/llm_judge/calibration/hallucination.py (modified — L2 integration)"
+      - "experiments/test_production_pipeline.py (NEW — RAGTruth 50 verification)"
+      - "experiments/exp31_multipass_fact_tables.json (extraction results)"
+      - "experiments/exp31_stage2_ensemble_results.json (traversal results)"
+
+    learnings:
+      - "L34: Existence ≠ correctness. Only path verification achieves safe clearance."
+      - "L35: Multi-pass extraction solves single-point-of-failure (80% → 95%)."
+      - "L36: Knowledge graph is architectural asset transcending L2."
+      - "L37: Entity resolution + verb matching + path traversal must work together."
+      - "L38: Absence has no synonyms when graph ≥95% complete."
+      - "L39: Flag always beats grounded in ensemble aggregation."
+      - "L40: Source deduplication essential at scale (82% cost reduction)."
+
+# ==============================================================
+# ADD: EPIC 7.23 — Pipeline Funnel Report & Diagnostics
+# ==============================================================
+
+  epic_7_23:
+    name: "Pipeline Funnel Report & Diagnostics Output"
+    capability: CAP-7A, CAP-8
+    pct: PCT-5+
+    status: in-progress
+    priority: high
+    description: >
+      Two-tier reporting for the hallucination detection pipeline:
+
+      1. Screen output: Cascade Funnel
+         Clean, readable waterfall showing L1 → L2 → L3 → L4 → L5 flow.
+         Each layer shows: IN, Grounded, Flagged, Unknown, Cumulative metrics.
+         Inspired by industry practices: Google Perspective API cascade waterfall,
+         Stripe Radar economic funnel, Meta Integrity tiered escalation.
+
+      2. JSON file: Full Diagnostics
+         Per-sentence details with per-graph verdicts, evidence strings, timing.
+         Confusion matrix (TP/TN/FP/FN) per layer and cumulative.
+         Flag analysis: reasons distribution, precision, false positive breakdown.
+         Missed hallucinations with root cause classification.
+
+      Design principles:
+        - Each layer answers 4 questions: How many received? How many resolved?
+          How many passed through? What's the cost/latency?
+        - Cumulative metrics show pipeline's total effect at each stage.
+        - Funnel visually shows WHERE in the pipeline value is created.
+        - JSON enables offline analysis without re-running the pipeline.
+
+    kpi_gate:
+      direct: "Evidence completeness 100% — every flagged sentence has evidence"
+      prerequisite: "Observability — every verdict traceable across all layers"
+
+    files_changed:
+      - "src/llm_judge/calibration/hallucination.py (add funnel_report method)"
+      - "experiments/test_production_pipeline.py (add funnel output)"
+
+    output_format:
+      screen: "Cascade waterfall with IN/Grounded/Flagged/Unknown per layer"
+      json: "Full diagnostics with per-sentence details, confusion matrix, flag analysis"
+
+# ==============================================================
+# ADD: EPIC 7.24 — L5 Human Review Layer
+# ==============================================================
+
+  epic_7_24:
+    name: "L5 Human Review Layer"
+    capability: CAP-7A, CAP-8
+    pct: PCT-6
+    status: planned
+    priority: medium
+    description: >
+      Final escalation layer for sentences that L1-L4 cannot resolve.
+      Human reviewer receives the sentence with full evidence trail from
+      all previous layers, making review targeted rather than from-scratch.
+
+      L5 receives:
+        - Sentences with "unknown" verdict after L4 (no layer could resolve)
+        - Low-confidence verdicts from any layer that need human confirmation
+        - Full evidence: per-graph verdicts, flag reasons, classifier scores
+
+      L5 produces:
+        - Confirmed: human agrees with machine verdict
+        - Overturned: human disagrees — machine was wrong
+        - Deferred: human needs more context (escalate to domain expert)
+
+      Feedback loop: Human decisions feed back to improve L1-L4:
+        - Overturned flags → add to false positive training set
+        - Confirmed hallucinations missed by L2 → improve extraction prompt
+        - Patterns in deferred cases → identify new rule categories
+
+      Relates to EPIC 7.3 (Human Escalation & Feedback Loop) but specific
+      to the 5-layer hallucination pipeline context. EPIC 7.3 covers the
+      general adjudication interface; this EPIC covers L5 integration.
+
+    kpi_gate:
+      direct: "Human review throughput — minutes per sentence"
+      direct: "Override rate — % of machine verdicts overturned by human"
+      prerequisite: "Final recall — human catches what L1-L4 missed"
+
+    dependencies:
+      - "EPIC 7.22 (L2 Ensemble) — provides evidence trail"
+      - "EPIC 7.23 (Funnel Report) — provides diagnostic context"
+      - "EPIC 7.3 (Human Escalation) — provides adjudication UI"
+
+    files_changed:
+      - "src/llm_judge/calibration/hallucination.py (add L5 routing)"
+      - "TBD — adjudication UI endpoint"

@@ -13,6 +13,7 @@ Usage:
     pip install alignscore
     python experiments/nli_improvements/exp17_alignscore_science_gate.py
 """
+
 from __future__ import annotations
 
 import argparse
@@ -29,7 +30,10 @@ import torch
 from transformers import AutoModelForSequenceClassification, AutoTokenizer
 
 from llm_judge.benchmarks.ragtruth import RAGTruthAdapter
-from llm_judge.calibration.hallucination import _compute_grounding_ratio, _split_sentences
+from llm_judge.calibration.hallucination import (
+    _compute_grounding_ratio,
+    _split_sentences,
+)
 from llm_judge.properties import get_embedding_provider
 
 logger = logging.getLogger(__name__)
@@ -40,7 +44,10 @@ ALIGNSCORE_MODEL = "AlignScore/AlignScore-large"
 
 # --- Shared helpers ---
 
-def deterministic_match(sentence: str, source_sentences: list[str], source_full: str) -> bool:
+
+def deterministic_match(
+    sentence: str, source_sentences: list[str], source_full: str
+) -> bool:
     norm_sent = re.sub(r"\s+", " ", sentence.lower().strip())
     norm_source = re.sub(r"\s+", " ", source_full.lower().strip())
     if norm_sent in norm_source:
@@ -60,8 +67,12 @@ def deterministic_match(sentence: str, source_sentences: list[str], source_full:
     return False
 
 
-def nli_classify(tokenizer: Any, model: Any, premise: str, hypothesis: str, labels: list[str]) -> dict[str, float]:
-    inputs = tokenizer(premise, hypothesis, return_tensors="pt", truncation=True, max_length=512)
+def nli_classify(
+    tokenizer: Any, model: Any, premise: str, hypothesis: str, labels: list[str]
+) -> dict[str, float]:
+    inputs = tokenizer(
+        premise, hypothesis, return_tensors="pt", truncation=True, max_length=512
+    )
     with torch.no_grad():
         probs = torch.softmax(model(**inputs).logits, dim=-1)[0].tolist()
     return {label: round(p, 4) for label, p in zip(labels, probs)}
@@ -79,6 +90,7 @@ def load_alignscore() -> Any:
 
     try:
         from alignscore import AlignScore
+
         print("Loading AlignScore model...")
         start = time.time()
         _alignscore_scorer = AlignScore(
@@ -98,15 +110,19 @@ def load_alignscore() -> Any:
         # Fallback: try loading via HuggingFace directly
         print("Trying HuggingFace fallback...")
         from transformers import AutoModelForSequenceClassification, AutoTokenizer
+
         _alignscore_scorer = {
             "tokenizer": AutoTokenizer.from_pretrained("roberta-large"),
-            "model": AutoModelForSequenceClassification.from_pretrained(ALIGNSCORE_MODEL),
+            "model": AutoModelForSequenceClassification.from_pretrained(
+                ALIGNSCORE_MODEL
+            ),
         }
         return _alignscore_scorer
 
 
-def alignscore_check(sentence: str, source_sentences: list[str], top_k: int = 3,
-                     threshold: float = 0.7) -> tuple[bool, float]:
+def alignscore_check(
+    sentence: str, source_sentences: list[str], top_k: int = 3, threshold: float = 0.7
+) -> tuple[bool, float]:
     """
     Check if sentence is grounded using AlignScore.
     Returns (is_grounded, best_score).
@@ -127,6 +143,7 @@ def alignscore_check(sentence: str, source_sentences: list[str], top_k: int = 3,
 
 # --- Main experiment ---
 
+
 @dataclass
 class SentenceResult:
     sentence_idx: int
@@ -141,7 +158,9 @@ def main():
     parser.add_argument("--max-cases", type=int, default=50)
     parser.add_argument("--alignscore-threshold", type=float, default=0.7)
     parser.add_argument("--nli-threshold", type=float, default=0.7)
-    parser.add_argument("--output-dir", type=str, default="experiments/nli_improvements")
+    parser.add_argument(
+        "--output-dir", type=str, default="experiments/nli_improvements"
+    )
     args = parser.parse_args()
     output_dir = Path(args.output_dir)
     output_dir.mkdir(parents=True, exist_ok=True)
@@ -153,7 +172,10 @@ def main():
     nli_tokenizer = AutoTokenizer.from_pretrained(NLI_MODEL)
     nli_model = AutoModelForSequenceClassification.from_pretrained(NLI_MODEL)
     nli_model.eval()
-    nli_labels = [nli_model.config.id2label[i].upper() for i in range(len(nli_model.config.id2label))]
+    nli_labels = [
+        nli_model.config.id2label[i].upper()
+        for i in range(len(nli_model.config.id2label))
+    ]
 
     # Load AlignScore (proposed L2)
     load_alignscore()
@@ -166,10 +188,10 @@ def main():
     l0_deterministic = 0
 
     # L2 comparison
-    l2_nli_only = 0       # caught by DeBERTa only
-    l2_align_only = 0     # caught by AlignScore only
-    l2_both = 0           # caught by both
-    l2_neither = 0        # caught by neither → L4
+    l2_nli_only = 0  # caught by DeBERTa only
+    l2_align_only = 0  # caught by AlignScore only
+    l2_both = 0  # caught by both
+    l2_neither = 0  # caught by neither → L4
 
     all_sentence_results: list[SentenceResult] = []
     start_time = time.time()
@@ -187,7 +209,9 @@ def main():
         response = case.request.candidate_answer
 
         # L1: Gate 1
-        ratio, min_sim = _compute_grounding_ratio(response, context, similarity_threshold=0.60)
+        ratio, min_sim = _compute_grounding_ratio(
+            response, context, similarity_threshold=0.60
+        )
         if ratio < 0.80 or min_sim < 0.30:
             gate1_fail += 1
             continue
@@ -210,11 +234,15 @@ def main():
                 continue
 
             # L2a: DeBERTa NLI (current)
-            sims = [(j, provider.max_similarity(emb, [ce])) for j, ce in enumerate(ctx_embs)]
+            sims = [
+                (j, provider.max_similarity(emb, [ce])) for j, ce in enumerate(ctx_embs)
+            ]
             sims.sort(key=lambda x: x[1], reverse=True)
             best_entailment = 0.0
             for src_idx, _ in sims[:3]:
-                nli = nli_classify(nli_tokenizer, nli_model, ctx_sents[src_idx], sent, nli_labels)
+                nli = nli_classify(
+                    nli_tokenizer, nli_model, ctx_sents[src_idx], sent, nli_labels
+                )
                 best_entailment = max(best_entailment, nli.get("ENTAILMENT", 0))
             nli_grounded = best_entailment > args.nli_threshold
 
@@ -222,34 +250,56 @@ def main():
             # Use same top-3 source sentences for fair comparison
             top3_sources = [ctx_sents[idx] for idx, _ in sims[:3]]
             align_grounded, align_score = alignscore_check(
-                sent, top3_sources, threshold=args.alignscore_threshold,
+                sent,
+                top3_sources,
+                threshold=args.alignscore_threshold,
             )
 
             # Compare
             if nli_grounded and align_grounded:
                 l2_both += 1
-                all_sentence_results.append(SentenceResult(
-                    i, sent[:100], "L2_both",
-                    nli_entailment=best_entailment, alignscore=align_score,
-                ))
+                all_sentence_results.append(
+                    SentenceResult(
+                        i,
+                        sent[:100],
+                        "L2_both",
+                        nli_entailment=best_entailment,
+                        alignscore=align_score,
+                    )
+                )
             elif nli_grounded and not align_grounded:
                 l2_nli_only += 1
-                all_sentence_results.append(SentenceResult(
-                    i, sent[:100], "L2_nli_only",
-                    nli_entailment=best_entailment, alignscore=align_score,
-                ))
+                all_sentence_results.append(
+                    SentenceResult(
+                        i,
+                        sent[:100],
+                        "L2_nli_only",
+                        nli_entailment=best_entailment,
+                        alignscore=align_score,
+                    )
+                )
             elif align_grounded and not nli_grounded:
                 l2_align_only += 1
-                all_sentence_results.append(SentenceResult(
-                    i, sent[:100], "L2_align_only",
-                    nli_entailment=best_entailment, alignscore=align_score,
-                ))
+                all_sentence_results.append(
+                    SentenceResult(
+                        i,
+                        sent[:100],
+                        "L2_align_only",
+                        nli_entailment=best_entailment,
+                        alignscore=align_score,
+                    )
+                )
             else:
                 l2_neither += 1
-                all_sentence_results.append(SentenceResult(
-                    i, sent[:100], "L4_needed",
-                    nli_entailment=best_entailment, alignscore=align_score,
-                ))
+                all_sentence_results.append(
+                    SentenceResult(
+                        i,
+                        sent[:100],
+                        "L4_needed",
+                        nli_entailment=best_entailment,
+                        alignscore=align_score,
+                    )
+                )
 
         if total_cases % 10 == 0:
             print(f"  Processed {total_cases} cases...")
@@ -266,12 +316,18 @@ def main():
     print(f"Elapsed: {elapsed:.1f}s")
     print("\nFUNNEL:")
     print(f"  Total sentences:     {total_sentences}")
-    print(f"  L0 Deterministic:    {l0_deterministic:>4} ({l0_deterministic/max(1,total_sentences)*100:.0f}%)")
+    print(
+        f"  L0 Deterministic:    {l0_deterministic:>4} ({l0_deterministic/max(1,total_sentences)*100:.0f}%)"
+    )
     print(f"  Remaining for L2:    {remaining:>4}")
 
     print(f"\nL2 COMPARISON (of {remaining} remaining sentences):")
-    print(f"  DeBERTa NLI catches: {nli_total:>4} ({nli_total/max(1,remaining)*100:.0f}%)")
-    print(f"  AlignScore catches:  {align_total:>4} ({align_total/max(1,remaining)*100:.0f}%)")
+    print(
+        f"  DeBERTa NLI catches: {nli_total:>4} ({nli_total/max(1,remaining)*100:.0f}%)"
+    )
+    print(
+        f"  AlignScore catches:  {align_total:>4} ({align_total/max(1,remaining)*100:.0f}%)"
+    )
     print(f"  Improvement:         {align_total - nli_total:>+4} sentences")
 
     print("\n  Breakdown:")
@@ -283,25 +339,41 @@ def main():
     nli_free = l0_deterministic + nli_total
     align_free = l0_deterministic + align_total
     print("\nTOTAL FREE (L0 + L2):")
-    print(f"  With DeBERTa:        {nli_free:>4}/{total_sentences} ({nli_free/max(1,total_sentences)*100:.0f}%)")
-    print(f"  With AlignScore:     {align_free:>4}/{total_sentences} ({align_free/max(1,total_sentences)*100:.0f}%)")
-    print(f"  L4 with DeBERTa:     {total_sentences - nli_free:>4} ({(total_sentences-nli_free)/max(1,total_sentences)*100:.0f}%)")
-    print(f"  L4 with AlignScore:  {total_sentences - align_free:>4} ({(total_sentences-align_free)/max(1,total_sentences)*100:.0f}%)")
+    print(
+        f"  With DeBERTa:        {nli_free:>4}/{total_sentences} ({nli_free/max(1,total_sentences)*100:.0f}%)"
+    )
+    print(
+        f"  With AlignScore:     {align_free:>4}/{total_sentences} ({align_free/max(1,total_sentences)*100:.0f}%)"
+    )
+    print(
+        f"  L4 with DeBERTa:     {total_sentences - nli_free:>4} ({(total_sentences-nli_free)/max(1,total_sentences)*100:.0f}%)"
+    )
+    print(
+        f"  L4 with AlignScore:  {total_sentences - align_free:>4} ({(total_sentences-align_free)/max(1,total_sentences)*100:.0f}%)"
+    )
 
     # Show AlignScore-only catches (what DeBERTa misses)
     align_only_sents = [r for r in all_sentence_results if r.layer == "L2_align_only"]
     if align_only_sents:
-        print(f"\n--- AlignScore catches that DeBERTa misses ({len(align_only_sents)}) ---")
+        print(
+            f"\n--- AlignScore catches that DeBERTa misses ({len(align_only_sents)}) ---"
+        )
         for r in align_only_sents[:10]:
-            print(f"  [{r.sentence_idx}] NLI={r.nli_entailment:.3f} AlignScore={r.alignscore:.3f}")
+            print(
+                f"  [{r.sentence_idx}] NLI={r.nli_entailment:.3f} AlignScore={r.alignscore:.3f}"
+            )
             print(f"       {r.sentence}")
 
     # Show DeBERTa-only catches (what AlignScore misses)
     nli_only_sents = [r for r in all_sentence_results if r.layer == "L2_nli_only"]
     if nli_only_sents:
-        print(f"\n--- DeBERTa catches that AlignScore misses ({len(nli_only_sents)}) ---")
+        print(
+            f"\n--- DeBERTa catches that AlignScore misses ({len(nli_only_sents)}) ---"
+        )
         for r in nli_only_sents[:10]:
-            print(f"  [{r.sentence_idx}] NLI={r.nli_entailment:.3f} AlignScore={r.alignscore:.3f}")
+            print(
+                f"  [{r.sentence_idx}] NLI={r.nli_entailment:.3f} AlignScore={r.alignscore:.3f}"
+            )
             print(f"       {r.sentence}")
     print(f"{'='*70}")
 
@@ -322,8 +394,13 @@ def main():
         "free_pct_nli": round(nli_free / max(1, total_sentences) * 100, 1),
         "free_pct_align": round(align_free / max(1, total_sentences) * 100, 1),
         "sentences": [
-            {"idx": r.sentence_idx, "sentence": r.sentence, "layer": r.layer,
-             "nli": r.nli_entailment, "alignscore": r.alignscore}
+            {
+                "idx": r.sentence_idx,
+                "sentence": r.sentence,
+                "layer": r.layer,
+                "nli": r.nli_entailment,
+                "alignscore": r.alignscore,
+            }
             for r in all_sentence_results
         ],
     }

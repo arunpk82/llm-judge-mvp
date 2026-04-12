@@ -19,6 +19,7 @@ Output:
     experiments/measurement_sweep_results.json  — raw per-case results
     Console: detection summary table with Recall/Precision per property
 """
+
 from __future__ import annotations
 
 import json
@@ -36,15 +37,16 @@ from llm_judge.schemas import Message, PredictRequest
 @dataclass
 class PropertyMetric:
     """Tracks detection performance for one property."""
+
     property_id: str
     property_name: str
     category: str
     cases_evaluated: int = 0
-    detected: int = 0        # correctly flagged (true positive)
-    missed: int = 0          # should have flagged but didn't (false negative)
-    false_alarm: int = 0     # flagged but shouldn't have (false positive)
-    correct_pass: int = 0    # correctly not flagged (true negative)
-    errors: int = 0          # property raised an exception
+    detected: int = 0  # correctly flagged (true positive)
+    missed: int = 0  # should have flagged but didn't (false negative)
+    false_alarm: int = 0  # flagged but shouldn't have (false positive)
+    correct_pass: int = 0  # correctly not flagged (true negative)
+    errors: int = 0  # property raised an exception
     sample_flags: list[str] = field(default_factory=list)
 
     @property
@@ -84,8 +86,13 @@ def _is_problem_case(case: dict, property_name: str, category: str) -> bool | No
 
     if category == "faithfulness":
         # Fabrication: correctness <= 2 indicates factual problems
-        if property_name in ("groundedness", "ungrounded_claims", "citation_verification",
-                             "attribution_accuracy", "fabrication_detection"):
+        if property_name in (
+            "groundedness",
+            "ungrounded_claims",
+            "citation_verification",
+            "attribution_accuracy",
+            "fabrication_detection",
+        ):
             return corr <= 2
 
     elif category == "semantic_quality":
@@ -143,8 +150,13 @@ def _has_flags(evidence: dict, property_name: str) -> bool:
     # Check semantic quality — score <= 2 means flagged
     prop_ev = evidence.get("property_evidence", {}).get(property_name, {})
     if prop_ev.get("executed") and property_name in (
-        "relevance", "clarity", "correctness", "tone",
-        "completeness", "coherence", "depth_nuance",
+        "relevance",
+        "clarity",
+        "correctness",
+        "tone",
+        "completeness",
+        "coherence",
+        "depth_nuance",
     ):
         flags = prop_ev.get("flags", [])
         return any(f"low_{property_name}" in f for f in flags)
@@ -178,6 +190,7 @@ def run_sweep():
 
     try:
         from llm_judge.integrated_judge import IntegratedJudge
+
         judge = IntegratedJudge(engine=engine)
     except Exception as exc:
         print(f"ERROR: Could not initialize IntegratedJudge: {exc}")
@@ -192,8 +205,10 @@ def run_sweep():
         cid = case["case_id"]
 
         request = PredictRequest(
-            conversation=[Message(role=msg["role"], content=msg["content"])
-                          for msg in case["conversation"]],
+            conversation=[
+                Message(role=msg["role"], content=msg["content"])
+                for msg in case["conversation"]
+            ],
             candidate_answer=case["candidate_answer"],
             rubric_id=case["rubric_id"],
         )
@@ -208,17 +223,21 @@ def run_sweep():
             result["_elapsed_ms"] = round((time.time() - start) * 1000, 1)
             all_results.append(result)
             status = "✓" if result["decision"] == case["human_decision"] else "✗"
-            print(f"  [{i+1:2d}/30] {cid} {status} "
-                  f"judge={result['decision']:<4} human={case['human_decision']:<4} "
-                  f"coverage={result.get('detection_coverage', '?')[:30]} "
-                  f"({result['_elapsed_ms']:.0f}ms)")
+            print(
+                f"  [{i+1:2d}/30] {cid} {status} "
+                f"judge={result['decision']:<4} human={case['human_decision']:<4} "
+                f"coverage={result.get('detection_coverage', '?')[:30]} "
+                f"({result['_elapsed_ms']:.0f}ms)"
+            )
         except Exception as exc:
             print(f"  [{i+1:2d}/30] {cid} ERROR: {str(exc)[:60]}")
-            all_results.append({
-                "_case_id": cid,
-                "_human_decision": case["human_decision"],
-                "_error": str(exc)[:200],
-            })
+            all_results.append(
+                {
+                    "_case_id": cid,
+                    "_human_decision": case["human_decision"],
+                    "_error": str(exc)[:200],
+                }
+            )
 
     # Save raw results
     out_path = Path(__file__).parent / "measurement_sweep_results.json"
@@ -241,6 +260,7 @@ def run_sweep():
 
     # Build metrics per property
     from llm_judge.property_config import load_property_config
+
     registry = load_property_config()
 
     metrics: dict[str, PropertyMetric] = {}
@@ -294,8 +314,10 @@ def run_sweep():
         ("performance", "Category 6 — Performance"),
     ]
 
-    header = (f"{'#':<5} {'Property':<25} {'Cases':<7} {'Detect':<8} {'Missed':<8} "
-              f"{'False':<8} {'Recall':<10} {'Precis':<10} {'F1':<8} {'Finding'}")
+    header = (
+        f"{'#':<5} {'Property':<25} {'Cases':<7} {'Detect':<8} {'Missed':<8} "
+        f"{'False':<8} {'Recall':<10} {'Precis':<10} {'F1':<8} {'Finding'}"
+    )
     print(header)
     print("-" * len(header))
 
@@ -311,7 +333,12 @@ def run_sweep():
 
             if m.cases_evaluated == 0:
                 finding = "No ground truth for this property in dataset"
-            elif m.recall is not None and m.recall >= 0.8 and m.precision is not None and m.precision >= 0.8:
+            elif (
+                m.recall is not None
+                and m.recall >= 0.8
+                and m.precision is not None
+                and m.precision >= 0.8
+            ):
                 finding = "Ready for calibration"
             elif m.recall is not None and m.recall < 0.5:
                 finding = "Low recall — needs method improvement"
@@ -322,9 +349,11 @@ def run_sweep():
             else:
                 finding = "Needs more data for calibration"
 
-            print(f"{m.property_id:<5} {prop_name:<25} {m.cases_evaluated:<7} "
-                  f"{m.detected:<8} {m.missed:<8} {m.false_alarm:<8} "
-                  f"{recall_str:<10} {prec_str:<10} {f1_str:<8} {finding}")
+            print(
+                f"{m.property_id:<5} {prop_name:<25} {m.cases_evaluated:<7} "
+                f"{m.detected:<8} {m.missed:<8} {m.false_alarm:<8} "
+                f"{recall_str:<10} {prec_str:<10} {f1_str:<8} {finding}"
+            )
 
     # =====================================================================
     # Overall summary
@@ -336,7 +365,8 @@ def run_sweep():
     total_cases = len([r for r in all_results if "_error" not in r])
     errors = len([r for r in all_results if "_error" in r])
     decision_matches = sum(
-        1 for r in all_results
+        1
+        for r in all_results
         if "_error" not in r and r["decision"] == r["_human_decision"]
     )
 
@@ -344,30 +374,44 @@ def run_sweep():
     if errors:
         print(f"  Errors: {errors}")
     if total_cases > 0:
-        print(f"  Decision agreement: {decision_matches}/{total_cases} ({decision_matches/total_cases*100:.0f}%)")
+        print(
+            f"  Decision agreement: {decision_matches}/{total_cases} ({decision_matches/total_cases*100:.0f}%)"
+        )
     else:
         print("  Decision agreement: no cases evaluated (check API key)")
     print("  Properties enabled: 28/28 (100%)")
-    print(f"  Properties with ground truth: {sum(1 for m in metrics.values() if m.cases_evaluated > 0)}")
-    print(f"  Properties without ground truth: {sum(1 for m in metrics.values() if m.cases_evaluated == 0)}")
+    print(
+        f"  Properties with ground truth: {sum(1 for m in metrics.values() if m.cases_evaluated > 0)}"
+    )
+    print(
+        f"  Properties without ground truth: {sum(1 for m in metrics.values() if m.cases_evaluated == 0)}"
+    )
 
     # Properties ready for calibration
     ready = [
-        (n, m) for n, m in metrics.items()
-        if m.recall is not None and m.recall >= 0.7
-        and m.precision is not None and m.precision >= 0.7
+        (n, m)
+        for n, m in metrics.items()
+        if m.recall is not None
+        and m.recall >= 0.7
+        and m.precision is not None
+        and m.precision >= 0.7
     ]
     if ready:
         print("\n  Properties ready for gating (Recall≥70%, Precision≥70%):")
         for n, m in ready:
-            print(f"    {m.property_id} {n}: R={m.recall:.0%} P={m.precision:.0%} F1={m.f1:.0%}")
+            print(
+                f"    {m.property_id} {n}: R={m.recall:.0%} P={m.precision:.0%} F1={m.f1:.0%}"
+            )
 
     # Properties needing attention
     needs_work = [
-        (n, m) for n, m in metrics.items()
+        (n, m)
+        for n, m in metrics.items()
         if m.cases_evaluated > 0
-        and ((m.recall is not None and m.recall < 0.5) or
-             (m.precision is not None and m.precision < 0.5))
+        and (
+            (m.recall is not None and m.recall < 0.5)
+            or (m.precision is not None and m.precision < 0.5)
+        )
     ]
     if needs_work:
         print("\n  Properties needing improvement:")
@@ -377,10 +421,7 @@ def run_sweep():
             print(f"    {m.property_id} {n}: {r} {p}")
 
     # Properties with no ground truth
-    no_gt = [
-        (n, m) for n, m in metrics.items()
-        if m.cases_evaluated == 0
-    ]
+    no_gt = [(n, m) for n, m in metrics.items() if m.cases_evaluated == 0]
     if no_gt:
         print(f"\n  Properties with no ground truth in dataset ({len(no_gt)}):")
         for n, m in no_gt:
@@ -390,7 +431,9 @@ def run_sweep():
     print(f"    1. Review per-case results in {out_path.name}")
     print("    2. Properties ready for gating → set gate_mode: auto-gated in config")
     print("    3. Properties needing work → investigate detection method")
-    print("    4. Properties with no ground truth → add test cases for those categories")
+    print(
+        "    4. Properties with no ground truth → add test cases for those categories"
+    )
     print(f"{'='*80}")
 
 

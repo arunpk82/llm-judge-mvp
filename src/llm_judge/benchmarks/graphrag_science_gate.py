@@ -12,6 +12,7 @@ Tests on BOTH false negatives AND true negatives.
 Usage:
     poetry run python -m llm_judge.benchmarks.graphrag_science_gate --max-fn 10 --max-tn 10
 """
+
 from __future__ import annotations
 
 import argparse
@@ -24,7 +25,10 @@ from pathlib import Path
 from typing import Any
 
 from llm_judge.benchmarks.ragtruth import RAGTruthAdapter
-from llm_judge.calibration.hallucination import _compute_grounding_ratio, _split_sentences
+from llm_judge.calibration.hallucination import (
+    _compute_grounding_ratio,
+    _split_sentences,
+)
 from llm_judge.properties import get_embedding_provider
 
 logger = logging.getLogger(__name__)
@@ -100,13 +104,35 @@ def _get_subtree_text(token) -> str:
     # Filter to relevant dependents (compounds, modifiers, determiners)
     parts = []
     for t in subtree:
-        if t.dep_ in ("compound", "amod", "nummod", "det", "poss", "case",
-                       "flat", "flat:name", "appos") or t == token:
+        if (
+            t.dep_
+            in (
+                "compound",
+                "amod",
+                "nummod",
+                "det",
+                "poss",
+                "case",
+                "flat",
+                "flat:name",
+                "appos",
+            )
+            or t == token
+        ):
             parts.append(t)
         elif t.dep_ == "punct":
             continue
-        elif t.dep_ in ("prep", "agent", "relcl", "advcl", "ccomp", "xcomp",
-                         "acl", "conj", "cc"):
+        elif t.dep_ in (
+            "prep",
+            "agent",
+            "relcl",
+            "advcl",
+            "ccomp",
+            "xcomp",
+            "acl",
+            "conj",
+            "cc",
+        ):
             break  # Don't include clausal dependents in entity text
         else:
             parts.append(t)
@@ -199,25 +225,37 @@ def extract_svo_triplets(text: str, nlp: Any) -> list[Triplet]:
             if subjects and objects:
                 for subj in subjects:
                     for obj in objects:
-                        triplets.append(Triplet(
-                            subject=subj, predicate=verb_text,
-                            obj=obj, modifiers=modifiers,
-                        ))
+                        triplets.append(
+                            Triplet(
+                                subject=subj,
+                                predicate=verb_text,
+                                obj=obj,
+                                modifiers=modifiers,
+                            )
+                        )
             elif subjects and modifiers:
                 # Intransitive with modifier: "she was arrested on March 26"
                 for subj in subjects:
                     for prep, mod_val in modifiers.items():
-                        triplets.append(Triplet(
-                            subject=subj, predicate=verb_text,
-                            obj=mod_val, modifiers={prep: mod_val},
-                        ))
+                        triplets.append(
+                            Triplet(
+                                subject=subj,
+                                predicate=verb_text,
+                                obj=mod_val,
+                                modifiers={prep: mod_val},
+                            )
+                        )
             elif subjects and not objects:
                 # Intransitive: "the airline is investigating"
                 for subj in subjects:
-                    triplets.append(Triplet(
-                        subject=subj, predicate=verb_text,
-                        obj="(intransitive)", modifiers=modifiers,
-                    ))
+                    triplets.append(
+                        Triplet(
+                            subject=subj,
+                            predicate=verb_text,
+                            obj="(intransitive)",
+                            modifiers=modifiers,
+                        )
+                    )
 
     return triplets
 
@@ -278,7 +316,10 @@ def compare_triplets(
                     mod_mismatch = False
                     for key in rt.modifiers:
                         if key in st.modifiers:
-                            if _entity_overlap(rt.modifiers[key], st.modifiers[key]) < 0.3:
+                            if (
+                                _entity_overlap(rt.modifiers[key], st.modifiers[key])
+                                < 0.3
+                            ):
                                 mod_mismatch = True
                                 break
 
@@ -301,10 +342,14 @@ def compare_triplets(
                     best_type = "partial"
                     best_detail = f"Partial match with {st}"
 
-        comparisons.append(TripletComparison(
-            response_triplet=rt, best_match=best_match,
-            match_type=best_type, detail=best_detail,
-        ))
+        comparisons.append(
+            TripletComparison(
+                response_triplet=rt,
+                best_match=best_match,
+                match_type=best_type,
+                detail=best_detail,
+            )
+        )
     return comparisons
 
 
@@ -350,23 +395,32 @@ def run_graphrag_on_case(case, source_doc, response, ratio, min_sim, gt, nlp):
         total_mm += sum(1 for c in comps if c.match_type == "predicate_mismatch")
         total_mod_mm += sum(1 for c in comps if c.match_type == "modifier_mismatch")
         total_fab += sum(1 for c in comps if c.match_type == "no_match")
-        sent_results.append(SentenceResult(
-            sentence=sent, sentence_idx=i, response_triplets=rt,
-            comparisons=comps, has_mismatch=(has_mm or has_mod_mm),
-            has_fabrication=has_fab,
-        ))
+        sent_results.append(
+            SentenceResult(
+                sentence=sent,
+                sentence_idx=i,
+                response_triplets=rt,
+                comparisons=comps,
+                has_mismatch=(has_mm or has_mod_mm),
+                has_fabrication=has_fab,
+            )
+        )
 
     has_issue = total_mm > 0 or total_mod_mm > 0 or total_fab > 0
     decision = "fail" if has_issue else "pass"
-    correct = (decision == gt)
+    correct = decision == gt
     return CaseResult(
-        case_id=case.case_id, ground_truth=gt,
-        gate1_ratio=ratio, gate1_min_sim=min_sim,
+        case_id=case.case_id,
+        ground_truth=gt,
+        gate1_ratio=ratio,
+        gate1_min_sim=min_sim,
         source_triplets_count=len(source_triplets),
         response_triplets_count=total_rt,
-        predicate_mismatches=total_mm, modifier_mismatches=total_mod_mm,
+        predicate_mismatches=total_mm,
+        modifier_mismatches=total_mod_mm,
         fabrications=total_fab,
-        graphrag_decision=decision, correct=correct,
+        graphrag_decision=decision,
+        correct=correct,
         sentences=sent_results,
     )
 
@@ -392,9 +446,15 @@ def print_report(fn_results, tn_results):
 
     total = fn_total + tn_total
     total_correct = fn_caught + tn_correct
-    print(f"\nOVERALL ACCURACY: {total_correct}/{total} ({total_correct/max(1,total)*100:.0f}%)")
-    print(f"  Detection rate (recall): {fn_caught}/{fn_total} ({fn_caught/max(1,fn_total)*100:.0f}%)")
-    print(f"  False positive rate: {tn_fp}/{tn_total} ({tn_fp/max(1,tn_total)*100:.0f}%)")
+    print(
+        f"\nOVERALL ACCURACY: {total_correct}/{total} ({total_correct/max(1,total)*100:.0f}%)"
+    )
+    print(
+        f"  Detection rate (recall): {fn_caught}/{fn_total} ({fn_caught/max(1,fn_total)*100:.0f}%)"
+    )
+    print(
+        f"  False positive rate: {tn_fp}/{tn_total} ({tn_fp/max(1,tn_total)*100:.0f}%)"
+    )
     pass_criteria = fn_caught >= fn_total * 0.7 and tn_fp <= tn_total * 0.3
     print("  Pass criteria: catch >= 70% AND FP <= 30%")
     print(f"  Result: {'PASS' if pass_criteria else 'FAIL'}")
@@ -407,16 +467,25 @@ def print_report(fn_results, tn_results):
     print(f"  Fabrications (no match): {sum(r.fabrications for r in all_results)}")
     print(f"{'='*70}")
 
-    for label, results in [("FALSE NEGATIVES (gt=fail)", fn_results), ("TRUE NEGATIVES (gt=pass)", tn_results)]:
+    for label, results in [
+        ("FALSE NEGATIVES (gt=fail)", fn_results),
+        ("TRUE NEGATIVES (gt=pass)", tn_results),
+    ]:
         print(f"\n--- {label} ---")
         for r in results:
             if r.ground_truth == "fail":
                 marker = "CAUGHT" if r.graphrag_decision == "fail" else "MISSED"
             else:
                 marker = "OK" if r.graphrag_decision == "pass" else "FALSE POSITIVE"
-            print(f"\n  {r.case_id} [{marker}] gt={r.ground_truth} decision={r.graphrag_decision}")
-            print(f"    Source triplets: {r.source_triplets_count}, Response triplets: {r.response_triplets_count}")
-            print(f"    Pred mismatch: {r.predicate_mismatches}, Mod mismatch: {r.modifier_mismatches}, Fab: {r.fabrications}")
+            print(
+                f"\n  {r.case_id} [{marker}] gt={r.ground_truth} decision={r.graphrag_decision}"
+            )
+            print(
+                f"    Source triplets: {r.source_triplets_count}, Response triplets: {r.response_triplets_count}"
+            )
+            print(
+                f"    Pred mismatch: {r.predicate_mismatches}, Mod mismatch: {r.modifier_mismatches}, Fab: {r.fabrications}"
+            )
             for s in r.sentences:
                 if not s.response_triplets:
                     print(f"    [{s.sentence_idx+1}] No triplets extracted")
@@ -448,7 +517,9 @@ def main():
 
     print("Finding test cases (FN + TN from Gate 1 PASS)...")
     fn_cases, tn_cases = find_test_cases(
-        max_cases=args.max_cases, max_fn=args.max_fn, max_tn=args.max_tn,
+        max_cases=args.max_cases,
+        max_fn=args.max_fn,
+        max_tn=args.max_tn,
     )
     print(f"Found {len(fn_cases)} false negatives + {len(tn_cases)} true negatives")
 
@@ -465,9 +536,11 @@ def main():
         r = run_graphrag_on_case(case, src, resp, ratio, min_sim, "fail", nlp)
         elapsed = time.time() - start
         marker = "CAUGHT" if r.graphrag_decision == "fail" else "MISSED"
-        print(f"  {r.graphrag_decision} ({elapsed:.1f}s) {marker} "
-              f"(src={r.source_triplets_count} resp={r.response_triplets_count} "
-              f"mm={r.predicate_mismatches} mod={r.modifier_mismatches} fab={r.fabrications})")
+        print(
+            f"  {r.graphrag_decision} ({elapsed:.1f}s) {marker} "
+            f"(src={r.source_triplets_count} resp={r.response_triplets_count} "
+            f"mm={r.predicate_mismatches} mod={r.modifier_mismatches} fab={r.fabrications})"
+        )
         fn_results.append(r)
 
     for idx, (case, src, resp, ratio, min_sim) in enumerate(tn_cases):
@@ -476,9 +549,11 @@ def main():
         r = run_graphrag_on_case(case, src, resp, ratio, min_sim, "pass", nlp)
         elapsed = time.time() - start
         marker = "OK" if r.graphrag_decision == "pass" else "FALSE POSITIVE"
-        print(f"  {r.graphrag_decision} ({elapsed:.1f}s) {marker} "
-              f"(src={r.source_triplets_count} resp={r.response_triplets_count} "
-              f"mm={r.predicate_mismatches} mod={r.modifier_mismatches} fab={r.fabrications})")
+        print(
+            f"  {r.graphrag_decision} ({elapsed:.1f}s) {marker} "
+            f"(src={r.source_triplets_count} resp={r.response_triplets_count} "
+            f"mm={r.predicate_mismatches} mod={r.modifier_mismatches} fab={r.fabrications})"
+        )
         tn_results.append(r)
 
     print_report(fn_results, tn_results)
@@ -488,24 +563,32 @@ def main():
     save_data = {
         "experiment": "Experiment 11: GraphRAG Science Gate (spaCy SVO)",
         "model": SPACY_MODEL,
-        "fn_tested": len(fn_results), "fn_caught": fn_caught,
-        "tn_tested": len(tn_results), "tn_false_positives": tn_fp,
+        "fn_tested": len(fn_results),
+        "fn_caught": fn_caught,
+        "tn_tested": len(tn_results),
+        "tn_false_positives": tn_fp,
         "detection_rate": round(fn_caught / max(1, len(fn_results)), 3),
         "false_positive_rate": round(tn_fp / max(1, len(tn_results)), 3),
         "cases": [
-            {"case_id": r.case_id, "ground_truth": r.ground_truth,
-             "correct": r.correct, "decision": r.graphrag_decision,
-             "source_triplets": r.source_triplets_count,
-             "response_triplets": r.response_triplets_count,
-             "pred_mismatches": r.predicate_mismatches,
-             "mod_mismatches": r.modifier_mismatches,
-             "fabrications": r.fabrications}
-            for r in fn_results + tn_results],
+            {
+                "case_id": r.case_id,
+                "ground_truth": r.ground_truth,
+                "correct": r.correct,
+                "decision": r.graphrag_decision,
+                "source_triplets": r.source_triplets_count,
+                "response_triplets": r.response_triplets_count,
+                "pred_mismatches": r.predicate_mismatches,
+                "mod_mismatches": r.modifier_mismatches,
+                "fabrications": r.fabrications,
+            }
+            for r in fn_results + tn_results
+        ],
     }
     save_path = output_dir / "graphrag_science_gate_results.json"
     with open(save_path, "w") as f:
         json.dump(save_data, f, indent=2)
     print(f"\nSaved: {save_path}")
+
 
 if __name__ == "__main__":
     main()

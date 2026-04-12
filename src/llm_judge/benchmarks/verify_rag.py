@@ -8,6 +8,7 @@ Uses Bitext queries with known intents as ground truth.
 Usage:
     poetry run python -m llm_judge.benchmarks.verify_rag --max-queries 200
 """
+
 from __future__ import annotations
 
 import csv
@@ -17,7 +18,9 @@ import time
 from collections import defaultdict
 from pathlib import Path
 
-BITEXT_PATH = Path("datasets/bitext/Bitext_Sample_Customer_Support_Training_Dataset_27K_Responses.csv")
+BITEXT_PATH = Path(
+    "datasets/bitext/Bitext_Sample_Customer_Support_Training_Dataset_27K_Responses.csv"
+)
 OUTPUT_DIR = Path("experiments")
 
 
@@ -90,7 +93,11 @@ def verify_rag(max_queries: int = 200, top_k: int = 3) -> None:
     per_intent_results: dict[str, dict[str, int]] = defaultdict(
         lambda: {"total": 0, "hit_at_1": 0, "hit_at_3": 0}
     )
-    score_by_rank: dict[str, list[float]] = {"correct_top1": [], "correct_any": [], "incorrect_top1": []}
+    score_by_rank: dict[str, list[float]] = {
+        "correct_top1": [],
+        "correct_any": [],
+        "incorrect_top1": [],
+    }
     failures: list[dict] = []
 
     for i, q in enumerate(queries):
@@ -98,7 +105,9 @@ def verify_rag(max_queries: int = 200, top_k: int = 3) -> None:
         expected_intent = q["intent"]
 
         if evidence is None or not evidence.doc_ids:
-            failures.append({"query": q["query"], "intent": expected_intent, "error": "no_results"})
+            failures.append(
+                {"query": q["query"], "intent": expected_intent, "error": "no_results"}
+            )
             per_intent_results[expected_intent]["total"] += 1
             reciprocal_ranks.append(0.0)
             continue
@@ -130,12 +139,14 @@ def verify_rag(max_queries: int = 200, top_k: int = 3) -> None:
             reciprocal_ranks.append(1.0 / rank)
         except ValueError:
             reciprocal_ranks.append(0.0)
-            failures.append({
-                "query": q["query"][:80],
-                "intent": expected_intent,
-                "got": doc_ids,
-                "top_score": evidence.top_score,
-            })
+            failures.append(
+                {
+                    "query": q["query"][:80],
+                    "intent": expected_intent,
+                    "got": doc_ids,
+                    "top_score": evidence.top_score,
+                }
+            )
 
         if (i + 1) % 50 == 0:
             print(f"  {i+1}/{len(queries)} queries processed")
@@ -161,11 +172,17 @@ def verify_rag(max_queries: int = 200, top_k: int = 3) -> None:
     if recall_at_1 / n >= 0.90:
         print(f"  Recall@1 = {recall_at_1/n:.1%} — EXCELLENT. RAG is production-ready.")
     elif recall_at_1 / n >= 0.75:
-        print(f"  Recall@1 = {recall_at_1/n:.1%} — GOOD. RAG is usable, some intents need tuning.")
+        print(
+            f"  Recall@1 = {recall_at_1/n:.1%} — GOOD. RAG is usable, some intents need tuning."
+        )
     elif recall_at_1 / n >= 0.50:
-        print(f"  Recall@1 = {recall_at_1/n:.1%} — FAIR. RAG needs improvement before production use.")
+        print(
+            f"  Recall@1 = {recall_at_1/n:.1%} — FAIR. RAG needs improvement before production use."
+        )
     else:
-        print(f"  Recall@1 = {recall_at_1/n:.1%} — POOR. RAG is not reliable for groundedness evaluation.")
+        print(
+            f"  Recall@1 = {recall_at_1/n:.1%} — POOR. RAG is not reliable for groundedness evaluation."
+        )
 
     # Per-intent breakdown
     print("\nPER-INTENT BREAKDOWN")
@@ -175,20 +192,28 @@ def verify_rag(max_queries: int = 200, top_k: int = 3) -> None:
         r = per_intent_results[intent]
         r1_pct = r["hit_at_1"] / r["total"] * 100 if r["total"] > 0 else 0
         mark = "***" if r1_pct < 50 else ""
-        print(f"  {intent:<30} {r['total']:>6} {r['hit_at_1']:>6} {r['hit_at_3']:>6} {r1_pct:>5.0f}% {mark}")
+        print(
+            f"  {intent:<30} {r['total']:>6} {r['hit_at_1']:>6} {r['hit_at_3']:>6} {r1_pct:>5.0f}% {mark}"
+        )
 
     # Score distributions
     if score_by_rank["correct_top1"]:
         correct_scores = score_by_rank["correct_top1"]
         print("\nSCORE ANALYSIS")
-        print(f"  Correct top-1 scores:   min={min(correct_scores):.3f} mean={sum(correct_scores)/len(correct_scores):.3f} max={max(correct_scores):.3f} (n={len(correct_scores)})")
+        print(
+            f"  Correct top-1 scores:   min={min(correct_scores):.3f} mean={sum(correct_scores)/len(correct_scores):.3f} max={max(correct_scores):.3f} (n={len(correct_scores)})"
+        )
     if score_by_rank["incorrect_top1"]:
         wrong_scores = score_by_rank["incorrect_top1"]
-        print(f"  Incorrect top-1 scores: min={min(wrong_scores):.3f} mean={sum(wrong_scores)/len(wrong_scores):.3f} max={max(wrong_scores):.3f} (n={len(wrong_scores)})")
+        print(
+            f"  Incorrect top-1 scores: min={min(wrong_scores):.3f} mean={sum(wrong_scores)/len(wrong_scores):.3f} max={max(wrong_scores):.3f} (n={len(wrong_scores)})"
+        )
 
     # Failures
     if failures:
-        print(f"\nFAILURES ({len(failures)} queries where correct intent not in top-{top_k})")
+        print(
+            f"\nFAILURES ({len(failures)} queries where correct intent not in top-{top_k})"
+        )
         for f in failures[:10]:
             print(f"  Query: {f.get('query', '')[:60]}")
             print(f"    Expected: {f['intent']}, Got: {f.get('got', 'none')}")
@@ -214,6 +239,7 @@ def verify_rag(max_queries: int = 200, top_k: int = 3) -> None:
 
 def main() -> None:
     import argparse
+
     parser = argparse.ArgumentParser(description="Verify RAG system accuracy")
     parser.add_argument("--max-queries", type=int, default=200)
     parser.add_argument("--top-k", type=int, default=3)

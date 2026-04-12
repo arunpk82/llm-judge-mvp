@@ -35,7 +35,9 @@ def _as_label(x: Any) -> Label | None:
     return None
 
 
-def confusion_for_positive(judgments: Iterable[dict[str, Any]], *, positive: Label) -> Confusion:
+def confusion_for_positive(
+    judgments: Iterable[dict[str, Any]], *, positive: Label
+) -> Confusion:
     tp = fp = tn = fn = 0
     for j in judgments:
         h = _as_label(j.get("human_decision"))

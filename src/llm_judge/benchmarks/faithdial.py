@@ -12,6 +12,7 @@ Dataset format (from HuggingFace McGill-NLP/FaithDial):
    "original_response": "...", "BEGIN": ["Hallucination"|"Faithful"|...],
    "VRM": [...]}
 """
+
 from __future__ import annotations
 
 import json
@@ -43,13 +44,13 @@ class FaithDialAdapter(BenchmarkAdapter):
             name="FaithDial",
             version="1.0",
             citation="Dziri et al., FaithDial: A Faithful Benchmark for "
-                     "Information-Seeking Dialogue, TACL 2022",
+            "Information-Seeking Dialogue, TACL 2022",
             license="MIT",
             total_cases=18000,
             test_cases=3500,
             supported_properties=["1.1", "1.2", "1.3"],
             description="Dialogue faithfulness benchmark with background knowledge. "
-                       "Closest to customer support domain among faithfulness benchmarks.",
+            "Closest to customer support domain among faithfulness benchmarks.",
             published_baselines=[
                 PublishedBaseline(
                     method="Q2 (question-based faithfulness)",
@@ -61,7 +62,10 @@ class FaithDialAdapter(BenchmarkAdapter):
         )
 
     def load_cases(
-        self, *, split: str = "test", max_cases: int | None = None,
+        self,
+        *,
+        split: str = "test",
+        max_cases: int | None = None,
     ) -> Iterator[BenchmarkCase]:
         """Yield FaithDial cases."""
         # Try multiple formats
@@ -139,12 +143,21 @@ class FaithDialAdapter(BenchmarkAdapter):
             for i, turn in enumerate(dialog_history):
                 if isinstance(turn, str):
                     role = "user" if i % 2 == 0 else "assistant"
-                    messages.append(Message(role=cast(Literal["user", "assistant"], role), content=str(turn)))
+                    messages.append(
+                        Message(
+                            role=cast(Literal["user", "assistant"], role),
+                            content=str(turn),
+                        )
+                    )
                 elif isinstance(turn, dict):
-                    messages.append(Message(
-                        role=cast(Literal["user", "assistant"], turn.get("role", "user")),
-                        content=str(turn.get("content", turn.get("text", ""))),
-                    ))
+                    messages.append(
+                        Message(
+                            role=cast(
+                                Literal["user", "assistant"], turn.get("role", "user")
+                            ),
+                            content=str(turn.get("content", turn.get("text", ""))),
+                        )
+                    )
         elif isinstance(dialog_history, str):
             messages.append(Message(role="user", content=dialog_history))
 

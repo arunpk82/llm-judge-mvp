@@ -14,6 +14,7 @@ Usage:
     export GEMINI_API_KEY=your_key
     poetry run python -m llm_judge.benchmarks.gate2_experiment --max-cases 500
 """
+
 from __future__ import annotations
 
 import json
@@ -31,8 +32,8 @@ OUTPUT_DIR = Path("experiments")
 
 # Thresholds from Experiment 2
 SIM_THRESHOLD = 0.30
-RATIO_FAIL = 0.30    # ratio < this = Gate 1 FAIL
-RATIO_PASS = 0.70    # ratio >= this = Gate 1 PASS
+RATIO_FAIL = 0.30  # ratio < this = Gate 1 FAIL
+RATIO_PASS = 0.70  # ratio >= this = Gate 1 PASS
 # Between RATIO_FAIL and RATIO_PASS = route to Gate 2
 
 GROUNDEDNESS_PROMPT = """You are evaluating whether a customer support response is grounded in the provided source context.
@@ -60,16 +61,17 @@ def _split_sentences(text: str) -> list[str]:
 @dataclass
 class Gate2Case:
     """A case with pre-computed Gate 1 results, ready for Gate 2 if needed."""
+
     case_id: str
     expected: str
     injection_type: str
     response_text: str
     context_text: str
     grounding_ratio: float
-    gate1_decision: str      # "fail", "pass", or "ambiguous"
-    gate2_decision: str = "" # filled by Gemini
-    gate2_raw: str = ""      # raw Gemini response
-    final_decision: str = "" # combined
+    gate1_decision: str  # "fail", "pass", or "ambiguous"
+    gate2_decision: str = ""  # filled by Gemini
+    gate2_raw: str = ""  # raw Gemini response
+    final_decision: str = ""  # combined
 
 
 def compute_gate1(max_cases: int = 500) -> list[Gate2Case]:
@@ -93,7 +95,9 @@ def compute_gate1(max_cases: int = 500) -> list[Gate2Case]:
         response_text = bc.request.candidate_answer
         context_parts = list(bc.request.source_context or [])
         conversation = " ".join(msg.content for msg in bc.request.conversation)
-        context = conversation + ("\n\n" + "\n".join(context_parts) if context_parts else "")
+        context = conversation + (
+            "\n\n" + "\n".join(context_parts) if context_parts else ""
+        )
 
         response_sents = _split_sentences(response_text)
         context_sents = _split_sentences(context)
@@ -105,7 +109,8 @@ def compute_gate1(max_cases: int = 500) -> list[Gate2Case]:
         ctx_embs = provider.encode(context_sents)
 
         grounded = sum(
-            1 for r_emb in resp_embs
+            1
+            for r_emb in resp_embs
             if provider.max_similarity(r_emb, ctx_embs) >= SIM_THRESHOLD
         )
         ratio = grounded / len(response_sents)
@@ -117,15 +122,17 @@ def compute_gate1(max_cases: int = 500) -> list[Gate2Case]:
         else:
             gate1 = "ambiguous"
 
-        cases.append(Gate2Case(
-            case_id=bc.case_id,
-            expected=expected,
-            injection_type=bc.metadata.get("injection_type", ""),
-            response_text=response_text,
-            context_text=context,
-            grounding_ratio=round(ratio, 4),
-            gate1_decision=gate1,
-        ))
+        cases.append(
+            Gate2Case(
+                case_id=bc.case_id,
+                expected=expected,
+                injection_type=bc.metadata.get("injection_type", ""),
+                response_text=response_text,
+                context_text=context,
+                grounding_ratio=round(ratio, 4),
+                gate1_decision=gate1,
+            )
+        )
 
         count += 1
         if count % 100 == 0:
@@ -138,7 +145,9 @@ def compute_gate1(max_cases: int = 500) -> list[Gate2Case]:
     fail_count = sum(1 for c in cases if c.gate1_decision == "fail")
     pass_count = sum(1 for c in cases if c.gate1_decision == "pass")
     ambig_count = sum(1 for c in cases if c.gate1_decision == "ambiguous")
-    print(f"  Band distribution: FAIL={fail_count}, AMBIGUOUS={ambig_count}, PASS={pass_count}")
+    print(
+        f"  Band distribution: FAIL={fail_count}, AMBIGUOUS={ambig_count}, PASS={pass_count}"
+    )
 
     return cases
 
@@ -177,10 +186,16 @@ def run_gate2(cases: list[Gate2Case]) -> None:
             }
 
             try:
-                resp = client.post(url, json=payload, headers={"Content-Type": "application/json"})
+                resp = client.post(
+                    url, json=payload, headers={"Content-Type": "application/json"}
+                )
                 resp.raise_for_status()
                 data = resp.json()
-                raw = data["candidates"][0]["content"]["parts"][-1]["text"].strip().upper()
+                raw = (
+                    data["candidates"][0]["content"]["parts"][-1]["text"]
+                    .strip()
+                    .upper()
+                )
                 case.gate2_raw = raw
 
                 if "HALLUCINATED" in raw:
@@ -234,9 +249,15 @@ def print_report(cases: list[Gate2Case]) -> None:
 
     print("\nSTEP 1: GATE 1 BAND DISTRIBUTION")
     print(f"  Total cases with 1.1 labels: {len(cases)}")
-    print(f"  FAIL band  (ratio < {RATIO_FAIL}):  {len(fail_band):>4} cases ({len(fail_band)/len(cases)*100:.1f}%)")
-    print(f"  AMBIGUOUS  ({RATIO_FAIL} <= ratio < {RATIO_PASS}): {len(ambig_band):>4} cases ({len(ambig_band)/len(cases)*100:.1f}%)")
-    print(f"  PASS band  (ratio >= {RATIO_PASS}):  {len(pass_band):>4} cases ({len(pass_band)/len(cases)*100:.1f}%)")
+    print(
+        f"  FAIL band  (ratio < {RATIO_FAIL}):  {len(fail_band):>4} cases ({len(fail_band)/len(cases)*100:.1f}%)"
+    )
+    print(
+        f"  AMBIGUOUS  ({RATIO_FAIL} <= ratio < {RATIO_PASS}): {len(ambig_band):>4} cases ({len(ambig_band)/len(cases)*100:.1f}%)"
+    )
+    print(
+        f"  PASS band  (ratio >= {RATIO_PASS}):  {len(pass_band):>4} cases ({len(pass_band)/len(cases)*100:.1f}%)"
+    )
 
     # Gate 1 only accuracy (for comparison)
     g1_tp = g1_fp = g1_tn = g1_fn = 0
@@ -270,7 +291,9 @@ def print_report(cases: list[Gate2Case]) -> None:
         return (2 * p * r / (p + r)) if (p + r) > 0 else 0, p, r
 
     g1e2_f1, g1e2_p, g1e2_r = f1(g1e2_tp, g1e2_fp, g1e2_fn)
-    print(f"\n  Exp 2 baseline (ratio<0.60=fail): F1={g1e2_f1:.3f} P={g1e2_p:.3f} R={g1e2_r:.3f}")
+    print(
+        f"\n  Exp 2 baseline (ratio<0.60=fail): F1={g1e2_f1:.3f} P={g1e2_p:.3f} R={g1e2_r:.3f}"
+    )
 
     # Gate 2 accuracy on ambiguous band
     g2_f1 = g2_p = g2_r = 0.0
@@ -290,10 +313,14 @@ def print_report(cases: list[Gate2Case]) -> None:
         g2_f1, g2_p, g2_r = f1(g2_tp, g2_fp, g2_fn)
         g2_fail_in_band = sum(1 for c in ambig_band if c.expected == "fail")
         g2_pass_in_band = sum(1 for c in ambig_band if c.expected == "pass")
-        print(f"  Cases in band: {len(ambig_band)} (fail={g2_fail_in_band}, pass={g2_pass_in_band})")
+        print(
+            f"  Cases in band: {len(ambig_band)} (fail={g2_fail_in_band}, pass={g2_pass_in_band})"
+        )
         print(f"  Gate 2 F1: {g2_f1:.3f}  P={g2_p:.3f}  R={g2_r:.3f}")
         print(f"  Gate 2 TP={g2_tp} FP={g2_fp} TN={g2_tn} FN={g2_fn}")
-        print(f"  Gemini judged {sum(1 for c in ambig_band if c.gate2_decision=='fail')} as HALLUCINATED, {sum(1 for c in ambig_band if c.gate2_decision=='pass')} as GROUNDED")
+        print(
+            f"  Gemini judged {sum(1 for c in ambig_band if c.gate2_decision=='fail')} as HALLUCINATED, {sum(1 for c in ambig_band if c.gate2_decision=='pass')} as GROUNDED"
+        )
 
     # Combined result
     print("\nSTEP 3: COMBINED RESULT (GATE 1 + GATE 2)")
@@ -321,17 +348,29 @@ def print_report(cases: list[Gate2Case]) -> None:
     print("\nPROGRESS ACROSS ALL EXPERIMENTS")
     print(f"  {'Experiment':<30} {'F1':>8} {'P':>8} {'R':>8} {'Fire%':>8} {'Method'}")
     print(f"  {'-'*30} {'-'*8} {'-'*8} {'-'*8} {'-'*8} {'-'*30}")
-    print(f"  {'Baseline':<30} {'0.461':>8} {'0.300':>8} {'1.000':>8} {'99.6%':>8} Token overlap")
-    print(f"  {'Exp 1: Method upgrade':<30} {'0.456':>8} {'0.410':>8} {'0.512':>8} {'36.6%':>8} Embeddings, untuned")
-    print(f"  {'Exp 2: Threshold sweep':<30} {'0.570':>8} {'0.447':>8} {'0.787':>8} {'54.2%':>8} Embeddings, tuned")
-    print(f"  {'Exp 3: Gate 2 LLM':<30} {combined_f1:>8.3f} {combined_p:>8.3f} {combined_r:>8.3f} {fire_rate:>7.1%} Embeddings + Gemini")
-    print(f"  {'Published (GPT-4)':<30} {'0.635':>8} {'—':>8} {'—':>8} {'—':>8} LLM-as-judge only")
+    print(
+        f"  {'Baseline':<30} {'0.461':>8} {'0.300':>8} {'1.000':>8} {'99.6%':>8} Token overlap"
+    )
+    print(
+        f"  {'Exp 1: Method upgrade':<30} {'0.456':>8} {'0.410':>8} {'0.512':>8} {'36.6%':>8} Embeddings, untuned"
+    )
+    print(
+        f"  {'Exp 2: Threshold sweep':<30} {'0.570':>8} {'0.447':>8} {'0.787':>8} {'54.2%':>8} Embeddings, tuned"
+    )
+    print(
+        f"  {'Exp 3: Gate 2 LLM':<30} {combined_f1:>8.3f} {combined_p:>8.3f} {combined_r:>8.3f} {fire_rate:>7.1%} Embeddings + Gemini"
+    )
+    print(
+        f"  {'Published (GPT-4)':<30} {'0.635':>8} {'—':>8} {'—':>8} {'—':>8} LLM-as-judge only"
+    )
 
     # Observations
     print("\nOBSERVATIONS")
     delta_f1 = combined_f1 - 0.570
     print(f"  1. F1 delta from Exp 2: {delta_f1:+.3f} ({delta_f1/0.570*100:+.1f}%)")
-    print(f"  2. Cases routed to Gate 2: {len(ambig_band)} ({len(ambig_band)/len(cases)*100:.1f}% of total)")
+    print(
+        f"  2. Cases routed to Gate 2: {len(ambig_band)} ({len(ambig_band)/len(cases)*100:.1f}% of total)"
+    )
     if ambig_band:
         print(f"  3. Gate 2 accuracy on routed cases: F1={g2_f1:.3f}")
     gap_to_published = 0.635 - combined_f1
@@ -346,22 +385,38 @@ def print_report(cases: list[Gate2Case]) -> None:
         "experiment": "Experiment 3: Gate 2 LLM Routing",
         "cases_total": len(cases),
         "band_distribution": {
-            "fail": len(fail_band), "ambiguous": len(ambig_band), "pass": len(pass_band),
+            "fail": len(fail_band),
+            "ambiguous": len(ambig_band),
+            "pass": len(pass_band),
         },
-        "exp2_baseline": {"f1": round(g1e2_f1, 4), "p": round(g1e2_p, 4), "r": round(g1e2_r, 4)},
+        "exp2_baseline": {
+            "f1": round(g1e2_f1, 4),
+            "p": round(g1e2_p, 4),
+            "r": round(g1e2_r, 4),
+        },
         "gate2_on_ambiguous": {
             "f1": round(g2_f1, 4) if ambig_band else None,
             "cases": len(ambig_band),
         },
         "combined": {
-            "f1": round(combined_f1, 4), "p": round(combined_p, 4), "r": round(combined_r, 4),
-            "fire_rate": round(fire_rate, 4), "tp": tp, "fp": fp, "tn": tn, "fn": fn,
+            "f1": round(combined_f1, 4),
+            "p": round(combined_p, 4),
+            "r": round(combined_r, 4),
+            "fire_rate": round(fire_rate, 4),
+            "tp": tp,
+            "fp": fp,
+            "tn": tn,
+            "fn": fn,
         },
         "per_case": [
             {
-                "case_id": c.case_id, "expected": c.expected, "injection": c.injection_type,
-                "ratio": c.grounding_ratio, "gate1": c.gate1_decision,
-                "gate2": c.gate2_decision, "final": c.final_decision,
+                "case_id": c.case_id,
+                "expected": c.expected,
+                "injection": c.injection_type,
+                "ratio": c.grounding_ratio,
+                "gate1": c.gate1_decision,
+                "gate2": c.gate2_decision,
+                "final": c.final_decision,
             }
             for c in cases
         ],
@@ -373,6 +428,7 @@ def print_report(cases: list[Gate2Case]) -> None:
 
 def main() -> None:
     import argparse
+
     parser = argparse.ArgumentParser(description="Experiment 3: Gate 2 LLM Routing")
     parser.add_argument("--max-cases", type=int, default=500)
     args = parser.parse_args()

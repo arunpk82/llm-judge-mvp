@@ -9,6 +9,7 @@ configuration dimensions: execution (enabled/disabled), gate mode
 The PropertyRegistry is the control plane — it determines what runs,
 what gates, and what's visible. Without it, properties are hardcoded.
 """
+
 from __future__ import annotations
 
 import logging
@@ -25,19 +26,31 @@ logger = logging.getLogger(__name__)
 PROPERTY_CONFIG_PATH = config_root() / "properties" / "property_config.yaml"
 
 VALID_GATE_MODES = frozenset({"informational", "auto-gated", "human-gated"})
-VALID_CATEGORIES = frozenset({
-    "faithfulness", "semantic_quality", "safety",
-    "task_fidelity", "robustness", "performance",
-})
+VALID_CATEGORIES = frozenset(
+    {
+        "faithfulness",
+        "semantic_quality",
+        "safety",
+        "task_fidelity",
+        "robustness",
+        "performance",
+    }
+)
 VALID_VISIBILITY = frozenset({"show", "hide"})
-VALID_PERSONAS = frozenset({
-    "ml_engineer", "product_owner", "qa_lead", "executive",
-})
+VALID_PERSONAS = frozenset(
+    {
+        "ml_engineer",
+        "product_owner",
+        "qa_lead",
+        "executive",
+    }
+)
 
 
 @dataclass(frozen=True)
 class PropertyConfig:
     """Configuration for a single evaluation property."""
+
     name: str
     id: str
     category: str
@@ -54,6 +67,7 @@ class PropertyConfig:
 @dataclass
 class DetectionCoverage:
     """Platform Detection Coverage Metric."""
+
     total: int
     enabled: int
     gated: int
@@ -112,14 +126,16 @@ class PropertyRegistry:
     def get_enabled_by_category(self, category: str) -> dict[str, PropertyConfig]:
         """Get enabled properties in a category."""
         return {
-            k: v for k, v in self._properties.items()
+            k: v
+            for k, v in self._properties.items()
             if v.category == category and v.enabled
         }
 
     def get_gated(self) -> dict[str, PropertyConfig]:
         """Get all auto-gated or human-gated properties."""
         return {
-            k: v for k, v in self._properties.items()
+            k: v
+            for k, v in self._properties.items()
             if v.enabled and v.gate_mode in ("auto-gated", "human-gated")
         }
 
@@ -128,11 +144,13 @@ class PropertyRegistry:
         total = len(self._properties)
         enabled = sum(1 for p in self._properties.values() if p.enabled)
         gated = sum(
-            1 for p in self._properties.values()
+            1
+            for p in self._properties.values()
             if p.enabled and p.gate_mode in ("auto-gated", "human-gated")
         )
         informational = sum(
-            1 for p in self._properties.values()
+            1
+            for p in self._properties.values()
             if p.enabled and p.gate_mode == "informational"
         )
         disabled = total - enabled

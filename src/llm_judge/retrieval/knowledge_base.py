@@ -9,6 +9,7 @@ Supports loading from:
 Indexes documents into a VectorStore using the configured
 EmbeddingProvider for retrieval-ready storage.
 """
+
 from __future__ import annotations
 
 import json
@@ -57,6 +58,7 @@ class KnowledgeBase:
     def _ensure_embedding_provider(self) -> None:
         if self._embedding_provider is None:
             from llm_judge.properties import get_embedding_provider
+
             self._embedding_provider = get_embedding_provider()
 
     @property
@@ -114,26 +116,28 @@ class KnowledgeBase:
             for intent, entry in kb.items():
                 if isinstance(entry, dict):
                     content = entry.get("documentation", "")
-                    metadata = {
-                        k: v for k, v in entry.items()
-                        if k != "documentation"
-                    }
+                    metadata = {k: v for k, v in entry.items() if k != "documentation"}
                 else:
                     content = str(entry)
                     metadata = {}
 
                 if content.strip():
-                    documents.append(Document(
-                        doc_id=intent,
-                        content=content.strip(),
-                        metadata={"intent": intent, **metadata},
-                    ))
+                    documents.append(
+                        Document(
+                            doc_id=intent,
+                            content=content.strip(),
+                            metadata={"intent": intent, **metadata},
+                        )
+                    )
         else:
             # Flat format: {"intent_name": "text"} or {"intent_name": {"documentation": "...", ...}}
             for key, value in data.items():
                 if key.startswith("_") or key in (
-                    "schema_version", "description", "retrieval_method",
-                    "note", "case_intent_map",
+                    "schema_version",
+                    "description",
+                    "retrieval_method",
+                    "note",
+                    "case_intent_map",
                 ):
                     continue
 
@@ -141,8 +145,10 @@ class KnowledgeBase:
                     # Dict entry — extract documentation field
                     content = value.get("documentation", "")
                     metadata = {
-                        k: v for k, v in value.items()
-                        if k != "documentation" and isinstance(v, (str, int, float, bool))
+                        k: v
+                        for k, v in value.items()
+                        if k != "documentation"
+                        and isinstance(v, (str, int, float, bool))
                     }
                     metadata["source_key"] = key
                 elif isinstance(value, str):
@@ -153,11 +159,13 @@ class KnowledgeBase:
                     metadata = {"source_key": key}
 
                 if content.strip():
-                    documents.append(Document(
-                        doc_id=key,
-                        content=content.strip(),
-                        metadata=metadata,
-                    ))
+                    documents.append(
+                        Document(
+                            doc_id=key,
+                            content=content.strip(),
+                            metadata=metadata,
+                        )
+                    )
 
         return self._index_documents(documents, str(path))
 
@@ -184,16 +192,20 @@ class KnowledgeBase:
                 content = entry.get("content", "")
                 metadata = entry.get("metadata", {})
                 if content.strip():
-                    documents.append(Document(
-                        doc_id=doc_id,
-                        content=content.strip(),
-                        metadata=metadata,
-                    ))
+                    documents.append(
+                        Document(
+                            doc_id=doc_id,
+                            content=content.strip(),
+                            metadata=metadata,
+                        )
+                    )
 
         return self._index_documents(documents, str(path))
 
     def load_directory(
-        self, path: str | Path, extensions: tuple[str, ...] = (".txt", ".md"),
+        self,
+        path: str | Path,
+        extensions: tuple[str, ...] = (".txt", ".md"),
     ) -> int:
         """
         Load knowledge base from a directory of text files.
@@ -213,14 +225,16 @@ class KnowledgeBase:
                 continue
             content = fpath.read_text(encoding="utf-8", errors="replace")
             if content.strip():
-                documents.append(Document(
-                    doc_id=fpath.stem,
-                    content=content.strip(),
-                    metadata={
-                        "filename": fpath.name,
-                        "extension": fpath.suffix,
-                    },
-                ))
+                documents.append(
+                    Document(
+                        doc_id=fpath.stem,
+                        content=content.strip(),
+                        metadata={
+                            "filename": fpath.name,
+                            "extension": fpath.suffix,
+                        },
+                    )
+                )
 
         return self._index_documents(documents, str(path))
 

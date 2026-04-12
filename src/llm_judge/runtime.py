@@ -10,6 +10,7 @@ JUDGE_ENGINE env var controls which engine is used:
   sequential     — Gate 1 first, escalate to integrated Gate 2
   gemini/groq/openai/ollama — raw Gate 2 (legacy, no properties)
 """
+
 from __future__ import annotations
 
 import os
@@ -78,7 +79,9 @@ def get_judge_engine() -> JudgeEngine:
         from llm_judge.integrated_judge import IntegratedJudge
 
         gate2_engine = os.getenv("GATE2_ENGINE", "gemini").strip().lower()
-        primary: JudgeEngine = IntegratedJudge(engine=gate2_engine, timeout_ms=timeout_ms)
+        primary: JudgeEngine = IntegratedJudge(
+            engine=gate2_engine, timeout_ms=timeout_ms
+        )
         return FallbackJudge(primary=primary, fallback=deterministic)
 
     # Sequential mode: Gate 1 + Gate 2 combined
@@ -93,8 +96,10 @@ def get_judge_engine() -> JudgeEngine:
         gate2: JudgeEngine
         try:
             from llm_judge.integrated_judge import IntegratedJudge
+
             gate2 = IntegratedJudge(
-                engine=gate2_engine, timeout_ms=timeout_ms,
+                engine=gate2_engine,
+                timeout_ms=timeout_ms,
             )
         except Exception:
             gate2 = LLMJudge(timeout_ms=timeout_ms, engine=gate2_engine)

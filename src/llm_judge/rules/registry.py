@@ -41,7 +41,9 @@ class FunctionRule:
     rule_id: str
     fn: RuleFn
 
-    def apply(self, ctx: RuleContext, params: dict[str, Any] | None = None) -> RuleResult:
+    def apply(
+        self, ctx: RuleContext, params: dict[str, Any] | None = None
+    ) -> RuleResult:
         return self.fn(ctx, params or {})
 
 
@@ -64,7 +66,9 @@ def register(rule_id: str) -> Callable[[Any], Any]:
             obj = impl()  # instantiate class rule
             # runtime safety: must have apply()
             if not hasattr(obj, "apply"):
-                raise TypeError(f"Rule class '{impl.__name__}' must define apply(ctx, ...)")
+                raise TypeError(
+                    f"Rule class '{impl.__name__}' must define apply(ctx, ...)"
+                )
             RULE_REGISTRY[rule_id] = obj
         else:
             RULE_REGISTRY[rule_id] = FunctionRule(rule_id=rule_id, fn=impl)

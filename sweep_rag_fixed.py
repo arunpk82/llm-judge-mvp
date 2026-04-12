@@ -14,6 +14,7 @@ Computes all similarities once, then applies every combination post-hoc.
 Usage:
     poetry run python -m llm_judge.benchmarks.sweep_rag --max-cases 500
 """
+
 from __future__ import annotations
 
 import json
@@ -48,7 +49,11 @@ class SweepCase:
 
     @property
     def mean_sim(self) -> float:
-        return sum(self.sentence_max_sims) / len(self.sentence_max_sims) if self.sentence_max_sims else 1.0
+        return (
+            sum(self.sentence_max_sims) / len(self.sentence_max_sims)
+            if self.sentence_max_sims
+            else 1.0
+        )
 
     def grounding_ratio(self, sim_threshold: float) -> float:
         if not self.sentence_max_sims:
@@ -77,7 +82,9 @@ def compute_similarities(max_cases: int = 500) -> list[SweepCase]:
         response_text = bc.request.candidate_answer
         context_parts = list(bc.request.source_context or [])
         conversation = " ".join(msg.content for msg in bc.request.conversation)
-        context = conversation + ("\n\n" + "\n".join(context_parts) if context_parts else "")
+        context = conversation + (
+            "\n\n" + "\n".join(context_parts) if context_parts else ""
+        )
 
         resp_sents = _split_sentences(response_text)
         ctx_sents = _split_sentences(context)
@@ -89,18 +96,19 @@ def compute_similarities(max_cases: int = 500) -> list[SweepCase]:
         ctx_embs = provider.encode(ctx_sents)
 
         max_sims = [
-            round(provider.max_similarity(r_emb, ctx_embs), 4)
-            for r_emb in resp_embs
+            round(provider.max_similarity(r_emb, ctx_embs), 4) for r_emb in resp_embs
         ]
 
-        cases.append(SweepCase(
-            case_id=bc.case_id,
-            expected=expected,
-            injection_type=bc.metadata.get("injection_type", ""),
-            num_response_sents=len(resp_sents),
-            num_context_sents=len(ctx_sents),
-            sentence_max_sims=max_sims,
-        ))
+        cases.append(
+            SweepCase(
+                case_id=bc.case_id,
+                expected=expected,
+                injection_type=bc.metadata.get("injection_type", ""),
+                num_response_sents=len(resp_sents),
+                num_context_sents=len(ctx_sents),
+                sentence_max_sims=max_sims,
+            )
+        )
 
         count += 1
         if count % 100 == 0:
@@ -143,11 +151,20 @@ def sweep_all(cases: list[SweepCase]) -> dict[str, Any]:
             p = tp / (tp + fp) if (tp + fp) > 0 else 0
             r = tp / (tp + fn) if (tp + fn) > 0 else 0
             f1 = 2 * p * r / (p + r) if (p + r) > 0 else 0
-            results["ratio_only"].append({
-                "sim": st, "ratio": rt, "f1": round(f1, 4),
-                "p": round(p, 4), "r": round(r, 4),
-                "fire": round((tp + fp) / n, 4), "tp": tp, "fp": fp, "tn": tn, "fn": fn,
-            })
+            results["ratio_only"].append(
+                {
+                    "sim": st,
+                    "ratio": rt,
+                    "f1": round(f1, 4),
+                    "p": round(p, 4),
+                    "r": round(r, 4),
+                    "fire": round((tp + fp) / n, 4),
+                    "tp": tp,
+                    "fp": fp,
+                    "tn": tn,
+                    "fn": fn,
+                }
+            )
 
     # Strategy 2: Min-sentence only (new)
     for mst in min_sim_thresholds:
@@ -165,11 +182,19 @@ def sweep_all(cases: list[SweepCase]) -> dict[str, Any]:
         p = tp / (tp + fp) if (tp + fp) > 0 else 0
         r = tp / (tp + fn) if (tp + fn) > 0 else 0
         f1 = 2 * p * r / (p + r) if (p + r) > 0 else 0
-        results["min_sim_only"].append({
-            "min_sim": mst, "f1": round(f1, 4),
-            "p": round(p, 4), "r": round(r, 4),
-            "fire": round((tp + fp) / n, 4), "tp": tp, "fp": fp, "tn": tn, "fn": fn,
-        })
+        results["min_sim_only"].append(
+            {
+                "min_sim": mst,
+                "f1": round(f1, 4),
+                "p": round(p, 4),
+                "r": round(r, 4),
+                "fire": round((tp + fp) / n, 4),
+                "tp": tp,
+                "fp": fp,
+                "tn": tn,
+                "fn": fn,
+            }
+        )
 
     # Strategy 3: Dual threshold (ratio OR min-sentence — either triggers fail)
     for st in sim_thresholds:
@@ -192,12 +217,21 @@ def sweep_all(cases: list[SweepCase]) -> dict[str, Any]:
                 p = tp / (tp + fp) if (tp + fp) > 0 else 0
                 r = tp / (tp + fn) if (tp + fn) > 0 else 0
                 f1 = 2 * p * r / (p + r) if (p + r) > 0 else 0
-                results["dual"].append({
-                    "sim": st, "ratio": rt, "min_sim": mst,
-                    "f1": round(f1, 4), "p": round(p, 4), "r": round(r, 4),
-                    "fire": round((tp + fp) / n, 4),
-                    "tp": tp, "fp": fp, "tn": tn, "fn": fn,
-                })
+                results["dual"].append(
+                    {
+                        "sim": st,
+                        "ratio": rt,
+                        "min_sim": mst,
+                        "f1": round(f1, 4),
+                        "p": round(p, 4),
+                        "r": round(r, 4),
+                        "fire": round((tp + fp) / n, 4),
+                        "tp": tp,
+                        "fp": fp,
+                        "tn": tn,
+                        "fn": fn,
+                    }
+                )
 
     return results
 
@@ -229,7 +263,9 @@ def print_report(cases: list[SweepCase], results: dict[str, Any]) -> None:
     print(f"  Cases: {n} (fail={fail_count}, pass={pass_count})")
     print(f"  Total sentence similarities: {len(all_sims)}")
     print("  Strategies tested: 3 (ratio-only, min-sim-only, dual)")
-    print(f"  Combinations: ratio={len(results['ratio_only'])}, min-sim={len(results['min_sim_only'])}, dual={len(results['dual'])}")
+    print(
+        f"  Combinations: ratio={len(results['ratio_only'])}, min-sim={len(results['min_sim_only'])}, dual={len(results['dual'])}"
+    )
 
     print("\nSIMILARITY DISTRIBUTIONS (with RAG context)")
     print(f"  All sentences:  {stats(all_sims)}")
@@ -250,31 +286,49 @@ def print_report(cases: list[SweepCase], results: dict[str, Any]) -> None:
     for t in sorted(by_type_min.keys()):
         vals = by_type_min[t]
         sv = sorted(vals)
-        print(f"  {t:<25} n={len(sv):<4} min={sv[0]:.3f} med={sv[len(sv)//2]:.3f} mean={sum(sv)/len(sv):.3f}")
+        print(
+            f"  {t:<25} n={len(sv):<4} min={sv[0]:.3f} med={sv[len(sv)//2]:.3f} mean={sum(sv)/len(sv):.3f}"
+        )
 
     # Strategy 1: Ratio only
     ratio_sorted = sorted(results["ratio_only"], key=lambda x: x["f1"], reverse=True)
     print("\nSTRATEGY 1: RATIO ONLY (top 5)")
-    print(f"  {'Sim':>6} {'Ratio':>6} {'F1':>8} {'P':>8} {'R':>8} {'Fire%':>8} {'TP':>5} {'FP':>5} {'TN':>5} {'FN':>5}")
-    print(f"  {'-'*6} {'-'*6} {'-'*8} {'-'*8} {'-'*8} {'-'*8} {'-'*5} {'-'*5} {'-'*5} {'-'*5}")
+    print(
+        f"  {'Sim':>6} {'Ratio':>6} {'F1':>8} {'P':>8} {'R':>8} {'Fire%':>8} {'TP':>5} {'FP':>5} {'TN':>5} {'FN':>5}"
+    )
+    print(
+        f"  {'-'*6} {'-'*6} {'-'*8} {'-'*8} {'-'*8} {'-'*8} {'-'*5} {'-'*5} {'-'*5} {'-'*5}"
+    )
     for r in ratio_sorted[:5]:
-        print(f"  {r['sim']:>6.2f} {r['ratio']:>6.2f} {r['f1']:>8.3f} {r['p']:>8.3f} {r['r']:>8.3f} {r['fire']:>7.1%} {r['tp']:>5} {r['fp']:>5} {r['tn']:>5} {r['fn']:>5}")
+        print(
+            f"  {r['sim']:>6.2f} {r['ratio']:>6.2f} {r['f1']:>8.3f} {r['p']:>8.3f} {r['r']:>8.3f} {r['fire']:>7.1%} {r['tp']:>5} {r['fp']:>5} {r['tn']:>5} {r['fn']:>5}"
+        )
 
     # Strategy 2: Min-sim only
     min_sorted = sorted(results["min_sim_only"], key=lambda x: x["f1"], reverse=True)
     print("\nSTRATEGY 2: MIN-SENTENCE ONLY (all)")
-    print(f"  {'MinSim':>6} {'F1':>8} {'P':>8} {'R':>8} {'Fire%':>8} {'TP':>5} {'FP':>5} {'TN':>5} {'FN':>5}")
+    print(
+        f"  {'MinSim':>6} {'F1':>8} {'P':>8} {'R':>8} {'Fire%':>8} {'TP':>5} {'FP':>5} {'TN':>5} {'FN':>5}"
+    )
     print(f"  {'-'*6} {'-'*8} {'-'*8} {'-'*8} {'-'*8} {'-'*5} {'-'*5} {'-'*5} {'-'*5}")
     for r in min_sorted:
-        print(f"  {r['min_sim']:>6.2f} {r['f1']:>8.3f} {r['p']:>8.3f} {r['r']:>8.3f} {r['fire']:>7.1%} {r['tp']:>5} {r['fp']:>5} {r['tn']:>5} {r['fn']:>5}")
+        print(
+            f"  {r['min_sim']:>6.2f} {r['f1']:>8.3f} {r['p']:>8.3f} {r['r']:>8.3f} {r['fire']:>7.1%} {r['tp']:>5} {r['fp']:>5} {r['tn']:>5} {r['fn']:>5}"
+        )
 
     # Strategy 3: Dual threshold
     dual_sorted = sorted(results["dual"], key=lambda x: x["f1"], reverse=True)
     print("\nSTRATEGY 3: DUAL THRESHOLD (top 10)")
-    print(f"  {'Sim':>6} {'Ratio':>6} {'MinSim':>6} {'F1':>8} {'P':>8} {'R':>8} {'Fire%':>8} {'TP':>5} {'FP':>5} {'TN':>5} {'FN':>5}")
-    print(f"  {'-'*6} {'-'*6} {'-'*6} {'-'*8} {'-'*8} {'-'*8} {'-'*8} {'-'*5} {'-'*5} {'-'*5} {'-'*5}")
+    print(
+        f"  {'Sim':>6} {'Ratio':>6} {'MinSim':>6} {'F1':>8} {'P':>8} {'R':>8} {'Fire%':>8} {'TP':>5} {'FP':>5} {'TN':>5} {'FN':>5}"
+    )
+    print(
+        f"  {'-'*6} {'-'*6} {'-'*6} {'-'*8} {'-'*8} {'-'*8} {'-'*8} {'-'*5} {'-'*5} {'-'*5} {'-'*5}"
+    )
     for r in dual_sorted[:10]:
-        print(f"  {r['sim']:>6.2f} {r['ratio']:>6.2f} {r['min_sim']:>6.2f} {r['f1']:>8.3f} {r['p']:>8.3f} {r['r']:>8.3f} {r['fire']:>7.1%} {r['tp']:>5} {r['fp']:>5} {r['tn']:>5} {r['fn']:>5}")
+        print(
+            f"  {r['sim']:>6.2f} {r['ratio']:>6.2f} {r['min_sim']:>6.2f} {r['f1']:>8.3f} {r['p']:>8.3f} {r['r']:>8.3f} {r['fire']:>7.1%} {r['tp']:>5} {r['fp']:>5} {r['tn']:>5} {r['fn']:>5}"
+        )
 
     # Best from each strategy
     best_ratio = ratio_sorted[0]
@@ -282,18 +336,32 @@ def print_report(cases: list[SweepCase], results: dict[str, Any]) -> None:
     best_dual = dual_sorted[0]
 
     print("\nBEST FROM EACH STRATEGY")
-    print(f"  Ratio only: sim={best_ratio['sim']}, ratio={best_ratio['ratio']}  → F1={best_ratio['f1']:.3f} P={best_ratio['p']:.3f} R={best_ratio['r']:.3f}")
-    print(f"  Min-sim:    min_sim={best_min['min_sim']}                → F1={best_min['f1']:.3f} P={best_min['p']:.3f} R={best_min['r']:.3f}")
-    print(f"  Dual:       sim={best_dual['sim']}, ratio={best_dual['ratio']}, min_sim={best_dual['min_sim']} → F1={best_dual['f1']:.3f} P={best_dual['p']:.3f} R={best_dual['r']:.3f}")
+    print(
+        f"  Ratio only: sim={best_ratio['sim']}, ratio={best_ratio['ratio']}  → F1={best_ratio['f1']:.3f} P={best_ratio['p']:.3f} R={best_ratio['r']:.3f}"
+    )
+    print(
+        f"  Min-sim:    min_sim={best_min['min_sim']}                → F1={best_min['f1']:.3f} P={best_min['p']:.3f} R={best_min['r']:.3f}"
+    )
+    print(
+        f"  Dual:       sim={best_dual['sim']}, ratio={best_dual['ratio']}, min_sim={best_dual['min_sim']} → F1={best_dual['f1']:.3f} P={best_dual['p']:.3f} R={best_dual['r']:.3f}"
+    )
 
     # Compare with previous experiments
     print("\nPROGRESS")
     print(f"  {'Experiment':<35} {'F1':>8} {'P':>8} {'R':>8} {'Fire%':>8}")
     print(f"  {'-'*35} {'-'*8} {'-'*8} {'-'*8} {'-'*8}")
-    print(f"  {'Baseline (token overlap)':<35} {'0.461':>8} {'0.300':>8} {'1.000':>8} {'99.6%':>8}")
-    print(f"  {'Exp 2 (tuned, no RAG)':<35} {'0.570':>8} {'0.447':>8} {'0.787':>8} {'54.2%':>8}")
-    print(f"  {'Exp 4 (ratio, with RAG)':<35} {best_ratio['f1']:>8.3f} {best_ratio['p']:>8.3f} {best_ratio['r']:>8.3f} {best_ratio['fire']:>7.1%}")
-    print(f"  {'Exp 5 best (dual, with RAG)':<35} {best_dual['f1']:>8.3f} {best_dual['p']:>8.3f} {best_dual['r']:>8.3f} {best_dual['fire']:>7.1%}")
+    print(
+        f"  {'Baseline (token overlap)':<35} {'0.461':>8} {'0.300':>8} {'1.000':>8} {'99.6%':>8}"
+    )
+    print(
+        f"  {'Exp 2 (tuned, no RAG)':<35} {'0.570':>8} {'0.447':>8} {'0.787':>8} {'54.2%':>8}"
+    )
+    print(
+        f"  {'Exp 4 (ratio, with RAG)':<35} {best_ratio['f1']:>8.3f} {best_ratio['p']:>8.3f} {best_ratio['r']:>8.3f} {best_ratio['fire']:>7.1%}"
+    )
+    print(
+        f"  {'Exp 5 best (dual, with RAG)':<35} {best_dual['f1']:>8.3f} {best_dual['p']:>8.3f} {best_dual['r']:>8.3f} {best_dual['fire']:>7.1%}"
+    )
     print(f"  {'Published (GPT-4)':<35} {'0.635':>8} {'—':>8} {'—':>8} {'—':>8}")
 
     print(f"\n{'='*80}")
@@ -303,11 +371,20 @@ def print_report(cases: list[SweepCase], results: dict[str, Any]) -> None:
     save_path = OUTPUT_DIR / "sweep_rag_results.json"
     save_data = {
         "experiment": "Experiment 5: Comprehensive Sweep with RAG Context",
-        "cases": n, "fail_cases": fail_count, "pass_cases": pass_count,
+        "cases": n,
+        "fail_cases": fail_count,
+        "pass_cases": pass_count,
         "distributions": {
-            "all_sims": {"mean": round(sum(all_sims)/len(all_sims), 4), "count": len(all_sims)},
-            "pass_min_sims": {"mean": round(sum(pass_mins)/len(pass_mins), 4) if pass_mins else 0},
-            "fail_min_sims": {"mean": round(sum(fail_mins)/len(fail_mins), 4) if fail_mins else 0},
+            "all_sims": {
+                "mean": round(sum(all_sims) / len(all_sims), 4),
+                "count": len(all_sims),
+            },
+            "pass_min_sims": {
+                "mean": round(sum(pass_mins) / len(pass_mins), 4) if pass_mins else 0
+            },
+            "fail_min_sims": {
+                "mean": round(sum(fail_mins) / len(fail_mins), 4) if fail_mins else 0
+            },
         },
         "best_ratio": best_ratio,
         "best_min_sim": best_min,
@@ -323,7 +400,10 @@ def print_report(cases: list[SweepCase], results: dict[str, Any]) -> None:
 
 def main() -> None:
     import argparse
-    parser = argparse.ArgumentParser(description="Experiment 5: Comprehensive Sweep with RAG")
+
+    parser = argparse.ArgumentParser(
+        description="Experiment 5: Comprehensive Sweep with RAG"
+    )
     parser.add_argument("--max-cases", type=int, default=500)
     args = parser.parse_args()
 

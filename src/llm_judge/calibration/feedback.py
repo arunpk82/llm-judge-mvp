@@ -11,6 +11,7 @@ Components:
   - Calibration recommendations: actionable suggestions for improvement
   - Feedback report: structured output for the engineering team
 """
+
 from __future__ import annotations
 
 import json
@@ -29,11 +30,12 @@ logger = logging.getLogger(__name__)
 @dataclass
 class DimensionFeedback:
     """Feedback for a single scoring dimension."""
+
     dimension: str
     total_cases: int = 0
     agreements: int = 0
     llm_higher: int = 0  # LLM scored higher than human
-    llm_lower: int = 0   # LLM scored lower than human
+    llm_lower: int = 0  # LLM scored lower than human
     avg_deviation: float = 0.0
 
     @property
@@ -45,13 +47,14 @@ class DimensionFeedback:
         if self.llm_higher > self.llm_lower * 1.5:
             return "lenient"  # LLM is too generous
         if self.llm_lower > self.llm_higher * 1.5:
-            return "strict"   # LLM is too harsh
+            return "strict"  # LLM is too harsh
         return "balanced"
 
 
 @dataclass
 class FeedbackReport:
     """Complete feedback analysis from human adjudication data."""
+
     timestamp: str
     total_resolved: int = 0
     decision_agreement_rate: float = 0.0
@@ -78,20 +81,26 @@ def analyze_feedback(
     resolved = [d for d in adjudication_data if d.get("state") == "resolved"]
 
     report = FeedbackReport(
-        timestamp=datetime.now(timezone.utc).replace(microsecond=0).isoformat().replace("+00:00", "Z"),
+        timestamp=datetime.now(timezone.utc)
+        .replace(microsecond=0)
+        .isoformat()
+        .replace("+00:00", "Z"),
         total_resolved=len(resolved),
     )
 
     if not resolved:
-        report.recommendations.append("No resolved adjudication cases — run evaluations and resolve low-confidence cases first")
+        report.recommendations.append(
+            "No resolved adjudication cases — run evaluations and resolve low-confidence cases first"
+        )
         return report
 
     # Decision agreement
     agreements = sum(
-        1 for d in resolved
-        if d.get("llm_decision") == d.get("human_decision")
+        1 for d in resolved if d.get("llm_decision") == d.get("human_decision")
     )
-    report.decision_agreement_rate = round(agreements / len(resolved), 4) if resolved else 0.0
+    report.decision_agreement_rate = (
+        round(agreements / len(resolved), 4) if resolved else 0.0
+    )
 
     # Per-dimension analysis
     for dim in dimensions:

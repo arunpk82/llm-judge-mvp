@@ -22,7 +22,9 @@ def judge_correctness_proxy(request: PredictRequest) -> CorrectnessProxyResult:
     ans = (request.candidate_answer or "").strip().lower()
 
     if not ans:
-        return CorrectnessProxyResult(score=1, explanation="Empty answer.", confidence=0.9)
+        return CorrectnessProxyResult(
+            score=1, explanation="Empty answer.", confidence=0.9
+        )
 
     hedges = ("i think", "maybe", "not sure", "i don't know", "cannot be sure")
     if any(h in ans for h in hedges):

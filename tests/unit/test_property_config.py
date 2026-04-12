@@ -1,6 +1,7 @@
 """
 Tests for Property Configuration (EPIC 7.4) and Integrated Judge (EPICs 7.5–7.6).
 """
+
 from __future__ import annotations
 
 from pathlib import Path

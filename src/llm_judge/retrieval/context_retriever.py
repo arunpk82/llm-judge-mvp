@@ -9,6 +9,7 @@ Three retrieval methods, config-driven:
 Runs inside Gate 2 (IntegratedJudge.evaluate_enriched), between
 _build_query() and faithfulness property checks.
 """
+
 from __future__ import annotations
 
 import logging
@@ -26,6 +27,7 @@ logger = logging.getLogger(__name__)
 @dataclass
 class RetrievalConfig:
     """Configuration for context retrieval."""
+
     enabled: bool = True
     method: str = "cosine_similarity"  # cosine_similarity | bm25 | hybrid
     top_k: int = 3
@@ -39,6 +41,7 @@ class RetrievalConfig:
 @dataclass
 class RetrievalEvidence:
     """Evidence of a retrieval operation for pipeline tracing."""
+
     method: str
     docs_retrieved: int = 0
     top_score: float = 0.0
@@ -49,7 +52,8 @@ class RetrievalEvidence:
 def _tokenize_bm25(text: str) -> list[str]:
     """Simple tokenizer for BM25."""
     return [
-        w.lower().strip(".,!?;:\"'()[]{}") for w in text.split()
+        w.lower().strip(".,!?;:\"'()[]{}")
+        for w in text.split()
         if len(w.strip(".,!?;:\"'()[]{}")) > 2
     ]
 
@@ -78,6 +82,7 @@ class ContextRetriever:
     def _ensure_provider(self) -> Any:
         if self._provider is None:
             from llm_judge.properties import get_embedding_provider
+
             self._provider = get_embedding_provider(self._config.embedding_model)
         return self._provider
 
@@ -104,7 +109,9 @@ class ContextRetriever:
             evidence = RetrievalEvidence(method=method, error=str(exc)[:80])
             return None, evidence
 
-    def _retrieve_cosine(self, query: str) -> tuple[list[str] | None, RetrievalEvidence]:
+    def _retrieve_cosine(
+        self, query: str
+    ) -> tuple[list[str] | None, RetrievalEvidence]:
         """Semantic retrieval via embedding cosine similarity."""
         provider = self._ensure_provider()
         query_embedding = provider.encode([query])[0]
@@ -128,7 +135,8 @@ class ContextRetriever:
         self._ensure_bm25_index()
         if self._bm25_index is None or self._bm25_docs is None:
             return None, RetrievalEvidence(
-                method="bm25", error="bm25 index not available",
+                method="bm25",
+                error="bm25 index not available",
             )
 
         query_tokens = _tokenize_bm25(query)
@@ -138,9 +146,12 @@ class ContextRetriever:
         scores = self._bm25_index.get_scores(query_tokens)  # type: ignore
         scored = sorted(
             zip(scores, self._bm25_docs),
-            key=lambda x: x[0], reverse=True,
+            key=lambda x: x[0],
+            reverse=True,
         )
-        top = [(s, did, text) for s, (did, text) in scored[:self._config.top_k] if s > 0]
+        top = [
+            (s, did, text) for s, (did, text) in scored[: self._config.top_k] if s > 0
+        ]
 
         if not top:
             return None, RetrievalEvidence(method="bm25")
@@ -154,7 +165,9 @@ class ContextRetriever:
         )
         return docs, evidence
 
-    def _retrieve_hybrid(self, query: str) -> tuple[list[str] | None, RetrievalEvidence]:
+    def _retrieve_hybrid(
+        self, query: str
+    ) -> tuple[list[str] | None, RetrievalEvidence]:
         """Weighted combination of cosine similarity and BM25."""
         cosine_docs, cosine_ev = self._retrieve_cosine(query)
         bm25_docs, bm25_ev = self._retrieve_bm25(query)
@@ -201,7 +214,7 @@ class ContextRetriever:
             logger.warning("retriever.bm25_unavailable: rank-bm25 not installed")
             return
 
-        raw_docs = getattr(self._store, '_documents', None)
+        raw_docs = getattr(self._store, "_documents", None)
         if raw_docs is None:
             logger.warning("retriever.bm25_no_docs")
             return

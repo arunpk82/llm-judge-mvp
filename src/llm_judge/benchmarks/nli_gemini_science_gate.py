@@ -13,6 +13,7 @@ Usage:
     export GEMINI_API_KEY=your_key
     poetry run python -m llm_judge.benchmarks.nli_gemini_science_gate --max-fn 10
 """
+
 from __future__ import annotations
 
 import argparse
@@ -29,7 +30,10 @@ import torch
 from transformers import AutoModelForSequenceClassification, AutoTokenizer
 
 from llm_judge.benchmarks.ragtruth import RAGTruthAdapter
-from llm_judge.calibration.hallucination import _compute_grounding_ratio, _split_sentences
+from llm_judge.calibration.hallucination import (
+    _compute_grounding_ratio,
+    _split_sentences,
+)
 from llm_judge.properties import get_embedding_provider
 
 logger = logging.getLogger(__name__)
@@ -55,6 +59,7 @@ Answer with exactly one word: SUPPORTED or UNSUPPORTED"""
 @dataclass
 class SentenceResult:
     """Result for one response sentence."""
+
     sentence: str
     sentence_idx: int
     cosine_sim: float
@@ -68,6 +73,7 @@ class SentenceResult:
 @dataclass
 class CaseResult:
     """Result for one case."""
+
     case_id: str
     ground_truth: str
     gate1_ratio: float
@@ -86,14 +92,18 @@ def load_nli_model():
     tokenizer = AutoTokenizer.from_pretrained(NLI_MODEL)
     model = AutoModelForSequenceClassification.from_pretrained(NLI_MODEL)
     model.eval()
-    labels = [model.config.id2label[i].upper() for i in range(len(model.config.id2label))]
+    labels = [
+        model.config.id2label[i].upper() for i in range(len(model.config.id2label))
+    ]
     print(f"  Loaded in {time.time() - start:.1f}s, labels: {labels}")
     return tokenizer, model, labels
 
 
 def nli_classify(tokenizer, model, premise: str, hypothesis: str, labels: list[str]):
     """Classify entailment."""
-    inputs = tokenizer(premise, hypothesis, return_tensors="pt", truncation=True, max_length=512)
+    inputs = tokenizer(
+        premise, hypothesis, return_tensors="pt", truncation=True, max_length=512
+    )
     with torch.no_grad():
         probs = torch.softmax(model(**inputs).logits, dim=-1)[0].tolist()
     return {label: round(prob, 4) for label, prob in zip(labels, probs)}
@@ -120,7 +130,9 @@ def gemini_check_sentence(sentence: str, source: str) -> str:
 
     try:
         with httpx.Client(timeout=30.0) as client:
-            resp = client.post(url, json=payload, headers={"Content-Type": "application/json"})
+            resp = client.post(
+                url, json=payload, headers={"Content-Type": "application/json"}
+            )
             resp.raise_for_status()
             data = resp.json()
             raw = data["candidates"][0]["content"]["parts"][-1]["text"].strip().upper()
@@ -152,11 +164,15 @@ def find_false_negatives(max_cases: int = 500, max_fn: int = 10) -> list[tuple]:
         context = conv + ("\n\n" + "\n".join(ctx_parts) if ctx_parts else "")
         response = case.request.candidate_answer
 
-        ratio, min_sim = _compute_grounding_ratio(response, context, similarity_threshold=0.60)
+        ratio, min_sim = _compute_grounding_ratio(
+            response, context, similarity_threshold=0.60
+        )
 
         if ratio >= 0.80 and min_sim >= 0.30:
             source_doc = "\n".join(ctx_parts) if ctx_parts else context
-            false_negatives.append((case, source_doc, context, response, ratio, min_sim))
+            false_negatives.append(
+                (case, source_doc, context, response, ratio, min_sim)
+            )
             if len(false_negatives) >= max_fn:
                 break
 
@@ -181,10 +197,15 @@ def run_combined_on_case(
 
     if not resp_sents or not ctx_sents:
         return CaseResult(
-            case_id=case.case_id, ground_truth="fail",
-            gate1_ratio=ratio, gate1_min_sim=min_sim,
-            final_decision="pass", correct=False,
-            sentences=[], gemini_calls=0, total_sentences=0,
+            case_id=case.case_id,
+            ground_truth="fail",
+            gate1_ratio=ratio,
+            gate1_min_sim=min_sim,
+            final_decision="pass",
+            correct=False,
+            sentences=[],
+            gemini_calls=0,
+            total_sentences=0,
         )
 
     resp_embs = provider.encode(resp_sents)
@@ -196,7 +217,9 @@ def run_combined_on_case(
 
     for i, (sent, emb) in enumerate(zip(resp_sents, resp_embs)):
         # Step 1: MiniLM finds top-3 source sentences
-        sims = [(j, provider.max_similarity(emb, [ce])) for j, ce in enumerate(ctx_embs)]
+        sims = [
+            (j, provider.max_similarity(emb, [ce])) for j, ce in enumerate(ctx_embs)
+        ]
         sims.sort(key=lambda x: x[1], reverse=True)
         top3 = sims[:3]
         cosine_sim = top3[0][1]
@@ -207,10 +230,14 @@ def run_combined_on_case(
         all_nli = []
 
         for src_idx, sim_score in top3:
-            nli_result = nli_classify(tokenizer, model, ctx_sents[src_idx], sent, labels)
+            nli_result = nli_classify(
+                tokenizer, model, ctx_sents[src_idx], sent, labels
+            )
             all_nli.append(nli_result)
             best_entailment = max(best_entailment, nli_result.get("ENTAILMENT", 0))
-            best_contradiction = max(best_contradiction, nli_result.get("CONTRADICTION", 0))
+            best_contradiction = max(
+                best_contradiction, nli_result.get("CONTRADICTION", 0)
+            )
 
         # Determine NLI aggregate label
         if best_entailment > 0.7:
@@ -242,19 +269,21 @@ def run_combined_on_case(
             else:
                 final = "grounded"
 
-        sentence_results.append(SentenceResult(
-            sentence=sent,
-            sentence_idx=i,
-            cosine_sim=round(cosine_sim, 4),
-            nli_label=nli_label,
-            nli_probs=primary_nli,
-            gemini_decision=gemini_decision,
-            final_decision=final,
-            routed_to_gemini=routed,
-        ))
+        sentence_results.append(
+            SentenceResult(
+                sentence=sent,
+                sentence_idx=i,
+                cosine_sim=round(cosine_sim, 4),
+                nli_label=nli_label,
+                nli_probs=primary_nli,
+                gemini_decision=gemini_decision,
+                final_decision=final,
+                routed_to_gemini=routed,
+            )
+        )
 
     case_decision = "fail" if has_hallucination else "pass"
-    correct = (case_decision == "fail")  # ground truth is "fail"
+    correct = case_decision == "fail"  # ground truth is "fail"
 
     return CaseResult(
         case_id=case.case_id,
@@ -288,17 +317,31 @@ def print_report(results: list[CaseResult]) -> None:
     print("\nCOST ANALYSIS")
     print(f"  Total sentences: {total_sents}")
     print(f"  NLI handled (no LLM): {nli_handled} ({nli_handled/total_sents*100:.0f}%)")
-    print(f"  Gemini calls (NEUTRAL only): {total_gemini} ({total_gemini/total_sents*100:.0f}%)")
+    print(
+        f"  Gemini calls (NEUTRAL only): {total_gemini} ({total_gemini/total_sents*100:.0f}%)"
+    )
     print(f"  Cost savings vs --gate2 all: {nli_handled/total_sents*100:.0f}%")
     print("=" * 70)
 
     # Count by decision path
-    entail_count = sum(1 for r in results for s in r.sentences if s.nli_label == "ENTAILMENT")
-    contra_count = sum(1 for r in results for s in r.sentences if s.nli_label == "CONTRADICTION")
-    gemini_unsup = sum(1 for r in results for s in r.sentences
-                       if s.routed_to_gemini and s.gemini_decision == "unsupported")
-    gemini_sup = sum(1 for r in results for s in r.sentences
-                     if s.routed_to_gemini and s.gemini_decision == "supported")
+    entail_count = sum(
+        1 for r in results for s in r.sentences if s.nli_label == "ENTAILMENT"
+    )
+    contra_count = sum(
+        1 for r in results for s in r.sentences if s.nli_label == "CONTRADICTION"
+    )
+    gemini_unsup = sum(
+        1
+        for r in results
+        for s in r.sentences
+        if s.routed_to_gemini and s.gemini_decision == "unsupported"
+    )
+    gemini_sup = sum(
+        1
+        for r in results
+        for s in r.sentences
+        if s.routed_to_gemini and s.gemini_decision == "supported"
+    )
 
     print("\nDECISION PATH BREAKDOWN")
     print(f"  ENTAILMENT → grounded (no LLM):     {entail_count}")
@@ -308,7 +351,9 @@ def print_report(results: list[CaseResult]) -> None:
 
     for r in results:
         marker = "CAUGHT" if r.correct else "MISSED"
-        print(f"\n--- {r.case_id} [{marker}] (Gemini calls: {r.gemini_calls}/{r.total_sentences}) ---")
+        print(
+            f"\n--- {r.case_id} [{marker}] (Gemini calls: {r.gemini_calls}/{r.total_sentences}) ---"
+        )
         print(f"  Gate 1: ratio={r.gate1_ratio:.3f} min_sim={r.gate1_min_sim:.3f}")
         print(f"  Combined decision: {r.final_decision}")
 
@@ -317,7 +362,9 @@ def print_report(results: list[CaseResult]) -> None:
             if s.routed_to_gemini:
                 path = f"NEUTRAL→Gemini:{s.gemini_decision}"
             flag = " <<<< HALLUCINATED" if s.final_decision == "hallucinated" else ""
-            print(f"  [{s.sentence_idx+1}] sim={s.cosine_sim:.3f} {path} → {s.final_decision}{flag}")
+            print(
+                f"  [{s.sentence_idx+1}] sim={s.cosine_sim:.3f} {path} → {s.final_decision}{flag}"
+            )
             print(f"      {s.sentence[:120]}")
 
 
@@ -346,17 +393,29 @@ def main() -> None:
 
     # Step 3: Run combined approach on each false negative
     results = []
-    for idx, (case, source_doc, full_context, response, ratio, min_sim) in enumerate(fn_cases):
+    for idx, (case, source_doc, full_context, response, ratio, min_sim) in enumerate(
+        fn_cases
+    ):
         print(f"\nProcessing {idx+1}/{len(fn_cases)}: {case.case_id}")
         start = time.time()
         result = run_combined_on_case(
-            case, source_doc, full_context, response, ratio, min_sim,
-            tokenizer, model, nli_labels, provider,
+            case,
+            source_doc,
+            full_context,
+            response,
+            ratio,
+            min_sim,
+            tokenizer,
+            model,
+            nli_labels,
+            provider,
         )
         elapsed = time.time() - start
-        print(f"  {result.final_decision} ({elapsed:.1f}s) "
-              f"{'CAUGHT' if result.correct else 'MISSED'} "
-              f"(Gemini: {result.gemini_calls}/{result.total_sentences})")
+        print(
+            f"  {result.final_decision} ({elapsed:.1f}s) "
+            f"{'CAUGHT' if result.correct else 'MISSED'} "
+            f"(Gemini: {result.gemini_calls}/{result.total_sentences})"
+        )
         results.append(result)
 
     # Step 4: Report
@@ -371,9 +430,19 @@ def main() -> None:
         "total_sentences": sum(r.total_sentences for r in results),
         "gemini_calls": sum(r.gemini_calls for r in results),
         "cost_savings_pct": round(
-            (1 - sum(r.gemini_calls for r in results) / max(1, sum(r.total_sentences for r in results))) * 100, 1
+            (
+                1
+                - sum(r.gemini_calls for r in results)
+                / max(1, sum(r.total_sentences for r in results))
+            )
+            * 100,
+            1,
         ),
-        "result": "PASS" if sum(1 for r in results if r.correct) >= len(results) * 0.7 else "FAIL",
+        "result": (
+            "PASS"
+            if sum(1 for r in results if r.correct) >= len(results) * 0.7
+            else "FAIL"
+        ),
         "cases": [
             {
                 "case_id": r.case_id,

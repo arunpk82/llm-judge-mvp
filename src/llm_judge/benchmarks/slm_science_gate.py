@@ -14,6 +14,7 @@ Usage:
     # Run experiment:
     poetry run python -m llm_judge.benchmarks.slm_science_gate --max-fn 10 --max-tn 10
 """
+
 from __future__ import annotations
 
 import argparse
@@ -33,7 +34,10 @@ from transformers import (
 )
 
 from llm_judge.benchmarks.ragtruth import RAGTruthAdapter
-from llm_judge.calibration.hallucination import _compute_grounding_ratio, _split_sentences
+from llm_judge.calibration.hallucination import (
+    _compute_grounding_ratio,
+    _split_sentences,
+)
 from llm_judge.properties import get_embedding_provider
 
 logger = logging.getLogger(__name__)
@@ -83,7 +87,9 @@ def slm_check_sentence(sentence: str, source: str) -> tuple[str, float]:
     prompt = PROMPT_TEMPLATE.format(source=source[:4000], sentence=sentence)
     messages = [{"role": "user", "content": prompt}]
     text = _slm_tokenizer.apply_chat_template(
-        messages, tokenize=False, add_generation_prompt=True,
+        messages,
+        tokenize=False,
+        add_generation_prompt=True,
     )
     inputs = _slm_tokenizer([text], return_tensors="pt")
 
@@ -97,10 +103,14 @@ def slm_check_sentence(sentence: str, source: str) -> tuple[str, float]:
         )
     elapsed = time.time() - start
 
-    response = _slm_tokenizer.decode(
-        outputs[0][inputs["input_ids"].shape[1]:],
-        skip_special_tokens=True,
-    ).strip().upper()
+    response = (
+        _slm_tokenizer.decode(
+            outputs[0][inputs["input_ids"].shape[1] :],
+            skip_special_tokens=True,
+        )
+        .strip()
+        .upper()
+    )
 
     decision = "unsupported" if "UNSUPPORTED" in response else "supported"
     return decision, elapsed
@@ -108,8 +118,11 @@ def slm_check_sentence(sentence: str, source: str) -> tuple[str, float]:
 
 # --- Layer filters (same as funnel_analysis) ---
 
+
 def nli_classify(tokenizer, model, premise, hypothesis, labels):
-    inputs = tokenizer(premise, hypothesis, return_tensors="pt", truncation=True, max_length=512)
+    inputs = tokenizer(
+        premise, hypothesis, return_tensors="pt", truncation=True, max_length=512
+    )
     with torch.no_grad():
         probs = torch.softmax(model(**inputs).logits, dim=-1)[0].tolist()
     return {label: round(p, 4) for label, p in zip(labels, probs)}
@@ -182,7 +195,10 @@ def main():
     nli_tokenizer = AutoTokenizer.from_pretrained(NLI_MODEL)
     nli_model = AutoModelForSequenceClassification.from_pretrained(NLI_MODEL)
     nli_model.eval()
-    nli_labels = [nli_model.config.id2label[i].upper() for i in range(len(nli_model.config.id2label))]
+    nli_labels = [
+        nli_model.config.id2label[i].upper()
+        for i in range(len(nli_model.config.id2label))
+    ]
     provider = get_embedding_provider()
 
     # Load SLM
@@ -216,11 +232,16 @@ def main():
                     continue
 
                 # L2: NLI
-                sims = [(j, provider.max_similarity(emb, [ce])) for j, ce in enumerate(ctx_embs)]
+                sims = [
+                    (j, provider.max_similarity(emb, [ce]))
+                    for j, ce in enumerate(ctx_embs)
+                ]
                 sims.sort(key=lambda x: x[1], reverse=True)
                 best_e = 0.0
                 for src_idx, _ in sims[:3]:
-                    nli = nli_classify(nli_tokenizer, nli_model, ctx_sents[src_idx], sent, nli_labels)
+                    nli = nli_classify(
+                        nli_tokenizer, nli_model, ctx_sents[src_idx], sent, nli_labels
+                    )
                     best_e = max(best_e, nli.get("ENTAILMENT", 0))
 
                 if best_e > 0.7:
@@ -235,28 +256,34 @@ def main():
                 if decision == "unsupported":
                     has_hallucination = True
 
-                l4_details.append({
-                    "sentence_idx": i,
-                    "sentence": sent[:120],
-                    "decision": decision,
-                    "elapsed": round(slm_elapsed, 1),
-                })
+                l4_details.append(
+                    {
+                        "sentence_idx": i,
+                        "sentence": sent[:120],
+                        "decision": decision,
+                        "elapsed": round(slm_elapsed, 1),
+                    }
+                )
 
             case_decision = "fail" if has_hallucination else "pass"
-            correct = (case_decision == gt_val)
+            correct = case_decision == gt_val
             case_elapsed = time.time() - case_start
 
-            print(f"  decision={case_decision} gt={gt_val} L4={l4_count} "
-                  f"{'CORRECT' if correct else 'WRONG'} ({case_elapsed:.1f}s)")
+            print(
+                f"  decision={case_decision} gt={gt_val} L4={l4_count} "
+                f"{'CORRECT' if correct else 'WRONG'} ({case_elapsed:.1f}s)"
+            )
 
-            all_results.append({
-                "case_id": case.case_id,
-                "gt": gt_val,
-                "decision": case_decision,
-                "correct": correct,
-                "l4_count": l4_count,
-                "l4_details": l4_details,
-            })
+            all_results.append(
+                {
+                    "case_id": case.case_id,
+                    "gt": gt_val,
+                    "decision": case_decision,
+                    "correct": correct,
+                    "l4_count": l4_count,
+                    "l4_details": l4_details,
+                }
+            )
 
     # Compute metrics
     fn_results = [r for r in all_results if r["gt"] == "fail"]
@@ -269,13 +296,17 @@ def main():
 
     precision = tp / (tp + fp) if (tp + fp) > 0 else 0
     recall = tp / (tp + fn) if (tp + fn) > 0 else 0
-    f1 = 2 * precision * recall / (precision + recall) if (precision + recall) > 0 else 0
+    f1 = (
+        2 * precision * recall / (precision + recall) if (precision + recall) > 0 else 0
+    )
 
     print(f"\n{'='*70}")
     print("EXPERIMENT 14: SLM SCIENCE GATE")
     print(f"{'='*70}")
     print(f"Model: {args.slm_model}")
-    print(f"Cases: {len(fn_results)} FN + {len(tn_results)} TN = {len(all_results)} total")
+    print(
+        f"Cases: {len(fn_results)} FN + {len(tn_results)} TN = {len(all_results)} total"
+    )
     print(f"L4 sentences: {total_l4}")
     print(f"Avg SLM latency: {total_slm_time/max(1,total_l4):.1f}s per sentence")
     print()
@@ -300,17 +331,25 @@ def main():
         marker = "CORRECT" if r["correct"] else "WRONG"
         print(f"\n  {r['case_id']} (gt={r['gt']}) [{marker}]")
         for d in r["l4_details"]:
-            print(f"    [{d['sentence_idx']+1}] {d['decision']:>11} ({d['elapsed']:.1f}s) {d['sentence']}")
+            print(
+                f"    [{d['sentence_idx']+1}] {d['decision']:>11} ({d['elapsed']:.1f}s) {d['sentence']}"
+            )
 
     # Save
     save_data = {
         "experiment": "Experiment 14: SLM Science Gate",
         "slm_model": args.slm_model,
-        "fn_tested": len(fn_results), "tn_tested": len(tn_results),
+        "fn_tested": len(fn_results),
+        "tn_tested": len(tn_results),
         "l4_sentences": total_l4,
         "avg_slm_latency": round(total_slm_time / max(1, total_l4), 1),
-        "tp": tp, "fp": fp, "tn": tn, "fn": fn,
-        "precision": round(precision, 4), "recall": round(recall, 4), "f1": round(f1, 4),
+        "tp": tp,
+        "fp": fp,
+        "tn": tn,
+        "fn": fn,
+        "precision": round(precision, 4),
+        "recall": round(recall, 4),
+        "f1": round(f1, 4),
         "gemini_f1": 0.900,
         "delta": round(f1 - 0.900, 4),
         "pass_criteria": "F1 >= 0.800",

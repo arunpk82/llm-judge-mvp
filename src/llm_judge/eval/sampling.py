@@ -30,7 +30,9 @@ def deterministic_sample_rows(
         raise SamplingError(f"sample_size must be > 0, got {sample_size}")
 
     if any("case_id" not in r for r in rows):
-        raise SamplingError("All rows must contain 'case_id' for deterministic sampling")
+        raise SamplingError(
+            "All rows must contain 'case_id' for deterministic sampling"
+        )
 
     ordered = sorted(rows, key=lambda r: str(r["case_id"]))
 

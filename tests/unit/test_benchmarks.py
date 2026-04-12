@@ -1,4 +1,5 @@
 """Tests for benchmark framework (EPIC 7.16)."""
+
 from __future__ import annotations
 
 import json
@@ -26,8 +27,12 @@ class TestGroundTruth:
         gt = GroundTruth(
             response_level="fail",
             span_annotations=[
-                SpanAnnotation(start=10, end=20, text="Gaza Strip",
-                              label_type="Evident Baseless Info"),
+                SpanAnnotation(
+                    start=10,
+                    end=20,
+                    text="Gaza Strip",
+                    label_type="Evident Baseless Info",
+                ),
             ],
             hallucination_types={"Evident Baseless Info": 1},
         )
@@ -79,15 +84,51 @@ class TestComputeMetrics:
             cases_evaluated=4,
             elapsed_seconds=1.0,
             response_level_results=[
-                {"predicted": "fail", "expected": "fail", "match": True, "model": "m1", "task_type": "QA"},
-                {"predicted": "pass", "expected": "fail", "match": False, "model": "m1", "task_type": "QA"},
-                {"predicted": "pass", "expected": "pass", "match": True, "model": "m1", "task_type": "Summary"},
-                {"predicted": "fail", "expected": "pass", "match": False, "model": "m1", "task_type": "Summary"},
+                {
+                    "predicted": "fail",
+                    "expected": "fail",
+                    "match": True,
+                    "model": "m1",
+                    "task_type": "QA",
+                },
+                {
+                    "predicted": "pass",
+                    "expected": "fail",
+                    "match": False,
+                    "model": "m1",
+                    "task_type": "QA",
+                },
+                {
+                    "predicted": "pass",
+                    "expected": "pass",
+                    "match": True,
+                    "model": "m1",
+                    "task_type": "Summary",
+                },
+                {
+                    "predicted": "fail",
+                    "expected": "pass",
+                    "match": False,
+                    "model": "m1",
+                    "task_type": "Summary",
+                },
             ],
             property_results={
                 "1.1": [
-                    PropertyResult(case_id="c1", property_id="1.1", predicted="fail", expected="fail", match=True),
-                    PropertyResult(case_id="c2", property_id="1.1", predicted="pass", expected="fail", match=False),
+                    PropertyResult(
+                        case_id="c1",
+                        property_id="1.1",
+                        predicted="fail",
+                        expected="fail",
+                        match=True,
+                    ),
+                    PropertyResult(
+                        case_id="c2",
+                        property_id="1.1",
+                        predicted="pass",
+                        expected="fail",
+                        match=False,
+                    ),
                 ],
             },
         )
@@ -107,20 +148,37 @@ class TestRAGTruthAdapter:
             "task_type": "QA",
             "source": "test",
             "source_info": {"question": "What is X?", "passages": "X is a thing."},
-            "prompt": "Answer: What is X?"
+            "prompt": "Answer: What is X?",
         }
         response_clean = {
-            "id": "r1", "source_id": "s1", "model": "test-model",
-            "temperature": 0.0, "labels": [], "split": "test",
-            "quality": "good", "response": "X is a thing that does stuff."
+            "id": "r1",
+            "source_id": "s1",
+            "model": "test-model",
+            "temperature": 0.0,
+            "labels": [],
+            "split": "test",
+            "quality": "good",
+            "response": "X is a thing that does stuff.",
         }
         response_hallucinated = {
-            "id": "r2", "source_id": "s1", "model": "test-model",
-            "temperature": 0.0, "split": "test", "quality": "good",
-            "labels": [{"start": 0, "end": 10, "text": "Y is fake",
-                        "label_type": "Evident Baseless Info", "meta": "fabricated",
-                        "implicit_true": False, "due_to_null": False}],
-            "response": "Y is fake information not in the source."
+            "id": "r2",
+            "source_id": "s1",
+            "model": "test-model",
+            "temperature": 0.0,
+            "split": "test",
+            "quality": "good",
+            "labels": [
+                {
+                    "start": 0,
+                    "end": 10,
+                    "text": "Y is fake",
+                    "label_type": "Evident Baseless Info",
+                    "meta": "fabricated",
+                    "implicit_true": False,
+                    "due_to_null": False,
+                }
+            ],
+            "response": "Y is fake information not in the source.",
         }
 
         with (tmpdir / "source_info.jsonl").open("w") as f:
@@ -134,6 +192,7 @@ class TestRAGTruthAdapter:
     def test_loads_cases(self, tmp_path):
         data_dir = self._create_test_data(tmp_path)
         from llm_judge.benchmarks.ragtruth import RAGTruthAdapter
+
         adapter = RAGTruthAdapter(data_dir=data_dir)
 
         cases = list(adapter.load_cases(split="test"))
@@ -151,6 +210,7 @@ class TestRAGTruthAdapter:
 
     def test_metadata(self):
         from llm_judge.benchmarks.ragtruth import RAGTruthAdapter
+
         adapter = RAGTruthAdapter()
         meta = adapter.metadata()
         assert meta.name == "RAGTruth"
@@ -160,6 +220,7 @@ class TestRAGTruthAdapter:
     def test_max_cases(self, tmp_path):
         data_dir = self._create_test_data(tmp_path)
         from llm_judge.benchmarks.ragtruth import RAGTruthAdapter
+
         adapter = RAGTruthAdapter(data_dir=data_dir)
 
         cases = list(adapter.load_cases(split="test", max_cases=1))

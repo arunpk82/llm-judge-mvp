@@ -19,11 +19,16 @@ def _normalize_expected(row: dict[str, Any]) -> None:
         exp.setdefault("decision", row.get("expected_decision"))
         exp.setdefault("flags", row.get("expected_flags", []))
         # Clean up
-        if exp.get("decision") is None and isinstance(row.get("expected_decision"), str):
+        if exp.get("decision") is None and isinstance(
+            row.get("expected_decision"), str
+        ):
             exp["decision"] = row["expected_decision"]
         if exp.get("flags") is None:
             exp["flags"] = []
-        row["expected"] = {"decision": exp["decision"], "flags": list(exp.get("flags", []))}
+        row["expected"] = {
+            "decision": exp["decision"],
+            "flags": list(exp.get("flags", [])),
+        }
     else:
         row["expected"] = {
             "decision": row.get("expected_decision"),

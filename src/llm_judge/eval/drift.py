@@ -26,12 +26,12 @@ class DriftPolicy:
 
     # point drift: baseline -> latest
     required_metrics: list[str]
-    max_metric_drop: dict[str, float]     # candidate-baseline >= -tol
-    min_metric_value: dict[str, float]    # candidate >= min
+    max_metric_drop: dict[str, float]  # candidate-baseline >= -tol
+    min_metric_value: dict[str, float]  # candidate >= min
 
     # trend drift: window oldest -> newest
     trend_window: int
-    max_trend_drop: dict[str, float]      # newest-oldest >= -tol
+    max_trend_drop: dict[str, float]  # newest-oldest >= -tol
 
     # selection
     dataset_id: str | None
@@ -50,7 +50,12 @@ class DriftPolicy:
 
 
 def _utc_now_iso() -> str:
-    return datetime.now(timezone.utc).replace(microsecond=0).isoformat().replace("+00:00", "Z")
+    return (
+        datetime.now(timezone.utc)
+        .replace(microsecond=0)
+        .isoformat()
+        .replace("+00:00", "Z")
+    )
 
 
 def _read_json(path: Path) -> dict[str, Any]:
@@ -137,7 +142,11 @@ def load_policy(path: Path) -> DriftPolicy:
         dataset_id=_opt_str("dataset_id"),
         rubric_id=_opt_str("rubric_id"),
         judge_engine=_opt_str("judge_engine"),
-        heartbeat_max_hours=float(raw["heartbeat_max_hours"]) if raw.get("heartbeat_max_hours") else None,
+        heartbeat_max_hours=(
+            float(raw["heartbeat_max_hours"])
+            if raw.get("heartbeat_max_hours")
+            else None
+        ),
         correlation_window_hours=float(raw.get("correlation_window_hours", 24.0)),
         response_actions=_dict_str("response_actions"),
     )
@@ -162,7 +171,9 @@ def _select_entries(
     return out
 
 
-def _resolve_baseline_metrics(*, suite: str, rubric_id: str, baselines_dir: Path) -> tuple[Path, dict[str, Any]]:
+def _resolve_baseline_metrics(
+    *, suite: str, rubric_id: str, baselines_dir: Path
+) -> tuple[Path, dict[str, Any]]:
     latest_ptr = baselines_dir / suite / rubric_id / "latest.json"
     if not latest_ptr.exists():
         raise FileNotFoundError(f"Missing baseline pointer: {latest_ptr}")
@@ -170,7 +181,9 @@ def _resolve_baseline_metrics(*, suite: str, rubric_id: str, baselines_dir: Path
     data = _read_json(latest_ptr)
     baseline_id = data.get("baseline_id")
     if not isinstance(baseline_id, str) or not baseline_id.strip():
-        raise ValueError(f"Invalid baseline pointer (missing baseline_id): {latest_ptr}")
+        raise ValueError(
+            f"Invalid baseline pointer (missing baseline_id): {latest_ptr}"
+        )
 
     snap_dir = latest_ptr.parent / "snapshots" / baseline_id.strip()
     metrics_path = snap_dir / "metrics.json"
@@ -202,7 +215,15 @@ def _point_drift_checks(
         if cv is None:
             continue
         ok = cv >= minv
-        checks.append({"type": "min_metric_value", "metric": m, "candidate": cv, "min": minv, "ok": ok})
+        checks.append(
+            {
+                "type": "min_metric_value",
+                "metric": m,
+                "candidate": cv,
+                "min": minv,
+                "ok": ok,
+            }
+        )
         if not ok:
             violations.append(f"Metric below minimum: {m} candidate={cv} min={minv}")
 
@@ -226,7 +247,9 @@ def _point_drift_checks(
             }
         )
         if not ok:
-            violations.append(f"Metric drop too large: {m} baseline={bv} candidate={cv} drop={-delta} tol={tol}")
+            violations.append(
+                f"Metric drop too large: {m} baseline={bv} candidate={cv} drop={-delta} tol={tol}"
+            )
 
     return checks, violations
 
@@ -283,6 +306,7 @@ def _trend_drift_checks(
 # =====================================================================
 # EPIC-6.1: Heartbeat check
 # =====================================================================
+
 
 def _heartbeat_check(
     *,
@@ -345,6 +369,7 @@ def _heartbeat_check(
 # EPIC-6.1: Cross-dimensional correlation
 # =====================================================================
 
+
 def _correlate_with_events(
     *,
     violation_timestamp: str,
@@ -381,7 +406,9 @@ def _correlate_with_events(
 
     def _proximity(event: dict[str, Any]) -> float:
         try:
-            ts = datetime.fromisoformat(event.get("timestamp", "").replace("Z", "+00:00"))
+            ts = datetime.fromisoformat(
+                event.get("timestamp", "").replace("Z", "+00:00")
+            )
             return abs((ts - center).total_seconds())
         except Exception:
             return float("inf")
@@ -418,9 +445,9 @@ def _emit_drift_alert(
                 "violation_count": len(violations),
                 "violations": violations[:5],
                 "correlated_event_count": len(correlated_events),
-                "correlated_event_types": list({
-                    e.get("event_type") for e in correlated_events
-                }),
+                "correlated_event_types": list(
+                    {e.get("event_type") for e in correlated_events}
+                ),
             },
             registry_path=reg_path,
         )
@@ -431,6 +458,7 @@ def _emit_drift_alert(
 # =====================================================================
 # EPIC-6.2: Causation analysis
 # =====================================================================
+
 
 def build_causation_report(
     *,
@@ -464,19 +492,27 @@ def build_causation_report(
         except (ValueError, TypeError):
             hours_delta = None
 
-        causes.append({
-            "event_type": event.get("event_type"),
-            "timestamp": event_ts,
-            "source": event.get("source"),
-            "related_ids": event.get("related_ids", {}),
-            "hours_from_drift": round(hours_delta, 2) if hours_delta is not None else None,
-            "direction": "before" if hours_delta and hours_delta < 0 else "after",
-            "causal_likelihood": (
-                "high" if hours_delta is not None and abs(hours_delta) < 2
-                else "medium" if hours_delta is not None and abs(hours_delta) < 12
-                else "low"
-            ),
-        })
+        causes.append(
+            {
+                "event_type": event.get("event_type"),
+                "timestamp": event_ts,
+                "source": event.get("source"),
+                "related_ids": event.get("related_ids", {}),
+                "hours_from_drift": (
+                    round(hours_delta, 2) if hours_delta is not None else None
+                ),
+                "direction": "before" if hours_delta and hours_delta < 0 else "after",
+                "causal_likelihood": (
+                    "high"
+                    if hours_delta is not None and abs(hours_delta) < 2
+                    else (
+                        "medium"
+                        if hours_delta is not None and abs(hours_delta) < 12
+                        else "low"
+                    )
+                ),
+            }
+        )
 
     return {
         "schema_version": "1.0",
@@ -590,10 +626,14 @@ def create_drift_issue(
         "violations": drift_report.get("violations", []),
         "response_classification": response_classification,
         "causation_summary": {
-            "correlated_events": causation_report.get("correlated_events", 0)
-            if causation_report else 0,
-            "top_cause": causation_report["causes"][0] if causation_report
-            and causation_report.get("causes") else None,
+            "correlated_events": (
+                causation_report.get("correlated_events", 0) if causation_report else 0
+            ),
+            "top_cause": (
+                causation_report["causes"][0]
+                if causation_report and causation_report.get("causes")
+                else None
+            ),
         },
         "history": [
             {
@@ -755,7 +795,9 @@ def check_drift(
     latest_run_dir = Path(str(latest.get("run_dir", ""))).resolve()
     latest_metrics_path = latest_run_dir / "metrics.json"
     if not latest_metrics_path.exists():
-        raise FileNotFoundError(f"Latest run metrics.json missing: {latest_metrics_path}")
+        raise FileNotFoundError(
+            f"Latest run metrics.json missing: {latest_metrics_path}"
+        )
 
     candidate_metrics = _read_json(latest_metrics_path)
 
@@ -773,7 +815,9 @@ def check_drift(
 
     window_n = max(2, int(policy.trend_window))
     window_entries = selected[-window_n:]
-    trend_checks, trend_violations = _trend_drift_checks(policy=policy, window_entries=window_entries)
+    trend_checks, trend_violations = _trend_drift_checks(
+        policy=policy, window_entries=window_entries
+    )
 
     violations = point_violations + trend_violations
     status = "PASS" if not violations else "FAIL"
@@ -892,12 +936,28 @@ def build_cli() -> argparse.ArgumentParser:
 
     p_check = sub.add_parser("check", help="Check drift vs baseline + trend window")
     p_check.add_argument("--policy", required=True, help="Path to drift policy YAML")
-    p_check.add_argument("--registry", default=str(DEFAULT_REGISTRY_PATH), help="Path to run_registry.jsonl")
-    p_check.add_argument("--baselines-dir", default="baselines", help="Baselines root (default: baselines)")
-    p_check.add_argument("--suite", required=True, help="Suite/dataset id (e.g., golden)")
-    p_check.add_argument("--rubric-id", required=True, help="Rubric id (e.g., chat_quality)")
-    p_check.add_argument("--out", default=str(DEFAULT_REPORT_PATH), help="Output report JSON path")
-    p_check.add_argument("--event-registry", default=None, help="Path to event_registry.jsonl (optional)")
+    p_check.add_argument(
+        "--registry",
+        default=str(DEFAULT_REGISTRY_PATH),
+        help="Path to run_registry.jsonl",
+    )
+    p_check.add_argument(
+        "--baselines-dir",
+        default="baselines",
+        help="Baselines root (default: baselines)",
+    )
+    p_check.add_argument(
+        "--suite", required=True, help="Suite/dataset id (e.g., golden)"
+    )
+    p_check.add_argument(
+        "--rubric-id", required=True, help="Rubric id (e.g., chat_quality)"
+    )
+    p_check.add_argument(
+        "--out", default=str(DEFAULT_REPORT_PATH), help="Output report JSON path"
+    )
+    p_check.add_argument(
+        "--event-registry", default=None, help="Path to event_registry.jsonl (optional)"
+    )
     p_check.set_defaults(func=_cmd_check)
 
     return p

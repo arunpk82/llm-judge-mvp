@@ -5,6 +5,7 @@ rule aging, drift detection, causation analysis, and response lifecycle.
 Wave 2 closes cross-cutting pattern #3: "Detection without response."
 These tests verify the full chain: detect → correlate → classify → respond.
 """
+
 from __future__ import annotations
 
 import json
@@ -16,6 +17,7 @@ import pytest
 # =====================================================================
 # Fixtures
 # =====================================================================
+
 
 def _make_event_registry(tmp: Path, events: list[dict[str, Any]] | None = None) -> Path:
     reg = tmp / "event_registry.jsonl"
@@ -32,6 +34,7 @@ def _make_event_registry(tmp: Path, events: list[dict[str, Any]] | None = None) 
 # EPIC 5.1: Event Registry
 # =====================================================================
 
+
 class TestEventRegistry:
     """Cross-capability event registry with typed events."""
 
@@ -40,12 +43,17 @@ class TestEventRegistry:
 
         reg = tmp_path / "events.jsonl"
         append_event(
-            event_type="eval_run", source="test", actor="ci",
+            event_type="eval_run",
+            source="test",
+            actor="ci",
             related_ids={"run_id": "r1", "rubric_id": "math_basic"},
-            payload={"kappa": 0.82}, registry_path=reg,
+            payload={"kappa": 0.82},
+            registry_path=reg,
         )
         append_event(
-            event_type="baseline_promotion", source="test", actor="op",
+            event_type="baseline_promotion",
+            source="test",
+            actor="op",
             related_ids={"baseline_id": "b1", "rubric_id": "math_basic"},
             registry_path=reg,
         )
@@ -62,16 +70,21 @@ class TestEventRegistry:
 
         reg = tmp_path / "events.jsonl"
         append_event(
-            event_type="eval_run", source="test",
-            related_ids={"rubric_id": "math_basic"}, registry_path=reg,
+            event_type="eval_run",
+            source="test",
+            related_ids={"rubric_id": "math_basic"},
+            registry_path=reg,
         )
         append_event(
-            event_type="rule_change", source="test",
-            related_ids={}, registry_path=reg,
+            event_type="rule_change",
+            source="test",
+            related_ids={},
+            registry_path=reg,
         )
 
         by_rubric = query_events(
-            related_id_key="rubric_id", related_id_value="math_basic",
+            related_id_key="rubric_id",
+            related_id_value="math_basic",
             registry_path=reg,
         )
         assert len(by_rubric) == 1
@@ -92,10 +105,14 @@ class TestEventRegistry:
 
         reg = tmp_path / "events.jsonl"
         e = append_event(
-            event_type="eval_run", source="test", registry_path=reg,
+            event_type="eval_run",
+            source="test",
+            registry_path=reg,
         )
         append_event(
-            event_type="rule_change", source="test", registry_path=reg,
+            event_type="rule_change",
+            source="test",
+            registry_path=reg,
         )
 
         assert e is not None
@@ -114,10 +131,14 @@ class TestEventRegistry:
 
         reg = tmp_path / "events.jsonl"
         e = append_event(
-            event_type="eval_run", source="test", registry_path=reg,
+            event_type="eval_run",
+            source="test",
+            registry_path=reg,
         )
         append_event(
-            event_type="rule_change", source="test", registry_path=reg,
+            event_type="rule_change",
+            source="test",
+            registry_path=reg,
         )
 
         assert e is not None
@@ -148,6 +169,7 @@ class TestEventRegistry:
 # EPIC 3.2: Rule Aging
 # =====================================================================
 
+
 class TestRuleAging:
     """Rule aging computation and deprecation enforcement."""
 
@@ -155,9 +177,13 @@ class TestRuleAging:
         from llm_judge.rules.lifecycle import RuleMeta, compute_aging
 
         rule = RuleMeta(
-            name="test.fresh", version=1, owner="eval-team",
-            status="production", introduced="2026-03-01",
-            last_reviewed="2026-03-27", review_period_days=365,
+            name="test.fresh",
+            version=1,
+            owner="eval-team",
+            status="production",
+            introduced="2026-03-01",
+            last_reviewed="2026-03-27",
+            review_period_days=365,
         )
         aging = compute_aging(rule)
         assert not aging.stale
@@ -168,9 +194,13 @@ class TestRuleAging:
         from llm_judge.rules.lifecycle import RuleMeta, compute_aging
 
         rule = RuleMeta(
-            name="test.old", version=1, owner="eval-team",
-            status="production", introduced="2024-01-01",
-            last_reviewed="2024-06-01", review_period_days=180,
+            name="test.old",
+            version=1,
+            owner="eval-team",
+            status="production",
+            introduced="2024-01-01",
+            last_reviewed="2024-06-01",
+            review_period_days=180,
         )
         aging = compute_aging(rule)
         assert aging.stale
@@ -181,9 +211,13 @@ class TestRuleAging:
         from llm_judge.rules.lifecycle import RuleMeta, compute_aging
 
         rule = RuleMeta(
-            name="test.dep", version=1, owner="eval-team",
-            status="deprecated", introduced="2025-01-01",
-            deprecated_at="2025-01-15", deprecation_warning_days=30,
+            name="test.dep",
+            version=1,
+            owner="eval-team",
+            status="deprecated",
+            introduced="2025-01-01",
+            deprecated_at="2025-01-15",
+            deprecation_warning_days=30,
         )
         aging = compute_aging(rule)
         assert aging.deprecated
@@ -195,8 +229,11 @@ class TestRuleAging:
         from llm_judge.rules.lifecycle import RuleMeta, _today, compute_aging
 
         rule = RuleMeta(
-            name="test.recent_dep", version=1, owner="eval-team",
-            status="deprecated", introduced="2025-01-01",
+            name="test.recent_dep",
+            version=1,
+            owner="eval-team",
+            status="deprecated",
+            introduced="2025-01-01",
             deprecated_at=str(_today() - timedelta(days=5)),
             deprecation_warning_days=30,
         )
@@ -224,15 +261,21 @@ class TestRuleAging:
 
         audit = tmp_path / "audit.jsonl"
         append_audit_entry(
-            rule_id="test.rule", action="created", actor="ci",
+            rule_id="test.rule",
+            action="created",
+            actor="ci",
             audit_path=audit,
         )
         append_audit_entry(
-            rule_id="test.rule", action="reviewed", actor="eng",
+            rule_id="test.rule",
+            action="reviewed",
+            actor="eng",
             audit_path=audit,
         )
         append_audit_entry(
-            rule_id="other.rule", action="deprecated", actor="ci",
+            rule_id="other.rule",
+            action="deprecated",
+            actor="ci",
             audit_path=audit,
         )
 
@@ -247,6 +290,7 @@ class TestRuleAging:
 # EPIC 6.1: Multi-dimensional Drift
 # =====================================================================
 
+
 class TestDriftDetection:
     """Heartbeat check and cross-dimensional correlation."""
 
@@ -256,11 +300,13 @@ class TestDriftDetection:
 
         reg = tmp_path / "events.jsonl"
         append_event(
-            event_type="eval_run", source="test",
+            event_type="eval_run",
+            source="test",
             registry_path=reg,
         )
         result = _heartbeat_check(
-            heartbeat_max_hours=72, event_registry_path=reg,
+            heartbeat_max_hours=72,
+            event_registry_path=reg,
         )
         assert result["ok"]
 
@@ -270,7 +316,8 @@ class TestDriftDetection:
         reg = tmp_path / "events.jsonl"
         reg.write_text("")
         result = _heartbeat_check(
-            heartbeat_max_hours=72, event_registry_path=reg,
+            heartbeat_max_hours=72,
+            event_registry_path=reg,
         )
         assert not result["ok"]
 
@@ -280,14 +327,20 @@ class TestDriftDetection:
 
         reg = tmp_path / "events.jsonl"
         append_event(
-            event_type="rule_change", source="test", registry_path=reg,
+            event_type="rule_change",
+            source="test",
+            registry_path=reg,
         )
         append_event(
-            event_type="baseline_promotion", source="test", registry_path=reg,
+            event_type="baseline_promotion",
+            source="test",
+            registry_path=reg,
         )
         # eval_run should NOT be returned by correlation
         append_event(
-            event_type="eval_run", source="test", registry_path=reg,
+            event_type="eval_run",
+            source="test",
+            registry_path=reg,
         )
 
         correlated = _correlate_with_events(
@@ -306,7 +359,11 @@ class TestDriftDetection:
 
         reg = tmp_path / "events.jsonl"
         _emit_drift_alert(
-            report={"policy": {"policy_id": "test"}, "latest_run": {"run_id": "r1"}, "status": "FAIL"},
+            report={
+                "policy": {"policy_id": "test"},
+                "latest_run": {"run_id": "r1"},
+                "status": "FAIL",
+            },
             violations=["Metric drop: f1_fail"],
             correlated_events=[],
             event_registry_path=reg,
@@ -329,6 +386,7 @@ class TestDriftDetection:
 # EPIC 6.2: Causation & Response
 # =====================================================================
 
+
 class TestCausationAndResponse:
     """Causation analysis, response classification, and lifecycle."""
 
@@ -338,7 +396,9 @@ class TestCausationAndResponse:
 
         reg = tmp_path / "events.jsonl"
         append_event(
-            event_type="rule_change", source="test", registry_path=reg,
+            event_type="rule_change",
+            source="test",
+            registry_path=reg,
         )
 
         report = build_causation_report(
@@ -359,7 +419,11 @@ class TestCausationAndResponse:
         ]
         result = classify_response_actions(
             violations=violations,
-            response_actions={"f1_fail": "block", "f1_pass": "warn", "recall_fail": "log"},
+            response_actions={
+                "f1_fail": "block",
+                "f1_pass": "warn",
+                "recall_fail": "log",
+            },
         )
         assert len(result["block"]) == 1
         assert len(result["warn"]) == 1
@@ -395,30 +459,40 @@ class TestCausationAndResponse:
 
         # Transition through lifecycle
         t1 = transition_drift_issue(
-            issue_id=issue["issue_id"], to_state="triaged",
-            actor="eng", note="Investigating",
-            issues_path=issues, event_registry_path=events,
+            issue_id=issue["issue_id"],
+            to_state="triaged",
+            actor="eng",
+            note="Investigating",
+            issues_path=issues,
+            event_registry_path=events,
         )
         assert t1["state"] == "triaged"
 
         t2 = transition_drift_issue(
-            issue_id=issue["issue_id"], to_state="responding",
-            actor="eng", note="Rolling back",
-            issues_path=issues, event_registry_path=events,
+            issue_id=issue["issue_id"],
+            to_state="responding",
+            actor="eng",
+            note="Rolling back",
+            issues_path=issues,
+            event_registry_path=events,
         )
         assert t2["state"] == "responding"
 
         t3 = transition_drift_issue(
-            issue_id=issue["issue_id"], to_state="resolved",
-            actor="eng", note="Metrics recovered",
-            issues_path=issues, event_registry_path=events,
+            issue_id=issue["issue_id"],
+            to_state="resolved",
+            actor="eng",
+            note="Metrics recovered",
+            issues_path=issues,
+            event_registry_path=events,
         )
         assert t3["state"] == "resolved"
         assert len(t3["history"]) == 4
 
         # Verify all lifecycle events emitted
         responses = query_events(
-            event_type="drift_response", registry_path=events,
+            event_type="drift_response",
+            registry_path=events,
         )
         assert len(responses) == 4  # created + 3 transitions
 
@@ -440,13 +514,17 @@ class TestCausationAndResponse:
 
         # detected → resolved (allowed)
         transition_drift_issue(
-            issue_id=issue["issue_id"], to_state="resolved",
-            issues_path=issues, event_registry_path=events,
+            issue_id=issue["issue_id"],
+            to_state="resolved",
+            issues_path=issues,
+            event_registry_path=events,
         )
 
         # resolved → detected (not allowed — terminal)
         with pytest.raises(ValueError, match="Invalid transition"):
             transition_drift_issue(
-                issue_id=issue["issue_id"], to_state="detected",
-                issues_path=issues, event_registry_path=events,
+                issue_id=issue["issue_id"],
+                to_state="detected",
+                issues_path=issues,
+                event_registry_path=events,
             )

@@ -55,7 +55,9 @@ class BaselineRef:
     source_run_dir: str
 
     def snapshot_dir(self, baselines_dir: Path) -> Path:
-        return baselines_dir / self.suite / self.rubric_id / "snapshots" / self.baseline_id
+        return (
+            baselines_dir / self.suite / self.rubric_id / "snapshots" / self.baseline_id
+        )
 
 
 class BaselineError(Exception):
@@ -228,6 +230,7 @@ def validate_run_artifacts(
 # Baseline integrity validation (P0 governance)
 # ---------------------------------------------------------------------------
 
+
 def _parse_latest_json(latest_path: Path) -> dict[str, Any]:
     _require_file(latest_path, "Baseline validation")
     try:
@@ -247,7 +250,9 @@ def _extract_baseline_id(latest: dict[str, Any]) -> str:
         v = latest.get(key)
         if isinstance(v, str) and v.strip():
             return v.strip()
-    raise BaselineIntegrityError("latest.json missing baseline identifier (baseline_id/latest/snapshot_id)")
+    raise BaselineIntegrityError(
+        "latest.json missing baseline identifier (baseline_id/latest/snapshot_id)"
+    )
 
 
 def validate_baseline_snapshot_dir(snapshot_dir: Path) -> None:
@@ -263,7 +268,9 @@ def validate_baseline_snapshot_dir(snapshot_dir: Path) -> None:
     required = ["manifest.json", "metrics.json", "judgments.jsonl"]
     missing = [name for name in required if not (snapshot_dir / name).exists()]
     if missing:
-        raise BaselineIntegrityError(f"Snapshot missing required files: {missing} in {snapshot_dir}")
+        raise BaselineIntegrityError(
+            f"Snapshot missing required files: {missing} in {snapshot_dir}"
+        )
 
     # Lightweight sanity checks: non-empty artifacts
     if _count_jsonl_lines(snapshot_dir / "judgments.jsonl") <= 0:
@@ -300,7 +307,9 @@ def validate_latest_baseline(
     snapshot_dir = baselines_dir / suite / rubric_id / "snapshots" / baseline_id
 
     if not snapshot_dir.exists() or not snapshot_dir.is_dir():
-        raise BaselineIntegrityError(f"latest.json points to missing snapshot dir: {snapshot_dir}")
+        raise BaselineIntegrityError(
+            f"latest.json points to missing snapshot dir: {snapshot_dir}"
+        )
 
     validate_baseline_snapshot_dir(snapshot_dir)
     return snapshot_dir
@@ -309,14 +318,17 @@ def validate_latest_baseline(
 def _iter_latest_files(baselines_dir: Path) -> Iterable[Path]:
     return baselines_dir.resolve().rglob("latest.json")
 
+
 def _read_yaml(path: Path) -> dict[str, Any]:
     with path.open("r", encoding="utf-8") as f:
         data = yaml.safe_load(f)
     return data if isinstance(data, dict) else {}
 
+
 # ---------------------------------------------------------------------------
 # Baseline creation / listing / show (existing behavior)
 # ---------------------------------------------------------------------------
+
 
 def create_baseline_from_run(
     *,
@@ -404,7 +416,9 @@ def find_latest_run(prefix: str, runs_dir: Path = DEFAULT_RUNS_DIR) -> Path:
     matches = sorted(runs_dir.glob(f"{prefix}*"), reverse=True)
 
     if not matches:
-        raise FileNotFoundError(f"No runs found matching prefix '{prefix}' in {runs_dir}")
+        raise FileNotFoundError(
+            f"No runs found matching prefix '{prefix}' in {runs_dir}"
+        )
 
     # Return most recent (sorted descending by name, which includes timestamp)
     return matches[0]
@@ -454,6 +468,7 @@ def get_baseline_info(
 # =============================================================================
 # CLI Interface
 # =============================================================================
+
 
 def _cmd_create(args: argparse.Namespace) -> int:
     """Handle 'create' subcommand."""
@@ -552,7 +567,10 @@ def _cmd_validate(args: argparse.Namespace) -> int:
             return 0
 
         if not args.suite or not args.rubric_id:
-            print("Error: Must pass --suite and --rubric-id (or use --all)", file=sys.stderr)
+            print(
+                "Error: Must pass --suite and --rubric-id (or use --all)",
+                file=sys.stderr,
+            )
             return 1
 
         snap = validate_latest_baseline(
@@ -582,8 +600,12 @@ def _cmd_promote(args: argparse.Namespace) -> int:
         if args.dry_run:
             print(f"Dry run complete: {ref.suite}/{ref.rubric_id}")
         else:
-            print(f"Baseline promoted: baselines/{ref.suite}/{ref.rubric_id}/snapshots/{ref.baseline_id}")
-            print(f"Latest updated:    baselines/{ref.suite}/{ref.rubric_id}/latest.json")
+            print(
+                f"Baseline promoted: baselines/{ref.suite}/{ref.rubric_id}/snapshots/{ref.baseline_id}"
+            )
+            print(
+                f"Latest updated:    baselines/{ref.suite}/{ref.rubric_id}/latest.json"
+            )
         return 0
     except BaselineError as e:
         print(f"Error: {e}", file=sys.stderr)
@@ -602,7 +624,8 @@ def main(argv: list[str] | None = None) -> int:
         help="Root directory for baselines (default: baselines/)",
     )
     parser.add_argument(
-        "-v", "--verbose",
+        "-v",
+        "--verbose",
         action="store_true",
         help="Enable verbose logging",
     )
@@ -613,13 +636,21 @@ def main(argv: list[str] | None = None) -> int:
     create_parser = subparsers.add_parser("create", help="Create baseline from a run")
     create_parser.add_argument("--run-dir", help="Path to run directory")
     create_parser.add_argument("--latest", help="Use latest run matching this prefix")
-    create_parser.add_argument("--runs-dir", default="reports/runs", help="Runs directory")
+    create_parser.add_argument(
+        "--runs-dir", default="reports/runs", help="Runs directory"
+    )
     create_parser.add_argument("--suite", help="Override suite name")
     create_parser.add_argument("--rubric-id", help="Override rubric ID")
     create_parser.add_argument("--baseline-id", help="Override baseline ID")
-    create_parser.add_argument("--no-latest", action="store_true", help="Don't update latest.json")
-    create_parser.add_argument("--overwrite", action="store_true", help="Overwrite existing baseline")
-    create_parser.add_argument("--min-cases", type=int, default=1, help="Minimum cases required")
+    create_parser.add_argument(
+        "--no-latest", action="store_true", help="Don't update latest.json"
+    )
+    create_parser.add_argument(
+        "--overwrite", action="store_true", help="Overwrite existing baseline"
+    )
+    create_parser.add_argument(
+        "--min-cases", type=int, default=1, help="Minimum cases required"
+    )
     create_parser.set_defaults(func=_cmd_create)
 
     # list subcommand
@@ -634,20 +665,36 @@ def main(argv: list[str] | None = None) -> int:
     show_parser.set_defaults(func=_cmd_show)
 
     # validate subcommand
-    validate_parser = subparsers.add_parser("validate", help="Validate baseline integrity")
+    validate_parser = subparsers.add_parser(
+        "validate", help="Validate baseline integrity"
+    )
     validate_parser.add_argument("--suite", help="Suite name (required unless --all)")
-    validate_parser.add_argument("--rubric-id", help="Rubric ID (required unless --all)")
-    validate_parser.add_argument("--all", action="store_true", help="Validate all latest.json pointers found")
+    validate_parser.add_argument(
+        "--rubric-id", help="Rubric ID (required unless --all)"
+    )
+    validate_parser.add_argument(
+        "--all", action="store_true", help="Validate all latest.json pointers found"
+    )
     validate_parser.set_defaults(func=_cmd_validate)
 
     # promote subcommand
-    promote_parser = subparsers.add_parser("promote", help="Policy-gated baseline promotion")
+    promote_parser = subparsers.add_parser(
+        "promote", help="Policy-gated baseline promotion"
+    )
     promote_parser.add_argument("--run-dir", required=True, help="Eval run output dir")
     promote_parser.add_argument("--policy", required=True, help="Promotion policy YAML")
-    promote_parser.add_argument("--baselines-dir", default="baselines", help="Baselines root (default: baselines)")
+    promote_parser.add_argument(
+        "--baselines-dir",
+        default="baselines",
+        help="Baselines root (default: baselines)",
+    )
     promote_parser.add_argument("--suite", help="Suite override (optional)")
     promote_parser.add_argument("--rubric-id", help="Rubric override (optional)")
-    promote_parser.add_argument("--dry-run", action="store_true", help="Evaluate policy but do not write snapshot")
+    promote_parser.add_argument(
+        "--dry-run",
+        action="store_true",
+        help="Evaluate policy but do not write snapshot",
+    )
     promote_parser.set_defaults(func=_cmd_promote)
 
     args = parser.parse_args(argv)
@@ -660,7 +707,9 @@ def main(argv: list[str] | None = None) -> int:
     return args.func(args)
 
 
-def _policy_check(*, policy: dict[str, Any], diff_summary: dict[str, Any]) -> tuple[bool, list[str]]:
+def _policy_check(
+    *, policy: dict[str, Any], diff_summary: dict[str, Any]
+) -> tuple[bool, list[str]]:
     violations: list[str] = []
 
     required = policy.get("required_metrics") or []
@@ -700,12 +749,15 @@ def _policy_check(*, policy: dict[str, Any], diff_summary: dict[str, Any]) -> tu
             max_flips = int(max_flips_any)
             flips = diff_summary.get("judgments", {}).get("decision_flips", [])
             if isinstance(flips, list) and len(flips) > max_flips:
-                violations.append(f"Too many decision flips: {len(flips)} (max={max_flips})")
+                violations.append(
+                    f"Too many decision flips: {len(flips)} (max={max_flips})"
+                )
         except Exception:
             pass
 
     return (len(violations) == 0), violations
-    
+
+
 def promote_baseline_from_run(
     *,
     run_dir: Path,
@@ -715,7 +767,11 @@ def promote_baseline_from_run(
     rubric_id: str | None = None,
     dry_run: bool = False,
 ) -> BaselineRef:
-    from llm_judge.eval.diff import compute_diff_summary, resolve_baseline, resolve_run_dir
+    from llm_judge.eval.diff import (
+        compute_diff_summary,
+        resolve_baseline,
+        resolve_run_dir,
+    )
 
     manifest = validate_run_artifacts(run_dir)
 
@@ -733,7 +789,9 @@ def promote_baseline_from_run(
     if latest_path.exists():
         baseline_run = resolve_baseline(latest_path)
         candidate_run = resolve_run_dir(run_dir)
-        diff_summary = compute_diff_summary(baseline=baseline_run, candidate=candidate_run)
+        diff_summary = compute_diff_summary(
+            baseline=baseline_run, candidate=candidate_run
+        )
 
         ok, violations = _policy_check(policy=policy, diff_summary=diff_summary)
         if not ok:
@@ -743,7 +801,11 @@ def promote_baseline_from_run(
             raise BaselineError(f"Missing latest baseline pointer: {latest_path}")
 
     if dry_run:
-        print("Promotion decision: PASS (dry-run)" if diff_summary is not None else "Promotion decision: PASS (no prior baseline)")
+        print(
+            "Promotion decision: PASS (dry-run)"
+            if diff_summary is not None
+            else "Promotion decision: PASS (no prior baseline)"
+        )
         return BaselineRef(
             suite=suite_eff,
             rubric_id=rubric_eff,
@@ -790,7 +852,7 @@ def promote_baseline_from_run(
         logger.warning("Could not emit baseline_promotion event to event registry")
 
     return ref
-    
+
 
 if __name__ == "__main__":
     sys.exit(main())

@@ -29,9 +29,9 @@ class RuleMeta:
 
     # Aging fields (optional — backward compatible)
     review_period_days: int = DEFAULT_REVIEW_PERIOD_DAYS
-    last_reviewed: str | None = None       # ISO date: "2026-03-06"
-    deprecated_at: str | None = None       # ISO date when deprecated
-    deprecation_warning_days: int = 30     # grace period before enforcement
+    last_reviewed: str | None = None  # ISO date: "2026-03-06"
+    deprecated_at: str | None = None  # ISO date when deprecated
+    deprecation_warning_days: int = 30  # grace period before enforcement
 
 
 def _read_yaml(path: Path) -> dict[str, Any]:
@@ -66,9 +66,15 @@ def load_manifest(path: Path = MANIFEST_PATH) -> dict[str, RuleMeta]:
             owner=str(meta["owner"]),
             status=str(meta["status"]),
             introduced=str(meta["introduced"]),
-            review_period_days=int(meta.get("review_period_days", DEFAULT_REVIEW_PERIOD_DAYS)),
-            last_reviewed=str(meta["last_reviewed"]) if meta.get("last_reviewed") else None,
-            deprecated_at=str(meta["deprecated_at"]) if meta.get("deprecated_at") else None,
+            review_period_days=int(
+                meta.get("review_period_days", DEFAULT_REVIEW_PERIOD_DAYS)
+            ),
+            last_reviewed=(
+                str(meta["last_reviewed"]) if meta.get("last_reviewed") else None
+            ),
+            deprecated_at=(
+                str(meta["deprecated_at"]) if meta.get("deprecated_at") else None
+            ),
             deprecation_warning_days=int(meta.get("deprecation_warning_days", 30)),
         )
 
@@ -104,6 +110,7 @@ def discover_runtime_rules() -> set[str]:
 # Aging & Deprecation (EPIC 3.2)
 # =====================================================================
 
+
 def _parse_date(s: str) -> date | None:
     """Parse ISO date string (YYYY-MM-DD). Returns None on failure."""
     try:
@@ -120,6 +127,7 @@ def _today() -> date:
 @dataclass(frozen=True)
 class AgingReport:
     """Aging status for a single rule."""
+
     rule_name: str
     status: str
     introduced: str
@@ -136,7 +144,11 @@ def compute_aging(rule: RuleMeta) -> AgingReport:
     today = _today()
 
     # Determine review anchor: last_reviewed if set, otherwise introduced
-    review_anchor = _parse_date(rule.last_reviewed) if rule.last_reviewed else _parse_date(rule.introduced)
+    review_anchor = (
+        _parse_date(rule.last_reviewed)
+        if rule.last_reviewed
+        else _parse_date(rule.introduced)
+    )
     days_since = (today - review_anchor).days if review_anchor else None
 
     stale = False
@@ -187,6 +199,7 @@ def get_deprecated_enforced_rules(path: Path = MANIFEST_PATH) -> set[str]:
 # =====================================================================
 # Audit Trail (EPIC 3.1)
 # =====================================================================
+
 
 def _utc_now_iso() -> str:
     return (
@@ -263,7 +276,9 @@ def list_rules() -> None:
         r = manifest_rules[name]
         in_runtime = "yes" if name in runtime_rules else "no"
         aging = compute_aging(r)
-        days_str = str(aging.days_since_review) if aging.days_since_review is not None else "?"
+        days_str = (
+            str(aging.days_since_review) if aging.days_since_review is not None else "?"
+        )
         stale_str = "YES" if aging.stale else ("-" if aging.deprecated else "no")
         print(
             f"{r.name:28} "
@@ -308,12 +323,16 @@ def validate_rules() -> None:
     # Runtime rule exists but not governed
     missing_in_manifest = sorted(runtime_rules - manifest_rule_names)
     for name in missing_in_manifest:
-        errors.append(f"{name}: present in RULE_REGISTRY but missing in rules/manifest.yaml")
+        errors.append(
+            f"{name}: present in RULE_REGISTRY but missing in rules/manifest.yaml"
+        )
 
     # Manifest rule does not exist in code/registry
     missing_in_runtime = sorted(manifest_rule_names - runtime_rules)
     for name in missing_in_runtime:
-        errors.append(f"{name}: present in rules/manifest.yaml but missing in RULE_REGISTRY")
+        errors.append(
+            f"{name}: present in rules/manifest.yaml but missing in RULE_REGISTRY"
+        )
 
     if errors:
         print("Rule lifecycle validation FAILED")
@@ -349,11 +368,15 @@ def check_rules_governed() -> list[str]:
 
     # Rules in code but not governed
     for name in sorted(runtime_rules - manifest_rule_names):
-        errors.append(f"Ungoverned rule: '{name}' exists in code but not in rules/manifest.yaml")
+        errors.append(
+            f"Ungoverned rule: '{name}' exists in code but not in rules/manifest.yaml"
+        )
 
     # Rules declared but missing from code
     for name in sorted(manifest_rule_names - runtime_rules):
-        errors.append(f"Stale manifest entry: '{name}' in rules/manifest.yaml but not in RULE_REGISTRY")
+        errors.append(
+            f"Stale manifest entry: '{name}' in rules/manifest.yaml but not in RULE_REGISTRY"
+        )
 
     # Metadata quality
     for r in manifest_rules.values():
@@ -363,7 +386,9 @@ def check_rules_governed() -> list[str]:
     return errors
 
 
-def emit_rule_snapshot(*, actor: str = "system", registry_path: Path | None = None) -> None:
+def emit_rule_snapshot(
+    *, actor: str = "system", registry_path: Path | None = None
+) -> None:
     """
     EPIC-5.1: Record current rule state as a governance event.
 
@@ -436,12 +461,18 @@ def export_json(out_path: Path) -> None:
 
 
 def main() -> int:
-    parser = argparse.ArgumentParser(description="Rule lifecycle management for LLM-Judge.")
+    parser = argparse.ArgumentParser(
+        description="Rule lifecycle management for LLM-Judge."
+    )
     sub = parser.add_subparsers(dest="cmd")
 
-    sub.add_parser("list", help="List rules from manifest with runtime presence and aging")
+    sub.add_parser(
+        "list", help="List rules from manifest with runtime presence and aging"
+    )
     sub.add_parser("validate", help="Validate manifest + runtime rule alignment")
-    sub.add_parser("aging", help="Show rule aging report (stale rules, deprecation status)")
+    sub.add_parser(
+        "aging", help="Show rule aging report (stale rules, deprecation status)"
+    )
 
     p = sub.add_parser("export-json", help="Export lifecycle metadata as JSON")
     p.add_argument("--out", required=True)
@@ -471,9 +502,15 @@ def main() -> int:
         print("-" * 90)
         stale_count = 0
         for r in reports:
-            days_str = str(r.days_since_review) if r.days_since_review is not None else "?"
+            days_str = (
+                str(r.days_since_review) if r.days_since_review is not None else "?"
+            )
             stale_str = "YES" if r.stale else "no"
-            dep_str = "ENFORCED" if r.deprecation_enforced else ("warning" if r.deprecated else "-")
+            dep_str = (
+                "ENFORCED"
+                if r.deprecation_enforced
+                else ("warning" if r.deprecated else "-")
+            )
             if r.stale:
                 stale_count += 1
             print(
@@ -511,6 +548,7 @@ def main() -> int:
 
     parser.print_help()
     return 1
+
 
 if __name__ == "__main__":
     raise SystemExit(main())

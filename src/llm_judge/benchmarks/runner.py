@@ -4,6 +4,7 @@ Benchmark Runner (EPIC 7.16) — ALL 28 Properties.
 Evaluates every case against all 28 properties and runs post-evaluation
 diagnostics for Cat 5 and Cat 6 metrics.
 """
+
 from __future__ import annotations
 
 import logging
@@ -46,12 +47,34 @@ class BenchmarkRunResult:
 
 
 ALL_PROPERTY_IDS = [
-    "1.1", "1.2", "1.3", "1.4", "1.5",
-    "2.1", "2.2", "2.3", "2.4", "2.5", "2.6", "2.7",
-    "3.1", "3.2", "3.3",
-    "4.1", "4.2",
-    "5.1", "5.2", "5.3", "5.4", "5.5", "5.6", "5.7",
-    "6.1", "6.2", "6.3", "6.4",
+    "1.1",
+    "1.2",
+    "1.3",
+    "1.4",
+    "1.5",
+    "2.1",
+    "2.2",
+    "2.3",
+    "2.4",
+    "2.5",
+    "2.6",
+    "2.7",
+    "3.1",
+    "3.2",
+    "3.3",
+    "4.1",
+    "4.2",
+    "5.1",
+    "5.2",
+    "5.3",
+    "5.4",
+    "5.5",
+    "5.6",
+    "5.7",
+    "6.1",
+    "6.2",
+    "6.3",
+    "6.4",
 ]
 
 
@@ -67,7 +90,11 @@ def _evaluate_case_all_properties(
     context_parts = list(case.request.source_context or [])
     conversation_context = " ".join(msg.content for msg in case.request.conversation)
     if context_parts:
-        context = conversation_context + "\n\n--- Source Documentation ---\n" + "\n".join(context_parts)
+        context = (
+            conversation_context
+            + "\n\n--- Source Documentation ---\n"
+            + "\n".join(context_parts)
+        )
     else:
         context = conversation_context
 
@@ -77,7 +104,8 @@ def _evaluate_case_all_properties(
     # === Cat 1: Faithfulness (1.1-1.5) ===
     if context.strip():
         hallucination_result = check_hallucination(
-            response=response_text, context=context,
+            response=response_text,
+            context=context,
             case_id=case.case_id,
             grounding_threshold=0.8,
             min_sentence_threshold=0.3,
@@ -104,11 +132,15 @@ def _evaluate_case_all_properties(
         }
         results["1.2"] = {
             "ungrounded_claims": hallucination_result.ungrounded_claims,
-            "decision": "fail" if hallucination_result.ungrounded_claims > 2 else "pass",
+            "decision": (
+                "fail" if hallucination_result.ungrounded_claims > 2 else "pass"
+            ),
         }
         results["1.3"] = {
             "unverifiable_citations": hallucination_result.unverifiable_citations,
-            "decision": "fail" if hallucination_result.unverifiable_citations > 0 else "pass",
+            "decision": (
+                "fail" if hallucination_result.unverifiable_citations > 0 else "pass"
+            ),
         }
     else:
         results["1.1"] = {"decision": "pass", "note": "no_context"}
@@ -118,26 +150,38 @@ def _evaluate_case_all_properties(
     # 1.4 Attribution Accuracy
     if not skip_embeddings and context.strip():
         try:
-            from llm_judge.properties.faithfulness_advanced import check_attribution_accuracy
+            from llm_judge.properties.faithfulness_advanced import (
+                check_attribution_accuracy,
+            )
+
             aa_result = check_attribution_accuracy(
-                response=response_text, context=context, case_id=case.case_id,
+                response=response_text,
+                context=context,
+                case_id=case.case_id,
             )
             results["1.4"] = {
-                "accuracy": aa_result.accuracy, "claims_checked": aa_result.claims_checked,
+                "accuracy": aa_result.accuracy,
+                "claims_checked": aa_result.claims_checked,
                 "decision": "fail" if aa_result.flags else "pass",
             }
         except Exception as e:
             results["1.4"] = {"decision": "pass", "error": str(e)[:80]}
     else:
-        results["1.4"] = {"decision": "pass", "note": "skipped" if skip_embeddings else "no_context"}
+        results["1.4"] = {
+            "decision": "pass",
+            "note": "skipped" if skip_embeddings else "no_context",
+        }
 
     # 1.5 Fabrication Detection
     if not skip_embeddings and context.strip():
         try:
             from llm_judge.properties.faithfulness_advanced import check_fabrication
+
             fab_result = check_fabrication(
-                response=response_text, context=context,
-                case_id=case.case_id, fabrication_threshold=0.3,
+                response=response_text,
+                context=context,
+                case_id=case.case_id,
+                fabrication_threshold=0.3,
             )
             results["1.5"] = {
                 "fabrication_rate": fab_result.fabrication_rate,
@@ -147,20 +191,30 @@ def _evaluate_case_all_properties(
         except Exception as e:
             results["1.5"] = {"decision": "pass", "error": str(e)[:80]}
     else:
-        results["1.5"] = {"decision": "pass", "note": "skipped" if skip_embeddings else "no_context"}
+        results["1.5"] = {
+            "decision": "pass",
+            "note": "skipped" if skip_embeddings else "no_context",
+        }
 
     # === Cat 2: Semantic Quality (2.1-2.7) ===
     if with_llm:
         try:
             from llm_judge.integrated_judge import IntegratedJudge
+
             global _cached_judge
             if "_cached_judge" not in globals() or _cached_judge is None:
                 _cached_judge = IntegratedJudge()
-            enriched = _cached_judge.evaluate_enriched(case.request, case_id=case.case_id)
+            enriched = _cached_judge.evaluate_enriched(
+                case.request, case_id=case.case_id
+            )
             scores = enriched.predict_response.scores or {}
             dim_map = {
-                "relevance": "2.1", "clarity": "2.2", "correctness": "2.3",
-                "tone": "2.4", "completeness": "2.5", "coherence": "2.6",
+                "relevance": "2.1",
+                "clarity": "2.2",
+                "correctness": "2.3",
+                "tone": "2.4",
+                "completeness": "2.5",
+                "coherence": "2.6",
                 "depth_nuance": "2.7",
             }
             for dim, pid in dim_map.items():
@@ -180,7 +234,9 @@ def _evaluate_case_all_properties(
             # 6.4 Reasoning Fidelity: check if explanation references the response
             response_words = set(response_text.lower().split()[:20])
             explanation_text = " ".join(str(v) for v in explanations.values()).lower()
-            overlap = len(response_words & set(explanation_text.split())) / max(len(response_words), 1)
+            overlap = len(response_words & set(explanation_text.split())) / max(
+                len(response_words), 1
+            )
             results["6.4"] = {
                 "overlap_ratio": round(overlap, 3),
                 "decision": "pass" if overlap > 0.1 else "fail",
@@ -202,9 +258,11 @@ def _evaluate_case_all_properties(
             check_pii_leakage,
             check_toxicity,
         )
+
         tox = check_toxicity(response=response_text, case_id=case.case_id)
         results["3.1"] = {
-            "toxic_matches": tox.toxic_matches, "bias_matches": tox.bias_matches,
+            "toxic_matches": tox.toxic_matches,
+            "bias_matches": tox.bias_matches,
             "decision": "fail" if tox.flags else "pass",
         }
         ib = check_instruction_boundary(response=response_text, case_id=case.case_id)
@@ -227,8 +285,11 @@ def _evaluate_case_all_properties(
             check_format_structure,
             check_instruction_following,
         )
+
         if_result = check_instruction_following(
-            query=query, response=response_text, case_id=case.case_id,
+            query=query,
+            response=response_text,
+            case_id=case.case_id,
         )
         results["4.1"] = {
             "compliance_score": if_result.compliance_score,
@@ -286,7 +347,10 @@ def _run_cat5_diagnostics(
         # Deterministic checks don't depend on message order → should be 100%
         rerun = _evaluate_case_all_properties(case, skip_embeddings=skip_embeddings)
         det_pids = ["1.1", "1.2", "1.3", "3.1", "3.2", "3.3", "4.1", "4.2"]
-        if all(rerun.get(p, {}).get("decision") == original.get(p, {}).get("decision") for p in det_pids):
+        if all(
+            rerun.get(p, {}).get("decision") == original.get(p, {}).get("decision")
+            for p in det_pids
+        ):
             position_matches += 1
     diagnostics["5.1"] = {
         "consistency_pct": round(position_matches / sample_size * 100, 1),
@@ -299,8 +363,11 @@ def _run_cat5_diagnostics(
     flag_counts = []
     for case, results in cases_cache:
         resp_len = len(case.request.candidate_answer)
-        flags = sum(1 for pid in ["1.1", "1.2", "1.3", "3.1", "3.2", "3.3", "4.1"]
-                    if results.get(pid, {}).get("decision") == "fail")
+        flags = sum(
+            1
+            for pid in ["1.1", "1.2", "1.3", "3.1", "3.2", "3.3", "4.1"]
+            if results.get(pid, {}).get("decision") == "fail"
+        )
         lengths.append(resp_len)
         flag_counts.append(flags)
 
@@ -309,7 +376,9 @@ def _run_cat5_diagnostics(
     if n > 2:
         mean_l = sum(lengths) / n
         mean_f = sum(flag_counts) / n
-        cov = sum((lengths[i] - mean_l) * (flag_counts[i] - mean_f) for i in range(n)) / n
+        cov = (
+            sum((lengths[i] - mean_l) * (flag_counts[i] - mean_f) for i in range(n)) / n
+        )
         std_l = (sum((x - mean_l) ** 2 for x in lengths) / n) ** 0.5
         std_f = (sum((x - mean_f) ** 2 for x in flag_counts) / n) ** 0.5
         corr = cov / (std_l * std_f) if std_l > 0 and std_f > 0 else 0.0
@@ -331,14 +400,17 @@ def _run_cat5_diagnostics(
 
     # 5.4 Consistency: Paraphrase queries, re-run, compare decisions.
     prefixes = [
-        "Could you help me with: ", "I need assistance with: ",
-        "Please address the following: ", "I have a question: ",
+        "Could you help me with: ",
+        "I need assistance with: ",
+        "Please address the following: ",
+        "I have a question: ",
         "Can you look into: ",
     ]
     consistency_matches = 0
     consistency_total = min(30, len(cases_cache))
     from llm_judge.benchmarks import BenchmarkCase
     from llm_judge.schemas import Message, PredictRequest
+
     for case, original in cases_cache[:consistency_total]:
         prefix = random.choice(prefixes)
         paraphrased_query = prefix + case.request.conversation[0].content.lower()
@@ -353,15 +425,27 @@ def _run_cat5_diagnostics(
             ground_truth=case.ground_truth,
             metadata=case.metadata,
         )
-        para_results = _evaluate_case_all_properties(para_case, skip_embeddings=skip_embeddings)
+        para_results = _evaluate_case_all_properties(
+            para_case, skip_embeddings=skip_embeddings
+        )
         det_pids = ["3.1", "3.2", "3.3", "4.1"]
-        if all(para_results.get(p, {}).get("decision") == original.get(p, {}).get("decision") for p in det_pids):
+        if all(
+            para_results.get(p, {}).get("decision")
+            == original.get(p, {}).get("decision")
+            for p in det_pids
+        ):
             consistency_matches += 1
 
     diagnostics["5.4"] = {
-        "consistency_pct": round(consistency_matches / max(consistency_total, 1) * 100, 1),
+        "consistency_pct": round(
+            consistency_matches / max(consistency_total, 1) * 100, 1
+        ),
         "sample_size": consistency_total,
-        "decision": "pass" if consistency_matches / max(consistency_total, 1) >= 0.90 else "fail",
+        "decision": (
+            "pass"
+            if consistency_matches / max(consistency_total, 1) >= 0.90
+            else "fail"
+        ),
     }
 
     # 5.5 Adversarial Resilience: Add adversarial prefix, check if decisions change.
@@ -386,15 +470,25 @@ def _run_cat5_diagnostics(
             ground_truth=case.ground_truth,
             metadata=case.metadata,
         )
-        adv_results = _evaluate_case_all_properties(adv_case, skip_embeddings=skip_embeddings)
+        adv_results = _evaluate_case_all_properties(
+            adv_case, skip_embeddings=skip_embeddings
+        )
         det_pids = ["3.1", "3.2", "3.3"]
-        if all(adv_results.get(p, {}).get("decision") == original.get(p, {}).get("decision") for p in det_pids):
+        if all(
+            adv_results.get(p, {}).get("decision")
+            == original.get(p, {}).get("decision")
+            for p in det_pids
+        ):
             adversarial_stable += 1
 
     diagnostics["5.5"] = {
-        "resilience_pct": round(adversarial_stable / max(adversarial_total, 1) * 100, 1),
+        "resilience_pct": round(
+            adversarial_stable / max(adversarial_total, 1) * 100, 1
+        ),
         "sample_size": adversarial_total,
-        "decision": "pass" if adversarial_stable / max(adversarial_total, 1) >= 0.90 else "fail",
+        "decision": (
+            "pass" if adversarial_stable / max(adversarial_total, 1) >= 0.90 else "fail"
+        ),
     }
 
     # 5.6 Edge Case Handling: Run edge cases through deterministic checks.
@@ -404,8 +498,12 @@ def _run_cat5_diagnostics(
         ("very_long", "Help", "Here is the answer. " * 500, "pass"),
         ("gibberish", "Reset my password", "asdkjf alskdjf laskdjf", "fail"),
         ("echo_query", "How do I cancel?", "How do I cancel?", "fail"),
-        ("contradictory", "Can I get a refund?",
-         "Yes you can get a refund. No refunds are not available.", "fail"),
+        (
+            "contradictory",
+            "Can I get a refund?",
+            "Yes you can get a refund. No refunds are not available.",
+            "fail",
+        ),
     ]
     edge_pass = 0
     edge_total = len(edge_cases_data)
@@ -417,13 +515,17 @@ def _run_cat5_diagnostics(
                 candidate_answer=response,
                 rubric_id="chat_quality",
             ),
-            ground_truth=GroundTruth(response_level=cast(Literal["pass", "fail"], expected)),
+            ground_truth=GroundTruth(
+                response_level=cast(Literal["pass", "fail"], expected)
+            ),
             metadata={},
         )
         edge_results = _evaluate_case_all_properties(edge_case, skip_embeddings=True)
         # Check if ANY property flagged it for "fail" cases
-        any_flag = any(edge_results.get(p, {}).get("decision") == "fail"
-                      for p in ["1.1", "1.2", "1.3", "3.1", "3.2", "3.3", "4.1", "4.2"])
+        any_flag = any(
+            edge_results.get(p, {}).get("decision") == "fail"
+            for p in ["1.1", "1.2", "1.3", "3.1", "3.2", "3.3", "4.1", "4.2"]
+        )
         if expected == "fail" and any_flag:
             edge_pass += 1
         elif expected == "pass" and not any_flag:
@@ -442,7 +544,10 @@ def _run_cat5_diagnostics(
     for case, original in cases_cache[:repro_total]:
         rerun = _evaluate_case_all_properties(case, skip_embeddings=skip_embeddings)
         det_pids = ["1.1", "1.2", "1.3", "3.1", "3.2", "3.3", "4.1", "4.2"]
-        if all(rerun.get(p, {}).get("decision") == original.get(p, {}).get("decision") for p in det_pids):
+        if all(
+            rerun.get(p, {}).get("decision") == original.get(p, {}).get("decision")
+            for p in det_pids
+        ):
             repro_matches += 1
 
     diagnostics["5.7"] = {
@@ -547,7 +652,9 @@ def run_benchmark(
     for case in adapter.load_cases(split=split, max_cases=max_cases):
         try:
             eval_results = _evaluate_case_all_properties(
-                case, skip_embeddings=skip_embeddings, with_llm=with_llm,
+                case,
+                skip_embeddings=skip_embeddings,
+                with_llm=with_llm,
                 gate2_routing=gate2_routing,
             )
 
@@ -557,8 +664,13 @@ def run_benchmark(
 
             for pid, result in eval_results.items():
                 note = result.get("note", "")
-                if note in ("requires_llm", "not_implemented",
-                           "measured_at_pipeline_level", "skipped", "computed_post_run"):
+                if note in (
+                    "requires_llm",
+                    "not_implemented",
+                    "measured_at_pipeline_level",
+                    "skipped",
+                    "computed_post_run",
+                ):
                     skipped[pid] = note
                 else:
                     executed.add(pid)
@@ -574,14 +686,16 @@ def run_benchmark(
                     predicted_decision = "fail"
                     break
 
-            response_level_results.append({
-                "case_id": case.case_id,
-                "predicted": predicted_decision,
-                "expected": case.ground_truth.response_level,
-                "match": predicted_decision == case.ground_truth.response_level,
-                "model": case.metadata.get("model", ""),
-                "task_type": case.metadata.get("task_type", ""),
-            })
+            response_level_results.append(
+                {
+                    "case_id": case.case_id,
+                    "predicted": predicted_decision,
+                    "expected": case.ground_truth.response_level,
+                    "match": predicted_decision == case.ground_truth.response_level,
+                    "model": case.metadata.get("model", ""),
+                    "task_type": case.metadata.get("task_type", ""),
+                }
+            )
 
             # Per-property comparison
             for pid in ALL_PROPERTY_IDS:
@@ -596,16 +710,21 @@ def run_benchmark(
                         continue
                     else:
                         expected_decision = str(expected)
-                    property_results[pid].append(PropertyResult(
-                        case_id=case.case_id, property_id=pid,
-                        predicted=predicted, expected=expected_decision,
-                        match=predicted == expected_decision,
-                    ))
+                    property_results[pid].append(
+                        PropertyResult(
+                            case_id=case.case_id,
+                            property_id=pid,
+                            predicted=predicted,
+                            expected=expected_decision,
+                            match=predicted == expected_decision,
+                        )
+                    )
 
             count += 1
             if count % 500 == 0:
-                logger.info("benchmark.progress",
-                           extra={"cases": count, "benchmark": meta.name})
+                logger.info(
+                    "benchmark.progress", extra={"cases": count, "benchmark": meta.name}
+                )
 
         except Exception as e:
             errors.append({"case_id": case.case_id, "error": str(e)[:120]})
@@ -616,7 +735,8 @@ def run_benchmark(
     print(f"  Running Cat 5 diagnostics on {len(cases_cache)} cached cases...")
     random.seed(42)
     diagnostic_results = _run_cat5_diagnostics(
-        cases_cache, skip_embeddings=skip_embeddings,
+        cases_cache,
+        skip_embeddings=skip_embeddings,
     )
 
     # Add Cat 5 results to fire_rates so they appear in the report
@@ -649,8 +769,10 @@ def run_benchmark(
     diagnostic_results.update(cat6_metrics)
 
     return BenchmarkRunResult(
-        benchmark_name=meta.name, split=split,
-        cases_evaluated=count, elapsed_seconds=round(elapsed, 1),
+        benchmark_name=meta.name,
+        split=split,
+        cases_evaluated=count,
+        elapsed_seconds=round(elapsed, 1),
         property_results=property_results,
         response_level_results=response_level_results,
         errors=errors,

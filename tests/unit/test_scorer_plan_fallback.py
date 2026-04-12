@@ -7,7 +7,9 @@ from llm_judge.schemas import Message, PredictRequest
 
 
 def test_scorer_hard_fails_on_strong_correctness(monkeypatch) -> None:
-    fake_policy = SimpleNamespace(pass_if_overall_score_gte=3.0, fail_if_any_dimension_lte=2)
+    fake_policy = SimpleNamespace(
+        pass_if_overall_score_gte=3.0, fail_if_any_dimension_lte=2
+    )
     fake_rubric = SimpleNamespace(
         rubric_id="chat_quality", version="v1", decision_policy=fake_policy, rules=None
     )

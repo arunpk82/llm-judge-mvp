@@ -23,6 +23,7 @@ Design rationale
 * **Fallbacks match existing repo layout** — when no env vars are set,
   every path resolves identically to the pre-D1 hardcoded values.
 """
+
 from __future__ import annotations
 
 import os
@@ -32,6 +33,7 @@ from typing import Any
 # =====================================================================
 # Root resolvers
 # =====================================================================
+
 
 def config_root() -> Path:
     """Root directory for configuration files.
@@ -56,6 +58,7 @@ def data_root() -> Path:
 # Sub-directory resolvers
 # =====================================================================
 
+
 def state_root() -> Path:
     """Root for state/report output: ``data_root() / "reports"``."""
     return data_root() / "reports"
@@ -74,6 +77,7 @@ def datasets_root() -> Path:
 # =====================================================================
 # Helpers
 # =====================================================================
+
 
 def ensure_dir(path: Path) -> Path:
     """Create *path* (and parents) if needed, return *path*."""

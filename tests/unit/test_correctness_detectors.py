@@ -24,7 +24,9 @@ def test_detect_unsafe_advice_flags_keywords() -> None:
 
 
 def test_detect_nonsense_flags_absurd_answer_with_low_overlap() -> None:
-    sig = detect_nonsense("How do I reset my router?", "Bananas are yellow and grow in bunches.")
+    sig = detect_nonsense(
+        "How do I reset my router?", "Bananas are yellow and grow in bunches."
+    )
     assert "correctness.nonsense_detected" in sig.flags
 
 

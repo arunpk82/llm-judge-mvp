@@ -7,7 +7,10 @@ from ..base import CorrectnessSignal
 _KNOWN_FACTS = [
     (re.compile(r"\bcapital of france\b", re.IGNORECASE), ["paris"]),
     (re.compile(r"\bcapital of japan\b", re.IGNORECASE), ["tokyo"]),
-    (re.compile(r"\bwhat does http stand for\b", re.IGNORECASE), ["hypertext transfer protocol"]),
+    (
+        re.compile(r"\bwhat does http stand for\b", re.IGNORECASE),
+        ["hypertext transfer protocol"],
+    ),
 ]
 
 

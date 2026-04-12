@@ -31,6 +31,7 @@ KNOWLEDGE BASE:
 Usage:
     python experiments/science_gate_experiment.py
 """
+
 import json
 import sys
 from pathlib import Path
@@ -71,7 +72,9 @@ def run_experiment():
     print("SCIENCE GATE: Does Source Context Improve Grounding Separation?")
     print("=" * 76)
     print("Method: intent-exact-match lookup (NOT RAG retrieval)")
-    print(f"Cases: {len(cases)}  |  Intents: {len(kb)}  |  KB: synthetic_knowledge_base.json")
+    print(
+        f"Cases: {len(cases)}  |  Intents: {len(kb)}  |  KB: synthetic_knowledge_base.json"
+    )
     print()
 
     results_a = []  # Baseline
@@ -88,14 +91,18 @@ def run_experiment():
 
         # A) Baseline: context = user query only
         result_a = check_hallucination(
-            response=answer, context=query, case_id=cid,
+            response=answer,
+            context=query,
+            case_id=cid,
             grounding_threshold=0.3,
         )
 
         # B) With source docs: context = user query + documentation
         enriched_context = f"{query}\n\n--- Source Documentation ---\n{source_doc}"
         result_b = check_hallucination(
-            response=answer, context=enriched_context, case_id=cid,
+            response=answer,
+            context=enriched_context,
+            case_id=cid,
             grounding_threshold=0.3,
         )
 
@@ -105,16 +112,20 @@ def run_experiment():
     # =================================================================
     # Per-case results
     # =================================================================
-    print(f"{'Case':<8} {'Human':<6} {'Corr':<5} {'Ground(A)':<11} {'Ground(B)':<11} "
-          f"{'Delta':<9} {'Intent':<25}")
+    print(
+        f"{'Case':<8} {'Human':<6} {'Corr':<5} {'Ground(A)':<11} {'Ground(B)':<11} "
+        f"{'Delta':<9} {'Intent':<25}"
+    )
     print("-" * 80)
 
     for (cid, human, corr, intent, ra), (_, _, _, _, rb) in zip(results_a, results_b):
         delta = rb.grounding_ratio - ra.grounding_ratio
         marker = " <<<" if cid == "cs_012" else ""
-        print(f"{cid:<8} {human:<6} {corr:<5} {ra.grounding_ratio:<11.4f} "
-              f"{rb.grounding_ratio:<11.4f} {delta:+.4f}   "
-              f"{intent:<25}{marker}")
+        print(
+            f"{cid:<8} {human:<6} {corr:<5} {ra.grounding_ratio:<11.4f} "
+            f"{rb.grounding_ratio:<11.4f} {delta:+.4f}   "
+            f"{intent:<25}{marker}"
+        )
 
     # =================================================================
     # Statistical summary
@@ -130,7 +141,6 @@ def run_experiment():
     cs012_a = [r.grounding_ratio for cid, _, _, _, r in results_a if cid == "cs_012"][0]
     cs012_b = [r.grounding_ratio for cid, _, _, _, r in results_b if cid == "cs_012"][0]
 
-
     print(f"\n{'='*76}")
     print("STATISTICAL SUMMARY")
     print(f"{'='*76}")
@@ -138,9 +148,15 @@ def run_experiment():
     print("\nGrounding Ratio (higher = more grounded):")
     print(f"  {'Group':<25} {'Query Only (A)':<16} {'With Docs (B)':<16} {'Delta':<10}")
     print(f"  {'-'*25} {'-'*16} {'-'*16} {'-'*10}")
-    print(f"  {'Pass cases':<25} {avg(pass_a):<16.4f} {avg(pass_b):<16.4f} {avg(pass_b)-avg(pass_a):+.4f}")
-    print(f"  {'Fail cases':<25} {avg(fail_a):<16.4f} {avg(fail_b):<16.4f} {avg(fail_b)-avg(fail_a):+.4f}")
-    print(f"  {'cs_012 (fabrication)':<25} {cs012_a:<16.4f} {cs012_b:<16.4f} {cs012_b-cs012_a:+.4f}")
+    print(
+        f"  {'Pass cases':<25} {avg(pass_a):<16.4f} {avg(pass_b):<16.4f} {avg(pass_b)-avg(pass_a):+.4f}"
+    )
+    print(
+        f"  {'Fail cases':<25} {avg(fail_a):<16.4f} {avg(fail_b):<16.4f} {avg(fail_b)-avg(fail_a):+.4f}"
+    )
+    print(
+        f"  {'cs_012 (fabrication)':<25} {cs012_a:<16.4f} {cs012_b:<16.4f} {cs012_b-cs012_a:+.4f}"
+    )
 
     gap_a = avg(pass_a) - cs012_a
     gap_b = avg(pass_b) - cs012_b
@@ -153,14 +169,18 @@ def run_experiment():
     # Threshold analysis
     # =================================================================
     print("\nThreshold Analysis (With Source Docs):")
-    print(f"  {'Thresh':<8} {'Pass<T':<10} {'Fail<T':<10} {'cs012<T':<10} {'FP rate':<10}")
+    print(
+        f"  {'Thresh':<8} {'Pass<T':<10} {'Fail<T':<10} {'cs012<T':<10} {'FP rate':<10}"
+    )
     print(f"  {'-'*8} {'-'*10} {'-'*10} {'-'*10} {'-'*10}")
     for t in [0.15, 0.20, 0.25, 0.30, 0.35, 0.40, 0.45, 0.50]:
         pf = sum(1 for g in pass_b if g < t)
         ff = sum(1 for g in fail_b if g < t)
         cf = "YES" if cs012_b < t else "no"
         fp = pf / len(pass_b) if pass_b else 0
-        print(f"  {t:<8.2f} {pf}/{len(pass_b):<7} {ff}/{len(fail_b):<7} {cf:<10} {fp:.1%}")
+        print(
+            f"  {t:<8.2f} {pf}/{len(pass_b):<7} {ff}/{len(fail_b):<7} {cf:<10} {fp:.1%}"
+        )
 
     # =================================================================
     # Verdict
@@ -190,12 +210,27 @@ def run_experiment():
         "retrieval_method": "intent_exact_match",
         "knowledge_base": "synthetic_knowledge_base.json",
         "cases": len(cases),
-        "baseline": {"pass_avg": round(avg(pass_a), 4), "cs012": cs012_a, "gap": round(gap_a, 4)},
-        "with_docs": {"pass_avg": round(avg(pass_b), 4), "cs012": cs012_b, "gap": round(gap_b, 4)},
-        "verdict": "PASS" if (gap_b > gap_a * 2 and gap_b > 0.05) else "MARGINAL" if gap_b > gap_a else "FAIL",
+        "baseline": {
+            "pass_avg": round(avg(pass_a), 4),
+            "cs012": cs012_a,
+            "gap": round(gap_a, 4),
+        },
+        "with_docs": {
+            "pass_avg": round(avg(pass_b), 4),
+            "cs012": cs012_b,
+            "gap": round(gap_b, 4),
+        },
+        "verdict": (
+            "PASS"
+            if (gap_b > gap_a * 2 and gap_b > 0.05)
+            else "MARGINAL" if gap_b > gap_a else "FAIL"
+        ),
         "per_case": [
             {
-                "case_id": cid, "human": h, "correctness": c, "intent": intent,
+                "case_id": cid,
+                "human": h,
+                "correctness": c,
+                "intent": intent,
                 "grounding_baseline": ra.grounding_ratio,
                 "grounding_with_docs": rb.grounding_ratio,
                 "delta": round(rb.grounding_ratio - ra.grounding_ratio, 4),

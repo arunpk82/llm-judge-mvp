@@ -15,7 +15,9 @@ def test_math_basic_allows_correct_addition() -> None:
 
 
 def test_math_basic_ignores_non_math_questions() -> None:
-    sig = detect_math_incorrect("Define blockchain", "Blockchain is a distributed ledger.")
+    sig = detect_math_incorrect(
+        "Define blockchain", "Blockchain is a distributed ledger."
+    )
     assert sig is None
 
 

@@ -13,6 +13,7 @@ Usage:
 
 If intent auto-matching fails, edit MANUAL_INTENT_MAP below.
 """
+
 import json
 import sys
 from difflib import SequenceMatcher
@@ -82,7 +83,9 @@ MANUAL_INTENT_MAP: dict[str, str] = {
 }
 
 
-def auto_match_intent(case_id: str, keywords: list[str], bitext_intents: list[str]) -> str:
+def auto_match_intent(
+    case_id: str, keywords: list[str], bitext_intents: list[str]
+) -> str:
     """Best-effort match of case keywords to Bitext intent names."""
     if case_id in MANUAL_INTENT_MAP:
         return MANUAL_INTENT_MAP[case_id]
@@ -96,8 +99,7 @@ def auto_match_intent(case_id: str, keywords: list[str], bitext_intents: list[st
         # Score: keyword overlap + fuzzy match on intent name
         overlap = len(intent_words & kw_set)
         fuzzy = max(
-            SequenceMatcher(None, kw.lower(), intent.lower()).ratio()
-            for kw in keywords
+            SequenceMatcher(None, kw.lower(), intent.lower()).ratio() for kw in keywords
         )
         score = overlap * 2.0 + fuzzy
         if score > best_score:
@@ -130,7 +132,9 @@ def run_experiment():
     # Load validation cases
     data_path = exp_dir.parent / "cs_validation_scored.jsonl"
     if not data_path.exists():
-        data_path = exp_dir.parent / "datasets" / "validation" / "cs_validation_scored.jsonl"
+        data_path = (
+            exp_dir.parent / "datasets" / "validation" / "cs_validation_scored.jsonl"
+        )
     with open(data_path) as f:
         cases = [json.loads(line) for line in f]
 
@@ -151,7 +155,9 @@ def run_experiment():
             unique_mappings[key] = (cid, intent)
             doc_len = len(kb.get(intent, {}).get("documentation", ""))
             examples = kb.get(intent, {}).get("total_examples", 0)
-            print(f"  {cid} [{','.join(CASE_INTENT_KEYWORDS.get(cid, []))}] → {intent} ({examples} examples, {doc_len} chars)")
+            print(
+                f"  {cid} [{','.join(CASE_INTENT_KEYWORDS.get(cid, []))}] → {intent} ({examples} examples, {doc_len} chars)"
+            )
 
     print(f"\n{'='*72}")
     print("SCIENCE GATE: RAG Context — Bitext Dataset")
@@ -171,14 +177,18 @@ def run_experiment():
 
         # A) Baseline: context = user query only
         result_a = check_hallucination(
-            response=answer, context=query, case_id=cid,
+            response=answer,
+            context=query,
+            case_id=cid,
             grounding_threshold=0.3,
         )
 
         # B) With RAG: context = user query + Bitext documentation
         enriched_context = f"{query}\n\n--- Support Documentation ---\n{source_doc}"
         result_b = check_hallucination(
-            response=answer, context=enriched_context, case_id=cid,
+            response=answer,
+            context=enriched_context,
+            case_id=cid,
             grounding_threshold=0.3,
         )
 
@@ -188,7 +198,9 @@ def run_experiment():
     # =====================================================================
     # Report
     # =====================================================================
-    print(f"{'Case':<8} {'Human':<6} {'Corr':<5} {'Ground(A)':<11} {'Ground(B)':<11} {'Delta':<8} {'Intent':<30}")
+    print(
+        f"{'Case':<8} {'Human':<6} {'Corr':<5} {'Ground(A)':<11} {'Ground(B)':<11} {'Delta':<8} {'Intent':<30}"
+    )
     print("-" * 80)
 
     for (cid, human, corr, ra), (_, _, _, rb) in zip(results_a, results_b):
@@ -225,7 +237,9 @@ def run_experiment():
         return sum(vals) / len(vals) if vals else 0
 
     print("\nGrounding Ratio (higher = more grounded):")
-    print(f"  {'Group':<25} {'Baseline (A)':<15} {'Bitext RAG (B)':<15} {'Improvement':<12}")
+    print(
+        f"  {'Group':<25} {'Baseline (A)':<15} {'Bitext RAG (B)':<15} {'Improvement':<12}"
+    )
     print(f"  {'-'*25} {'-'*15} {'-'*15} {'-'*12}")
     for label, ga, gb in [
         ("All pass cases", pass_a, pass_b),
@@ -234,20 +248,28 @@ def run_experiment():
         ("Low corr (1-2)", low_corr_a, low_corr_b),
     ]:
         print(f"  {label:<25} {avg(ga):<15.4f} {avg(gb):<15.4f} {avg(gb)-avg(ga):+.4f}")
-    print(f"  {'cs_012 (fabrication)':<25} {cs012_a.grounding_ratio:<15.4f} {cs012_b.grounding_ratio:<15.4f} {cs012_b.grounding_ratio-cs012_a.grounding_ratio:+.4f}")
+    print(
+        f"  {'cs_012 (fabrication)':<25} {cs012_a.grounding_ratio:<15.4f} {cs012_b.grounding_ratio:<15.4f} {cs012_b.grounding_ratio-cs012_a.grounding_ratio:+.4f}"
+    )
 
     gap_a = avg(pass_a) - cs012_a.grounding_ratio
     gap_b = avg(pass_b) - cs012_b.grounding_ratio
 
     print("\nSeparation Quality:")
-    print(f"  Baseline:    pass avg={avg(pass_a):.4f}, cs_012={cs012_a.grounding_ratio:.4f}, gap={gap_a:+.4f}")
-    print(f"  Bitext RAG:  pass avg={avg(pass_b):.4f}, cs_012={cs012_b.grounding_ratio:.4f}, gap={gap_b:+.4f}")
+    print(
+        f"  Baseline:    pass avg={avg(pass_a):.4f}, cs_012={cs012_a.grounding_ratio:.4f}, gap={gap_a:+.4f}"
+    )
+    print(
+        f"  Bitext RAG:  pass avg={avg(pass_b):.4f}, cs_012={cs012_b.grounding_ratio:.4f}, gap={gap_b:+.4f}"
+    )
     if gap_a != 0:
         print(f"  Improvement: {gap_b/gap_a:.1f}x better separation")
 
     print("\nThreshold Analysis (With Bitext RAG):")
     thresholds = [0.15, 0.2, 0.25, 0.3, 0.35, 0.4, 0.45, 0.5, 0.55, 0.6]
-    print(f"  {'Thresh':<8} {'Pass flag':<12} {'Fail flag':<12} {'cs012':<8} {'LowCorr flag':<14} {'FP rate':<10}")
+    print(
+        f"  {'Thresh':<8} {'Pass flag':<12} {'Fail flag':<12} {'cs012':<8} {'LowCorr flag':<14} {'FP rate':<10}"
+    )
     print(f"  {'-'*8} {'-'*12} {'-'*12} {'-'*8} {'-'*14} {'-'*10}")
     for t in thresholds:
         pf = sum(1 for r in pass_b if r.grounding_ratio < t)
@@ -255,7 +277,9 @@ def run_experiment():
         cf = "YES" if cs012_b.grounding_ratio < t else "no"
         lcf = sum(1 for r in low_corr_b if r.grounding_ratio < t)
         fp_rate = pf / len(pass_b) if pass_b else 0
-        print(f"  {t:<8.2f} {pf}/{len(pass_b):<9} {ff}/{len(fail_b):<9} {cf:<8} {lcf}/{len(low_corr_b):<11} {fp_rate:<10.1%}")
+        print(
+            f"  {t:<8.2f} {pf}/{len(pass_b):<9} {ff}/{len(fail_b):<9} {cf:<8} {lcf}/{len(low_corr_b):<11} {fp_rate:<10.1%}"
+        )
 
     # =====================================================================
     # Verdict
@@ -266,7 +290,7 @@ def run_experiment():
     if improved:
         print("VERDICT: PASS")
         print(f"  Separation gap: baseline={gap_a:+.4f} → Bitext RAG={gap_b:+.4f}")
-        ratio = gap_b / gap_a if gap_a != 0 else float('inf')
+        ratio = gap_b / gap_a if gap_a != 0 else float("inf")
         print(f"  Improvement: {ratio:.0f}x better separation")
         print("  Proceed to Step 3 (Vision & Maturity).")
     else:
@@ -290,7 +314,9 @@ def run_experiment():
         "verdict": "PASS" if improved else "FAIL",
         "per_case": [
             {
-                "case_id": cid, "human": h, "correctness": c,
+                "case_id": cid,
+                "human": h,
+                "correctness": c,
                 "intent": case_intents[cid],
                 "grounding_baseline": ra.grounding_ratio,
                 "grounding_rag": rb.grounding_ratio,

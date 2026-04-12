@@ -11,6 +11,7 @@ Design decisions:
   - Each adapter declares which properties it can validate
   - Published baselines carried as metadata for comparison
 """
+
 from __future__ import annotations
 
 from abc import ABC, abstractmethod
@@ -23,6 +24,7 @@ from llm_judge.schemas import PredictRequest
 @dataclass
 class SpanAnnotation:
     """Word-level hallucination annotation from benchmark ground truth."""
+
     start: int
     end: int
     text: str
@@ -37,6 +39,7 @@ class GroundTruth:
     Rich enough for span-level evaluation (Cat 1.2–1.5),
     works with response-level binary for simpler benchmarks.
     """
+
     response_level: Literal["pass", "fail"]
     property_labels: dict[str, Any] = field(default_factory=dict)
     span_annotations: list[SpanAnnotation] = field(default_factory=list)
@@ -46,6 +49,7 @@ class GroundTruth:
 @dataclass
 class BenchmarkCase:
     """A single test case from a benchmark dataset."""
+
     case_id: str
     request: PredictRequest
     ground_truth: GroundTruth
@@ -55,6 +59,7 @@ class BenchmarkCase:
 @dataclass
 class PublishedBaseline:
     """Published baseline result for comparison."""
+
     method: str
     metric: str
     value: float
@@ -64,6 +69,7 @@ class PublishedBaseline:
 @dataclass
 class BenchmarkMetadata:
     """Metadata about a benchmark dataset."""
+
     name: str
     version: str
     citation: str
@@ -89,7 +95,10 @@ class BenchmarkAdapter(ABC):
 
     @abstractmethod
     def load_cases(
-        self, *, split: str = "test", max_cases: int | None = None,
+        self,
+        *,
+        split: str = "test",
+        max_cases: int | None = None,
     ) -> Iterator[BenchmarkCase]:
         """Yield benchmark cases in platform-native format.
 

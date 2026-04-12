@@ -12,6 +12,7 @@ Usage:
 Output:
     experiments/bitext_knowledge_base.json
 """
+
 import json
 from collections import defaultdict
 from pathlib import Path
@@ -93,7 +94,9 @@ def main():
     print("\nAvailable intents for mapping:")
     for intent in sorted(knowledge_base.keys()):
         info = knowledge_base[intent]
-        print(f"  {intent:<40} ({info['total_examples']:>4} examples, cat: {info['category']})")
+        print(
+            f"  {intent:<40} ({info['total_examples']:>4} examples, cat: {info['category']})"
+        )
 
 
 if __name__ == "__main__":

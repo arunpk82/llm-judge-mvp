@@ -21,7 +21,7 @@ env:
 
 jobs:
   code-quality:
-    name: Code Quality & Unit Tests
+    name: test
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4

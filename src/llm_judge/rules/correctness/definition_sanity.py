@@ -28,7 +28,9 @@ def _normalize(text: str) -> str:
 
 
 @register("correctness.definition_sanity")
-def correctness_definition_sanity(ctx: RuleContext, params: dict[str, Any]) -> RuleResult:
+def correctness_definition_sanity(
+    ctx: RuleContext, params: dict[str, Any]
+) -> RuleResult:
     """Catch obvious definition failures.
 
     Goal: close false negatives where the assistant produces definition-shaped text
