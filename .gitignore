@@ -39,3 +39,5 @@ reports/runs/
 *.zip:Zone.Identifier
 *.Zone.Identifier
 *:Zone.Identifier
+*.zip
+*.Zone.Identifier
