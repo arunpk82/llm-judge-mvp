@@ -343,5 +343,5 @@ class TestProductionConfig:
             pytest.skip("Production config not found (expected in repo root)")
         cfg = load_pipeline_config(prod_path)
         assert cfg.layers.l1_enabled is True
-        assert cfg.l3_method == "minicheck_deberta"
+        assert cfg.l3_method == "fact_counting"  # Wave C: ADR-0027 flip
         assert cfg.config_hash  # non-empty
