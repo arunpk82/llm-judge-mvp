@@ -4,7 +4,7 @@ L2 Patterns — Multi-Pass Knowledge Graph Ensemble.
 New module for the hallucination pipeline. Lives alongside hallucination.py.
 Called from check_hallucination() when L2 patterns layer is enabled.
 
-Replaces old L3 GraphRAG (_l3_graphrag_check) with:
+Supersedes the legacy _l3_graphrag_check (removed in Wave A per ADR-0029) with:
   - 5 graph builders (G1 entities, G2 events, G3 relationships, G4 numbers, G5 negations)
   - spaCy SVO parsing with pronoun resolution, passive voice, verb synonyms
   - Per-graph traversal (G2, G3, G4, G5)
@@ -898,7 +898,7 @@ def l2_ensemble_check(
 ) -> dict:
     """L2 Patterns: Ensemble graph traversal for a single sentence.
 
-    This replaces the old _l3_graphrag_check() in hallucination.py.
+    This supersedes the legacy _l3_graphrag_check() (removed per ADR-0029).
 
     Args:
         sentence: Response sentence to verify.

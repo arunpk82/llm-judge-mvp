@@ -17,8 +17,8 @@ sys.path.insert(0, str(Path(__file__).resolve().parent.parent / "src"))
 
 from llm_judge.benchmarks.ragtruth import RAGTruthAdapter
 from llm_judge.calibration.hallucination import (
-    _l0_deterministic_match,
-    _l1_gate1_check,
+    _l1_substring_match,
+    _l3_minilm_gate_check,
     _split_sentences,
 )
 
@@ -80,9 +80,9 @@ def label_sentences(response, span_annotations, response_level):
 
 def run_minicheck(sentence, source_doc):
     try:
-        from llm_judge.calibration.hallucination import _l2a_minicheck_score
+        from llm_judge.calibration.hallucination import _l3_minicheck_score
 
-        return _l2a_minicheck_score(sentence, source_doc)
+        return _l3_minicheck_score(sentence, source_doc)
     except Exception:
         return -1.0
 
@@ -235,7 +235,7 @@ def main():
         ctx_sents = _split_sentences(source)
 
         # L1: case-level
-        g1_dec, g1_ratio, g1_min = _l1_gate1_check(response, source)
+        g1_dec, g1_ratio, g1_min = _l3_minilm_gate_check(response, source)
         if g1_dec == "pass":
             stats.l1_pass += 1
         elif g1_dec == "fail":
@@ -249,7 +249,7 @@ def main():
             sent = sl["sentence"]
 
             # L0
-            l0 = _l0_deterministic_match(sent, ctx_sents, source)
+            l0 = _l1_substring_match(sent, ctx_sents, source)
             if l0:
                 l0_m += 1
                 stats.l0_total += 1

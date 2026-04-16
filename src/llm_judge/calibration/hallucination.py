@@ -33,13 +33,54 @@ from typing import Any
 
 logger = logging.getLogger(__name__)
 
-# Sentence splitter
-_SENTENCE_SPLIT = re.compile(r"(?<=[.!?])\s+")
+# Sentence splitter — spaCy primary, regex fallback (loud).
+# spaCy doc.sents handles abbreviations ("J. Paul Getty"), titles
+# ("Dr. Smith"), and initials ("D. C.") that the regex breaks on.
+# See ADR-0014 (spaCy sentence splitting) and EPIC D1.2.
+_SENTENCE_SPLIT_REGEX_FALLBACK = re.compile(r"(?<=[.!?])\s+")
+_SPACY_FAIL_LOGGED: bool = False
 
 
 def _split_sentences(text: str) -> list[str]:
-    """Split text into sentences, filtering short fragments."""
-    sentences = _SENTENCE_SPLIT.split(text.strip())
+    """Split text into sentences using spaCy; fall back to regex on failure.
+
+    spaCy ``doc.sents`` correctly handles abbreviations ("J. Paul Getty"),
+    titles ("Dr. Smith"), and initials ("D. C."). The legacy regex
+    splitter breaks on these and produces false positive hallucination
+    flags downstream (e.g., RAGTruth case 6).
+
+    On spaCy load failure, falls back to regex with a one-time WARNING
+    log so the degraded mode is visible in CI and production logs.
+    Filters fragments shorter than 11 characters (legacy behavior).
+    """
+    global _SPACY_FAIL_LOGGED
+
+    text = text.strip()
+    if not text:
+        return []
+
+    nlp = None
+    try:
+        _load_spacy()
+        nlp = _spacy_nlp
+    except Exception as e:
+        if not _SPACY_FAIL_LOGGED:
+            logger.warning(
+                "spaCy unavailable for sentence splitting (%s: %s). "
+                "Falling back to regex splitter; abbreviations like "
+                "'J. Paul Getty' will be mis-split, producing false "
+                "positives. Install: python -m spacy download en_core_web_sm",
+                type(e).__name__,
+                str(e)[:120],
+            )
+            _SPACY_FAIL_LOGGED = True
+
+    if nlp is not None:
+        doc = nlp(text)
+        return [s.text.strip() for s in doc.sents if len(s.text.strip()) > 10]
+
+    # Fallback path — abbreviation false positives expected.
+    sentences = _SENTENCE_SPLIT_REGEX_FALLBACK.split(text)
     return [s.strip() for s in sentences if len(s.strip()) > 10]
 
 
@@ -105,7 +146,7 @@ class HallucinationResult:
 # --- L0: Deterministic text match ---
 
 
-def _l0_deterministic_match(
+def _l1_substring_match(
     sentence: str, source_sentences: list[str], source_full: str
 ) -> bool:
     """
@@ -138,7 +179,7 @@ def _l0_deterministic_match(
 # --- L1: Gate 1 MiniLM embeddings ---
 
 
-def _l1_gate1_check(
+def _l3_minilm_gate_check(
     response: str,
     context: str,
     *,
@@ -254,7 +295,7 @@ def _load_minicheck() -> None:
     _mc_model.eval()
 
 
-def _l2a_minicheck(sentence: str, source_doc: str) -> bool:
+def _l3_minicheck(sentence: str, source_doc: str) -> bool:
     """
     L2a: MiniCheck factual consistency check.
     Takes full source document + claim sentence. Returns True if supported.
@@ -307,7 +348,7 @@ def _load_nli():
     ]
 
 
-def _l2_nli_check(
+def _l3_deberta_nli(
     sentence: str, context_sentences: list[str], ctx_embeddings: Any, resp_emb: Any
 ) -> bool:
     """
@@ -347,13 +388,18 @@ def _l2_nli_check(
     return best_entailment > 0.7
 
 
-# --- L3: GraphRAG spaCy SVO exact match ---
+# --- spaCy lazy-loader (used by L2 ensemble and the sentence splitter) ---
 
 _spacy_nlp: Any = None
 
 
 def _load_spacy():
-    """Lazy-load spaCy model (~50MB)."""
+    """Lazy-load spaCy model (~50MB).
+
+    Raises on failure so callers can decide their own fallback policy.
+    The sentence splitter catches and falls back to regex; L2 ensemble
+    catches and skips the L2 layer.
+    """
     global _spacy_nlp
     if _spacy_nlp is not None:
         return
@@ -361,55 +407,6 @@ def _load_spacy():
     import spacy
 
     _spacy_nlp = spacy.load("en_core_web_sm")
-
-
-def _l3_graphrag_check(sentence: str, source_doc: str) -> bool:
-    """
-    L3: spaCy SVO triplet exact match.
-    Confirmed: handles 17% of sentences (Experiment 12).
-    Returns True if sentence is confirmed grounded via exact match.
-    """
-    _load_spacy()
-
-    try:
-        from llm_judge.benchmarks.graphrag_science_gate import (
-            _entity_overlap,
-            extract_svo_triplets,
-        )
-
-        resp_triplets = extract_svo_triplets(sentence, _spacy_nlp)
-        src_triplets = extract_svo_triplets(source_doc, _spacy_nlp)
-
-        # Filter intransitive triplets
-        resp_triplets = [t for t in resp_triplets if t.obj != "(intransitive)"]
-        src_triplets = [t for t in src_triplets if t.obj != "(intransitive)"]
-
-        if not resp_triplets:
-            return False
-
-        all_matched = True
-        has_any = False
-
-        for rt in resp_triplets:
-            found = False
-            for st in src_triplets:
-                subj_sim = _entity_overlap(rt.subject, st.subject)
-                obj_sim = _entity_overlap(rt.obj, st.obj)
-                pred_sim = _entity_overlap(rt.predicate, st.predicate)
-                score = (subj_sim + obj_sim) / 2
-                if score >= 0.5 and pred_sim >= 0.5:
-                    found = True
-                    break
-            if found:
-                has_any = True
-            else:
-                all_matched = False
-
-        return has_any and all_matched
-
-    except (ImportError, Exception) as e:
-        logger.debug(f"l3_graphrag.skip: {str(e)[:60]}")
-        return False
 
 
 # --- L4: Gemini per-sentence reasoning ---
@@ -571,8 +568,8 @@ def check_hallucination(
         "L2": 0,
         "L2_flagged": 0,
         "L3_gate1_fail": 0,
-        "L3a_minicheck": 0,
-        "L3b_nli": 0,
+        "L3_minicheck": 0,
+        "L3_deberta": 0,
         "L4_supported": 0,
         "L4_unsupported": 0,
     }
@@ -593,7 +590,7 @@ def check_hallucination(
     l1_resolved = set()
     if l1_enabled:
         for i, sent in enumerate(resp_sents):
-            if _l0_deterministic_match(sent, ctx_sents, source_doc):
+            if _l1_substring_match(sent, ctx_sents, source_doc):
                 l1_resolved.add(i)
                 layer_stats["L1"] += 1
                 sentence_results.append(
@@ -680,7 +677,7 @@ def check_hallucination(
     min_sim = 1.0
 
     if l3_enabled:
-        gate1_decision, grounding, min_sim = _l1_gate1_check(
+        gate1_decision, grounding, min_sim = _l3_minilm_gate_check(
             response,
             context,
             grounding_threshold=grounding_threshold,
@@ -766,15 +763,15 @@ def check_hallucination(
         # L3a: MiniCheck (primary classifier — 78% coverage, Exp 17b)
         if l3_enabled:
             try:
-                if _l2a_minicheck(sent, source_doc):
-                    layer_stats["L3a_minicheck"] = (
-                        layer_stats.get("L3a_minicheck", 0) + 1
+                if _l3_minicheck(sent, source_doc):
+                    layer_stats["L3_minicheck"] = (
+                        layer_stats.get("L3_minicheck", 0) + 1
                     )
                     sentence_results.append(
                         SentenceLayerResult(
                             sentence_idx=i,
                             sentence=sent[:120],
-                            resolved_by="L3a_minicheck",
+                            resolved_by="L3_minicheck",
                         )
                     )
                     continue
@@ -784,13 +781,13 @@ def check_hallucination(
             # L3b: NLI DeBERTa ENTAILMENT (fallback — catches 10 more, Exp 17b)
             if resp_embs and resp_embs[i] is not None and ctx_embs:
                 try:
-                    if _l2_nli_check(sent, ctx_sents, ctx_embs, resp_embs[i]):
-                        layer_stats["L3b_nli"] = layer_stats.get("L3b_nli", 0) + 1
+                    if _l3_deberta_nli(sent, ctx_sents, ctx_embs, resp_embs[i]):
+                        layer_stats["L3_deberta"] = layer_stats.get("L3_deberta", 0) + 1
                         sentence_results.append(
                             SentenceLayerResult(
                                 sentence_idx=i,
                                 sentence=sent[:120],
-                                resolved_by="L3b_nli",
+                                resolved_by="L3_deberta",
                             )
                         )
                         continue
