@@ -1,0 +1,25 @@
+# Trivy suppressions for llm-judge-mvp
+#
+# Each entry must include:
+#   - CVE ID
+#   - Date added (YYYY-MM-DD)
+#   - Justification: why the finding is not exploitable in our context
+#   - Re-review date (typically +90 days)
+#
+# This file is a temporary suppression mechanism. The
+# project will migrate to OpenVEX statements before customer launch
+# (target: pre-launch security workstream, see SECURITY.md once published).
+
+# CVE-2026-32274 — black 22.3.0 arbitrary file write in cache handling
+# Added: 2026-04-16
+# Re-review: 2026-07-16
+# Justification: black is not an installed dependency. The flagged file is
+#   spaCy's bundled test fixture at .venv/lib/python3.11/site-packages/spacy/
+#   tests/package/requirements.txt. This requirements.txt is reference data
+#   for spaCy's own internal package tests; it is not parsed, installed, or
+#   executed by any code path in this project. The vulnerable black version
+#   is never loaded into our process.
+# Upstream: spaCy ships test fixtures in its production wheel. A long-term
+#   fix is to file an issue with spaCy requesting test/ exclusion from the
+#   production distribution.
+CVE-2026-32274
