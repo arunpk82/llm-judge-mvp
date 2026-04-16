@@ -21,7 +21,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parent.parent / "src"))
 
 from llm_judge.benchmarks.ragtruth import RAGTruthAdapter
 from llm_judge.calibration.hallucination import (
-    _l0_deterministic_match,
+    _l1_substring_match,
     _split_sentences,
 )
 
@@ -185,7 +185,7 @@ def main():
             l2_result = {}
 
             # === L1: Rules ===
-            a1 = _l0_deterministic_match(sent, src_sents, source)
+            a1 = _l1_substring_match(sent, src_sents, source)
             b_flags = _l1_b_flags(sent, source)
             l1_result = {"a1": a1, "b_flags": b_flags}
 

@@ -61,7 +61,7 @@ def main() -> None:
     if args.no_minicheck:
         import llm_judge.calibration.hallucination as hal
 
-        hal._l2a_minicheck = lambda sentence, source_doc: False
+        hal._l3_minicheck = lambda sentence, source_doc: False
         hal._load_minicheck = lambda: None
         print("MiniCheck DISABLED — using DeBERTa NLI only")
 
