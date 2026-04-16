@@ -761,9 +761,84 @@ def check_hallucination(
     # Flagged sentences from L1 (B-flags) and L2 cascade to L3 for verification
     resolved = l1_resolved | l2_grounded  # NOT l2_flagged — those cascade
 
-    resp_embs: list[Any] = []
-    ctx_embs: list[Any] = []
-    if l3_enabled:
+    # Resolve L3 method from config (ADR-0027)
+    l3_method = "minicheck_deberta"  # default
+    fc_clear_threshold = 0.80  # Exp 43: ratio >= 0.80 = auto-clear
+    if config is not None:
+        l3_method = config.l3_method
+        fc_clear_threshold = config.thresholds.fact_counting_clear
+
+    has_unsupported = False
+
+    if l3_enabled and l3_method == "fact_counting":
+        # ---- L3 FACT-COUNTING PATH (ADR-0027) ----
+        # Exp 43: 76% auto-clear at 100% grounding precision, 0 FN.
+        # Ratio = supported/total. >= threshold → GROUNDED (auto-clear).
+        # < threshold → escalate to L4 or flag.
+        from llm_judge.calibration.fact_counting import check_fact_counting
+
+        layer_stats["L3_fact_counting_clear"] = 0
+        layer_stats["L3_fact_counting_flag"] = 0
+        layer_stats["L3_fact_counting_error"] = 0
+
+        for i, sent in enumerate(resp_sents):
+            if i in resolved:
+                continue
+
+            fc_result = check_fact_counting(
+                sent, source_doc, threshold=fc_clear_threshold,
+            )
+
+            if fc_result.error:
+                layer_stats["L3_fact_counting_error"] += 1
+                # Error → sentence remains unresolved, falls through to L4
+                sentence_results.append(
+                    SentenceLayerResult(
+                        sentence_idx=i,
+                        sentence=sent[:120],
+                        resolved_by="L3_fc_error",
+                        detail=fc_result.error[:100],
+                    )
+                )
+            elif fc_result.auto_clear:
+                # Ratio >= threshold → GROUNDED (100% precision, Exp 43)
+                resolved.add(i)
+                layer_stats["L3_fact_counting_clear"] += 1
+                sentence_results.append(
+                    SentenceLayerResult(
+                        sentence_idx=i,
+                        sentence=sent[:120],
+                        resolved_by="L3_fact_counting",
+                        detail=f"ratio={fc_result.ratio:.3f},sup={fc_result.supported}/{fc_result.total}",
+                    )
+                )
+                continue
+            else:
+                # Ratio < threshold → flag, escalate to L4
+                layer_stats["L3_fact_counting_flag"] += 1
+                detail_parts = []
+                if fc_result.contradicted > 0:
+                    detail_parts.append(f"contradicted={fc_result.contradicted}")
+                if fc_result.shifted > 0:
+                    detail_parts.append(f"shifted={fc_result.shifted}")
+                if fc_result.not_found > 0:
+                    detail_parts.append(f"not_found={fc_result.not_found}")
+                detail_parts.append(f"ratio={fc_result.ratio:.3f}")
+                sentence_results.append(
+                    SentenceLayerResult(
+                        sentence_idx=i,
+                        sentence=sent[:120],
+                        resolved_by="L3_fc_flagged",
+                        detail=",".join(detail_parts),
+                    )
+                )
+                flags.append(f"l3_fc_flagged:{sent[:60]}")
+                # Falls through to L4 below
+
+    elif l3_enabled and l3_method == "minicheck_deberta":
+        # ---- L3 MINICHECK+DEBERTA PATH (legacy, flag-gated via ADR-0027) ----
+        resp_embs: list[Any] = []
+        ctx_embs: list[Any] = []
         try:
             from llm_judge.properties import get_embedding_provider
 
@@ -773,14 +848,11 @@ def check_hallucination(
         except Exception:
             resp_embs = [None] * len(resp_sents)
 
-    has_unsupported = False
+        for i, sent in enumerate(resp_sents):
+            if i in resolved:
+                continue
 
-    for i, sent in enumerate(resp_sents):
-        if i in resolved:
-            continue
-
-        # L3a: MiniCheck (primary classifier — 78% coverage, Exp 17b)
-        if l3_enabled:
+            # L3a: MiniCheck (primary classifier — 78% coverage, Exp 17b)
             try:
                 if _l3_minicheck(sent, source_doc):
                     layer_stats["L3_minicheck"] = (
@@ -793,6 +865,7 @@ def check_hallucination(
                             resolved_by="L3_minicheck",
                         )
                     )
+                    resolved.add(i)
                     continue
             except Exception as e:
                 logger.debug(f"l3a_minicheck.error: {str(e)[:60]}")
@@ -809,10 +882,17 @@ def check_hallucination(
                                 resolved_by="L3_deberta",
                             )
                         )
+                        resolved.add(i)
                         continue
                 except Exception as e:
                     logger.debug(f"l3b_nli.error: {str(e)[:60]}")
 
+    # -- L4: Per-sentence LLM reasoning (for sentences not resolved by L1-L3) --
+    for i, sent in enumerate(resp_sents):
+        if i in resolved:
+            continue
+
+        decision = "supported"  # default if L4 disabled
         # L4: Gemini per-sentence reasoning (last resort)
         if l4_enabled:
             decision = _l4_gemini_check(sent, source_doc, case_id)

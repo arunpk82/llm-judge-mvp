@@ -29,10 +29,11 @@ layers:
   l4_enabled: false   # Not yet validated at sentence level (ADR-0007)
 
 # --- L3 method selection (ADR-0027) ---
-# "minicheck_deberta" — current production: MiniCheck primary + DeBERTa fallback
-# "fact_counting"     — Exp 43 validated: 76% auto-clear at 100% precision
-#                        (Wave C will port this from experiments/ to src/)
-l3_method: minicheck_deberta
+# "minicheck_deberta" — legacy: MiniCheck primary + DeBERTa fallback
+#                        (flag-gated, exercised by CI dark canaries per ADR-0028)
+# "fact_counting"     — production: Exp 43 validated, 76% auto-clear at 100% precision
+#                        Decomposes sentences into facts, computes supported/total ratio
+l3_method: fact_counting
 
 # --- Numeric thresholds ---
 thresholds:
