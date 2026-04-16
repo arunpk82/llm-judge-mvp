@@ -641,6 +641,24 @@ def check_hallucination(
     l2_flagged = set()  # Flagged cascades to L3 with evidence (cascade rule)
     l2_graphs = knowledge_graphs
 
+    # Graph cache lookup (ADR-0025): if no fact_tables provided,
+    # check the cache using source document hash. Cache hit = free L2.
+    if l2_enabled and fact_tables is None and knowledge_graphs is None and source_doc:
+        try:
+            from llm_judge.calibration.graph_cache import get_graph_cache
+
+            cache = get_graph_cache()
+            cached = cache.get(source_doc)
+            if cached is not None:
+                fact_tables = cached
+                layer_stats["L2_cache_hit"] = 1
+                logger.debug("l2.cache_hit")
+            else:
+                layer_stats["L2_cache_miss"] = 1
+                logger.debug("l2.cache_miss")
+        except Exception as e:
+            logger.debug(f"l2.cache_error: {str(e)[:60]}")
+
     if l2_enabled and (fact_tables or knowledge_graphs):
         try:
             from llm_judge.calibration.hallucination_graphs import (
