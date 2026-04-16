@@ -16,6 +16,7 @@ from llm_judge.calibration.hallucination import (
     HallucinationResult,
     check_hallucination,
 )
+from llm_judge.calibration.pipeline_config import PipelineConfig, get_pipeline_config
 from llm_judge.calibration.prompts import PromptTemplate, load_latest_prompt
 from llm_judge.judge_base import JudgeEngine
 from llm_judge.llm_judge import LLMJudge
@@ -195,11 +196,13 @@ class IntegratedJudge(JudgeEngine):
         timeout_ms: int | None = None,
         registry: PropertyRegistry | None = None,
         context_retriever: Any | None = None,
+        pipeline_config: PipelineConfig | None = None,
     ) -> None:
         self._engine = engine
         self._timeout_ms = timeout_ms
         self._registry = registry
         self._context_retriever = context_retriever
+        self._pipeline_config = pipeline_config
         self._llm_judge: LLMJudge | None = None
         self._prompt: PromptTemplate | None = None
 
@@ -242,6 +245,8 @@ class IntegratedJudge(JudgeEngine):
                         )
             except Exception as exc:
                 logger.info("retriever.not_available", extra={"reason": str(exc)[:80]})
+        if self._pipeline_config is None:
+            self._pipeline_config = get_pipeline_config()
 
     def evaluate(self, request: PredictRequest) -> PredictResponse:
         enriched = self.evaluate_enriched(request)
@@ -331,6 +336,7 @@ class IntegratedJudge(JudgeEngine):
                     case_id=case_id,
                     grounding_threshold=gt,
                     max_ungrounded_claims=mc,
+                    config=self._pipeline_config,
                 )
                 for pn, pc in basic_faith.items():
                     pf: list[str] = []

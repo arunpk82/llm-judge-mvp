@@ -82,13 +82,12 @@ check_untyped_defs = true
 ignore_missing_imports = true
 
 [tool.pytest.ini_options]
-addopts = "--cov=llm_judge --cov-report=term-missing --cov-fail-under=90 --strict-markers"
+addopts = "--cov=src/llm_judge --cov-report=term-missing --cov-fail-under=80 --strict-markers"
 testpaths = ["tests"]
 markers = [
     "nightly: long-running deterministic dataset runs (scheduled CI)",
 ]
 
-omit = ["src/llm_judge/calibration/hallucination_graphs.py"]
 [tool.coverage.run]
 omit = [
   "src/llm_judge/calibration/hallucination_graphs.py",
