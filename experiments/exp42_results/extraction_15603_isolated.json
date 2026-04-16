@@ -1,0 +1,63 @@
+{
+  "stories": [
+    {
+      "thread": "Current Explosion Incident",
+      "story": "An explosion at a controversial chemical plant in China's southeastern Fujian province hurt six people and sparked a huge fire. The blast occurred Monday night at an oil storage facility after an oil leak. Five out of six injured people were hurt by broken glass and sent to the hospital for treatment. More than 600 firefighters were sent to battle the blaze, which was under control by Tuesday morning. Local media has not reported any toxic chemical spill.",
+      "key_facts": [
+        "Six people were hurt after an explosion at a chemical plant in Fujian province.",
+        "The blast occurred Monday night at an oil storage facility after an oil leak.",
+        "Five out of six injured people were hurt by broken glass and sent to the hospital.",
+        "More than 600 firefighters battled the blaze, which was under control by Tuesday morning."
+      ],
+      "explicit_unknowns": [
+        "Whether there was a toxic chemical spill has not been reported by local media."
+      ]
+    },
+    {
+      "thread": "Plant Details and Product",
+      "story": "The chemical plant, located in Zhangzhou city, produces paraxylene (PX). PX is a reportedly carcinogenic chemical. It is used in the production of polyester films and fabrics.",
+      "key_facts": [
+        "The plant is located in Zhangzhou city.",
+        "It produces paraxylene (PX).",
+        "PX is a reportedly carcinogenic chemical.",
+        "PX is used in the production of polyester films and fabrics."
+      ],
+      "explicit_unknowns": [
+        "The definitive carcinogenic nature of PX is not stated, only that it is 'reportedly carcinogenic'."
+      ]
+    },
+    {
+      "thread": "Public Reaction to Explosion",
+      "story": "Residents living close to the plant heard the explosion. They took to Weibo to post photos of the fire. One user specifically wrote that he heard a loud blast and felt slight tremors.",
+      "key_facts": [
+        "Residents living near the plant heard the explosion.",
+        "Residents posted photos of the fire on Weibo.",
+        "One user reported hearing a loud blast and feeling slight tremors."
+      ],
+      "explicit_unknowns": []
+    },
+    {
+      "thread": "Previous Plant Explosion",
+      "story": "The Zhangzhou plant was hit by another explosion in July 2013. At that time, there were no reports of casualties or toxic leaks.",
+      "key_facts": [
+        "The plant experienced another explosion in July 2013.",
+        "There were no reports of casualties or toxic leaks from the 2013 incident."
+      ],
+      "explicit_unknowns": [
+        "Whether there were actual casualties or toxic leaks in July 2013 is unknown, as there were no reports of them."
+      ]
+    },
+    {
+      "thread": "PX Plant Controversies and Relocation",
+      "story": "The construction of PX plants has sparked protests in several Chinese cities in recent years, which have occasionally turned violent. Demonstrations are illegal in China. The Zhangzhou plant was originally slated for Xiamen, a densely populated city. However, it provoked an angry backlash in 2007 due to pollution concerns, prompting the local government to relocate the factory to its current, more remote location.",
+      "key_facts": [
+        "Construction of PX plants has sparked protests in several Chinese cities.",
+        "These protests have occasionally turned violent, despite demonstrations being illegal in China.",
+        "The Zhangzhou plant was originally planned for Xiamen, a densely populated city.",
+        "An angry backlash in 2007 due to pollution concerns led to the plant's relocation to its current, more remote location."
+      ],
+      "explicit_unknowns": []
+    }
+  ],
+  "_elapsed": 20.0
+}

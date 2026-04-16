@@ -1,0 +1,90 @@
+{
+  "experiment": "exp33_optimized_extraction",
+  "model": "gemma-4-31b-it",
+  "timestamp": "2026-04-13T01:12:34Z",
+  "elapsed_s": 1334.5,
+  "n_sources": 2,
+  "phases_run": [
+    "c"
+  ],
+  "techniques": {
+    "T1": "spaCy NER pre-seeding",
+    "T2": "Chained P1\u2192P2/P3 extraction",
+    "T3": "Self-verification loop (P2b)",
+    "T4": "JSON mode (responseMimeType)"
+  },
+  "baseline_avg": {
+    "total_items": 206.0,
+    "entities": 65.5,
+    "events": 59.0,
+    "relationships": 44.0
+  },
+  "results": {
+    "c": [
+      {
+        "source_idx": 0,
+        "case_ids": [
+          "ragtruth_24",
+          "ragtruth_25",
+          "ragtruth_26",
+          "ragtruth_27",
+          "ragtruth_28",
+          "ragtruth_29"
+        ],
+        "metrics": {
+          "entities": 36,
+          "events": 35,
+          "relationships": 39,
+          "numerical_facts": 11,
+          "temporal_facts": 8,
+          "negations": 1,
+          "absent_info": 1,
+          "corrections": 1,
+          "boundaries": 4,
+          "total_items": 136,
+          "passes_ok": 5
+        },
+        "times": {
+          "P1_entities": 103.88,
+          "P2_events": 101.1,
+          "P3_relationships": 132.12,
+          "P4_numbers": 99.84,
+          "P5_negations": 34.55,
+          "P2b_verify": 83.41
+        }
+      },
+      {
+        "source_idx": 1,
+        "case_ids": [
+          "ragtruth_42",
+          "ragtruth_43",
+          "ragtruth_44",
+          "ragtruth_45",
+          "ragtruth_46",
+          "ragtruth_47"
+        ],
+        "metrics": {
+          "entities": 54,
+          "events": 61,
+          "relationships": 44,
+          "numerical_facts": 18,
+          "temporal_facts": 4,
+          "negations": 5,
+          "absent_info": 2,
+          "corrections": 3,
+          "boundaries": 4,
+          "total_items": 195,
+          "passes_ok": 5
+        },
+        "times": {
+          "P1_entities": 154.42,
+          "P2_events": 194.86,
+          "P3_relationships": 132.45,
+          "P4_numbers": 124.16,
+          "P5_negations": 56.61,
+          "P2b_verify": 116.96
+        }
+      }
+    ]
+  }
+}

@@ -1,0 +1,85 @@
+{
+  "stories": [
+    {
+      "thread": "Narrator's historical role and dismay at Rand Paul's candidacy",
+      "story": "When I was elected to the Kentucky State Senate in 1967, I became the first woman and the first person of color to serve in the body. Five decades later, I find it almost unfathomable that a politician from my own state, Rand Paul, is attempting to launch his presidential campaign on a record that includes questioning landmark voting rights and civil rights legislation. Rand Paul today declared he's running for president of the United States.",
+      "key_facts": [
+        "Narrator was elected to the Kentucky State Senate in 1967",
+        "Narrator was the first woman and first person of color to serve in the Kentucky State Senate",
+        "Rand Paul, a politician from Kentucky, is launching his presidential campaign",
+        "Rand Paul's record includes questioning landmark voting rights and civil rights legislation",
+        "Rand Paul declared his presidential candidacy today"
+      ],
+      "explicit_unknowns": [
+        "Narrator's name is not stated"
+      ]
+    },
+    {
+      "thread": "Rand Paul's campaign messaging versus reality",
+      "story": "Rand Paul, who today declared he's running for president of the United States, had his campaign team tell reporters last week that his campaign announcement message would be about \"expanding the Republican Party\" and a message of inclusion. However, those of us listening today, whom Rand Paul is hoping to include, heard nothing more than hype. I'm not buying Rand Paul's message.",
+      "key_facts": [
+        "Rand Paul declared his presidential candidacy today",
+        "Rand Paul's campaign team told reporters last week about his message",
+        "Rand Paul's message was about \"expanding the Republican Party\" and inclusion",
+        "The narrator perceives Rand Paul's message as hype"
+      ],
+      "explicit_unknowns": []
+    },
+    {
+      "thread": "Rand Paul's image versus his policy commitments",
+      "story": "Since coming to the U.S. Senate, Rand Paul has tried to sell himself as a different type of Republican and brand himself as the GOP's minority outreach candidate. The problem for Rand Paul, a U.S. Senator, and the GOP at large, is that they don't back up their words with their policies. Republicans should seriously consider that black voters are an important piece of the electoral puzzle, but they can't appeal to the community without a real commitment to minority issues. A quick survey of Sen. Paul's positions makes clear that he does not have this commitment.",
+      "key_facts": [
+        "Rand Paul is a U.S. Senator",
+        "Rand Paul tries to brand himself as a different Republican and GOP's minority outreach candidate",
+        "Rand Paul's policies do not align with his words regarding minority communities",
+        "Black voters are an important piece of the electoral puzzle"
+      ],
+      "explicit_unknowns": []
+    },
+    {
+      "thread": "Rand Paul's specific controversial policy positions",
+      "story": "Rand Paul kicked off his announcement speech in Louisville by declaring, \"I have a message that is loud and clear: We have come to take our country back.\" Under Rand Paul's leadership, he would indeed take our country back in the wrong direction, to a time when the Civil Rights Act was debated, which Rand Paul has done since landing on the national stage. Rand Paul thinks the Department of Education should be done away with, and seeks to limit women's choices in Washington. Rand Paul also opposes protections for DREAMers from deportation.",
+      "key_facts": [
+        "Rand Paul's announcement speech was in Louisville",
+        "Rand Paul has questioned the Civil Rights Act",
+        "Rand Paul believes the Department of Education should be eliminated",
+        "Rand Paul seeks to limit women's choices",
+        "Rand Paul opposes protections for DREAMers from deportation"
+      ],
+      "explicit_unknowns": []
+    },
+    {
+      "thread": "Rand Paul's views on civil and voting rights",
+      "story": "Rand Paul has questioned the Civil Rights Act and even claimed that private business owners have a right to discriminate. When asked about the need for a more robust Voting Rights Act following the Supreme Court's dismantling of the law, Rand Paul dismissively remarked, \"We have an African-American President.\" In his inept speaking engagements at historically black colleges and universities, Rand Paul has come across as condescending and lacking basic cultural competency.",
+      "key_facts": [
+        "Rand Paul questioned the Civil Rights Act",
+        "Rand Paul claimed private business owners have a right to discriminate",
+        "Rand Paul dismissed the need for a robust Voting Rights Act",
+        "Rand Paul's speaking engagements at historically black colleges and universities were inept and condescending"
+      ],
+      "explicit_unknowns": []
+    },
+    {
+      "thread": "Contrast between Rand Paul's views and the importance of voting rights",
+      "story": "Last month, President Obama, an African-American President, stood with John Lewis, a veteran of the civil rights movement, and other veterans in front of the Edmund Pettus Bridge to mark the 50th anniversary of Bloody Sunday. President Obama inspired us all by saying, \"With effort, we can protect the foundation stone of our democracy for which so many marched across this bridge -- and that is the right to vote.\" America is better with more democracy, not less, but unfortunately Rand Paul has demonstrated that he disagrees with that basic principle.",
+      "key_facts": [
+        "Last month, President Obama and John Lewis marked the 50th anniversary of Bloody Sunday",
+        "They stood in front of the Edmund Pettus Bridge",
+        "President Obama emphasized the right to vote as the foundation of democracy",
+        "Rand Paul disagrees with the principle that America is better with more democracy"
+      ],
+      "explicit_unknowns": []
+    },
+    {
+      "thread": "Conclusion on Rand Paul's suitability for national leadership",
+      "story": "Rand Paul tried once again from that stage in Louisville to fashion himself as the one member of his party courageous enough to broaden Republican appeal to constituencies they ignore year after year. However, Rand Paul's record makes it very clear that his views are outdated, outside of the mainstream, and disqualifying for a man who wants to lead our country. The American people deserve a leader who won't disrespect their intelligence, won't pander to them, and won't work to dismantle the progress we have made over the last five decades. What I heard today didn't change the facts about Rand Paul's record, and the American people deserve better than Rand Paul.",
+      "key_facts": [
+        "Rand Paul's views are outdated, outside the mainstream, and disqualifying for a leader",
+        "The American people deserve a leader who respects their intelligence and doesn't dismantle progress",
+        "Rand Paul's record remains unchanged by his announcement today"
+      ],
+      "explicit_unknowns": []
+    }
+  ],
+  "_elapsed": 22.0
+}

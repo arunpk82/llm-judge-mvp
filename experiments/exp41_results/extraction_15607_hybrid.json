@@ -1,0 +1,312 @@
+{
+  "event_hubs": [
+    {
+      "event_id": "EVT_1",
+      "action": "arrest",
+      "source_sentence": "S0",
+      "edges": [
+        {
+          "type": "target",
+          "target": "ENT_1",
+          "source": "S0"
+        },
+        {
+          "type": "location",
+          "target": "ENT_7",
+          "source": "S2"
+        },
+        {
+          "type": "time",
+          "target": "Wednesday",
+          "source": "S0"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_2",
+      "action": "attempted illegal crossing",
+      "source_sentence": "S0",
+      "edges": [
+        {
+          "type": "agent",
+          "target": "ENT_1",
+          "source": "S0"
+        },
+        {
+          "type": "destination",
+          "target": "ENT_5",
+          "source": "S0"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_3",
+      "action": "charge with terror offenses",
+      "source_sentence": "S6",
+      "edges": [
+        {
+          "type": "agent",
+          "target": "ENT_13",
+          "source": "S6"
+        },
+        {
+          "type": "target",
+          "target": "ENT_14",
+          "source": "S6"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_4",
+      "action": "seeking information",
+      "source_sentence": "S7",
+      "edges": [
+        {
+          "type": "agent",
+          "target": "ENT_15",
+          "source": "S7"
+        },
+        {
+          "type": "target",
+          "target": "ENT_16",
+          "source": "S7"
+        }
+      ]
+    }
+  ],
+  "entities": [
+    {
+      "name": "Nine British citizens",
+      "aliases": [],
+      "attributes": {
+        "nationality": "British",
+        "count": 9,
+        "composition": "three men, two women, four children",
+        "documentation": "British passports"
+      },
+      "participates_in": [
+        "EVT_1",
+        "EVT_2"
+      ],
+      "source_sentences": [
+        "S0",
+        "S1",
+        "S2",
+        "S5"
+      ]
+    },
+    {
+      "name": "Children",
+      "aliases": [],
+      "attributes": {
+        "count": 4,
+        "oldest_age": "10 or 11",
+        "youngest_birth_year": "2013"
+      },
+      "participates_in": [
+        "EVT_1",
+        "EVT_2"
+      ],
+      "source_sentences": [
+        "S1",
+        "S5"
+      ]
+    },
+    {
+      "name": "Turkish military",
+      "aliases": [],
+      "attributes": {},
+      "participates_in": [],
+      "source_sentences": [
+        "S0",
+        "S2"
+      ]
+    },
+    {
+      "name": "Turkish official",
+      "aliases": [],
+      "attributes": {
+        "status": "anonymous"
+      },
+      "participates_in": [],
+      "source_sentences": [
+        "S1",
+        "S5"
+      ]
+    },
+    {
+      "name": "Syria",
+      "aliases": [],
+      "attributes": {
+        "condition": "torn by a roughly four-year war"
+      },
+      "participates_in": [],
+      "source_sentences": [
+        "S0",
+        "S3",
+        "S4"
+      ]
+    },
+    {
+      "name": "Turkey",
+      "aliases": [],
+      "attributes": {},
+      "participates_in": [],
+      "source_sentences": [
+        "S0",
+        "S2",
+        "S6"
+      ]
+    },
+    {
+      "name": "Turkey-Syria border",
+      "aliases": [],
+      "attributes": {},
+      "participates_in": [],
+      "source_sentences": [
+        "S2"
+      ]
+    },
+    {
+      "name": "Syrian government forces",
+      "aliases": [],
+      "attributes": {},
+      "participates_in": [],
+      "source_sentences": [
+        "S3"
+      ]
+    },
+    {
+      "name": "Islamist extremist groups",
+      "aliases": [],
+      "attributes": {},
+      "participates_in": [],
+      "source_sentences": [
+        "S3"
+      ]
+    },
+    {
+      "name": "Other rebels",
+      "aliases": [],
+      "attributes": {},
+      "participates_in": [],
+      "source_sentences": [
+        "S3"
+      ]
+    },
+    {
+      "name": "ISIS",
+      "aliases": [],
+      "attributes": {
+        "claim": "Islamic caliphate",
+        "activity": "recruiting Westerners"
+      },
+      "participates_in": [],
+      "source_sentences": [
+        "S4"
+      ]
+    },
+    {
+      "name": "Iraq",
+      "aliases": [],
+      "attributes": {},
+      "participates_in": [],
+      "source_sentences": [
+        "S4"
+      ]
+    },
+    {
+      "name": "UK police",
+      "aliases": [],
+      "attributes": {},
+      "participates_in": [
+        "EVT_3"
+      ],
+      "source_sentences": [
+        "S6"
+      ]
+    },
+    {
+      "name": "Man",
+      "aliases": [],
+      "attributes": {},
+      "participates_in": [
+        "EVT_3"
+      ],
+      "source_sentences": [
+        "S6"
+      ]
+    },
+    {
+      "name": "British Foreign Office",
+      "aliases": [],
+      "attributes": {},
+      "participates_in": [
+        "EVT_4"
+      ],
+      "source_sentences": [
+        "S7"
+      ]
+    },
+    {
+      "name": "Turkish authorities",
+      "aliases": [],
+      "attributes": {},
+      "participates_in": [
+        "EVT_4"
+      ],
+      "source_sentences": [
+        "S7"
+      ]
+    },
+    {
+      "name": "Gul Tuysuz",
+      "aliases": [],
+      "attributes": {
+        "location": "Istanbul"
+      },
+      "participates_in": [],
+      "source_sentences": [
+        "S8"
+      ]
+    },
+    {
+      "name": "Elaine Ly",
+      "aliases": [],
+      "attributes": {
+        "location": "London"
+      },
+      "participates_in": [],
+      "source_sentences": [
+        "S8"
+      ]
+    },
+    {
+      "name": "Jason Hanna",
+      "aliases": [],
+      "attributes": {},
+      "participates_in": [],
+      "source_sentences": [
+        "S9"
+      ]
+    }
+  ],
+  "inter_event_edges": [
+    {
+      "from": "EVT_2",
+      "to": "EVT_1",
+      "type": "preceded_by_suspicion_of",
+      "source": "S0"
+    }
+  ],
+  "explicit_unknowns": [
+    {
+      "about": "Nine British citizens",
+      "unknown_slots": [
+        "reason for trying to get into Syria"
+      ],
+      "source": "S3"
+    }
+  ],
+  "_elapsed": 98.4
+}

@@ -1,0 +1,2207 @@
+{
+  "event_hubs": [
+    {
+      "event_id": "EVT_1",
+      "action": "state of being",
+      "source_sentence": "S0",
+      "edges": [
+        {
+          "type": "description",
+          "target": "the end",
+          "source": "S0"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_2",
+      "action": "state of being",
+      "source_sentence": "S1",
+      "edges": [
+        {
+          "type": "description",
+          "target": "the end",
+          "source": "S1"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_3",
+      "action": "arrived",
+      "source_sentence": "S2",
+      "edges": [
+        {
+          "type": "target_of",
+          "target": "ENT_1",
+          "source": "S2"
+        },
+        {
+          "type": "when",
+          "target": "1960s",
+          "source": "S2"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_4",
+      "action": "fiasco",
+      "source_sentence": "S2",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "ENT_2",
+          "source": "S2"
+        },
+        {
+          "type": "when",
+          "target": "December 1969",
+          "source": "S2"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_5",
+      "action": "shootings",
+      "source_sentence": "S2",
+      "edges": [
+        {
+          "type": "when",
+          "target": "May 1970",
+          "source": "S2"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_6",
+      "action": "re-election",
+      "source_sentence": "S2",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "ENT_3",
+          "source": "S2"
+        },
+        {
+          "type": "when",
+          "target": "1972",
+          "source": "S2"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_7",
+      "action": "begins",
+      "source_sentence": "S3",
+      "edges": [
+        {
+          "type": "target_of",
+          "target": "ENT_4",
+          "source": "S3"
+        },
+        {
+          "type": "when",
+          "target": "Sunday",
+          "source": "S3"
+        },
+        {
+          "type": "description",
+          "target": "end of an era",
+          "source": "S3"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_8",
+      "action": "has become part of the national fabric",
+      "source_sentence": "S4",
+      "edges": [
+        {
+          "type": "target_of",
+          "target": "ENT_4",
+          "source": "S4"
+        },
+        {
+          "type": "when",
+          "target": "Over the past eight years",
+          "source": "S4"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_9",
+      "action": "created",
+      "source_sentence": "S5",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "ENT_5",
+          "source": "S5"
+        },
+        {
+          "type": "target_of",
+          "target": "ENT_6",
+          "source": "S5"
+        },
+        {
+          "type": "how",
+          "target": "inspired by the show",
+          "source": "S5"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_10",
+      "action": "existence",
+      "source_sentence": "S5",
+      "edges": [
+        {
+          "type": "target_of",
+          "target": "ENT_7",
+          "source": "S5"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_11",
+      "action": "existence",
+      "source_sentence": "S5",
+      "edges": [
+        {
+          "type": "target_of",
+          "target": "ENT_8",
+          "source": "S5"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_12",
+      "action": "existence",
+      "source_sentence": "S5",
+      "edges": [
+        {
+          "type": "target_of",
+          "target": "ENT_9",
+          "source": "S5"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_13",
+      "action": "has become a symbol of the times",
+      "source_sentence": "S6",
+      "edges": [
+        {
+          "type": "target_of",
+          "target": "ENT_10",
+          "source": "S6"
+        },
+        {
+          "type": "when",
+          "target": "his and, sometimes, ours",
+          "source": "S6"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_14",
+      "action": "taken to heart",
+      "source_sentence": "S7",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "ENT_12",
+          "source": "S7"
+        },
+        {
+          "type": "target_of",
+          "target": "ENT_4",
+          "source": "S7"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_15",
+      "action": "was unveiled",
+      "source_sentence": "S8",
+      "edges": [
+        {
+          "type": "target_of",
+          "target": "ENT_13",
+          "source": "S8"
+        },
+        {
+          "type": "when",
+          "target": "March",
+          "source": "S8"
+        },
+        {
+          "type": "where",
+          "target": "ENT_14",
+          "source": "S8"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_16",
+      "action": "brings with it",
+      "source_sentence": "S9",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "ENT_16",
+          "source": "S9"
+        },
+        {
+          "type": "target_of",
+          "target": "some risk",
+          "source": "S9"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_17",
+      "action": "divided fans",
+      "source_sentence": "S10",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "ENT_17",
+          "source": "S10"
+        },
+        {
+          "type": "target_of",
+          "target": "ENT_19",
+          "source": "S10"
+        },
+        {
+          "type": "how",
+          "target": "with its famous cut-to-black finale",
+          "source": "S10"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_18",
+      "action": "was saluted",
+      "source_sentence": "S11",
+      "edges": [
+        {
+          "type": "target_of",
+          "target": "ENT_20",
+          "source": "S11"
+        },
+        {
+          "type": "how",
+          "target": "for an almost perfect landing",
+          "source": "S11"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_19",
+      "action": "ended",
+      "source_sentence": "S12",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "ENT_22",
+          "source": "S12"
+        },
+        {
+          "type": "target_of",
+          "target": "ENT_23",
+          "source": "S12"
+        },
+        {
+          "type": "when",
+          "target": "July 1969",
+          "source": "S12"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_20",
+      "action": "hid the finale",
+      "source_sentence": "S13",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "ENT_18",
+          "source": "S13"
+        },
+        {
+          "type": "target_of",
+          "target": "the finale",
+          "source": "S13"
+        },
+        {
+          "type": "how",
+          "target": "from his cast",
+          "source": "S13"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_21",
+      "action": "prediction of show's timeline",
+      "source_sentence": "S13",
+      "edges": [
+        {
+          "type": "target_of",
+          "target": "the new season",
+          "source": "S13"
+        },
+        {
+          "type": "description",
+          "target": "will pick up soon afterward",
+          "source": "S13"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_22",
+      "action": "educated guesses",
+      "source_sentence": "S15",
+      "edges": [
+        {
+          "type": "description",
+          "target": "Here are some educated guesses.",
+          "source": "S15"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_23",
+      "action": "prediction of show's timeline",
+      "source_sentence": "S16",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "ENT_4",
+          "source": "S16"
+        },
+        {
+          "type": "description",
+          "target": "probably won't jump ahead much",
+          "source": "S16"
+        },
+        {
+          "type": "when",
+          "target": "With the '60s screaming towards their conclusion",
+          "source": "S16"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_24",
+      "action": "included",
+      "source_sentence": "S17",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "the latter half of 1969",
+          "source": "S17"
+        },
+        {
+          "type": "target_of",
+          "target": "ENT_25",
+          "source": "S17"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_25",
+      "action": "included",
+      "source_sentence": "S17",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "the latter half of 1969",
+          "source": "S17"
+        },
+        {
+          "type": "target_of",
+          "target": "ENT_26",
+          "source": "S17"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_26",
+      "action": "included",
+      "source_sentence": "S17",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "the latter half of 1969",
+          "source": "S17"
+        },
+        {
+          "type": "target_of",
+          "target": "ENT_27",
+          "source": "S17"
+        },
+        {
+          "type": "where",
+          "target": "New York",
+          "source": "S17"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_27",
+      "action": "included",
+      "source_sentence": "S17",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "the latter half of 1969",
+          "source": "S17"
+        },
+        {
+          "type": "target_of",
+          "target": "ENT_28",
+          "source": "S17"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_28",
+      "action": "possibility of mention",
+      "source_sentence": "S19",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "ENT_4",
+          "source": "S19"
+        },
+        {
+          "type": "target_of",
+          "target": "ENT_29",
+          "source": "S19"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_29",
+      "action": "acknowledgement",
+      "source_sentence": "S20",
+      "edges": [
+        {
+          "type": "target_of",
+          "target": "ENT_30",
+          "source": "S20"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_30",
+      "action": "state of being",
+      "source_sentence": "S22",
+      "edges": [
+        {
+          "type": "target_of",
+          "target": "ENT_4",
+          "source": "S22"
+        },
+        {
+          "type": "description",
+          "target": "a show about disintegration",
+          "source": "S22"
+        },
+        {
+          "type": "how",
+          "target": "reflective of the '60s themselves",
+          "source": "S22"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_31",
+      "action": "falling apart",
+      "source_sentence": "S23",
+      "edges": [
+        {
+          "type": "target_of",
+          "target": "ENT_32",
+          "source": "S23"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_32",
+      "action": "giving way",
+      "source_sentence": "S23",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "ENT_33",
+          "source": "S23"
+        },
+        {
+          "type": "target_of",
+          "target": "ENT_34",
+          "source": "S23"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_33",
+      "action": "replaced",
+      "source_sentence": "S23",
+      "edges": [
+        {
+          "type": "target_of",
+          "target": "ENT_36",
+          "source": "S23"
+        },
+        {
+          "type": "agent_of",
+          "target": "ENT_37",
+          "source": "S23"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_34",
+      "action": "butting heads",
+      "source_sentence": "S23",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "ENT_38",
+          "source": "S23"
+        },
+        {
+          "type": "target_of",
+          "target": "ENT_39",
+          "source": "S23"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_35",
+      "action": "being displaced",
+      "source_sentence": "S23",
+      "edges": [
+        {
+          "type": "target_of",
+          "target": "ENT_40",
+          "source": "S23"
+        },
+        {
+          "type": "agent_of",
+          "target": "ENT_42",
+          "source": "S23"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_36",
+      "action": "saw",
+      "source_sentence": "S25",
+      "edges": [
+        {
+          "type": "when",
+          "target": "Last season",
+          "source": "S25"
+        },
+        {
+          "type": "target_of",
+          "target": "ENT_44",
+          "source": "S25"
+        },
+        {
+          "type": "why",
+          "target": "thanks to the ill-fitting merger",
+          "source": "S25"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_37",
+      "action": "merger",
+      "source_sentence": "S25",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "ENT_15",
+          "source": "S25"
+        },
+        {
+          "type": "target_of",
+          "target": "ENT_45",
+          "source": "S25"
+        },
+        {
+          "type": "description",
+          "target": "ill-fitting",
+          "source": "S25"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_38",
+      "action": "survived",
+      "source_sentence": "S26",
+      "edges": [
+        {
+          "type": "target_of",
+          "target": "the agency",
+          "source": "S26"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_39",
+      "action": "state of being",
+      "source_sentence": "S26",
+      "edges": [
+        {
+          "type": "target_of",
+          "target": "the agency",
+          "source": "S26"
+        },
+        {
+          "type": "description",
+          "target": "without Bert Cooper",
+          "source": "S26"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_40",
+      "action": "ownership",
+      "source_sentence": "S26",
+      "edges": [
+        {
+          "type": "target_of",
+          "target": "the agency",
+          "source": "S26"
+        },
+        {
+          "type": "agent_of",
+          "target": "ENT_47",
+          "source": "S26"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_41",
+      "action": "prediction of looking for an exit",
+      "source_sentence": "S27",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "ENT_49",
+          "source": "S27"
+        },
+        {
+          "type": "agent_of",
+          "target": "ENT_51",
+          "source": "S27"
+        },
+        {
+          "type": "agent_of",
+          "target": "ENT_53",
+          "source": "S27"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_42",
+      "action": "possibility of finding an exit",
+      "source_sentence": "S28",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "ENT_55",
+          "source": "S28"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_43",
+      "action": "suffered",
+      "source_sentence": "S29",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "ENT_55",
+          "source": "S29"
+        },
+        {
+          "type": "target_of",
+          "target": "two heart attacks",
+          "source": "S29"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_44",
+      "action": "drinks to excess",
+      "source_sentence": "S30",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "ENT_55",
+          "source": "S30"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_45",
+      "action": "state of being",
+      "source_sentence": "S31",
+      "edges": [
+        {
+          "type": "target_of",
+          "target": "ENT_55",
+          "source": "S31"
+        },
+        {
+          "type": "description",
+          "target": "never grown up",
+          "source": "S31"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_46",
+      "action": "prediction of departure",
+      "source_sentence": "S32",
+      "edges": [
+        {
+          "type": "target_of",
+          "target": "ENT_55",
+          "source": "S32"
+        },
+        {
+          "type": "description",
+          "target": "a sudden and shocking departure",
+          "source": "S32"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_47",
+      "action": "has continued to rise",
+      "source_sentence": "S33",
+      "edges": [
+        {
+          "type": "target_of",
+          "target": "ENT_57",
+          "source": "S33"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_48",
+      "action": "left",
+      "source_sentence": "S34",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "ENT_57",
+          "source": "S34"
+        },
+        {
+          "type": "target_of",
+          "target": "ENT_15",
+          "source": "S34"
+        },
+        {
+          "type": "when",
+          "target": "once",
+          "source": "S34"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_49",
+      "action": "returned",
+      "source_sentence": "S34",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "ENT_57",
+          "source": "S34"
+        },
+        {
+          "type": "why",
+          "target": "her new agency merged with her old one",
+          "source": "S34"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_50",
+      "action": "prediction of bolting the firm",
+      "source_sentence": "S35",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "ENT_57",
+          "source": "S35"
+        },
+        {
+          "type": "target_of",
+          "target": "the firm",
+          "source": "S35"
+        },
+        {
+          "type": "why",
+          "target": "to head her own agency",
+          "source": "S35"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_51",
+      "action": "prediction of getting married",
+      "source_sentence": "S35",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "ENT_57",
+          "source": "S35"
+        },
+        {
+          "type": "how",
+          "target": "possibly",
+          "source": "S35"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_52",
+      "action": "has lost herself",
+      "source_sentence": "S37",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "ENT_59",
+          "source": "S37"
+        },
+        {
+          "type": "how",
+          "target": "amid all the turmoil",
+          "source": "S37"
+        },
+        {
+          "type": "when",
+          "target": "In recent seasons",
+          "source": "S37"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_53",
+      "action": "sees herself",
+      "source_sentence": "S38",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "ENT_59",
+          "source": "S38"
+        },
+        {
+          "type": "target_of",
+          "target": "herself",
+          "source": "S38"
+        },
+        {
+          "type": "how",
+          "target": "through the eyes of her spouses",
+          "source": "S38"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_54",
+      "action": "is proving to be a handful",
+      "source_sentence": "S39",
+      "edges": [
+        {
+          "type": "target_of",
+          "target": "ENT_61",
+          "source": "S39"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_55",
+      "action": "starting to rebel",
+      "source_sentence": "S40",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "ENT_61",
+          "source": "S40"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_56",
+      "action": "run away",
+      "source_sentence": "S41",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "ENT_61",
+          "source": "S41"
+        },
+        {
+          "type": "when",
+          "target": "In recent seasons",
+          "source": "S41"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_57",
+      "action": "started sneaking cigarettes",
+      "source_sentence": "S41",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "ENT_61",
+          "source": "S41"
+        },
+        {
+          "type": "when",
+          "target": "In recent seasons",
+          "source": "S41"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_58",
+      "action": "fighting",
+      "source_sentence": "S41",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "ENT_61",
+          "source": "S41"
+        },
+        {
+          "type": "target_of",
+          "target": "ENT_59",
+          "source": "S41"
+        },
+        {
+          "type": "how",
+          "target": "always",
+          "source": "S41"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_59",
+      "action": "possibility of hitchhiking",
+      "source_sentence": "S42",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "ENT_61",
+          "source": "S42"
+        },
+        {
+          "type": "where",
+          "target": "ENT_26",
+          "source": "S42"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_60",
+      "action": "possibility of dropping out of school",
+      "source_sentence": "S42",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "ENT_61",
+          "source": "S42"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_61",
+      "action": "state of being",
+      "source_sentence": "S44",
+      "edges": [
+        {
+          "type": "when",
+          "target": "April 1, 1970",
+          "source": "S44"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_62",
+      "action": "signing legislation",
+      "source_sentence": "S45",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "ENT_3",
+          "source": "S45"
+        },
+        {
+          "type": "target_of",
+          "target": "ENT_63",
+          "source": "S45"
+        },
+        {
+          "type": "when",
+          "target": "April 1, 1970",
+          "source": "S45"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_63",
+      "action": "reminding",
+      "source_sentence": "S45",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "EVT_62",
+          "source": "S45"
+        },
+        {
+          "type": "target_of",
+          "target": "ENT_10",
+          "source": "S45"
+        },
+        {
+          "type": "how",
+          "target": "of the day 10 years earlier when he came up with the Lucky Strike campaign",
+          "source": "S45"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_64",
+      "action": "came up with",
+      "source_sentence": "S45",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "ENT_10",
+          "source": "S45"
+        },
+        {
+          "type": "target_of",
+          "target": "ENT_64",
+          "source": "S45"
+        },
+        {
+          "type": "when",
+          "target": "10 years earlier (than April 1, 1970)",
+          "source": "S45"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_65",
+      "action": "began",
+      "source_sentence": "S45",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "ENT_64",
+          "source": "S45"
+        },
+        {
+          "type": "target_of",
+          "target": "the series",
+          "source": "S45"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_66",
+      "action": "had seen coming",
+      "source_sentence": "S46",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "ENT_10",
+          "source": "S46"
+        },
+        {
+          "type": "target_of",
+          "target": "this day (April 1, 1970)",
+          "source": "S46"
+        },
+        {
+          "type": "when",
+          "target": "years before",
+          "source": "S46"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_67",
+      "action": "prediction of fixing a drink",
+      "source_sentence": "S47",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "ENT_10",
+          "source": "S47"
+        },
+        {
+          "type": "target_of",
+          "target": "a drink",
+          "source": "S47"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_68",
+      "action": "prediction of pondering buying",
+      "source_sentence": "S47",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "ENT_10",
+          "source": "S47"
+        },
+        {
+          "type": "target_of",
+          "target": "an avocado-colored refrigerator",
+          "source": "S47"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_69",
+      "action": "prediction of cleaning out ashtray",
+      "source_sentence": "S47",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "ENT_10",
+          "source": "S47"
+        },
+        {
+          "type": "target_of",
+          "target": "his ashtray",
+          "source": "S47"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_70",
+      "action": "prediction of leaving the show",
+      "source_sentence": "S47",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "ENT_10",
+          "source": "S47"
+        },
+        {
+          "type": "target_of",
+          "target": "the show",
+          "source": "S47"
+        },
+        {
+          "type": "how",
+          "target": "the way he arrived: on top of the zeitgeist, unable to accept his past and utterly, inscrutably alone",
+          "source": "S47"
+        }
+      ]
+    }
+  ],
+  "entities": [
+    {
+      "name": "1960s",
+      "aliases": [],
+      "attributes": {
+        "type": "era"
+      },
+      "participates_in": [
+        "EVT_3",
+        "EVT_23",
+        "EVT_30"
+      ],
+      "source_sentences": [
+        "S2",
+        "S16",
+        "S22"
+      ]
+    },
+    {
+      "name": "Rolling Stones",
+      "aliases": [],
+      "attributes": {
+        "type": "band"
+      },
+      "participates_in": [
+        "EVT_4"
+      ],
+      "source_sentences": [
+        "S2"
+      ]
+    },
+    {
+      "name": "Richard Nixon",
+      "aliases": [],
+      "attributes": {
+        "type": "president"
+      },
+      "participates_in": [
+        "EVT_6",
+        "EVT_62"
+      ],
+      "source_sentences": [
+        "S2",
+        "S45"
+      ]
+    },
+    {
+      "name": "\"Mad Men\"",
+      "aliases": [
+        "the show"
+      ],
+      "attributes": {
+        "type": "TV show",
+        "about": "a 1960s advertising agency and its collision with changing times",
+        "slogan": "end of an era"
+      },
+      "participates_in": [
+        "EVT_7",
+        "EVT_8",
+        "EVT_14",
+        "EVT_23",
+        "EVT_28",
+        "EVT_30"
+      ],
+      "source_sentences": [
+        "S3",
+        "S4",
+        "S7",
+        "S16",
+        "S19",
+        "S22"
+      ]
+    },
+    {
+      "name": "Stores",
+      "aliases": [],
+      "attributes": {},
+      "participates_in": [
+        "EVT_9"
+      ],
+      "source_sentences": [
+        "S5"
+      ]
+    },
+    {
+      "name": "fashion lines",
+      "aliases": [],
+      "attributes": {
+        "inspiration": "the show"
+      },
+      "participates_in": [
+        "EVT_9"
+      ],
+      "source_sentences": [
+        "S5"
+      ]
+    },
+    {
+      "name": "\"Mad Men\" cocktails",
+      "aliases": [],
+      "attributes": {},
+      "participates_in": [
+        "EVT_10"
+      ],
+      "source_sentences": [
+        "S5"
+      ]
+    },
+    {
+      "name": "\"Mad Men\" museum exhibits",
+      "aliases": [],
+      "attributes": {},
+      "participates_in": [
+        "EVT_11"
+      ],
+      "source_sentences": [
+        "S5"
+      ]
+    },
+    {
+      "name": "\"Mad Men\" presidential references",
+      "aliases": [],
+      "attributes": {},
+      "participates_in": [
+        "EVT_12"
+      ],
+      "source_sentences": [
+        "S5"
+      ]
+    },
+    {
+      "name": "Don Draper",
+      "aliases": [
+        "the creative director",
+        "his",
+        "he"
+      ],
+      "attributes": {
+        "played_by": "Jon Hamm",
+        "role": "creative director",
+        "symbol_of": "the times"
+      },
+      "participates_in": [
+        "EVT_13",
+        "EVT_63",
+        "EVT_64",
+        "EVT_66",
+        "EVT_67",
+        "EVT_68",
+        "EVT_69",
+        "EVT_70"
+      ],
+      "source_sentences": [
+        "S6",
+        "S45",
+        "S46",
+        "S47"
+      ]
+    },
+    {
+      "name": "Jon Hamm",
+      "aliases": [],
+      "attributes": {
+        "role": "actor"
+      },
+      "participates_in": [],
+      "source_sentences": [
+        "S6"
+      ]
+    },
+    {
+      "name": "Its subjects",
+      "aliases": [],
+      "attributes": {
+        "of": "\"Mad Men\""
+      },
+      "participates_in": [
+        "EVT_14"
+      ],
+      "source_sentences": [
+        "S7"
+      ]
+    },
+    {
+      "name": "\"Mad Men\" bench",
+      "aliases": [],
+      "attributes": {},
+      "participates_in": [
+        "EVT_15"
+      ],
+      "source_sentences": [
+        "S8"
+      ]
+    },
+    {
+      "name": "New York's Time & Life Building",
+      "aliases": [],
+      "attributes": {
+        "location_type": "building",
+        "headquarters_of": "Sterling Cooper & Partners"
+      },
+      "participates_in": [
+        "EVT_15"
+      ],
+      "source_sentences": [
+        "S8"
+      ]
+    },
+    {
+      "name": "Sterling Cooper & Partners",
+      "aliases": [
+        "the fictional firm of Sterling Cooper & Partners",
+        "Sterling Cooper",
+        "her old one"
+      ],
+      "attributes": {
+        "type": "fictional firm",
+        "headquarters": "New York's Time & Life Building",
+        "description": "white-shoe WASP firm"
+      },
+      "participates_in": [
+        "EVT_37",
+        "EVT_48"
+      ],
+      "source_sentences": [
+        "S8",
+        "S23",
+        "S25",
+        "S34"
+      ]
+    },
+    {
+      "name": "The end of a TV series",
+      "aliases": [],
+      "attributes": {},
+      "participates_in": [
+        "EVT_16"
+      ],
+      "source_sentences": [
+        "S9"
+      ]
+    },
+    {
+      "name": "\"The Sopranos\"",
+      "aliases": [],
+      "attributes": {
+        "type": "TV show",
+        "creator": "Matthew Weiner (former employer)"
+      },
+      "participates_in": [
+        "EVT_17"
+      ],
+      "source_sentences": [
+        "S10"
+      ]
+    },
+    {
+      "name": "Matthew Weiner",
+      "aliases": [
+        "Weiner"
+      ],
+      "attributes": {
+        "role": "\"Mad Men\" creator",
+        "former_employer_of": "\"The Sopranos\"",
+        "origin": "Baltimore"
+      },
+      "participates_in": [
+        "EVT_20"
+      ],
+      "source_sentences": [
+        "S10",
+        "S13",
+        "S21"
+      ]
+    },
+    {
+      "name": "fans",
+      "aliases": [],
+      "attributes": {},
+      "participates_in": [
+        "EVT_17"
+      ],
+      "source_sentences": [
+        "S10"
+      ]
+    },
+    {
+      "name": "\"Breaking Bad\"",
+      "aliases": [],
+      "attributes": {
+        "type": "TV show",
+        "stablemate_of": "\"Mad Men\"",
+        "network": "AMC"
+      },
+      "participates_in": [
+        "EVT_18"
+      ],
+      "source_sentences": [
+        "S11"
+      ]
+    },
+    {
+      "name": "AMC",
+      "aliases": [],
+      "attributes": {
+        "type": "TV network"
+      },
+      "participates_in": [],
+      "source_sentences": [
+        "S11"
+      ]
+    },
+    {
+      "name": "The last season",
+      "aliases": [
+        "the first half of season 7"
+      ],
+      "attributes": {
+        "type": "TV show season"
+      },
+      "participates_in": [
+        "EVT_19"
+      ],
+      "source_sentences": [
+        "S12"
+      ]
+    },
+    {
+      "name": "moon landing",
+      "aliases": [],
+      "attributes": {
+        "type": "event"
+      },
+      "participates_in": [
+        "EVT_19"
+      ],
+      "source_sentences": [
+        "S12"
+      ]
+    },
+    {
+      "name": "Weiner's cast",
+      "aliases": [],
+      "attributes": {},
+      "participates_in": [],
+      "source_sentences": [
+        "S13"
+      ]
+    },
+    {
+      "name": "Manson murders",
+      "aliases": [],
+      "attributes": {
+        "type": "event"
+      },
+      "participates_in": [
+        "EVT_24"
+      ],
+      "source_sentences": [
+        "S17"
+      ]
+    },
+    {
+      "name": "Woodstock festival",
+      "aliases": [
+        "Woodstock"
+      ],
+      "attributes": {
+        "type": "event"
+      },
+      "participates_in": [
+        "EVT_25",
+        "EVT_59"
+      ],
+      "source_sentences": [
+        "S17",
+        "S42"
+      ]
+    },
+    {
+      "name": "New York mayoral campaign",
+      "aliases": [],
+      "attributes": {
+        "type": "event"
+      },
+      "participates_in": [
+        "EVT_26"
+      ],
+      "source_sentences": [
+        "S17"
+      ]
+    },
+    {
+      "name": "Vietnam War moratorium demonstrations",
+      "aliases": [],
+      "attributes": {
+        "type": "event"
+      },
+      "participates_in": [
+        "EVT_27"
+      ],
+      "source_sentences": [
+        "S17"
+      ]
+    },
+    {
+      "name": "Miracle Mets",
+      "aliases": [],
+      "attributes": {
+        "type": "baseball team"
+      },
+      "participates_in": [
+        "EVT_28"
+      ],
+      "source_sentences": [
+        "S19"
+      ]
+    },
+    {
+      "name": "Lane Pryce",
+      "aliases": [],
+      "attributes": {
+        "status": "late",
+        "role": "agency character"
+      },
+      "participates_in": [
+        "EVT_29"
+      ],
+      "source_sentences": [
+        "S20"
+      ]
+    },
+    {
+      "name": "Baltimore",
+      "aliases": [],
+      "attributes": {
+        "type": "city"
+      },
+      "participates_in": [],
+      "source_sentences": [
+        "S21"
+      ]
+    },
+    {
+      "name": "old orders",
+      "aliases": [],
+      "attributes": {
+        "concept": "general"
+      },
+      "participates_in": [
+        "EVT_31"
+      ],
+      "source_sentences": [
+        "S23"
+      ]
+    },
+    {
+      "name": "white-shoe WASP firms",
+      "aliases": [],
+      "attributes": {
+        "type": "firm"
+      },
+      "participates_in": [
+        "EVT_32"
+      ],
+      "source_sentences": [
+        "S23"
+      ]
+    },
+    {
+      "name": "ethnic pace-setters",
+      "aliases": [],
+      "attributes": {
+        "type": "firm"
+      },
+      "participates_in": [
+        "EVT_32"
+      ],
+      "source_sentences": [
+        "S23"
+      ]
+    },
+    {
+      "name": "Doyle Dane Bernbach",
+      "aliases": [],
+      "attributes": {
+        "type": "ethnic pace-setter firm"
+      },
+      "participates_in": [],
+      "source_sentences": [
+        "S23"
+      ]
+    },
+    {
+      "name": "grimy New York",
+      "aliases": [],
+      "attributes": {
+        "type": "city description"
+      },
+      "participates_in": [
+        "EVT_33"
+      ],
+      "source_sentences": [
+        "S23"
+      ]
+    },
+    {
+      "name": "sunny Los Angeles",
+      "aliases": [],
+      "attributes": {
+        "type": "city description"
+      },
+      "participates_in": [
+        "EVT_33"
+      ],
+      "source_sentences": [
+        "S23"
+      ]
+    },
+    {
+      "name": "\"Good War\" generation",
+      "aliases": [],
+      "attributes": {
+        "type": "generation"
+      },
+      "participates_in": [
+        "EVT_34"
+      ],
+      "source_sentences": [
+        "S23"
+      ]
+    },
+    {
+      "name": "\"Make Love, Not War\" cohort",
+      "aliases": [],
+      "attributes": {
+        "type": "generation"
+      },
+      "participates_in": [
+        "EVT_34"
+      ],
+      "source_sentences": [
+        "S23"
+      ]
+    },
+    {
+      "name": "vacuum tubes and ledger books",
+      "aliases": [],
+      "attributes": {
+        "type": "technology"
+      },
+      "participates_in": [
+        "EVT_35"
+      ],
+      "source_sentences": [
+        "S23"
+      ]
+    },
+    {
+      "name": "IBM",
+      "aliases": [],
+      "attributes": {
+        "type": "company"
+      },
+      "participates_in": [],
+      "source_sentences": [
+        "S23"
+      ]
+    },
+    {
+      "name": "a sleek, solid-state IBM world",
+      "aliases": [],
+      "attributes": {
+        "type": "technology"
+      },
+      "participates_in": [
+        "EVT_35"
+      ],
+      "source_sentences": [
+        "S23"
+      ]
+    },
+    {
+      "name": "ad agency",
+      "aliases": [],
+      "attributes": {
+        "type": "general"
+      },
+      "participates_in": [],
+      "source_sentences": [
+        "S24"
+      ]
+    },
+    {
+      "name": "intraoffice turmoil",
+      "aliases": [],
+      "attributes": {
+        "type": "event"
+      },
+      "participates_in": [
+        "EVT_36"
+      ],
+      "source_sentences": [
+        "S25"
+      ]
+    },
+    {
+      "name": "Cutler Gleason and Chaough",
+      "aliases": [],
+      "attributes": {
+        "type": "former rival firm"
+      },
+      "participates_in": [
+        "EVT_37"
+      ],
+      "source_sentences": [
+        "S25"
+      ]
+    },
+    {
+      "name": "Bert Cooper",
+      "aliases": [],
+      "attributes": {
+        "played_by": "Robert Morse",
+        "status": "no longer with agency"
+      },
+      "participates_in": [
+        "EVT_39"
+      ],
+      "source_sentences": [
+        "S26"
+      ]
+    },
+    {
+      "name": "McCann Erickson",
+      "aliases": [],
+      "attributes": {
+        "type": "real-life Madison Avenue titan",
+        "role": "owner of the agency"
+      },
+      "participates_in": [
+        "EVT_40"
+      ],
+      "source_sentences": [
+        "S26"
+      ]
+    },
+    {
+      "name": "Robert Morse",
+      "aliases": [],
+      "attributes": {
+        "role": "actor"
+      },
+      "participates_in": [],
+      "source_sentences": [
+        "S26"
+      ]
+    },
+    {
+      "name": "Ken Cosgrove",
+      "aliases": [],
+      "attributes": {
+        "type": "longtime character",
+        "played_by": "Aaron Staton"
+      },
+      "participates_in": [
+        "EVT_41"
+      ],
+      "source_sentences": [
+        "S27"
+      ]
+    },
+    {
+      "name": "Aaron Staton",
+      "aliases": [],
+      "attributes": {
+        "role": "actor"
+      },
+      "participates_in": [],
+      "source_sentences": [
+        "S27"
+      ]
+    },
+    {
+      "name": "Harry Crane",
+      "aliases": [],
+      "attributes": {
+        "type": "longtime character",
+        "played_by": "Rich Sommer"
+      },
+      "participates_in": [
+        "EVT_41"
+      ],
+      "source_sentences": [
+        "S27"
+      ]
+    },
+    {
+      "name": "Rich Sommer",
+      "aliases": [],
+      "attributes": {
+        "role": "actor"
+      },
+      "participates_in": [],
+      "source_sentences": [
+        "S27"
+      ]
+    },
+    {
+      "name": "Joan Harris",
+      "aliases": [],
+      "attributes": {
+        "type": "longtime character",
+        "played_by": "Christina Hendricks"
+      },
+      "participates_in": [
+        "EVT_41"
+      ],
+      "source_sentences": [
+        "S27"
+      ]
+    },
+    {
+      "name": "Christina Hendricks",
+      "aliases": [],
+      "attributes": {
+        "role": "actor"
+      },
+      "participates_in": [],
+      "source_sentences": [
+        "S27"
+      ]
+    },
+    {
+      "name": "Roger Sterling",
+      "aliases": [
+        "the wisecracking executive",
+        "He"
+      ],
+      "attributes": {
+        "played_by": "John Slattery",
+        "role": "executive",
+        "health_issues": "suffered two heart attacks",
+        "habits": "drinks to excess",
+        "personality": "never grown up"
+      },
+      "participates_in": [
+        "EVT_42",
+        "EVT_43",
+        "EVT_44",
+        "EVT_45",
+        "EVT_46"
+      ],
+      "source_sentences": [
+        "S28",
+        "S29",
+        "S30",
+        "S31",
+        "S32"
+      ]
+    },
+    {
+      "name": "John Slattery",
+      "aliases": [],
+      "attributes": {
+        "role": "actor"
+      },
+      "participates_in": [],
+      "source_sentences": [
+        "S28"
+      ]
+    },
+    {
+      "name": "Peggy Olson",
+      "aliases": [
+        "She",
+        "Olson"
+      ],
+      "attributes": {
+        "played_by": "Elisabeth Moss",
+        "status": "star has continued to rise",
+        "history": "left Sterling Cooper once",
+        "model": "Mary Wells Lawrence"
+      },
+      "participates_in": [
+        "EVT_47",
+        "EVT_48",
+        "EVT_49",
+        "EVT_50",
+        "EVT_51"
+      ],
+      "source_sentences": [
+        "S33",
+        "S34",
+        "S35"
+      ]
+    },
+    {
+      "name": "Elisabeth Moss",
+      "aliases": [],
+      "attributes": {
+        "role": "actor"
+      },
+      "participates_in": [],
+      "source_sentences": [
+        "S35"
+      ]
+    },
+    {
+      "name": "Betty",
+      "aliases": [
+        "Don's ex-wife",
+        "She",
+        "her mother"
+      ],
+      "attributes": {
+        "played_by": "January Jones",
+        "relationship": "Don's ex-wife",
+        "status": "lost herself amid turmoil",
+        "perception": "sees herself through the eyes of her spouses"
+      },
+      "participates_in": [
+        "EVT_52",
+        "EVT_53",
+        "EVT_58"
+      ],
+      "source_sentences": [
+        "S37",
+        "S38",
+        "S41"
+      ]
+    },
+    {
+      "name": "January Jones",
+      "aliases": [],
+      "attributes": {
+        "role": "actor"
+      },
+      "participates_in": [],
+      "source_sentences": [
+        "S37"
+      ]
+    },
+    {
+      "name": "Sally",
+      "aliases": [
+        "Don's daughter",
+        "she"
+      ],
+      "attributes": {
+        "played_by": "Kiernan Shipka",
+        "relationship": "Don's daughter",
+        "characteristics": "obviously bright, teenager, starting to rebel",
+        "actions": "run away, started sneaking cigarettes, always fighting with her mother"
+      },
+      "participates_in": [
+        "EVT_54",
+        "EVT_55",
+        "EVT_56",
+        "EVT_57",
+        "EVT_58",
+        "EVT_59",
+        "EVT_60"
+      ],
+      "source_sentences": [
+        "S39",
+        "S40",
+        "S41",
+        "S42"
+      ]
+    },
+    {
+      "name": "Kiernan Shipka",
+      "aliases": [],
+      "attributes": {
+        "role": "actor"
+      },
+      "participates_in": [],
+      "source_sentences": [
+        "S39"
+      ]
+    },
+    {
+      "name": "Henry Francis",
+      "aliases": [
+        "husband"
+      ],
+      "attributes": {
+        "played_by": "Christopher Stanley",
+        "relationship": "Betty's husband",
+        "support": "far more supportive than Don",
+        "status": "busy man"
+      },
+      "participates_in": [],
+      "source_sentences": [
+        "S38"
+      ]
+    },
+    {
+      "name": "Christopher Stanley",
+      "aliases": [],
+      "attributes": {
+        "role": "actor"
+      },
+      "participates_in": [],
+      "source_sentences": [
+        "S38"
+      ]
+    },
+    {
+      "name": "Glen Bishop",
+      "aliases": [],
+      "attributes": {
+        "type": "character"
+      },
+      "participates_in": [],
+      "source_sentences": [
+        "S43"
+      ]
+    },
+    {
+      "name": "legislation banning cigarette ads on radio and television",
+      "aliases": [],
+      "attributes": {
+        "type": "legislation"
+      },
+      "participates_in": [
+        "EVT_62"
+      ],
+      "source_sentences": [
+        "S45"
+      ]
+    },
+    {
+      "name": "Lucky Strike campaign",
+      "aliases": [],
+      "attributes": {
+        "type": "advertising campaign"
+      },
+      "participates_in": [
+        "EVT_64",
+        "EVT_65"
+      ],
+      "source_sentences": [
+        "S45"
+      ]
+    }
+  ],
+  "inter_event_edges": [
+    {
+      "from": "EVT_3",
+      "to": "EVT_4",
+      "type": "how_it_happened_through",
+      "source": "S2"
+    },
+    {
+      "from": "EVT_3",
+      "to": "EVT_5",
+      "type": "how_it_happened_through",
+      "source": "S2"
+    },
+    {
+      "from": "EVT_3",
+      "to": "EVT_6",
+      "type": "how_it_happened_through",
+      "source": "S2"
+    },
+    {
+      "from": "EVT_62",
+      "to": "EVT_63",
+      "type": "resulted_in",
+      "source": "S45"
+    },
+    {
+      "from": "EVT_64",
+      "to": "EVT_65",
+      "type": "began",
+      "source": "S45"
+    }
+  ],
+  "explicit_unknowns": [
+    {
+      "about": "whether the show will mention the Miracle Mets",
+      "unknown_slots": [],
+      "source": "S18"
+    }
+  ],
+  "_elapsed": 86.4
+}

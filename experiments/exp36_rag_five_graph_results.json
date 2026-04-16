@@ -1,0 +1,80 @@
+{
+  "experiment": "exp36_rag_five_graph",
+  "model": "gemma-4-31b-it",
+  "timestamp": "2026-04-13T09:45:21Z",
+  "elapsed_s": 8419.6,
+  "n_sources": 2,
+  "baseline_avg": {
+    "total": 206.0,
+    "entities": 65.5,
+    "events": 59.0,
+    "relationships": 44.0
+  },
+  "final_avg": {
+    "total": 123.0,
+    "entities": 32.5,
+    "events": 19.5,
+    "relationships": 43.5
+  },
+  "vs_baseline_pct": 59.7,
+  "results": [
+    {
+      "source_idx": 0,
+      "case_ids": [
+        "ragtruth_24",
+        "ragtruth_25",
+        "ragtruth_26",
+        "ragtruth_27",
+        "ragtruth_28",
+        "ragtruth_29"
+      ],
+      "metrics_final": {
+        "entities": 25,
+        "events": 8,
+        "relationships": 32,
+        "numbers": 17,
+        "negations": 4,
+        "total": 86
+      },
+      "sentence_coverage_pct": 95.2,
+      "entity_index_size": 73,
+      "times": {
+        "P1": 61.5,
+        "P2": 588.0,
+        "P3": 94.3,
+        "P4": 101.5,
+        "P5": 31.3
+      },
+      "vs_baseline_pct": 53.8
+    },
+    {
+      "source_idx": 1,
+      "case_ids": [
+        "ragtruth_42",
+        "ragtruth_43",
+        "ragtruth_44",
+        "ragtruth_45",
+        "ragtruth_46",
+        "ragtruth_47"
+      ],
+      "metrics_final": {
+        "entities": 40,
+        "events": 31,
+        "relationships": 55,
+        "numbers": 21,
+        "negations": 13,
+        "total": 160
+      },
+      "sentence_coverage_pct": 100.0,
+      "entity_index_size": 137,
+      "times": {
+        "P1": 106.6,
+        "P2": 5986.2,
+        "P3": 77.1,
+        "P4": 115.4,
+        "P5": 46.0
+      },
+      "vs_baseline_pct": 63.5
+    }
+  ]
+}

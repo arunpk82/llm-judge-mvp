@@ -1,0 +1,54 @@
+{
+  "stories": [
+    {
+      "thread": "Death of Andrew Getty",
+      "story": "Andrew Getty, 47, died of what a Los Angeles Police Department spokesman said appear to be natural causes. Detective Meghan Aguilar stated there was no foul play and no criminal investigation, though an autopsy will be conducted. Getty was found on his side near a bathroom in his home. His parents, Ann and Gordon Getty, confirmed the death and requested privacy. Some medication was recovered from his home, but investigators do not know his medical history or if he was taking it.",
+      "key_facts": [
+        "Andrew Getty died at age 47",
+        "LAPD suggests natural causes",
+        "No foul play or criminal investigation",
+        "Found near a bathroom in his home",
+        "Parents are Ann and Gordon Getty"
+      ],
+      "explicit_unknowns": [
+        "Whether Getty was taking the recovered medication",
+        "Getty's medical history"
+      ]
+    },
+    {
+      "thread": "The Getty Family Fortune",
+      "story": "J. Paul Getty was an oil baron thought to be the richest man in the world at his death in 1976. His son Gordon Getty, 81, has a net worth of $2.1 billion according to Forbes, which estimates the family's net worth at about $5 billion. Gordon Getty spearheaded the $10 billion sale of Getty to Texaco in 1984. Two other sons of J. Paul Getty died in 1958 and 1973.",
+      "key_facts": [
+        "J. Paul Getty died in 1976",
+        "Gordon Getty is 81 with a net worth of $2.1 billion",
+        "Forbes estimates family net worth at $5 billion",
+        "Getty was sold to Texaco for $10 billion in 1984",
+        "Two other sons died in 1958 and 1973"
+      ],
+      "explicit_unknowns": []
+    },
+    {
+      "thread": "Andrew Getty's Legal and Health Issues",
+      "story": "Andrew Getty had recently filed for a restraining order against an ex-girlfriend, with a hearing scheduled for next week. In the petition, he stated he was diagnosed with a serious medical condition in 2013. He wrote that heated arguments could cause his blood pressure to rise dangerously, placing him at grave risk of irreparable injury or death. Andrew Getty had three brothers and three half-sisters.",
+      "key_facts": [
+        "Filed restraining order against ex-girlfriend",
+        "Diagnosed with serious medical condition in 2013",
+        "High blood pressure risk from heated arguments",
+        "Had three brothers and three half-sisters"
+      ],
+      "explicit_unknowns": [
+        "The specific nature of the serious medical condition"
+      ]
+    },
+    {
+      "thread": "Report Metadata",
+      "story": "This report on people lost in 2015 was contributed to by CNN's Doug Criss, Janet DiGiacomo, Mark Mooney, Mike Love, Julie In, and Cheri Mossburg.",
+      "key_facts": [
+        "Year of loss: 2015",
+        "Contributors: Doug Criss, Janet DiGiacomo, Mark Mooney, Mike Love, Julie In, Cheri Mossburg"
+      ],
+      "explicit_unknowns": []
+    }
+  ],
+  "_elapsed": 74.0
+}

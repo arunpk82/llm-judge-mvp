@@ -1,0 +1,89 @@
+{
+  "stories": [
+    {
+      "thread": "The Stabbing Incident",
+      "story": "Chris Copeland of the Indiana Pacers was stabbed early Wednesday after leaving a New York nightclub, according to police and CNN affiliates. He was with female companion Katrine Saltara when a 22-year-old Brooklyn man approached them, leading to a dispute before the suspect stabbed Copeland in the abdomen and left elbow, slashed Saltara, and slashed another woman. The stabbing occurred in front of the Fulton Houses project, not at the 1OAK club, and Copeland's driver detained the suspect who is now in police custody. Charges against the suspect are pending, and his name will be released once filed. The exact age of the second injured woman is unclear due to conflicting reports of 53 and 23 years old.",
+      "key_facts": [
+        "Chris Copeland (Indiana Pacers) stabbed early Wednesday",
+        "Katrine Saltara (female companion) slashed",
+        "Another woman slashed",
+        "Suspect is a 22-year-old Brooklyn man",
+        "Stabbing occurred in front of Fulton Houses project",
+        "Copeland's driver detained the suspect",
+        "Suspect is in police custody",
+        "Copeland suffered knife wounds to left elbow and abdomen",
+        "Saltara suffered cuts to arm, breast, and buttock",
+        "Other woman suffered a slash to her stomach",
+        "A knife was recovered"
+      ],
+      "explicit_unknowns": [
+        "Suspect's name",
+        "Exact age of the second injured woman",
+        "Nature of the dispute"
+      ]
+    },
+    {
+      "thread": "Arrest of Atlanta Hawks Players",
+      "story": "Atlanta Hawks players Pero Antic, 32, and Thabo Sefolosha, 30, were among those arrested early Wednesday near a New York nightclub. Police stated the Hawks players were not involved in the stabbing incident but were arrested on charges of obstructing governmental administration and disorderly conduct. Sefolosha faces an additional charge of resisting arrest. A 1OAK spokesperson said the players went outside to check on their friend, Chris Copeland, after word of the stabbing spread, and were arrested after pushing their way through a crowd that had gathered around the scene and interfering with officers trying to establish a crime scene; one of the Hawks pushed a police officer.",
+      "key_facts": [
+        "Pero Antic (32) and Thabo Sefolosha (30) of Atlanta Hawks arrested",
+        "Not involved in the stabbing incident",
+        "Arrested on charges of obstructing governmental administration and disorderly conduct",
+        "Sefolosha faces additional charge of resisting arrest",
+        "Went outside to check on friend Chris Copeland",
+        "Pushed through a crowd",
+        "Interfered with officers establishing a crime scene",
+        "One of the Hawks pushed a police officer"
+      ],
+      "explicit_unknowns": []
+    },
+    {
+      "thread": "Club 1OAK's Account of the Incident",
+      "story": "1OAK staff stated they were unaware of the stabbing incident when it happened, as it occurred beyond their view in a different location, specifically in front of the Fulton Houses project down the street. A 1OAK spokesperson said Chris Copeland and Katrine Saltara were in the club for about 10 minutes before leaving and walking towards Fulton Houses where their car was parked. The club's team assisted Mr. Copeland and called for help as soon as he was seen walking back towards the venue, leaving a \"bloody trail of handprints.\" A review of video footage suggests the incident did not originate from the venue or its immediate surroundings, and surveillance footage will not show the actual stabbing because it occurred too far away. The club shut down immediately after the incident.",
+      "key_facts": [
+        "1OAK staff unaware of incident when it happened",
+        "Incident occurred beyond their view in a different location (Fulton Houses)",
+        "Copeland and Saltara were in club for about 10 minutes",
+        "Club's team assisted Copeland and called for help",
+        "A \"bloody trail of handprints\" was left",
+        "Video footage suggests incident did not originate from venue",
+        "Surveillance footage will not show actual stabbing",
+        "Club shut down immediately after incident"
+      ],
+      "explicit_unknowns": []
+    },
+    {
+      "thread": "Victims' Condition and Statements",
+      "story": "Chris Copeland suffered knife wounds to his left elbow and abdomen and is in stable condition at a New York hospital. Katrine Saltara suffered cuts to her arm, breast, and buttock, and another woman suffered a slash to her stomach; a male and two females were taken to area hospitals. Larry Bird, the Pacers' president of basketball operations, stated the team is gathering information and their thoughts are with Chris and those injured. Copeland's agent, John Spencer, expressed concern for Chris and Katrine's safety, stating they had no details at the time. The identities of the two females taken to hospitals, beyond Katrine Saltara, are not explicitly stated.",
+      "key_facts": [
+        "Chris Copeland in stable condition at a New York hospital",
+        "Copeland suffered knife wounds to left elbow and abdomen",
+        "Katrine Saltara suffered cuts to arm, breast, and buttock",
+        "Another woman suffered a slash to her stomach",
+        "A male and two females were taken to area hospitals",
+        "Larry Bird (Pacers' president) issued a statement",
+        "John Spencer (Copeland's agent) issued a statement"
+      ],
+      "explicit_unknowns": [
+        "Identities of the two females taken to hospitals (beyond Katrine Saltara)"
+      ]
+    },
+    {
+      "thread": "Team and League Response & Player Context",
+      "story": "The NBA and the Hawks front office are looking into the incident involving Pero Antic and Thabo Sefolosha. Hawks spokesman Garin Narain stated they are gathering more information and will comment further at an appropriate time. Antic and Sefolosha released a joint statement saying they will contest the charges and apologized to their families, teammates, and the Hawks organization. Both players had recently arrived in New York after playing in the Hawks' 96-69 win over the Phoenix Suns in Atlanta on Tuesday night, where Antic played 12 minutes and Sefolosha played 20 minutes. Neither player will be in uniform for the Hawks' Wednesday night game against the Brooklyn Nets, and Copeland's Pacers are slated to play the New York Knicks on Wednesday night.",
+      "key_facts": [
+        "NBA and Hawks front office looking into incident",
+        "Hawks spokesman Garin Narain issued a statement",
+        "Antic and Sefolosha issued a joint statement",
+        "Players will contest charges and apologized",
+        "Players recently arrived in New York",
+        "Played in Hawks' 96-69 win over Phoenix Suns Tuesday night",
+        "Antic played 12 minutes, Sefolosha played 20 minutes",
+        "Neither player will be in uniform for Hawks' Wednesday game",
+        "Copeland's Pacers slated to play New York Knicks Wednesday night"
+      ],
+      "explicit_unknowns": []
+    }
+  ],
+  "_elapsed": 31.5
+}

@@ -1,0 +1,63 @@
+{
+  "stories": [
+    {
+      "thread": "Legal Charges and Proceedings",
+      "story": "Zhou Yongkang, 72, the former security czar and highest-ranking Chinese Communist Party official ever to face corruption charges, has been formally charged with accepting bribes, abuse of power, and leaking state secrets. He was expelled from the Communist Party and arrested last December, and has not been seen in public since an October 2013 event at his alma mater. His case will be tried in Tianjin, where the president of China's supreme court promised \"open\" trials for former leaders. However, the charge of leaking state secrets may allow authorities to shield certain proceedings from public view. Zhou was notified of his legal rights and his lawyer's views were heard.",
+      "key_facts": [
+        "Zhou Yongkang (72) charged with accepting bribes, abuse of power, and leaking state secrets",
+        "Expelled from CCP and arrested last December",
+        "Last seen in public October 2013",
+        "Trial location: Tianjin",
+        "Supreme court president promised open trials, though state secrets charges may limit this"
+      ],
+      "explicit_unknowns": [
+        "The specific date of arrest in December",
+        "The specific state secrets that were leaked"
+      ]
+    },
+    {
+      "thread": "Power and Alleged Misconduct",
+      "story": "As a member of the Politburo Standing Committee, Zhou was one of nine men who effectively ruled China's 1.3 billion people before retiring in 2012. At his peak, he controlled police forces, spy agencies, court systems, and prosecution offices, using them to crush dissent for \"preserving social stability.\" Prosecutors accuse him of illegally accepting huge amounts of money and seeking benefits for others, causing heavy losses to public assets and harming national interests. State media reported that Zhou and his family accumulated enormous wealth and that he allegedly traded power for sex with multiple women. State media also described a web of officials, cronies, and tycoons with alleged mafia connections orbiting Zhou.",
+      "key_facts": [
+        "Member of Politburo Standing Committee ruling 1.3 billion people",
+        "Retired in 2012",
+        "Controlled police, spy agencies, courts, and prosecution offices",
+        "Accused of accepting huge amounts of money and harming national interests",
+        "Allegedly traded power for sex and linked to cronies with mafia connections"
+      ],
+      "explicit_unknowns": [
+        "The exact amount of money accumulated by Zhou and his family",
+        "The identities of the women and cronies involved"
+      ]
+    },
+    {
+      "thread": "Political Impact and Xi Jinping",
+      "story": "President Xi Jinping has spearheaded a massive anti-corruption campaign targeting both high-ranking \"tigers\" and low-level \"flies.\" Zhou Yongkang is the biggest tiger caught in this dragnet to date. Analyst Willy Lam states that Xi has proven he is powerful enough to break the taboo of incriminating former Politburo Standing Committee members. Analysts view Zhou's downfall as a watershed moment in Chinese politics. Lam predicts a suspended death sentence for Zhou.",
+      "key_facts": [
+        "Xi Jinping's campaign targets 'tigers' (high-ranking) and 'flies' (low-level)",
+        "Zhou is the biggest 'tiger' caught",
+        "Xi broke the taboo of incriminating former Politburo Standing Committee members",
+        "Downfall viewed as a watershed moment",
+        "Willy Lam predicts a suspended death sentence"
+      ],
+      "explicit_unknowns": [
+        "The total number of officials targeted in the anti-corruption campaign"
+      ]
+    },
+    {
+      "thread": "Connection to Bo Xilai",
+      "story": "Zhou Yongkang was a patron of Bo Xilai, a former Communist leader sentenced to life in prison for corruption in 2013. Bo's downfall involved tales of murder, bribery, and betrayal, which state media cited as an example of Xi's resolve to clean up the party. Some supporters call Bo a political victim, as he was once considered Xi's main challenger for leadership. Political watchers see similarities between the Bo and Zhou cases. Willy Lam suggests those investigated for corruption are on the losing side of factional struggles.",
+      "key_facts": [
+        "Zhou was a patron of Bo Xilai",
+        "Bo Xilai sentenced to life in prison in 2013",
+        "Bo's case involved murder, bribery, and betrayal",
+        "Bo was once considered Xi's main challenger for leadership",
+        "Willy Lam links these investigations to factional struggles"
+      ],
+      "explicit_unknowns": [
+        "The specific nature of the patronage between Zhou and Bo"
+      ]
+    }
+  ],
+  "_elapsed": 116.2
+}

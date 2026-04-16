@@ -1,0 +1,66 @@
+{
+  "stories": [
+    {
+      "thread": "The Initial Crime Scene",
+      "story": "In the early hours of a Saturday morning last November, Hong Kong police answered a call and encountered a grisly scene at an upmarket apartment in Wan Chai. Police found 29-year-old Seneng Mujiasih lying on the blood-splattered floor with cuts to her neck and buttocks. During a search, officers uncovered the body of 25-year-old Sumarti Ningsih hidden in a suitcase on the balcony. 29-year-old Briton Rurik Jutting, who allegedly lived at the murder scene, called police to the apartment on Saturday morning, November 1. Rurik Jutting was detained at the scene, and a knife was seized during a search of the premises.",
+      "key_facts": [
+        "Hong Kong police found two bodies in an upmarket apartment in Wan Chai.",
+        "29-year-old Seneng Mujiasih was found on the floor with cuts.",
+        "25-year-old Sumarti Ningsih was found in a suitcase on the balcony.",
+        "29-year-old Briton Rurik Jutting called police on November 1 and was detained.",
+        "A knife was seized at the scene."
+      ],
+      "explicit_unknowns": []
+    },
+    {
+      "thread": "Sumarti Ningsih's Story",
+      "story": "25-year-old Sumarti Ningsih, found hidden in a suitcase on the balcony of an upmarket apartment in Wan Chai, was allegedly killed on October 27, five days before her body was discovered. Sumarti Ningsih was from Cilacap, in Central Java, and was the mother of a five-year-old girl. Her cousin, Jumiati, described her as 'just an ordinary woman from Indonesia' who wanted to work professionally to earn money and dignity for her family. The Asian Migrant Coordinating Body stated Sumarti Ningsih was visiting Hong Kong as a tourist and was due to fly back to Jakarta the day after her body was found. Her grieving father, Ahmad Khaliman, told Agence France-Presse that his daughter, 25-year-old Sumarti Ningsih, had worked in Hong Kong as a domestic helper between 2011 and 2013 and had since returned on two occasions; he called for 29-year-old Briton Rurik Jutting, the alleged perpetrator, to be executed, stating, 'He has already taken my daughter's life, so he has to pay with his life.'",
+      "key_facts": [
+        "25-year-old Sumarti Ningsih was allegedly killed on October 27.",
+        "She was from Cilacap, Central Java, and a mother of a five-year-old girl.",
+        "Her cousin Jumiati described her as an ordinary woman working abroad for her family.",
+        "Sumarti Ningsih was a tourist in Hong Kong and due to fly back to Jakarta.",
+        "Her father, Ahmad Khaliman, called for 29-year-old Briton Rurik Jutting's execution."
+      ],
+      "explicit_unknowns": []
+    },
+    {
+      "thread": "Seneng Mujiasih and Community Mourning",
+      "story": "29-year-old Seneng Mujiasih, also known as Jesse Lorena, was found lying on the blood-splattered floor of an upmarket apartment in Wan Chai. Seneng Mujiasih was from the city of Muna in Sulawesi province, southeast Indonesia, and had recently worked as a domestic worker in Hong Kong but had overstayed her visa, according to the Asian Migrant Co-ordinating Body. After news of the deaths of 29-year-old Seneng Mujiasih and 25-year-old Sumarti Ningsih spread, around 200 fellow domestic workers held a vigil in Hong Kong's Victoria Park, singing, praying, and laying flowers. The bodies of 29-year-old Seneng Mujiasih and 25-year-old Sumarti Ningsih were repatriated to Indonesia and buried in November.",
+      "key_facts": [
+        "29-year-old Seneng Mujiasih was from Muna, Sulawesi province, Indonesia.",
+        "She worked as a domestic worker in Hong Kong and had overstayed her visa.",
+        "A vigil was held for 29-year-old Seneng Mujiasih and 25-year-old Sumarti Ningsih in Victoria Park.",
+        "Their bodies were repatriated to Indonesia and buried in November."
+      ],
+      "explicit_unknowns": [
+        "Few details are known about 29-year-old Seneng Mujiasih's life and why she stayed on in Hong Kong."
+      ]
+    },
+    {
+      "thread": "Rurik Jutting's Professional Background",
+      "story": "29-year-old Briton Rurik Jutting, charged with two counts of murder, lived in the upmarket J Residence in Wan Chai where 29-year-old Seneng Mujiasih and 25-year-old Sumarti Ningsih were found. Rurik Jutting's LinkedIn profile stated he had been employed at Bank of America Merrill Lynch's structured equity finance and trading division in Hong Kong since July 2013. Before that, 29-year-old Rurik Jutting worked in the same unit in London for three years. According to his profile, Rurik Jutting previously worked in capital markets for the British bank Barclays and studied history and law at the prestigious University of Cambridge between 2004 and 2008.",
+      "key_facts": [
+        "29-year-old Briton Rurik Jutting lived at the J Residence in Wan Chai.",
+        "He worked at Bank of America Merrill Lynch in Hong Kong since July 2013 and in London for three years prior.",
+        "Rurik Jutting previously worked in capital markets for Barclays.",
+        "He studied history and law at the University of Cambridge between 2004 and 2008."
+      ],
+      "explicit_unknowns": [
+        "It's unclear when 29-year-old Briton Rurik Jutting left his job as a trader at the Bank of America Merrill Lynch."
+      ]
+    },
+    {
+      "thread": "The Legal Proceedings Against Rurik Jutting",
+      "story": "29-year-old Briton Rurik Jutting was charged with two counts of murder after the bodies of 29-year-old Seneng Mujiasih and 25-year-old Sumarti Ningsih were found in his Wan Chai apartment. On Thursday, a court hearing that was to determine whether there was enough evidence to proceed to trial was adjourned until May. As part of the trial process, tests were conducted to determine if 29-year-old Rurik Jutting was psychologically fit to enter a plea, and he was found fit. The case was then adjourned to allow for more than 200 pieces of forensic and DNA evidence to be analyzed.",
+      "key_facts": [
+        "29-year-old Briton Rurik Jutting was charged with two counts of murder.",
+        "A court hearing was adjourned until May.",
+        "Tests confirmed 29-year-old Rurik Jutting was psychologically fit to enter a plea.",
+        "The case was adjourned for analysis of over 200 pieces of forensic and DNA evidence."
+      ],
+      "explicit_unknowns": []
+    }
+  ],
+  "_elapsed": 33.7
+}

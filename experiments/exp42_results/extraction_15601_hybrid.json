@@ -1,0 +1,1124 @@
+{
+  "event_hubs": [
+    {
+      "event_id": "EVT_1",
+      "action": "failure",
+      "source_sentence": "S0",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "Rolling Stone",
+          "source": "S0"
+        },
+        {
+          "type": "where",
+          "target": "Rolling Stone",
+          "source": "S0"
+        },
+        {
+          "type": "how",
+          "target": "encompassed reporting, editing, editorial supervision and fact-checking",
+          "source": "S0"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_2",
+      "action": "article (creation/publication)",
+      "source_sentence": "S0",
+      "edges": [
+        {
+          "type": "target_of",
+          "target": "purported gang rape at the University of Virginia",
+          "source": "S0"
+        },
+        {
+          "type": "attributes",
+          "target": "deeply flawed",
+          "source": "S0"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_3",
+      "action": "review",
+      "source_sentence": "S0",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "Columbia Journalism School professors",
+          "source": "S0"
+        },
+        {
+          "type": "target_of",
+          "target": "institutional failure at Rolling Stone",
+          "source": "S0"
+        },
+        {
+          "type": "target_of",
+          "target": "deeply flawed article",
+          "source": "S0"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_4",
+      "action": "apologize",
+      "source_sentence": "S1",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "Will Dana",
+          "source": "S1"
+        },
+        {
+          "type": "target_of",
+          "target": "readers",
+          "source": "S1"
+        },
+        {
+          "type": "target_of",
+          "target": "members of the Phi Kappa Psi fraternity",
+          "source": "S1"
+        },
+        {
+          "type": "target_of",
+          "target": "UVA administrators",
+          "source": "S1"
+        },
+        {
+          "type": "target_of",
+          "target": "UVA students",
+          "source": "S1"
+        },
+        {
+          "type": "why",
+          "target": "damaged by our story and the ensuing fallout",
+          "source": "S1"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_5",
+      "action": "pursue legal action",
+      "source_sentence": "S1",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "Phi Kappa Psi fraternity",
+          "source": "S1"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_6",
+      "action": "sue",
+      "source_sentence": "S2",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "UVA",
+          "source": "S2"
+        },
+        {
+          "type": "agent_of",
+          "target": "Phi Kappa Psi fraternity",
+          "source": "S2"
+        },
+        {
+          "type": "agent_of",
+          "target": "other fraternities on campus",
+          "source": "S2"
+        },
+        {
+          "type": "why",
+          "target": "for defamation",
+          "source": "S2"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_7",
+      "action": "said",
+      "source_sentence": "S3",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "Virginia Supreme Court",
+          "source": "S3"
+        },
+        {
+          "type": "where",
+          "target": "Jordan v. Kollman (case)",
+          "source": "S3"
+        },
+        {
+          "type": "target_of",
+          "target": "elements of libel",
+          "source": "S4"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_8",
+      "action": "purported",
+      "source_sentence": "S8",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "Rolling Stone article",
+          "source": "S8"
+        },
+        {
+          "type": "target_of",
+          "target": "fact",
+          "source": "S8"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_9",
+      "action": "considered",
+      "source_sentence": "S8",
+      "edges": [
+        {
+          "type": "target_of",
+          "target": "individual members of the fraternity",
+          "source": "S8"
+        },
+        {
+          "type": "how",
+          "target": "private individuals, and not public figures",
+          "source": "S8"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_10",
+      "action": "suing",
+      "source_sentence": "S9",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "private person",
+          "source": "S9"
+        },
+        {
+          "type": "why",
+          "target": "for defamation",
+          "source": "S9"
+        },
+        {
+          "type": "how",
+          "target": "must establish that the defendant has published a false factual statement that is about the person and that it also harms the person's reputation",
+          "source": "S9"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_11",
+      "action": "published",
+      "source_sentence": "S9",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "defendant",
+          "source": "S9"
+        },
+        {
+          "type": "target_of",
+          "target": "false factual statement",
+          "source": "S9"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_12",
+      "action": "show/prove",
+      "source_sentence": "S10",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "private plaintiff",
+          "source": "S10"
+        },
+        {
+          "type": "target_of",
+          "target": "defendant knew that the statement was false, or believed it was true but lacked a reasonable basis, or acted negligently in checking the facts",
+          "source": "S10"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_13",
+      "action": "establishing",
+      "source_sentence": "S12",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "Columbia report",
+          "source": "S12"
+        },
+        {
+          "type": "target_of",
+          "target": "required intent (for defamation)",
+          "source": "S12"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_14",
+      "action": "cannot sue",
+      "source_sentence": "S18",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "government",
+          "source": "S18"
+        },
+        {
+          "type": "why",
+          "target": "for defamation",
+          "source": "S18"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_15",
+      "action": "show",
+      "source_sentence": "S22",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "plaintiff (in defamation case)",
+          "source": "S22"
+        },
+        {
+          "type": "target_of",
+          "target": "statements were \"of or concerning\" the plaintiff",
+          "source": "S22"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_16",
+      "action": "cannot sue",
+      "source_sentence": "S24",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "groups",
+          "source": "S24"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_17",
+      "action": "not actionable",
+      "source_sentence": "S26",
+      "edges": [
+        {
+          "type": "target_of",
+          "target": "defamatory statements about a group",
+          "source": "S26"
+        },
+        {
+          "type": "agent_of",
+          "target": "individual members (of the group)",
+          "source": "S26"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_18",
+      "action": "sue",
+      "source_sentence": "S28",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "individual member",
+          "source": "S28"
+        },
+        {
+          "type": "why",
+          "target": "defamatory language is about \"a comparatively small group of persons and the defamatory part is easily imputed against all members of the small group\"",
+          "source": "S28"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_19",
+      "action": "argue",
+      "source_sentence": "S29",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "Phi Kappa Psi fraternity",
+          "source": "S29"
+        },
+        {
+          "type": "target_of",
+          "target": "\"small group\" exception fits",
+          "source": "S29"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_20",
+      "action": "imputed",
+      "source_sentence": "S29",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "defamatory story (Rolling Stone article)",
+          "source": "S29"
+        },
+        {
+          "type": "target_of",
+          "target": "individual members (of Phi Kappa Psi)",
+          "source": "S29"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_21",
+      "action": "suffered",
+      "source_sentence": "S29",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "individual members (of Phi Kappa Psi)",
+          "source": "S29"
+        },
+        {
+          "type": "why",
+          "target": "association with the group",
+          "source": "S29"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_22",
+      "action": "argue",
+      "source_sentence": "S30",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "Rolling Stone's lawyers",
+          "source": "S30"
+        },
+        {
+          "type": "target_of",
+          "target": "group is so large and fluid, members have suffered no individualized injury",
+          "source": "S30"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_23",
+      "action": "bringing a lawsuit (difficulty)",
+      "source_sentence": "S31",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "members of Greek life generally",
+          "source": "S31"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_24",
+      "action": "threaten",
+      "source_sentence": "S32",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "citizens",
+          "source": "S32"
+        },
+        {
+          "type": "where",
+          "target": "Facebook",
+          "source": "S32"
+        },
+        {
+          "type": "target_of",
+          "target": "each other",
+          "source": "S32"
+        },
+        {
+          "type": "how",
+          "target": "with a libel suit",
+          "source": "S32"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_25",
+      "action": "filed (rarely)",
+      "source_sentence": "S32",
+      "edges": [
+        {
+          "type": "target_of",
+          "target": "libel suits",
+          "source": "S32"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_26",
+      "action": "show",
+      "source_sentence": "S33",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "plaintiff",
+          "source": "S33"
+        },
+        {
+          "type": "target_of",
+          "target": "financial harm",
+          "source": "S33"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_27",
+      "action": "calls",
+      "source_sentence": "S34",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "Aunt Edna",
+          "source": "S34"
+        },
+        {
+          "type": "target_of",
+          "target": "you (the reader)",
+          "source": "S34"
+        },
+        {
+          "type": "how",
+          "target": "a loser",
+          "source": "S34"
+        },
+        {
+          "type": "where",
+          "target": "Twitter",
+          "source": "S34"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_28",
+      "action": "spend money",
+      "source_sentence": "S34",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "you (the reader)",
+          "source": "S34"
+        },
+        {
+          "type": "target_of",
+          "target": "expert",
+          "source": "S34"
+        },
+        {
+          "type": "why",
+          "target": "to explain to a jury how that actually damaged you financially",
+          "source": "S34"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_29",
+      "action": "waste time threatening",
+      "source_sentence": "S35",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "people (who waste time threatening)",
+          "source": "S35"
+        },
+        {
+          "type": "target_of",
+          "target": "each other",
+          "source": "S35"
+        },
+        {
+          "type": "how",
+          "target": "with defamation suits",
+          "source": "S35"
+        },
+        {
+          "type": "where",
+          "target": "Facebook",
+          "source": "S35"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_30",
+      "action": "won't be able to sue",
+      "source_sentence": "S37",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "University of Virginia (UVA)",
+          "source": "S37"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_31",
+      "action": "get past hurdles",
+      "source_sentence": "S37",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "members of the fraternity",
+          "source": "S37"
+        },
+        {
+          "type": "target_of",
+          "target": "preliminary hurdles of a defamation claim",
+          "source": "S37"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_32",
+      "action": "make a case",
+      "source_sentence": "S37",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "members of the fraternity",
+          "source": "S37"
+        },
+        {
+          "type": "target_of",
+          "target": "damages",
+          "source": "S37"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_33",
+      "action": "successful",
+      "source_sentence": "S37",
+      "edges": [
+        {
+          "type": "target_of",
+          "target": "defamation cases",
+          "source": "S37"
+        }
+      ]
+    }
+  ],
+  "entities": [
+    {
+      "name": "Columbia Journalism School professors",
+      "aliases": [
+        "Columbia team"
+      ],
+      "attributes": {},
+      "participates_in": [
+        "EVT_3",
+        "EVT_13"
+      ],
+      "source_sentences": [
+        "S0",
+        "S12"
+      ]
+    },
+    {
+      "name": "Rolling Stone",
+      "aliases": [
+        "the publication",
+        "the magazine"
+      ],
+      "attributes": {},
+      "participates_in": [
+        "EVT_1",
+        "EVT_2",
+        "EVT_8"
+      ],
+      "source_sentences": [
+        "S0",
+        "S1",
+        "S8"
+      ]
+    },
+    {
+      "name": "University of Virginia (UVA)",
+      "aliases": [
+        "UVA",
+        "the university"
+      ],
+      "attributes": {
+        "type": "public university, governmental entity"
+      },
+      "participates_in": [
+        "EVT_2",
+        "EVT_6",
+        "EVT_14",
+        "EVT_30"
+      ],
+      "source_sentences": [
+        "S0",
+        "S2",
+        "S17",
+        "S18",
+        "S37"
+      ]
+    },
+    {
+      "name": "Will Dana",
+      "aliases": [],
+      "attributes": {
+        "role": "managing editor of Rolling Stone"
+      },
+      "participates_in": [
+        "EVT_4"
+      ],
+      "source_sentences": [
+        "S1"
+      ]
+    },
+    {
+      "name": "Readers",
+      "aliases": [],
+      "attributes": {},
+      "participates_in": [
+        "EVT_4"
+      ],
+      "source_sentences": [
+        "S1"
+      ]
+    },
+    {
+      "name": "Phi Kappa Psi fraternity",
+      "aliases": [
+        "Fraternity",
+        "the group"
+      ],
+      "attributes": {},
+      "participates_in": [
+        "EVT_4",
+        "EVT_5",
+        "EVT_6",
+        "EVT_19",
+        "EVT_20",
+        "EVT_21",
+        "EVT_31",
+        "EVT_32"
+      ],
+      "source_sentences": [
+        "S1",
+        "S2",
+        "S29",
+        "S30",
+        "S37"
+      ]
+    },
+    {
+      "name": "UVA administrators",
+      "aliases": [],
+      "attributes": {},
+      "participates_in": [
+        "EVT_4"
+      ],
+      "source_sentences": [
+        "S1"
+      ]
+    },
+    {
+      "name": "UVA students",
+      "aliases": [],
+      "attributes": {},
+      "participates_in": [
+        "EVT_4"
+      ],
+      "source_sentences": [
+        "S1"
+      ]
+    },
+    {
+      "name": "Brian Stelter",
+      "aliases": [],
+      "attributes": {
+        "role": "EXPLICITLY_UNKNOWN"
+      },
+      "participates_in": [
+        "EVT_5"
+      ],
+      "source_sentences": [
+        "S1"
+      ]
+    },
+    {
+      "name": "Other fraternities on campus",
+      "aliases": [],
+      "attributes": {},
+      "participates_in": [
+        "EVT_6",
+        "EVT_23"
+      ],
+      "source_sentences": [
+        "S2",
+        "S31"
+      ]
+    },
+    {
+      "name": "Virginia Supreme Court",
+      "aliases": [],
+      "attributes": {},
+      "participates_in": [
+        "EVT_7"
+      ],
+      "source_sentences": [
+        "S3"
+      ]
+    },
+    {
+      "name": "Jordan v. Kollman",
+      "aliases": [],
+      "attributes": {
+        "type": "legal case"
+      },
+      "participates_in": [
+        "EVT_7"
+      ],
+      "source_sentences": [
+        "S3"
+      ]
+    },
+    {
+      "name": "First Amendment to the United States Constitution",
+      "aliases": [],
+      "attributes": {
+        "protects": "freedom of speech"
+      },
+      "participates_in": [],
+      "source_sentences": [
+        "S5"
+      ]
+    },
+    {
+      "name": "Virginia Constitution",
+      "aliases": [],
+      "attributes": {
+        "protects": "freedom of speech"
+      },
+      "participates_in": [],
+      "source_sentences": [
+        "S5"
+      ]
+    },
+    {
+      "name": "Individual members of the fraternity",
+      "aliases": [],
+      "attributes": {},
+      "participates_in": [
+        "EVT_9",
+        "EVT_17",
+        "EVT_18",
+        "EVT_20",
+        "EVT_21"
+      ],
+      "source_sentences": [
+        "S8",
+        "S26",
+        "S28",
+        "S29"
+      ]
+    },
+    {
+      "name": "Private person",
+      "aliases": [
+        "private plaintiff"
+      ],
+      "attributes": {},
+      "participates_in": [
+        "EVT_10",
+        "EVT_12"
+      ],
+      "source_sentences": [
+        "S9",
+        "S10"
+      ]
+    },
+    {
+      "name": "Defendant",
+      "aliases": [],
+      "attributes": {},
+      "participates_in": [
+        "EVT_11"
+      ],
+      "source_sentences": [
+        "S9"
+      ]
+    },
+    {
+      "name": "Government",
+      "aliases": [
+        "governmental entity"
+      ],
+      "attributes": {},
+      "participates_in": [
+        "EVT_14"
+      ],
+      "source_sentences": [
+        "S18"
+      ]
+    },
+    {
+      "name": "Plaintiff (in defamation case)",
+      "aliases": [
+        "plaintiff"
+      ],
+      "attributes": {},
+      "participates_in": [
+        "EVT_15",
+        "EVT_26"
+      ],
+      "source_sentences": [
+        "S22",
+        "S33"
+      ]
+    },
+    {
+      "name": "Groups",
+      "aliases": [],
+      "attributes": {},
+      "participates_in": [
+        "EVT_16",
+        "EVT_17"
+      ],
+      "source_sentences": [
+        "S24",
+        "S26"
+      ]
+    },
+    {
+      "name": "1980 Philadelphia Phillies infielders",
+      "aliases": [],
+      "attributes": {
+        "description": "small group, example of a group where individual members could sue if defamed"
+      },
+      "participates_in": [],
+      "source_sentences": [
+        "S28"
+      ]
+    },
+    {
+      "name": "Rolling Stone's lawyers",
+      "aliases": [],
+      "attributes": {},
+      "participates_in": [
+        "EVT_22"
+      ],
+      "source_sentences": [
+        "S30"
+      ]
+    },
+    {
+      "name": "Members of Greek life generally",
+      "aliases": [],
+      "attributes": {},
+      "participates_in": [
+        "EVT_23"
+      ],
+      "source_sentences": [
+        "S31"
+      ]
+    },
+    {
+      "name": "Citizens",
+      "aliases": [],
+      "attributes": {},
+      "participates_in": [
+        "EVT_24"
+      ],
+      "source_sentences": [
+        "S32"
+      ]
+    },
+    {
+      "name": "Libel suits",
+      "aliases": [],
+      "attributes": {},
+      "participates_in": [
+        "EVT_25"
+      ],
+      "source_sentences": [
+        "S32"
+      ]
+    },
+    {
+      "name": "Aunt Edna",
+      "aliases": [],
+      "attributes": {},
+      "participates_in": [
+        "EVT_27"
+      ],
+      "source_sentences": [
+        "S34"
+      ]
+    },
+    {
+      "name": "You (the reader)",
+      "aliases": [],
+      "attributes": {},
+      "participates_in": [
+        "EVT_27",
+        "EVT_28"
+      ],
+      "source_sentences": [
+        "S34"
+      ]
+    },
+    {
+      "name": "Expert",
+      "aliases": [],
+      "attributes": {},
+      "participates_in": [
+        "EVT_28"
+      ],
+      "source_sentences": [
+        "S34"
+      ]
+    },
+    {
+      "name": "Jury",
+      "aliases": [],
+      "attributes": {},
+      "participates_in": [
+        "EVT_28"
+      ],
+      "source_sentences": [
+        "S34"
+      ]
+    },
+    {
+      "name": "People (who waste time threatening)",
+      "aliases": [],
+      "attributes": {
+        "location": "live in their moms' basements",
+        "employment_status": "are \"between jobs\""
+      },
+      "participates_in": [
+        "EVT_29"
+      ],
+      "source_sentences": [
+        "S35"
+      ]
+    },
+    {
+      "name": "Rolling Stone article",
+      "aliases": [],
+      "attributes": {},
+      "participates_in": [
+        "EVT_8",
+        "EVT_20"
+      ],
+      "source_sentences": [
+        "S8",
+        "S29"
+      ]
+    },
+    {
+      "name": "Columbia report",
+      "aliases": [],
+      "attributes": {},
+      "participates_in": [
+        "EVT_13"
+      ],
+      "source_sentences": [
+        "S12"
+      ]
+    },
+    {
+      "name": "members of the fraternity",
+      "aliases": [],
+      "attributes": {},
+      "participates_in": [
+        "EVT_31",
+        "EVT_32"
+      ],
+      "source_sentences": [
+        "S37"
+      ]
+    }
+  ],
+  "inter_event_edges": [
+    {
+      "from": "EVT_1",
+      "to": "EVT_2",
+      "type": "causation",
+      "source": "S0"
+    },
+    {
+      "from": "EVT_3",
+      "to": "EVT_1",
+      "type": "conclusion_about",
+      "source": "S0"
+    },
+    {
+      "from": "EVT_3",
+      "to": "EVT_2",
+      "type": "conclusion_about",
+      "source": "S0"
+    },
+    {
+      "from": "EVT_2",
+      "to": "EVT_4",
+      "type": "causation",
+      "source": "S1"
+    },
+    {
+      "from": "EVT_3",
+      "to": "EVT_13",
+      "type": "contributes_to",
+      "source": "S12"
+    },
+    {
+      "from": "EVT_31",
+      "to": "EVT_33",
+      "type": "condition_for",
+      "source": "S37"
+    },
+    {
+      "from": "EVT_32",
+      "to": "EVT_33",
+      "type": "condition_for",
+      "source": "S37"
+    }
+  ],
+  "explicit_unknowns": [
+    {
+      "about": "Brian Stelter's role or affiliation",
+      "unknown_slots": [
+        "attributes"
+      ],
+      "source": "S1"
+    },
+    {
+      "about": "target of 'pursue all available legal action'",
+      "unknown_slots": [
+        "target_of"
+      ],
+      "source": "S1"
+    },
+    {
+      "about": "target of 'sue for defamation'",
+      "unknown_slots": [
+        "target_of"
+      ],
+      "source": "S2"
+    }
+  ],
+  "_elapsed": 64.1
+}

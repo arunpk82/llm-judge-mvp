@@ -1,0 +1,80 @@
+{
+  "stories": [
+    {
+      "thread": "Settlement of the Daniel Ramos Lawsuit",
+      "story": "Kanye West has settled a civil lawsuit with paparazzi photographer Daniel Ramos, who had sued West after an assault in July 2013. The case, which was set for trial next week, was dismissed after a settlement was reached to the satisfaction of both parties. An important aspect of the settlement was an apology by Kanye West to Daniel Ramos. A picture of West and Ramos shaking hands, which occurred after the apology, was included in a statement by Ramos's lawyer, Gloria Allred, issued Tuesday night. The specific details of the settlement were not disclosed.",
+      "key_facts": [
+        "Kanye West settled a lawsuit with paparazzi photographer Daniel Ramos.",
+        "The case was dismissed after a settlement to the satisfaction of the parties.",
+        "An apology by Kanye West to Daniel Ramos was an important aspect of the settlement.",
+        "A picture of West and Ramos shaking hands was included in Gloria Allred's statement.",
+        "Gloria Allred issued her statement Tuesday night."
+      ],
+      "explicit_unknowns": [
+        "The specific details of the settlement, other than the apology, were not disclosed."
+      ]
+    },
+    {
+      "thread": "The July 2013 Assault Incident",
+      "story": "In July 2013, Kanye West attacked paparazzi photographer Daniel Ramos at Los Angeles International Airport, attempting to wrestle his camera away. The incident, caught on video on July 19, 2013, began with Ramos shouting \"Kanye! Kanye! Talk to me, Kanye!\" and asking why they couldn't talk to him. As West advanced, Ramos stated he didn't want to fight. West responded, \"I told you, don't talk to me, right. You're trying to get me in trouble so I step off and have to pay you like $250,000.\" West then rushed Ramos, scuffled for about 15 seconds trying to take the camera, and then retreated.",
+      "key_facts": [
+        "Kanye West attacked Daniel Ramos and tried to wrestle his camera from him in July 2013 at Los Angeles International Airport.",
+        "The incident was caught on video on July 19, 2013.",
+        "Ramos shouted questions at West, who told him not to talk to him.",
+        "West accused Ramos of trying to get him in trouble to pay $250,000.",
+        "West rushed Ramos and scuffled for about 15 seconds before retreating."
+      ],
+      "explicit_unknowns": []
+    },
+    {
+      "thread": "Legal Consequences for the Daniel Ramos Incident",
+      "story": "Following the July 2013 incident, photographer Daniel Ramos filed a civil suit against Kanye West. West pleaded no contest last year to a misdemeanor count of battery over the scuffle. A judge sentenced West to two years' probation, anger management sessions, and community service. Ramos and his lawyer, Gloria Allred, sought general and punitive damages in the civil suit. They asserted that West had interfered with Ramos's rights to pursue a lawful occupation.",
+      "key_facts": [
+        "Daniel Ramos filed a civil suit against Kanye West after the July 2013 attack.",
+        "West pleaded no contest last year to a misdemeanor count of battery.",
+        "A judge sentenced West to two years' probation, anger management sessions, and community service.",
+        "Ramos and Gloria Allred sought general and punitive damages.",
+        "They claimed West interfered with Ramos's rights to pursue a lawful occupation."
+      ],
+      "explicit_unknowns": [
+        "The exact year 'last year' refers to for West's plea is not specified."
+      ]
+    },
+    {
+      "thread": "Gloria Allred's Commentary on the Ramos Case",
+      "story": "Gloria Allred, Daniel Ramos's lawyer, issued a statement Tuesday night announcing the dismissal of the civil suit against Kanye West due to a settlement. Allred stated that the case was settled to the satisfaction of the parties involved. She emphasized, \"We believe that this case sent an important message.\" Allred further added, \"Celebrities are not above the law, and they have no right to physically attack someone simply because they were asked a question.\"",
+      "key_facts": [
+        "Gloria Allred issued a statement Tuesday night regarding the settlement.",
+        "She stated Ramos's side filed a dismissal because the case was settled to the satisfaction of the parties.",
+        "Allred said, 'We believe that this case sent an important message.'",
+        "She added, 'Celebrities are not above the law, and they have no right to physically attack someone simply because they were asked a question.'"
+      ],
+      "explicit_unknowns": []
+    },
+    {
+      "thread": "January 2014 Beverly Hills Incident",
+      "story": "Beverly Hills Police investigated an incident in January 2014 where Kanye West was accused of assaulting a man. The alleged assault occurred at a Beverly Hills chiropractor's office. West avoided criminal charges related to this incident by reaching a civil settlement with the man. The name of the man West was accused of assaulting is not mentioned. The specific details of the civil settlement are not mentioned.",
+      "key_facts": [
+        "Beverly Hills Police investigated an incident in January 2014.",
+        "Kanye West was accused of assaulting a man at a Beverly Hills chiropractor's office.",
+        "West avoided criminal charges by reaching a civil settlement with the man."
+      ],
+      "explicit_unknowns": [
+        "The name of the man West was accused of assaulting is not mentioned.",
+        "The specific details of the civil settlement are not mentioned."
+      ]
+    },
+    {
+      "thread": "Other Apologies by Kanye West",
+      "story": "Kanye West has also apologized to Beck and Bruno Mars. The reasons for these apologies are not stated in the source document. The dates of these apologies are also not stated.",
+      "key_facts": [
+        "Kanye West apologizes to Beck, Bruno Mars."
+      ],
+      "explicit_unknowns": [
+        "The reasons for these apologies are not stated.",
+        "The dates of these apologies are not stated."
+      ]
+    }
+  ],
+  "_elapsed": 22.1
+}

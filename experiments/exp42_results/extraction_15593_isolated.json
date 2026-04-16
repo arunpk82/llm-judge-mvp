@@ -1,0 +1,49 @@
+{
+  "stories": [
+    {
+      "thread": "Andrew Getty's Death Investigation",
+      "story": "Andrew Getty, 47, one of the heirs to billions of oil money, appears to have died of natural causes, according to a Los Angeles Police Department spokesman. The coroner's preliminary assessment found no foul play involved in his death, and no criminal investigation is underway. Detective Meghan Aguilar stated Getty had \"several health issues,\" and an autopsy will be conducted. Some medication was recovered from his home, but investigators do not know whether Getty was taking it or what his medical history was. Getty's parents, Ann and Gordon Getty, released a statement confirming their son's death and asking for privacy.",
+      "key_facts": [
+        "Andrew Getty, 47, died",
+        "Appears to have died of natural causes",
+        "No foul play involved (preliminary assessment)",
+        "No criminal investigation underway",
+        "Had 'several health issues'",
+        "Autopsy will be conducted",
+        "Medication recovered from home",
+        "Parents Ann and Gordon Getty confirmed death"
+      ],
+      "explicit_unknowns": [
+        "Whether Getty was taking the recovered medication",
+        "What Getty's medical history was"
+      ]
+    },
+    {
+      "thread": "The Getty Family Fortune and Background",
+      "story": "The Getty family fortune originated from oil tycoon J. Paul Getty, who was thought to be the richest man in the world at the time of his death in 1976. His son, Gordon Getty, 81, is one of three living sons of J. Paul Getty and has a net worth of $2.1 billion, according to Forbes. Gordon Getty spearheaded the controversial sale of Getty to Texaco for $10 billion in 1984. Forbes estimated the Gettys' net worth to be about $5 billion. Andrew Getty had three brothers and three half-sisters.",
+      "key_facts": [
+        "J. Paul Getty was an oil tycoon",
+        "J. Paul Getty was thought to be the richest man in the world at his death in 1976",
+        "Gordon Getty, 81, is a living son of J. Paul Getty",
+        "Gordon Getty has a net worth of $2.1 billion (Forbes)",
+        "Gordon Getty spearheaded the sale of Getty to Texaco for $10 billion in 1984",
+        "The Gettys' net worth is estimated at about $5 billion (Forbes)",
+        "Andrew Getty had three brothers and three half-sisters"
+      ],
+      "explicit_unknowns": []
+    },
+    {
+      "thread": "Andrew Getty's Recent Health and Legal Issues",
+      "story": "Court records show Andrew Getty had recently filed to get a restraining order against an ex-girlfriend, with a hearing in the case scheduled for next week. In his request, Getty stated he had been diagnosed with a serious medical condition in 2013. He wrote that a rise in his blood pressure placed him in grave risk of substantial and irreparable injury or death. His doctors had advised that heated arguments could cause his blood pressure to rise dangerously.",
+      "key_facts": [
+        "Andrew Getty filed for a restraining order against an ex-girlfriend",
+        "A hearing was scheduled for next week",
+        "Getty was diagnosed with a serious medical condition in 2013",
+        "A rise in blood pressure placed him at grave risk of injury or death",
+        "Doctors advised heated arguments could dangerously raise his blood pressure"
+      ],
+      "explicit_unknowns": []
+    }
+  ],
+  "_elapsed": 11.1
+}

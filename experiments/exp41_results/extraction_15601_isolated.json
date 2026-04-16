@@ -1,0 +1,95 @@
+{
+  "stories": [
+    {
+      "thread": "Rolling Stone Institutional Failure",
+      "story": "Columbia Journalism School professors found an institutional failure at Rolling Stone regarding a flawed article about a purported gang rape at the University of Virginia. The failure encompassed reporting, editing, editorial supervision, and fact-checking. Managing editor Will Dana apologized to readers, UVA administrators, students, and the Phi Kappa Psi fraternity. Brian Stelter noted the fraternity intends to pursue all available legal action.",
+      "key_facts": [
+        "Columbia Journalism School review found institutional failure at Rolling Stone",
+        "Failure included reporting, editing, editorial supervision, and fact-checking",
+        "Will Dana apologized to readers, Phi Kappa Psi, UVA administrators, and students",
+        "Phi Kappa Psi intends to pursue legal action"
+      ],
+      "explicit_unknowns": [
+        "not stated"
+      ]
+    },
+    {
+      "thread": "Legal Definitions of Libel",
+      "story": "In Jordan v. Kollman, the Virginia Supreme Court stated that libel requires the publication of an actionable statement with requisite intent. Actionable statements must be both false and defamatory, as true statements and pure opinions cannot be defamatory. These laws are balanced against freedom of speech protected by the Virginia Constitution and the First Amendment to the United States Constitution.",
+      "key_facts": [
+        "Jordan v. Kollman defines libel as publication of an actionable statement with requisite intent",
+        "Actionable statements must be false and defamatory",
+        "True statements and pure opinions are not defamatory",
+        "Defamation law is balanced against the First Amendment and the Virginia Constitution"
+      ],
+      "explicit_unknowns": [
+        "not stated"
+      ]
+    },
+    {
+      "thread": "Defamation Requirements for Private Individuals",
+      "story": "Private individuals suing for defamation must prove a defendant published a false factual statement about them that harmed their reputation. They must also show the defendant knew the statement was false, lacked a reasonable basis for believing it was true, or acted negligently. The Rolling Stone article purported to be fact and is likely not 'true.' The Columbia report may help establish the required intent for fraternity members, who are likely private individuals.",
+      "key_facts": [
+        "Private plaintiffs must prove a false factual statement about them that harms their reputation",
+        "Plaintiffs must show the defendant knew the statement was false, lacked a reasonable basis, or acted negligently",
+        "The Rolling Stone article purported to be fact",
+        "Fraternity members are likely private individuals"
+      ],
+      "explicit_unknowns": [
+        "whether the article is legally 'true'",
+        "whether fraternity members are legally 'private individuals'"
+      ]
+    },
+    {
+      "thread": "UVA's Legal Standing",
+      "story": "The identity of a plaintiff is critical in defamation actions. The University of Virginia cannot sue for defamation because it is a public university and a governmental entity. The Supreme Court has ruled that the government cannot sue for libelous statements, as no such cause of action exists in American jurisprudence.",
+      "key_facts": [
+        "UVA is a public university and governmental entity",
+        "The government cannot sue for defamation",
+        "No cause of action for government libel suits exists in American jurisprudence"
+      ],
+      "explicit_unknowns": [
+        "not stated"
+      ]
+    },
+    {
+      "thread": "Group Defamation Rules",
+      "story": "A plaintiff in a defamation case must show that statements were 'of or concerning' the plaintiff. Because a fraternity is a group, it is generally hard for individual members to sue when statements are about a group without naming individuals. For example, calling all lawyers thieves is not actionable by an individual lawyer, unlike calling a specific lawyer a thief.",
+      "key_facts": [
+        "Plaintiffs must show statements were 'of or concerning' them",
+        "Groups generally cannot sue for defamation",
+        "Statements about a group without naming individuals are usually not actionable by individual members"
+      ],
+      "explicit_unknowns": [
+        "not stated"
+      ]
+    },
+    {
+      "thread": "The Small Group Exception",
+      "story": "Individual members may sue if defamatory language concerns a 'comparatively small group of persons' and the statement is easily imputed against all members, such as the 1980 Philadelphia Phillies infielders. Phi Kappa Psi may argue this exception applies, while Rolling Stone's lawyers may argue the group is too large and fluid for individualized injury. Other campus fraternities not implicated in the story would have a harder time bringing a lawsuit.",
+      "key_facts": [
+        "Exception allows individuals to sue if the group is 'comparatively small' and the statement is easily imputed to all members",
+        "Example of 1980 Philadelphia Phillies infielders",
+        "Phi Kappa Psi may argue the small group exception applies",
+        "Rolling Stone may argue the group is too large and fluid"
+      ],
+      "explicit_unknowns": [
+        "whether Phi Kappa Psi qualifies as a 'small group'"
+      ]
+    },
+    {
+      "thread": "Financial Harm and Case Potential",
+      "story": "Libel suits are rarely filed because plaintiffs usually must demonstrate financial harm. For example, calling someone a loser on Twitter requires an expert to explain the financial damage to a jury. While UVA cannot sue, the Phi Kappa Psi case could be a rare success if members overcome preliminary hurdles and prove tangible damages.",
+      "key_facts": [
+        "Plaintiffs usually must show financial harm to file a libel suit",
+        "UVA cannot sue for defamation",
+        "Phi Kappa Psi could succeed if they pass preliminary hurdles and prove tangible damages"
+      ],
+      "explicit_unknowns": [
+        "whether fraternity members can pass preliminary hurdles",
+        "whether fraternity members can prove tangible damages"
+      ]
+    }
+  ],
+  "_elapsed": 198.5
+}

@@ -1,0 +1,223 @@
+{
+  "event_hubs": [
+    {
+      "event_id": "EVT_1",
+      "action": "accidentally revealed the correct answer to a guessing game",
+      "source_sentence": "S4",
+      "edges": [
+        {
+          "type": "actor",
+          "target": "Manuela Arbelaez",
+          "source": "S4"
+        },
+        {
+          "type": "object",
+          "target": "Hyundai Sonata",
+          "source": "S4"
+        },
+        {
+          "type": "time",
+          "target": "Thursday",
+          "source": "S4"
+        },
+        {
+          "type": "location_context",
+          "target": "The Price Is Right",
+          "source": "S4"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_2",
+      "action": "couldn't stop laughing",
+      "source_sentence": "S5",
+      "edges": [
+        {
+          "type": "actor",
+          "target": "Drew Carey",
+          "source": "S5"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_3",
+      "action": "exulted",
+      "source_sentence": "S7",
+      "edges": [
+        {
+          "type": "actor",
+          "target": "Drew Carey",
+          "source": "S7"
+        },
+        {
+          "type": "target",
+          "target": "contestant",
+          "source": "S7"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_4",
+      "action": "attempting to hide behind the display",
+      "source_sentence": "S8",
+      "edges": [
+        {
+          "type": "actor",
+          "target": "Manuela Arbelaez",
+          "source": "S8"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_5",
+      "action": "tweeted",
+      "source_sentence": "S9",
+      "edges": [
+        {
+          "type": "actor",
+          "target": "Manuela Arbelaez",
+          "source": "S9"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_6",
+      "action": "showed up to run his old show",
+      "source_sentence": "S10",
+      "edges": [
+        {
+          "type": "actor",
+          "target": "Bob Barker",
+          "source": "S10"
+        },
+        {
+          "type": "time",
+          "target": "Wednesday",
+          "source": "S10"
+        },
+        {
+          "type": "location_context",
+          "target": "The Price Is Right",
+          "source": "S10"
+        }
+      ]
+    }
+  ],
+  "entities": [
+    {
+      "name": "The Price Is Right",
+      "aliases": [],
+      "attributes": {
+        "type": "popular game show"
+      },
+      "participates_in": [
+        "EVT_1",
+        "EVT_6"
+      ],
+      "source_sentences": [
+        "S0",
+        "S4",
+        "S10"
+      ]
+    },
+    {
+      "name": "Manuela Arbelaez",
+      "aliases": [
+        "Arbelaez"
+      ],
+      "attributes": {
+        "role": "model",
+        "emotional_state": "mortified"
+      },
+      "participates_in": [
+        "EVT_1",
+        "EVT_4",
+        "EVT_5"
+      ],
+      "source_sentences": [
+        "S4",
+        "S7",
+        "S8",
+        "S9"
+      ]
+    },
+    {
+      "name": "Hyundai Sonata",
+      "aliases": [],
+      "attributes": {
+        "type": "car"
+      },
+      "participates_in": [
+        "EVT_1"
+      ],
+      "source_sentences": [
+        "S4"
+      ]
+    },
+    {
+      "name": "Drew Carey",
+      "aliases": [],
+      "attributes": {
+        "role": "host"
+      },
+      "participates_in": [
+        "EVT_2",
+        "EVT_3"
+      ],
+      "source_sentences": [
+        "S5",
+        "S7"
+      ]
+    },
+    {
+      "name": "contestant",
+      "aliases": [],
+      "attributes": {},
+      "participates_in": [
+        "EVT_3"
+      ],
+      "source_sentences": [
+        "S0",
+        "S7"
+      ]
+    },
+    {
+      "name": "Bob Barker",
+      "aliases": [],
+      "attributes": {
+        "role": "former host",
+        "age": "91"
+      },
+      "participates_in": [
+        "EVT_6"
+      ],
+      "source_sentences": [
+        "S10"
+      ]
+    }
+  ],
+  "explicit_unknowns": [
+    {
+      "about": "contestant",
+      "unknown_slots": [
+        "name"
+      ],
+      "source": "S0"
+    },
+    {
+      "about": "Thursday",
+      "unknown_slots": [
+        "calendar_date"
+      ],
+      "source": "S4"
+    },
+    {
+      "about": "Wednesday",
+      "unknown_slots": [
+        "calendar_date"
+      ],
+      "source": "S10"
+    }
+  ],
+  "_elapsed": 78.0
+}

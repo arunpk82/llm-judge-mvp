@@ -1,0 +1,365 @@
+{
+  "event_hubs": [
+    {
+      "event_id": "EVT_1",
+      "action": "Election to Kentucky State Senate",
+      "source_sentence": "S0",
+      "edges": [
+        {
+          "type": "participant",
+          "target": "Speaker",
+          "source": "S0"
+        },
+        {
+          "type": "organization",
+          "target": "Kentucky State Senate",
+          "source": "S0"
+        },
+        {
+          "type": "time",
+          "target": "1967",
+          "source": "S0"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_2",
+      "action": "Declaration of candidacy for President of the United States",
+      "source_sentence": "S2",
+      "edges": [
+        {
+          "type": "participant",
+          "target": "Rand Paul",
+          "source": "S2"
+        },
+        {
+          "type": "target_office",
+          "target": "President of the United States",
+          "source": "S2"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_3",
+      "action": "Campaign announcement message communication",
+      "source_sentence": "S3",
+      "edges": [
+        {
+          "type": "participant",
+          "target": "Rand Paul's campaign team",
+          "source": "S3"
+        },
+        {
+          "type": "audience",
+          "target": "reporters",
+          "source": "S3"
+        },
+        {
+          "type": "time",
+          "target": "last week",
+          "source": "S3"
+        },
+        {
+          "type": "topic",
+          "target": "expanding the Republican Party",
+          "source": "S3"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_4",
+      "action": "Announcement speech",
+      "source_sentence": "S14, S21",
+      "edges": [
+        {
+          "type": "participant",
+          "target": "Rand Paul",
+          "source": "S14"
+        },
+        {
+          "type": "place",
+          "target": "Louisville",
+          "source": "S14"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_5",
+      "action": "Speaking engagements",
+      "source_sentence": "S15",
+      "edges": [
+        {
+          "type": "participant",
+          "target": "Rand Paul",
+          "source": "S15"
+        },
+        {
+          "type": "location_type",
+          "target": "historically black colleges and universities",
+          "source": "S15"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_6",
+      "action": "Questioning the Civil Rights Act",
+      "source_sentence": "S14, S16",
+      "edges": [
+        {
+          "type": "participant",
+          "target": "Rand Paul",
+          "source": "S16"
+        },
+        {
+          "type": "target_legislation",
+          "target": "Civil Rights Act",
+          "source": "S16"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_7",
+      "action": "Remark regarding Voting Rights Act",
+      "source_sentence": "S17",
+      "edges": [
+        {
+          "type": "participant",
+          "target": "Rand Paul",
+          "source": "S17"
+        },
+        {
+          "type": "target_legislation",
+          "target": "Voting Rights Act",
+          "source": "S17"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_8",
+      "action": "Commemoration of Bloody Sunday",
+      "source_sentence": "S17",
+      "edges": [
+        {
+          "type": "participant",
+          "target": "President Obama",
+          "source": "S17"
+        },
+        {
+          "type": "participant",
+          "target": "John Lewis",
+          "source": "S17"
+        },
+        {
+          "type": "place",
+          "target": "Edmund Pettus Bridge",
+          "source": "S17"
+        },
+        {
+          "type": "time",
+          "target": "last month",
+          "source": "S17"
+        },
+        {
+          "type": "purpose",
+          "target": "50th anniversary of Bloody Sunday",
+          "source": "S17"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_9",
+      "action": "Bloody Sunday",
+      "source_sentence": "S17",
+      "edges": [
+        {
+          "type": "time_relative",
+          "target": "50 years prior to EVT_8",
+          "source": "S17"
+        }
+      ]
+    }
+  ],
+  "entities": [
+    {
+      "name": "Speaker",
+      "aliases": [
+        "I"
+      ],
+      "attributes": {
+        "distinction_1": "first woman to serve in the Kentucky State Senate",
+        "distinction_2": "first person of color to serve in the Kentucky State Senate"
+      },
+      "participates_in": [
+        "EVT_1"
+      ],
+      "source_sentences": [
+        "S0"
+      ]
+    },
+    {
+      "name": "Rand Paul",
+      "aliases": [
+        "Paul"
+      ],
+      "attributes": {
+        "political_party": "Republican",
+        "current_role": "U.S. Senator"
+      },
+      "participates_in": [
+        "EVT_2",
+        "EVT_4",
+        "EVT_5",
+        "EVT_6",
+        "EVT_7"
+      ],
+      "source_sentences": [
+        "S2",
+        "S7",
+        "S8",
+        "S12",
+        "S14",
+        "S15",
+        "S16",
+        "S17",
+        "S20",
+        "S21",
+        "S22",
+        "S24",
+        "S25"
+      ]
+    },
+    {
+      "name": "Kentucky State Senate",
+      "aliases": [],
+      "attributes": {},
+      "participates_in": [
+        "EVT_1"
+      ],
+      "source_sentences": [
+        "S0"
+      ]
+    },
+    {
+      "name": "Republican Party",
+      "aliases": [
+        "GOP"
+      ],
+      "attributes": {},
+      "participates_in": [],
+      "source_sentences": [
+        "S3",
+        "S7",
+        "S8",
+        "S9",
+        "S10",
+        "S21"
+      ]
+    },
+    {
+      "name": "President Obama",
+      "aliases": [],
+      "attributes": {
+        "race": "African-American"
+      },
+      "participates_in": [
+        "EVT_8"
+      ],
+      "source_sentences": [
+        "S17"
+      ]
+    },
+    {
+      "name": "John Lewis",
+      "aliases": [],
+      "attributes": {
+        "role": "veteran of the civil rights movement"
+      },
+      "participates_in": [
+        "EVT_8"
+      ],
+      "source_sentences": [
+        "S17"
+      ]
+    },
+    {
+      "name": "Civil Rights Act",
+      "aliases": [],
+      "attributes": {
+        "type": "legislation"
+      },
+      "participates_in": [
+        "EVT_6"
+      ],
+      "source_sentences": [
+        "S1",
+        "S14",
+        "S16"
+      ]
+    },
+    {
+      "name": "Voting Rights Act",
+      "aliases": [],
+      "attributes": {
+        "type": "legislation"
+      },
+      "participates_in": [
+        "EVT_7"
+      ],
+      "source_sentences": [
+        "S1",
+        "S17"
+      ]
+    },
+    {
+      "name": "Department of Education",
+      "aliases": [],
+      "attributes": {
+        "type": "department"
+      },
+      "participates_in": [],
+      "source_sentences": [
+        "S14"
+      ]
+    },
+    {
+      "name": "DREAMers",
+      "aliases": [],
+      "attributes": {},
+      "participates_in": [],
+      "source_sentences": [
+        "S14"
+      ]
+    }
+  ],
+  "explicit_unknowns": [
+    {
+      "about": "Speaker",
+      "unknown_slots": [
+        "name"
+      ],
+      "source": "S0"
+    },
+    {
+      "about": "EVT_3",
+      "unknown_slots": [
+        "exact_date"
+      ],
+      "source": "S3"
+    },
+    {
+      "about": "EVT_8",
+      "unknown_slots": [
+        "exact_date"
+      ],
+      "source": "S17"
+    },
+    {
+      "about": "EVT_9",
+      "unknown_slots": [
+        "exact_date"
+      ],
+      "source": "S17"
+    }
+  ],
+  "_elapsed": 108.7
+}

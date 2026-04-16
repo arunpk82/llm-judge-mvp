@@ -1,0 +1,366 @@
+{
+  "event_hubs": [
+    {
+      "event_id": "EVT_1",
+      "action": "Barring women from attending most sports events involving men",
+      "source_sentence": "S0",
+      "edges": [
+        {
+          "type": "agent",
+          "target": "ENT_1",
+          "source": "S6"
+        },
+        {
+          "type": "target",
+          "target": "ENT_2",
+          "source": "S0"
+        },
+        {
+          "type": "start_time",
+          "target": "1979",
+          "source": "S0"
+        },
+        {
+          "type": "reason",
+          "target": "Mixed crowds watching games together deemed un-Islamic",
+          "source": "S6"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_2",
+      "action": "Lifting restrictions for some sports events",
+      "source_sentence": "S1",
+      "edges": [
+        {
+          "type": "announcer",
+          "target": "ENT_3",
+          "source": "S2"
+        },
+        {
+          "type": "beneficiaries",
+          "target": "ENT_2",
+          "source": "S2"
+        },
+        {
+          "type": "beneficiaries",
+          "target": "Families",
+          "source": "S2"
+        },
+        {
+          "type": "timeframe",
+          "target": "Coming months",
+          "source": "S1"
+        },
+        {
+          "type": "timeframe",
+          "target": "Next year",
+          "source": "S2"
+        },
+        {
+          "type": "scope",
+          "target": "Indoor sports events",
+          "source": "S4"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_3",
+      "action": "Permitting women to attend volleyball matches",
+      "source_sentence": "S8",
+      "edges": [
+        {
+          "type": "authority",
+          "target": "ENT_4",
+          "source": "S8"
+        },
+        {
+          "type": "target",
+          "target": "ENT_2",
+          "source": "S8"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_4",
+      "action": "Reinstating the ban on women attending sports events",
+      "source_sentence": "S8",
+      "edges": [
+        {
+          "type": "authority",
+          "target": "ENT_5",
+          "source": "S8"
+        },
+        {
+          "type": "time",
+          "target": "2005",
+          "source": "S8"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_5",
+      "action": "Calling on Iran to end the ban on women attending soccer matches",
+      "source_sentence": "S10",
+      "edges": [
+        {
+          "type": "agent",
+          "target": "ENT_6",
+          "source": "S10"
+        },
+        {
+          "type": "target",
+          "target": "ENT_1",
+          "source": "S10"
+        },
+        {
+          "type": "time",
+          "target": "Last month",
+          "source": "S10"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_6",
+      "action": "Awarding the 2019 Asian Cup",
+      "source_sentence": "S10",
+      "edges": [
+        {
+          "type": "recipient",
+          "target": "United Arab Emirates",
+          "source": "S10"
+        },
+        {
+          "type": "bidder",
+          "target": "Iran",
+          "source": "S10"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_7",
+      "action": "Watching soccer team without restriction",
+      "source_sentence": "S12",
+      "edges": [
+        {
+          "type": "participants",
+          "target": "Female Iranian fans",
+          "source": "S12"
+        },
+        {
+          "type": "place",
+          "target": "Australia",
+          "source": "S12"
+        },
+        {
+          "type": "time",
+          "target": "Earlier this year",
+          "source": "S12"
+        },
+        {
+          "type": "context",
+          "target": "Asian Cup",
+          "source": "S12"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_8",
+      "action": "Calling for the ban to end and unfurling a banner",
+      "source_sentence": "S13",
+      "edges": [
+        {
+          "type": "participants",
+          "target": "Activists",
+          "source": "S13"
+        },
+        {
+          "type": "subject_of_banner",
+          "target": "ENT_7",
+          "source": "S13"
+        },
+        {
+          "type": "context",
+          "target": "Match against Iraq",
+          "source": "S13"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_9",
+      "action": "Detaining Ghoncheh Ghavami",
+      "source_sentence": "S13",
+      "edges": [
+        {
+          "type": "agent",
+          "target": "ENT_1",
+          "source": "S14"
+        },
+        {
+          "type": "target",
+          "target": "ENT_7",
+          "source": "S13"
+        },
+        {
+          "type": "place",
+          "target": "Iran",
+          "source": "S13"
+        },
+        {
+          "type": "time",
+          "target": "Last year",
+          "source": "S13"
+        },
+        {
+          "type": "stated_reason_by_officials",
+          "target": "anti-Iran activities",
+          "source": "S14"
+        },
+        {
+          "type": "stated_reason_by_others",
+          "target": "trying to watch a volleyball match",
+          "source": "S13"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_10",
+      "action": "Pardoning Ghoncheh Ghavami",
+      "source_sentence": "S14",
+      "edges": [
+        {
+          "type": "agent",
+          "target": "Court of Appeal",
+          "source": "S14"
+        },
+        {
+          "type": "target",
+          "target": "ENT_7",
+          "source": "S14"
+        }
+      ]
+    }
+  ],
+  "entities": [
+    {
+      "name": "Iranian authorities",
+      "aliases": [],
+      "attributes": {},
+      "participates_in": [
+        "EVT_1",
+        "EVT_9"
+      ],
+      "source_sentences": [
+        "S6",
+        "S14"
+      ]
+    },
+    {
+      "name": "Women",
+      "aliases": [],
+      "attributes": {},
+      "participates_in": [
+        "EVT_1",
+        "EVT_2",
+        "EVT_3"
+      ],
+      "source_sentences": [
+        "S0",
+        "S2",
+        "S8"
+      ]
+    },
+    {
+      "name": "Abdolhamid Ahmadi",
+      "aliases": [],
+      "attributes": {
+        "title": "Deputy Sports Minister"
+      },
+      "participates_in": [
+        "EVT_2"
+      ],
+      "source_sentences": [
+        "S2"
+      ]
+    },
+    {
+      "name": "Mohammad Khatami",
+      "aliases": [],
+      "attributes": {
+        "title": "President",
+        "description": "moderate"
+      },
+      "participates_in": [
+        "EVT_3"
+      ],
+      "source_sentences": [
+        "S8"
+      ]
+    },
+    {
+      "name": "Mahmoud Ahmadinejad",
+      "aliases": [],
+      "attributes": {
+        "title": "President",
+        "description": "hard-line"
+      },
+      "participates_in": [
+        "EVT_4"
+      ],
+      "source_sentences": [
+        "S8"
+      ]
+    },
+    {
+      "name": "Sepp Blatter",
+      "aliases": [],
+      "attributes": {
+        "title": "FIFA President"
+      },
+      "participates_in": [
+        "EVT_5"
+      ],
+      "source_sentences": [
+        "S10"
+      ]
+    },
+    {
+      "name": "Ghoncheh Ghavami",
+      "aliases": [],
+      "attributes": {
+        "nationality": "British-Iranian",
+        "gender": "woman"
+      },
+      "participates_in": [
+        "EVT_8",
+        "EVT_9",
+        "EVT_10"
+      ],
+      "source_sentences": [
+        "S13",
+        "S14"
+      ]
+    },
+    {
+      "name": "Annie Ramos",
+      "aliases": [],
+      "attributes": {
+        "affiliation": "CNN"
+      },
+      "participates_in": [],
+      "source_sentences": [
+        "S15"
+      ]
+    }
+  ],
+  "explicit_unknowns": [
+    {
+      "about": "lifting of the ban",
+      "unknown_slots": [
+        "exactly which games women will be able to attend"
+      ],
+      "source": "S3"
+    }
+  ],
+  "_elapsed": 113.6
+}

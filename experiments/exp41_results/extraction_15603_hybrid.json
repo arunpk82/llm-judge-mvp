@@ -1,0 +1,304 @@
+{
+  "event_hubs": [
+    {
+      "event_id": "EVT_1",
+      "action": "Explosion and Fire",
+      "source_sentence": "S0",
+      "edges": [
+        {
+          "type": "location",
+          "target": "Chemical Plant",
+          "source": "S0"
+        },
+        {
+          "type": "location",
+          "target": "Oil storage facility",
+          "source": "S2"
+        },
+        {
+          "type": "location",
+          "target": "Zhangzhou city",
+          "source": "S1"
+        },
+        {
+          "type": "location",
+          "target": "Fujian province",
+          "source": "S0"
+        },
+        {
+          "type": "time",
+          "target": "Monday night",
+          "source": "S2"
+        },
+        {
+          "type": "cause",
+          "target": "Oil leak",
+          "source": "S2"
+        },
+        {
+          "type": "affected_party",
+          "target": "Six people",
+          "source": "S0"
+        },
+        {
+          "type": "responder",
+          "target": "600+ firefighters",
+          "source": "S4"
+        },
+        {
+          "type": "responder",
+          "target": "Zhangzhou fire department",
+          "source": "S4"
+        },
+        {
+          "type": "witness",
+          "target": "Residents",
+          "source": "S5"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_2",
+      "action": "Explosion",
+      "source_sentence": "S7",
+      "edges": [
+        {
+          "type": "location",
+          "target": "Chemical Plant",
+          "source": "S7"
+        },
+        {
+          "type": "time",
+          "target": "July 2013",
+          "source": "S7"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_3",
+      "action": "Protests",
+      "source_sentence": "S8",
+      "edges": [
+        {
+          "type": "cause",
+          "target": "Construction of PX plants",
+          "source": "S8"
+        },
+        {
+          "type": "location",
+          "target": "Several cities",
+          "source": "S8"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_4",
+      "action": "Relocation",
+      "source_sentence": "S10",
+      "edges": [
+        {
+          "type": "entity_relocated",
+          "target": "Chemical Plant",
+          "source": "S10"
+        },
+        {
+          "type": "origin",
+          "target": "Xiamen",
+          "source": "S9"
+        },
+        {
+          "type": "destination",
+          "target": "Zhangzhou city",
+          "source": "S10"
+        },
+        {
+          "type": "time",
+          "target": "2007",
+          "source": "S10"
+        },
+        {
+          "type": "cause",
+          "target": "Pollution concerns",
+          "source": "S10"
+        },
+        {
+          "type": "agent",
+          "target": "Local government",
+          "source": "S10"
+        }
+      ]
+    }
+  ],
+  "entities": [
+    {
+      "name": "Chemical Plant",
+      "aliases": [
+        "Zhangzhou plant",
+        "factory"
+      ],
+      "attributes": {
+        "status": "controversial",
+        "product": "paraxylene (PX)"
+      },
+      "participates_in": [
+        "EVT_1",
+        "EVT_2",
+        "EVT_4"
+      ],
+      "source_sentences": [
+        "S0",
+        "S1",
+        "S7",
+        "S9",
+        "S10"
+      ]
+    },
+    {
+      "name": "Paraxylene (PX)",
+      "aliases": [],
+      "attributes": {
+        "properties": "reportedly carcinogenic",
+        "use": "production of polyester films and fabrics"
+      },
+      "participates_in": [
+        "EVT_3"
+      ],
+      "source_sentences": [
+        "S1",
+        "S8"
+      ]
+    },
+    {
+      "name": "Six people",
+      "aliases": [],
+      "attributes": {
+        "condition": "hurt",
+        "injury_detail": "Five out of six injured by broken glass"
+      },
+      "participates_in": [
+        "EVT_1"
+      ],
+      "source_sentences": [
+        "S0",
+        "S3"
+      ]
+    },
+    {
+      "name": "Zhangzhou city",
+      "aliases": [],
+      "attributes": {
+        "type": "city"
+      },
+      "participates_in": [
+        "EVT_1",
+        "EVT_4"
+      ],
+      "source_sentences": [
+        "S1",
+        "S10"
+      ]
+    },
+    {
+      "name": "Fujian province",
+      "aliases": [],
+      "attributes": {
+        "region": "southeastern China"
+      },
+      "participates_in": [
+        "EVT_1"
+      ],
+      "source_sentences": [
+        "S0"
+      ]
+    },
+    {
+      "name": "Oil storage facility",
+      "aliases": [],
+      "attributes": {},
+      "participates_in": [
+        "EVT_1"
+      ],
+      "source_sentences": [
+        "S2"
+      ]
+    },
+    {
+      "name": "600+ firefighters",
+      "aliases": [],
+      "attributes": {},
+      "participates_in": [
+        "EVT_1"
+      ],
+      "source_sentences": [
+        "S4"
+      ]
+    },
+    {
+      "name": "Zhangzhou fire department",
+      "aliases": [],
+      "attributes": {},
+      "participates_in": [
+        "EVT_1"
+      ],
+      "source_sentences": [
+        "S4"
+      ]
+    },
+    {
+      "name": "Residents",
+      "aliases": [],
+      "attributes": {
+        "proximity": "living close to the plant"
+      },
+      "participates_in": [
+        "EVT_1"
+      ],
+      "source_sentences": [
+        "S5"
+      ]
+    },
+    {
+      "name": "Xiamen",
+      "aliases": [],
+      "attributes": {
+        "type": "city",
+        "population_density": "densely populated",
+        "region": "southeast of the country"
+      },
+      "participates_in": [
+        "EVT_4"
+      ],
+      "source_sentences": [
+        "S9"
+      ]
+    },
+    {
+      "name": "Local government",
+      "aliases": [],
+      "attributes": {},
+      "participates_in": [
+        "EVT_4"
+      ],
+      "source_sentences": [
+        "S10"
+      ]
+    }
+  ],
+  "explicit_unknowns": [
+    {
+      "about": "Toxic chemical spill (EVT_1)",
+      "unknown_slots": [
+        "occurrence"
+      ],
+      "source": "S2"
+    },
+    {
+      "about": "Casualties or toxic leaks (EVT_2)",
+      "unknown_slots": [
+        "occurrence"
+      ],
+      "source": "S7"
+    }
+  ],
+  "_elapsed": 86.6
+}

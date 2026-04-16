@@ -1,0 +1,58 @@
+{
+  "stories": [
+    {
+      "thread": "New Stadium Access Policy",
+      "story": "Deputy Sports Minister Abdolhamid Ahmadi announced a plan to allow \"women and families\" into sports stadiums in the next year. According to state-run Press TV, restrictions would be lifted for indoor sports events. It is not clear exactly which games women will be able to attend. Some sports will remain restricted because they are mainly related to men and families are not interested in attending them.",
+      "key_facts": [
+        "Abdolhamid Ahmadi",
+        "women and families",
+        "next year",
+        "indoor sports events"
+      ],
+      "explicit_unknowns": [
+        "exactly which games women will be able to attend"
+      ]
+    },
+    {
+      "thread": "History of Sports Bans in Iran",
+      "story": "Since the 1979 Islamic Revolution, Iranian authorities barred women from most sports events involving men, deeming mixed crowds un-Islamic. Crowds at soccer games, Iran's most popular sport, have been all male for decades. Women were briefly permitted to attend volleyball matches under President Mohammad Khatami. The ban was reinstated in 2005 after Mahmoud Ahmadinejad came to power.",
+      "key_facts": [
+        "1979 Islamic Revolution",
+        "mixed crowds deemed un-Islamic",
+        "Mohammad Khatami",
+        "2005",
+        "Mahmoud Ahmadinejad"
+      ],
+      "explicit_unknowns": [
+        "not stated"
+      ]
+    },
+    {
+      "thread": "International Pressure and the 2019 Asian Cup",
+      "story": "FIFA President Sepp Blatter called Iran's ban on women attending soccer matches \"intolerable\" and said the situation \"cannot continue.\" Iran lost the bid to host the 2019 Asian Cup to the United Arab Emirates. The ban was widely seen as a major impediment to Iran securing the event. The Iranian government has faced pressure from international sports officials over these restrictions.",
+      "key_facts": [
+        "Sepp Blatter",
+        "2019 Asian Cup",
+        "United Arab Emirates"
+      ],
+      "explicit_unknowns": [
+        "not stated"
+      ]
+    },
+    {
+      "thread": "Activism and the Case of Ghoncheh Ghavami",
+      "story": "At the Asian Cup in Australia, thousands of female Iranian fans watched their soccer team without restriction. During a match against Iraq, activists unfurled a banner of Ghoncheh Ghavami, a British-Iranian woman detained last year while trying to watch a volleyball match. Officials denied she was arrested for the game, citing \"anti-Iran activities,\" though Reuters reported she was recently pardoned by the Court of Appeal. CNN's Annie Ramos contributed to this report.",
+      "key_facts": [
+        "Asian Cup in Australia",
+        "Ghoncheh Ghavami",
+        "anti-Iran activities",
+        "Court of Appeal",
+        "Annie Ramos"
+      ],
+      "explicit_unknowns": [
+        "not stated"
+      ]
+    }
+  ],
+  "_elapsed": 67.1
+}

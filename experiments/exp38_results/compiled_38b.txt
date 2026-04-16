@@ -1,0 +1,43 @@
+
+THREAD: Keonna Thomas thread
+  S0: FBI charged a Philadelphia woman
+  S3: Identified as Keonna Thomas; social media messages cited
+  S4: First specific social media message content revealed
+  S5: Second specific social media message content revealed
+  S6: Purchased electronic visa to Turkey
+  S9: Purchased ticket to Barcelona
+  S10: Arrest details unclear
+  S11: Charged with providing material support to a terrorist organization
+  S12: Could be sentenced to 15 years
+
+THREAD: Broader terror arrests thread
+  S0: FBI charged a woman on terror charges
+  S1: She is one of three women arrested this week on terror charges
+  S2: Two New York women also taken into custody
+  S13: Identified as Noelle Velentzas and Asia Siddiqui, accused of planning explosive device
+
+THREAD: ISIS travel methods and context thread
+  S0: Charge involves 'trying to travel overseas to fight for ISIS'
+  S7: Turkey known as easiest place to enter Syria and join ISIS
+  S8: ISIS manual advises recruits on travel strategy
+
+CAUSAL: Why was Keonna Thomas charged?
+  S11: charged with material support <- S0: FBI charging her
+  S0: FBI charged a Philadelphia woman <- S9: her purchase of a ticket to Barcelona
+  S9: purchased ticket to Barcelona <- S8: ISIS manual advising this travel method
+  S8: ISIS manual advises recruits on travel <- S6: her purchase of an electronic visa to Turkey
+  S6: purchased electronic visa to Turkey <- S7: Turkey being an easy entry point to Syria/ISIS
+  S7: Turkey known as easy entry to Syria/ISIS <- S3: her radicalization and intent expressed in social media messages
+  S3: social media messages cited <- S4: specific content of her radicalization in a Twitter message
+  S4: Twitter message about rushing to join brothers <- S5: further specific content of her radicalization in another message
+  S5: message about death becoming a wedding <- her radical beliefs and intent to join ISIS
+
+CAUSAL: Context and nature of current terror threats and arrests
+  S13: NY women accused of planning explosive device <- S2: their arrest as two New York women
+  S2: Two New York women taken into custody <- S1: their arrest as part of three women arrested this week
+  S1: She's one of three women arrested this week <- S0: the initial charge against the Philadelphia woman, setting the context for 'this week's arrests'
+  S0: FBI charged a Philadelphia woman <- S14: these arrests being part of a larger trend of prosecutions
+  S14: Justice Dept. prosecuting 30+ terror cases <- S15: many of these cases involving support to ISIS
+  S15: 18 cases involve support to ISIS <- S16: the evolving nature of the terrorist threat
+  S16: terrorist threat is decentralized, diffuse, complicated <- S17: specific characteristics of the threat, e.g., social media, lone wolf
+  S17: threat involves lone wolf, social media, Internet <- the evolving global security landscape and terrorist tactics

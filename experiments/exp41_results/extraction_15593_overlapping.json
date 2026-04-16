@@ -1,0 +1,70 @@
+{
+  "stories": [
+    {
+      "thread": "Death of Andrew Getty",
+      "story": "Andrew Getty, an heir to billions of oil money and grandson of oil tycoon J. Paul Getty, appears to have died of natural causes. Detective Meghan Aguilar stated there was no foul play and Andrew Getty, 47, had several health issues. An autopsy will be conducted, and no criminal investigation is underway. Andrew Getty was found on his side near a bathroom in his home, according to KTLA.",
+      "key_facts": [
+        "Andrew Getty died of natural causes",
+        "Andrew Getty was 47 years old",
+        "Detective Meghan Aguilar reported no foul play",
+        "No criminal investigation is underway",
+        "Andrew Getty was found near a bathroom"
+      ],
+      "explicit_unknowns": [
+        "final autopsy results"
+      ]
+    },
+    {
+      "thread": "Investigation into Andrew Getty",
+      "story": "Ed Winter, assistant chief in the Los Angeles County coroner's office, told KTLA that medication was recovered from Andrew Getty's home. Investigators do not know if Andrew Getty was taking it or what his medical history was. Andrew Getty's parents, Ann Getty and Gordon Getty, released a statement confirming their son's death and asking for privacy.",
+      "key_facts": [
+        "Medication was recovered from Andrew Getty's home",
+        "Ann Getty and Gordon Getty confirmed the death of Andrew Getty"
+      ],
+      "explicit_unknowns": [
+        "whether Andrew Getty was taking the recovered medication",
+        "Andrew Getty's medical history"
+      ]
+    },
+    {
+      "thread": "The Getty Family Fortune",
+      "story": "Gordon Getty is one of three living sons of J. Paul Getty, the oil baron thought to be the richest man in the world at his death in 1976. Gordon Getty, 81, has a net worth of $2.1 billion according to Forbes. Gordon Getty spearheaded the controversial sale of Getty to Texaco for $10 billion in 1984. Forbes estimated the Getty family net worth to be about $5 billion.",
+      "key_facts": [
+        "J. Paul Getty died in 1976",
+        "Gordon Getty is 81 years old with a net worth of $2.1 billion",
+        "Gordon Getty sold Getty to Texaco for $10 billion in 1984",
+        "Forbes estimates the Getty family net worth at $5 billion"
+      ],
+      "explicit_unknowns": [
+        "not stated"
+      ]
+    },
+    {
+      "thread": "Andrew Getty's Legal and Health History",
+      "story": "J. Paul Getty had other sons who died in 1958 and 1973. Andrew Getty had three brothers and three half-sisters. Andrew Getty recently filed for a restraining order against an ex-girlfriend, with a hearing scheduled for next week. Andrew Getty stated in the petition he was diagnosed with a serious medical condition in 2013.",
+      "key_facts": [
+        "Two sons of J. Paul Getty died in 1958 and 1973",
+        "Andrew Getty had three brothers and three half-sisters",
+        "Andrew Getty filed for a restraining order against an ex-girlfriend",
+        "Andrew Getty was diagnosed with a serious medical condition in 2013"
+      ],
+      "explicit_unknowns": [
+        "identity of the ex-girlfriend"
+      ]
+    },
+    {
+      "thread": "Andrew Getty's Condition and Report Credits",
+      "story": "Andrew Getty wrote that a rise in blood pressure places him in grave risk of substantial and irreparable injury or death. Andrew Getty's doctors advised that heated arguments can cause his blood pressure to rise dangerously. This report on people lost in 2015 was contributed to by Doug Criss, Janet DiGiacomo, Mark Mooney, Mike Love, Julie In, and Cheri Mossburg.",
+      "key_facts": [
+        "Andrew Getty's blood pressure posed a risk of injury or death",
+        "Heated arguments were dangerous for Andrew Getty",
+        "The report covers people lost in 2015",
+        "Contributors include Doug Criss, Janet DiGiacomo, Mark Mooney, Mike Love, Julie In, and Cheri Mossburg"
+      ],
+      "explicit_unknowns": [
+        "not stated"
+      ]
+    }
+  ],
+  "_elapsed": 164.5
+}

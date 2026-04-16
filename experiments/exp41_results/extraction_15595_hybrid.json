@@ -1,0 +1,646 @@
+{
+  "event_hubs": [
+    {
+      "event_id": "EVT_LJ_1",
+      "action": "setting off on sailboat",
+      "source_sentence": "S9",
+      "edges": [
+        {
+          "type": "participant",
+          "target": "Louis Jordan",
+          "source": "S9"
+        },
+        {
+          "type": "location",
+          "target": "South Carolina",
+          "source": "S9"
+        },
+        {
+          "type": "time",
+          "target": "late January",
+          "source": "S9"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_LJ_2",
+      "action": "fishing",
+      "source_sentence": "S10",
+      "edges": [
+        {
+          "type": "participant",
+          "target": "Louis Jordan",
+          "source": "S10"
+        },
+        {
+          "type": "location",
+          "target": "Gulf Stream",
+          "source": "S10"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_LJ_3",
+      "action": "boat accident (capsizing, mast break, shoulder injury)",
+      "source_sentence": "S11, S12, S13",
+      "edges": [
+        {
+          "type": "participant",
+          "target": "Louis Jordan",
+          "source": "S12"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_LJ_4",
+      "action": "survival activities",
+      "source_sentence": "S14, S15, S16",
+      "edges": [
+        {
+          "type": "participant",
+          "target": "Louis Jordan",
+          "source": "S14"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_LJ_5",
+      "action": "rescue",
+      "source_sentence": "S18",
+      "edges": [
+        {
+          "type": "participant",
+          "target": "Louis Jordan",
+          "source": "S18"
+        },
+        {
+          "type": "participant",
+          "target": "Houston Express",
+          "source": "S18"
+        },
+        {
+          "type": "location",
+          "target": "200 miles off the North Carolina coast",
+          "source": "S18"
+        },
+        {
+          "type": "time",
+          "target": "Thursday",
+          "source": "S18"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_JA_1",
+      "action": "setting off on journey",
+      "source_sentence": "S20, S21",
+      "edges": [
+        {
+          "type": "participant",
+          "target": "Jose Salvador Alvarenga",
+          "source": "S20"
+        },
+        {
+          "type": "location",
+          "target": "Paredon Viejo, Mexico's Pacific coast",
+          "source": "S20"
+        },
+        {
+          "type": "time",
+          "target": "late 2012",
+          "source": "S20"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_JA_2",
+      "action": "survival odyssey",
+      "source_sentence": "S25, S26, S27, S28, S31, S32",
+      "edges": [
+        {
+          "type": "participant",
+          "target": "Jose Salvador Alvarenga",
+          "source": "S25"
+        },
+        {
+          "type": "location",
+          "target": "Pacific Ocean",
+          "source": "S25"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_JA_3",
+      "action": "death of companion",
+      "source_sentence": "S29",
+      "edges": [
+        {
+          "type": "victim",
+          "target": "Ezequiel Cordova",
+          "source": "S29"
+        },
+        {
+          "type": "time",
+          "target": "four weeks in",
+          "source": "S29"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_JA_4",
+      "action": "arrival and rescue",
+      "source_sentence": "S23, S24, S33, S34",
+      "edges": [
+        {
+          "type": "participant",
+          "target": "Jose Salvador Alvarenga",
+          "source": "S24"
+        },
+        {
+          "type": "location",
+          "target": "Ebon Atoll, Marshall Islands",
+          "source": "S33"
+        },
+        {
+          "type": "time",
+          "target": "January 2013",
+          "source": "S23"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_RI_1",
+      "action": "setting off solo",
+      "source_sentence": "S43",
+      "edges": [
+        {
+          "type": "participant",
+          "target": "Ron Ingraham",
+          "source": "S43"
+        },
+        {
+          "type": "location",
+          "target": "Molokai, Hawaii",
+          "source": "S43"
+        },
+        {
+          "type": "time",
+          "target": "last Thanksgiving",
+          "source": "S43"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_RI_2",
+      "action": "boat accident",
+      "source_sentence": "S45",
+      "edges": [
+        {
+          "type": "participant",
+          "target": "Ron Ingraham",
+          "source": "S45"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_RI_3",
+      "action": "search operation",
+      "source_sentence": "S48, S49",
+      "edges": [
+        {
+          "type": "location",
+          "target": "12,000 square miles",
+          "source": "S48"
+        },
+        {
+          "type": "time",
+          "target": "December 1",
+          "source": "S49"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_RI_4",
+      "action": "rescue",
+      "source_sentence": "S51",
+      "edges": [
+        {
+          "type": "participant",
+          "target": "Ron Ingraham",
+          "source": "S51"
+        },
+        {
+          "type": "location",
+          "target": "64 miles south of Honolulu",
+          "source": "S51"
+        },
+        {
+          "type": "time",
+          "target": "12 days after first distress call",
+          "source": "S51"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_AV_1",
+      "action": "setting off on fishing expedition",
+      "source_sentence": "S53, S54",
+      "edges": [
+        {
+          "type": "participant",
+          "target": "Adrian Vasquez",
+          "source": "S53"
+        },
+        {
+          "type": "location",
+          "target": "San Carlos, Panama",
+          "source": "S54"
+        },
+        {
+          "type": "time",
+          "target": "February 2012",
+          "source": "S53"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_AV_2",
+      "action": "engine failure",
+      "source_sentence": "S57, S58",
+      "edges": [
+        {
+          "type": "participant",
+          "target": "Adrian Vasquez",
+          "source": "S58"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_AV_3",
+      "action": "survival",
+      "source_sentence": "S59",
+      "edges": [
+        {
+          "type": "participant",
+          "target": "Adrian Vasquez",
+          "source": "S59"
+        },
+        {
+          "type": "location",
+          "target": "Pacific Ocean",
+          "source": "S59"
+        },
+        {
+          "type": "participant",
+          "target": "Fifty Cents",
+          "source": "S59"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_AV_4",
+      "action": "death of companions",
+      "source_sentence": "S60, S61, S62, S63",
+      "edges": [
+        {
+          "type": "participant",
+          "target": "Adrian Vasquez",
+          "source": "S63"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_AV_5",
+      "action": "rescue",
+      "source_sentence": "S63, S64",
+      "edges": [
+        {
+          "type": "participant",
+          "target": "Adrian Vasquez",
+          "source": "S64"
+        },
+        {
+          "type": "participant",
+          "target": "Freddy Garcia Calle",
+          "source": "S63"
+        },
+        {
+          "type": "location",
+          "target": "north of the Galapagos Islands",
+          "source": "S63"
+        },
+        {
+          "type": "time",
+          "target": "26 days after start",
+          "source": "S63"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_HS_1",
+      "action": "earthquake",
+      "source_sentence": "S70",
+      "edges": [
+        {
+          "type": "time",
+          "target": "March 11, 2011",
+          "source": "S70"
+        },
+        {
+          "type": "location",
+          "target": "231 miles northeast of Tokyo",
+          "source": "S70"
+        },
+        {
+          "type": "attribute",
+          "target": "9.0 magnitude",
+          "source": "S70"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_HS_2",
+      "action": "tsunami",
+      "source_sentence": "S71, S74, S75",
+      "edges": [
+        {
+          "type": "participant",
+          "target": "Hiromitsu Shinkawa",
+          "source": "S74"
+        },
+        {
+          "type": "location",
+          "target": "Minamisoma",
+          "source": "S74"
+        },
+        {
+          "type": "attribute",
+          "target": "30-foot waves",
+          "source": "S71"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_HS_3",
+      "action": "survival",
+      "source_sentence": "S76, S77, S78",
+      "edges": [
+        {
+          "type": "participant",
+          "target": "Hiromitsu Shinkawa",
+          "source": "S76"
+        },
+        {
+          "type": "location",
+          "target": "9 miles out to sea",
+          "source": "S77"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_HS_4",
+      "action": "rescue",
+      "source_sentence": "S79",
+      "edges": [
+        {
+          "type": "participant",
+          "target": "Hiromitsu Shinkawa",
+          "source": "S79"
+        },
+        {
+          "type": "participant",
+          "target": "Japanese Maritime Self-Defense Force",
+          "source": "S79"
+        }
+      ]
+    }
+  ],
+  "entities": [
+    {
+      "name": "Louis Jordan",
+      "aliases": [],
+      "attributes": {
+        "boat_size": "35-foot sailboat"
+      },
+      "participates_in": [
+        "EVT_LJ_1",
+        "EVT_LJ_2",
+        "EVT_LJ_3",
+        "EVT_LJ_4",
+        "EVT_LJ_5"
+      ],
+      "source_sentences": [
+        "S9",
+        "S10",
+        "S12",
+        "S14",
+        "S15",
+        "S16",
+        "S17",
+        "S18"
+      ]
+    },
+    {
+      "name": "Houston Express",
+      "aliases": [],
+      "attributes": {
+        "type": "German-flagged container ship"
+      },
+      "participates_in": [
+        "EVT_LJ_5"
+      ],
+      "source_sentences": [
+        "S18"
+      ]
+    },
+    {
+      "name": "Jose Salvador Alvarenga",
+      "aliases": [],
+      "attributes": {
+        "origin": "El Salvador native"
+      },
+      "participates_in": [
+        "EVT_JA_1",
+        "EVT_JA_2",
+        "EVT_JA_4"
+      ],
+      "source_sentences": [
+        "S20",
+        "S21",
+        "S24",
+        "S25",
+        "S26",
+        "S27",
+        "S28",
+        "S29",
+        "S31",
+        "S32",
+        "S33",
+        "S34",
+        "S35",
+        "S36"
+      ]
+    },
+    {
+      "name": "Ezequiel Cordova",
+      "aliases": [],
+      "attributes": {
+        "age": "23-year-old"
+      },
+      "participates_in": [
+        "EVT_JA_3"
+      ],
+      "source_sentences": [
+        "S29"
+      ]
+    },
+    {
+      "name": "Ron Ingraham",
+      "aliases": [],
+      "attributes": {
+        "age": "67-year-old",
+        "occupation": "fisherman"
+      },
+      "participates_in": [
+        "EVT_RI_1",
+        "EVT_RI_2",
+        "EVT_RI_4"
+      ],
+      "source_sentences": [
+        "S39",
+        "S40",
+        "S43",
+        "S45",
+        "S46",
+        "S51",
+        "S52"
+      ]
+    },
+    {
+      "name": "Zakary Ingraham",
+      "aliases": [],
+      "attributes": {
+        "relationship": "son of Ron Ingraham"
+      },
+      "participates_in": [
+        "EVT_RI_3"
+      ],
+      "source_sentences": [
+        "S41",
+        "S42",
+        "S49"
+      ]
+    },
+    {
+      "name": "Adrian Vasquez",
+      "aliases": [],
+      "attributes": {
+        "age": "18-year-old"
+      },
+      "participates_in": [
+        "EVT_AV_1",
+        "EVT_AV_2",
+        "EVT_AV_3",
+        "EVT_AV_4",
+        "EVT_AV_5"
+      ],
+      "source_sentences": [
+        "S53",
+        "S54",
+        "S58",
+        "S59",
+        "S63",
+        "S64"
+      ]
+    },
+    {
+      "name": "Fifty Cents",
+      "aliases": [],
+      "attributes": {
+        "type": "boat"
+      },
+      "participates_in": [
+        "EVT_AV_3"
+      ],
+      "source_sentences": [
+        "S59"
+      ]
+    },
+    {
+      "name": "Freddy Garcia Calle",
+      "aliases": [],
+      "attributes": {
+        "rank": "Ecuadorian Rear Adm."
+      },
+      "participates_in": [
+        "EVT_AV_5"
+      ],
+      "source_sentences": [
+        "S61",
+        "S62",
+        "S63",
+        "S64"
+      ]
+    },
+    {
+      "name": "Hiromitsu Shinkawa",
+      "aliases": [],
+      "attributes": {
+        "age": "60-year-old"
+      },
+      "participates_in": [
+        "EVT_HS_2",
+        "EVT_HS_3",
+        "EVT_HS_4"
+      ],
+      "source_sentences": [
+        "S68",
+        "S69",
+        "S73",
+        "S74",
+        "S76",
+        "S77",
+        "S78",
+        "S79",
+        "S80"
+      ]
+    },
+    {
+      "name": "Japanese Maritime Self-Defense Force",
+      "aliases": [],
+      "attributes": {
+        "type": "organization"
+      },
+      "participates_in": [
+        "EVT_HS_4"
+      ],
+      "source_sentences": [
+        "S79"
+      ]
+    }
+  ],
+  "explicit_unknowns": [
+    {
+      "about": "number of sailors dying at sea",
+      "unknown_slots": [
+        "exact count"
+      ],
+      "source": "S6"
+    },
+    {
+      "about": "Jose Salvador Alvarenga's departure date",
+      "unknown_slots": [
+        "exact date"
+      ],
+      "source": "S21"
+    },
+    {
+      "about": "death of Adrian Vasquez's companions",
+      "unknown_slots": [
+        "cause of death"
+      ],
+      "source": "S61"
+    }
+  ],
+  "_elapsed": 179.4
+}

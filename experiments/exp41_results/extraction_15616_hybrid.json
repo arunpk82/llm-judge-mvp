@@ -1,0 +1,436 @@
+{
+  "event_hubs": [
+    {
+      "event_id": "EVT_1",
+      "action": "settled lawsuit",
+      "source_sentence": "S0",
+      "edges": [
+        {
+          "type": "participant",
+          "target": "Kanye West",
+          "source": "S0"
+        },
+        {
+          "type": "participant",
+          "target": "Daniel Ramos",
+          "source": "S0"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_2",
+      "action": "assault/scuffle",
+      "source_sentence": "S1",
+      "edges": [
+        {
+          "type": "perpetrator",
+          "target": "Kanye West",
+          "source": "S1"
+        },
+        {
+          "type": "victim",
+          "target": "Daniel Ramos",
+          "source": "S1"
+        },
+        {
+          "type": "time",
+          "target": "July 19, 2013",
+          "source": "S9"
+        },
+        {
+          "type": "location",
+          "target": "Los Angeles International Airport",
+          "source": "S1"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_3",
+      "action": "filed civil suit",
+      "source_sentence": "S1",
+      "edges": [
+        {
+          "type": "plaintiff",
+          "target": "Daniel Ramos",
+          "source": "S1"
+        },
+        {
+          "type": "defendant",
+          "target": "Kanye West",
+          "source": "S1"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_4",
+      "action": "pleaded no contest",
+      "source_sentence": "S2",
+      "edges": [
+        {
+          "type": "defendant",
+          "target": "Kanye West",
+          "source": "S2"
+        },
+        {
+          "type": "charge",
+          "target": "misdemeanor count of battery",
+          "source": "S2"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_5",
+      "action": "sentencing",
+      "source_sentence": "S3",
+      "edges": [
+        {
+          "type": "judge",
+          "target": "Judge",
+          "source": "S3"
+        },
+        {
+          "type": "sentenced_party",
+          "target": "Kanye West",
+          "source": "S3"
+        },
+        {
+          "type": "penalty",
+          "target": "two years' probation, anger management sessions, and community service",
+          "source": "S3"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_6",
+      "action": "sought damages",
+      "source_sentence": "S4",
+      "edges": [
+        {
+          "type": "claimant",
+          "target": "Daniel Ramos",
+          "source": "S4"
+        },
+        {
+          "type": "claimant",
+          "target": "Gloria Allred",
+          "source": "S4"
+        },
+        {
+          "type": "damage_type",
+          "target": "general and punitive damages",
+          "source": "S4"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_7",
+      "action": "filed dismissal",
+      "source_sentence": "S5",
+      "edges": [
+        {
+          "type": "agent",
+          "target": "Gloria Allred",
+          "source": "S5"
+        },
+        {
+          "type": "on_behalf_of",
+          "target": "Daniel Ramos",
+          "source": "S5"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_8",
+      "action": "apology",
+      "source_sentence": "S5",
+      "edges": [
+        {
+          "type": "speaker",
+          "target": "Kanye West",
+          "source": "S5"
+        },
+        {
+          "type": "recipient",
+          "target": "Daniel Ramos",
+          "source": "S5"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_9",
+      "action": "shaking hands",
+      "source_sentence": "S0",
+      "edges": [
+        {
+          "type": "participant",
+          "target": "Kanye West",
+          "source": "S0"
+        },
+        {
+          "type": "participant",
+          "target": "Daniel Ramos",
+          "source": "S0"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_10",
+      "action": "investigated incident",
+      "source_sentence": "S18",
+      "edges": [
+        {
+          "type": "investigator",
+          "target": "Beverly Hills Police",
+          "source": "S18"
+        },
+        {
+          "type": "accused",
+          "target": "Kanye West",
+          "source": "S18"
+        },
+        {
+          "type": "victim",
+          "target": "Unnamed man",
+          "source": "S18"
+        },
+        {
+          "type": "time",
+          "target": "January 2014",
+          "source": "S18"
+        },
+        {
+          "type": "location",
+          "target": "Beverly Hills chiropractor's office",
+          "source": "S18"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_11",
+      "action": "civil settlement",
+      "source_sentence": "S19",
+      "edges": [
+        {
+          "type": "participant",
+          "target": "Kanye West",
+          "source": "S19"
+        },
+        {
+          "type": "participant",
+          "target": "Unnamed man",
+          "source": "S19"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_12",
+      "action": "apologizes",
+      "source_sentence": "S20",
+      "edges": [
+        {
+          "type": "speaker",
+          "target": "Kanye West",
+          "source": "S20"
+        },
+        {
+          "type": "recipient",
+          "target": "Beck",
+          "source": "S20"
+        },
+        {
+          "type": "recipient",
+          "target": "Bruno Mars",
+          "source": "S20"
+        }
+      ]
+    }
+  ],
+  "entities": [
+    {
+      "name": "Kanye West",
+      "aliases": [
+        "hip-hop star"
+      ],
+      "attributes": {},
+      "participates_in": [
+        "EVT_1",
+        "EVT_2",
+        "EVT_3",
+        "EVT_4",
+        "EVT_5",
+        "EVT_8",
+        "EVT_9",
+        "EVT_10",
+        "EVT_11",
+        "EVT_12"
+      ],
+      "source_sentences": [
+        "S0",
+        "S1",
+        "S2",
+        "S3",
+        "S5",
+        "S14",
+        "S15",
+        "S16",
+        "S18",
+        "S19",
+        "S20"
+      ]
+    },
+    {
+      "name": "Daniel Ramos",
+      "aliases": [
+        "paparazzi photographer"
+      ],
+      "attributes": {},
+      "participates_in": [
+        "EVT_1",
+        "EVT_2",
+        "EVT_3",
+        "EVT_6",
+        "EVT_7",
+        "EVT_8",
+        "EVT_9"
+      ],
+      "source_sentences": [
+        "S0",
+        "S1",
+        "S4",
+        "S5",
+        "S9"
+      ]
+    },
+    {
+      "name": "Gloria Allred",
+      "aliases": [],
+      "attributes": {
+        "role": "lawyer"
+      },
+      "participates_in": [
+        "EVT_6",
+        "EVT_7"
+      ],
+      "source_sentences": [
+        "S4",
+        "S5",
+        "S17",
+        "S18"
+      ]
+    },
+    {
+      "name": "Judge",
+      "aliases": [],
+      "attributes": {
+        "role": "judge"
+      },
+      "participates_in": [
+        "EVT_5"
+      ],
+      "source_sentences": [
+        "S3"
+      ]
+    },
+    {
+      "name": "Beverly Hills Police",
+      "aliases": [],
+      "attributes": {
+        "type": "organization"
+      },
+      "participates_in": [
+        "EVT_10"
+      ],
+      "source_sentences": [
+        "S18"
+      ]
+    },
+    {
+      "name": "Unnamed man",
+      "aliases": [],
+      "attributes": {},
+      "participates_in": [
+        "EVT_10",
+        "EVT_11"
+      ],
+      "source_sentences": [
+        "S18",
+        "S19"
+      ]
+    },
+    {
+      "name": "Beck",
+      "aliases": [],
+      "attributes": {},
+      "participates_in": [
+        "EVT_12"
+      ],
+      "source_sentences": [
+        "S20"
+      ]
+    },
+    {
+      "name": "Bruno Mars",
+      "aliases": [],
+      "attributes": {},
+      "participates_in": [
+        "EVT_12"
+      ],
+      "source_sentences": [
+        "S20"
+      ]
+    },
+    {
+      "name": "Sonya Hamasaki",
+      "aliases": [],
+      "attributes": {
+        "affiliation": "CNN"
+      },
+      "participates_in": [],
+      "source_sentences": [
+        "S21"
+      ]
+    }
+  ],
+  "inter_event_edges": [
+    {
+      "from": "EVT_2",
+      "to": "EVT_3",
+      "type": "caused",
+      "source": "S1"
+    },
+    {
+      "from": "EVT_2",
+      "to": "EVT_4",
+      "type": "caused",
+      "source": "S2"
+    },
+    {
+      "from": "EVT_4",
+      "to": "EVT_5",
+      "type": "followed_by",
+      "source": "S3"
+    },
+    {
+      "from": "EVT_1",
+      "to": "EVT_7",
+      "type": "caused",
+      "source": "S5"
+    },
+    {
+      "from": "EVT_8",
+      "to": "EVT_9",
+      "type": "preceded",
+      "source": "S5"
+    }
+  ],
+  "explicit_unknowns": [
+    {
+      "about": "settlement between Kanye West and Daniel Ramos",
+      "unknown_slots": [
+        "details"
+      ],
+      "source": "S5"
+    }
+  ],
+  "_elapsed": 134.1
+}

@@ -1,0 +1,1979 @@
+{
+  "event_hubs": [
+    {
+      "event_id": "EVT_1",
+      "action": "shut down",
+      "source_sentence": "S0",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "ENT_1",
+          "source": "S0"
+        },
+        {
+          "type": "target_of",
+          "target": "ENT_2",
+          "source": "S0"
+        },
+        {
+          "type": "why",
+          "target": "EVT_2",
+          "source": "S0"
+        },
+        {
+          "type": "how",
+          "target": "temporarily",
+          "source": "S0"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_2",
+      "action": "discovery",
+      "source_sentence": "S0",
+      "edges": [
+        {
+          "type": "target_of",
+          "target": "ENT_3",
+          "source": "S0"
+        },
+        {
+          "type": "where",
+          "target": "ENT_4",
+          "source": "S0"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_3",
+      "action": "warned",
+      "source_sentence": "S1",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "ENT_5",
+          "source": "S1"
+        },
+        {
+          "type": "target_of",
+          "target": "ENT_6",
+          "source": "S1"
+        },
+        {
+          "type": "when",
+          "target": "Friday",
+          "source": "S1"
+        },
+        {
+          "type": "enriched_by",
+          "target": "not to eat any Blue Bell-branded products made at the company's Broken Arrow, Oklahoma, plant",
+          "source": "S1"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_4",
+      "action": "went",
+      "source_sentence": "S2",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "ENT_9",
+          "source": "S2"
+        },
+        {
+          "type": "target_of",
+          "target": "ENT_10",
+          "source": "S2"
+        },
+        {
+          "type": "where",
+          "target": "ENT_8",
+          "source": "S2"
+        },
+        {
+          "type": "how",
+          "target": "ENT_11",
+          "source": "S2"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_5",
+      "action": "warning",
+      "source_sentence": "S3",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "ENT_12",
+          "source": "S3"
+        },
+        {
+          "type": "target_of",
+          "target": "ENT_13",
+          "source": "S3"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_6",
+      "action": "recalled",
+      "source_sentence": "S4",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "ENT_1",
+          "source": "S4"
+        },
+        {
+          "type": "target_of",
+          "target": "ENT_14",
+          "source": "S4"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_7",
+      "action": "shutting down",
+      "source_sentence": "S5",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "ENT_1",
+          "source": "S5"
+        },
+        {
+          "type": "target_of",
+          "target": "ENT_8",
+          "source": "S5"
+        },
+        {
+          "type": "why",
+          "target": "out of an abundance of caution",
+          "source": "S5"
+        },
+        {
+          "type": "leads_to",
+          "target": "EVT_8",
+          "source": "S5"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_8",
+      "action": "search",
+      "source_sentence": "S5",
+      "edges": [
+        {
+          "type": "target_of",
+          "target": "ENT_15",
+          "source": "S5"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_9",
+      "action": "taken action",
+      "source_sentence": "S6",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "ENT_1",
+          "source": "S6"
+        },
+        {
+          "type": "how",
+          "target": "third time",
+          "source": "S6"
+        },
+        {
+          "type": "why",
+          "target": "EVT_10",
+          "source": "S6"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_10",
+      "action": "outbreak",
+      "source_sentence": "S6",
+      "edges": [
+        {
+          "type": "target_of",
+          "target": "ENT_16",
+          "source": "S6"
+        },
+        {
+          "type": "where",
+          "target": "ENT_17",
+          "source": "S6"
+        },
+        {
+          "type": "enriched_by",
+          "target": "that served the company's ice cream",
+          "source": "S6"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_11",
+      "action": "found",
+      "source_sentence": "S7",
+      "edges": [
+        {
+          "type": "target_of",
+          "target": "ENT_18",
+          "source": "S7"
+        },
+        {
+          "type": "where",
+          "target": "ENT_19",
+          "source": "S7"
+        },
+        {
+          "type": "when",
+          "target": "recently",
+          "source": "S7"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_12",
+      "action": "produced",
+      "source_sentence": "S8",
+      "edges": [
+        {
+          "type": "target_of",
+          "target": "ENT_19",
+          "source": "S8"
+        },
+        {
+          "type": "where",
+          "target": "ENT_8",
+          "source": "S8"
+        },
+        {
+          "type": "when",
+          "target": "April 2014",
+          "source": "S8"
+        },
+        {
+          "type": "agent_of",
+          "target": "ENT_1",
+          "source": "S8"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_13",
+      "action": "found",
+      "source_sentence": "S9",
+      "edges": [
+        {
+          "type": "target_of",
+          "target": "ENT_20",
+          "source": "S9"
+        },
+        {
+          "type": "where",
+          "target": "ENT_21",
+          "source": "S9"
+        },
+        {
+          "type": "agent_of",
+          "target": "ENT_12",
+          "source": "S9"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_14",
+      "action": "appeared to match",
+      "source_sentence": "S10",
+      "edges": [
+        {
+          "type": "target_of",
+          "target": "ENT_22",
+          "source": "S10"
+        },
+        {
+          "type": "target_of",
+          "target": "ENT_23",
+          "source": "S10"
+        },
+        {
+          "type": "how",
+          "target": "genetically",
+          "source": "S10"
+        },
+        {
+          "type": "agent_of",
+          "target": "ENT_12",
+          "source": "S10"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_15",
+      "action": "did not appear identical",
+      "source_sentence": "S11",
+      "edges": [
+        {
+          "type": "target_of",
+          "target": "ENT_24",
+          "source": "S11"
+        },
+        {
+          "type": "enriched_by",
+          "target": "But they",
+          "source": "S11"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_16",
+      "action": "did find that listeria samples...matched",
+      "source_sentence": "S12",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "ENT_12",
+          "source": "S12"
+        },
+        {
+          "type": "where",
+          "target": "ENT_25",
+          "source": "S12"
+        },
+        {
+          "type": "when",
+          "target": "between 2010 and 2014",
+          "source": "S12"
+        },
+        {
+          "type": "target_of",
+          "target": "ENT_26",
+          "source": "S12"
+        },
+        {
+          "type": "target_of",
+          "target": "ENT_29",
+          "source": "S12"
+        },
+        {
+          "type": "enriched_by",
+          "target": "in a hospital that served 3-ounce Blue Bell cups",
+          "source": "S12"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_17",
+      "action": "came down with",
+      "source_sentence": "S12",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "ENT_27",
+          "source": "S12"
+        },
+        {
+          "type": "target_of",
+          "target": "ENT_28",
+          "source": "S12"
+        },
+        {
+          "type": "when",
+          "target": "between 2010 and 2014",
+          "source": "S12"
+        },
+        {
+          "type": "where",
+          "target": "in a hospital that served 3-ounce Blue Bell cups",
+          "source": "S12"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_18",
+      "action": "Investigation",
+      "source_sentence": "S14",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "ENT_12",
+          "source": "S14"
+        },
+        {
+          "type": "target_of",
+          "target": "ENT_30",
+          "source": "S14"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_19",
+      "action": "recalled",
+      "source_sentence": "S15",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "ENT_1",
+          "source": "S15"
+        },
+        {
+          "type": "target_of",
+          "target": "ENT_32",
+          "source": "S15"
+        },
+        {
+          "type": "when",
+          "target": "In early March",
+          "source": "S15"
+        },
+        {
+          "type": "why",
+          "target": "EVT_10",
+          "source": "S15"
+        },
+        {
+          "type": "where",
+          "target": "ENT_33",
+          "source": "S15"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_20",
+      "action": "added",
+      "source_sentence": "S16",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "ENT_1",
+          "source": "S16"
+        },
+        {
+          "type": "target_of",
+          "target": "ENT_34",
+          "source": "S16"
+        },
+        {
+          "type": "when",
+          "target": "later",
+          "source": "S16"
+        },
+        {
+          "type": "enriched_by",
+          "target": "to the recall",
+          "source": "S16"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_21",
+      "action": "infected",
+      "source_sentence": "S17",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "ENT_20",
+          "source": "S17"
+        },
+        {
+          "type": "target_of",
+          "target": "ENT_35",
+          "source": "S17"
+        },
+        {
+          "type": "where",
+          "target": "Kansas",
+          "source": "S17"
+        },
+        {
+          "type": "when",
+          "target": "in the past year",
+          "source": "S17"
+        },
+        {
+          "type": "why",
+          "target": "that might be linked to Blue Bell Creameries products",
+          "source": "S17"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_22",
+      "action": "died",
+      "source_sentence": "S17",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "ENT_20",
+          "source": "S17"
+        },
+        {
+          "type": "target_of",
+          "target": "ENT_36",
+          "source": "S17"
+        },
+        {
+          "type": "where",
+          "target": "Kansas",
+          "source": "S17"
+        },
+        {
+          "type": "when",
+          "target": "in the past year",
+          "source": "S17"
+        },
+        {
+          "type": "why",
+          "target": "that might be linked to Blue Bell Creameries products",
+          "source": "S17"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_23",
+      "action": "hospitalized",
+      "source_sentence": "S18",
+      "edges": [
+        {
+          "type": "target_of",
+          "target": "ENT_35",
+          "source": "S18"
+        },
+        {
+          "type": "where",
+          "target": "ENT_17",
+          "source": "S18"
+        },
+        {
+          "type": "when",
+          "target": "before developing listeriosis",
+          "source": "S18"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_24",
+      "action": "consumed",
+      "source_sentence": "S19",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "ENT_37",
+          "source": "S19"
+        },
+        {
+          "type": "target_of",
+          "target": "ENT_38",
+          "source": "S19"
+        },
+        {
+          "type": "when",
+          "target": "before developing the infection",
+          "source": "S19"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_25",
+      "action": "said in a statement",
+      "source_sentence": "S20",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "ENT_39",
+          "source": "S20"
+        },
+        {
+          "type": "target_of",
+          "target": "We are devastated and know that Blue Bell has to be and can be better than this",
+          "source": "S20"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_26",
+      "action": "said",
+      "source_sentence": "S21",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "ENT_39",
+          "source": "S21"
+        },
+        {
+          "type": "target_of",
+          "target": "Quality and safety have always been our top priorities.",
+          "source": "S21"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_27",
+      "action": "said",
+      "source_sentence": "S22",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "ENT_39",
+          "source": "S22"
+        },
+        {
+          "type": "target_of",
+          "target": "We are deeply saddened and concerned for all those who have been affected.",
+          "source": "S22"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_28",
+      "action": "advises",
+      "source_sentence": "S22",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "ENT_12",
+          "source": "S22"
+        },
+        {
+          "type": "target_of",
+          "target": "ENT_41",
+          "source": "S22"
+        },
+        {
+          "type": "how",
+          "target": "should check their freezers for the recalled products and throw them away",
+          "source": "S22"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_29",
+      "action": "said in a statement",
+      "source_sentence": "S23",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "ENT_1",
+          "source": "S23"
+        },
+        {
+          "type": "where",
+          "target": "ENT_43",
+          "source": "S23"
+        },
+        {
+          "type": "target_of",
+          "target": "this recall in no way includes Blue Bell ice cream half gallons, pints, quarts, 3 gallons or other 3 oz. cups.",
+          "source": "S23"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_30",
+      "action": "first product recall",
+      "source_sentence": "S24",
+      "edges": [
+        {
+          "type": "target_of",
+          "target": "ENT_1",
+          "source": "S24"
+        },
+        {
+          "type": "when",
+          "target": "in the 108-year history",
+          "source": "S24"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_31",
+      "action": "caused by",
+      "source_sentence": "S25",
+      "edges": [
+        {
+          "type": "target_of",
+          "target": "ENT_28",
+          "source": "S25"
+        },
+        {
+          "type": "agent_of",
+          "target": "ENT_46",
+          "source": "S25"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_32",
+      "action": "affects",
+      "source_sentence": "S25",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "ENT_28",
+          "source": "S25"
+        },
+        {
+          "type": "target_of",
+          "target": "ENT_47",
+          "source": "S25"
+        },
+        {
+          "type": "target_of",
+          "target": "ENT_48",
+          "source": "S25"
+        },
+        {
+          "type": "target_of",
+          "target": "ENT_49",
+          "source": "S25"
+        },
+        {
+          "type": "target_of",
+          "target": "ENT_50",
+          "source": "S25"
+        },
+        {
+          "type": "how",
+          "target": "primarily",
+          "source": "S25"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_33",
+      "action": "are",
+      "source_sentence": "S26",
+      "edges": [
+        {
+          "type": "target_of",
+          "target": "ENT_51",
+          "source": "S26"
+        },
+        {
+          "type": "enriched_by",
+          "target": "ENT_52",
+          "source": "S26"
+        },
+        {
+          "type": "enriched_by",
+          "target": "ENT_53",
+          "source": "S26"
+        },
+        {
+          "type": "enriched_by",
+          "target": "ENT_54",
+          "source": "S26"
+        },
+        {
+          "type": "enriched_by",
+          "target": "ENT_55",
+          "source": "S26"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_34",
+      "action": "become seriously ill",
+      "source_sentence": "S27",
+      "edges": [
+        {
+          "type": "target_of",
+          "target": "ENT_57",
+          "source": "S27"
+        },
+        {
+          "type": "where",
+          "target": "ENT_56",
+          "source": "S27"
+        },
+        {
+          "type": "when",
+          "target": "each year",
+          "source": "S27"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_35",
+      "action": "result in death",
+      "source_sentence": "S27",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "ENT_58",
+          "source": "S27"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_36",
+      "action": "may result in",
+      "source_sentence": "S28",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "ENT_59",
+          "source": "S28"
+        },
+        {
+          "type": "target_of",
+          "target": "ENT_60",
+          "source": "S28"
+        },
+        {
+          "type": "target_of",
+          "target": "ENT_61",
+          "source": "S28"
+        },
+        {
+          "type": "when",
+          "target": "during the second or third trimesters",
+          "source": "S28"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_37",
+      "action": "contributed",
+      "source_sentence": "S29",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "ENT_62",
+          "source": "S29"
+        },
+        {
+          "type": "agent_of",
+          "target": "ENT_63",
+          "source": "S29"
+        },
+        {
+          "type": "agent_of",
+          "target": "ENT_64",
+          "source": "S29"
+        },
+        {
+          "type": "target_of",
+          "target": "ENT_65",
+          "source": "S29"
+        }
+      ]
+    }
+  ],
+  "entities": [
+    {
+      "name": "Blue Bell ice cream",
+      "aliases": [
+        "Blue Bell",
+        "The company",
+        "Blue Bell Creameries"
+      ],
+      "attributes": {
+        "type": "company"
+      },
+      "participates_in": [
+        "EVT_1",
+        "EVT_6",
+        "EVT_7",
+        "EVT_9",
+        "EVT_12",
+        "EVT_19",
+        "EVT_20",
+        "EVT_29",
+        "EVT_30"
+      ],
+      "source_sentences": [
+        "S0",
+        "S1",
+        "S3",
+        "S4",
+        "S5",
+        "S6",
+        "S8",
+        "S15",
+        "S16",
+        "S17",
+        "S20",
+        "S23",
+        "S24"
+      ]
+    },
+    {
+      "name": "manufacturing plant",
+      "aliases": [],
+      "attributes": {
+        "type": "facility"
+      },
+      "participates_in": [
+        "EVT_1"
+      ],
+      "source_sentences": [
+        "S0"
+      ]
+    },
+    {
+      "name": "listeria contamination",
+      "aliases": [],
+      "attributes": {
+        "type": "condition"
+      },
+      "participates_in": [
+        "EVT_2"
+      ],
+      "source_sentences": [
+        "S0",
+        "S5"
+      ]
+    },
+    {
+      "name": "serving of ice cream",
+      "aliases": [],
+      "attributes": {
+        "type": "product"
+      },
+      "participates_in": [
+        "EVT_2"
+      ],
+      "source_sentences": [
+        "S0"
+      ]
+    },
+    {
+      "name": "Public health officials",
+      "aliases": [],
+      "attributes": {
+        "type": "group"
+      },
+      "participates_in": [
+        "EVT_3"
+      ],
+      "source_sentences": [
+        "S1"
+      ]
+    },
+    {
+      "name": "consumers",
+      "aliases": [],
+      "attributes": {
+        "type": "group"
+      },
+      "participates_in": [
+        "EVT_3"
+      ],
+      "source_sentences": [
+        "S1"
+      ]
+    },
+    {
+      "name": "Blue Bell-branded products",
+      "aliases": [],
+      "attributes": {
+        "type": "product"
+      },
+      "participates_in": [],
+      "source_sentences": [
+        "S1"
+      ]
+    },
+    {
+      "name": "Broken Arrow, Oklahoma, plant",
+      "aliases": [
+        "Broken Arrow facility",
+        "this plant"
+      ],
+      "attributes": {
+        "type": "facility",
+        "location": "Broken Arrow, Oklahoma"
+      },
+      "participates_in": [
+        "EVT_4",
+        "EVT_7",
+        "EVT_12"
+      ],
+      "source_sentences": [
+        "S1",
+        "S2",
+        "S5",
+        "S8",
+        "S9"
+      ]
+    },
+    {
+      "name": "3-ounce servings of Blue Bell ice cream",
+      "aliases": [],
+      "attributes": {
+        "type": "product",
+        "size": "3-ounce"
+      },
+      "participates_in": [
+        "EVT_4"
+      ],
+      "source_sentences": [
+        "S2"
+      ]
+    },
+    {
+      "name": "institutions",
+      "aliases": [],
+      "attributes": {
+        "type": "group"
+      },
+      "participates_in": [
+        "EVT_4",
+        "EVT_28"
+      ],
+      "source_sentences": [
+        "S2",
+        "S22"
+      ]
+    },
+    {
+      "name": "containers marked with the letters O, P, Q, R, S or T",
+      "aliases": [],
+      "attributes": {
+        "type": "packaging",
+        "markings": "O, P, Q, R, S or T"
+      },
+      "participates_in": [
+        "EVT_4"
+      ],
+      "source_sentences": [
+        "S2"
+      ]
+    },
+    {
+      "name": "Centers for Disease Control and Prevention",
+      "aliases": [
+        "CDC"
+      ],
+      "attributes": {
+        "type": "organization"
+      },
+      "participates_in": [
+        "EVT_5",
+        "EVT_13",
+        "EVT_14",
+        "EVT_16",
+        "EVT_18",
+        "EVT_28"
+      ],
+      "source_sentences": [
+        "S3",
+        "S9",
+        "S10",
+        "S12",
+        "S14",
+        "S17",
+        "S18",
+        "S22",
+        "S25"
+      ]
+    },
+    {
+      "name": "other Blue Bell ice cream",
+      "aliases": [],
+      "attributes": {
+        "type": "product"
+      },
+      "participates_in": [
+        "EVT_5"
+      ],
+      "source_sentences": [
+        "S3"
+      ]
+    },
+    {
+      "name": "other products",
+      "aliases": [],
+      "attributes": {
+        "type": "product"
+      },
+      "participates_in": [
+        "EVT_6"
+      ],
+      "source_sentences": [
+        "S4"
+      ]
+    },
+    {
+      "name": "possible cause of contamination",
+      "aliases": [],
+      "attributes": {
+        "type": "abstract_concept"
+      },
+      "participates_in": [
+        "EVT_8"
+      ],
+      "source_sentences": [
+        "S5"
+      ]
+    },
+    {
+      "name": "listeria outbreak",
+      "aliases": [],
+      "attributes": {
+        "type": "event_type"
+      },
+      "participates_in": [
+        "EVT_10"
+      ],
+      "source_sentences": [
+        "S6",
+        "S10",
+        "S11",
+        "S15"
+      ]
+    },
+    {
+      "name": "Kansas hospital",
+      "aliases": [
+        "the hospital",
+        "same hospital"
+      ],
+      "attributes": {
+        "type": "facility",
+        "location": "Kansas"
+      },
+      "participates_in": [
+        "EVT_10",
+        "EVT_23"
+      ],
+      "source_sentences": [
+        "S6",
+        "S7",
+        "S18"
+      ]
+    },
+    {
+      "name": "Listeria monocytogenes",
+      "aliases": [],
+      "attributes": {
+        "type": "bacteria"
+      },
+      "participates_in": [
+        "EVT_11"
+      ],
+      "source_sentences": [
+        "S7"
+      ]
+    },
+    {
+      "name": "cup of ice cream recovered from the hospital",
+      "aliases": [
+        "The cup contaminated with the bacteria"
+      ],
+      "attributes": {
+        "type": "product"
+      },
+      "participates_in": [
+        "EVT_11",
+        "EVT_12"
+      ],
+      "source_sentences": [
+        "S7",
+        "S8"
+      ]
+    },
+    {
+      "name": "listeria bacteria",
+      "aliases": [],
+      "attributes": {
+        "type": "bacteria"
+      },
+      "participates_in": [
+        "EVT_13",
+        "EVT_21",
+        "EVT_22"
+      ],
+      "source_sentences": [
+        "S9"
+      ]
+    },
+    {
+      "name": "additional samples of the same product",
+      "aliases": [],
+      "attributes": {
+        "type": "sample"
+      },
+      "participates_in": [
+        "EVT_13"
+      ],
+      "source_sentences": [
+        "S9"
+      ]
+    },
+    {
+      "name": "hospital sample",
+      "aliases": [],
+      "attributes": {
+        "type": "sample"
+      },
+      "participates_in": [
+        "EVT_14"
+      ],
+      "source_sentences": [
+        "S10"
+      ]
+    },
+    {
+      "name": "factory sample",
+      "aliases": [],
+      "attributes": {
+        "type": "sample"
+      },
+      "participates_in": [
+        "EVT_14"
+      ],
+      "source_sentences": [
+        "S10"
+      ]
+    },
+    {
+      "name": "listeria samples taken from patients infected in the Kansas outbreak",
+      "aliases": [],
+      "attributes": {
+        "type": "sample"
+      },
+      "participates_in": [
+        "EVT_15"
+      ],
+      "source_sentences": [
+        "S11"
+      ]
+    },
+    {
+      "name": "Texas outbreak",
+      "aliases": [],
+      "attributes": {
+        "type": "event_type",
+        "location": "Texas"
+      },
+      "participates_in": [
+        "EVT_16"
+      ],
+      "source_sentences": [
+        "S12"
+      ]
+    },
+    {
+      "name": "listeria samples taken from patients who came down with listeriosis",
+      "aliases": [],
+      "attributes": {
+        "type": "sample"
+      },
+      "participates_in": [
+        "EVT_16"
+      ],
+      "source_sentences": [
+        "S12"
+      ]
+    },
+    {
+      "name": "patients",
+      "aliases": [],
+      "attributes": {
+        "type": "group"
+      },
+      "participates_in": [
+        "EVT_17"
+      ],
+      "source_sentences": [
+        "S12"
+      ]
+    },
+    {
+      "name": "listeriosis",
+      "aliases": [],
+      "attributes": {
+        "type": "disease"
+      },
+      "participates_in": [
+        "EVT_17",
+        "EVT_31",
+        "EVT_32"
+      ],
+      "source_sentences": [
+        "S12",
+        "S17",
+        "S18",
+        "S25",
+        "S28"
+      ]
+    },
+    {
+      "name": "recovered samples",
+      "aliases": [],
+      "attributes": {
+        "type": "sample"
+      },
+      "participates_in": [
+        "EVT_16"
+      ],
+      "source_sentences": [
+        "S12"
+      ]
+    },
+    {
+      "name": "illnesses",
+      "aliases": [],
+      "attributes": {
+        "type": "condition"
+      },
+      "participates_in": [
+        "EVT_18"
+      ],
+      "source_sentences": [
+        "S14"
+      ]
+    },
+    {
+      "name": "Blue Bell products",
+      "aliases": [],
+      "attributes": {
+        "type": "product"
+      },
+      "participates_in": [],
+      "source_sentences": [
+        "S14",
+        "S17"
+      ]
+    },
+    {
+      "name": "group of products made at a plant in Texas",
+      "aliases": [],
+      "attributes": {
+        "type": "product"
+      },
+      "participates_in": [
+        "EVT_19"
+      ],
+      "source_sentences": [
+        "S15"
+      ]
+    },
+    {
+      "name": "plant in Texas",
+      "aliases": [],
+      "attributes": {
+        "type": "facility",
+        "location": "Texas"
+      },
+      "participates_in": [
+        "EVT_19"
+      ],
+      "source_sentences": [
+        "S15"
+      ]
+    },
+    {
+      "name": "3-ounce cup servings",
+      "aliases": [],
+      "attributes": {
+        "type": "product",
+        "size": "3-ounce"
+      },
+      "participates_in": [
+        "EVT_20"
+      ],
+      "source_sentences": [
+        "S16"
+      ]
+    },
+    {
+      "name": "Five people",
+      "aliases": [],
+      "attributes": {
+        "type": "group",
+        "count": 5,
+        "location": "Kansas"
+      },
+      "participates_in": [
+        "EVT_21",
+        "EVT_23"
+      ],
+      "source_sentences": [
+        "S17",
+        "S18"
+      ]
+    },
+    {
+      "name": "three people",
+      "aliases": [],
+      "attributes": {
+        "type": "group",
+        "count": 3,
+        "location": "Kansas",
+        "status": "deceased"
+      },
+      "participates_in": [
+        "EVT_22"
+      ],
+      "source_sentences": [
+        "S17"
+      ]
+    },
+    {
+      "name": "At least four of them",
+      "aliases": [],
+      "attributes": {
+        "type": "group",
+        "count_min": 4,
+        "location": "Kansas"
+      },
+      "participates_in": [
+        "EVT_24"
+      ],
+      "source_sentences": [
+        "S19"
+      ]
+    },
+    {
+      "name": "milkshakes made with Blue Bell ice cream",
+      "aliases": [],
+      "attributes": {
+        "type": "product"
+      },
+      "participates_in": [
+        "EVT_24"
+      ],
+      "source_sentences": [
+        "S19"
+      ]
+    },
+    {
+      "name": "Paul Kruse",
+      "aliases": [],
+      "attributes": {
+        "title": "Blue Bell CEO and president",
+        "type": "person"
+      },
+      "participates_in": [
+        "EVT_25",
+        "EVT_26",
+        "EVT_27"
+      ],
+      "source_sentences": [
+        "S20",
+        "S21",
+        "S22"
+      ]
+    },
+    {
+      "name": "individuals",
+      "aliases": [],
+      "attributes": {
+        "type": "group"
+      },
+      "participates_in": [
+        "EVT_28"
+      ],
+      "source_sentences": [
+        "S22"
+      ]
+    },
+    {
+      "name": "Blue Bell website",
+      "aliases": [],
+      "attributes": {
+        "type": "platform"
+      },
+      "participates_in": [
+        "EVT_29"
+      ],
+      "source_sentences": [
+        "S23"
+      ]
+    },
+    {
+      "name": "food contaminated with listeria",
+      "aliases": [],
+      "attributes": {
+        "type": "product"
+      },
+      "participates_in": [
+        "EVT_31"
+      ],
+      "source_sentences": [
+        "S25"
+      ]
+    },
+    {
+      "name": "the elderly",
+      "aliases": [],
+      "attributes": {
+        "type": "group"
+      },
+      "participates_in": [
+        "EVT_32"
+      ],
+      "source_sentences": [
+        "S25"
+      ]
+    },
+    {
+      "name": "pregnant women",
+      "aliases": [],
+      "attributes": {
+        "type": "group"
+      },
+      "participates_in": [
+        "EVT_32",
+        "EVT_36"
+      ],
+      "source_sentences": [
+        "S25",
+        "S28"
+      ]
+    },
+    {
+      "name": "newborns",
+      "aliases": [],
+      "attributes": {
+        "type": "group"
+      },
+      "participates_in": [
+        "EVT_32"
+      ],
+      "source_sentences": [
+        "S25"
+      ]
+    },
+    {
+      "name": "people with weakened immune systems",
+      "aliases": [],
+      "attributes": {
+        "type": "group"
+      },
+      "participates_in": [
+        "EVT_32"
+      ],
+      "source_sentences": [
+        "S25"
+      ]
+    },
+    {
+      "name": "Symptoms of a listeria infection",
+      "aliases": [],
+      "attributes": {
+        "type": "condition"
+      },
+      "participates_in": [
+        "EVT_33"
+      ],
+      "source_sentences": [
+        "S26"
+      ]
+    },
+    {
+      "name": "fever",
+      "aliases": [],
+      "attributes": {
+        "type": "symptom"
+      },
+      "participates_in": [
+        "EVT_33"
+      ],
+      "source_sentences": [
+        "S26"
+      ]
+    },
+    {
+      "name": "muscle aches",
+      "aliases": [],
+      "attributes": {
+        "type": "symptom"
+      },
+      "participates_in": [
+        "EVT_33"
+      ],
+      "source_sentences": [
+        "S26"
+      ]
+    },
+    {
+      "name": "diarrhea",
+      "aliases": [],
+      "attributes": {
+        "type": "symptom"
+      },
+      "participates_in": [
+        "EVT_33"
+      ],
+      "source_sentences": [
+        "S26"
+      ]
+    },
+    {
+      "name": "gastrointestinal symptoms",
+      "aliases": [],
+      "attributes": {
+        "type": "symptom"
+      },
+      "participates_in": [
+        "EVT_33"
+      ],
+      "source_sentences": [
+        "S26"
+      ]
+    },
+    {
+      "name": "United States",
+      "aliases": [],
+      "attributes": {
+        "type": "country"
+      },
+      "participates_in": [
+        "EVT_34"
+      ],
+      "source_sentences": [
+        "S27"
+      ]
+    },
+    {
+      "name": "estimated 1,600 people",
+      "aliases": [],
+      "attributes": {
+        "type": "group",
+        "count_estimated": 1600
+      },
+      "participates_in": [
+        "EVT_34"
+      ],
+      "source_sentences": [
+        "S27"
+      ]
+    },
+    {
+      "name": "approximately 16% of these illnesses",
+      "aliases": [],
+      "attributes": {
+        "type": "statistic",
+        "percentage": 16
+      },
+      "participates_in": [
+        "EVT_35"
+      ],
+      "source_sentences": [
+        "S27"
+      ]
+    },
+    {
+      "name": "Cervical infections caused by listeriosis in pregnant women",
+      "aliases": [],
+      "attributes": {
+        "type": "condition"
+      },
+      "participates_in": [
+        "EVT_36"
+      ],
+      "source_sentences": [
+        "S28"
+      ]
+    },
+    {
+      "name": "stillbirth",
+      "aliases": [],
+      "attributes": {
+        "type": "outcome"
+      },
+      "participates_in": [
+        "EVT_36"
+      ],
+      "source_sentences": [
+        "S28"
+      ]
+    },
+    {
+      "name": "spontaneous abortion",
+      "aliases": [],
+      "attributes": {
+        "type": "outcome"
+      },
+      "participates_in": [
+        "EVT_36"
+      ],
+      "source_sentences": [
+        "S28"
+      ]
+    },
+    {
+      "name": "Debra Goldschmidt",
+      "aliases": [],
+      "attributes": {
+        "type": "person",
+        "organization": "CNN"
+      },
+      "participates_in": [
+        "EVT_37"
+      ],
+      "source_sentences": [
+        "S29"
+      ]
+    },
+    {
+      "name": "Amanda Watts",
+      "aliases": [],
+      "attributes": {
+        "type": "person",
+        "organization": "CNN"
+      },
+      "participates_in": [
+        "EVT_37"
+      ],
+      "source_sentences": [
+        "S29"
+      ]
+    },
+    {
+      "name": "Jacque Wilson",
+      "aliases": [],
+      "attributes": {
+        "type": "person",
+        "organization": "CNN"
+      },
+      "participates_in": [
+        "EVT_37"
+      ],
+      "source_sentences": [
+        "S29"
+      ]
+    },
+    {
+      "name": "this report",
+      "aliases": [],
+      "attributes": {
+        "type": "document"
+      },
+      "participates_in": [
+        "EVT_37"
+      ],
+      "source_sentences": [
+        "S29"
+      ]
+    }
+  ],
+  "inter_event_edges": [
+    {
+      "from": "EVT_1",
+      "to": "EVT_8",
+      "type": "leads_to",
+      "source": "S5"
+    },
+    {
+      "from": "EVT_2",
+      "to": "EVT_1",
+      "type": "why",
+      "source": "S0"
+    },
+    {
+      "from": "EVT_3",
+      "to": "EVT_5",
+      "type": "parallels",
+      "source": "S3"
+    },
+    {
+      "from": "EVT_7",
+      "to": "EVT_1",
+      "type": "parallels",
+      "source": "S5"
+    },
+    {
+      "from": "EVT_10",
+      "to": "EVT_9",
+      "type": "why",
+      "source": "S6"
+    },
+    {
+      "from": "EVT_10",
+      "to": "EVT_19",
+      "type": "why",
+      "source": "S15"
+    },
+    {
+      "from": "EVT_11",
+      "to": "EVT_10",
+      "type": "evidence_for",
+      "source": "S7"
+    },
+    {
+      "from": "EVT_12",
+      "to": "EVT_11",
+      "type": "evidence_for",
+      "source": "S8"
+    },
+    {
+      "from": "EVT_13",
+      "to": "EVT_2",
+      "type": "evidence_for",
+      "source": "S9"
+    },
+    {
+      "from": "EVT_14",
+      "to": "EVT_10",
+      "type": "evidence_for",
+      "source": "S10"
+    },
+    {
+      "from": "EVT_15",
+      "to": "EVT_14",
+      "type": "contradicts",
+      "source": "S11"
+    },
+    {
+      "from": "EVT_17",
+      "to": "EVT_16",
+      "type": "leads_to",
+      "source": "S12"
+    },
+    {
+      "from": "EVT_19",
+      "to": "EVT_20",
+      "type": "leads_to",
+      "source": "S16"
+    },
+    {
+      "from": "EVT_21",
+      "to": "EVT_22",
+      "type": "leads_to",
+      "source": "S17"
+    },
+    {
+      "from": "EVT_23",
+      "to": "EVT_21",
+      "type": "leads_to",
+      "source": "S18"
+    },
+    {
+      "from": "EVT_24",
+      "to": "EVT_21",
+      "type": "leads_to",
+      "source": "S19"
+    },
+    {
+      "from": "EVT_26",
+      "to": "EVT_25",
+      "type": "enriched_by",
+      "source": "S21"
+    },
+    {
+      "from": "EVT_27",
+      "to": "EVT_25",
+      "type": "enriched_by",
+      "source": "S22"
+    },
+    {
+      "from": "EVT_31",
+      "to": "EVT_17",
+      "type": "explains",
+      "source": "S25"
+    },
+    {
+      "from": "EVT_31",
+      "to": "EVT_21",
+      "type": "explains",
+      "source": "S25"
+    },
+    {
+      "from": "EVT_32",
+      "to": "EVT_31",
+      "type": "enriched_by",
+      "source": "S25"
+    },
+    {
+      "from": "EVT_33",
+      "to": "EVT_21",
+      "type": "enriched_by",
+      "source": "S26"
+    },
+    {
+      "from": "EVT_34",
+      "to": "EVT_35",
+      "type": "leads_to",
+      "source": "S27"
+    },
+    {
+      "from": "EVT_36",
+      "to": "EVT_31",
+      "type": "enriched_by",
+      "source": "S28"
+    }
+  ],
+  "explicit_unknowns": [
+    {
+      "about": "specific date of warning by public health officials",
+      "unknown_slots": [
+        "when"
+      ],
+      "source": "S1"
+    },
+    {
+      "about": "specific date of listeria monocytogenes discovery",
+      "unknown_slots": [
+        "when"
+      ],
+      "source": "S7"
+    },
+    {
+      "about": "whether the ice cream is the source of either spate of the infections",
+      "unknown_slots": [
+        "why"
+      ],
+      "source": "S13"
+    },
+    {
+      "about": "whether illnesses are related to exposure to Blue Bell products",
+      "unknown_slots": [
+        "why"
+      ],
+      "source": "S14"
+    },
+    {
+      "about": "specific date of Blue Bell's recall of products from Texas plant",
+      "unknown_slots": [
+        "when"
+      ],
+      "source": "S15"
+    },
+    {
+      "about": "specific date of adding 3-ounce cup servings to recall",
+      "unknown_slots": [
+        "when"
+      ],
+      "source": "S16"
+    },
+    {
+      "about": "specific date range for people infected and died in Kansas",
+      "unknown_slots": [
+        "when"
+      ],
+      "source": "S17"
+    },
+    {
+      "about": "certainty of link between listeria and Blue Bell Creameries products for Kansas infections/deaths",
+      "unknown_slots": [
+        "how"
+      ],
+      "source": "S17"
+    },
+    {
+      "about": "specific date of the first product recall in Blue Bell's history",
+      "unknown_slots": [
+        "when"
+      ],
+      "source": "S24"
+    },
+    {
+      "about": "specific year for people becoming seriously ill in the United States",
+      "unknown_slots": [
+        "when"
+      ],
+      "source": "S27"
+    }
+  ],
+  "_elapsed": 118.9
+}

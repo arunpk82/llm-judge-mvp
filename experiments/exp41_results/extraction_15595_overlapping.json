@@ -1,0 +1,87 @@
+{
+  "stories": [
+    {
+      "thread": "General Survival",
+      "story": "Survival at sea is rare and often ends sadly, unlike movies like \"All Is Lost\" or \"Life of Pi.\" Survivors cannot rely on technology but must use ingenuity, resourcefulness, and luck. Rescue agencies report some happy endings, though sole survivors' accounts are hard to prove. Examples of such survival follow.",
+      "key_facts": [
+        "Survival at sea is rare and often ends in death",
+        "Survivors rely on ingenuity, resourcefulness, and luck",
+        "Sole survivor accounts are difficult to prove or refute"
+      ],
+      "explicit_unknowns": [
+        "The exact number of sailors who die at sea"
+      ]
+    },
+    {
+      "thread": "Louis Jordan",
+      "story": "Louis Jordan set off from South Carolina in late January on a 35-foot sailboat into the Gulf Stream. His boat capsized three times, his mast broke, and Louis Jordan broke his shoulder. Louis Jordan rationed water, collected fresh water in a bucket, used laundry to trap fish, and rigged a makeshift mast and sail. He was rescued 200 miles off the North Carolina coast by the Houston Express and said he is \"utterly thankful.\" His father greeted him saying, \"I thought I lost you.\"",
+      "key_facts": [
+        "Louis Jordan set off from South Carolina in late January",
+        "Louis Jordan's 35-foot sailboat capsized three times",
+        "Louis Jordan broke his shoulder and his boat's mast",
+        "Louis Jordan used laundry to trap fish and a bucket for water",
+        "Louis Jordan was rescued 200 miles off the North Carolina coast by the Houston Express"
+      ],
+      "explicit_unknowns": [
+        "not stated"
+      ]
+    },
+    {
+      "thread": "Jose Salvador Alvarenga",
+      "story": "Like Louis Jordan, Jose Salvador Alvarenga began a one-day trip from Paredon Viejo, Mexico, in late 2012, though whether he left in November or December is debated. After a storm destroyed the engine, radio, and GPS, Jose Salvador Alvarenga spent 13 or 14 months adrift in the Pacific, surviving on rainwater, urine, sea turtles, and faith in God. His companion, Ezequiel Cordova, died four weeks in after refusing to eat raw birds. Jose Salvador Alvarenga arrived at Ebon Atoll in the Marshall Islands in January 2013, spending a night in the woods before shouting to two residents. Ebon Atoll is a 22-hour boat ride from Majuro and has one phone line and no Internet.",
+      "key_facts": [
+        "Jose Salvador Alvarenga left Paredon Viejo, Mexico in late 2012",
+        "Jose Salvador Alvarenga's boat was three people long and one wide",
+        "Ezequiel Cordova died four weeks into the journey after refusing to eat raw birds",
+        "Jose Salvador Alvarenga survived 13 or 14 months on rainwater, urine, and sea turtles",
+        "Jose Salvador Alvarenga arrived at Ebon Atoll in January 2013"
+      ],
+      "explicit_unknowns": [
+        "The exact date Jose Salvador Alvarenga set off (November or December)"
+      ]
+    },
+    {
+      "thread": "Ron Ingraham",
+      "story": "Similar to Jose Salvador Alvarenga, Ron Ingraham, a 67-year-old fisherman from Hawaii whose son Zakary compares him to Rambo, set off solo from Molokai last Thanksgiving in a 25-foot sailboat. After his boat went \"backwards all night long,\" a huge wave pushed the mast and Ron Ingraham into the water, but Ron Ingraham used a rope to pull himself back in. A search covering 12,000 square miles was called off on December 1, but Zakary Ingraham believed his father was alive. Twelve days after the first distress call, Ron Ingraham was rescued 64 miles south of Honolulu, weak, hungry, and dehydrated, with his damaged boat. Ron Ingraham's son noted that the sea is both his father's life and livelihood.",
+      "key_facts": [
+        "Ron Ingraham is a 67-year-old fisherman from Hawaii",
+        "Ron Ingraham set off solo from Molokai last Thanksgiving in a 25-foot sailboat",
+        "A search for Ron Ingraham covered 12,000 square miles and was called off December 1",
+        "Ron Ingraham was rescued 12 days after the first distress call, 64 miles south of Honolulu",
+        "Ron Ingraham was rescued weak, hungry, and dehydrated with his boat"
+      ],
+      "explicit_unknowns": [
+        "not stated"
+      ]
+    },
+    {
+      "thread": "Adrian Vasquez",
+      "story": "Like Ron Ingraham, 18-year-old Adrian Vasquez and two friends set off from San Carlos, Panama, in February 2012 on a boat called the Fifty Cents. Things started well and they caught plenty of fish, but the engine died, and with no tools or navigational experience, Adrian Vasquez survived by eating raw fish and drinking rainwater. Adrian Vasquez threw the decomposed bodies of his two dead companions into the sea, as reported by Ecuadorian Rear Adm. Freddy Garcia Calle. After 26 days and 600 miles, Adrian Vasquez was rescued north of the Galapagos Islands by the Ecuadorian navy, having lost 20 pounds. Adrian Vasquez's mother, Nilsa de la Cruz, called his return a miracle and an opportunity for the family to be more understanding and loving.",
+      "key_facts": [
+        "Adrian Vasquez set off from San Carlos, Panama in February 2012 on the Fifty Cents",
+        "Adrian Vasquez survived on raw fish and rainwater after the engine died",
+        "Adrian Vasquez's two companions died and their decomposed bodies were thrown overboard",
+        "Adrian Vasquez was rescued by the Ecuadorian navy 26 days later, 600 miles away, north of the Galapagos Islands",
+        "Adrian Vasquez lost 20 pounds and showed severe signs of dehydration and lack of nutrition"
+      ],
+      "explicit_unknowns": [
+        "How Adrian Vasquez's two companions died"
+      ]
+    },
+    {
+      "thread": "Hiromitsu Shinkawa",
+      "story": "While Adrian Vasquez was adrift, 60-year-old Hiromitsu Shinkawa showed that one does not need to set off by boat to have the sea challenge them. On March 11, 2011, a 9.0 magnitude earthquake 231 miles northeast of Tokyo caused a 30-foot tsunami in Minamisoma that killed nearly 16,000 people. While Hiromitsu Shinkawa survived by holding onto a roof, his wife was swept away. More than two days later, Hiromitsu Shinkawa was spotted 9 miles out to sea waving a self-made red flag and was rescued by a Japanese Maritime Self-Defense Force destroyer. Hiromitsu Shinkawa told rescuers, \"I thought today was the last day of my life.\"",
+      "key_facts": [
+        "Hiromitsu Shinkawa is a 60-year-old man from Minamisoma",
+        "A 9.0 magnitude earthquake struck 231 miles northeast of Tokyo on March 11, 2011",
+        "A 30-foot tsunami killed nearly 16,000 people",
+        "Hiromitsu Shinkawa survived by holding onto a roof while his wife was swept away",
+        "Hiromitsu Shinkawa was rescued 9 miles out to sea by a Japanese Maritime Self-Defense Force destroyer"
+      ],
+      "explicit_unknowns": [
+        "not stated"
+      ]
+    }
+  ],
+  "_elapsed": 291.8
+}

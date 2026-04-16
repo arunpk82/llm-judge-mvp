@@ -1,0 +1,2499 @@
+{
+  "phase": "p2_numbers_done",
+  "results": [
+    {
+      "numbers_dates_correct": true,
+      "checks": [
+        {
+          "claim_value": "at least a month",
+          "source_value": "at least a month",
+          "match": "exact"
+        }
+      ],
+      "_idx": 0,
+      "_expected": "grounded"
+    },
+    {
+      "numbers_dates_correct": true,
+      "checks": [
+        {
+          "claim_value": "March 1945",
+          "source_value": "March 1945",
+          "match": "exact"
+        },
+        {
+          "claim_value": "two weeks",
+          "source_value": "two weeks",
+          "match": "exact"
+        }
+      ],
+      "_idx": 1,
+      "_expected": "grounded"
+    },
+    {
+      "numbers_dates_correct": true,
+      "checks": [
+        {
+          "claim_value": "March",
+          "source_value": "March",
+          "match": "exact"
+        }
+      ],
+      "_idx": 2,
+      "_expected": "grounded"
+    },
+    {
+      "numbers_dates_correct": false,
+      "checks": [
+        {
+          "claim_value": "February 7, 1945",
+          "source_value": "February 7",
+          "match": "approximate"
+        }
+      ],
+      "_idx": 3,
+      "_expected": "grounded"
+    },
+    {
+      "numbers_dates_correct": true,
+      "checks": [
+        {
+          "claim_value": "at least a month",
+          "source_value": "at least a month",
+          "match": "exact"
+        }
+      ],
+      "_idx": 4,
+      "_expected": "grounded"
+    },
+    {
+      "numbers_dates_correct": true,
+      "checks": [],
+      "_idx": 5,
+      "_expected": "grounded"
+    },
+    {
+      "numbers_dates_correct": true,
+      "checks": [
+        {
+          "claim_value": "1944",
+          "source_value": "1944",
+          "match": "exact"
+        }
+      ],
+      "_idx": 6,
+      "_expected": "grounded"
+    },
+    {
+      "numbers_dates_correct": true,
+      "checks": [],
+      "_idx": 7,
+      "_expected": "grounded"
+    },
+    {
+      "numbers_dates_correct": true,
+      "checks": [
+        {
+          "claim_value": "March",
+          "source_value": "March",
+          "match": "exact"
+        },
+        {
+          "claim_value": "February 7",
+          "source_value": "February 7",
+          "match": "exact"
+        }
+      ],
+      "_idx": 8,
+      "_expected": "grounded"
+    },
+    {
+      "numbers_dates_correct": true,
+      "checks": [],
+      "_idx": 9,
+      "_expected": "grounded"
+    },
+    {
+      "numbers_dates_correct": true,
+      "checks": [],
+      "_idx": 10,
+      "_expected": "grounded"
+    },
+    {
+      "numbers_dates_correct": true,
+      "checks": [
+        {
+          "claim_value": "at least a month",
+          "source_value": "at least a month",
+          "match": "exact"
+        }
+      ],
+      "_idx": 11,
+      "_expected": "grounded"
+    },
+    {
+      "numbers_dates_correct": true,
+      "checks": [],
+      "_idx": 12,
+      "_expected": "grounded"
+    },
+    {
+      "numbers_dates_correct": true,
+      "checks": [
+        {
+          "claim_value": "little water",
+          "source_value": "little water",
+          "match": "exact"
+        }
+      ],
+      "_idx": 13,
+      "_expected": "grounded"
+    },
+    {
+      "numbers_dates_correct": false,
+      "checks": [
+        {
+          "claim_value": "February 7, 2022",
+          "source_value": "February 7",
+          "match": "contradicted"
+        }
+      ],
+      "_idx": 14,
+      "_expected": "hallucinated"
+    },
+    {
+      "numbers_dates_correct": true,
+      "checks": [],
+      "_idx": 15,
+      "_expected": "grounded"
+    },
+    {
+      "numbers_dates_correct": true,
+      "checks": [],
+      "_idx": 16,
+      "_expected": "hallucinated"
+    },
+    {
+      "_error": "[Errno -3] Temporary failure in name resolution",
+      "_idx": 17,
+      "_expected": "grounded"
+    },
+    {
+      "_error": "[Errno -3] Temporary failure in name resolution",
+      "_idx": 18,
+      "_expected": "grounded"
+    },
+    {
+      "_error": "[Errno -3] Temporary failure in name resolution",
+      "_idx": 19,
+      "_expected": "grounded"
+    },
+    {
+      "_error": "[Errno -3] Temporary failure in name resolution",
+      "_idx": 20,
+      "_expected": "grounded"
+    },
+    {
+      "_error": "[Errno -3] Temporary failure in name resolution",
+      "_idx": 21,
+      "_expected": "grounded"
+    },
+    {
+      "_error": "[Errno -3] Temporary failure in name resolution",
+      "_idx": 22,
+      "_expected": "hallucinated"
+    },
+    {
+      "_error": "[Errno -3] Temporary failure in name resolution",
+      "_idx": 23,
+      "_expected": "grounded"
+    },
+    {
+      "_error": "[Errno -3] Temporary failure in name resolution",
+      "_idx": 24,
+      "_expected": "grounded"
+    },
+    {
+      "_error": "[Errno -3] Temporary failure in name resolution",
+      "_idx": 25,
+      "_expected": "grounded"
+    },
+    {
+      "_error": "[Errno -3] Temporary failure in name resolution",
+      "_idx": 26,
+      "_expected": "grounded"
+    },
+    {
+      "_error": "[Errno -3] Temporary failure in name resolution",
+      "_idx": 27,
+      "_expected": "grounded"
+    },
+    {
+      "_error": "[Errno -3] Temporary failure in name resolution",
+      "_idx": 28,
+      "_expected": "grounded"
+    },
+    {
+      "_error": "[Errno -3] Temporary failure in name resolution",
+      "_idx": 29,
+      "_expected": "hallucinated"
+    },
+    {
+      "_error": "[Errno -3] Temporary failure in name resolution",
+      "_idx": 30,
+      "_expected": "grounded"
+    },
+    {
+      "_error": "[Errno -3] Temporary failure in name resolution",
+      "_idx": 31,
+      "_expected": "grounded"
+    },
+    {
+      "_error": "[Errno -3] Temporary failure in name resolution",
+      "_idx": 32,
+      "_expected": "hallucinated"
+    },
+    {
+      "_error": "[Errno -3] Temporary failure in name resolution",
+      "_idx": 33,
+      "_expected": "grounded"
+    },
+    {
+      "_error": "[Errno -3] Temporary failure in name resolution",
+      "_idx": 34,
+      "_expected": "grounded"
+    },
+    {
+      "_error": "[Errno -3] Temporary failure in name resolution",
+      "_idx": 35,
+      "_expected": "grounded"
+    },
+    {
+      "_error": "[Errno -3] Temporary failure in name resolution",
+      "_idx": 36,
+      "_expected": "grounded"
+    },
+    {
+      "_error": "[Errno -3] Temporary failure in name resolution",
+      "_idx": 37,
+      "_expected": "grounded"
+    },
+    {
+      "_error": "[Errno -3] Temporary failure in name resolution",
+      "_idx": 38,
+      "_expected": "grounded"
+    },
+    {
+      "_error": "[Errno -3] Temporary failure in name resolution",
+      "_idx": 39,
+      "_expected": "grounded"
+    },
+    {
+      "_error": "[Errno -3] Temporary failure in name resolution",
+      "_idx": 40,
+      "_expected": "grounded"
+    },
+    {
+      "_error": "[Errno -3] Temporary failure in name resolution",
+      "_idx": 41,
+      "_expected": "grounded"
+    },
+    {
+      "_error": "[Errno -3] Temporary failure in name resolution",
+      "_idx": 42,
+      "_expected": "grounded"
+    },
+    {
+      "_error": "[Errno -3] Temporary failure in name resolution",
+      "_idx": 43,
+      "_expected": "grounded"
+    },
+    {
+      "_error": "[Errno -3] Temporary failure in name resolution",
+      "_idx": 44,
+      "_expected": "grounded"
+    },
+    {
+      "_error": "[Errno -3] Temporary failure in name resolution",
+      "_idx": 45,
+      "_expected": "grounded"
+    },
+    {
+      "_error": "[Errno -3] Temporary failure in name resolution",
+      "_idx": 46,
+      "_expected": "grounded"
+    },
+    {
+      "_error": "[Errno -3] Temporary failure in name resolution",
+      "_idx": 47,
+      "_expected": "grounded"
+    },
+    {
+      "_error": "[Errno -3] Temporary failure in name resolution",
+      "_idx": 48,
+      "_expected": "grounded"
+    },
+    {
+      "_error": "[Errno -3] Temporary failure in name resolution",
+      "_idx": 49,
+      "_expected": "grounded"
+    },
+    {
+      "_error": "[Errno -3] Temporary failure in name resolution",
+      "_idx": 50,
+      "_expected": "grounded"
+    },
+    {
+      "_error": "[Errno -3] Temporary failure in name resolution",
+      "_idx": 51,
+      "_expected": "grounded"
+    },
+    {
+      "_error": "[Errno -3] Temporary failure in name resolution",
+      "_idx": 52,
+      "_expected": "grounded"
+    },
+    {
+      "_error": "[Errno -3] Temporary failure in name resolution",
+      "_idx": 53,
+      "_expected": "grounded"
+    },
+    {
+      "_error": "[Errno -3] Temporary failure in name resolution",
+      "_idx": 54,
+      "_expected": "grounded"
+    },
+    {
+      "_error": "[Errno -3] Temporary failure in name resolution",
+      "_idx": 55,
+      "_expected": "grounded"
+    },
+    {
+      "_error": "[Errno -3] Temporary failure in name resolution",
+      "_idx": 56,
+      "_expected": "grounded"
+    },
+    {
+      "_error": "[Errno -3] Temporary failure in name resolution",
+      "_idx": 57,
+      "_expected": "hallucinated"
+    },
+    {
+      "_error": "[Errno -3] Temporary failure in name resolution",
+      "_idx": 58,
+      "_expected": "grounded"
+    },
+    {
+      "_error": "[Errno -3] Temporary failure in name resolution",
+      "_idx": 59,
+      "_expected": "grounded"
+    },
+    {
+      "_error": "[Errno -3] Temporary failure in name resolution",
+      "_idx": 60,
+      "_expected": "grounded"
+    },
+    {
+      "_error": "[Errno -3] Temporary failure in name resolution",
+      "_idx": 61,
+      "_expected": "grounded"
+    },
+    {
+      "_error": "[Errno -3] Temporary failure in name resolution",
+      "_idx": 62,
+      "_expected": "grounded"
+    },
+    {
+      "_error": "[Errno -3] Temporary failure in name resolution",
+      "_idx": 63,
+      "_expected": "grounded"
+    },
+    {
+      "_error": "[Errno -3] Temporary failure in name resolution",
+      "_idx": 64,
+      "_expected": "grounded"
+    },
+    {
+      "_error": "[Errno -3] Temporary failure in name resolution",
+      "_idx": 65,
+      "_expected": "grounded"
+    },
+    {
+      "_error": "[Errno -3] Temporary failure in name resolution",
+      "_idx": 66,
+      "_expected": "grounded"
+    },
+    {
+      "_error": "[Errno -3] Temporary failure in name resolution",
+      "_idx": 67,
+      "_expected": "grounded"
+    },
+    {
+      "_error": "[Errno -3] Temporary failure in name resolution",
+      "_idx": 68,
+      "_expected": "grounded"
+    },
+    {
+      "_error": "[Errno -3] Temporary failure in name resolution",
+      "_idx": 69,
+      "_expected": "grounded"
+    },
+    {
+      "_error": "[Errno -3] Temporary failure in name resolution",
+      "_idx": 70,
+      "_expected": "grounded"
+    },
+    {
+      "_error": "[Errno -3] Temporary failure in name resolution",
+      "_idx": 71,
+      "_expected": "grounded"
+    },
+    {
+      "_error": "[Errno -3] Temporary failure in name resolution",
+      "_idx": 72,
+      "_expected": "grounded"
+    },
+    {
+      "_error": "[Errno -3] Temporary failure in name resolution",
+      "_idx": 73,
+      "_expected": "grounded"
+    },
+    {
+      "_error": "[Errno -3] Temporary failure in name resolution",
+      "_idx": 74,
+      "_expected": "grounded"
+    },
+    {
+      "_error": "[Errno -3] Temporary failure in name resolution",
+      "_idx": 75,
+      "_expected": "grounded"
+    },
+    {
+      "_error": "[Errno -3] Temporary failure in name resolution",
+      "_idx": 76,
+      "_expected": "grounded"
+    },
+    {
+      "_error": "[Errno -3] Temporary failure in name resolution",
+      "_idx": 77,
+      "_expected": "grounded"
+    },
+    {
+      "_error": "[Errno -3] Temporary failure in name resolution",
+      "_idx": 78,
+      "_expected": "grounded"
+    },
+    {
+      "_error": "[Errno -3] Temporary failure in name resolution",
+      "_idx": 79,
+      "_expected": "grounded"
+    },
+    {
+      "_error": "[Errno -3] Temporary failure in name resolution",
+      "_idx": 80,
+      "_expected": "grounded"
+    },
+    {
+      "_error": "[Errno -3] Temporary failure in name resolution",
+      "_idx": 81,
+      "_expected": "grounded"
+    },
+    {
+      "_error": "[Errno -3] Temporary failure in name resolution",
+      "_idx": 82,
+      "_expected": "grounded"
+    },
+    {
+      "_error": "[Errno -3] Temporary failure in name resolution",
+      "_idx": 83,
+      "_expected": "grounded"
+    },
+    {
+      "_error": "[Errno -3] Temporary failure in name resolution",
+      "_idx": 84,
+      "_expected": "grounded"
+    },
+    {
+      "_error": "[Errno -3] Temporary failure in name resolution",
+      "_idx": 85,
+      "_expected": "grounded"
+    },
+    {
+      "_error": "[Errno -3] Temporary failure in name resolution",
+      "_idx": 86,
+      "_expected": "grounded"
+    },
+    {
+      "_error": "[Errno -3] Temporary failure in name resolution",
+      "_idx": 87,
+      "_expected": "grounded"
+    },
+    {
+      "_error": "[Errno -3] Temporary failure in name resolution",
+      "_idx": 88,
+      "_expected": "grounded"
+    },
+    {
+      "_error": "[Errno -3] Temporary failure in name resolution",
+      "_idx": 89,
+      "_expected": "grounded"
+    },
+    {
+      "_error": "[Errno -3] Temporary failure in name resolution",
+      "_idx": 90,
+      "_expected": "grounded"
+    },
+    {
+      "_error": "[Errno -3] Temporary failure in name resolution",
+      "_idx": 91,
+      "_expected": "grounded"
+    },
+    {
+      "_error": "[Errno -3] Temporary failure in name resolution",
+      "_idx": 92,
+      "_expected": "grounded"
+    },
+    {
+      "_error": "[Errno -3] Temporary failure in name resolution",
+      "_idx": 93,
+      "_expected": "grounded"
+    },
+    {
+      "_error": "[Errno -3] Temporary failure in name resolution",
+      "_idx": 94,
+      "_expected": "grounded"
+    },
+    {
+      "_error": "[Errno -3] Temporary failure in name resolution",
+      "_idx": 95,
+      "_expected": "grounded"
+    },
+    {
+      "_error": "[Errno -3] Temporary failure in name resolution",
+      "_idx": 96,
+      "_expected": "grounded"
+    },
+    {
+      "_error": "[Errno -3] Temporary failure in name resolution",
+      "_idx": 97,
+      "_expected": "grounded"
+    },
+    {
+      "_error": "[Errno -3] Temporary failure in name resolution",
+      "_idx": 98,
+      "_expected": "grounded"
+    },
+    {
+      "_error": "[Errno -3] Temporary failure in name resolution",
+      "_idx": 99,
+      "_expected": "grounded"
+    },
+    {
+      "_error": "[Errno -3] Temporary failure in name resolution",
+      "_idx": 100,
+      "_expected": "grounded"
+    },
+    {
+      "_error": "[Errno -3] Temporary failure in name resolution",
+      "_idx": 101,
+      "_expected": "grounded"
+    },
+    {
+      "_error": "[Errno -3] Temporary failure in name resolution",
+      "_idx": 102,
+      "_expected": "grounded"
+    },
+    {
+      "_error": "[Errno -3] Temporary failure in name resolution",
+      "_idx": 103,
+      "_expected": "grounded"
+    },
+    {
+      "_error": "[Errno -3] Temporary failure in name resolution",
+      "_idx": 104,
+      "_expected": "grounded"
+    },
+    {
+      "_error": "[Errno -3] Temporary failure in name resolution",
+      "_idx": 105,
+      "_expected": "grounded"
+    },
+    {
+      "_error": "[Errno -3] Temporary failure in name resolution",
+      "_idx": 106,
+      "_expected": "grounded"
+    },
+    {
+      "_error": "[Errno -3] Temporary failure in name resolution",
+      "_idx": 107,
+      "_expected": "grounded"
+    },
+    {
+      "_error": "[Errno -3] Temporary failure in name resolution",
+      "_idx": 108,
+      "_expected": "grounded"
+    },
+    {
+      "_error": "[Errno -3] Temporary failure in name resolution",
+      "_idx": 109,
+      "_expected": "grounded"
+    },
+    {
+      "_error": "[Errno -3] Temporary failure in name resolution",
+      "_idx": 110,
+      "_expected": "grounded"
+    },
+    {
+      "_error": "[Errno -3] Temporary failure in name resolution",
+      "_idx": 111,
+      "_expected": "grounded"
+    },
+    {
+      "_error": "[Errno -3] Temporary failure in name resolution",
+      "_idx": 112,
+      "_expected": "grounded"
+    },
+    {
+      "_error": "[Errno -3] Temporary failure in name resolution",
+      "_idx": 113,
+      "_expected": "grounded"
+    },
+    {
+      "_error": "[Errno -3] Temporary failure in name resolution",
+      "_idx": 114,
+      "_expected": "grounded"
+    },
+    {
+      "_error": "[Errno -3] Temporary failure in name resolution",
+      "_idx": 115,
+      "_expected": "grounded"
+    },
+    {
+      "_error": "[Errno -3] Temporary failure in name resolution",
+      "_idx": 116,
+      "_expected": "grounded"
+    },
+    {
+      "_error": "[Errno -3] Temporary failure in name resolution",
+      "_idx": 117,
+      "_expected": "grounded"
+    },
+    {
+      "_error": "[Errno -3] Temporary failure in name resolution",
+      "_idx": 118,
+      "_expected": "grounded"
+    },
+    {
+      "_error": "[Errno -3] Temporary failure in name resolution",
+      "_idx": 119,
+      "_expected": "grounded"
+    },
+    {
+      "_error": "[Errno -3] Temporary failure in name resolution",
+      "_idx": 120,
+      "_expected": "grounded"
+    },
+    {
+      "_error": "[Errno -3] Temporary failure in name resolution",
+      "_idx": 121,
+      "_expected": "grounded"
+    },
+    {
+      "_error": "[Errno -3] Temporary failure in name resolution",
+      "_idx": 122,
+      "_expected": "grounded"
+    },
+    {
+      "_error": "[Errno -3] Temporary failure in name resolution",
+      "_idx": 123,
+      "_expected": "grounded"
+    },
+    {
+      "_error": "[Errno -3] Temporary failure in name resolution",
+      "_idx": 124,
+      "_expected": "grounded"
+    },
+    {
+      "_error": "[Errno -3] Temporary failure in name resolution",
+      "_idx": 125,
+      "_expected": "hallucinated"
+    },
+    {
+      "_error": "[Errno -3] Temporary failure in name resolution",
+      "_idx": 126,
+      "_expected": "grounded"
+    },
+    {
+      "_error": "[Errno -3] Temporary failure in name resolution",
+      "_idx": 127,
+      "_expected": "grounded"
+    },
+    {
+      "_error": "[Errno -3] Temporary failure in name resolution",
+      "_idx": 128,
+      "_expected": "grounded"
+    },
+    {
+      "_error": "[Errno -3] Temporary failure in name resolution",
+      "_idx": 129,
+      "_expected": "grounded"
+    },
+    {
+      "_error": "[Errno -3] Temporary failure in name resolution",
+      "_idx": 130,
+      "_expected": "grounded"
+    },
+    {
+      "_error": "[Errno -3] Temporary failure in name resolution",
+      "_idx": 131,
+      "_expected": "grounded"
+    },
+    {
+      "_error": "[Errno -3] Temporary failure in name resolution",
+      "_idx": 132,
+      "_expected": "grounded"
+    },
+    {
+      "_error": "[Errno -3] Temporary failure in name resolution",
+      "_idx": 133,
+      "_expected": "grounded"
+    },
+    {
+      "_error": "[Errno -3] Temporary failure in name resolution",
+      "_idx": 134,
+      "_expected": "grounded"
+    },
+    {
+      "_error": "[Errno -3] Temporary failure in name resolution",
+      "_idx": 135,
+      "_expected": "grounded"
+    },
+    {
+      "_error": "[Errno -3] Temporary failure in name resolution",
+      "_idx": 136,
+      "_expected": "grounded"
+    },
+    {
+      "_error": "[Errno -3] Temporary failure in name resolution",
+      "_idx": 137,
+      "_expected": "grounded"
+    },
+    {
+      "_error": "[Errno -3] Temporary failure in name resolution",
+      "_idx": 138,
+      "_expected": "grounded"
+    },
+    {
+      "_error": "[Errno -3] Temporary failure in name resolution",
+      "_idx": 139,
+      "_expected": "grounded"
+    },
+    {
+      "_error": "[Errno -3] Temporary failure in name resolution",
+      "_idx": 140,
+      "_expected": "hallucinated"
+    },
+    {
+      "_error": "[Errno -3] Temporary failure in name resolution",
+      "_idx": 141,
+      "_expected": "grounded"
+    },
+    {
+      "_error": "[Errno -3] Temporary failure in name resolution",
+      "_idx": 142,
+      "_expected": "grounded"
+    },
+    {
+      "_error": "[Errno -3] Temporary failure in name resolution",
+      "_idx": 143,
+      "_expected": "grounded"
+    },
+    {
+      "_error": "[Errno -3] Temporary failure in name resolution",
+      "_idx": 144,
+      "_expected": "grounded"
+    },
+    {
+      "_error": "[Errno -3] Temporary failure in name resolution",
+      "_idx": 145,
+      "_expected": "hallucinated"
+    },
+    {
+      "_error": "[Errno -3] Temporary failure in name resolution",
+      "_idx": 146,
+      "_expected": "hallucinated"
+    },
+    {
+      "_error": "[Errno -3] Temporary failure in name resolution",
+      "_idx": 147,
+      "_expected": "grounded"
+    },
+    {
+      "_error": "[Errno -3] Temporary failure in name resolution",
+      "_idx": 148,
+      "_expected": "grounded"
+    },
+    {
+      "_error": "[Errno -3] Temporary failure in name resolution",
+      "_idx": 149,
+      "_expected": "grounded"
+    },
+    {
+      "_error": "[Errno -3] Temporary failure in name resolution",
+      "_idx": 150,
+      "_expected": "grounded"
+    },
+    {
+      "_error": "[Errno -3] Temporary failure in name resolution",
+      "_idx": 151,
+      "_expected": "grounded"
+    },
+    {
+      "numbers_dates_correct": true,
+      "checks": [
+        {
+          "claim_value": "two",
+          "source_value": "Two",
+          "match": "exact"
+        }
+      ],
+      "_idx": 152,
+      "_expected": "grounded"
+    },
+    {
+      "numbers_dates_correct": true,
+      "checks": [
+        {
+          "claim_value": "an electronic visa",
+          "source_value": "an electronic visa",
+          "match": "exact"
+        },
+        {
+          "claim_value": "a round-trip ticket",
+          "source_value": "a ticket to Barcelona, with a March 29 departure and an April 15 return",
+          "match": "exact"
+        },
+        {
+          "claim_value": "an ISIS manual",
+          "source_value": "An ISIS manual",
+          "match": "exact"
+        }
+      ],
+      "_idx": 153,
+      "_expected": "grounded"
+    },
+    {
+      "numbers_dates_correct": true,
+      "checks": [
+        {
+          "claim_value": "15 years",
+          "source_value": "15 years",
+          "match": "exact"
+        }
+      ],
+      "_idx": 154,
+      "_expected": "grounded"
+    },
+    {
+      "numbers_dates_correct": true,
+      "checks": [
+        {
+          "claim_value": "A",
+          "source_value": "a",
+          "match": "exact"
+        }
+      ],
+      "_idx": 155,
+      "_expected": "grounded"
+    },
+    {
+      "numbers_dates_correct": true,
+      "checks": [
+        {
+          "claim_value": "Two",
+          "source_value": "Two",
+          "match": "exact"
+        }
+      ],
+      "_idx": 156,
+      "_expected": "grounded"
+    },
+    {
+      "numbers_dates_correct": false,
+      "checks": [
+        {
+          "claim_value": "multiple",
+          "source_value": "numerous",
+          "match": "approximate"
+        }
+      ],
+      "_idx": 157,
+      "_expected": "grounded"
+    },
+    {
+      "numbers_dates_correct": true,
+      "checks": [
+        {
+          "claim_value": "two",
+          "source_value": "Two",
+          "match": "exact"
+        }
+      ],
+      "_idx": 158,
+      "_expected": "grounded"
+    },
+    {
+      "numbers_dates_correct": false,
+      "checks": [
+        {
+          "claim_value": "over 30",
+          "source_value": "more than 30",
+          "match": "approximate"
+        },
+        {
+          "claim_value": "past 18 months",
+          "source_value": "past 18 months",
+          "match": "exact"
+        }
+      ],
+      "_idx": 159,
+      "_expected": "grounded"
+    },
+    {
+      "numbers_dates_correct": true,
+      "checks": [],
+      "_idx": 160,
+      "_expected": "grounded"
+    },
+    {
+      "numbers_dates_correct": true,
+      "checks": [],
+      "_idx": 161,
+      "_expected": "grounded"
+    },
+    {
+      "numbers_dates_correct": true,
+      "checks": [
+        {
+          "claim_value": "15 years",
+          "source_value": "15 years",
+          "match": "exact"
+        }
+      ],
+      "_idx": 162,
+      "_expected": "grounded"
+    },
+    {
+      "numbers_dates_correct": true,
+      "checks": [
+        {
+          "claim_value": "two",
+          "source_value": "Two",
+          "match": "exact"
+        },
+        {
+          "claim_value": "this week",
+          "source_value": "this week",
+          "match": "exact"
+        }
+      ],
+      "_idx": 163,
+      "_expected": "grounded"
+    },
+    {
+      "numbers_dates_correct": true,
+      "checks": [],
+      "_idx": 164,
+      "_expected": "grounded"
+    },
+    {
+      "numbers_dates_correct": true,
+      "checks": [],
+      "_idx": 165,
+      "_expected": "grounded"
+    },
+    {
+      "numbers_dates_correct": true,
+      "checks": [
+        {
+          "claim_value": "30",
+          "source_value": "30",
+          "match": "exact"
+        }
+      ],
+      "_idx": 166,
+      "_expected": "grounded"
+    },
+    {
+      "numbers_dates_correct": true,
+      "checks": [
+        {
+          "claim_value": "15 years",
+          "source_value": "15 years",
+          "match": "exact"
+        }
+      ],
+      "_idx": 167,
+      "_expected": "grounded"
+    },
+    {
+      "numbers_dates_correct": true,
+      "checks": [
+        {
+          "claim_value": "Three women",
+          "source_value": "three women",
+          "match": "exact"
+        },
+        {
+          "claim_value": "this week",
+          "source_value": "this week",
+          "match": "exact"
+        },
+        {
+          "claim_value": "two",
+          "source_value": "Two",
+          "match": "exact"
+        }
+      ],
+      "_idx": 168,
+      "_expected": "grounded"
+    },
+    {
+      "numbers_dates_correct": true,
+      "checks": [
+        {
+          "claim_value": "Three women",
+          "source_value": "three women",
+          "match": "exact"
+        },
+        {
+          "claim_value": "this week",
+          "source_value": "this week",
+          "match": "exact"
+        }
+      ],
+      "_idx": 169,
+      "_expected": "hallucinated"
+    },
+    {
+      "numbers_dates_correct": true,
+      "checks": [
+        {
+          "claim_value": "a ticket",
+          "source_value": "a ticket",
+          "match": "exact"
+        }
+      ],
+      "_idx": 170,
+      "_expected": "hallucinated"
+    },
+    {
+      "numbers_dates_correct": true,
+      "checks": [
+        {
+          "claim_value": "Two",
+          "source_value": "Two",
+          "match": "exact"
+        }
+      ],
+      "_idx": 171,
+      "_expected": "grounded"
+    },
+    {
+      "numbers_dates_correct": true,
+      "checks": [
+        {
+          "claim_value": "2013",
+          "source_value": "August 2013",
+          "match": "exact"
+        }
+      ],
+      "_idx": 172,
+      "_expected": "grounded"
+    },
+    {
+      "numbers_dates_correct": true,
+      "checks": [
+        {
+          "claim_value": "over 30",
+          "source_value": "more than 30",
+          "match": "exact"
+        },
+        {
+          "claim_value": "past 18 months",
+          "source_value": "past 18 months",
+          "match": "exact"
+        },
+        {
+          "claim_value": "18",
+          "source_value": "18",
+          "match": "exact"
+        }
+      ],
+      "_idx": 173,
+      "_expected": "grounded"
+    },
+    {
+      "numbers_dates_correct": true,
+      "checks": [
+        {
+          "claim_value": "30-year-old",
+          "source_value": "30",
+          "match": "exact"
+        }
+      ],
+      "_idx": 174,
+      "_expected": "grounded"
+    },
+    {
+      "numbers_dates_correct": false,
+      "checks": [
+        {
+          "claim_value": "March 26",
+          "source_value": "not clear when or where she was arrested",
+          "match": "contradicted"
+        },
+        {
+          "claim_value": "15 years",
+          "source_value": "15 years",
+          "match": "exact"
+        }
+      ],
+      "_idx": 175,
+      "_expected": "hallucinated"
+    },
+    {
+      "numbers_dates_correct": true,
+      "checks": [
+        {
+          "claim_value": "Two",
+          "source_value": "Two",
+          "match": "exact"
+        }
+      ],
+      "_idx": 176,
+      "_expected": "grounded"
+    },
+    {
+      "numbers_dates_correct": false,
+      "checks": [
+        {
+          "claim_value": "18 months",
+          "source_value": "18 months",
+          "match": "exact"
+        },
+        {
+          "claim_value": "30",
+          "source_value": "more than 30",
+          "match": "approximate"
+        },
+        {
+          "claim_value": "18",
+          "source_value": "18",
+          "match": "exact"
+        }
+      ],
+      "_idx": 177,
+      "_expected": "grounded"
+    },
+    {
+      "numbers_dates_correct": true,
+      "checks": [],
+      "_idx": 178,
+      "_expected": "grounded"
+    },
+    {
+      "numbers_dates_correct": true,
+      "checks": [],
+      "_idx": 179,
+      "_expected": "grounded"
+    },
+    {
+      "numbers_dates_correct": true,
+      "checks": [
+        {
+          "claim_value": "Over 100",
+          "source_value": "over 100",
+          "match": "exact"
+        }
+      ],
+      "_idx": 180,
+      "_expected": "grounded"
+    },
+    {
+      "numbers_dates_correct": true,
+      "checks": [],
+      "_idx": 181,
+      "_expected": "grounded"
+    },
+    {
+      "numbers_dates_correct": true,
+      "checks": [],
+      "_idx": 182,
+      "_expected": "grounded"
+    },
+    {
+      "numbers_dates_correct": true,
+      "checks": [],
+      "_idx": 183,
+      "_expected": "grounded"
+    },
+    {
+      "numbers_dates_correct": true,
+      "checks": [],
+      "_idx": 184,
+      "_expected": "grounded"
+    },
+    {
+      "numbers_dates_correct": true,
+      "checks": [],
+      "_idx": 185,
+      "_expected": "grounded"
+    },
+    {
+      "numbers_dates_correct": true,
+      "checks": [
+        {
+          "claim_value": "Over 100",
+          "source_value": "over 100",
+          "match": "exact"
+        }
+      ],
+      "_idx": 186,
+      "_expected": "grounded"
+    },
+    {
+      "numbers_dates_correct": true,
+      "checks": [
+        {
+          "claim_value": "five-year",
+          "source_value": "five years",
+          "match": "exact"
+        }
+      ],
+      "_idx": 187,
+      "_expected": "grounded"
+    },
+    {
+      "numbers_dates_correct": true,
+      "checks": [
+        {
+          "claim_value": "month-long",
+          "source_value": "month-long",
+          "match": "exact"
+        }
+      ],
+      "_idx": 188,
+      "_expected": "grounded"
+    },
+    {
+      "numbers_dates_correct": true,
+      "checks": [],
+      "_idx": 189,
+      "_expected": "grounded"
+    },
+    {
+      "numbers_dates_correct": true,
+      "checks": [],
+      "_idx": 190,
+      "_expected": "grounded"
+    },
+    {
+      "numbers_dates_correct": true,
+      "checks": [],
+      "_idx": 191,
+      "_expected": "grounded"
+    },
+    {
+      "numbers_dates_correct": true,
+      "checks": [],
+      "_idx": 192,
+      "_expected": "grounded"
+    },
+    {
+      "numbers_dates_correct": true,
+      "checks": [],
+      "_idx": 193,
+      "_expected": "grounded"
+    },
+    {
+      "numbers_dates_correct": true,
+      "checks": [
+        {
+          "claim_value": "10 years",
+          "source_value": "10 years",
+          "match": "exact"
+        }
+      ],
+      "_idx": 194,
+      "_expected": "grounded"
+    },
+    {
+      "numbers_dates_correct": true,
+      "checks": [],
+      "_idx": 195,
+      "_expected": "grounded"
+    },
+    {
+      "numbers_dates_correct": true,
+      "checks": [],
+      "_idx": 196,
+      "_expected": "grounded"
+    },
+    {
+      "numbers_dates_correct": true,
+      "checks": [],
+      "_idx": 197,
+      "_expected": "grounded"
+    },
+    {
+      "numbers_dates_correct": true,
+      "checks": [
+        {
+          "claim_value": "Over 100",
+          "source_value": "over 100",
+          "match": "exact"
+        }
+      ],
+      "_idx": 198,
+      "_expected": "grounded"
+    },
+    {
+      "numbers_dates_correct": true,
+      "checks": [],
+      "_idx": 199,
+      "_expected": "hallucinated"
+    },
+    {
+      "numbers_dates_correct": true,
+      "checks": [],
+      "_idx": 200,
+      "_expected": "grounded"
+    },
+    {
+      "numbers_dates_correct": true,
+      "checks": [],
+      "_idx": 201,
+      "_expected": "grounded"
+    },
+    {
+      "numbers_dates_correct": true,
+      "checks": [
+        {
+          "claim_value": "Over 100",
+          "source_value": "over 100",
+          "match": "exact"
+        },
+        {
+          "claim_value": "month-long",
+          "source_value": "month-long",
+          "match": "exact"
+        }
+      ],
+      "_idx": 202,
+      "_expected": "grounded"
+    },
+    {
+      "numbers_dates_correct": true,
+      "checks": [],
+      "_idx": 203,
+      "_expected": "grounded"
+    },
+    {
+      "numbers_dates_correct": true,
+      "checks": [],
+      "_idx": 204,
+      "_expected": "grounded"
+    },
+    {
+      "numbers_dates_correct": true,
+      "checks": [
+        {
+          "claim_value": "Over 100",
+          "source_value": "over 100",
+          "match": "exact"
+        }
+      ],
+      "_idx": 205,
+      "_expected": "grounded"
+    },
+    {
+      "numbers_dates_correct": true,
+      "checks": [
+        {
+          "claim_value": "a",
+          "source_value": "a",
+          "match": "exact"
+        },
+        {
+          "claim_value": "majority",
+          "source_value": "majority",
+          "match": "exact"
+        }
+      ],
+      "_idx": 206,
+      "_expected": "grounded"
+    },
+    {
+      "numbers_dates_correct": true,
+      "checks": [
+        {
+          "claim_value": "month-long",
+          "source_value": "month-long",
+          "match": "exact"
+        }
+      ],
+      "_idx": 207,
+      "_expected": "grounded"
+    },
+    {
+      "numbers_dates_correct": true,
+      "checks": [
+        {
+          "claim_value": "32",
+          "source_value": "32",
+          "match": "exact"
+        },
+        {
+          "claim_value": "November 2013",
+          "source_value": "November 2013",
+          "match": "exact"
+        }
+      ],
+      "_idx": 208,
+      "_expected": "grounded"
+    },
+    {
+      "numbers_dates_correct": true,
+      "checks": [],
+      "_idx": 209,
+      "_expected": "grounded"
+    },
+    {
+      "numbers_dates_correct": true,
+      "checks": [
+        {
+          "claim_value": "several",
+          "source_value": "several",
+          "match": "exact"
+        }
+      ],
+      "_idx": 210,
+      "_expected": "grounded"
+    },
+    {
+      "numbers_dates_correct": false,
+      "checks": [
+        {
+          "claim_value": "approximately 75 yards",
+          "source_value": "about 75 yards",
+          "match": "approximate"
+        }
+      ],
+      "_idx": 211,
+      "_expected": "grounded"
+    },
+    {
+      "numbers_dates_correct": true,
+      "checks": [
+        {
+          "claim_value": "Two",
+          "source_value": "two",
+          "match": "exact"
+        }
+      ],
+      "_idx": 212,
+      "_expected": "grounded"
+    },
+    {
+      "numbers_dates_correct": true,
+      "checks": [],
+      "_idx": 213,
+      "_expected": "grounded"
+    },
+    {
+      "numbers_dates_correct": true,
+      "checks": [],
+      "_idx": 214,
+      "_expected": "grounded"
+    },
+    {
+      "numbers_dates_correct": true,
+      "checks": [
+        {
+          "claim_value": "36-year-old",
+          "source_value": "36-year-old",
+          "match": "exact"
+        }
+      ],
+      "_idx": 215,
+      "_expected": "grounded"
+    },
+    {
+      "numbers_dates_correct": true,
+      "checks": [
+        {
+          "claim_value": "32",
+          "source_value": "32",
+          "match": "exact"
+        },
+        {
+          "claim_value": "2013",
+          "source_value": "November 2013",
+          "match": "exact"
+        }
+      ],
+      "_idx": 216,
+      "_expected": "grounded"
+    },
+    {
+      "numbers_dates_correct": true,
+      "checks": [],
+      "_idx": 217,
+      "_expected": "grounded"
+    },
+    {
+      "numbers_dates_correct": true,
+      "checks": [
+        {
+          "claim_value": "several",
+          "source_value": "several",
+          "match": "exact"
+        },
+        {
+          "claim_value": "two",
+          "source_value": "two",
+          "match": "exact"
+        }
+      ],
+      "_idx": 218,
+      "_expected": "grounded"
+    },
+    {
+      "numbers_dates_correct": true,
+      "checks": [],
+      "_idx": 219,
+      "_expected": "grounded"
+    },
+    {
+      "numbers_dates_correct": true,
+      "checks": [],
+      "_idx": 220,
+      "_expected": "grounded"
+    },
+    {
+      "numbers_dates_correct": true,
+      "checks": [],
+      "_idx": 221,
+      "_expected": "grounded"
+    },
+    {
+      "numbers_dates_correct": false,
+      "checks": [
+        {
+          "claim_value": "An FBI agent",
+          "source_value": "two agents",
+          "match": "contradicted"
+        },
+        {
+          "claim_value": "a task force officer",
+          "source_value": "two agents",
+          "match": "contradicted"
+        }
+      ],
+      "_idx": 222,
+      "_expected": "grounded"
+    },
+    {
+      "numbers_dates_correct": true,
+      "checks": [
+        {
+          "claim_value": "32",
+          "source_value": "32",
+          "match": "exact"
+        },
+        {
+          "claim_value": "November 2013",
+          "source_value": "November 2013",
+          "match": "exact"
+        }
+      ],
+      "_idx": 223,
+      "_expected": "grounded"
+    },
+    {
+      "numbers_dates_correct": true,
+      "checks": [
+        {
+          "claim_value": "two agents",
+          "source_value": "two agents",
+          "match": "exact"
+        }
+      ],
+      "_idx": 224,
+      "_expected": "grounded"
+    },
+    {
+      "numbers_dates_correct": true,
+      "checks": [],
+      "_idx": 225,
+      "_expected": "grounded"
+    },
+    {
+      "numbers_dates_correct": false,
+      "checks": [
+        {
+          "claim_value": "108 words",
+          "source_value": "missing",
+          "match": "missing"
+        },
+        {
+          "claim_value": "two suspects",
+          "source_value": "the suspect",
+          "match": "contradicted"
+        }
+      ],
+      "_idx": 226,
+      "_expected": "hallucinated"
+    },
+    {
+      "numbers_dates_correct": true,
+      "checks": [
+        {
+          "claim_value": "32",
+          "source_value": "32",
+          "match": "exact"
+        },
+        {
+          "claim_value": "2013",
+          "source_value": "November 2013",
+          "match": "exact"
+        }
+      ],
+      "_idx": 227,
+      "_expected": "grounded"
+    },
+    {
+      "numbers_dates_correct": true,
+      "checks": [
+        {
+          "claim_value": "Two",
+          "source_value": "two",
+          "match": "exact"
+        }
+      ],
+      "_idx": 228,
+      "_expected": "grounded"
+    },
+    {
+      "numbers_dates_correct": true,
+      "checks": [],
+      "_idx": 229,
+      "_expected": "grounded"
+    },
+    {
+      "numbers_dates_correct": false,
+      "checks": [
+        {
+          "claim_value": "two people",
+          "source_value": "two agents were injured... and the suspect was shot",
+          "match": "contradicted"
+        }
+      ],
+      "_idx": 230,
+      "_expected": "hallucinated"
+    },
+    {
+      "numbers_dates_correct": true,
+      "checks": [
+        {
+          "claim_value": "36",
+          "source_value": "36",
+          "match": "exact"
+        },
+        {
+          "claim_value": "32",
+          "source_value": "32",
+          "match": "exact"
+        },
+        {
+          "claim_value": "November 2013",
+          "source_value": "November 2013",
+          "match": "exact"
+        }
+      ],
+      "_idx": 231,
+      "_expected": "grounded"
+    },
+    {
+      "numbers_dates_correct": true,
+      "checks": [
+        {
+          "claim_value": "several",
+          "source_value": "several",
+          "match": "exact"
+        }
+      ],
+      "_idx": 232,
+      "_expected": "grounded"
+    },
+    {
+      "numbers_dates_correct": true,
+      "checks": [
+        {
+          "claim_value": "Two",
+          "source_value": "two",
+          "match": "exact"
+        }
+      ],
+      "_idx": 233,
+      "_expected": "grounded"
+    },
+    {
+      "numbers_dates_correct": true,
+      "checks": [],
+      "_idx": 234,
+      "_expected": "grounded"
+    },
+    {
+      "numbers_dates_correct": true,
+      "checks": [
+        {
+          "claim_value": "36-year-old",
+          "source_value": "36-year-old",
+          "match": "exact"
+        },
+        {
+          "claim_value": "32",
+          "source_value": "32",
+          "match": "exact"
+        }
+      ],
+      "_idx": 235,
+      "_expected": "grounded"
+    },
+    {
+      "numbers_dates_correct": true,
+      "checks": [
+        {
+          "claim_value": "Two",
+          "source_value": "two",
+          "match": "exact"
+        }
+      ],
+      "_idx": 236,
+      "_expected": "grounded"
+    },
+    {
+      "numbers_dates_correct": true,
+      "checks": [],
+      "_idx": 237,
+      "_expected": "grounded"
+    },
+    {
+      "numbers_dates_correct": false,
+      "checks": [
+        {
+          "claim_value": "months",
+          "source_value": "missing",
+          "match": "missing"
+        }
+      ],
+      "_idx": 238,
+      "_expected": "grounded"
+    },
+    {
+      "numbers_dates_correct": true,
+      "checks": [],
+      "_idx": 239,
+      "_expected": "grounded"
+    },
+    {
+      "numbers_dates_correct": true,
+      "checks": [
+        {
+          "claim_value": "third",
+          "source_value": "third",
+          "match": "exact"
+        }
+      ],
+      "_idx": 240,
+      "_expected": "grounded"
+    },
+    {
+      "numbers_dates_correct": true,
+      "checks": [
+        {
+          "claim_value": "five",
+          "source_value": "five",
+          "match": "exact"
+        }
+      ],
+      "_idx": 241,
+      "_expected": "grounded"
+    },
+    {
+      "numbers_dates_correct": true,
+      "checks": [
+        {
+          "claim_value": "At least four",
+          "source_value": "At least four",
+          "match": "exact"
+        }
+      ],
+      "_idx": 242,
+      "_expected": "grounded"
+    },
+    {
+      "numbers_dates_correct": true,
+      "checks": [],
+      "_idx": 243,
+      "_expected": "grounded"
+    },
+    {
+      "numbers_dates_correct": true,
+      "checks": [
+        {
+          "claim_value": "half gallons",
+          "source_value": "half gallons",
+          "match": "exact"
+        },
+        {
+          "claim_value": "pints",
+          "source_value": "pints",
+          "match": "exact"
+        },
+        {
+          "claim_value": "quarts",
+          "source_value": "quarts",
+          "match": "exact"
+        },
+        {
+          "claim_value": "3 gallons",
+          "source_value": "3 gallons",
+          "match": "exact"
+        },
+        {
+          "claim_value": "3 oz.",
+          "source_value": "3 oz.",
+          "match": "exact"
+        }
+      ],
+      "_idx": 244,
+      "_expected": "grounded"
+    },
+    {
+      "numbers_dates_correct": true,
+      "checks": [
+        {
+          "claim_value": "first",
+          "source_value": "first",
+          "match": "exact"
+        },
+        {
+          "claim_value": "108-year",
+          "source_value": "108-year",
+          "match": "exact"
+        }
+      ],
+      "_idx": 245,
+      "_expected": "grounded"
+    },
+    {
+      "numbers_dates_correct": true,
+      "checks": [
+        {
+          "claim_value": "one",
+          "source_value": "one",
+          "match": "exact"
+        }
+      ],
+      "_idx": 246,
+      "_expected": "grounded"
+    },
+    {
+      "numbers_dates_correct": true,
+      "checks": [
+        {
+          "claim_value": "3-ounce",
+          "source_value": "3-ounce",
+          "match": "exact"
+        },
+        {
+          "claim_value": "O, P, Q, R, S, or T",
+          "source_value": "O, P, Q, R, S or T",
+          "match": "exact"
+        }
+      ],
+      "_idx": 247,
+      "_expected": "grounded"
+    },
+    {
+      "numbers_dates_correct": true,
+      "checks": [],
+      "_idx": 248,
+      "_expected": "grounded"
+    },
+    {
+      "numbers_dates_correct": true,
+      "checks": [],
+      "_idx": 249,
+      "_expected": "grounded"
+    },
+    {
+      "numbers_dates_correct": true,
+      "checks": [
+        {
+          "claim_value": "third",
+          "source_value": "third",
+          "match": "exact"
+        }
+      ],
+      "_idx": 250,
+      "_expected": "grounded"
+    },
+    {
+      "numbers_dates_correct": true,
+      "checks": [
+        {
+          "claim_value": "a cup",
+          "source_value": "a cup",
+          "match": "exact"
+        }
+      ],
+      "_idx": 251,
+      "_expected": "grounded"
+    },
+    {
+      "numbers_dates_correct": true,
+      "checks": [],
+      "_idx": 252,
+      "_expected": "grounded"
+    },
+    {
+      "numbers_dates_correct": true,
+      "checks": [],
+      "_idx": 253,
+      "_expected": "grounded"
+    },
+    {
+      "numbers_dates_correct": true,
+      "checks": [],
+      "_idx": 254,
+      "_expected": "grounded"
+    },
+    {
+      "numbers_dates_correct": true,
+      "checks": [],
+      "_idx": 255,
+      "_expected": "grounded"
+    },
+    {
+      "numbers_dates_correct": true,
+      "checks": [],
+      "_idx": 256,
+      "_expected": "grounded"
+    },
+    {
+      "numbers_dates_correct": true,
+      "checks": [
+        {
+          "claim_value": "a serving",
+          "source_value": "a serving",
+          "match": "exact"
+        }
+      ],
+      "_idx": 257,
+      "_expected": "hallucinated"
+    },
+    {
+      "numbers_dates_correct": true,
+      "checks": [
+        {
+          "claim_value": "a cup",
+          "source_value": "a cup",
+          "match": "exact"
+        }
+      ],
+      "_idx": 258,
+      "_expected": "grounded"
+    },
+    {
+      "numbers_dates_correct": true,
+      "checks": [],
+      "_idx": 259,
+      "_expected": "grounded"
+    },
+    {
+      "numbers_dates_correct": true,
+      "checks": [
+        {
+          "claim_value": "3-ounce",
+          "source_value": "3-ounce",
+          "match": "exact"
+        }
+      ],
+      "_idx": 260,
+      "_expected": "grounded"
+    },
+    {
+      "numbers_dates_correct": true,
+      "checks": [],
+      "_idx": 261,
+      "_expected": "grounded"
+    },
+    {
+      "numbers_dates_correct": true,
+      "checks": [],
+      "_idx": 262,
+      "_expected": "grounded"
+    },
+    {
+      "numbers_dates_correct": true,
+      "checks": [
+        {
+          "claim_value": "1,600",
+          "source_value": "1,600",
+          "match": "exact"
+        },
+        {
+          "claim_value": "16%",
+          "source_value": "16%",
+          "match": "exact"
+        }
+      ],
+      "_idx": 263,
+      "_expected": "grounded"
+    },
+    {
+      "numbers_dates_correct": true,
+      "checks": [],
+      "_idx": 264,
+      "_expected": "grounded"
+    },
+    {
+      "numbers_dates_correct": true,
+      "checks": [
+        {
+          "claim_value": "108-year",
+          "source_value": "108-year",
+          "match": "exact"
+        }
+      ],
+      "_idx": 265,
+      "_expected": "grounded"
+    },
+    {
+      "numbers_dates_correct": true,
+      "checks": [
+        {
+          "claim_value": "one",
+          "source_value": "one",
+          "match": "exact"
+        },
+        {
+          "claim_value": "a",
+          "source_value": "a",
+          "match": "exact"
+        }
+      ],
+      "_idx": 266,
+      "_expected": "grounded"
+    },
+    {
+      "numbers_dates_correct": true,
+      "checks": [
+        {
+          "claim_value": "3-ounce",
+          "source_value": "3-ounce",
+          "match": "exact"
+        }
+      ],
+      "_idx": 267,
+      "_expected": "grounded"
+    },
+    {
+      "numbers_dates_correct": true,
+      "checks": [
+        {
+          "claim_value": "third",
+          "source_value": "third",
+          "match": "exact"
+        }
+      ],
+      "_idx": 268,
+      "_expected": "grounded"
+    },
+    {
+      "numbers_dates_correct": true,
+      "checks": [],
+      "_idx": 269,
+      "_expected": "grounded"
+    },
+    {
+      "numbers_dates_correct": true,
+      "checks": [],
+      "_idx": 270,
+      "_expected": "grounded"
+    },
+    {
+      "numbers_dates_correct": true,
+      "checks": [
+        {
+          "claim_value": "first",
+          "source_value": "first",
+          "match": "exact"
+        },
+        {
+          "claim_value": "108-year",
+          "source_value": "108-year",
+          "match": "exact"
+        }
+      ],
+      "_idx": 271,
+      "_expected": "grounded"
+    },
+    {
+      "numbers_dates_correct": true,
+      "checks": [
+        {
+          "claim_value": "one",
+          "source_value": "one",
+          "match": "exact"
+        },
+        {
+          "claim_value": "a",
+          "source_value": "a",
+          "match": "exact"
+        }
+      ],
+      "_idx": 272,
+      "_expected": "grounded"
+    },
+    {
+      "numbers_dates_correct": true,
+      "checks": [],
+      "_idx": 273,
+      "_expected": "grounded"
+    },
+    {
+      "numbers_dates_correct": true,
+      "checks": [
+        {
+          "claim_value": "3-ounce",
+          "source_value": "3-ounce",
+          "match": "exact"
+        }
+      ],
+      "_idx": 274,
+      "_expected": "grounded"
+    },
+    {
+      "numbers_dates_correct": true,
+      "checks": [
+        {
+          "claim_value": "third",
+          "source_value": "third",
+          "match": "exact"
+        }
+      ],
+      "_idx": 275,
+      "_expected": "grounded"
+    },
+    {
+      "numbers_dates_correct": false,
+      "checks": [
+        {
+          "claim_value": "five people",
+          "source_value": "three died",
+          "match": "contradicted"
+        },
+        {
+          "claim_value": "past year",
+          "source_value": "past year",
+          "match": "exact"
+        }
+      ],
+      "_idx": 276,
+      "_expected": "hallucinated"
+    },
+    {
+      "numbers_dates_correct": true,
+      "checks": [
+        {
+          "claim_value": "one",
+          "source_value": "one",
+          "match": "exact"
+        },
+        {
+          "claim_value": "one",
+          "source_value": "a serving",
+          "match": "exact"
+        }
+      ],
+      "_idx": 277,
+      "_expected": "grounded"
+    },
+    {
+      "numbers_dates_correct": true,
+      "checks": [],
+      "_idx": 278,
+      "_expected": "grounded"
+    },
+    {
+      "numbers_dates_correct": true,
+      "checks": [
+        {
+          "claim_value": "3-ounce",
+          "source_value": "3-ounce",
+          "match": "exact"
+        }
+      ],
+      "_idx": 279,
+      "_expected": "grounded"
+    },
+    {
+      "numbers_dates_correct": true,
+      "checks": [],
+      "_idx": 280,
+      "_expected": "grounded"
+    },
+    {
+      "numbers_dates_correct": true,
+      "checks": [],
+      "_idx": 281,
+      "_expected": "grounded"
+    },
+    {
+      "numbers_dates_correct": true,
+      "checks": [],
+      "_idx": 282,
+      "_expected": "grounded"
+    },
+    {
+      "numbers_dates_correct": true,
+      "checks": [],
+      "_idx": 283,
+      "_expected": "grounded"
+    },
+    {
+      "numbers_dates_correct": true,
+      "checks": [
+        {
+          "claim_value": "first",
+          "source_value": "first",
+          "match": "exact"
+        },
+        {
+          "claim_value": "108-year",
+          "source_value": "108-year",
+          "match": "exact"
+        }
+      ],
+      "_idx": 284,
+      "_expected": "grounded"
+    },
+    {
+      "numbers_dates_correct": false,
+      "checks": [
+        {
+          "claim_value": "November 2015",
+          "source_value": "last November",
+          "match": "missing"
+        },
+        {
+          "claim_value": "two",
+          "source_value": "two",
+          "match": "exact"
+        }
+      ],
+      "_idx": 285,
+      "_expected": "grounded"
+    },
+    {
+      "_error": "The read operation timed out",
+      "_idx": 286,
+      "_expected": "grounded"
+    },
+    {
+      "numbers_dates_correct": true,
+      "checks": [
+        {
+          "claim_value": "One",
+          "source_value": "One",
+          "match": "exact"
+        },
+        {
+          "claim_value": "29-year-old",
+          "source_value": "29-year-old",
+          "match": "exact"
+        }
+      ],
+      "_idx": 287,
+      "_expected": "grounded"
+    },
+    {
+      "numbers_dates_correct": true,
+      "checks": [
+        {
+          "claim_value": "25-year-old",
+          "source_value": "25-year-old",
+          "match": "exact"
+        },
+        {
+          "claim_value": "five days earlier",
+          "source_value": "five days before her body was found",
+          "match": "exact"
+        }
+      ],
+      "_idx": 288,
+      "_expected": "grounded"
+    },
+    {
+      "numbers_dates_correct": true,
+      "checks": [
+        {
+          "claim_value": "Both",
+          "source_value": "two",
+          "match": "exact"
+        },
+        {
+          "claim_value": "the day after her body was found",
+          "source_value": "the day after her body was found",
+          "match": "exact"
+        }
+      ],
+      "_idx": 289,
+      "_expected": "grounded"
+    },
+    {
+      "numbers_dates_correct": true,
+      "checks": [],
+      "_idx": 290,
+      "_expected": "grounded"
+    },
+    {
+      "numbers_dates_correct": true,
+      "checks": [
+        {
+          "claim_value": "May",
+          "source_value": "May",
+          "match": "exact"
+        }
+      ],
+      "_idx": 291,
+      "_expected": "grounded"
+    },
+    {
+      "numbers_dates_correct": true,
+      "checks": [
+        {
+          "claim_value": "over 200",
+          "source_value": "more than 200",
+          "match": "exact"
+        }
+      ],
+      "_idx": 292,
+      "_expected": "grounded"
+    },
+    {
+      "numbers_dates_correct": false,
+      "checks": [
+        {
+          "claim_value": "November 2014",
+          "source_value": "last November",
+          "match": "missing"
+        },
+        {
+          "claim_value": "two",
+          "source_value": "two",
+          "match": "exact"
+        }
+      ],
+      "_idx": 293,
+      "_expected": "grounded"
+    },
+    {
+      "numbers_dates_correct": true,
+      "checks": [
+        {
+          "claim_value": "29-year-old",
+          "source_value": "29-year-old",
+          "match": "exact"
+        },
+        {
+          "claim_value": "two",
+          "source_value": "two",
+          "match": "exact"
+        }
+      ],
+      "_idx": 294,
+      "_expected": "grounded"
+    },
+    {
+      "numbers_dates_correct": true,
+      "checks": [
+        {
+          "claim_value": "29-year-old",
+          "source_value": "29-year-old",
+          "match": "exact"
+        },
+        {
+          "claim_value": "25-year-old",
+          "source_value": "25-year-old",
+          "match": "exact"
+        }
+      ],
+      "_idx": 295,
+      "_expected": "grounded"
+    },
+    {
+      "numbers_dates_correct": true,
+      "checks": [],
+      "_idx": 296,
+      "_expected": "grounded"
+    },
+    {
+      "numbers_dates_correct": true,
+      "checks": [],
+      "_idx": 297,
+      "_expected": "grounded"
+    },
+    {
+      "numbers_dates_correct": true,
+      "checks": [],
+      "_idx": 298,
+      "_expected": "grounded"
+    },
+    {
+      "numbers_dates_correct": true,
+      "checks": [],
+      "_idx": 299,
+      "_expected": "grounded"
+    },
+    {
+      "numbers_dates_correct": true,
+      "checks": [],
+      "_idx": 300,
+      "_expected": "grounded"
+    },
+    {
+      "numbers_dates_correct": true,
+      "checks": [],
+      "_idx": 301,
+      "_expected": "grounded"
+    },
+    {
+      "numbers_dates_correct": true,
+      "checks": [
+        {
+          "claim_value": "May",
+          "source_value": "May",
+          "match": "exact"
+        }
+      ],
+      "_idx": 302,
+      "_expected": "grounded"
+    }
+  ]
+}

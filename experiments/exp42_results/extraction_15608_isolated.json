@@ -1,0 +1,76 @@
+{
+  "stories": [
+    {
+      "thread": "Zhou Yongkang's Charges and Legal Proceedings",
+      "story": "China's state prosecutors formally charged Zhou Yongkang, 72, with accepting bribes, abuse of power, and leaking state secrets on Friday. He is the highest-ranking Chinese Communist Party official ever to face corruption charges. Zhou was notified of his legal rights during the investigation, and his lawyer's views were heard. His case will be tried in Tianjin, a city near Beijing. While the president of China's supreme court recently told reporters there would be \"open\" trials for accused former leaders like Zhou, the charge of leaking state secrets may allow authorities to shield certain legal proceedings from public view.",
+      "key_facts": [
+        "Zhou Yongkang, 72, formally charged with accepting bribes, abuse of power, and leaking state secrets on Friday.",
+        "He is the highest-ranking Chinese Communist Party official ever to face corruption charges.",
+        "Zhou was notified of his legal rights and his lawyer's views were heard.",
+        "His case will be tried in Tianjin.",
+        "The charge of leaking state secrets may allow authorities to shield certain legal proceedings from public view, despite promises of 'open' trials."
+      ],
+      "explicit_unknowns": [
+        "The specific date of 'Friday' when charges were filed is not stated.",
+        "The specific date of 'recently' when the supreme court president made a statement is not stated."
+      ]
+    },
+    {
+      "thread": "Zhou Yongkang's Background and Power",
+      "story": "Zhou Yongkang was a member of the ruling Communist Party's Politburo Standing Committee, which is China's top decision-making body. As one of nine men, he effectively ruled the country of more than 1.3 billion people. Zhou retired in 2012. At the height of his power, he controlled police forces, spy agencies, court systems, and prosecution offices across China. He was not shy in deploying his vast assets to crush dissent and unrest in the name of \"preserving social stability.\"",
+      "key_facts": [
+        "Zhou Yongkang was a member of the Politburo Standing Committee, China's top decision-making body.",
+        "He was one of nine men who effectively ruled China of more than 1.3 billion people.",
+        "Zhou retired in 2012.",
+        "He controlled police forces, spy agencies, court systems, and prosecution offices across China.",
+        "He used his vast assets to crush dissent and unrest."
+      ],
+      "explicit_unknowns": []
+    },
+    {
+      "thread": "Allegations of Corruption and Misconduct against Zhou",
+      "story": "Prosecutors have accused Zhou Yongkang of \"taking advantage of his posts to seek benefits for others and illegally accepting huge amounts of money\" during his long political career. His alleged actions have caused heavy losses to public assets and greatly harmed national interests. State media painted an intricate web of officials, cronies, and tycoons, some with alleged mafia connections, orbiting around Zhou before his power structure crumbled last summer. Zhou and his family members were said to have accumulated enormous wealth in a blatant exchange between money and power. State-run Xinhua news agency reported last year that he was also found to have affairs with multiple women and allegedly traded power for sex.",
+      "key_facts": [
+        "Prosecutors accused Zhou of 'taking advantage of his posts to seek benefits for others and illegally accepting huge amounts of money'.",
+        "His alleged actions caused heavy losses to public assets and harmed national interests.",
+        "State media described a web of officials, cronies, and tycoons around Zhou.",
+        "Zhou and his family were said to have accumulated enormous wealth through money and power exchange.",
+        "State-run Xinhua news agency reported last year that he had affairs with multiple women and allegedly traded power for sex."
+      ],
+      "explicit_unknowns": [
+        "The specific date of 'last summer' when his power structure crumbled is not stated.",
+        "The specific date of 'last year' when Xinhua reported on his affairs is not stated."
+      ]
+    },
+    {
+      "thread": "Zhou's Downfall and Xi Jinping's Anti-Corruption Campaign",
+      "story": "Zhou Yongkang has not been seen in public since he attended an anniversary event at his alma mater in October 2013. He was expelled from the Communist Party and arrested last December. Analysts have viewed his shocking downfall as a watershed moment in the secretive world of Chinese politics, now ruled by President Xi Jinping. President Xi has been spearheading a massive anti-corruption campaign, targeting both \"tigers\" and \"flies.\" Zhou is by far the biggest \"tiger\" caught in Xi's dragnet to date, with political analyst Willy Lam noting Xi's power to break the taboo of never incriminating former Politburo Standing Committee members.",
+      "key_facts": [
+        "Zhou Yongkang was last seen in public in October 2013.",
+        "He was expelled from the Communist Party and arrested last December.",
+        "His downfall is viewed as a watershed moment in Chinese politics under President Xi Jinping.",
+        "President Xi is leading a massive anti-corruption campaign targeting 'tigers' and 'flies'.",
+        "Zhou is the biggest 'tiger' caught, demonstrating Xi's power to incriminate former Politburo Standing Committee members."
+      ],
+      "explicit_unknowns": [
+        "The specific date of 'last December' for Zhou's expulsion and arrest is not stated.",
+        "The specific date of 'last year' when the government revealed its formal investigation into Zhou is not stated."
+      ]
+    },
+    {
+      "thread": "Comparison to Bo Xilai Case",
+      "story": "Many observers note Zhou Yongkang's patronage of Bo Xilai, a former Communist leader sentenced to life in prison for corruption in 2013. Bo's spectacular downfall the year before, complete with tales of murder, bribery, and betrayal, attracted global attention. State media cited Bo's subsequent conviction as a prime example of President Xi's resolve to clean up the party. However, Bo's supporters have long called him a political victim, as he was once considered Xi's main challenger for the top spot of Chinese leadership. Political watchers see similarities between the Bo and Zhou cases, with analyst Willy Lam predicting a suspended death sentence for Zhou.",
+      "key_facts": [
+        "Zhou Yongkang had patronage of Bo Xilai, a former Communist leader.",
+        "Bo Xilai was sentenced to life in prison for corruption in 2013.",
+        "Bo's downfall the year before involved murder, bribery, and betrayal, attracting global attention.",
+        "State media cited Bo's conviction as an example of Xi's resolve to clean up the party.",
+        "Political watchers see similarities between the Bo and Zhou cases, and analyst Willy Lam predicted a suspended death sentence for Zhou."
+      ],
+      "explicit_unknowns": [
+        "The specific date of 'the year before' Bo's downfall (before 2013) is not stated."
+      ]
+    }
+  ],
+  "_elapsed": 22.7
+}

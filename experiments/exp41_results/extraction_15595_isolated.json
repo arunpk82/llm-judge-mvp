@@ -1,0 +1,91 @@
+{
+  "stories": [
+    {
+      "thread": "Survival at Sea",
+      "story": "While movies like \"All Is Lost\" and \"Life of Pi\" depict people stranded at sea, real-life survival is rare and often ends sadly. Survivors cannot rely on technology or nearby cities, but must use ingenuity, resourcefulness, and luck. Rescue agencies report happy endings, though sole survivors' accounts are often impossible to prove or refute.",
+      "key_facts": [
+        "Survival depends on ingenuity, resourcefulness, and luck",
+        "More sailors die at sea than are rescued"
+      ],
+      "explicit_unknowns": [
+        "The exact number of sailors who die at sea"
+      ]
+    },
+    {
+      "thread": "Louis Jordan",
+      "story": "In late January, Louis Jordan set off from South Carolina in a 35-foot sailboat into the Gulf Stream. His boat capsized, breaking both the mast and his shoulder. He survived by rationing water, collecting rainwater in a bucket, and using laundry to trap fish. After capsizing two more times, he was rescued on a Thursday by the German-flagged container ship Houston Express, 200 miles off the North Carolina coast.",
+      "key_facts": [
+        "35-foot sailboat",
+        "South Carolina",
+        "late January",
+        "Houston Express",
+        "200 miles off North Carolina coast"
+      ],
+      "explicit_unknowns": [
+        "The specific date of the Thursday he was rescued"
+      ]
+    },
+    {
+      "thread": "Jose Salvador Alvarenga",
+      "story": "Jose Salvador Alvarenga left Paredon Viejo, Mexico, in late 2012 on a boat three people long and one wide. A storm disabled the engine, radio, and GPS, and his partner, 23-year-old Ezequiel Cordova, died after four weeks for refusing to eat raw birds. Alvarenga survived for 13 or 14 months by drinking rainwater and urine and eating sea turtles. He eventually reached Ebon Atoll in the Marshall Islands, where he was spotted by two residents.",
+      "key_facts": [
+        "Paredon Viejo, Mexico",
+        "late 2012",
+        "Ezequiel Cordova",
+        "13-14 months adrift",
+        "Ebon Atoll"
+      ],
+      "explicit_unknowns": [
+        "The exact date he set off (debated between November and December)"
+      ]
+    },
+    {
+      "thread": "Ron Ingraham",
+      "story": "Around last Thanksgiving, 67-year-old fisherman Ron Ingraham set off solo from Molokai, Hawaii, in a 25-foot sailboat. A huge wave pushed him and his mast into the water, though he used a rope to pull himself back in. Despite a 12,000 square mile search being called off on December 1, he was found 12 days after his first distress call. He was rescued 64 miles south of Honolulu, weak, hungry, and dehydrated.",
+      "key_facts": [
+        "67 years old",
+        "Molokai, Hawaii",
+        "25-foot sailboat",
+        "12,000 square mile search",
+        "December 1",
+        "64 miles south of Honolulu"
+      ],
+      "explicit_unknowns": [
+        "The specific date of the first distress call"
+      ]
+    },
+    {
+      "thread": "Adrian Vasquez",
+      "story": "In February 2012, 18-year-old Adrian Vasquez and two friends left San Carlos, Panama, on a boat called Fifty Cents. The engine died, and Vasquez survived by eating raw fish and drinking rainwater while his two companions died. Vasquez threw the decomposed bodies into the sea. He was rescued by the Ecuadorian navy 26 days later, nearly 600 miles away north of the Galapagos Islands, having lost 20 pounds.",
+      "key_facts": [
+        "February 2012",
+        "18 years old",
+        "San Carlos, Panama",
+        "Fifty Cents",
+        "26 days",
+        "600 miles",
+        "Galapagos Islands"
+      ],
+      "explicit_unknowns": [
+        "The exact cause of death for the two companions"
+      ]
+    },
+    {
+      "thread": "Hiromitsu Shinkawa",
+      "story": "On March 11, 2011, a 9.0 magnitude earthquake 231 miles northeast of Tokyo and 30-foot tsunami killed nearly 16,000 people. Hiromitsu Shinkawa survived by holding onto the roof of his destroyed home in Minamisoma, though his wife was swept away. More than two days later, he was spotted 9 miles out to sea waving a self-made red flag. He was rescued by a Japanese Maritime Self-Defense Force destroyer.",
+      "key_facts": [
+        "March 11, 2011",
+        "9.0 magnitude earthquake",
+        "231 miles northeast of Tokyo",
+        "30-foot waves",
+        "16,000 dead",
+        "Minamisoma",
+        "9 miles out to sea"
+      ],
+      "explicit_unknowns": [
+        "The fate of his wife after she was swept away"
+      ]
+    }
+  ],
+  "_elapsed": 123.1
+}

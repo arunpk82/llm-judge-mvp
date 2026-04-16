@@ -1,0 +1,89 @@
+{
+  "stories": [
+    {
+      "thread": "Andrew Getty's Death Investigation",
+      "story": "Andrew Getty, 47, one of the heirs to billions of oil money and grandson of oil tycoon J. Paul Getty, appears to have died of natural causes, a Los Angeles Police Department spokesman said. The coroner's preliminary assessment is there was no foul play involved in the death of Andrew Getty, 47, said Detective Meghan Aguilar. Detective Meghan Aguilar, a Los Angeles Police Department spokesman, added that Andrew Getty, 47, had \"several health issues\" and an autopsy will be conducted. There is no criminal investigation underway regarding the death of Andrew Getty, 47.",
+      "key_facts": [
+        "Andrew Getty, 47, died of apparent natural causes.",
+        "No foul play involved in Andrew Getty's death.",
+        "Andrew Getty, 47, had \"several health issues.\"",
+        "An autopsy will be conducted for Andrew Getty, 47.",
+        "No criminal investigation is underway."
+      ],
+      "shared_context": [
+        "Andrew Getty, 47, one of the heirs to billions of oil money and grandson of oil tycoon J. Paul Getty.",
+        "Andrew Getty, 47, had \"several health issues.\""
+      ],
+      "explicit_unknowns": []
+    },
+    {
+      "thread": "Andrew Getty's Home and Medical Details",
+      "story": "Andrew Getty, 47, one of the heirs to billions of oil money and grandson of oil tycoon J. Paul Getty, had \"several health issues,\" a Los Angeles Police Department spokesman said. Some medication had also been recovered from the home of Andrew Getty, 47, though investigators don't know whether Andrew Getty, 47, was taking it or what his medical history was. Ed Winter, assistant chief in the Los Angeles County coroner's office, told CNN affiliate KTLA Tuesday night about the recovered medication and the unknown medical history. CNN affiliate KTLA reported that Andrew Getty, 47, was found on his side near a bathroom in his home.",
+      "key_facts": [
+        "Andrew Getty, 47, had \"several health issues.\"",
+        "Medication was recovered from Andrew Getty's home.",
+        "Andrew Getty, 47, was found on his side near a bathroom in his home."
+      ],
+      "shared_context": [
+        "Andrew Getty, 47, one of the heirs to billions of oil money and grandson of oil tycoon J. Paul Getty.",
+        "Andrew Getty, 47, had \"several health issues.\""
+      ],
+      "explicit_unknowns": [
+        "Investigators don't know whether Andrew Getty, 47, was taking the recovered medication.",
+        "Investigators don't know what Andrew Getty's medical history was."
+      ]
+    },
+    {
+      "thread": "The Getty Family Legacy",
+      "story": "Andrew Getty's parents, Ann and Gordon Getty, released a statement confirming the death of Andrew Getty, 47, one of the heirs to billions of oil money, and asking for privacy. The Getty family fortune came from J. Paul Getty, the oil baron who was thought to be the richest man in the world at the time of his death in 1976. Gordon Getty, 81, Andrew Getty's parent, is one of three living sons of J. Paul Getty, while two other sons died in 1958 and 1973. Gordon Getty, 81, has a net worth of $2.1 billion, according to Forbes, which estimated the Gettys' net worth to be about $5 billion.",
+      "key_facts": [
+        "Andrew Getty's parents, Ann and Gordon Getty, confirmed his death.",
+        "The Getty family fortune originated from J. Paul Getty.",
+        "J. Paul Getty was considered the richest man in the world in 1976.",
+        "Gordon Getty, 81, is a living son of J. Paul Getty.",
+        "Gordon Getty, 81, has a net worth of $2.1 billion.",
+        "The Getty family's net worth is estimated at $5 billion."
+      ],
+      "shared_context": [
+        "Andrew Getty, 47, one of the heirs to billions of oil money.",
+        "Andrew Getty's parents, Ann and Gordon Getty.",
+        "Gordon Getty, 81, Andrew Getty's parent, is one of three living sons of J. Paul Getty, the oil baron."
+      ],
+      "explicit_unknowns": []
+    },
+    {
+      "thread": "Gordon Getty's Role and Family Tree",
+      "story": "Gordon Getty, 81, Andrew Getty's parent, is one of three living sons of J. Paul Getty, the oil baron who was thought to be the richest man in the world at the time of his death in 1976. Two other sons of J. Paul Getty died in 1958 and 1973. Gordon Getty, 81, has a net worth of $2.1 billion, according to Forbes, and spearheaded the controversial sale of Getty to Texaco for $10 billion in 1984. Andrew Getty, 47, one of the heirs to billions of oil money, had three brothers and three half-sisters.",
+      "key_facts": [
+        "Gordon Getty, 81, is a living son of J. Paul Getty.",
+        "J. Paul Getty was considered the richest man in the world in 1976.",
+        "Gordon Getty, 81, has a net worth of $2.1 billion.",
+        "Gordon Getty, 81, spearheaded the sale of Getty to Texaco for $10 billion in 1984.",
+        "Andrew Getty, 47, had three brothers and three half-sisters."
+      ],
+      "shared_context": [
+        "Gordon Getty, 81, Andrew Getty's parent, is one of three living sons of J. Paul Getty, the oil baron.",
+        "Andrew Getty, 47, one of the heirs to billions of oil money."
+      ],
+      "explicit_unknowns": []
+    },
+    {
+      "thread": "Andrew Getty's Personal Health and Legal Filings",
+      "story": "Andrew Getty, 47, one of the heirs to billions of oil money and grandson of oil tycoon J. Paul Getty, had \"several health issues,\" a Los Angeles Police Department spokesman said. Court records show Andrew Getty, 47, had recently filed to get a restraining order against an ex-girlfriend, with a hearing scheduled for next week. In his request, Andrew Getty, 47, said he had been diagnosed with a serious medical condition in 2013. Andrew Getty, 47, wrote that \"A rise in my blood pressure places me in grave risk of substantial and irreparable injury or death,\" and his doctors advised heated arguments could cause his blood pressure to rise dangerously.",
+      "key_facts": [
+        "Andrew Getty, 47, had \"several health issues.\"",
+        "Andrew Getty, 47, filed for a restraining order against an ex-girlfriend.",
+        "A hearing for the restraining order was scheduled for next week.",
+        "Andrew Getty, 47, was diagnosed with a serious medical condition in 2013.",
+        "Andrew Getty, 47, stated that a rise in blood pressure posed a grave risk of injury or death.",
+        "Andrew Getty's doctors advised that heated arguments could dangerously raise his blood pressure."
+      ],
+      "shared_context": [
+        "Andrew Getty, 47, one of the heirs to billions of oil money and grandson of oil tycoon J. Paul Getty.",
+        "Andrew Getty, 47, had \"several health issues.\""
+      ],
+      "explicit_unknowns": []
+    }
+  ],
+  "_elapsed": 36.7
+}

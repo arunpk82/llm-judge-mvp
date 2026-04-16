@@ -1,0 +1,71 @@
+{
+  "stories": [
+    {
+      "thread": "Keonna Thomas Arrest and Charges",
+      "story": "The FBI charged Keonna Thomas, 30, a Philadelphia woman, on Thursday with trying to travel overseas to fight for ISIS. She was charged with knowingly attempting to provide material support and resources to a designated foreign terrorist organization. Keonna Thomas, 30, is one of three women arrested this week on terror charges. It is not clear when or where Keonna Thomas, 30, was arrested. She could be sentenced to 15 years in prison.",
+      "key_facts": [
+        "FBI charged Keonna Thomas, 30, a Philadelphia woman, on Thursday.",
+        "Charge: trying to travel overseas to fight for ISIS.",
+        "Charge: knowingly attempting to provide material support and resources to a designated foreign terrorist organization.",
+        "Keonna Thomas, 30, could be sentenced to 15 years in prison."
+      ],
+      "shared_context": [
+        "The FBI charged Keonna Thomas, 30, a Philadelphia woman, on Thursday with trying to travel overseas to fight for ISIS.",
+        "Keonna Thomas, 30, is one of three women arrested this week on terror charges."
+      ],
+      "explicit_unknowns": [
+        "It is not clear when or where Keonna Thomas, 30, was arrested."
+      ]
+    },
+    {
+      "thread": "Keonna Thomas Travel Plans and Social Media",
+      "story": "The FBI charged Keonna Thomas, 30, a Philadelphia woman, on Thursday with trying to travel overseas to fight for ISIS. An FBI complaint cites numerous social media messages dating back to August 2013 sent by Keonna Thomas, 30, also known as \"Young Lioness\" and \"Fatayat Al Khilafah.\" One Twitter message said, \"If we truly knew the realities ... we all would be rushing to join our brothers in the front lines pray ALLAH accept us as shuhada [martyrs].\" The FBI said Keonna Thomas, 30, purchased an electronic visa to Turkey on March 23, and Turkey is known as the easiest place from which to enter Syria and join ISIS. On March 26, Keonna Thomas, 30, purchased a ticket to Barcelona, with a March 29 departure and an April 15 return to the United States.",
+      "key_facts": [
+        "FBI complaint cites social media messages from Keonna Thomas, 30, dating back to August 2013.",
+        "Keonna Thomas, 30, was also known as \"Young Lioness\" and \"Fatayat Al Khilafah.\"",
+        "Social media messages expressed desire to join brothers in front lines and become martyrs.",
+        "Keonna Thomas, 30, purchased an electronic visa to Turkey on March 23.",
+        "Turkey is known as the easiest place to enter Syria and join ISIS.",
+        "Keonna Thomas, 30, purchased a ticket to Barcelona on March 26, for a March 29 departure and April 15 return."
+      ],
+      "shared_context": [
+        "The FBI charged Keonna Thomas, 30, a Philadelphia woman, on Thursday with trying to travel overseas to fight for ISIS."
+      ],
+      "explicit_unknowns": []
+    },
+    {
+      "thread": "New York Arrests and Broader Context",
+      "story": "Keonna Thomas, 30, a Philadelphia woman, is one of three women arrested this week on terror charges. Two New York women were also taken into custody. On Thursday, Noelle Velentzas, 28, and her former roommate, Asia Siddiqui, 31, were arrested in New York and accused of planning to build an explosive device for attacks in the United States, federal prosecutors said. In the past 18 months, the Justice Department's National Security Division has prosecuted or is prosecuting more than 30 cases of people attempting to travel abroad to join or provide support to terrorist groups. Of those cases, 18 allegedly involve support to ISIS.",
+      "key_facts": [
+        "Two New York women were taken into custody.",
+        "Noelle Velentzas, 28, and Asia Siddiqui, 31, were arrested in New York on Thursday.",
+        "Noelle Velentzas, 28, and Asia Siddiqui, 31, were accused of planning to build an explosive device for attacks in the United States.",
+        "The Justice Department's National Security Division has prosecuted or is prosecuting more than 30 cases in the past 18 months.",
+        "18 of those cases allegedly involve support to ISIS."
+      ],
+      "shared_context": [
+        "Keonna Thomas, 30, a Philadelphia woman, is one of three women arrested this week on terror charges.",
+        "Two New York women were also taken into custody.",
+        "On Thursday, Noelle Velentzas, 28, and her former roommate, Asia Siddiqui, 31, were arrested in New York and accused of planning to build an explosive device for attacks in the United States, federal prosecutors said."
+      ],
+      "explicit_unknowns": []
+    },
+    {
+      "thread": "Homeland Security Perspective on Terror Threat",
+      "story": "On Thursday, Noelle Velentzas, 28, and her former roommate, Asia Siddiqui, 31, were arrested in New York and accused of planning to build an explosive device for attacks in the United States, federal prosecutors said. These two New York women were taken into custody as part of the three women arrested this week on terror charges. Homeland Security Secretary Jeh Johnson told reporters Thursday that \"The terrorist threat is more decentralized, more diffuse, more complicated.\" He added that it \"involves the potential lone wolf actor, it involves the effective use of social media, the Internet.\" In the past 18 months, the Justice Department's National Security Division has prosecuted or is prosecuting more than 30 cases of people attempting to travel abroad to join or provide support to terrorist groups.",
+      "key_facts": [
+        "Homeland Security Secretary Jeh Johnson spoke to reporters on Thursday.",
+        "He stated the terrorist threat is more decentralized, diffuse, and complicated.",
+        "The threat involves potential lone wolf actors and effective use of social media and the Internet.",
+        "The Justice Department's National Security Division has prosecuted or is prosecuting more than 30 cases in the past 18 months."
+      ],
+      "shared_context": [
+        "On Thursday, Noelle Velentzas, 28, and her former roommate, Asia Siddiqui, 31, were arrested in New York and accused of planning to build an explosive device for attacks in the United States, federal prosecutors said.",
+        "These two New York women were taken into custody as part of the three women arrested this week on terror charges.",
+        "In the past 18 months, the Justice Department's National Security Division has prosecuted or is prosecuting more than 30 cases of people attempting to travel abroad to join or provide support to terrorist groups."
+      ],
+      "explicit_unknowns": []
+    }
+  ],
+  "_elapsed": 28.5
+}

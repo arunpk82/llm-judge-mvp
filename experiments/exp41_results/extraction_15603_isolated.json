@@ -1,0 +1,33 @@
+{
+  "stories": [
+    {
+      "thread": "Zhangzhou Plant Explosion",
+      "story": "An explosion occurred Monday night at an oil storage facility at a paraxylene (PX) plant in Zhangzhou city, Fujian province, China, following an oil leak. Six people were hurt, with five injured by broken glass and sent to the hospital. More than 600 firefighters battled the resulting huge fire, which was under control by Tuesday morning. Residents reported hearing a loud blast and feeling slight tremors on Weibo. Local media has not reported any toxic chemical spill.",
+      "key_facts": [
+        "Explosion at oil storage facility in Zhangzhou city, Fujian province",
+        "Occurred Monday night after an oil leak",
+        "6 people hurt, 5 by broken glass",
+        "600+ firefighters responded",
+        "Fire under control Tuesday morning"
+      ],
+      "explicit_unknowns": [
+        "Whether any toxic chemicals spilled"
+      ]
+    },
+    {
+      "thread": "PX Plant Background and Controversy",
+      "story": "The Zhangzhou plant produces paraxylene (PX), a reportedly carcinogenic chemical used in the production of polyester films and fabrics. Originally slated for the densely populated city of Xiamen, the plant was relocated to its current remote location after pollution concerns caused a backlash in 2007. The plant previously experienced an explosion in July 2013 with no reported casualties or toxic leaks. In recent years, PX plant construction has sparked protests in several cities, although demonstrations are illegal in China.",
+      "key_facts": [
+        "Produces paraxylene (PX) for polyester films and fabrics",
+        "Relocated from Xiamen after 2007 pollution concerns",
+        "Previous explosion in July 2013",
+        "PX plants have sparked protests in several cities",
+        "Demonstrations are illegal in China"
+      ],
+      "explicit_unknowns": [
+        "None"
+      ]
+    }
+  ],
+  "_elapsed": 57.4
+}

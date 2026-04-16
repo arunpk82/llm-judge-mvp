@@ -1,0 +1,1613 @@
+{
+  "phase": "gemma_progress_40",
+  "gemma_results": {
+    "raw": [
+      {
+        "verdict": "GROUNDED",
+        "confidence": 1.0,
+        "reasoning": "The claim is directly supported by sentence S2, which states: 'But new research released by the Anne Frank House shows that Anne and her older sister, Margot Frank, died at least a month earlier than previously thought.'",
+        "_elapsed": 9.6,
+        "_test_id": "ragtruth_0",
+        "_expected": "grounded",
+        "_hall_type": "clean",
+        "_correct": true
+      },
+      {
+        "verdict": "GROUNDED",
+        "confidence": 1.0,
+        "reasoning": "The claim is directly supported by sentence S2, which states: 'But new research released by the Anne Frank House shows that Anne and her older sister, Margot Frank, died at least a month earlier than previously thought.'",
+        "_elapsed": 9.1,
+        "_test_id": "ragtruth_1",
+        "_expected": "grounded",
+        "_hall_type": "clean",
+        "_correct": true
+      },
+      {
+        "verdict": "HALLUCINATED",
+        "confidence": 1.0,
+        "reasoning": "The claim states that the sisters are believed to have died before February 7, 2022. However, the source discusses events occurring in 1945, and specifically mentions that witnesses saw symptoms before February 7 (implicitly in 1945), not 2022.",
+        "_elapsed": 15.1,
+        "_test_id": "ragtruth_2",
+        "_expected": "hallucinated",
+        "_hall_type": "Evident Conflict",
+        "_correct": true
+      },
+      {
+        "verdict": "GROUNDED",
+        "confidence": 1.0,
+        "reasoning": "The source states that 'new research released by the Anne Frank House shows that Anne and her older sister, Margot Frank, died at least a month earlier than previously thought' (S2). This supports the claim that a discovery led to a reevaluation of the events and that the Anne Frank House provided corrected information regarding the date of her passing.",
+        "_elapsed": 30.1,
+        "_test_id": "ragtruth_2",
+        "_expected": "hallucinated",
+        "_hall_type": "Evident Baseless Info",
+        "_correct": false
+      },
+      {
+        "verdict": "HALLUCINATED",
+        "confidence": 1.0,
+        "reasoning": "The claim states that the sisters are believed to have died before February 7, 2022. However, the source discusses events occurring in 1945, and specifically mentions that witnesses saw symptoms before February 7 (implicitly in 1945), not 2022.",
+        "_elapsed": 14.7,
+        "_test_id": "ragtruth_2",
+        "_expected": "hallucinated",
+        "_hall_type": "Evident Conflict",
+        "_correct": true
+      },
+      {
+        "verdict": "GROUNDED",
+        "confidence": 0.9,
+        "reasoning": "The source supports the claim through several points: S23 and S24 explicitly mention that Anne 'never gave up hope' and was 'absolutely convinced she would survive' (resilience), and S24 states that her diary 'endures as one of the world's most popular books,' supporting the idea that it remains a powerful and enduring symbol.",
+        "_elapsed": 32.0,
+        "_test_id": "ragtruth_3",
+        "_expected": "hallucinated",
+        "_hall_type": "Subtle Baseless Info",
+        "_correct": false
+      },
+      {
+        "verdict": "GROUNDED",
+        "confidence": 1.0,
+        "reasoning": "The claim is a direct quote from the first sentence (S0) of the source text.",
+        "_elapsed": 8.3,
+        "_test_id": "ragtruth_4",
+        "_expected": "grounded",
+        "_hall_type": "clean",
+        "_correct": true
+      },
+      {
+        "verdict": "HALLUCINATED",
+        "confidence": 1.0,
+        "reasoning": "The claim states that the sisters 'did not survive past February 7'. However, the source (S19) states that witnesses said the sisters 'both had symptoms before February 7' and (S20) notes that 'most deaths caused by typhus occur around twelve days after the first symptoms appear'. This implies they likely died approximately 12 days after the symptoms appeared before February 7, meaning they survived past February 7.",
+        "_elapsed": 20.1,
+        "_test_id": "ragtruth_5",
+        "_expected": "hallucinated",
+        "_hall_type": "Evident Conflict",
+        "_correct": true
+      },
+      {
+        "verdict": "GROUNDED",
+        "confidence": 0.9,
+        "reasoning": "The source supports all elements of the claim: it mentions that the diary 'endures as one of the world's most popular books' (S24), describes Anne's resilience through her friend's testimony that she 'never gave up hope' and was 'convinced she would survive' (S23, S24), and provides extensive details on the 'horrors of the Holocaust' including slave labor, typhus, and the conditions at Bergen-Belsen (S0-S22).",
+        "_elapsed": 90.0,
+        "_test_id": "ragtruth_5",
+        "_expected": "hallucinated",
+        "_hall_type": "Subtle Baseless Info",
+        "_correct": false
+      },
+      {
+        "verdict": "HALLUCINATED",
+        "confidence": 1.0,
+        "reasoning": "The claim identifies Andrew Getty as 'oil tycoon J.', whereas the source explicitly states in S1 and S2 that Andrew Getty is the grandson of oil tycoon J. Paul Getty.",
+        "_elapsed": 13.2,
+        "_test_id": "ragtruth_6",
+        "_expected": "grounded",
+        "_hall_type": "clean",
+        "_correct": false
+      },
+      {
+        "verdict": "GROUNDED",
+        "confidence": 0.95,
+        "reasoning": "The claim accurately reflects the information in S0. S0 states that Andrew Getty, an heir to billions of oil money, 'appears to have died of natural causes,' according to a Los Angeles Police Department spokesman. The claim summarizes this attribution correctly.",
+        "_elapsed": 57.6,
+        "_test_id": "ragtruth_7",
+        "_expected": "grounded",
+        "_hall_type": "clean",
+        "_correct": true
+      },
+      {
+        "verdict": "GROUNDED",
+        "confidence": 1.0,
+        "reasoning": "The claim is a direct paraphrase of sentence S0, which states: 'Andrew Getty, one of the heirs to billions of oil money, appears to have died of natural causes, a Los Angeles Police Department spokesman said.'",
+        "_elapsed": 10.8,
+        "_test_id": "ragtruth_8",
+        "_expected": "grounded",
+        "_hall_type": "clean",
+        "_correct": true
+      },
+      {
+        "verdict": "GROUNDED",
+        "confidence": 1.0,
+        "reasoning": "The source explicitly states that Andrew Getty died (S0, S1, S7), that he was 47 years old (S3), and that he was one of the heirs to billions of oil money (S0).",
+        "_elapsed": 16.4,
+        "_test_id": "ragtruth_9",
+        "_expected": "grounded",
+        "_hall_type": "clean",
+        "_correct": true
+      },
+      {
+        "verdict": "HALLUCINATED",
+        "confidence": 1.0,
+        "reasoning": "The claim attributes a net worth of $2.1 billion to 'him' (implying Andrew Getty, the subject of the article), but the source explicitly states in S11 that this net worth belongs to Gordon Getty, Andrew's father.",
+        "_elapsed": 13.0,
+        "_test_id": "ragtruth_10",
+        "_expected": "hallucinated",
+        "_hall_type": "Evident Conflict",
+        "_correct": true
+      },
+      {
+        "verdict": "GROUNDED",
+        "confidence": 1.0,
+        "reasoning": "The source explicitly states that Andrew Getty, an heir to billions of oil money (S0), died (S0, S1, S7) and was 47 years old (S3).",
+        "_elapsed": 10.7,
+        "_test_id": "ragtruth_11",
+        "_expected": "grounded",
+        "_hall_type": "clean",
+        "_correct": true
+      },
+      {
+        "verdict": "HALLUCINATED",
+        "confidence": 0.9,
+        "reasoning": "The claim states that Iran is set to lift its ban on women attending sports events, implying a general removal of the restriction. However, the source specifies that the ban will only be lifted for 'some events' (S1), specifically 'indoor sports events' (S4), and explicitly states that 'the rules won't change for all matches' (S5).",
+        "_elapsed": 46.0,
+        "_test_id": "ragtruth_12",
+        "_expected": "grounded",
+        "_hall_type": "clean",
+        "_correct": false
+      },
+      {
+        "verdict": "GROUNDED",
+        "confidence": 1.0,
+        "reasoning": "The claim is directly supported by the source. S1 states the ban will be lifted for some events, S4 specifies that Deputy Sports Minister Abdolhamid Ahmadi said restrictions would be lifted for indoor sports events, and S2 identifies Ahmadi as a top official (Deputy Sports Minister).",
+        "_elapsed": 12.0,
+        "_test_id": "ragtruth_13",
+        "_expected": "grounded",
+        "_hall_type": "clean",
+        "_correct": true
+      },
+      {
+        "verdict": "GROUNDED",
+        "confidence": 1.0,
+        "reasoning": "The claim is directly supported by S1, which states 'the ban will be lifted for some events,' and S2, which mentions a plan to allow 'women and families' to enter sports stadiums in the next year as stated by Deputy Sports Minister Abdolhamid Ahmadi.",
+        "_elapsed": 11.5,
+        "_test_id": "ragtruth_14",
+        "_expected": "grounded",
+        "_hall_type": "clean",
+        "_correct": true
+      },
+      {
+        "verdict": "HALLUCINATED",
+        "confidence": 0.9,
+        "reasoning": "The claim contains two inaccuracies based on the source text. First, it attributes a specific motive to the announcement ('In an effort to improve Iran's chances of hosting future international sports events'), which is not explicitly stated in the text; while the text mentions that the ban was an impediment to hosting the Asian Cup and that there was international pressure, it does not explicitly link this as the reason for the Deputy Sports Minister's announcement. Second, the claim suggests a general lifting of the ban on women attending men's sports events, whereas the source specifies that the ban will only be lifted for 'some events' (S1) and specifically 'indoor sports events' (S4), and that rules 'won't change for all matches' (S5).",
+        "_elapsed": 53.9,
+        "_test_id": "ragtruth_15",
+        "_expected": "grounded",
+        "_hall_type": "clean",
+        "_correct": false
+      },
+      {
+        "verdict": "GROUNDED",
+        "confidence": 1.0,
+        "reasoning": "The source states that women have been barred from most sports events involving men since the 1979 revolution (S0), making it a decades-old ban. It also reports that Deputy Sports Minister Abdolhamid Ahmadi announced a plan to allow women and families to enter sports stadiums in the next year (S2), and that the ban will be lifted for some events, specifically indoor sports (S1, S4).",
+        "_elapsed": 13.0,
+        "_test_id": "ragtruth_16",
+        "_expected": "grounded",
+        "_hall_type": "clean",
+        "_correct": true
+      },
+      {
+        "verdict": "GROUNDED",
+        "confidence": 1.0,
+        "reasoning": "The claim is fully supported by the source. S2 identifies Deputy Sports Minister Abdolhamid Ahmadi as the source of the plan to allow women and families into sports stadiums, and S4 specifies that the restrictions would be lifted for indoor sports events.",
+        "_elapsed": 11.2,
+        "_test_id": "ragtruth_17",
+        "_expected": "grounded",
+        "_hall_type": "clean",
+        "_correct": true
+      },
+      {
+        "verdict": "GROUNDED",
+        "confidence": 1.0,
+        "reasoning": "The claim is directly supported by the source text. S1 explicitly states that miracles happen 'not just in Hollywood,' and S5 specifies that survivors 'must rely on ingenuity, resourcefulness and luck.' The subsequent sections (S9-S80) provide multiple real-life examples of human endurance and survival at sea, including the stories of Louis Jordan, Jose Salvador Alvarenga, Ron Ingraham, Adrian Vasquez, and Hiromitsu Shinkawa.",
+        "_elapsed": 17.4,
+        "_test_id": "ragtruth_18",
+        "_expected": "grounded",
+        "_hall_type": "clean",
+        "_correct": true
+      },
+      {
+        "verdict": "GROUNDED",
+        "confidence": 1.0,
+        "reasoning": "The source text details five specific stories of individuals (Louis Jordan, Jose Salvador Alvarenga, Ron Ingraham, Adrian Vasquez, and Hiromitsu Shinkawa) who were stranded at sea for varying lengths of time (ranging from two days to over a year) and survived, which directly supports the claim.",
+        "_elapsed": 13.8,
+        "_test_id": "ragtruth_19",
+        "_expected": "grounded",
+        "_hall_type": "clean",
+        "_correct": true
+      },
+      {
+        "verdict": "GROUNDED",
+        "confidence": 1.0,
+        "reasoning": "The source provides five distinct examples of individuals surviving alone in the ocean for extended periods: Louis Jordan, Jose Salvador Alvarenga (over a year), Ron Ingraham (12 days), Adrian Vasquez (26 days), and Hiromitsu Shinkawa (more than two days).",
+        "_elapsed": 18.9,
+        "_test_id": "ragtruth_20",
+        "_expected": "grounded",
+        "_hall_type": "clean",
+        "_correct": true
+      },
+      {
+        "verdict": "HALLUCINATED",
+        "confidence": 1.0,
+        "reasoning": "The claim contains two significant hallucinations: 1) It describes Louis Jordan as a '35-year-old sailor,' whereas the source states he had a '35-foot sailboat' (S9). 2) It claims he was stranded for 'five days,' but the source does not specify the duration of his time at sea.",
+        "_elapsed": 17.7,
+        "_test_id": "ragtruth_21",
+        "_expected": "hallucinated",
+        "_hall_type": "Evident Baseless Info",
+        "_correct": true
+      },
+      {
+        "verdict": "HALLUCINATED",
+        "confidence": 1.0,
+        "reasoning": "While the source confirms that Louis Jordan's sailboat capsized and that Jose Salvador Alvarenga survived a 13-14 month ordeal after being blown off course, the source never mentions that Louis Jordan was adrift for '20 days.' This specific detail is not present in the provided text.",
+        "_elapsed": 22.9,
+        "_test_id": "ragtruth_22",
+        "_expected": "hallucinated",
+        "_hall_type": "Evident Baseless Info",
+        "_correct": true
+      },
+      {
+        "verdict": "HALLUCINATED",
+        "confidence": 1.0,
+        "reasoning": "The claim mentions a survival period of '66 days', which does not appear anywhere in the source text. While Louis Jordan used a makeshift mast and sail (S16) and collected water (S14), and others like Adrian Vasquez survived for 26 days (S63) or Jose Salvador Alvarenga for over a year (S25), no individual is described as surviving for 66 days using those specific methods.",
+        "_elapsed": 20.0,
+        "_test_id": "ragtruth_23",
+        "_expected": "hallucinated",
+        "_hall_type": "Evident Baseless Info",
+        "_correct": true
+      },
+      {
+        "verdict": "HALLUCINATED",
+        "confidence": 1.0,
+        "reasoning": "The source mentions that Jose Salvador Alvarenga survived 'over a year' (S25) and was '13 or 14 months adrift' (S33), but it never specifies the exact number of '438 days' mentioned in the claim.",
+        "_elapsed": 30.4,
+        "_test_id": "ragtruth_23",
+        "_expected": "hallucinated",
+        "_hall_type": "Evident Baseless Info",
+        "_correct": true
+      },
+      {
+        "verdict": "GROUNDED",
+        "confidence": 1.0,
+        "reasoning": "The source explicitly states in S0 that the FBI charged a Philadelphia woman with trying to travel overseas to fight for ISIS, and S3 identifies this woman as Keonna Thomas.",
+        "_elapsed": 8.9,
+        "_test_id": "ragtruth_24",
+        "_expected": "grounded",
+        "_hall_type": "clean",
+        "_correct": true
+      },
+      {
+        "verdict": "GROUNDED",
+        "confidence": 1.0,
+        "reasoning": "The source explicitly states that the FBI charged a Philadelphia woman (S0), identifies her as Keonna Thomas (S3), and specifies the charge was for trying to travel overseas to fight for ISIS (S0).",
+        "_elapsed": 10.6,
+        "_test_id": "ragtruth_25",
+        "_expected": "grounded",
+        "_hall_type": "clean",
+        "_correct": true
+      },
+      {
+        "verdict": "GROUNDED",
+        "confidence": 1.0,
+        "reasoning": "The claim is fully supported by the source text. S0 states the FBI charged a Philadelphia woman with trying to travel overseas to fight for ISIS, and S3 identifies this woman as Keonna Thomas, also known as 'Young Lioness' and 'Fatayat Al Khilafah.'",
+        "_elapsed": 12.8,
+        "_test_id": "ragtruth_26",
+        "_expected": "grounded",
+        "_hall_type": "clean",
+        "_correct": true
+      },
+      {
+        "verdict": "GROUNDED",
+        "confidence": 1.0,
+        "reasoning": "The source explicitly states that the FBI charged a Philadelphia woman (S0) for trying to travel overseas to fight for ISIS (S0) and notes that she purchased an electronic visa to Turkey (S4).",
+        "_elapsed": 11.1,
+        "_test_id": "ragtruth_27",
+        "_expected": "grounded",
+        "_hall_type": "clean",
+        "_correct": true
+      },
+      {
+        "verdict": "HALLUCINATED",
+        "confidence": 1.0,
+        "reasoning": "The claim states that all three women were charged with attempting to join ISIS. However, the source specifies that only Keonna Thomas was charged with trying to travel overseas to fight for ISIS (S0). The other two women, Noelle Velentzas and Asia Siddiqui, were accused of planning to build an explosive device for attacks within the United States (S11).",
+        "_elapsed": 18.6,
+        "_test_id": "ragtruth_28",
+        "_expected": "hallucinated",
+        "_hall_type": "Evident Conflict",
+        "_correct": true
+      },
+      {
+        "verdict": "HALLUCINATED",
+        "confidence": 0.9,
+        "reasoning": "While the source confirms that Thomas purchased a ticket to Barcelona (S7), it explicitly states in S8 that 'It's not clear when or where she was arrested.' Therefore, the claim that she was arrested 'before her trip' is an inference not supported by the text, which specifically notes the timing of the arrest is unknown.",
+        "_elapsed": 40.2,
+        "_test_id": "ragtruth_28",
+        "_expected": "hallucinated",
+        "_hall_type": "Evident Conflict",
+        "_correct": true
+      },
+      {
+        "verdict": "HALLUCINATED",
+        "confidence": 1.0,
+        "reasoning": "The claim states she was arrested on March 26, but the source (S7) says that on March 26 she 'purchased a ticket to Barcelona' and explicitly states in S8 that 'It's not clear when or where she was arrested.'",
+        "_elapsed": 13.1,
+        "_test_id": "ragtruth_29",
+        "_expected": "hallucinated",
+        "_hall_type": "Evident Conflict",
+        "_correct": true
+      },
+      {
+        "verdict": "GROUNDED",
+        "confidence": 1.0,
+        "reasoning": "The claim is fully supported by the source text. S0 and S1 confirm that police in Malegaon, India, asked residents to take 'mugshots' of their cattle following a state-wide ban on the sale and consumption of beef. S2 explicitly mentions that residents must provide 'unique features,' including the age of the cow and the length of its tail. S3 confirms this is to enforce the law.",
+        "_elapsed": 15.2,
+        "_test_id": "ragtruth_30",
+        "_expected": "grounded",
+        "_hall_type": "clean",
+        "_correct": true
+      },
+      {
+        "verdict": "GROUNDED",
+        "confidence": 1.0,
+        "reasoning": "The claim is fully supported by the source text. S0 and S1 confirm that police in Malegaon, Maharashtra, are requiring 'mugshot' photos of cattle following a state-wide ban on beef. S2 confirms that residents must also provide information about the animals' 'unique features.'",
+        "_elapsed": 11.3,
+        "_test_id": "ragtruth_31",
+        "_expected": "grounded",
+        "_hall_type": "clean",
+        "_correct": true
+      },
+      {
+        "verdict": "GROUNDED",
+        "confidence": 1.0,
+        "reasoning": "The claim is directly supported by the source text. S0 states that police in Malegaon are requiring identity cards for cattle, and S1 explicitly links this action to a 'recent state-wide ban on the sale and consumption of beef.'",
+        "_elapsed": 11.7,
+        "_test_id": "ragtruth_32",
+        "_expected": "grounded",
+        "_hall_type": "clean",
+        "_correct": true
+      },
+      {
+        "verdict": "HALLUCINATED",
+        "confidence": 0.9,
+        "reasoning": "The claim states that some called the move an 'invasion of privacy.' However, the source only mentions that red meat lovers argued the government 'doesn't have a right to interfere in an individual's personal preference' (S15). Interference in personal preference is not the same as an invasion of privacy.",
+        "_elapsed": 24.1,
+        "_test_id": "ragtruth_33",
+        "_expected": "hallucinated",
+        "_hall_type": "Evident Baseless Info",
+        "_correct": true
+      },
+      {
+        "verdict": "GROUNDED",
+        "confidence": 1.0,
+        "reasoning": "The claim is directly supported by the source text. S0 states that police in Malegaon, India, are requiring identity cards for cattle, and S1 explains that this is following a state-wide ban on the sale and consumption of beef.",
+        "_elapsed": 11.7,
+        "_test_id": "ragtruth_34",
+        "_expected": "grounded",
+        "_hall_type": "clean",
+        "_correct": true
+      }
+    ],
+    "hybrid": [
+      {
+        "verdict": "HALLUCINATED",
+        "confidence": 1.0,
+        "reasoning": "While the source mentions that the Anne Frank House conducted research on the death dates of Anne and Margot Frank, it does not state the conclusion of that research, nor does it mention that they died 'at least a month earlier than previously believed.' In fact, the source explicitly lists the dates of death for Anne and Margot as 'UNKNOWN'.",
+        "_elapsed": 18.5,
+        "_test_id": "ragtruth_0",
+        "_expected": "grounded",
+        "_hall_type": "clean",
+        "_correct": false
+      },
+      {
+        "verdict": "HALLUCINATED",
+        "confidence": 1.0,
+        "reasoning": "While the source mentions that the Anne Frank House conducted research on the death dates of Anne and Margot Frank, it does not state the results of that research. Specifically, the source does not mention that they died 'at least a month earlier than previously believed'; in fact, it explicitly lists the dates of death for Anne and Margot as 'UNKNOWN'.",
+        "_elapsed": 21.1,
+        "_test_id": "ragtruth_1",
+        "_expected": "grounded",
+        "_hall_type": "clean",
+        "_correct": false
+      },
+      {
+        "verdict": "HALLUCINATED",
+        "confidence": 1.0,
+        "reasoning": "The claim states that the sisters are believed to have died before February 7, 2022. While the source mentions the onset of symptoms occurred 'before February 7', the context of the events (Liberation of Bergen-Belsen in 1945) makes the year 2022 a fabrication and historically impossible.",
+        "_elapsed": 16.7,
+        "_test_id": "ragtruth_2",
+        "_expected": "hallucinated",
+        "_hall_type": "Evident Conflict",
+        "_correct": true
+      },
+      {
+        "verdict": "HALLUCINATED",
+        "confidence": 1.0,
+        "reasoning": "The source mentions that the Anne Frank House conducted 'Research on death dates' using various archives, but it does not mention any specific 'discovery,' a 'reevaluation' of events, or the issuance of a 'corrected statement.' Furthermore, the source explicitly lists the dates of death for Anne and Margot as 'UNKNOWN,' which contradicts the idea that a corrected date was established and announced.",
+        "_elapsed": 21.3,
+        "_test_id": "ragtruth_2",
+        "_expected": "hallucinated",
+        "_hall_type": "Evident Baseless Info",
+        "_correct": true
+      },
+      {
+        "verdict": "HALLUCINATED",
+        "confidence": 1.0,
+        "reasoning": "The claim states that the sisters are believed to have died before February 7, 2022. While the source mentions the onset of symptoms occurred 'before February 7', the context of the events (Liberation of Bergen-Belsen in 1945) makes the year 2022 a fabrication and historically impossible.",
+        "_elapsed": 16.3,
+        "_test_id": "ragtruth_2",
+        "_expected": "hallucinated",
+        "_hall_type": "Evident Conflict",
+        "_correct": true
+      },
+      {
+        "verdict": "HALLUCINATED",
+        "confidence": 1.0,
+        "reasoning": "The provided source contains information about the deaths of Anne and Margot Frank, their transfers between concentration camps, and the typhus outbreak. It does not mention a diary, nor does it discuss themes of hope or resilience.",
+        "_elapsed": 13.8,
+        "_test_id": "ragtruth_3",
+        "_expected": "hallucinated",
+        "_hall_type": "Subtle Baseless Info",
+        "_correct": true
+      },
+      {
+        "verdict": "HALLUCINATED",
+        "confidence": 1.0,
+        "reasoning": "While the source supports that Anne Frank died of typhus in a Nazi concentration camp at age 15, it does not provide the current date or the specific date of her death (in fact, it explicitly lists 'dates of death for Anne and Margot' as UNKNOWN). Therefore, the claim 'Seventy years ago' is not supported by the provided text.",
+        "_elapsed": 33.5,
+        "_test_id": "ragtruth_4",
+        "_expected": "grounded",
+        "_hall_type": "clean",
+        "_correct": false
+      },
+      {
+        "verdict": "HALLUCINATED",
+        "confidence": 1.0,
+        "reasoning": "The claim states that researchers concluded the sisters did not survive past February 7. However, the source states that the 'Onset of symptoms' occurred 'before February 7' and explicitly lists the 'dates of death for Anne and Margot' as 'UNKNOWN'.",
+        "_elapsed": 16.6,
+        "_test_id": "ragtruth_5",
+        "_expected": "hallucinated",
+        "_hall_type": "Evident Conflict",
+        "_correct": true
+      },
+      {
+        "verdict": "HALLUCINATED",
+        "confidence": 1.0,
+        "reasoning": "The provided source contains factual events regarding Anne Frank's death, transfers between camps, and research into her death date, but it makes no mention of a diary, resilience, or the symbolic nature of her writings.",
+        "_elapsed": 12.5,
+        "_test_id": "ragtruth_5",
+        "_expected": "hallucinated",
+        "_hall_type": "Subtle Baseless Info",
+        "_correct": true
+      },
+      {
+        "verdict": "HALLUCINATED",
+        "confidence": 1.0,
+        "reasoning": "The claim is a fragment that implies Andrew Getty is an 'oil tycoon J.' However, the source explicitly identifies J. Paul Getty as the oil tycoon/baron, while Andrew Getty is identified as his grandson. The source does not describe Andrew Getty as an oil tycoon.",
+        "_elapsed": 15.3,
+        "_test_id": "ragtruth_6",
+        "_expected": "grounded",
+        "_hall_type": "clean",
+        "_correct": false
+      },
+      {
+        "verdict": "HALLUCINATED",
+        "confidence": 1.0,
+        "reasoning": "While the source confirms that Andrew Getty died of natural causes and was an heir to oil money (grandson of oil tycoon J. Paul Getty), it does not mention the 'Los Angeles Police Department' as the source of this information. It mentions a detective (Meghan Aguilar) and the Los Angeles County coroner's office (Ed Winter), but the specific attribution to the LAPD is not present in the source.",
+        "_elapsed": 27.7,
+        "_test_id": "ragtruth_7",
+        "_expected": "grounded",
+        "_hall_type": "clean",
+        "_correct": false
+      },
+      {
+        "verdict": "GROUNDED",
+        "confidence": 1.0,
+        "reasoning": "The source explicitly states that Andrew Getty died of natural causes. It also identifies him as the grandson of J. Paul Getty (an oil tycoon) and the son of Gordon Getty (who has a net worth of $2.1 billion), supporting the claim that he was an heir to billions of oil money.",
+        "_elapsed": 13.9,
+        "_test_id": "ragtruth_8",
+        "_expected": "grounded",
+        "_hall_type": "clean",
+        "_correct": true
+      },
+      {
+        "verdict": "GROUNDED",
+        "confidence": 1.0,
+        "reasoning": "The source explicitly states that Andrew Getty died (S0), his age was 47 (ENTITY: Andrew Getty), and he is the grandson of J. Paul Getty, who is described as an oil tycoon/baron, supporting the description of him as an heir to the Getty oil fortune.",
+        "_elapsed": 14.4,
+        "_test_id": "ragtruth_9",
+        "_expected": "grounded",
+        "_hall_type": "clean",
+        "_correct": true
+      },
+      {
+        "verdict": "GROUNDED",
+        "confidence": 1.0,
+        "reasoning": "The source explicitly states that Gordon Getty's net worth was $2.1 billion.",
+        "_elapsed": 19.3,
+        "_test_id": "ragtruth_10",
+        "_expected": "hallucinated",
+        "_hall_type": "Evident Conflict",
+        "_correct": false
+      },
+      {
+        "verdict": "GROUNDED",
+        "confidence": 1.0,
+        "reasoning": "The source explicitly states that Andrew Getty died (EVENT: Death of Andrew Getty), his age was 47 (ENTITY: Andrew Getty), and he is the grandson of J. Paul Getty, who is described as an oil tycoon/baron, supporting the claim that he was an heir to the Getty oil fortune.",
+        "_elapsed": 14.2,
+        "_test_id": "ragtruth_11",
+        "_expected": "grounded",
+        "_hall_type": "clean",
+        "_correct": true
+      },
+      {
+        "verdict": "HALLUCINATED",
+        "confidence": 0.9,
+        "reasoning": "The claim states that Iran is set to lift its ban on women attending sports events in general. However, the source (S1) specifies that the lifting of restrictions applies only to 'some sports events' and explicitly limits the scope to 'Indoor sports events.' The claim overgeneralizes the limited scope mentioned in the source.",
+        "_elapsed": 31.3,
+        "_test_id": "ragtruth_12",
+        "_expected": "grounded",
+        "_hall_type": "clean",
+        "_correct": false
+      },
+      {
+        "verdict": "GROUNDED",
+        "confidence": 1.0,
+        "reasoning": "The claim is fully supported by the source. EVENT S1 describes the 'Lifting restrictions for some sports events' specifically for 'Indoor sports events' for 'Women' (ENT_2) and 'Families'. The announcer of this change is ENT_3, Abdolhamid Ahmadi, who is identified as the 'Deputy Sports Minister', which qualifies as a 'top Iranian sports official'.",
+        "_elapsed": 14.7,
+        "_test_id": "ragtruth_13",
+        "_expected": "grounded",
+        "_hall_type": "clean",
+        "_correct": true
+      },
+      {
+        "verdict": "GROUNDED",
+        "confidence": 1.0,
+        "reasoning": "The source explicitly mentions an event (S1) regarding 'Lifting restrictions for some sports events' announced by the Deputy Sports Minister (ENT_3), where the beneficiaries are women (ENT_2) and families, specifically for 'Indoor sports events' within the 'Coming months' and 'Next year'.",
+        "_elapsed": 14.1,
+        "_test_id": "ragtruth_14",
+        "_expected": "grounded",
+        "_hall_type": "clean",
+        "_correct": true
+      },
+      {
+        "verdict": "HALLUCINATED",
+        "confidence": 1.0,
+        "reasoning": "While the source mentions that the Deputy Sports Minister (ENT_3) announced plans to lift restrictions for some indoor sports events (S1), it does not state that this was done 'in an effort to improve Iran's chances of hosting future international sports events.' Although the source mentions Iran's bid for the 2019 Asian Cup (S10), it does not link the minister's announcement to that motive.",
+        "_elapsed": 26.2,
+        "_test_id": "ragtruth_15",
+        "_expected": "grounded",
+        "_hall_type": "clean",
+        "_correct": false
+      },
+      {
+        "verdict": "GROUNDED",
+        "confidence": 1.0,
+        "reasoning": "The source states that women have been barred from most sports events involving men since 1979 (S0), which establishes a 'decades-old ban'. It also mentions that the Deputy Sports Minister (ENT_3) announced the 'Lifting restrictions for some sports events' (specifically indoor sports) in the 'Coming months' and 'Next year' (S1), supporting the claim that Iran may lift the ban.",
+        "_elapsed": 22.4,
+        "_test_id": "ragtruth_16",
+        "_expected": "grounded",
+        "_hall_type": "clean",
+        "_correct": true
+      },
+      {
+        "verdict": "GROUNDED",
+        "confidence": 1.0,
+        "reasoning": "The claim is fully supported by the source. EVENT S1 describes the lifting of restrictions for women (ENT_2) and families for indoor sports events, and identifies the announcer as ENT_3. ENTITY 3 is identified as Abdolhamid Ahmadi, the Deputy Sports Minister.",
+        "_elapsed": 14.6,
+        "_test_id": "ragtruth_17",
+        "_expected": "grounded",
+        "_hall_type": "clean",
+        "_correct": true
+      },
+      {
+        "verdict": "GROUNDED",
+        "confidence": 1.0,
+        "reasoning": "The source provides five distinct real-life examples of individuals (Louis Jordan, Jose Salvador Alvarenga, Ron Ingraham, Adrian Vasquez, and Hiromitsu Shinkawa) who survived accidents or disasters at sea, which directly supports the claim that survival stories at sea happen in real life.",
+        "_elapsed": 17.3,
+        "_test_id": "ragtruth_18",
+        "_expected": "grounded",
+        "_hall_type": "clean",
+        "_correct": true
+      },
+      {
+        "verdict": "GROUNDED",
+        "confidence": 1.0,
+        "reasoning": "The source describes five separate accounts of individuals (Louis Jordan, Jose Salvador Alvarenga, Ron Ingraham, Adrian Vasquez, and Hiromitsu Shinkawa) who were stranded at sea due to accidents, engine failure, or natural disasters and were eventually rescued, which directly supports the claim.",
+        "_elapsed": 14.6,
+        "_test_id": "ragtruth_19",
+        "_expected": "grounded",
+        "_hall_type": "clean",
+        "_correct": true
+      },
+      {
+        "verdict": "GROUNDED",
+        "confidence": 1.0,
+        "reasoning": "The source provides five distinct accounts of individuals surviving alone in the ocean: Louis Jordan, Jose Salvador Alvarenga (who survived from late 2012 to January 2013), Ron Ingraham (12 days), Adrian Vasquez (26 days), and Hiromitsu Shinkawa. This supports the claim that there are numerous stories of people surviving alone in the ocean for extended periods.",
+        "_elapsed": 22.5,
+        "_test_id": "ragtruth_20",
+        "_expected": "grounded",
+        "_hall_type": "clean",
+        "_correct": true
+      },
+      {
+        "verdict": "HALLUCINATED",
+        "confidence": 1.0,
+        "reasoning": "The claim contains two major hallucinations: 1) It describes Louis Jordan as a '35-year-old sailor', whereas the source states he had a '35-foot sailboat'. 2) It states he was stranded for 'five days', but the source does not mention the duration of his stranding.",
+        "_elapsed": 16.3,
+        "_test_id": "ragtruth_21",
+        "_expected": "hallucinated",
+        "_hall_type": "Evident Baseless Info",
+        "_correct": true
+      },
+      {
+        "verdict": "HALLUCINATED",
+        "confidence": 1.0,
+        "reasoning": "The source does not mention that Louis Jordan was adrift for 20 days. Furthermore, the source states Jose Salvador Alvarenga set off in 'late 2012' and was rescued in 'January 2013', which contradicts the claim of a '13-month ordeal'.",
+        "_elapsed": 21.4,
+        "_test_id": "ragtruth_22",
+        "_expected": "hallucinated",
+        "_hall_type": "Evident Baseless Info",
+        "_correct": true
+      },
+      {
+        "verdict": "HALLUCINATED",
+        "confidence": 1.0,
+        "reasoning": "The source does not mention any individual surviving for 66 days, nor does it describe the use of a makeshift mast and sail to catch fish and collect rainwater. The survival durations mentioned are 12 days (Ron Ingraham) and 26 days (Adrian Vasquez), and the survival of Jose Salvador Alvarenga does not specify a duration of 66 days or the methods described in the claim.",
+        "_elapsed": 17.3,
+        "_test_id": "ragtruth_23",
+        "_expected": "hallucinated",
+        "_hall_type": "Evident Baseless Info",
+        "_correct": true
+      },
+      {
+        "verdict": "HALLUCINATED",
+        "confidence": 1.0,
+        "reasoning": "The source does not mention that Jose Salvador Alvarenga was stranded for 438 days. In fact, the source states he set off in 'late 2012' and was rescued in 'January 2013', which is a much shorter duration. Additionally, the source does not mention the boat being 'blown off course' or his inability to communicate.",
+        "_elapsed": 19.8,
+        "_test_id": "ragtruth_23",
+        "_expected": "hallucinated",
+        "_hall_type": "Evident Baseless Info",
+        "_correct": true
+      },
+      {
+        "verdict": "GROUNDED",
+        "confidence": 1.0,
+        "reasoning": "The source explicitly states that the FBI charged Keonna Thomas with 'trying to travel overseas to fight for ISIS' and identifies Keonna Thomas as being from Philadelphia.",
+        "_elapsed": 9.0,
+        "_test_id": "ragtruth_24",
+        "_expected": "grounded",
+        "_hall_type": "clean",
+        "_correct": true
+      },
+      {
+        "verdict": "GROUNDED",
+        "confidence": 1.0,
+        "reasoning": "The source explicitly states that Keonna Thomas, a woman from Philadelphia, was charged by the FBI for trying to travel overseas to fight for ISIS.",
+        "_elapsed": 9.5,
+        "_test_id": "ragtruth_25",
+        "_expected": "grounded",
+        "_hall_type": "clean",
+        "_correct": true
+      },
+      {
+        "verdict": "HALLUCINATED",
+        "confidence": 1.0,
+        "reasoning": "The claim includes aliases for Keonna Thomas ('Young Lioness' and 'Fatayat Al Khilafah') that are not mentioned anywhere in the provided source text.",
+        "_elapsed": 12.1,
+        "_test_id": "ragtruth_26",
+        "_expected": "grounded",
+        "_hall_type": "clean",
+        "_correct": false
+      },
+      {
+        "verdict": "GROUNDED",
+        "confidence": 1.0,
+        "reasoning": "The source explicitly states that the FBI charged Keonna Thomas, a woman from Philadelphia, for trying to travel overseas to fight for ISIS and that she had purchased an electronic visa for Turkey.",
+        "_elapsed": 13.1,
+        "_test_id": "ragtruth_27",
+        "_expected": "grounded",
+        "_hall_type": "clean",
+        "_correct": true
+      },
+      {
+        "verdict": "HALLUCINATED",
+        "confidence": 1.0,
+        "reasoning": "The claim states that three women were charged with attempting to join ISIS. However, the source indicates that only Keonna Thomas was charged with trying to travel overseas to fight for ISIS. The other two women, Noelle Velentzas and Asia Siddiqui, were arrested for planning to build an explosive device in the United States, not for attempting to join ISIS.",
+        "_elapsed": 16.7,
+        "_test_id": "ragtruth_28",
+        "_expected": "hallucinated",
+        "_hall_type": "Evident Conflict",
+        "_correct": true
+      },
+      {
+        "verdict": "HALLUCINATED",
+        "confidence": 0.9,
+        "reasoning": "While the source confirms Thomas purchased a ticket to Barcelona, it states she was 'charged' (S0), not 'arrested'. Furthermore, the source explicitly lists the 'arrest of Keonna Thomas' under the UNKNOWN section, meaning the claim that she was arrested is not supported by the provided text.",
+        "_elapsed": 40.0,
+        "_test_id": "ragtruth_28",
+        "_expected": "hallucinated",
+        "_hall_type": "Evident Conflict",
+        "_correct": true
+      },
+      {
+        "verdict": "HALLUCINATED",
+        "confidence": 1.0,
+        "reasoning": "The claim states she was arrested on March 26, but the source indicates that on March 26, Keonna Thomas 'purchased ticket' to Barcelona. The source does not provide an arrest date for Keonna Thomas (listing it as UNKNOWN), only that she was 'charged' on Thursday.",
+        "_elapsed": 14.5,
+        "_test_id": "ragtruth_29",
+        "_expected": "hallucinated",
+        "_hall_type": "Evident Conflict",
+        "_correct": true
+      },
+      {
+        "verdict": "HALLUCINATED",
+        "confidence": 1.0,
+        "reasoning": "The source mentions that police in Malegaon are requiring identity cards for cattle (S0) and creating a database to solve cow slaughter cases (S5), but it does not mention photographing the cattle or providing specific unique features such as age and length of tail.",
+        "_elapsed": 27.3,
+        "_test_id": "ragtruth_30",
+        "_expected": "grounded",
+        "_hall_type": "clean",
+        "_correct": false
+      },
+      {
+        "verdict": "HALLUCINATED",
+        "confidence": 0.9,
+        "reasoning": "The source mentions that police in Malegaon are 'requiring identity cards for cattle' (S0), but it does not mention 'mugshot photos' or 'unique features'. These specific details are not present in the provided source.",
+        "_elapsed": 23.8,
+        "_test_id": "ragtruth_31",
+        "_expected": "grounded",
+        "_hall_type": "clean",
+        "_correct": false
+      },
+      {
+        "verdict": "GROUNDED",
+        "confidence": 1.0,
+        "reasoning": "The source explicitly states that Police in Malegaon (ENT_1) are requiring identity cards for cattle (S0), and that cattle includes cows (ENT_2). It also confirms that Malegaon is a city in Maharashtra (ENT_3), and that there is a ban on the sale and consumption of beef in Maharashtra (S1), which is a state in India (ENT_4).",
+        "_elapsed": 39.1,
+        "_test_id": "ragtruth_32",
+        "_expected": "grounded",
+        "_hall_type": "clean",
+        "_correct": true
+      },
+      {
+        "verdict": "HALLUCINATED",
+        "confidence": 1.0,
+        "reasoning": "The claim mentions that some people called the move an 'invasion of privacy,' but there is no mention of privacy concerns or the specific arguments cited in the provided SOURCE. While the SOURCE confirms that cows are considered holy by the majority Hindu population, the rest of the claim's narrative regarding the specific nature of the controversy is not supported.",
+        "_elapsed": 27.0,
+        "_test_id": "ragtruth_33",
+        "_expected": "hallucinated",
+        "_hall_type": "Evident Baseless Info",
+        "_correct": true
+      },
+      {
+        "verdict": "GROUNDED",
+        "confidence": 1.0,
+        "reasoning": "The source explicitly states that police in Malegaon (ENT_1) are requiring identity cards for cattle (S0) and that there is a ban on the sale and consumption of beef in Maharashtra (S1), where Malegaon is located.",
+        "_elapsed": 17.5,
+        "_test_id": "ragtruth_34",
+        "_expected": "grounded",
+        "_hall_type": "clean",
+        "_correct": true
+      }
+    ],
+    "isolated": [
+      {
+        "verdict": "HALLUCINATED",
+        "confidence": 1.0,
+        "reasoning": "The claim states that Margot is Anne Frank's 'older sister'. While the source identifies Anne and Margot as sisters, it never specifies that Margot is the older of the two. According to the rule 'GROUNDED = every fact supported', the inclusion of the word 'older' constitutes a hallucination as it is not supported by the provided text.",
+        "_elapsed": 75.7,
+        "_test_id": "ragtruth_0",
+        "_expected": "grounded",
+        "_hall_type": "clean",
+        "_correct": false
+      },
+      {
+        "verdict": "HALLUCINATED",
+        "confidence": 1.0,
+        "reasoning": "The source confirms that new research from the Anne Frank House shows Anne and Margot died at least a month earlier than previously thought and that they were sisters, but it never specifies that Margot was the older sister.",
+        "_elapsed": 54.9,
+        "_test_id": "ragtruth_1",
+        "_expected": "grounded",
+        "_hall_type": "clean",
+        "_correct": false
+      },
+      {
+        "verdict": "HALLUCINATED",
+        "confidence": 1.0,
+        "reasoning": "The claim states that the sisters are believed to have died before February 7, 2022. The source discusses events occurring in 1944 and 1945, and mentions that they had symptoms before February 7 (implicitly in 1945), not 2022.",
+        "_elapsed": 13.8,
+        "_test_id": "ragtruth_2",
+        "_expected": "hallucinated",
+        "_hall_type": "Evident Conflict",
+        "_correct": true
+      },
+      {
+        "verdict": "HALLUCINATED",
+        "confidence": 0.9,
+        "reasoning": "While the source mentions that 'new research from the Anne Frank House shows Anne and Margot died at least a month earlier than previously thought,' it does not explicitly state that the Anne Frank House issued a 'corrected statement.' The claim adds a specific action (issuing a statement) that is not present in the text.",
+        "_elapsed": 21.3,
+        "_test_id": "ragtruth_2",
+        "_expected": "hallucinated",
+        "_hall_type": "Evident Baseless Info",
+        "_correct": true
+      },
+      {
+        "verdict": "HALLUCINATED",
+        "confidence": 1.0,
+        "reasoning": "The claim states that the sisters are believed to have died before February 7, 2022. The source discusses events occurring in 1944 and 1945, and mentions that they had symptoms before February 7 (implicitly in 1945), not 2022.",
+        "_elapsed": 13.7,
+        "_test_id": "ragtruth_2",
+        "_expected": "hallucinated",
+        "_hall_type": "Evident Conflict",
+        "_correct": true
+      },
+      {
+        "verdict": "HALLUCINATED",
+        "confidence": 0.9,
+        "reasoning": "The source states that Anne's diary 'endures as one of the world's most popular books' and mentions that Anne herself 'never gave up hope,' but it does not explicitly describe the diary as a 'powerful symbol of hope and resilience.' Specifically, the word 'resilience' does not appear in the text, and the characterization of the diary as a 'symbol' is an external interpretation not present in the provided source.",
+        "_elapsed": 37.1,
+        "_test_id": "ragtruth_3",
+        "_expected": "hallucinated",
+        "_hall_type": "Subtle Baseless Info",
+        "_correct": true
+      },
+      {
+        "verdict": "HALLUCINATED",
+        "confidence": 1.0,
+        "reasoning": "While the source confirms that Anne Frank died of typhus in a Nazi concentration camp at age 15, it contains no information regarding the current date or the fact that this occurred 'seventy years ago.'",
+        "_elapsed": 15.4,
+        "_test_id": "ragtruth_4",
+        "_expected": "grounded",
+        "_hall_type": "clean",
+        "_correct": false
+      },
+      {
+        "verdict": "HALLUCINATED",
+        "confidence": 1.0,
+        "reasoning": "The claim states that researchers concluded the sisters did not survive past February 7. However, the source states that witnesses saw symptoms *before* February 7 and that typhus deaths usually occur around *twelve days after* symptoms appear. The source concludes they probably did not survive to *March 1945*, but it does not state they died by February 7; in fact, the timeline provided suggests they likely died after February 7.",
+        "_elapsed": 21.8,
+        "_test_id": "ragtruth_5",
+        "_expected": "hallucinated",
+        "_hall_type": "Evident Conflict",
+        "_correct": true
+      },
+      {
+        "verdict": "HALLUCINATED",
+        "confidence": 1.0,
+        "reasoning": "The source states that Anne's diary 'endures as one of the world's most popular books,' but it does not explicitly describe it as a 'powerful symbol of her resilience' or a 'reminder of the horrors of the Holocaust.' While the text describes the horrors of the camp and Anne's hope, it does not attribute these specific symbolic meanings to the diary.",
+        "_elapsed": 19.9,
+        "_test_id": "ragtruth_5",
+        "_expected": "hallucinated",
+        "_hall_type": "Subtle Baseless Info",
+        "_correct": true
+      },
+      {
+        "verdict": "HALLUCINATED",
+        "confidence": 1.0,
+        "reasoning": "The claim is an incomplete fragment ('Andrew Getty, oil tycoon J.'). Furthermore, the source identifies J. Paul Getty as the 'oil baron,' not Andrew Getty. There is no statement in the text referring to Andrew Getty as an oil tycoon.",
+        "_elapsed": 14.5,
+        "_test_id": "ragtruth_6",
+        "_expected": "grounded",
+        "_hall_type": "clean",
+        "_correct": false
+      },
+      {
+        "verdict": "GROUNDED",
+        "confidence": 1.0,
+        "reasoning": "The source explicitly states that Andrew Getty died and that a Los Angeles Police Department spokesman said it appeared to be natural causes. The source also establishes that he is part of the Getty family, whose fortune (estimated at $5 billion) originated from J. Paul Getty, an oil baron.",
+        "_elapsed": 15.9,
+        "_test_id": "ragtruth_7",
+        "_expected": "grounded",
+        "_hall_type": "clean",
+        "_correct": true
+      },
+      {
+        "verdict": "GROUNDED",
+        "confidence": 1.0,
+        "reasoning": "The source explicitly states that Andrew Getty died of what a police spokesman said 'appear to be natural causes.' It also establishes that he is the son of Gordon Getty and grandson of J. Paul Getty (an oil baron), with the family net worth estimated at about $5 billion, supporting the claim that he is an heir to billions of oil money.",
+        "_elapsed": 17.4,
+        "_test_id": "ragtruth_8",
+        "_expected": "grounded",
+        "_hall_type": "clean",
+        "_correct": true
+      },
+      {
+        "verdict": "GROUNDED",
+        "confidence": 1.0,
+        "reasoning": "The source explicitly states that Andrew Getty died at age 47. It identifies him as the son of Gordon Getty and grandson of J. Paul Getty (described as an oil baron), and notes the family's net worth is approximately $5 billion, which supports the description of him as a billionaire heir to the Getty oil fortune.",
+        "_elapsed": 28.9,
+        "_test_id": "ragtruth_9",
+        "_expected": "grounded",
+        "_hall_type": "clean",
+        "_correct": true
+      },
+      {
+        "verdict": "HALLUCINATED",
+        "confidence": 1.0,
+        "reasoning": "The source attributes the net worth of $2.1 billion to Gordon Getty, not Andrew Getty, who is the primary subject of the report.",
+        "_elapsed": 28.0,
+        "_test_id": "ragtruth_10",
+        "_expected": "hallucinated",
+        "_hall_type": "Evident Conflict",
+        "_correct": true
+      },
+      {
+        "verdict": "GROUNDED",
+        "confidence": 1.0,
+        "reasoning": "The source explicitly states that Andrew Getty died at the age of 47. It also establishes that he is part of the Getty family, whose fortune was created by oil baron J. Paul Getty.",
+        "_elapsed": 16.8,
+        "_test_id": "ragtruth_11",
+        "_expected": "grounded",
+        "_hall_type": "clean",
+        "_correct": true
+      },
+      {
+        "verdict": "GROUNDED",
+        "confidence": 0.9,
+        "reasoning": "The source explicitly states that Deputy Sports Minister Abdolhamid Ahmadi announced a plan to allow 'women and families' into sports stadiums in the next year, which supports the claim that Iran is set to lift its ban on women attending sports events, although the source notes that some restrictions will remain for certain sports.",
+        "_elapsed": 33.7,
+        "_test_id": "ragtruth_12",
+        "_expected": "grounded",
+        "_hall_type": "clean",
+        "_correct": true
+      },
+      {
+        "verdict": "GROUNDED",
+        "confidence": 1.0,
+        "reasoning": "The source explicitly states that Deputy Sports Minister Abdolhamid Ahmadi (a top Iranian sports official) announced a plan to allow women and families into sports stadiums, specifically noting that 'restrictions would be lifted for indoor sports events.'",
+        "_elapsed": 12.9,
+        "_test_id": "ragtruth_13",
+        "_expected": "grounded",
+        "_hall_type": "clean",
+        "_correct": true
+      },
+      {
+        "verdict": "GROUNDED",
+        "confidence": 1.0,
+        "reasoning": "The source explicitly states that Deputy Sports Minister Abdolhamid Ahmadi announced a plan to allow 'women and families' into sports stadiums in the next year, specifically mentioning that restrictions would be lifted for indoor sports events while some sports would remain restricted.",
+        "_elapsed": 10.3,
+        "_test_id": "ragtruth_14",
+        "_expected": "grounded",
+        "_hall_type": "clean",
+        "_correct": true
+      },
+      {
+        "verdict": "HALLUCINATED",
+        "confidence": 0.9,
+        "reasoning": "The claim makes two inaccuracies: 1) It generalizes the lifting of the ban to 'men's sports events,' whereas the source specifies that restrictions would be lifted for 'indoor sports events' and that 'some sports will remain restricted.' 2) It explicitly attributes the motive of the announcement to improving chances of hosting future events; while the source mentions that the ban was an impediment to hosting the 2019 Asian Cup, it does not explicitly state that this was the reason for the Deputy Sports Minister's announcement.",
+        "_elapsed": 24.5,
+        "_test_id": "ragtruth_15",
+        "_expected": "grounded",
+        "_hall_type": "clean",
+        "_correct": false
+      },
+      {
+        "verdict": "GROUNDED",
+        "confidence": 1.0,
+        "reasoning": "The source states that Deputy Sports Minister Abdolhamid Ahmadi announced a plan to allow 'women and families' into sports stadiums in the next year, and it confirms that women have been barred from most sports events involving men since the 1979 Islamic Revolution, which establishes that the ban is decades-old.",
+        "_elapsed": 15.8,
+        "_test_id": "ragtruth_16",
+        "_expected": "grounded",
+        "_hall_type": "clean",
+        "_correct": true
+      },
+      {
+        "verdict": "GROUNDED",
+        "confidence": 1.0,
+        "reasoning": "The claim is directly supported by the first section of the source, which states that Deputy Sports Minister Abdolhamid Ahmadi announced a plan to allow 'women and families' into sports stadiums and that restrictions would be lifted for indoor sports events.",
+        "_elapsed": 14.1,
+        "_test_id": "ragtruth_17",
+        "_expected": "grounded",
+        "_hall_type": "clean",
+        "_correct": true
+      },
+      {
+        "verdict": "GROUNDED",
+        "confidence": 1.0,
+        "reasoning": "The claim is directly supported by the 'Survival at Sea' section of the source, which contrasts Hollywood movies with real-life survival and explicitly states that survivors must use 'ingenuity, resourcefulness, and luck.' The subsequent accounts of Jordan, Alvarenga, Ingraham, Vasquez, and Shinkawa provide real-life examples of these traits and human endurance.",
+        "_elapsed": 16.5,
+        "_test_id": "ragtruth_18",
+        "_expected": "grounded",
+        "_hall_type": "clean",
+        "_correct": true
+      },
+      {
+        "verdict": "GROUNDED",
+        "confidence": 1.0,
+        "reasoning": "The source provides five separate accounts of individuals (Louis Jordan, Jose Salvador Alvarenga, Ron Ingraham, Adrian Vasquez, and Hiromitsu Shinkawa) who were stranded at sea and survived, with durations ranging from a few days to over a year, which supports the claim.",
+        "_elapsed": 17.5,
+        "_test_id": "ragtruth_19",
+        "_expected": "grounded",
+        "_hall_type": "clean",
+        "_correct": true
+      },
+      {
+        "verdict": "GROUNDED",
+        "confidence": 1.0,
+        "reasoning": "The source provides five distinct accounts of individuals (Louis Jordan, Jose Salvador Alvarenga, Ron Ingraham, Adrian Vasquez, and Hiromitsu Shinkawa) who survived alone in the ocean for various extended periods, ranging from a few days to over a year.",
+        "_elapsed": 18.0,
+        "_test_id": "ragtruth_20",
+        "_expected": "grounded",
+        "_hall_type": "clean",
+        "_correct": true
+      },
+      {
+        "verdict": "HALLUCINATED",
+        "confidence": 1.0,
+        "reasoning": "The claim contains two major hallucinations: 1) It describes Louis Jordan as a '35-year-old sailor', whereas the source states he had a '35-foot sailboat' (confusing boat size with age). 2) It states he was stranded for 'five days', but the source does not mention the duration of his stranding.",
+        "_elapsed": 11.9,
+        "_test_id": "ragtruth_21",
+        "_expected": "hallucinated",
+        "_hall_type": "Evident Baseless Info",
+        "_correct": true
+      },
+      {
+        "verdict": "HALLUCINATED",
+        "confidence": 1.0,
+        "reasoning": "The claim states that Louis Jordan was adrift for 20 days, but the source does not mention the duration of his time at sea, only that he set off in late January and was rescued on a Thursday.",
+        "_elapsed": 16.3,
+        "_test_id": "ragtruth_22",
+        "_expected": "hallucinated",
+        "_hall_type": "Evident Baseless Info",
+        "_correct": true
+      },
+      {
+        "verdict": "HALLUCINATED",
+        "confidence": 1.0,
+        "reasoning": "The source does not mention any individual surviving for 66 days. Additionally, while some survivors collected rainwater or caught fish, none are described as using a 'makeshift mast and sail' to do so (Louis Jordan used laundry to trap fish).",
+        "_elapsed": 14.3,
+        "_test_id": "ragtruth_23",
+        "_expected": "hallucinated",
+        "_hall_type": "Evident Baseless Info",
+        "_correct": true
+      },
+      {
+        "verdict": "HALLUCINATED",
+        "confidence": 1.0,
+        "reasoning": "The claim states Jose Salvador Alvarenga was stranded for '438 days', but the source only states he survived for '13 or 14 months'. The specific number 438 is not present in the source text.",
+        "_elapsed": 17.5,
+        "_test_id": "ragtruth_23",
+        "_expected": "hallucinated",
+        "_hall_type": "Evident Baseless Info",
+        "_correct": true
+      },
+      {
+        "verdict": "GROUNDED",
+        "confidence": 1.0,
+        "reasoning": "The claim is directly supported by the first section of the source, which states that Keonna Thomas, a Philadelphia woman, was charged by the FBI with trying to travel overseas to fight for ISIS.",
+        "_elapsed": 8.4,
+        "_test_id": "ragtruth_24",
+        "_expected": "grounded",
+        "_hall_type": "clean",
+        "_correct": true
+      },
+      {
+        "verdict": "GROUNDED",
+        "confidence": 1.0,
+        "reasoning": "The claim is directly supported by the first section of the source, which states that Keonna Thomas, a Philadelphia woman, was charged by the FBI with trying to travel overseas to fight for ISIS.",
+        "_elapsed": 8.0,
+        "_test_id": "ragtruth_25",
+        "_expected": "grounded",
+        "_hall_type": "clean",
+        "_correct": true
+      },
+      {
+        "verdict": "GROUNDED",
+        "confidence": 1.0,
+        "reasoning": "The claim is directly supported by the first section of the source, which states that Keonna Thomas, a Philadelphia woman also known as 'Young Lioness' and 'Fatayat Al Khilafah,' was charged by the FBI with trying to travel overseas to fight for ISIS.",
+        "_elapsed": 11.3,
+        "_test_id": "ragtruth_26",
+        "_expected": "grounded",
+        "_hall_type": "clean",
+        "_correct": true
+      },
+      {
+        "verdict": "GROUNDED",
+        "confidence": 1.0,
+        "reasoning": "The source explicitly states that Keonna Thomas, a Philadelphia woman, was charged by the FBI with trying to travel overseas to fight for ISIS and that she purchased an electronic visa to Turkey.",
+        "_elapsed": 9.1,
+        "_test_id": "ragtruth_27",
+        "_expected": "grounded",
+        "_hall_type": "clean",
+        "_correct": true
+      },
+      {
+        "verdict": "HALLUCINATED",
+        "confidence": 1.0,
+        "reasoning": "The claim states that three women were charged with attempting to join ISIS. However, the source indicates that only Keonna Thomas was charged with trying to travel to fight for ISIS. The other two women, Noelle Velentzas and Asia Siddiqui, were accused of planning to build an explosive device for attacks within the United States, not attempting to join ISIS.",
+        "_elapsed": 14.2,
+        "_test_id": "ragtruth_28",
+        "_expected": "hallucinated",
+        "_hall_type": "Evident Conflict",
+        "_correct": true
+      },
+      {
+        "verdict": "HALLUCINATED",
+        "confidence": 1.0,
+        "reasoning": "While the source confirms Thomas purchased a ticket to Barcelona, it explicitly states that 'it is not clear when or where she was arrested.' Therefore, the claim that she was arrested 'before her trip' is an inference not supported by the text.",
+        "_elapsed": 21.8,
+        "_test_id": "ragtruth_28",
+        "_expected": "hallucinated",
+        "_hall_type": "Evident Conflict",
+        "_correct": true
+      },
+      {
+        "verdict": "HALLUCINATED",
+        "confidence": 1.0,
+        "reasoning": "The claim states she was arrested on March 26, but the source explicitly states that on March 26 she purchased a round-trip ticket to Barcelona. Furthermore, the source explicitly lists 'When Keonna Thomas was arrested' as 'NOT STATED'.",
+        "_elapsed": 12.0,
+        "_test_id": "ragtruth_29",
+        "_expected": "hallucinated",
+        "_hall_type": "Evident Conflict",
+        "_correct": true
+      },
+      {
+        "verdict": "HALLUCINATED",
+        "confidence": 0.9,
+        "reasoning": "The claim states that the identity cards are to 'enforce a recent state-wide ban on the sale and consumption of beef.' However, the source explicitly states that the police are requiring these cards 'to solve cow slaughter cases.' While the Maharashtra Animal Preservation Bill does ban the sale and consumption of beef, the source links the specific action of cattle identification to slaughter cases, not to the enforcement of the sale and consumption ban.",
+        "_elapsed": 43.2,
+        "_test_id": "ragtruth_30",
+        "_expected": "grounded",
+        "_hall_type": "clean",
+        "_correct": false
+      },
+      {
+        "verdict": "GROUNDED",
+        "confidence": 1.0,
+        "reasoning": "The source explicitly states that police in Malegaon, Maharashtra, are requiring identity cards for cattle, including 'mugshots' and details on unique features. It also describes the Maharashtra Animal Preservation Bill, which bans the killing of bulls and bullocks and penalizes the consumption or sale of beef, establishing the state-wide ban mentioned in the claim.",
+        "_elapsed": 20.2,
+        "_test_id": "ragtruth_31",
+        "_expected": "grounded",
+        "_hall_type": "clean",
+        "_correct": true
+      },
+      {
+        "verdict": "GROUNDED",
+        "confidence": 1.0,
+        "reasoning": "The source explicitly states that police in Malegaon, Maharashtra, are requiring identity cards for cattle to solve cow slaughter cases. It also describes the Maharashtra Animal Preservation Bill, which bans the sale and consumption of beef (punishable by five years in prison), establishing the state-wide ban mentioned in the claim.",
+        "_elapsed": 21.7,
+        "_test_id": "ragtruth_32",
+        "_expected": "grounded",
+        "_hall_type": "clean",
+        "_correct": true
+      },
+      {
+        "verdict": "HALLUCINATED",
+        "confidence": 1.0,
+        "reasoning": "The claim states that some people are calling the move an 'invasion of privacy.' While the source mentions that red meat lovers argue the government lacks the right to 'interfere in personal preferences,' it never mentions 'invasion of privacy.'",
+        "_elapsed": 16.4,
+        "_test_id": "ragtruth_33",
+        "_expected": "hallucinated",
+        "_hall_type": "Evident Baseless Info",
+        "_correct": true
+      },
+      {
+        "verdict": "HALLUCINATED",
+        "confidence": 0.9,
+        "reasoning": "While the source confirms that police in Malegaon require identity cards for cattle and that there is a state-wide ban on beef sales and consumption in Maharashtra, it does not state that the identity card requirement was implemented 'after' the ban. The temporal relationship between these two events is not provided in the text.",
+        "_elapsed": 28.6,
+        "_test_id": "ragtruth_34",
+        "_expected": "grounded",
+        "_hall_type": "clean",
+        "_correct": false
+      }
+    ],
+    "overlapping": [
+      {
+        "verdict": "GROUNDED",
+        "confidence": 1.0,
+        "reasoning": "The claim is directly supported by the first section of the source text, which states: 'New research from the Anne Frank House shows Anne Frank and her older sister Margot Frank died at least a month earlier than previously thought.'",
+        "_elapsed": 10.0,
+        "_test_id": "ragtruth_0",
+        "_expected": "grounded",
+        "_hall_type": "clean",
+        "_correct": true
+      },
+      {
+        "verdict": "GROUNDED",
+        "confidence": 1.0,
+        "reasoning": "The claim is directly supported by the first section of the source text, which states: 'New research from the Anne Frank House shows Anne Frank and her older sister Margot Frank died at least a month earlier than previously thought.'",
+        "_elapsed": 9.7,
+        "_test_id": "ragtruth_1",
+        "_expected": "grounded",
+        "_hall_type": "clean",
+        "_correct": true
+      },
+      {
+        "verdict": "HALLUCINATED",
+        "confidence": 1.0,
+        "reasoning": "The claim states that the sisters are believed to have died before February 7, 2022. However, the source indicates they died in 1945 (mentioning the camp was liberated on March 31, 1945, and they likely died before March 1945). The year 2022 is a fabrication.",
+        "_elapsed": 14.3,
+        "_test_id": "ragtruth_2",
+        "_expected": "hallucinated",
+        "_hall_type": "Evident Conflict",
+        "_correct": true
+      },
+      {
+        "verdict": "HALLUCINATED",
+        "confidence": 0.9,
+        "reasoning": "While the source mentions that 'New research from the Anne Frank House shows' that Anne Frank died earlier than previously thought, it never explicitly states that the Anne Frank House 'issued a corrected statement.' The source describes the findings and conclusions of the research, but not the act of issuing a formal statement.",
+        "_elapsed": 20.9,
+        "_test_id": "ragtruth_2",
+        "_expected": "hallucinated",
+        "_hall_type": "Evident Baseless Info",
+        "_correct": true
+      },
+      {
+        "verdict": "HALLUCINATED",
+        "confidence": 1.0,
+        "reasoning": "The claim states that the sisters are believed to have died before February 7, 2022. However, the source indicates they died in 1945 (mentioning the camp was liberated on March 31, 1945, and they likely died before March 1945). The year 2022 is a fabrication.",
+        "_elapsed": 14.5,
+        "_test_id": "ragtruth_2",
+        "_expected": "hallucinated",
+        "_hall_type": "Evident Conflict",
+        "_correct": true
+      },
+      {
+        "verdict": "HALLUCINATED",
+        "confidence": 0.9,
+        "reasoning": "The source states that Anne Frank's diary 'endures as one of the world's most popular books' and that Anne Frank herself 'never gave up hope,' but it does not explicitly describe the diary as a 'powerful symbol of hope and resilience.'",
+        "_elapsed": 23.8,
+        "_test_id": "ragtruth_3",
+        "_expected": "hallucinated",
+        "_hall_type": "Subtle Baseless Info",
+        "_correct": true
+      },
+      {
+        "verdict": "GROUNDED",
+        "confidence": 1.0,
+        "reasoning": "The claim is directly supported by the first sentence of the source: 'Anne Frank died of typhus in a Nazi concentration camp at age 15 seventy years ago.'",
+        "_elapsed": 10.0,
+        "_test_id": "ragtruth_4",
+        "_expected": "grounded",
+        "_hall_type": "clean",
+        "_correct": true
+      },
+      {
+        "verdict": "HALLUCINATED",
+        "confidence": 1.0,
+        "reasoning": "The claim states that researchers concluded the sisters 'did not survive past February 7'. However, the source actually states that witnesses said both had 'symptoms before February 7' and that researchers concluded it was 'unlikely' they survived until March. Furthermore, the source explicitly states that 'The exact dates of death for Anne Frank and Margot Frank remain unclear.'",
+        "_elapsed": 23.9,
+        "_test_id": "ragtruth_5",
+        "_expected": "hallucinated",
+        "_hall_type": "Evident Conflict",
+        "_correct": true
+      },
+      {
+        "verdict": "HALLUCINATED",
+        "confidence": 0.9,
+        "reasoning": "While the source mentions that Anne Frank's diary 'endures as one of the world's most popular books' and describes the horrors of the concentration camp and Anne's hope (resilience), it never explicitly states that the diary is a 'powerful symbol of her resilience' or a 'reminder of the horrors of the Holocaust.' The claim adds interpretive language and conclusions not present in the provided text.",
+        "_elapsed": 24.7,
+        "_test_id": "ragtruth_5",
+        "_expected": "hallucinated",
+        "_hall_type": "Subtle Baseless Info",
+        "_correct": true
+      },
+      {
+        "verdict": "HALLUCINATED",
+        "confidence": 1.0,
+        "reasoning": "The claim is a fragment that appears to misattribute the title of 'oil tycoon' to Andrew Getty or conflate him with J. Paul Getty. The source explicitly states that Andrew Getty was the 'grandson of oil tycoon J. Paul Getty,' not the oil tycoon himself.",
+        "_elapsed": 23.4,
+        "_test_id": "ragtruth_6",
+        "_expected": "grounded",
+        "_hall_type": "clean",
+        "_correct": false
+      },
+      {
+        "verdict": "HALLUCINATED",
+        "confidence": 1.0,
+        "reasoning": "The source mentions that Detective Meghan Aguilar stated there was no foul play and that Andrew Getty 'appears to have died of natural causes,' but it never explicitly mentions the 'Los Angeles Police Department.' It only mentions the 'Los Angeles County coroner's office.'",
+        "_elapsed": 21.5,
+        "_test_id": "ragtruth_7",
+        "_expected": "grounded",
+        "_hall_type": "clean",
+        "_correct": false
+      },
+      {
+        "verdict": "GROUNDED",
+        "confidence": 1.0,
+        "reasoning": "The claim is directly supported by the first paragraph of the source, which states: 'Andrew Getty, an heir to billions of oil money and grandson of oil tycoon J. Paul Getty, appears to have died of natural causes.'",
+        "_elapsed": 10.8,
+        "_test_id": "ragtruth_8",
+        "_expected": "grounded",
+        "_hall_type": "clean",
+        "_correct": true
+      },
+      {
+        "verdict": "GROUNDED",
+        "confidence": 1.0,
+        "reasoning": "The source explicitly states that Andrew Getty, an 'heir to billions of oil money', died at the age of 47.",
+        "_elapsed": 12.0,
+        "_test_id": "ragtruth_9",
+        "_expected": "grounded",
+        "_hall_type": "clean",
+        "_correct": true
+      },
+      {
+        "verdict": "HALLUCINATED",
+        "confidence": 1.0,
+        "reasoning": "The source states that Gordon Getty has a net worth of $2.1 billion, not Andrew Getty. The claim incorrectly attributes this net worth to the subject (Andrew Getty).",
+        "_elapsed": 12.4,
+        "_test_id": "ragtruth_10",
+        "_expected": "hallucinated",
+        "_hall_type": "Evident Conflict",
+        "_correct": true
+      },
+      {
+        "verdict": "GROUNDED",
+        "confidence": 1.0,
+        "reasoning": "The source explicitly states that Andrew Getty, an heir to billions of oil money and grandson of J. Paul Getty, died and specifies his age as 47.",
+        "_elapsed": 9.3,
+        "_test_id": "ragtruth_11",
+        "_expected": "grounded",
+        "_hall_type": "clean",
+        "_correct": true
+      },
+      {
+        "verdict": "HALLUCINATED",
+        "confidence": 0.9,
+        "reasoning": "The claim states that Iran is set to lift its ban on women attending sports events, implying a general lift. However, the source specifies that the ban will only be lifted for 'some events' (specifically indoor sports events) and explicitly states that 'rules won't change for all matches' because some sports are mainly related to men.",
+        "_elapsed": 60.5,
+        "_test_id": "ragtruth_12",
+        "_expected": "grounded",
+        "_hall_type": "clean",
+        "_correct": false
+      },
+      {
+        "verdict": "GROUNDED",
+        "confidence": 1.0,
+        "reasoning": "The source explicitly states that Deputy Sports Minister Abdolhamid Ahmadi (a top Iranian sports official) said that restrictions would be lifted for indoor sports events.",
+        "_elapsed": 12.2,
+        "_test_id": "ragtruth_13",
+        "_expected": "grounded",
+        "_hall_type": "clean",
+        "_correct": true
+      },
+      {
+        "verdict": "GROUNDED",
+        "confidence": 1.0,
+        "reasoning": "The source explicitly states that Deputy Sports Minister Abdolhamid Ahmadi announced a plan to allow 'women and families' to enter sports stadiums in the next year and that the ban will be lifted for 'some events,' specifically mentioning indoor sports events.",
+        "_elapsed": 11.0,
+        "_test_id": "ragtruth_14",
+        "_expected": "grounded",
+        "_hall_type": "clean",
+        "_correct": true
+      },
+      {
+        "verdict": "HALLUCINATED",
+        "confidence": 1.0,
+        "reasoning": "The claim contains two inaccuracies based on the source: 1) It suggests a general lifting of the ban on women attending men's sports events, whereas the source specifies the ban will only be lifted for 'some events' and specifically 'indoor sports events,' noting that 'rules won't change for all matches.' 2) It attributes the motive for the announcement to an effort to improve Iran's chances of hosting future international sports events; while the source mentions the ban was an impediment to securing the 2019 Asian Cup, it does not explicitly state that this was the reason for the Deputy Sports Minister's announcement.",
+        "_elapsed": 26.2,
+        "_test_id": "ragtruth_15",
+        "_expected": "grounded",
+        "_hall_type": "clean",
+        "_correct": false
+      },
+      {
+        "verdict": "GROUNDED",
+        "confidence": 1.0,
+        "reasoning": "The source states that women have been barred from attending most sports events involving men since the 1979 revolution (making it decades-old) and that Deputy Sports Minister Abdolhamid Ahmadi announced a plan to lift the ban for some events in the next year.",
+        "_elapsed": 14.4,
+        "_test_id": "ragtruth_16",
+        "_expected": "grounded",
+        "_hall_type": "clean",
+        "_correct": true
+      },
+      {
+        "verdict": "GROUNDED",
+        "confidence": 1.0,
+        "reasoning": "The claim is fully supported by the source. The text explicitly states that Deputy Sports Minister Abdolhamid Ahmadi announced a plan to allow women and families into sports stadiums and specifically mentioned that restrictions would be lifted for indoor sports events.",
+        "_elapsed": 14.3,
+        "_test_id": "ragtruth_17",
+        "_expected": "grounded",
+        "_hall_type": "clean",
+        "_correct": true
+      },
+      {
+        "verdict": "GROUNDED",
+        "confidence": 1.0,
+        "reasoning": "The claim is directly supported by the 'General Survival' section, which contrasts real-life survival with movies ('All Is Lost' or 'Life of Pi') and explicitly states that survivors must use 'ingenuity, resourcefulness, and luck.' The subsequent accounts of Louis Jordan, Jose Salvador Alvarenga, Ron Ingraham, Adrian Vasquez, and Hiromitsu Shinkawa provide the 'real life' examples of endurance and resourcefulness mentioned in the claim.",
+        "_elapsed": 16.1,
+        "_test_id": "ragtruth_18",
+        "_expected": "grounded",
+        "_hall_type": "clean",
+        "_correct": true
+      },
+      {
+        "verdict": "GROUNDED",
+        "confidence": 1.0,
+        "reasoning": "The source provides five distinct accounts of individuals (Louis Jordan, Jose Salvador Alvarenga, Ron Ingraham, Adrian Vasquez, and Hiromitsu Shinkawa) who were stranded at sea under perilous conditions for varying lengths of time (ranging from a few days to over a year) and were eventually rescued.",
+        "_elapsed": 16.7,
+        "_test_id": "ragtruth_19",
+        "_expected": "grounded",
+        "_hall_type": "clean",
+        "_correct": true
+      },
+      {
+        "verdict": "GROUNDED",
+        "confidence": 1.0,
+        "reasoning": "The source provides five distinct accounts of individuals surviving alone in the ocean for varying extended periods: Jose Salvador Alvarenga (13-14 months), Adrian Vasquez (26 days), Ron Ingraham (12 days), Hiromitsu Shinkawa (more than two days), and Louis Jordan (duration not specified but involved rationing and rigging a mast).",
+        "_elapsed": 19.8,
+        "_test_id": "ragtruth_20",
+        "_expected": "grounded",
+        "_hall_type": "clean",
+        "_correct": true
+      },
+      {
+        "verdict": "HALLUCINATED",
+        "confidence": 1.0,
+        "reasoning": "The claim contains two fabrications: first, it states Louis Jordan is a '35-year-old sailor,' whereas the source states he had a '35-foot sailboat'; second, it claims he was stranded for 'five days,' a detail that is not mentioned anywhere in the source.",
+        "_elapsed": 13.6,
+        "_test_id": "ragtruth_21",
+        "_expected": "hallucinated",
+        "_hall_type": "Evident Baseless Info",
+        "_correct": true
+      },
+      {
+        "verdict": "HALLUCINATED",
+        "confidence": 1.0,
+        "reasoning": "The source mentions that Louis Jordan's boat capsized and that he was rescued, but it never states that he was adrift for '20 days.'",
+        "_elapsed": 16.6,
+        "_test_id": "ragtruth_22",
+        "_expected": "hallucinated",
+        "_hall_type": "Evident Baseless Info",
+        "_correct": true
+      },
+      {
+        "verdict": "HALLUCINATED",
+        "confidence": 1.0,
+        "reasoning": "The claim mentions a survival period of '66 days,' which does not appear anywhere in the source text. Additionally, while Louis Jordan used a makeshift mast and sail, he used laundry to trap fish and a bucket for water; Adrian Vasquez survived on raw fish and rainwater for 26 days. No single person in the text matches all the details in the claim.",
+        "_elapsed": 16.3,
+        "_test_id": "ragtruth_23",
+        "_expected": "hallucinated",
+        "_hall_type": "Evident Baseless Info",
+        "_correct": true
+      },
+      {
+        "verdict": "HALLUCINATED",
+        "confidence": 1.0,
+        "reasoning": "The source states that Jose Salvador Alvarenga spent '13 or 14 months' adrift in the Pacific, but it does not mention the specific number of '438 days' cited in the claim.",
+        "_elapsed": 17.5,
+        "_test_id": "ragtruth_23",
+        "_expected": "hallucinated",
+        "_hall_type": "Evident Baseless Info",
+        "_correct": true
+      },
+      {
+        "verdict": "GROUNDED",
+        "confidence": 1.0,
+        "reasoning": "The claim is directly supported by the first sentence of the [Keonna Thomas Arrest] section, which states: 'The FBI charged Keonna Thomas, 30, also known as \"Young Lioness\" and \"Fatayat Al Khilafah,\" a Philadelphia woman, on Thursday with trying to travel overseas to fight for ISIS.'",
+        "_elapsed": 9.6,
+        "_test_id": "ragtruth_24",
+        "_expected": "grounded",
+        "_hall_type": "clean",
+        "_correct": true
+      },
+      {
+        "verdict": "GROUNDED",
+        "confidence": 1.0,
+        "reasoning": "The claim is directly supported by the first sentence of the SOURCE: 'The FBI charged Keonna Thomas, 30... a Philadelphia woman, on Thursday with trying to travel overseas to fight for ISIS.'",
+        "_elapsed": 11.3,
+        "_test_id": "ragtruth_25",
+        "_expected": "grounded",
+        "_hall_type": "clean",
+        "_correct": true
+      },
+      {
+        "verdict": "GROUNDED",
+        "confidence": 1.0,
+        "reasoning": "The claim is directly supported by the source text, which states that the FBI charged Keonna Thomas, a Philadelphia woman also known as 'Young Lioness' and 'Fatayat Al Khilafah,' with trying to travel overseas to fight for ISIS.",
+        "_elapsed": 10.6,
+        "_test_id": "ragtruth_26",
+        "_expected": "grounded",
+        "_hall_type": "clean",
+        "_correct": true
+      },
+      {
+        "verdict": "GROUNDED",
+        "confidence": 1.0,
+        "reasoning": "The source explicitly states that the FBI charged Keonna Thomas, a Philadelphia woman, with trying to travel overseas to fight for ISIS and notes that she purchased an electronic visa to Turkey on March 23.",
+        "_elapsed": 11.8,
+        "_test_id": "ragtruth_27",
+        "_expected": "grounded",
+        "_hall_type": "clean",
+        "_correct": true
+      },
+      {
+        "verdict": "HALLUCINATED",
+        "confidence": 1.0,
+        "reasoning": "The claim states that all three women were charged with attempting to join ISIS. However, the source specifies that while Keonna Thomas was charged with trying to travel to fight for ISIS, the other two women (Noelle Velentzas and Asia Siddiqui) were accused of planning to build an explosive device for attacks in the United States.",
+        "_elapsed": 16.2,
+        "_test_id": "ragtruth_28",
+        "_expected": "hallucinated",
+        "_hall_type": "Evident Conflict",
+        "_correct": true
+      },
+      {
+        "verdict": "HALLUCINATED",
+        "confidence": 1.0,
+        "reasoning": "While the source confirms that Thomas purchased a ticket to Barcelona, it explicitly states, 'It's not clear when or where Keonna Thomas... was arrested.' Therefore, the claim that she was arrested 'before her trip' is an inference not supported by the text and contradicts the statement that the timing of her arrest is unknown.",
+        "_elapsed": 24.6,
+        "_test_id": "ragtruth_28",
+        "_expected": "hallucinated",
+        "_hall_type": "Evident Conflict",
+        "_correct": true
+      },
+      {
+        "verdict": "HALLUCINATED",
+        "confidence": 1.0,
+        "reasoning": "The claim states she was arrested on March 26, but the source explicitly says 'It's not clear when or where Keonna Thomas... was arrested.' The source mentions that on March 26, she purchased a ticket to Barcelona, not that she was arrested on that date.",
+        "_elapsed": 13.3,
+        "_test_id": "ragtruth_29",
+        "_expected": "hallucinated",
+        "_hall_type": "Evident Conflict",
+        "_correct": true
+      },
+      {
+        "verdict": "GROUNDED",
+        "confidence": 1.0,
+        "reasoning": "The claim is directly supported by the [Cattle ID Cards] section of the source, which states that police in Malegaon, India, are requiring identity cards for cattle, including 'mugshots' and unique features like age and tail length, to enforce a state-wide ban on the sale and consumption of beef.",
+        "_elapsed": 13.0,
+        "_test_id": "ragtruth_30",
+        "_expected": "grounded",
+        "_hall_type": "clean",
+        "_correct": true
+      },
+      {
+        "verdict": "GROUNDED",
+        "confidence": 1.0,
+        "reasoning": "The claim is directly supported by the [Cattle ID Cards] section of the source, which states that police in Malegaon, Maharashtra, are requiring identity cards for cattle, including 'mugshots' and information on unique features, following a state-wide ban on the sale and consumption of beef.",
+        "_elapsed": 12.2,
+        "_test_id": "ragtruth_31",
+        "_expected": "grounded",
+        "_hall_type": "clean",
+        "_correct": true
+      },
+      {
+        "verdict": "GROUNDED",
+        "confidence": 1.0,
+        "reasoning": "The claim is directly supported by the 'Cattle ID Cards' section, which states that police in Malegaon are requiring identity cards for cattle following a state-wide ban on the sale and consumption of beef.",
+        "_elapsed": 11.4,
+        "_test_id": "ragtruth_32",
+        "_expected": "grounded",
+        "_hall_type": "clean",
+        "_correct": true
+      },
+      {
+        "verdict": "HALLUCINATED",
+        "confidence": 1.0,
+        "reasoning": "The claim states that some people called the move an 'invasion of privacy.' While the source mentions that red meat lovers argue the government does not have the right to 'interfere in an individual's personal preference,' the specific phrase or concept of 'invasion of privacy' is not mentioned anywhere in the provided text.",
+        "_elapsed": 21.4,
+        "_test_id": "ragtruth_33",
+        "_expected": "hallucinated",
+        "_hall_type": "Evident Baseless Info",
+        "_correct": true
+      },
+      {
+        "verdict": "GROUNDED",
+        "confidence": 1.0,
+        "reasoning": "The claim is directly supported by the 'Cattle ID Cards' section, which states that police in Malegaon, India, are requiring identity cards for cattle following a state-wide ban on the sale and consumption of beef.",
+        "_elapsed": 9.8,
+        "_test_id": "ragtruth_34",
+        "_expected": "grounded",
+        "_hall_type": "clean",
+        "_correct": true
+      }
+    ]
+  }
+}

@@ -1,0 +1,391 @@
+{
+  "phase": "p4_additions_50",
+  "results": [
+    {
+      "has_additions": false,
+      "additions": [],
+      "_idx": 0,
+      "_expected": "grounded"
+    },
+    {
+      "has_additions": false,
+      "additions": [],
+      "_idx": 1,
+      "_expected": "grounded"
+    },
+    {
+      "has_additions": true,
+      "additions": [
+        {
+          "added_text": "International Tracing Service",
+          "why_added": "The source refers to the 'International Training Service', not the 'International Tracing Service'."
+        }
+      ],
+      "_idx": 2,
+      "_expected": "grounded"
+    },
+    {
+      "has_additions": false,
+      "additions": [],
+      "_idx": 3,
+      "_expected": "grounded"
+    },
+    {
+      "has_additions": false,
+      "additions": [],
+      "_idx": 4,
+      "_expected": "grounded"
+    },
+    {
+      "has_additions": false,
+      "additions": [],
+      "_idx": 5,
+      "_expected": "grounded"
+    },
+    {
+      "has_additions": true,
+      "additions": [
+        {
+          "added_text": "the sisters were arrested and sent to Auschwitz-Birkenau",
+          "why_added": "The source explicitly states that Anne and seven others were sent to Auschwitz-Birkenau, but it does not explicitly state that Margot was among them."
+        }
+      ],
+      "_idx": 6,
+      "_expected": "grounded"
+    },
+    {
+      "has_additions": false,
+      "additions": [],
+      "_idx": 7,
+      "_expected": "grounded"
+    },
+    {
+      "has_additions": false,
+      "additions": [],
+      "_idx": 8,
+      "_expected": "grounded"
+    },
+    {
+      "has_additions": false,
+      "additions": [],
+      "_idx": 9,
+      "_expected": "grounded"
+    },
+    {
+      "has_additions": true,
+      "additions": [
+        {
+          "added_text": "beloved and influential",
+          "why_added": "The source describes the diary as 'one of the world's most popular books,' but does not characterize it as 'beloved' or 'influential'."
+        }
+      ],
+      "_idx": 10,
+      "_expected": "grounded"
+    },
+    {
+      "has_additions": false,
+      "additions": [],
+      "_idx": 11,
+      "_expected": "grounded"
+    },
+    {
+      "has_additions": false,
+      "additions": [],
+      "_idx": 12,
+      "_expected": "grounded"
+    },
+    {
+      "has_additions": true,
+      "additions": [
+        {
+          "added_text": "food",
+          "why_added": "not in source"
+        }
+      ],
+      "_idx": 13,
+      "_expected": "grounded"
+    },
+    {
+      "has_additions": true,
+      "additions": [
+        {
+          "added_text": "died before February 7",
+          "why_added": "The source states that witnesses said the sisters had symptoms before February 7, not that they died before that date."
+        },
+        {
+          "added_text": "2022",
+          "why_added": "not in source"
+        }
+      ],
+      "_idx": 14,
+      "_expected": "hallucinated"
+    },
+    {
+      "has_additions": false,
+      "additions": [],
+      "_idx": 15,
+      "_expected": "grounded"
+    },
+    {
+      "has_additions": true,
+      "additions": [
+        {
+          "added_text": "reevaluation of the events surrounding Anne Frank's death",
+          "why_added": "not in source"
+        },
+        {
+          "added_text": "prompted the Anne Frank House to issue a corrected statement",
+          "why_added": "not in source"
+        }
+      ],
+      "_idx": 16,
+      "_expected": "hallucinated"
+    },
+    {
+      "has_additions": true,
+      "additions": [
+        {
+          "added_text": "two weeks after her supposed death on March 31, 1945",
+          "why_added": "The source states that the camp was liberated two weeks after her supposed death, not that she died two weeks after her supposed death."
+        }
+      ],
+      "_idx": 17,
+      "_expected": "grounded"
+    },
+    {
+      "has_additions": false,
+      "additions": [],
+      "_idx": 18,
+      "_expected": "grounded"
+    },
+    {
+      "has_additions": false,
+      "additions": [],
+      "_idx": 19,
+      "_expected": "grounded"
+    },
+    {
+      "has_additions": false,
+      "additions": [],
+      "_idx": 20,
+      "_expected": "grounded"
+    },
+    {
+      "has_additions": false,
+      "additions": [],
+      "_idx": 21,
+      "_expected": "grounded"
+    },
+    {
+      "has_additions": true,
+      "additions": [
+        {
+          "added_text": "a powerful symbol of hope and resilience",
+          "why_added": "not in source"
+        }
+      ],
+      "_idx": 22,
+      "_expected": "hallucinated"
+    },
+    {
+      "has_additions": false,
+      "additions": [],
+      "_idx": 23,
+      "_expected": "grounded"
+    },
+    {
+      "has_additions": true,
+      "additions": [
+        {
+          "added_text": "likely in February 1945",
+          "why_added": "The source states that researchers concluded the sisters 'probably did not survive to March 1945' and mentions symptoms appearing before February 7, but it does not explicitly state the conclusion that they 'likely' died in February 1945."
+        }
+      ],
+      "_idx": 24,
+      "_expected": "grounded"
+    },
+    {
+      "has_additions": true,
+      "additions": [
+        {
+          "added_text": "brutal",
+          "why_added": "not in source"
+        },
+        {
+          "added_text": "little food",
+          "why_added": "not in source"
+        }
+      ],
+      "_idx": 25,
+      "_expected": "grounded"
+    },
+    {
+      "has_additions": false,
+      "additions": [],
+      "_idx": 26,
+      "_expected": "grounded"
+    },
+    {
+      "has_additions": false,
+      "additions": [],
+      "_idx": 27,
+      "_expected": "grounded"
+    },
+    {
+      "has_additions": true,
+      "additions": [
+        {
+          "added_text": "early March",
+          "why_added": "The source states the sisters died 'at least a month earlier' than March 31, which would mean they died on or before February 28, excluding early March."
+        }
+      ],
+      "_idx": 28,
+      "_expected": "grounded"
+    },
+    {
+      "has_additions": true,
+      "additions": [
+        {
+          "added_text": "did not survive past February 7",
+          "why_added": "The source states that witnesses said the sisters had symptoms *before* February 7 and that death typically occurs twelve days after symptoms appear; it also explicitly states that the exact dates of death remain unclear."
+        }
+      ],
+      "_idx": 29,
+      "_expected": "hallucinated"
+    },
+    {
+      "has_additions": false,
+      "additions": [],
+      "_idx": 30,
+      "_expected": "grounded"
+    },
+    {
+      "has_additions": false,
+      "additions": [],
+      "_idx": 31,
+      "_expected": "grounded"
+    },
+    {
+      "has_additions": true,
+      "additions": [
+        {
+          "added_text": "powerful symbol of her resilience",
+          "why_added": "not in source"
+        },
+        {
+          "added_text": "reminder of the horrors of the Holocaust",
+          "why_added": "not in source"
+        }
+      ],
+      "_idx": 32,
+      "_expected": "hallucinated"
+    },
+    {
+      "has_additions": false,
+      "additions": [],
+      "_idx": 33,
+      "_expected": "grounded"
+    },
+    {
+      "has_additions": false,
+      "additions": [],
+      "_idx": 34,
+      "_expected": "grounded"
+    },
+    {
+      "has_additions": false,
+      "additions": [],
+      "_idx": 35,
+      "_expected": "grounded"
+    },
+    {
+      "has_additions": false,
+      "additions": [],
+      "_idx": 36,
+      "_expected": "grounded"
+    },
+    {
+      "has_additions": false,
+      "additions": [],
+      "_idx": 37,
+      "_expected": "grounded"
+    },
+    {
+      "has_additions": true,
+      "additions": [
+        {
+          "added_text": "has died of natural causes",
+          "why_added": "The source states he 'appears to have died of natural causes,' whereas the claim presents it as a definitive fact."
+        }
+      ],
+      "_idx": 38,
+      "_expected": "grounded"
+    },
+    {
+      "has_additions": false,
+      "additions": [],
+      "_idx": 39,
+      "_expected": "grounded"
+    },
+    {
+      "has_additions": false,
+      "additions": [],
+      "_idx": 40,
+      "_expected": "grounded"
+    },
+    {
+      "has_additions": false,
+      "additions": [],
+      "_idx": 41,
+      "_expected": "grounded"
+    },
+    {
+      "has_additions": false,
+      "additions": [],
+      "_idx": 42,
+      "_expected": "grounded"
+    },
+    {
+      "has_additions": false,
+      "additions": [],
+      "_idx": 43,
+      "_expected": "grounded"
+    },
+    {
+      "has_additions": false,
+      "additions": [],
+      "_idx": 44,
+      "_expected": "grounded"
+    },
+    {
+      "has_additions": false,
+      "additions": [],
+      "_idx": 45,
+      "_expected": "grounded"
+    },
+    {
+      "has_additions": false,
+      "additions": [],
+      "_idx": 46,
+      "_expected": "grounded"
+    },
+    {
+      "has_additions": false,
+      "additions": [],
+      "_idx": 47,
+      "_expected": "grounded"
+    },
+    {
+      "has_additions": false,
+      "additions": [],
+      "_idx": 48,
+      "_expected": "grounded"
+    },
+    {
+      "has_additions": false,
+      "additions": [],
+      "_idx": 49,
+      "_expected": "grounded"
+    }
+  ]
+}

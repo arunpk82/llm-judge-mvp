@@ -1,0 +1,1418 @@
+{
+  "event_hubs": [
+    {
+      "event_id": "EVT_1",
+      "action": "charged",
+      "source_sentence": "S0",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "FBI",
+          "source": "S0"
+        },
+        {
+          "type": "target_of",
+          "target": "Keonna Thomas",
+          "source": "S0"
+        },
+        {
+          "type": "when",
+          "target": "Thursday",
+          "source": "S0"
+        },
+        {
+          "type": "why",
+          "target": "trying to travel overseas to fight for ISIS",
+          "source": "S0"
+        },
+        {
+          "type": "leads_to",
+          "target": "EVT_15",
+          "source": "S10"
+        },
+        {
+          "type": "evidence_for",
+          "target": "EVT_13",
+          "source": "S9"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_2",
+      "action": "trying to travel overseas to fight",
+      "source_sentence": "S0",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "Keonna Thomas",
+          "source": "S0"
+        },
+        {
+          "type": "target_of",
+          "target": "ISIS",
+          "source": "S0"
+        },
+        {
+          "type": "where",
+          "target": "overseas",
+          "source": "S0"
+        },
+        {
+          "type": "evidence_for",
+          "target": "EVT_1",
+          "source": "S0"
+        },
+        {
+          "type": "enriched_by",
+          "target": "EVT_6",
+          "source": "S3"
+        },
+        {
+          "type": "enriched_by",
+          "target": "EVT_9",
+          "source": "S4"
+        },
+        {
+          "type": "enriched_by",
+          "target": "EVT_12",
+          "source": "S7"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_3",
+      "action": "arrested",
+      "source_sentence": "S1",
+      "edges": [
+        {
+          "type": "target_of",
+          "target": "three women",
+          "source": "S1"
+        },
+        {
+          "type": "when",
+          "target": "this week",
+          "source": "S1"
+        },
+        {
+          "type": "why",
+          "target": "terror charges",
+          "source": "S1"
+        },
+        {
+          "type": "parallels",
+          "target": "EVT_16",
+          "source": "S11"
+        },
+        {
+          "type": "enriched_by",
+          "target": "EVT_4",
+          "source": "S2"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_4",
+      "action": "taken into custody",
+      "source_sentence": "S2",
+      "edges": [
+        {
+          "type": "target_of",
+          "target": "Noelle Velentzas",
+          "source": "S11"
+        },
+        {
+          "type": "target_of",
+          "target": "Asia Siddiqui",
+          "source": "S11"
+        },
+        {
+          "type": "where",
+          "target": "New York",
+          "source": "S2"
+        },
+        {
+          "type": "parallels",
+          "target": "EVT_16",
+          "source": "S11"
+        },
+        {
+          "type": "evidence_for",
+          "target": "EVT_3",
+          "source": "S1"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_5",
+      "action": "cites",
+      "source_sentence": "S3",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "FBI complaint",
+          "source": "S3"
+        },
+        {
+          "type": "target_of",
+          "target": "social media messages",
+          "source": "S3"
+        },
+        {
+          "type": "when",
+          "target": "dating back to August 2013",
+          "source": "S3"
+        },
+        {
+          "type": "evidence_for",
+          "target": "EVT_1",
+          "source": "S0"
+        },
+        {
+          "type": "evidence_for",
+          "target": "EVT_13",
+          "source": "S9"
+        },
+        {
+          "type": "enriched_by",
+          "target": "EVT_6",
+          "source": "S3"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_6",
+      "action": "sent",
+      "source_sentence": "S3",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "Keonna Thomas",
+          "source": "S3"
+        },
+        {
+          "type": "target_of",
+          "target": "social media messages",
+          "source": "S3"
+        },
+        {
+          "type": "when",
+          "target": "dating back to August 2013",
+          "source": "S3"
+        },
+        {
+          "type": "leads_to",
+          "target": "EVT_5",
+          "source": "S3"
+        },
+        {
+          "type": "enriched_by",
+          "target": "EVT_7",
+          "source": "S4"
+        },
+        {
+          "type": "enriched_by",
+          "target": "EVT_8",
+          "source": "S4"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_7",
+      "action": "expressed desire to join brothers in front lines and be accepted as martyrs",
+      "source_sentence": "S4",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "Twitter message",
+          "source": "S4"
+        },
+        {
+          "type": "enriched_by",
+          "target": "EVT_6",
+          "source": "S3"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_8",
+      "action": "stated that a mujahid's death becomes a wedding",
+      "source_sentence": "S4",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "Twitter message",
+          "source": "S4"
+        },
+        {
+          "type": "enriched_by",
+          "target": "EVT_6",
+          "source": "S3"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_9",
+      "action": "purchased",
+      "source_sentence": "S4",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "Keonna Thomas",
+          "source": "S4"
+        },
+        {
+          "type": "target_of",
+          "target": "electronic visa",
+          "source": "S4"
+        },
+        {
+          "type": "where",
+          "target": "Turkey",
+          "source": "S4"
+        },
+        {
+          "type": "when",
+          "target": "March 23",
+          "source": "S4"
+        },
+        {
+          "type": "evidence_for",
+          "target": "FBI",
+          "source": "S4"
+        },
+        {
+          "type": "explains",
+          "target": "EVT_2",
+          "source": "S0"
+        },
+        {
+          "type": "leads_to",
+          "target": "EVT_12",
+          "source": "S7"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_10",
+      "action": "enter Syria and join ISIS",
+      "source_sentence": "S5",
+      "edges": [
+        {
+          "type": "target_of",
+          "target": "Syria",
+          "source": "S5"
+        },
+        {
+          "type": "target_of",
+          "target": "ISIS",
+          "source": "S5"
+        },
+        {
+          "type": "how",
+          "target": "from Turkey (easiest place)",
+          "source": "S5"
+        },
+        {
+          "type": "explains",
+          "target": "EVT_9",
+          "source": "S4"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_11",
+      "action": "advises",
+      "source_sentence": "S6",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "ISIS manual",
+          "source": "S6"
+        },
+        {
+          "type": "target_of",
+          "target": "recruits",
+          "source": "S6"
+        },
+        {
+          "type": "how",
+          "target": "buy round-trip tickets to vacation spots such as Spain and then purchase tickets for their real destination once they arrive overseas",
+          "source": "S6"
+        },
+        {
+          "type": "evidence_for",
+          "target": "FBI",
+          "source": "S6"
+        },
+        {
+          "type": "explains",
+          "target": "EVT_12",
+          "source": "S7"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_12",
+      "action": "purchased",
+      "source_sentence": "S7",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "Keonna Thomas",
+          "source": "S7"
+        },
+        {
+          "type": "target_of",
+          "target": "ticket to Barcelona",
+          "source": "S7"
+        },
+        {
+          "type": "when",
+          "target": "March 26 (purchase), March 29 (departure), April 15 (return)",
+          "source": "S7"
+        },
+        {
+          "type": "where",
+          "target": "to Barcelona, return to United States",
+          "source": "S7"
+        },
+        {
+          "type": "evidence_for",
+          "target": "FBI complaint",
+          "source": "S7"
+        },
+        {
+          "type": "explains",
+          "target": "EVT_2",
+          "source": "S0"
+        },
+        {
+          "type": "enriched_by",
+          "target": "EVT_11",
+          "source": "S6"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_13",
+      "action": "charged",
+      "source_sentence": "S9",
+      "edges": [
+        {
+          "type": "target_of",
+          "target": "Keonna Thomas",
+          "source": "S9"
+        },
+        {
+          "type": "why",
+          "target": "knowingly attempting to provide material support and resources to a designated foreign terrorist organization",
+          "source": "S9"
+        },
+        {
+          "type": "evidence_for",
+          "target": "EVT_1",
+          "source": "S0"
+        },
+        {
+          "type": "leads_to",
+          "target": "EVT_15",
+          "source": "S10"
+        },
+        {
+          "type": "enriched_by",
+          "target": "EVT_14",
+          "source": "S9"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_14",
+      "action": "attempting to provide material support and resources",
+      "source_sentence": "S9",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "Keonna Thomas",
+          "source": "S9"
+        },
+        {
+          "type": "target_of",
+          "target": "designated foreign terrorist organization",
+          "source": "S9"
+        },
+        {
+          "type": "evidence_for",
+          "target": "EVT_13",
+          "source": "S9"
+        },
+        {
+          "type": "enriched_by",
+          "target": "EVT_2",
+          "source": "S0"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_15",
+      "action": "sentenced",
+      "source_sentence": "S10",
+      "edges": [
+        {
+          "type": "target_of",
+          "target": "Keonna Thomas",
+          "source": "S10"
+        },
+        {
+          "type": "outcome",
+          "target": "15 years in prison",
+          "source": "S10"
+        },
+        {
+          "type": "evidence_for",
+          "target": "EVT_1",
+          "source": "S0"
+        },
+        {
+          "type": "evidence_for",
+          "target": "EVT_13",
+          "source": "S9"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_16",
+      "action": "arrested",
+      "source_sentence": "S11",
+      "edges": [
+        {
+          "type": "target_of",
+          "target": "Noelle Velentzas",
+          "source": "S11"
+        },
+        {
+          "type": "target_of",
+          "target": "Asia Siddiqui",
+          "source": "S11"
+        },
+        {
+          "type": "when",
+          "target": "Thursday",
+          "source": "S11"
+        },
+        {
+          "type": "where",
+          "target": "New York",
+          "source": "S11"
+        },
+        {
+          "type": "evidence_for",
+          "target": "federal prosecutors",
+          "source": "S11"
+        },
+        {
+          "type": "parallels",
+          "target": "EVT_3",
+          "source": "S1"
+        },
+        {
+          "type": "leads_to",
+          "target": "EVT_17",
+          "source": "S11"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_17",
+      "action": "accused of planning to build",
+      "source_sentence": "S11",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "Noelle Velentzas",
+          "source": "S11"
+        },
+        {
+          "type": "agent_of",
+          "target": "Asia Siddiqui",
+          "source": "S11"
+        },
+        {
+          "type": "target_of",
+          "target": "explosive device",
+          "source": "S11"
+        },
+        {
+          "type": "why",
+          "target": "for attacks in the United States",
+          "source": "S11"
+        },
+        {
+          "type": "evidence_for",
+          "target": "federal prosecutors",
+          "source": "S11"
+        },
+        {
+          "type": "enriched_by",
+          "target": "EVT_16",
+          "source": "S11"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_18",
+      "action": "prosecuted or is prosecuting",
+      "source_sentence": "S12",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "Justice Department's National Security Division",
+          "source": "S12"
+        },
+        {
+          "type": "target_of",
+          "target": "more than 30 cases of people",
+          "source": "S12"
+        },
+        {
+          "type": "when",
+          "target": "In the past 18 months",
+          "source": "S12"
+        },
+        {
+          "type": "why",
+          "target": "attempting to travel abroad to join or provide support to terrorist groups",
+          "source": "S12"
+        },
+        {
+          "type": "enriched_by",
+          "target": "EVT_19",
+          "source": "S12"
+        },
+        {
+          "type": "parallels",
+          "target": "EVT_1",
+          "source": "S0"
+        },
+        {
+          "type": "parallels",
+          "target": "EVT_13",
+          "source": "S9"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_19",
+      "action": "attempting to travel abroad to join or provide support",
+      "source_sentence": "S12",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "people",
+          "source": "S12"
+        },
+        {
+          "type": "target_of",
+          "target": "terrorist groups",
+          "source": "S12"
+        },
+        {
+          "type": "where",
+          "target": "abroad",
+          "source": "S12"
+        },
+        {
+          "type": "evidence_for",
+          "target": "EVT_18",
+          "source": "S12"
+        },
+        {
+          "type": "enriched_by",
+          "target": "EVT_20",
+          "source": "S13"
+        },
+        {
+          "type": "parallels",
+          "target": "EVT_2",
+          "source": "S0"
+        },
+        {
+          "type": "parallels",
+          "target": "EVT_14",
+          "source": "S9"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_20",
+      "action": "involve support",
+      "source_sentence": "S13",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "18 cases",
+          "source": "S13"
+        },
+        {
+          "type": "target_of",
+          "target": "ISIS",
+          "source": "S13"
+        },
+        {
+          "type": "evidence_for",
+          "target": "EVT_18",
+          "source": "S12"
+        },
+        {
+          "type": "enriched_by",
+          "target": "EVT_19",
+          "source": "S12"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_21",
+      "action": "described terrorist threat as more decentralized, diffuse, and complicated",
+      "source_sentence": "S14",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "Homeland Security Secretary Jeh Johnson",
+          "source": "S14"
+        },
+        {
+          "type": "target_of",
+          "target": "reporters",
+          "source": "S14"
+        },
+        {
+          "type": "when",
+          "target": "Thursday",
+          "source": "S14"
+        },
+        {
+          "type": "enriched_by",
+          "target": "EVT_22",
+          "source": "S15"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_22",
+      "action": "involves",
+      "source_sentence": "S15",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "terrorist threat",
+          "source": "S15"
+        },
+        {
+          "type": "how",
+          "target": "potential lone wolf actor, effective use of social media, the Internet",
+          "source": "S15"
+        },
+        {
+          "type": "evidence_for",
+          "target": "EVT_21",
+          "source": "S14"
+        },
+        {
+          "type": "explains",
+          "target": "EVT_6",
+          "source": "S3"
+        }
+      ]
+    }
+  ],
+  "entities": [
+    {
+      "name": "FBI",
+      "aliases": [],
+      "attributes": {},
+      "participates_in": [
+        "EVT_1",
+        "EVT_5",
+        "EVT_9",
+        "EVT_11"
+      ],
+      "source_sentences": [
+        "S0",
+        "S3",
+        "S4",
+        "S6"
+      ]
+    },
+    {
+      "name": "Keonna Thomas",
+      "aliases": [
+        "Young Lioness",
+        "Fatayat Al Khilafah"
+      ],
+      "attributes": {
+        "age": "30",
+        "location": "Philadelphia"
+      },
+      "participates_in": [
+        "EVT_1",
+        "EVT_2",
+        "EVT_3",
+        "EVT_6",
+        "EVT_9",
+        "EVT_12",
+        "EVT_13",
+        "EVT_14",
+        "EVT_15"
+      ],
+      "source_sentences": [
+        "S0",
+        "S3",
+        "S4",
+        "S7",
+        "S9",
+        "S10"
+      ]
+    },
+    {
+      "name": "ISIS",
+      "aliases": [],
+      "attributes": {},
+      "participates_in": [
+        "EVT_2",
+        "EVT_10",
+        "EVT_11",
+        "EVT_20"
+      ],
+      "source_sentences": [
+        "S0",
+        "S5",
+        "S6",
+        "S13"
+      ]
+    },
+    {
+      "name": "three women",
+      "aliases": [],
+      "attributes": {},
+      "participates_in": [
+        "EVT_3"
+      ],
+      "source_sentences": [
+        "S1"
+      ]
+    },
+    {
+      "name": "Noelle Velentzas",
+      "aliases": [],
+      "attributes": {
+        "age": "28",
+        "location": "New York"
+      },
+      "participates_in": [
+        "EVT_4",
+        "EVT_16",
+        "EVT_17"
+      ],
+      "source_sentences": [
+        "S2",
+        "S11"
+      ]
+    },
+    {
+      "name": "Asia Siddiqui",
+      "aliases": [],
+      "attributes": {
+        "age": "31",
+        "location": "New York",
+        "relationship_to_Noelle_Velentzas": "former roommate"
+      },
+      "participates_in": [
+        "EVT_4",
+        "EVT_16",
+        "EVT_17"
+      ],
+      "source_sentences": [
+        "S2",
+        "S11"
+      ]
+    },
+    {
+      "name": "FBI complaint",
+      "aliases": [],
+      "attributes": {},
+      "participates_in": [
+        "EVT_5",
+        "EVT_12"
+      ],
+      "source_sentences": [
+        "S3",
+        "S7"
+      ]
+    },
+    {
+      "name": "social media messages",
+      "aliases": [],
+      "attributes": {},
+      "participates_in": [
+        "EVT_5",
+        "EVT_6",
+        "EVT_22"
+      ],
+      "source_sentences": [
+        "S3",
+        "S15"
+      ]
+    },
+    {
+      "name": "Twitter message",
+      "aliases": [],
+      "attributes": {},
+      "participates_in": [
+        "EVT_7",
+        "EVT_8"
+      ],
+      "source_sentences": [
+        "S4"
+      ]
+    },
+    {
+      "name": "electronic visa",
+      "aliases": [],
+      "attributes": {},
+      "participates_in": [
+        "EVT_9"
+      ],
+      "source_sentences": [
+        "S4"
+      ]
+    },
+    {
+      "name": "Turkey",
+      "aliases": [],
+      "attributes": {},
+      "participates_in": [
+        "EVT_9",
+        "EVT_10"
+      ],
+      "source_sentences": [
+        "S4",
+        "S5"
+      ]
+    },
+    {
+      "name": "Syria",
+      "aliases": [],
+      "attributes": {},
+      "participates_in": [
+        "EVT_10"
+      ],
+      "source_sentences": [
+        "S5"
+      ]
+    },
+    {
+      "name": "ISIS manual",
+      "aliases": [],
+      "attributes": {},
+      "participates_in": [
+        "EVT_11"
+      ],
+      "source_sentences": [
+        "S6"
+      ]
+    },
+    {
+      "name": "recruits",
+      "aliases": [],
+      "attributes": {},
+      "participates_in": [
+        "EVT_11"
+      ],
+      "source_sentences": [
+        "S6"
+      ]
+    },
+    {
+      "name": "Spain",
+      "aliases": [],
+      "attributes": {},
+      "participates_in": [
+        "EVT_11"
+      ],
+      "source_sentences": [
+        "S6"
+      ]
+    },
+    {
+      "name": "ticket to Barcelona",
+      "aliases": [],
+      "attributes": {},
+      "participates_in": [
+        "EVT_12"
+      ],
+      "source_sentences": [
+        "S7"
+      ]
+    },
+    {
+      "name": "Barcelona",
+      "aliases": [],
+      "attributes": {},
+      "participates_in": [
+        "EVT_12"
+      ],
+      "source_sentences": [
+        "S7"
+      ]
+    },
+    {
+      "name": "United States",
+      "aliases": [],
+      "attributes": {},
+      "participates_in": [
+        "EVT_12",
+        "EVT_17"
+      ],
+      "source_sentences": [
+        "S7",
+        "S11"
+      ]
+    },
+    {
+      "name": "designated foreign terrorist organization",
+      "aliases": [],
+      "attributes": {},
+      "participates_in": [
+        "EVT_14"
+      ],
+      "source_sentences": [
+        "S9"
+      ]
+    },
+    {
+      "name": "federal prosecutors",
+      "aliases": [],
+      "attributes": {},
+      "participates_in": [
+        "EVT_16",
+        "EVT_17"
+      ],
+      "source_sentences": [
+        "S11"
+      ]
+    },
+    {
+      "name": "explosive device",
+      "aliases": [],
+      "attributes": {},
+      "participates_in": [
+        "EVT_17"
+      ],
+      "source_sentences": [
+        "S11"
+      ]
+    },
+    {
+      "name": "Justice Department's National Security Division",
+      "aliases": [],
+      "attributes": {},
+      "participates_in": [
+        "EVT_18"
+      ],
+      "source_sentences": [
+        "S12"
+      ]
+    },
+    {
+      "name": "people",
+      "aliases": [],
+      "attributes": {},
+      "participates_in": [
+        "EVT_18",
+        "EVT_19"
+      ],
+      "source_sentences": [
+        "S12"
+      ]
+    },
+    {
+      "name": "terrorist groups",
+      "aliases": [],
+      "attributes": {},
+      "participates_in": [
+        "EVT_19"
+      ],
+      "source_sentences": [
+        "S12"
+      ]
+    },
+    {
+      "name": "Homeland Security Secretary Jeh Johnson",
+      "aliases": [],
+      "attributes": {},
+      "participates_in": [
+        "EVT_21"
+      ],
+      "source_sentences": [
+        "S14"
+      ]
+    },
+    {
+      "name": "reporters",
+      "aliases": [],
+      "attributes": {},
+      "participates_in": [
+        "EVT_21"
+      ],
+      "source_sentences": [
+        "S14"
+      ]
+    },
+    {
+      "name": "terrorist threat",
+      "aliases": [],
+      "attributes": {},
+      "participates_in": [
+        "EVT_21",
+        "EVT_22"
+      ],
+      "source_sentences": [
+        "S14",
+        "S15"
+      ]
+    },
+    {
+      "name": "lone wolf actor",
+      "aliases": [],
+      "attributes": {},
+      "participates_in": [
+        "EVT_22"
+      ],
+      "source_sentences": [
+        "S15"
+      ]
+    },
+    {
+      "name": "Internet",
+      "aliases": [],
+      "attributes": {},
+      "participates_in": [
+        "EVT_22"
+      ],
+      "source_sentences": [
+        "S15"
+      ]
+    },
+    {
+      "name": "18 cases",
+      "aliases": [],
+      "attributes": {},
+      "participates_in": [
+        "EVT_20"
+      ],
+      "source_sentences": [
+        "S13"
+      ]
+    },
+    {
+      "name": "more than 30 cases of people",
+      "aliases": [],
+      "attributes": {},
+      "participates_in": [
+        "EVT_18"
+      ],
+      "source_sentences": [
+        "S12"
+      ]
+    }
+  ],
+  "inter_event_edges": [
+    {
+      "from": "EVT_1",
+      "to": "EVT_15",
+      "type": "leads_to",
+      "source": "S10"
+    },
+    {
+      "from": "EVT_1",
+      "to": "EVT_13",
+      "type": "evidence_for",
+      "source": "S9"
+    },
+    {
+      "from": "EVT_2",
+      "to": "EVT_1",
+      "type": "evidence_for",
+      "source": "S0"
+    },
+    {
+      "from": "EVT_2",
+      "to": "EVT_6",
+      "type": "enriched_by",
+      "source": "S3"
+    },
+    {
+      "from": "EVT_2",
+      "to": "EVT_9",
+      "type": "enriched_by",
+      "source": "S4"
+    },
+    {
+      "from": "EVT_2",
+      "to": "EVT_12",
+      "type": "enriched_by",
+      "source": "S7"
+    },
+    {
+      "from": "EVT_3",
+      "to": "EVT_16",
+      "type": "parallels",
+      "source": "S11"
+    },
+    {
+      "from": "EVT_3",
+      "to": "EVT_4",
+      "type": "enriched_by",
+      "source": "S2"
+    },
+    {
+      "from": "EVT_4",
+      "to": "EVT_16",
+      "type": "parallels",
+      "source": "S11"
+    },
+    {
+      "from": "EVT_4",
+      "to": "EVT_3",
+      "type": "evidence_for",
+      "source": "S1"
+    },
+    {
+      "from": "EVT_5",
+      "to": "EVT_1",
+      "type": "evidence_for",
+      "source": "S0"
+    },
+    {
+      "from": "EVT_5",
+      "to": "EVT_13",
+      "type": "evidence_for",
+      "source": "S9"
+    },
+    {
+      "from": "EVT_5",
+      "to": "EVT_6",
+      "type": "enriched_by",
+      "source": "S3"
+    },
+    {
+      "from": "EVT_6",
+      "to": "EVT_5",
+      "type": "leads_to",
+      "source": "S3"
+    },
+    {
+      "from": "EVT_6",
+      "to": "EVT_7",
+      "type": "enriched_by",
+      "source": "S4"
+    },
+    {
+      "from": "EVT_6",
+      "to": "EVT_8",
+      "type": "enriched_by",
+      "source": "S4"
+    },
+    {
+      "from": "EVT_7",
+      "to": "EVT_6",
+      "type": "enriched_by",
+      "source": "S3"
+    },
+    {
+      "from": "EVT_8",
+      "to": "EVT_6",
+      "type": "enriched_by",
+      "source": "S3"
+    },
+    {
+      "from": "EVT_9",
+      "to": "EVT_2",
+      "type": "explains",
+      "source": "S0"
+    },
+    {
+      "from": "EVT_9",
+      "to": "EVT_12",
+      "type": "leads_to",
+      "source": "S7"
+    },
+    {
+      "from": "EVT_10",
+      "to": "EVT_9",
+      "type": "explains",
+      "source": "S4"
+    },
+    {
+      "from": "EVT_11",
+      "to": "EVT_12",
+      "type": "explains",
+      "source": "S7"
+    },
+    {
+      "from": "EVT_12",
+      "to": "EVT_2",
+      "type": "explains",
+      "source": "S0"
+    },
+    {
+      "from": "EVT_12",
+      "to": "EVT_11",
+      "type": "enriched_by",
+      "source": "S6"
+    },
+    {
+      "from": "EVT_13",
+      "to": "EVT_1",
+      "type": "evidence_for",
+      "source": "S0"
+    },
+    {
+      "from": "EVT_13",
+      "to": "EVT_15",
+      "type": "leads_to",
+      "source": "S10"
+    },
+    {
+      "from": "EVT_13",
+      "to": "EVT_14",
+      "type": "enriched_by",
+      "source": "S9"
+    },
+    {
+      "from": "EVT_14",
+      "to": "EVT_13",
+      "type": "evidence_for",
+      "source": "S9"
+    },
+    {
+      "from": "EVT_14",
+      "to": "EVT_2",
+      "type": "enriched_by",
+      "source": "S0"
+    },
+    {
+      "from": "EVT_15",
+      "to": "EVT_1",
+      "type": "evidence_for",
+      "source": "S0"
+    },
+    {
+      "from": "EVT_15",
+      "to": "EVT_13",
+      "type": "evidence_for",
+      "source": "S9"
+    },
+    {
+      "from": "EVT_16",
+      "to": "EVT_3",
+      "type": "parallels",
+      "source": "S1"
+    },
+    {
+      "from": "EVT_16",
+      "to": "EVT_17",
+      "type": "leads_to",
+      "source": "S11"
+    },
+    {
+      "from": "EVT_17",
+      "to": "EVT_16",
+      "type": "enriched_by",
+      "source": "S11"
+    },
+    {
+      "from": "EVT_18",
+      "to": "EVT_19",
+      "type": "enriched_by",
+      "source": "S12"
+    },
+    {
+      "from": "EVT_18",
+      "to": "EVT_1",
+      "type": "parallels",
+      "source": "S0"
+    },
+    {
+      "from": "EVT_18",
+      "to": "EVT_13",
+      "type": "parallels",
+      "source": "S9"
+    },
+    {
+      "from": "EVT_19",
+      "to": "EVT_18",
+      "type": "evidence_for",
+      "source": "S12"
+    },
+    {
+      "from": "EVT_19",
+      "to": "EVT_20",
+      "type": "enriched_by",
+      "source": "S13"
+    },
+    {
+      "from": "EVT_19",
+      "to": "EVT_2",
+      "type": "parallels",
+      "source": "S0"
+    },
+    {
+      "from": "EVT_19",
+      "to": "EVT_14",
+      "type": "parallels",
+      "source": "S9"
+    },
+    {
+      "from": "EVT_20",
+      "to": "EVT_18",
+      "type": "evidence_for",
+      "source": "S12"
+    },
+    {
+      "from": "EVT_20",
+      "to": "EVT_19",
+      "type": "enriched_by",
+      "source": "S12"
+    },
+    {
+      "from": "EVT_21",
+      "to": "EVT_22",
+      "type": "enriched_by",
+      "source": "S15"
+    },
+    {
+      "from": "EVT_22",
+      "to": "EVT_21",
+      "type": "evidence_for",
+      "source": "S14"
+    },
+    {
+      "from": "EVT_22",
+      "to": "EVT_6",
+      "type": "explains",
+      "source": "S3"
+    }
+  ],
+  "explicit_unknowns": [
+    {
+      "about": "Keonna Thomas's arrest",
+      "unknown_slots": [
+        "when",
+        "where"
+      ],
+      "source": "S8"
+    }
+  ],
+  "_elapsed": 81.3
+}

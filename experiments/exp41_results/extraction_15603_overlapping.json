@@ -1,0 +1,46 @@
+{
+  "stories": [
+    {
+      "thread": "Zhangzhou Plant Explosion",
+      "story": "Six people were hurt after an explosion at a chemical plant in China's southeastern Fujian province sparked a huge fire. The chemical plant, located in Zhangzhou city, produces paraxylene (PX), a reportedly carcinogenic chemical used in the production of polyester films and fabrics. The blast occurred at an oil storage facility Monday night after an oil leak, though local media has not reported any toxic chemical spill. Five out of six people were injured by broken glass and have been sent to the hospital for treatment. The Zhangzhou fire department wrote on their official microblogging account Tuesday morning that more than 600 firefighters were sent to battle the blaze and the fire is now under control.",
+      "key_facts": [
+        "Six people hurt in Fujian province explosion",
+        "Zhangzhou city plant produces paraxylene (PX)",
+        "Blast at oil storage facility Monday night",
+        "Five people injured by broken glass",
+        "600+ firefighters controlled the fire"
+      ],
+      "explicit_unknowns": [
+        "Whether a toxic chemical spill occurred"
+      ]
+    },
+    {
+      "thread": "Zhangzhou Plant Aftermath",
+      "story": "The chemical plant, located in Zhangzhou city, produces paraxylene (PX), a reportedly carcinogenic chemical used in the production of polyester films and fabrics. The Zhangzhou fire department wrote on their official microblogging account Tuesday morning that more than 600 firefighters were sent to battle the blaze at the Zhangzhou city chemical plant and the fire is now under control. Residents living close to the Zhangzhou city chemical plant had heard the explosion and took to Weibo to post photos of the fire. One Weibo user wrote that he heard a loud blast and felt slight tremors. The Zhangzhou city chemical plant was hit by another explosion in July 2013, although there were no reports of casualties or toxic leaks at the time.",
+      "key_facts": [
+        "Zhangzhou city plant produces paraxylene (PX)",
+        "600+ firefighters controlled the fire",
+        "Residents posted photos on Weibo",
+        "One user felt slight tremors",
+        "Explosion occurred in July 2013"
+      ],
+      "explicit_unknowns": [
+        "Not stated"
+      ]
+    },
+    {
+      "thread": "Zhangzhou Plant History",
+      "story": "The Zhangzhou city chemical plant was hit by another explosion in July 2013, although there were no reports of casualties or toxic leaks at the time. Though demonstrations are illegal in China, the construction of paraxylene (PX) plants has sparked protests, which have occasionally turned violent, in several cities in recent years. The Zhangzhou city chemical plant was slated for Xiamen, a densely populated city in the southeast of the country. However, the Zhangzhou city chemical plant provoked an angry backlash in 2007 due to pollution concerns and prompted the local government to relocate the Zhangzhou city chemical plant to its current, more remote location.",
+      "key_facts": [
+        "Zhangzhou city plant explosion in July 2013",
+        "PX plant protests in China",
+        "Plant was slated for Xiamen",
+        "2007 backlash led to relocation"
+      ],
+      "explicit_unknowns": [
+        "Not stated"
+      ]
+    }
+  ],
+  "_elapsed": 155.9
+}

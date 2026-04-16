@@ -1,0 +1,64 @@
+{
+  "stories": [
+    {
+      "thread": "Keonna Thomas's Arrest and Charges",
+      "story": "A Philadelphia woman, Keonna Thomas, 30, was charged on Thursday with trying to travel overseas to fight for ISIS. She was charged with knowingly attempting to provide material support and resources to a designated foreign terrorist organization. Thomas could be sentenced to 15 years in prison if convicted. It is not clear when or where she was arrested. She is one of three women arrested this week on terror charges.",
+      "key_facts": [
+        "Keonna Thomas, 30, charged Thursday",
+        "Charged with trying to travel overseas to fight for ISIS",
+        "Charged with knowingly attempting to provide material support and resources to a designated foreign terrorist organization",
+        "Could be sentenced to 15 years in prison",
+        "One of three women arrested this week on terror charges"
+      ],
+      "explicit_unknowns": [
+        "When or where Keonna Thomas was arrested"
+      ]
+    },
+    {
+      "thread": "Keonna Thomas's ISIS Travel Plans and Social Media",
+      "story": "An FBI complaint cites numerous social media messages dating back to August 2013 sent by Keonna Thomas, 30, also known as \"Young Lioness\" and \"Fatayat Al Khilafah.\" One Twitter message expressed a desire to \"be rushing to join our brothers in the front lines\" and another stated, \"When you're a mujahid your death becomes a wedding.\" The FBI said Thomas purchased an electronic visa to Turkey on March 23, which is known as the easiest place to enter Syria and join ISIS. On March 26, she purchased a ticket to Barcelona with a March 29 departure and an April 15 return to the United States. An ISIS manual advises recruits to buy round-trip tickets to vacation spots and then purchase tickets for their real destination once overseas.",
+      "key_facts": [
+        "Keonna Thomas, 30, also known as \"Young Lioness\" and \"Fatayat Al Khilafah\"",
+        "FBI complaint cites social media messages dating back to August 2013",
+        "Twitter messages about joining brothers in front lines and death becoming a wedding for a mujahid",
+        "Purchased electronic visa to Turkey on March 23",
+        "Turkey known as easiest place to enter Syria and join ISIS",
+        "Purchased ticket to Barcelona on March 26, with March 29 departure and April 15 return",
+        "ISIS manual advises recruits to buy round-trip tickets to vacation spots"
+      ],
+      "explicit_unknowns": []
+    },
+    {
+      "thread": "New York Women Arrested on Terror Charges",
+      "story": "Two New York women, Noelle Velentzas, 28, and her former roommate, Asia Siddiqui, 31, were arrested on Thursday in New York. They were accused of planning to build an explosive device for attacks in the United States, according to federal prosecutors. These arrests contribute to the total of three women taken into custody this week on terror charges.",
+      "key_facts": [
+        "Noelle Velentzas, 28, and Asia Siddiqui, 31, arrested in New York on Thursday",
+        "Accused of planning to build an explosive device for attacks in the United States",
+        "Two of three women arrested this week on terror charges"
+      ],
+      "explicit_unknowns": []
+    },
+    {
+      "thread": "Justice Department's Counter-Terrorism Efforts",
+      "story": "In the past 18 months, the Justice Department's National Security Division has prosecuted or is prosecuting more than 30 cases. These cases involve individuals attempting to travel abroad to join or provide support to terrorist groups. Of these cases, 18 allegedly involve support to ISIS.",
+      "key_facts": [
+        "In past 18 months, Justice Department's National Security Division prosecuted or is prosecuting more than 30 cases",
+        "Cases involve people attempting to travel abroad to join or provide support to terrorist groups",
+        "18 of those cases allegedly involve support to ISIS"
+      ],
+      "explicit_unknowns": []
+    },
+    {
+      "thread": "Homeland Security's View on Terrorist Threat",
+      "story": "Homeland Security Secretary Jeh Johnson told reporters on Thursday that \"The terrorist threat is more decentralized, more diffuse, more complicated.\" He further stated that the threat \"involves the potential lone wolf actor\" and \"involves the effective use of social media, the Internet.\"",
+      "key_facts": [
+        "Homeland Security Secretary Jeh Johnson told reporters Thursday",
+        "Stated \"The terrorist threat is more decentralized, more diffuse, more complicated\"",
+        "Stated threat \"involves the potential lone wolf actor\"",
+        "Stated threat \"involves the effective use of social media, the Internet\""
+      ],
+      "explicit_unknowns": []
+    }
+  ],
+  "_elapsed": 15.2
+}

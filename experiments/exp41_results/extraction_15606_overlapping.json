@@ -1,0 +1,40 @@
+{
+  "stories": [
+    {
+      "thread": "The Car Incident",
+      "story": "\"What do we have for the contestant on 'The Price Is Right'?\" \"A brand-new car!\" \"Whoops, that wasn't supposed to happen.\" On Thursday's edition of \"The Price Is Right\", model Manuela Arbelaez accidentally revealed the correct answer to a guessing game for a new Hyundai Sonata. Host Drew Carey couldn't stop laughing.",
+      "key_facts": [
+        "Thursday's edition of 'The Price Is Right'",
+        "Manuela Arbelaez accidentally revealed the answer for a Hyundai Sonata",
+        "Drew Carey laughed"
+      ],
+      "explicit_unknowns": [
+        "The reason why the answer was revealed"
+      ]
+    },
+    {
+      "thread": "The Reaction",
+      "story": "Host Drew Carey exulted on \"The Price Is Right\", \"Congratulations! Manuela Arbelaez just gave you a car!\" Model Manuela Arbelaez was mortified and attempted to hide behind the display. Manuela Arbelaez tweeted later that everything turned out OK.",
+      "key_facts": [
+        "Drew Carey congratulated the contestant",
+        "Manuela Arbelaez was mortified and hid",
+        "Manuela Arbelaez tweeted that everything turned out OK"
+      ],
+      "explicit_unknowns": [
+        "The full text of the tweet"
+      ]
+    },
+    {
+      "thread": "The Busy Week",
+      "story": "It's been a busy week for \"The Price Is Right\". On Wednesday, former host Bob Barker, 91, showed up to run \"The Price Is Right\".",
+      "key_facts": [
+        "Wednesday's edition of 'The Price Is Right'",
+        "Bob Barker, 91, returned to run the show"
+      ],
+      "explicit_unknowns": [
+        "The reason Bob Barker returned to the show"
+      ]
+    }
+  ],
+  "_elapsed": 143.2
+}

@@ -1,0 +1,1354 @@
+{
+  "event_hubs": [
+    {
+      "event_id": "EVT_1",
+      "action": "barred from attending",
+      "source_sentence": "S0",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "Iranian authorities",
+          "source": "S0"
+        },
+        {
+          "type": "target_of",
+          "target": "women",
+          "source": "S0"
+        },
+        {
+          "type": "when",
+          "target": "Since Iran's Islamic Revolution in 1979",
+          "source": "S0"
+        },
+        {
+          "type": "where",
+          "target": "Iran",
+          "source": "S0"
+        },
+        {
+          "type": "how",
+          "target": "from attending most sports events involving men",
+          "source": "S0"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_2",
+      "action": "ban will be lifted",
+      "source_sentence": "S1",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "Iranian authorities",
+          "source": "S1"
+        },
+        {
+          "type": "target_of",
+          "target": "the ban",
+          "source": "S1"
+        },
+        {
+          "type": "when",
+          "target": "in the coming months",
+          "source": "S1"
+        },
+        {
+          "type": "how",
+          "target": "for some events",
+          "source": "S1"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_3",
+      "action": "said",
+      "source_sentence": "S1",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "a top Iranian sports official",
+          "source": "S1"
+        },
+        {
+          "type": "target_of",
+          "target": "that the ban will be lifted for some events",
+          "source": "S1"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_4",
+      "action": "plan will come into effect",
+      "source_sentence": "S2",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "A plan",
+          "source": "S2"
+        },
+        {
+          "type": "when",
+          "target": "in the next year",
+          "source": "S2"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_5",
+      "action": "allow to enter",
+      "source_sentence": "S2",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "A plan",
+          "source": "S2"
+        },
+        {
+          "type": "target_of",
+          "target": "women and families",
+          "source": "S2"
+        },
+        {
+          "type": "where",
+          "target": "sports stadiums",
+          "source": "S2"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_6",
+      "action": "said",
+      "source_sentence": "S2",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "Abdolhamid Ahmadi",
+          "source": "S2"
+        },
+        {
+          "type": "target_of",
+          "target": "A plan to allow 'women and families' to enter sports stadiums will come into effect in the next year",
+          "source": "S2"
+        },
+        {
+          "type": "when",
+          "target": "Saturday",
+          "source": "S2"
+        },
+        {
+          "type": "how",
+          "target": "according to state-run media",
+          "source": "S2"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_7",
+      "action": "said",
+      "source_sentence": "S4",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "Ahmadi",
+          "source": "S4"
+        },
+        {
+          "type": "target_of",
+          "target": "the restrictions would be lifted for indoor sports events",
+          "source": "S4"
+        },
+        {
+          "type": "how",
+          "target": "According to the state-run Press TV",
+          "source": "S4"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_8",
+      "action": "restrictions would be lifted",
+      "source_sentence": "S4",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "Iranian authorities",
+          "source": "S4"
+        },
+        {
+          "type": "target_of",
+          "target": "the restrictions",
+          "source": "S4"
+        },
+        {
+          "type": "how",
+          "target": "for indoor sports events",
+          "source": "S4"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_9",
+      "action": "cited as saying",
+      "source_sentence": "S5",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "Press TV",
+          "source": "S5"
+        },
+        {
+          "type": "target_of",
+          "target": "Ahmadi",
+          "source": "S5"
+        },
+        {
+          "type": "how",
+          "target": "The rules won't change for all matches because some sports are mainly related to men and 'families are not interested in attending' them",
+          "source": "S5"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_10",
+      "action": "rules won't change",
+      "source_sentence": "S5",
+      "edges": [
+        {
+          "type": "target_of",
+          "target": "all matches",
+          "source": "S5"
+        },
+        {
+          "type": "why",
+          "target": "because some sports are mainly related to men and 'families are not interested in attending' them",
+          "source": "S5"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_11",
+      "action": "imposed the ban",
+      "source_sentence": "S6",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "Iranian authorities",
+          "source": "S6"
+        },
+        {
+          "type": "target_of",
+          "target": "the ban on women attending men's sports events",
+          "source": "S6"
+        },
+        {
+          "type": "when",
+          "target": "after the revolution",
+          "source": "S6"
+        },
+        {
+          "type": "why",
+          "target": "deeming that mixed crowds watching games together was un-Islamic",
+          "source": "S6"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_12",
+      "action": "have been all male",
+      "source_sentence": "S7",
+      "edges": [
+        {
+          "type": "target_of",
+          "target": "the crowds at soccer games",
+          "source": "S7"
+        },
+        {
+          "type": "when",
+          "target": "During the ensuing decades",
+          "source": "S7"
+        },
+        {
+          "type": "where",
+          "target": "Iran",
+          "source": "S7"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_13",
+      "action": "permitted to attend",
+      "source_sentence": "S8",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "Mohammad Khatami administration",
+          "source": "S8"
+        },
+        {
+          "type": "target_of",
+          "target": "Iranian women",
+          "source": "S8"
+        },
+        {
+          "type": "when",
+          "target": "briefly",
+          "source": "S8"
+        },
+        {
+          "type": "how",
+          "target": "volleyball matches",
+          "source": "S8"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_14",
+      "action": "ban was reinstated",
+      "source_sentence": "S8",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "Mahmoud Ahmadinejad administration",
+          "source": "S8"
+        },
+        {
+          "type": "target_of",
+          "target": "the ban",
+          "source": "S8"
+        },
+        {
+          "type": "when",
+          "target": "in 2005",
+          "source": "S8"
+        },
+        {
+          "type": "why",
+          "target": "after the more hard-line Mahmoud Ahmadinejad came to power",
+          "source": "S8"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_15",
+      "action": "came to power",
+      "source_sentence": "S8",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "Mahmoud Ahmadinejad",
+          "source": "S8"
+        },
+        {
+          "type": "when",
+          "target": "before 2005",
+          "source": "S8"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_16",
+      "action": "has come under pressure",
+      "source_sentence": "S9",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "international sports officials",
+          "source": "S9"
+        },
+        {
+          "type": "target_of",
+          "target": "The Iranian government",
+          "source": "S9"
+        },
+        {
+          "type": "why",
+          "target": "over the restrictions",
+          "source": "S9"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_17",
+      "action": "called on",
+      "source_sentence": "S10",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "FIFA President Sepp Blatter",
+          "source": "S10"
+        },
+        {
+          "type": "target_of",
+          "target": "Iran",
+          "source": "S10"
+        },
+        {
+          "type": "when",
+          "target": "last month",
+          "source": "S10"
+        },
+        {
+          "type": "how",
+          "target": "to end its 'intolerable' ban on women attending soccer matches",
+          "source": "S10"
+        },
+        {
+          "type": "why",
+          "target": "saying the situation 'cannot continue.'",
+          "source": "S10"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_18",
+      "action": "had been in the running to host",
+      "source_sentence": "S10",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "Iran",
+          "source": "S10"
+        },
+        {
+          "type": "target_of",
+          "target": "the 2019 edition of soccer's Asian Cup",
+          "source": "S10"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_19",
+      "action": "tournament was awarded",
+      "source_sentence": "S10",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "FIFA",
+          "source": "S10"
+        },
+        {
+          "type": "target_of",
+          "target": "the 2019 edition of soccer's Asian Cup",
+          "source": "S10"
+        },
+        {
+          "type": "where",
+          "target": "United Arab Emirates",
+          "source": "S10"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_20",
+      "action": "was widely seen as a major impediment",
+      "source_sentence": "S11",
+      "edges": [
+        {
+          "type": "target_of",
+          "target": "The ban on women attending matches",
+          "source": "S11"
+        },
+        {
+          "type": "how",
+          "target": "to Iran's chances of securing the event",
+          "source": "S11"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_21",
+      "action": "came under the spotlight",
+      "source_sentence": "S12",
+      "edges": [
+        {
+          "type": "target_of",
+          "target": "The ban",
+          "source": "S12"
+        },
+        {
+          "type": "when",
+          "target": "earlier this year",
+          "source": "S12"
+        },
+        {
+          "type": "where",
+          "target": "at the Asian Cup in Australia",
+          "source": "S12"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_22",
+      "action": "watched",
+      "source_sentence": "S12",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "thousands of female Iranian fans",
+          "source": "S12"
+        },
+        {
+          "type": "target_of",
+          "target": "their soccer team",
+          "source": "S12"
+        },
+        {
+          "type": "when",
+          "target": "earlier this year",
+          "source": "S12"
+        },
+        {
+          "type": "where",
+          "target": "Australia",
+          "source": "S12"
+        },
+        {
+          "type": "how",
+          "target": "without restriction",
+          "source": "S12"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_23",
+      "action": "called for the ban to end",
+      "source_sentence": "S13",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "activists",
+          "source": "S13"
+        },
+        {
+          "type": "when",
+          "target": "During the match against Iraq",
+          "source": "S13"
+        },
+        {
+          "type": "where",
+          "target": "Australia",
+          "source": "S13"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_24",
+      "action": "unfurled a banner",
+      "source_sentence": "S13",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "activists",
+          "source": "S13"
+        },
+        {
+          "type": "target_of",
+          "target": "a banner showing the face of Ghoncheh Ghavami",
+          "source": "S13"
+        },
+        {
+          "type": "when",
+          "target": "During the match against Iraq",
+          "source": "S13"
+        },
+        {
+          "type": "where",
+          "target": "Australia",
+          "source": "S13"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_25",
+      "action": "detained",
+      "source_sentence": "S13",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "Iranian authorities",
+          "source": "S13"
+        },
+        {
+          "type": "target_of",
+          "target": "Ghoncheh Ghavami",
+          "source": "S13"
+        },
+        {
+          "type": "when",
+          "target": "last year",
+          "source": "S13"
+        },
+        {
+          "type": "where",
+          "target": "Iran",
+          "source": "S13"
+        },
+        {
+          "type": "why",
+          "target": "while trying to watch a volleyball match",
+          "source": "S13"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_26",
+      "action": "trying to watch",
+      "source_sentence": "S13",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "Ghoncheh Ghavami",
+          "source": "S13"
+        },
+        {
+          "type": "target_of",
+          "target": "a volleyball match",
+          "source": "S13"
+        },
+        {
+          "type": "when",
+          "target": "last year",
+          "source": "S13"
+        },
+        {
+          "type": "where",
+          "target": "Iran",
+          "source": "S13"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_27",
+      "action": "denied",
+      "source_sentence": "S14",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "Iranian officials",
+          "source": "S14"
+        },
+        {
+          "type": "target_of",
+          "target": "that Ghavami was arrested for attending the volleyball game",
+          "source": "S14"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_28",
+      "action": "was arrested",
+      "source_sentence": "S14",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "Iranian authorities",
+          "source": "S14"
+        },
+        {
+          "type": "target_of",
+          "target": "Ghavami",
+          "source": "S14"
+        },
+        {
+          "type": "why",
+          "target": "for attending the volleyball game",
+          "source": "S14"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_29",
+      "action": "was taken into custody",
+      "source_sentence": "S14",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "Iranian authorities",
+          "source": "S14"
+        },
+        {
+          "type": "target_of",
+          "target": "Ghavami",
+          "source": "S14"
+        },
+        {
+          "type": "why",
+          "target": "for 'anti-Iran activities.'",
+          "source": "S14"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_30",
+      "action": "reported",
+      "source_sentence": "S14",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "Reuters",
+          "source": "S14"
+        },
+        {
+          "type": "target_of",
+          "target": "that she was recently pardoned by the Court of Appeal",
+          "source": "S14"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_31",
+      "action": "was recently pardoned",
+      "source_sentence": "S14",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "Court of Appeal",
+          "source": "S14"
+        },
+        {
+          "type": "target_of",
+          "target": "Ghavami",
+          "source": "S14"
+        },
+        {
+          "type": "when",
+          "target": "recently",
+          "source": "S14"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_32",
+      "action": "contributed to this report",
+      "source_sentence": "S15",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "Annie Ramos",
+          "source": "S15"
+        },
+        {
+          "type": "target_of",
+          "target": "this report",
+          "source": "S15"
+        }
+      ]
+    }
+  ],
+  "entities": [
+    {
+      "name": "Iran",
+      "aliases": [],
+      "attributes": {
+        "location": "Iran"
+      },
+      "participates_in": [
+        "EVT_1",
+        "EVT_12",
+        "EVT_17",
+        "EVT_18",
+        "EVT_25",
+        "EVT_26",
+        "EVT_29"
+      ],
+      "source_sentences": [
+        "S0",
+        "S7",
+        "S10",
+        "S13",
+        "S14"
+      ]
+    },
+    {
+      "name": "Islamic Revolution",
+      "aliases": [],
+      "attributes": {},
+      "participates_in": [
+        "EVT_1"
+      ],
+      "source_sentences": [
+        "S0"
+      ]
+    },
+    {
+      "name": "women",
+      "aliases": [],
+      "attributes": {},
+      "participates_in": [
+        "EVT_1",
+        "EVT_5",
+        "EVT_10",
+        "EVT_13",
+        "EVT_17",
+        "EVT_20"
+      ],
+      "source_sentences": [
+        "S0",
+        "S2",
+        "S3",
+        "S5",
+        "S8",
+        "S10",
+        "S11"
+      ]
+    },
+    {
+      "name": "men",
+      "aliases": [],
+      "attributes": {},
+      "participates_in": [
+        "EVT_1",
+        "EVT_10",
+        "EVT_12"
+      ],
+      "source_sentences": [
+        "S0",
+        "S5",
+        "S7"
+      ]
+    },
+    {
+      "name": "a top Iranian sports official",
+      "aliases": [],
+      "attributes": {},
+      "participates_in": [
+        "EVT_3"
+      ],
+      "source_sentences": [
+        "S1"
+      ]
+    },
+    {
+      "name": "A plan",
+      "aliases": [],
+      "attributes": {},
+      "participates_in": [
+        "EVT_4",
+        "EVT_5"
+      ],
+      "source_sentences": [
+        "S2"
+      ]
+    },
+    {
+      "name": "families",
+      "aliases": [],
+      "attributes": {},
+      "participates_in": [
+        "EVT_5",
+        "EVT_10"
+      ],
+      "source_sentences": [
+        "S2",
+        "S5"
+      ]
+    },
+    {
+      "name": "sports stadiums",
+      "aliases": [],
+      "attributes": {
+        "location": "sports stadiums"
+      },
+      "participates_in": [
+        "EVT_5"
+      ],
+      "source_sentences": [
+        "S2"
+      ]
+    },
+    {
+      "name": "Abdolhamid Ahmadi",
+      "aliases": [
+        "Deputy Sports Minister",
+        "Ahmadi",
+        "him"
+      ],
+      "attributes": {},
+      "participates_in": [
+        "EVT_6",
+        "EVT_7",
+        "EVT_9"
+      ],
+      "source_sentences": [
+        "S2",
+        "S4",
+        "S5"
+      ]
+    },
+    {
+      "name": "state-run media",
+      "aliases": [],
+      "attributes": {},
+      "participates_in": [
+        "EVT_6"
+      ],
+      "source_sentences": [
+        "S2"
+      ]
+    },
+    {
+      "name": "Press TV",
+      "aliases": [
+        "state-run Press TV"
+      ],
+      "attributes": {},
+      "participates_in": [
+        "EVT_7",
+        "EVT_9"
+      ],
+      "source_sentences": [
+        "S4",
+        "S5"
+      ]
+    },
+    {
+      "name": "Iranian authorities",
+      "aliases": [
+        "Iranian officials"
+      ],
+      "attributes": {},
+      "participates_in": [
+        "EVT_1",
+        "EVT_2",
+        "EVT_8",
+        "EVT_11",
+        "EVT_25",
+        "EVT_27",
+        "EVT_28",
+        "EVT_29"
+      ],
+      "source_sentences": [
+        "S6",
+        "S14"
+      ]
+    },
+    {
+      "name": "soccer games",
+      "aliases": [],
+      "attributes": {},
+      "participates_in": [
+        "EVT_12"
+      ],
+      "source_sentences": [
+        "S7"
+      ]
+    },
+    {
+      "name": "Mohammad Khatami",
+      "aliases": [
+        "moderate President Mohammad Khatami"
+      ],
+      "attributes": {},
+      "participates_in": [
+        "EVT_13"
+      ],
+      "source_sentences": [
+        "S8"
+      ]
+    },
+    {
+      "name": "Mohammad Khatami administration",
+      "aliases": [],
+      "attributes": {},
+      "participates_in": [
+        "EVT_13"
+      ],
+      "source_sentences": [
+        "S8"
+      ]
+    },
+    {
+      "name": "Mahmoud Ahmadinejad",
+      "aliases": [
+        "more hard-line Mahmoud Ahmadinejad"
+      ],
+      "attributes": {},
+      "participates_in": [
+        "EVT_14",
+        "EVT_15"
+      ],
+      "source_sentences": [
+        "S8"
+      ]
+    },
+    {
+      "name": "Mahmoud Ahmadinejad administration",
+      "aliases": [],
+      "attributes": {},
+      "participates_in": [
+        "EVT_14"
+      ],
+      "source_sentences": [
+        "S8"
+      ]
+    },
+    {
+      "name": "The Iranian government",
+      "aliases": [],
+      "attributes": {},
+      "participates_in": [
+        "EVT_16"
+      ],
+      "source_sentences": [
+        "S9"
+      ]
+    },
+    {
+      "name": "international sports officials",
+      "aliases": [],
+      "attributes": {},
+      "participates_in": [
+        "EVT_16"
+      ],
+      "source_sentences": [
+        "S9"
+      ]
+    },
+    {
+      "name": "FIFA President Sepp Blatter",
+      "aliases": [
+        "Sepp Blatter"
+      ],
+      "attributes": {},
+      "participates_in": [
+        "EVT_17"
+      ],
+      "source_sentences": [
+        "S10"
+      ]
+    },
+    {
+      "name": "FIFA",
+      "aliases": [],
+      "attributes": {},
+      "participates_in": [
+        "EVT_17",
+        "EVT_19"
+      ],
+      "source_sentences": [
+        "S10"
+      ]
+    },
+    {
+      "name": "2019 edition of soccer's Asian Cup",
+      "aliases": [
+        "the tournament",
+        "the event"
+      ],
+      "attributes": {
+        "year": "2019",
+        "sport": "soccer"
+      },
+      "participates_in": [
+        "EVT_18",
+        "EVT_19",
+        "EVT_20"
+      ],
+      "source_sentences": [
+        "S10",
+        "S11"
+      ]
+    },
+    {
+      "name": "United Arab Emirates",
+      "aliases": [],
+      "attributes": {
+        "location": "United Arab Emirates"
+      },
+      "participates_in": [
+        "EVT_19"
+      ],
+      "source_sentences": [
+        "S10"
+      ]
+    },
+    {
+      "name": "Asian Cup",
+      "aliases": [],
+      "attributes": {
+        "location": "Australia"
+      },
+      "participates_in": [
+        "EVT_21",
+        "EVT_22"
+      ],
+      "source_sentences": [
+        "S12"
+      ]
+    },
+    {
+      "name": "Australia",
+      "aliases": [],
+      "attributes": {
+        "location": "Australia"
+      },
+      "participates_in": [
+        "EVT_21",
+        "EVT_22",
+        "EVT_23",
+        "EVT_24"
+      ],
+      "source_sentences": [
+        "S12",
+        "S13"
+      ]
+    },
+    {
+      "name": "thousands of female Iranian fans",
+      "aliases": [
+        "female Iranian fans"
+      ],
+      "attributes": {},
+      "participates_in": [
+        "EVT_22"
+      ],
+      "source_sentences": [
+        "S12"
+      ]
+    },
+    {
+      "name": "their soccer team",
+      "aliases": [],
+      "attributes": {},
+      "participates_in": [
+        "EVT_22"
+      ],
+      "source_sentences": [
+        "S12"
+      ]
+    },
+    {
+      "name": "Iraq",
+      "aliases": [],
+      "attributes": {},
+      "participates_in": [
+        "EVT_23"
+      ],
+      "source_sentences": [
+        "S13"
+      ]
+    },
+    {
+      "name": "activists",
+      "aliases": [],
+      "attributes": {},
+      "participates_in": [
+        "EVT_23",
+        "EVT_24"
+      ],
+      "source_sentences": [
+        "S13"
+      ]
+    },
+    {
+      "name": "Ghoncheh Ghavami",
+      "aliases": [
+        "a British-Iranian woman",
+        "she",
+        "Ghavami"
+      ],
+      "attributes": {
+        "nationality": "British-Iranian"
+      },
+      "participates_in": [
+        "EVT_25",
+        "EVT_26",
+        "EVT_27",
+        "EVT_28",
+        "EVT_29",
+        "EVT_31"
+      ],
+      "source_sentences": [
+        "S13",
+        "S14"
+      ]
+    },
+    {
+      "name": "volleyball match",
+      "aliases": [],
+      "attributes": {},
+      "participates_in": [
+        "EVT_26",
+        "EVT_28"
+      ],
+      "source_sentences": [
+        "S13",
+        "S14"
+      ]
+    },
+    {
+      "name": "Reuters",
+      "aliases": [
+        "The news agency Reuters"
+      ],
+      "attributes": {},
+      "participates_in": [
+        "EVT_30"
+      ],
+      "source_sentences": [
+        "S14"
+      ]
+    },
+    {
+      "name": "Court of Appeal",
+      "aliases": [],
+      "attributes": {},
+      "participates_in": [
+        "EVT_31"
+      ],
+      "source_sentences": [
+        "S14"
+      ]
+    },
+    {
+      "name": "Annie Ramos",
+      "aliases": [
+        "CNN's Annie Ramos"
+      ],
+      "attributes": {},
+      "participates_in": [
+        "EVT_32"
+      ],
+      "source_sentences": [
+        "S15"
+      ]
+    },
+    {
+      "name": "CNN",
+      "aliases": [],
+      "attributes": {},
+      "participates_in": [
+        "EVT_32"
+      ],
+      "source_sentences": [
+        "S15"
+      ]
+    }
+  ],
+  "inter_event_edges": [
+    {
+      "from": "EVT_3",
+      "to": "EVT_2",
+      "type": "reports_on",
+      "source": "S1"
+    },
+    {
+      "from": "EVT_4",
+      "to": "EVT_5",
+      "type": "purpose_of",
+      "source": "S2"
+    },
+    {
+      "from": "EVT_6",
+      "to": "EVT_4",
+      "type": "reports_on",
+      "source": "S2"
+    },
+    {
+      "from": "EVT_7",
+      "to": "EVT_8",
+      "type": "reports_on",
+      "source": "S4"
+    },
+    {
+      "from": "EVT_9",
+      "to": "EVT_10",
+      "type": "reports_on",
+      "source": "S5"
+    },
+    {
+      "from": "EVT_11",
+      "to": "EVT_1",
+      "type": "causes",
+      "source": "S6"
+    },
+    {
+      "from": "EVT_11",
+      "to": "EVT_12",
+      "type": "results_in",
+      "source": "S6"
+    },
+    {
+      "from": "EVT_13",
+      "to": "EVT_14",
+      "type": "precedes",
+      "source": "S8"
+    },
+    {
+      "from": "EVT_15",
+      "to": "EVT_14",
+      "type": "causes",
+      "source": "S8"
+    },
+    {
+      "from": "EVT_16",
+      "to": "EVT_17",
+      "type": "exemplified_by",
+      "source": "S9"
+    },
+    {
+      "from": "EVT_18",
+      "to": "EVT_19",
+      "type": "precedes",
+      "source": "S10"
+    },
+    {
+      "from": "EVT_20",
+      "to": "EVT_19",
+      "type": "contributes_to_outcome",
+      "source": "S11"
+    },
+    {
+      "from": "EVT_22",
+      "to": "EVT_21",
+      "type": "causes",
+      "source": "S12"
+    },
+    {
+      "from": "EVT_22",
+      "to": "EVT_23",
+      "type": "context_for",
+      "source": "S13"
+    },
+    {
+      "from": "EVT_22",
+      "to": "EVT_24",
+      "type": "context_for",
+      "source": "S13"
+    },
+    {
+      "from": "EVT_26",
+      "to": "EVT_25",
+      "type": "causes",
+      "source": "S13"
+    },
+    {
+      "from": "EVT_27",
+      "to": "EVT_28",
+      "type": "denies",
+      "source": "S14"
+    },
+    {
+      "from": "EVT_27",
+      "to": "EVT_29",
+      "type": "proposes_alternative",
+      "source": "S14"
+    },
+    {
+      "from": "EVT_30",
+      "to": "EVT_31",
+      "type": "reports_on",
+      "source": "S14"
+    }
+  ],
+  "explicit_unknowns": [
+    {
+      "about": "which specific games women will be able to attend",
+      "unknown_slots": [
+        "target_of"
+      ],
+      "source": "S3"
+    }
+  ],
+  "_elapsed": 95.3
+}

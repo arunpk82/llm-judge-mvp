@@ -1,0 +1,379 @@
+{
+  "event_hubs": [
+    {
+      "event_id": "EVT_1",
+      "action": "requiring identity cards for cattle",
+      "source_sentence": "S0",
+      "edges": [
+        {
+          "type": "agent",
+          "target": "ENT_1",
+          "source": "S0"
+        },
+        {
+          "type": "object",
+          "target": "ENT_2",
+          "source": "S0"
+        },
+        {
+          "type": "location",
+          "target": "ENT_3",
+          "source": "S0"
+        },
+        {
+          "type": "location",
+          "target": "ENT_4",
+          "source": "S0"
+        },
+        {
+          "type": "participant",
+          "target": "ENT_5",
+          "source": "S1"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_2",
+      "action": "ban on the sale and consumption of beef",
+      "source_sentence": "S1",
+      "edges": [
+        {
+          "type": "location",
+          "target": "ENT_4",
+          "source": "S1"
+        },
+        {
+          "type": "penalty",
+          "target": "prison for five years",
+          "source": "S10"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_3",
+      "action": "creating a database",
+      "source_sentence": "S5",
+      "edges": [
+        {
+          "type": "agent",
+          "target": "ENT_6",
+          "source": "S6"
+        },
+        {
+          "type": "purpose",
+          "target": "solve cow slaughter cases",
+          "source": "S3"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_4",
+      "action": "cow slaughter",
+      "source_sentence": "S8",
+      "edges": [
+        {
+          "type": "location",
+          "target": "ENT_3",
+          "source": "S8"
+        },
+        {
+          "type": "time",
+          "target": "recent",
+          "source": "S8"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_5",
+      "action": "charging two men",
+      "source_sentence": "S8",
+      "edges": [
+        {
+          "type": "object",
+          "target": "ENT_7",
+          "source": "S8"
+        },
+        {
+          "type": "reason",
+          "target": "killing the animal and selling its meat",
+          "source": "S8"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_6",
+      "action": "implementing Maharashtra Animal Preservation Bill",
+      "source_sentence": "S9",
+      "edges": [
+        {
+          "type": "object",
+          "target": "ENT_8",
+          "source": "S9"
+        },
+        {
+          "type": "effect",
+          "target": "bans on the killing of bulls and bullocks",
+          "source": "S9"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_7",
+      "action": "month-long strike",
+      "source_sentence": "S12",
+      "edges": [
+        {
+          "type": "agent",
+          "target": "ENT_9",
+          "source": "S12"
+        },
+        {
+          "type": "end_time",
+          "target": "Wednesday",
+          "source": "S12"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_8",
+      "action": "vowing to file a case",
+      "source_sentence": "S14",
+      "edges": [
+        {
+          "type": "agent",
+          "target": "ENT_9",
+          "source": "S14"
+        },
+        {
+          "type": "target_location",
+          "target": "state's high court",
+          "source": "S14"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_9",
+      "action": "implementing maximum punishment",
+      "source_sentence": "S17",
+      "edges": [
+        {
+          "type": "location",
+          "target": "ENT_10",
+          "source": "S17"
+        },
+        {
+          "type": "penalty",
+          "target": "10 years in prison",
+          "source": "S17"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_10",
+      "action": "promising country-wide law against cow slaughter",
+      "source_sentence": "S18",
+      "edges": [
+        {
+          "type": "agent",
+          "target": "ENT_11",
+          "source": "S18"
+        }
+      ]
+    }
+  ],
+  "entities": [
+    {
+      "name": "Police in Malegaon",
+      "aliases": [],
+      "attributes": {},
+      "participates_in": [
+        "EVT_1"
+      ],
+      "source_sentences": [
+        "S0"
+      ]
+    },
+    {
+      "name": "Cattle",
+      "aliases": [
+        "livestock"
+      ],
+      "attributes": {
+        "types": [
+          "cows",
+          "bulls",
+          "bullocks",
+          "buffaloes"
+        ],
+        "holy_status": "considered holy and revered by Maharashtra's majority Hindu population"
+      },
+      "participates_in": [
+        "EVT_1"
+      ],
+      "source_sentences": [
+        "S0",
+        "S4",
+        "S7",
+        "S9",
+        "S11"
+      ]
+    },
+    {
+      "name": "Malegaon",
+      "aliases": [],
+      "attributes": {
+        "type": "city",
+        "location": "Maharashtra"
+      },
+      "participates_in": [
+        "EVT_1",
+        "EVT_4"
+      ],
+      "source_sentences": [
+        "S0",
+        "S8"
+      ]
+    },
+    {
+      "name": "Maharashtra",
+      "aliases": [],
+      "attributes": {
+        "type": "state",
+        "location": "western India"
+      },
+      "participates_in": [
+        "EVT_1",
+        "EVT_2"
+      ],
+      "source_sentences": [
+        "S0",
+        "S1",
+        "S16"
+      ]
+    },
+    {
+      "name": "Residents",
+      "aliases": [
+        "owners"
+      ],
+      "attributes": {},
+      "participates_in": [
+        "EVT_1"
+      ],
+      "source_sentences": [
+        "S1",
+        "S2",
+        "S7"
+      ]
+    },
+    {
+      "name": "Mahesh Sawai",
+      "aliases": [],
+      "attributes": {
+        "title": "Deputy Superintendent of Malegaon Police"
+      },
+      "participates_in": [
+        "EVT_3"
+      ],
+      "source_sentences": [
+        "S6"
+      ]
+    },
+    {
+      "name": "Two men",
+      "aliases": [],
+      "attributes": {
+        "status": "charged"
+      },
+      "participates_in": [
+        "EVT_5"
+      ],
+      "source_sentences": [
+        "S8"
+      ]
+    },
+    {
+      "name": "Maharashtra Animal Preservation Bill",
+      "aliases": [],
+      "attributes": {
+        "type": "law"
+      },
+      "participates_in": [
+        "EVT_6"
+      ],
+      "source_sentences": [
+        "S9"
+      ]
+    },
+    {
+      "name": "Beef traders",
+      "aliases": [],
+      "attributes": {},
+      "participates_in": [
+        "EVT_7",
+        "EVT_8"
+      ],
+      "source_sentences": [
+        "S12",
+        "S14"
+      ]
+    },
+    {
+      "name": "Haryana",
+      "aliases": [],
+      "attributes": {
+        "type": "state"
+      },
+      "participates_in": [
+        "EVT_9"
+      ],
+      "source_sentences": [
+        "S17"
+      ]
+    },
+    {
+      "name": "Rajnath Singh",
+      "aliases": [],
+      "attributes": {
+        "title": "India's Home Minister"
+      },
+      "participates_in": [
+        "EVT_10"
+      ],
+      "source_sentences": [
+        "S18"
+      ]
+    }
+  ],
+  "explicit_unknowns": [
+    {
+      "about": "EVT_1",
+      "unknown_slots": [
+        "start_date"
+      ],
+      "source": "S0"
+    },
+    {
+      "about": "ENT_7",
+      "unknown_slots": [
+        "names"
+      ],
+      "source": "S8"
+    },
+    {
+      "about": "EVT_8",
+      "unknown_slots": [
+        "filing_date"
+      ],
+      "source": "S14"
+    },
+    {
+      "about": "EVT_10",
+      "unknown_slots": [
+        "implementation_timeline"
+      ],
+      "source": "S18"
+    }
+  ],
+  "_elapsed": 108.0
+}

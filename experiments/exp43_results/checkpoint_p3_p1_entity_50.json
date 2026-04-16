@@ -1,0 +1,339 @@
+{
+  "phase": "p1_entity_50",
+  "results": [
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 0,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 1,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 2,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 3,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 4,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 5,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 6,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": false,
+      "issues": [
+        {
+          "claim_says": "Witnesses described the terrible conditions at the camp, with overcrowding, lack of basic necessities, and a deadly typhus outbreak.",
+          "source_says": "Days at the camp were filled with terror and dread, witnesses said. The sisters stayed in a section of the overcrowded camp with no lighting, little water and no latrine... according to the researchers.",
+          "problem": "misattribution"
+        }
+      ],
+      "_idx": 7,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 8,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 9,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 10,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 11,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 12,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 13,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 14,
+      "_expected": "hallucinated"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 15,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 16,
+      "_expected": "hallucinated"
+    },
+    {
+      "entity_binding_correct": false,
+      "issues": [
+        {
+          "claim_says": "Anne Frank died... two weeks after her supposed death on March 31, 1945",
+          "source_says": "Just two weeks after her supposed death on March 31, 1945, the Bergen-Belsen concentration camp where she had been imprisoned was liberated",
+          "problem": "misattribution"
+        }
+      ],
+      "_idx": 17,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 18,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 19,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 20,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 21,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 22,
+      "_expected": "hallucinated"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 23,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 24,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": false,
+      "issues": [
+        {
+          "claim_says": "witnesses described the conditions as brutal, with little food, water, or sanitation",
+          "source_says": "Days at the camp were filled with terror and dread, witnesses said. The sisters stayed in a section of the overcrowded camp with no lighting, little water and no latrine... according to the researchers.",
+          "problem": "misattribution"
+        }
+      ],
+      "_idx": 25,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 26,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 27,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 28,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 29,
+      "_expected": "hallucinated"
+    },
+    {
+      "entity_binding_correct": false,
+      "issues": [
+        {
+          "claim_says": "Witnesses described... overcrowding",
+          "source_says": "The sisters stayed in a section of the overcrowded camp... according to the researchers",
+          "problem": "misattribution"
+        },
+        {
+          "claim_says": "Witnesses described... poor hygiene",
+          "source_says": "The sisters stayed in a section of the overcrowded camp with no lighting, little water and no latrine... according to the researchers",
+          "problem": "misattribution"
+        },
+        {
+          "claim_says": "Witnesses described... the spread of diseases like typhus",
+          "source_says": "A deadly typhus outbreak caused thousands to die each day",
+          "problem": "misattribution"
+        }
+      ],
+      "_idx": 30,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 31,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 32,
+      "_expected": "hallucinated"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 33,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 34,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 35,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 36,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 37,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 38,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 39,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 40,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 41,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 42,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 43,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 44,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 45,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 46,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 47,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 48,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 49,
+      "_expected": "grounded"
+    }
+  ]
+}

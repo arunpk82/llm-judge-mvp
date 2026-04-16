@@ -1,0 +1,31 @@
+{
+  "stories": [
+    {
+      "thread": "Manuela Arbelaez's accidental reveal on The Price Is Right",
+      "story": "On Thursday's edition of \"The Price Is Right,\" model Manuela Arbelaez accidentally revealed the correct answer to a guessing game for a new Hyundai Sonata. Host Drew Carey laughed, exulting, \"Congratulations! Manuela just gave you a car!\" Arbelaez was mortified and attempted to hide behind the display. She later tweeted that everything turned out OK. The source does not state the exact date of this Thursday edition or the name of the contestant.",
+      "key_facts": [
+        "On Thursday's edition of \"The Price Is Right\", model Manuela Arbelaez accidentally revealed the correct answer.",
+        "The prize was a new Hyundai Sonata.",
+        "Host Drew Carey said, \"Congratulations! Manuela just gave you a car!\"",
+        "Arbelaez was mortified and attempted to hide.",
+        "Arbelaez later tweeted that everything turned out OK."
+      ],
+      "explicit_unknowns": [
+        "The exact date of Thursday's edition.",
+        "The name of the contestant."
+      ]
+    },
+    {
+      "thread": "Bob Barker's appearance on The Price Is Right",
+      "story": "On Wednesday, former host Bob Barker, 91, showed up to run his old show, \"The Price Is Right.\" The source does not specify the exact date of this Wednesday.",
+      "key_facts": [
+        "On Wednesday, former host Bob Barker, 91, showed up.",
+        "He ran his old show, \"The Price Is Right.\""
+      ],
+      "explicit_unknowns": [
+        "The exact date of this Wednesday."
+      ]
+    }
+  ],
+  "_elapsed": 10.3
+}

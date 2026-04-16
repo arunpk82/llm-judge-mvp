@@ -1,0 +1,459 @@
+{
+  "event_hubs": [
+    {
+      "event_id": "EVT_1",
+      "action": "Death of Anne Frank",
+      "source_sentence": "S0",
+      "edges": [
+        {
+          "type": "participant",
+          "target": "Anne Frank",
+          "source": "S0"
+        },
+        {
+          "type": "cause",
+          "target": "Typhus",
+          "source": "S0"
+        },
+        {
+          "type": "location",
+          "target": "Nazi concentration camp",
+          "source": "S0"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_2",
+      "action": "Death of Margot Frank",
+      "source_sentence": "S2",
+      "edges": [
+        {
+          "type": "participant",
+          "target": "Margot Frank",
+          "source": "S2"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_3",
+      "action": "Liberation of Bergen-Belsen",
+      "source_sentence": "S1",
+      "edges": [
+        {
+          "type": "location",
+          "target": "Bergen-Belsen concentration camp",
+          "source": "S1"
+        },
+        {
+          "type": "time",
+          "target": "March 31, 1945",
+          "source": "S1"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_4",
+      "action": "Research on death dates",
+      "source_sentence": "S2, S3",
+      "edges": [
+        {
+          "type": "actor",
+          "target": "Anne Frank House",
+          "source": "S2"
+        },
+        {
+          "type": "source_material",
+          "target": "Red Cross archives",
+          "source": "S3"
+        },
+        {
+          "type": "source_material",
+          "target": "International Training Service archives",
+          "source": "S3"
+        },
+        {
+          "type": "source_material",
+          "target": "Bergen-Belsen Memorial archives",
+          "source": "S3"
+        },
+        {
+          "type": "source_material",
+          "target": "testimonies of survivors",
+          "source": "S3"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_5",
+      "action": "Arrest of Anne Frank and others",
+      "source_sentence": "S5",
+      "edges": [
+        {
+          "type": "participant",
+          "target": "Anne Frank",
+          "source": "S5"
+        },
+        {
+          "type": "participant",
+          "target": "seven others",
+          "source": "S5"
+        },
+        {
+          "type": "location",
+          "target": "Amsterdam secret annex",
+          "source": "S5"
+        },
+        {
+          "type": "time",
+          "target": "1944",
+          "source": "S5"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_6",
+      "action": "Transfer to Auschwitz-Birkenau",
+      "source_sentence": "S5",
+      "edges": [
+        {
+          "type": "participant",
+          "target": "Anne Frank",
+          "source": "S5"
+        },
+        {
+          "type": "participant",
+          "target": "seven others",
+          "source": "S5"
+        },
+        {
+          "type": "location",
+          "target": "Auschwitz-Birkenau concentration camp",
+          "source": "S5"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_7",
+      "action": "Separation from mother",
+      "source_sentence": "S7",
+      "edges": [
+        {
+          "type": "participant",
+          "target": "Anne Frank",
+          "source": "S7"
+        },
+        {
+          "type": "participant",
+          "target": "Margot Frank",
+          "source": "S7"
+        },
+        {
+          "type": "participant",
+          "target": "mother",
+          "source": "S7"
+        },
+        {
+          "type": "time",
+          "target": "1944",
+          "source": "S7"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_8",
+      "action": "Transfer to Bergen-Belsen",
+      "source_sentence": "S7",
+      "edges": [
+        {
+          "type": "participant",
+          "target": "Anne Frank",
+          "source": "S7"
+        },
+        {
+          "type": "participant",
+          "target": "Margot Frank",
+          "source": "S7"
+        },
+        {
+          "type": "location",
+          "target": "Bergen-Belsen camp",
+          "source": "S7"
+        },
+        {
+          "type": "location",
+          "target": "Germany",
+          "source": "S7"
+        },
+        {
+          "type": "purpose",
+          "target": "slave labor",
+          "source": "S7"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_9",
+      "action": "Observation of Anne Frank",
+      "source_sentence": "S12",
+      "edges": [
+        {
+          "type": "actor",
+          "target": "Nannette Blitz",
+          "source": "S12"
+        },
+        {
+          "type": "target",
+          "target": "Anne Frank",
+          "source": "S12"
+        },
+        {
+          "type": "time",
+          "target": "December 1944",
+          "source": "S12"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_10",
+      "action": "Russian advance",
+      "source_sentence": "S14",
+      "edges": [
+        {
+          "type": "actor",
+          "target": "Russians",
+          "source": "S14"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_11",
+      "action": "Typhus outbreak",
+      "source_sentence": "S15",
+      "edges": [
+        {
+          "type": "disease",
+          "target": "Typhus",
+          "source": "S15"
+        },
+        {
+          "type": "location",
+          "target": "Bergen-Belsen concentration camp",
+          "source": "S14"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_12",
+      "action": "Exposure to typhus carrier",
+      "source_sentence": "S18",
+      "edges": [
+        {
+          "type": "participant",
+          "target": "Anne Frank",
+          "source": "S18"
+        },
+        {
+          "type": "agent",
+          "target": "lice",
+          "source": "S18"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_13",
+      "action": "Onset of symptoms",
+      "source_sentence": "S19",
+      "edges": [
+        {
+          "type": "participant",
+          "target": "Anne Frank",
+          "source": "S19"
+        },
+        {
+          "type": "participant",
+          "target": "Margot Frank",
+          "source": "S19"
+        },
+        {
+          "type": "time",
+          "target": "before February 7",
+          "source": "S19"
+        }
+      ]
+    }
+  ],
+  "entities": [
+    {
+      "name": "Anne Frank",
+      "aliases": [
+        "Jewish diarist"
+      ],
+      "attributes": {
+        "age_at_death": "15"
+      },
+      "participates_in": [
+        "EVT_1",
+        "EVT_4",
+        "EVT_5",
+        "EVT_6",
+        "EVT_7",
+        "EVT_8",
+        "EVT_9",
+        "EVT_12",
+        "EVT_13"
+      ],
+      "source_sentences": [
+        "S0",
+        "S1",
+        "S2",
+        "S4",
+        "S5",
+        "S6",
+        "S7",
+        "S9",
+        "S10",
+        "S11",
+        "S12",
+        "S13",
+        "S18",
+        "S19",
+        "S21",
+        "S22",
+        "S23",
+        "S24"
+      ]
+    },
+    {
+      "name": "Margot Frank",
+      "aliases": [],
+      "attributes": {
+        "relation": "older sister of Anne Frank"
+      },
+      "participates_in": [
+        "EVT_2",
+        "EVT_4",
+        "EVT_7",
+        "EVT_8",
+        "EVT_13"
+      ],
+      "source_sentences": [
+        "S2",
+        "S4",
+        "S7",
+        "S9",
+        "S10",
+        "S11",
+        "S19",
+        "S21",
+        "S22"
+      ]
+    },
+    {
+      "name": "Typhus",
+      "aliases": [
+        "epidemic typhus"
+      ],
+      "attributes": {
+        "type": "infectious disease",
+        "cause": "lice",
+        "symptoms": [
+          "high fever",
+          "chills",
+          "skin eruptions"
+        ]
+      },
+      "participates_in": [
+        "EVT_1",
+        "EVT_11",
+        "EVT_12"
+      ],
+      "source_sentences": [
+        "S0",
+        "S15",
+        "S16",
+        "S17",
+        "S18",
+        "S20"
+      ]
+    },
+    {
+      "name": "Bergen-Belsen concentration camp",
+      "aliases": [
+        "Bergen-Belsen camp"
+      ],
+      "attributes": {
+        "location": "Germany"
+      },
+      "participates_in": [
+        "EVT_3",
+        "EVT_8",
+        "EVT_11"
+      ],
+      "source_sentences": [
+        "S1",
+        "S7",
+        "S8",
+        "S9",
+        "S10",
+        "S14"
+      ]
+    },
+    {
+      "name": "Auschwitz-Birkenau concentration camp",
+      "aliases": [],
+      "attributes": {},
+      "participates_in": [
+        "EVT_6"
+      ],
+      "source_sentences": [
+        "S5"
+      ]
+    },
+    {
+      "name": "Nannette Blitz",
+      "aliases": [],
+      "attributes": {
+        "relation": "classmate/friend of Anne Frank"
+      },
+      "participates_in": [
+        "EVT_9"
+      ],
+      "source_sentences": [
+        "S12",
+        "S23"
+      ]
+    },
+    {
+      "name": "Anne Frank House",
+      "aliases": [],
+      "attributes": {},
+      "participates_in": [
+        "EVT_4"
+      ],
+      "source_sentences": [
+        "S2"
+      ]
+    },
+    {
+      "name": "Russians",
+      "aliases": [],
+      "attributes": {},
+      "participates_in": [
+        "EVT_10"
+      ],
+      "source_sentences": [
+        "S14"
+      ]
+    }
+  ],
+  "explicit_unknowns": [
+    {
+      "about": "dates of death for Anne and Margot",
+      "unknown_slots": [
+        "exact dates"
+      ],
+      "source": "S21"
+    }
+  ],
+  "_elapsed": 140.9
+}

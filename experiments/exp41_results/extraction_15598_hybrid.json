@@ -1,0 +1,306 @@
+{
+  "event_hubs": [
+    {
+      "event_id": "EVT_1",
+      "action": "Following/Chasing suspect",
+      "source_sentence": "S0, S2, S4, S5, S11, S12",
+      "edges": [
+        {
+          "type": "participant",
+          "target": "ENT_1",
+          "source": "S2"
+        },
+        {
+          "type": "participant",
+          "target": "ENT_4",
+          "source": "S2"
+        },
+        {
+          "type": "participant",
+          "target": "ENT_5",
+          "source": "S2"
+        },
+        {
+          "type": "time",
+          "target": "Early Saturday, around 7 o'clock morning",
+          "source": "S2, S4"
+        },
+        {
+          "type": "location",
+          "target": "ENT_6",
+          "source": "S2"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_2",
+      "action": "Confrontation and attempted robbery",
+      "source_sentence": "S5, S6, S7",
+      "edges": [
+        {
+          "type": "participant",
+          "target": "ENT_1",
+          "source": "S7"
+        },
+        {
+          "type": "participant",
+          "target": "ENT_4",
+          "source": "S7"
+        },
+        {
+          "type": "location",
+          "target": "ENT_7",
+          "source": "S6"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_3",
+      "action": "Vehicle collision/crash",
+      "source_sentence": "S1, S8, S9, S10, S13",
+      "edges": [
+        {
+          "type": "participant",
+          "target": "ENT_1",
+          "source": "S8"
+        },
+        {
+          "type": "participant",
+          "target": "ENT_4",
+          "source": "S1"
+        },
+        {
+          "type": "object",
+          "target": "ENT_8",
+          "source": "S8"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_4",
+      "action": "Shooting and capture of suspect",
+      "source_sentence": "S1, S7, S14, S16",
+      "edges": [
+        {
+          "type": "participant",
+          "target": "ENT_1",
+          "source": "S1"
+        },
+        {
+          "type": "participant",
+          "target": "ENT_4",
+          "source": "S14"
+        },
+        {
+          "type": "participant",
+          "target": "ENT_5",
+          "source": "S14"
+        },
+        {
+          "type": "location",
+          "target": "Median (8 feet away)",
+          "source": "S14"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_5",
+      "action": "Commercial robberies",
+      "source_sentence": "S3, S15",
+      "edges": [
+        {
+          "type": "participant",
+          "target": "ENT_1",
+          "source": "S3"
+        },
+        {
+          "type": "time",
+          "target": "Dating to November 2013",
+          "source": "S3"
+        },
+        {
+          "type": "count",
+          "target": "32",
+          "source": "S3"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_6",
+      "action": "Medical treatment",
+      "source_sentence": "S14",
+      "edges": [
+        {
+          "type": "participant",
+          "target": "ENT_4",
+          "source": "S14"
+        },
+        {
+          "type": "location",
+          "target": "ENT_9",
+          "source": "S14"
+        }
+      ]
+    }
+  ],
+  "entities": [
+    {
+      "name": "Kevone Charleston",
+      "aliases": [
+        "the suspect",
+        "the perp"
+      ],
+      "attributes": {
+        "age": "36",
+        "residence": "Austell, Georgia",
+        "status": "in custody"
+      },
+      "participates_in": [
+        "EVT_1",
+        "EVT_2",
+        "EVT_3",
+        "EVT_4",
+        "EVT_5"
+      ],
+      "source_sentences": [
+        "S2",
+        "S3",
+        "S7",
+        "S14",
+        "S16"
+      ]
+    },
+    {
+      "name": "Stephen Emmett",
+      "aliases": [],
+      "attributes": {
+        "title": "FBI Special Agent"
+      },
+      "participates_in": [],
+      "source_sentences": [
+        "S4",
+        "S10",
+        "S14",
+        "S15",
+        "S16"
+      ]
+    },
+    {
+      "name": "Robin Regan",
+      "aliases": [],
+      "attributes": {
+        "title": "Forsyth County Sheriff's Deputy"
+      },
+      "participates_in": [],
+      "source_sentences": [
+        "S14"
+      ]
+    },
+    {
+      "name": "FBI agents",
+      "aliases": [],
+      "attributes": {
+        "count": "12"
+      },
+      "participates_in": [
+        "EVT_1",
+        "EVT_2",
+        "EVT_3",
+        "EVT_4",
+        "EVT_6"
+      ],
+      "source_sentences": [
+        "S0",
+        "S1",
+        "S2",
+        "S7",
+        "S11",
+        "S14"
+      ]
+    },
+    {
+      "name": "Task force officers",
+      "aliases": [],
+      "attributes": {},
+      "participates_in": [
+        "EVT_1",
+        "EVT_4"
+      ],
+      "source_sentences": [
+        "S2",
+        "S14"
+      ]
+    },
+    {
+      "name": "Forsyth County, Georgia",
+      "aliases": [],
+      "attributes": {
+        "type": "location"
+      },
+      "participates_in": [
+        "EVT_1"
+      ],
+      "source_sentences": [
+        "S2"
+      ]
+    },
+    {
+      "name": "CVS pharmacy",
+      "aliases": [],
+      "attributes": {
+        "location": "Forsyth County, Georgia"
+      },
+      "participates_in": [
+        "EVT_2"
+      ],
+      "source_sentences": [
+        "S2",
+        "S5",
+        "S6"
+      ]
+    },
+    {
+      "name": "Government vehicles",
+      "aliases": [],
+      "attributes": {
+        "count": "6",
+        "types": [
+          "Taurus",
+          "SUV"
+        ]
+      },
+      "participates_in": [
+        "EVT_3"
+      ],
+      "source_sentences": [
+        "S8",
+        "S9",
+        "S11",
+        "S13"
+      ]
+    },
+    {
+      "name": "Area hospital",
+      "aliases": [],
+      "attributes": {
+        "type": "medical facility"
+      },
+      "participates_in": [
+        "EVT_6"
+      ],
+      "source_sentences": [
+        "S14"
+      ]
+    }
+  ],
+  "explicit_unknowns": [
+    {
+      "about": "32 previous robberies",
+      "unknown_slots": [
+        "details"
+      ],
+      "source": "S15"
+    }
+  ],
+  "_elapsed": 94.9
+}

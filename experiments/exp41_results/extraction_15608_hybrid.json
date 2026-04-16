@@ -1,0 +1,374 @@
+{
+  "event_hubs": [
+    {
+      "event_id": "EVT_1",
+      "action": "formally charged",
+      "source_sentence": "S0, S1",
+      "edges": [
+        {
+          "type": "actor",
+          "target": "Supreme People's Procuratorate",
+          "source": "S1"
+        },
+        {
+          "type": "target",
+          "target": "Zhou Yongkang",
+          "source": "S0"
+        },
+        {
+          "type": "charge",
+          "target": "accepting bribes",
+          "source": "S0"
+        },
+        {
+          "type": "charge",
+          "target": "abuse of power",
+          "source": "S1"
+        },
+        {
+          "type": "charge",
+          "target": "leaking state secrets",
+          "source": "S1"
+        },
+        {
+          "type": "time",
+          "target": "Friday",
+          "source": "S0"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_2",
+      "action": "retired",
+      "source_sentence": "S3",
+      "edges": [
+        {
+          "type": "target",
+          "target": "Zhou Yongkang",
+          "source": "S3"
+        },
+        {
+          "type": "time",
+          "target": "2012",
+          "source": "S3"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_3",
+      "action": "notified of legal rights",
+      "source_sentence": "S6",
+      "edges": [
+        {
+          "type": "target",
+          "target": "Zhou Yongkang",
+          "source": "S6"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_4",
+      "action": "trial",
+      "source_sentence": "S7",
+      "edges": [
+        {
+          "type": "target",
+          "target": "Zhou Yongkang",
+          "source": "S7"
+        },
+        {
+          "type": "place",
+          "target": "Tianjin",
+          "source": "S7"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_5",
+      "action": "attended anniversary event",
+      "source_sentence": "S10",
+      "edges": [
+        {
+          "type": "target",
+          "target": "Zhou Yongkang",
+          "source": "S10"
+        },
+        {
+          "type": "time",
+          "target": "October 2013",
+          "source": "S10"
+        },
+        {
+          "type": "place",
+          "target": "alma mater",
+          "source": "S10"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_6",
+      "action": "expelled from Communist Party",
+      "source_sentence": "S11",
+      "edges": [
+        {
+          "type": "target",
+          "target": "Zhou Yongkang",
+          "source": "S11"
+        },
+        {
+          "type": "time",
+          "target": "last December",
+          "source": "S11"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_7",
+      "action": "arrested",
+      "source_sentence": "S11",
+      "edges": [
+        {
+          "type": "target",
+          "target": "Zhou Yongkang",
+          "source": "S11"
+        },
+        {
+          "type": "time",
+          "target": "last December",
+          "source": "S11"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_8",
+      "action": "anti-corruption campaign",
+      "source_sentence": "S16",
+      "edges": [
+        {
+          "type": "actor",
+          "target": "Xi Jinping",
+          "source": "S16"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_9",
+      "action": "sentenced to life in prison",
+      "source_sentence": "S19",
+      "edges": [
+        {
+          "type": "target",
+          "target": "Bo Xilai",
+          "source": "S19"
+        },
+        {
+          "type": "time",
+          "target": "2013",
+          "source": "S19"
+        },
+        {
+          "type": "charge",
+          "target": "corruption",
+          "source": "S19"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_10",
+      "action": "downfall",
+      "source_sentence": "S20",
+      "edges": [
+        {
+          "type": "target",
+          "target": "Bo Xilai",
+          "source": "S20"
+        }
+      ]
+    }
+  ],
+  "entities": [
+    {
+      "name": "Zhou Yongkang",
+      "aliases": [],
+      "attributes": {
+        "age": "72",
+        "former_role": "security czar",
+        "membership": "Politburo Standing Committee",
+        "status": "former high-ranking Chinese Communist Party official"
+      },
+      "participates_in": [
+        "EVT_1",
+        "EVT_2",
+        "EVT_3",
+        "EVT_4",
+        "EVT_5",
+        "EVT_6",
+        "EVT_7"
+      ],
+      "source_sentences": [
+        "S0",
+        "S1",
+        "S2",
+        "S3",
+        "S4",
+        "S6",
+        "S7",
+        "S10",
+        "S11",
+        "S12",
+        "S13",
+        "S14",
+        "S17",
+        "S18",
+        "S19",
+        "S23",
+        "S24"
+      ]
+    },
+    {
+      "name": "Supreme People's Procuratorate",
+      "aliases": [],
+      "attributes": {
+        "description": "highest prosecution authority in China"
+      },
+      "participates_in": [
+        "EVT_1"
+      ],
+      "source_sentences": [
+        "S1"
+      ]
+    },
+    {
+      "name": "Communist Party",
+      "aliases": [],
+      "attributes": {
+        "type": "ruling party"
+      },
+      "participates_in": [
+        "EVT_6"
+      ],
+      "source_sentences": [
+        "S0",
+        "S2",
+        "S11"
+      ]
+    },
+    {
+      "name": "Politburo Standing Committee",
+      "aliases": [],
+      "attributes": {
+        "description": "China's top decision-making body"
+      },
+      "participates_in": [],
+      "source_sentences": [
+        "S2",
+        "S18"
+      ]
+    },
+    {
+      "name": "Tianjin",
+      "aliases": [],
+      "attributes": {
+        "description": "city near the Chinese capital, Beijing"
+      },
+      "participates_in": [
+        "EVT_4"
+      ],
+      "source_sentences": [
+        "S7"
+      ]
+    },
+    {
+      "name": "Beijing",
+      "aliases": [],
+      "attributes": {
+        "description": "Chinese capital"
+      },
+      "participates_in": [],
+      "source_sentences": [
+        "S0",
+        "S7"
+      ]
+    },
+    {
+      "name": "Xi Jinping",
+      "aliases": [],
+      "attributes": {
+        "role": "President"
+      },
+      "participates_in": [
+        "EVT_8"
+      ],
+      "source_sentences": [
+        "S15",
+        "S16",
+        "S17",
+        "S18",
+        "S21",
+        "S22"
+      ]
+    },
+    {
+      "name": "Willy Lam",
+      "aliases": [],
+      "attributes": {
+        "role": "longtime political analyst",
+        "title": "professor at the Chinese University of Hong Kong"
+      },
+      "participates_in": [],
+      "source_sentences": [
+        "S18",
+        "S24"
+      ]
+    },
+    {
+      "name": "Bo Xilai",
+      "aliases": [],
+      "attributes": {
+        "role": "former Communist leader",
+        "role_2": "former Chongqing Communist Party chief"
+      },
+      "participates_in": [
+        "EVT_9",
+        "EVT_10"
+      ],
+      "source_sentences": [
+        "S19",
+        "S20",
+        "S22",
+        "S23"
+      ]
+    }
+  ],
+  "explicit_unknowns": [
+    {
+      "about": "EVT_1 (Charging of Zhou Yongkang)",
+      "unknown_slots": [
+        "exact date"
+      ],
+      "source": "S0"
+    },
+    {
+      "about": "EVT_6 (Expulsion of Zhou Yongkang)",
+      "unknown_slots": [
+        "exact date"
+      ],
+      "source": "S11"
+    },
+    {
+      "about": "EVT_7 (Arrest of Zhou Yongkang)",
+      "unknown_slots": [
+        "exact date"
+      ],
+      "source": "S11"
+    },
+    {
+      "about": "EVT_4 (Trial of Zhou Yongkang)",
+      "unknown_slots": [
+        "date"
+      ],
+      "source": "S7"
+    }
+  ],
+  "_elapsed": 130.1
+}

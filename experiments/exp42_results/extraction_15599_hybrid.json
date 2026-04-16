@@ -1,0 +1,1828 @@
+{
+  "event_hubs": [
+    {
+      "event_id": "EVT_1",
+      "action": "shut down",
+      "source_sentence": "S0",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "ENT_BLUE_BELL",
+          "source": "S0"
+        },
+        {
+          "type": "target_of",
+          "target": "ENT_BROKEN_ARROW_PLANT",
+          "source": "S0"
+        },
+        {
+          "type": "when",
+          "target": "temporarily",
+          "source": "S0"
+        },
+        {
+          "type": "why",
+          "target": "EVT_2",
+          "source": "S0"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_2",
+      "action": "discovery",
+      "source_sentence": "S0",
+      "edges": [
+        {
+          "type": "target_of",
+          "target": "ENT_LISTERIA",
+          "source": "S0"
+        },
+        {
+          "type": "where",
+          "target": "ENT_CONTAMINATED_ICE_CREAM_SERVING",
+          "source": "S0"
+        },
+        {
+          "type": "origin",
+          "target": "ENT_BROKEN_ARROW_PLANT",
+          "source": "S0"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_3",
+      "action": "warned",
+      "source_sentence": "S1",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "ENT_PUBLIC_HEALTH_OFFICIALS",
+          "source": "S1"
+        },
+        {
+          "type": "target_of",
+          "target": "ENT_CONSUMERS",
+          "source": "S1"
+        },
+        {
+          "type": "when",
+          "target": "Friday",
+          "source": "S1"
+        },
+        {
+          "type": "target_of_warning",
+          "target": "ENT_BLUE_BELL_BRANDED_PRODUCTS_BA",
+          "source": "S1"
+        },
+        {
+          "type": "where_product_made",
+          "target": "ENT_BROKEN_ARROW_PLANT",
+          "source": "S1"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_4",
+      "action": "went",
+      "source_sentence": "S2",
+      "edges": [
+        {
+          "type": "target_of",
+          "target": "ENT_3OZ_SERVINGS_BA_INSTITUTIONS",
+          "source": "S2"
+        },
+        {
+          "type": "destination",
+          "target": "ENT_INSTITUTIONS",
+          "source": "S2"
+        },
+        {
+          "type": "origin",
+          "target": "ENT_BROKEN_ARROW_PLANT",
+          "source": "S2"
+        },
+        {
+          "type": "how",
+          "target": "in containers marked with the letters O, P, Q, R, S or T behind the coding date",
+          "source": "S2"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_5",
+      "action": "does not affect",
+      "source_sentence": "S3",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "EVT_3",
+          "source": "S3"
+        },
+        {
+          "type": "agent_of_info",
+          "target": "ENT_CDC",
+          "source": "S3"
+        },
+        {
+          "type": "target_of",
+          "target": "ENT_OTHER_BLUE_BELL_ICE_CREAM",
+          "source": "S3"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_6",
+      "action": "recalled",
+      "source_sentence": "S4",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "ENT_BLUE_BELL",
+          "source": "S4"
+        },
+        {
+          "type": "target_of",
+          "target": "ENT_OTHER_RECALLED_PRODUCTS",
+          "source": "S4"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_7",
+      "action": "shutting down",
+      "source_sentence": "S5",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "ENT_BLUE_BELL",
+          "source": "S5"
+        },
+        {
+          "type": "target_of",
+          "target": "ENT_BROKEN_ARROW_PLANT",
+          "source": "S5"
+        },
+        {
+          "type": "why",
+          "target": "out of an abundance of caution",
+          "source": "S5"
+        },
+        {
+          "type": "purpose",
+          "target": "EVT_8",
+          "source": "S5"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_8",
+      "action": "search",
+      "source_sentence": "S5",
+      "edges": [
+        {
+          "type": "target_of",
+          "target": "a possible cause of contamination",
+          "source": "S5"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_9",
+      "action": "taken action",
+      "source_sentence": "S6",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "ENT_BLUE_BELL",
+          "source": "S6"
+        },
+        {
+          "type": "how_many",
+          "target": "third time",
+          "source": "S6"
+        },
+        {
+          "type": "why",
+          "target": "EVT_10",
+          "source": "S6"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_10",
+      "action": "outbreak",
+      "source_sentence": "S6",
+      "edges": [
+        {
+          "type": "target_of",
+          "target": "ENT_LISTERIA",
+          "source": "S6"
+        },
+        {
+          "type": "where",
+          "target": "ENT_KANSAS_HOSPITAL",
+          "source": "S6"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_11",
+      "action": "found",
+      "source_sentence": "S7",
+      "edges": [
+        {
+          "type": "target_of",
+          "target": "ENT_LISTERIA",
+          "source": "S7"
+        },
+        {
+          "type": "where",
+          "target": "ENT_CUP_ICE_CREAM_KANSAS",
+          "source": "S7"
+        },
+        {
+          "type": "when",
+          "target": "recently",
+          "source": "S7"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_12",
+      "action": "produced",
+      "source_sentence": "S8",
+      "edges": [
+        {
+          "type": "target_of",
+          "target": "ENT_CUP_ICE_CREAM_KANSAS",
+          "source": "S8"
+        },
+        {
+          "type": "where",
+          "target": "ENT_BROKEN_ARROW_PLANT",
+          "source": "S8"
+        },
+        {
+          "type": "when",
+          "target": "April 2014",
+          "source": "S8"
+        },
+        {
+          "type": "agent_of_info",
+          "target": "ENT_BLUE_BELL",
+          "source": "S8"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_13",
+      "action": "found",
+      "source_sentence": "S9",
+      "edges": [
+        {
+          "type": "target_of",
+          "target": "ENT_LISTERIA",
+          "source": "S9"
+        },
+        {
+          "type": "where",
+          "target": "ENT_ADDITIONAL_SAMPLES_PLANT",
+          "source": "S9"
+        },
+        {
+          "type": "agent_of_info",
+          "target": "ENT_CDC",
+          "source": "S9"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_14",
+      "action": "appeared to match",
+      "source_sentence": "S10",
+      "edges": [
+        {
+          "type": "target_of",
+          "target": "ENT_HOSPITAL_SAMPLE",
+          "source": "S10"
+        },
+        {
+          "type": "target_of",
+          "target": "ENT_FACTORY_SAMPLE",
+          "source": "S10"
+        },
+        {
+          "type": "how",
+          "target": "genetically",
+          "source": "S10"
+        },
+        {
+          "type": "agent_of_info",
+          "target": "ENT_CDC",
+          "source": "S10"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_15",
+      "action": "did not appear identical",
+      "source_sentence": "S11",
+      "edges": [
+        {
+          "type": "target_of",
+          "target": "ENT_HOSPITAL_SAMPLE",
+          "source": "S11"
+        },
+        {
+          "type": "target_of",
+          "target": "ENT_FACTORY_SAMPLE",
+          "source": "S11"
+        },
+        {
+          "type": "comparison_target",
+          "target": "ENT_LISTERIA_SAMPLES_PATIENTS_KANSAS",
+          "source": "S11"
+        },
+        {
+          "type": "context",
+          "target": "ENT_PATIENTS_INFECTED_KANSAS",
+          "source": "S11"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_16",
+      "action": "outbreak",
+      "source_sentence": "S12",
+      "edges": [
+        {
+          "type": "where",
+          "target": "ENT_TEXAS_LOCATION",
+          "source": "S12"
+        },
+        {
+          "type": "attribute",
+          "target": "separate",
+          "source": "S12"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_17",
+      "action": "found",
+      "source_sentence": "S12",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "ENT_CDC",
+          "source": "S12"
+        },
+        {
+          "type": "where_context",
+          "target": "EVT_16",
+          "source": "S12"
+        },
+        {
+          "type": "target_of",
+          "target": "EVT_19",
+          "source": "S12"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_18",
+      "action": "came down with",
+      "source_sentence": "S12",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "ENT_PATIENTS_TEXAS_OUTBREAK",
+          "source": "S12"
+        },
+        {
+          "type": "target_of",
+          "target": "ENT_LISTERIOSIS",
+          "source": "S12"
+        },
+        {
+          "type": "when",
+          "target": "between 2010 and 2014",
+          "source": "S12"
+        },
+        {
+          "type": "where",
+          "target": "ENT_HOSPITAL_TEXAS",
+          "source": "S12"
+        },
+        {
+          "type": "served_product",
+          "target": "ENT_3OZ_BLUE_BELL_CUPS_TEXAS",
+          "source": "S12"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_19",
+      "action": "matched",
+      "source_sentence": "S12",
+      "edges": [
+        {
+          "type": "target_of",
+          "target": "ENT_LISTERIA_SAMPLES_PATIENTS_KANSAS",
+          "source": "S12"
+        },
+        {
+          "type": "comparison_target",
+          "target": "ENT_RECOVERED_SAMPLES_TEXAS",
+          "source": "S12"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_20",
+      "action": "Investigation is ongoing",
+      "source_sentence": "S14",
+      "edges": [
+        {
+          "type": "purpose",
+          "target": "to determine whether these illnesses are related to exposure to Blue Bell products",
+          "source": "S14"
+        },
+        {
+          "type": "agent_of_info",
+          "target": "ENT_CDC",
+          "source": "S14"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_21",
+      "action": "recalled",
+      "source_sentence": "S15",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "ENT_BLUE_BELL",
+          "source": "S15"
+        },
+        {
+          "type": "target_of",
+          "target": "ENT_GROUP_PRODUCTS_TEXAS_RECALL",
+          "source": "S15"
+        },
+        {
+          "type": "where_product_made",
+          "target": "ENT_TEXAS_PLANT",
+          "source": "S15"
+        },
+        {
+          "type": "when",
+          "target": "early March",
+          "source": "S15"
+        },
+        {
+          "type": "why",
+          "target": "EVT_10",
+          "source": "S15"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_22",
+      "action": "added",
+      "source_sentence": "S16",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "ENT_BLUE_BELL",
+          "source": "S16"
+        },
+        {
+          "type": "target_of",
+          "target": "ENT_3OZ_CUP_SERVINGS_ADDED_RECALL",
+          "source": "S16"
+        },
+        {
+          "type": "to_what",
+          "target": "EVT_21",
+          "source": "S16"
+        },
+        {
+          "type": "when",
+          "target": "later",
+          "source": "S16"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_23",
+      "action": "infected",
+      "source_sentence": "S17",
+      "edges": [
+        {
+          "type": "target_of",
+          "target": "ENT_FIVE_PEOPLE_KANSAS",
+          "source": "S17"
+        },
+        {
+          "type": "with",
+          "target": "ENT_LISTERIA",
+          "source": "S17"
+        },
+        {
+          "type": "when",
+          "target": "in the past year",
+          "source": "S17"
+        },
+        {
+          "type": "where",
+          "target": "Kansas",
+          "source": "S17"
+        },
+        {
+          "type": "possible_cause",
+          "target": "ENT_BLUE_BELL_CREAMERIES_PRODUCTS",
+          "source": "S17"
+        },
+        {
+          "type": "agent_of_info",
+          "target": "ENT_CDC",
+          "source": "S17"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_24",
+      "action": "died",
+      "source_sentence": "S17",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "ENT_THREE_PEOPLE_KANSAS",
+          "source": "S17"
+        },
+        {
+          "type": "from",
+          "target": "ENT_LISTERIA",
+          "source": "S17"
+        },
+        {
+          "type": "when",
+          "target": "in the past year",
+          "source": "S17"
+        },
+        {
+          "type": "where",
+          "target": "Kansas",
+          "source": "S17"
+        },
+        {
+          "type": "possible_cause",
+          "target": "ENT_BLUE_BELL_CREAMERIES_PRODUCTS",
+          "source": "S17"
+        },
+        {
+          "type": "agent_of_info",
+          "target": "ENT_CDC",
+          "source": "S17"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_25",
+      "action": "hospitalized",
+      "source_sentence": "S18",
+      "edges": [
+        {
+          "type": "target_of",
+          "target": "ENT_FIVE_PEOPLE_KANSAS",
+          "source": "S18"
+        },
+        {
+          "type": "where",
+          "target": "ENT_KANSAS_HOSPITAL",
+          "source": "S18"
+        },
+        {
+          "type": "when_relative",
+          "target": "before EVT_26",
+          "source": "S18"
+        },
+        {
+          "type": "agent_of_info",
+          "target": "ENT_CDC",
+          "source": "S18"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_26",
+      "action": "developed",
+      "source_sentence": "S18",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "ENT_FIVE_PEOPLE_KANSAS",
+          "source": "S18"
+        },
+        {
+          "type": "target_of",
+          "target": "ENT_LISTERIOSIS",
+          "source": "S18"
+        },
+        {
+          "type": "agent_of_info",
+          "target": "ENT_CDC",
+          "source": "S18"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_27",
+      "action": "consumed",
+      "source_sentence": "S19",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "ENT_FOUR_PEOPLE_KANSAS",
+          "source": "S19"
+        },
+        {
+          "type": "target_of",
+          "target": "ENT_MILKSHAKES_BLUE_BELL",
+          "source": "S19"
+        },
+        {
+          "type": "when_relative",
+          "target": "before developing the infection",
+          "source": "S19"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_28",
+      "action": "said in a statement",
+      "source_sentence": "S20",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "ENT_PAUL_KRUSE",
+          "source": "S20"
+        },
+        {
+          "type": "content",
+          "target": "We are devastated and know that Blue Bell has to be and can be better than this",
+          "source": "S20"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_29",
+      "action": "have always been",
+      "source_sentence": "S21",
+      "edges": [
+        {
+          "type": "target_of",
+          "target": "ENT_QUALITY_SAFETY",
+          "source": "S21"
+        },
+        {
+          "type": "agent_of",
+          "target": "ENT_BLUE_BELL",
+          "source": "S21"
+        },
+        {
+          "type": "attribute",
+          "target": "top priorities",
+          "source": "S21"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_30",
+      "action": "are deeply saddened and concerned",
+      "source_sentence": "S22",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "ENT_BLUE_BELL",
+          "source": "S22"
+        },
+        {
+          "type": "for",
+          "target": "ENT_AFFECTED_INDIVIDUALS",
+          "source": "S22"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_31",
+      "action": "advises",
+      "source_sentence": "S22",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "ENT_CDC",
+          "source": "S22"
+        },
+        {
+          "type": "target_of",
+          "target": "ENT_INDIVIDUALS",
+          "source": "S22"
+        },
+        {
+          "type": "target_of",
+          "target": "ENT_INSTITUTIONS",
+          "source": "S22"
+        },
+        {
+          "type": "advice",
+          "target": "should check their freezers for the recalled products and throw them away",
+          "source": "S22"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_32",
+      "action": "said in a statement",
+      "source_sentence": "S23",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "ENT_BLUE_BELL",
+          "source": "S23"
+        },
+        {
+          "type": "where",
+          "target": "on its website",
+          "source": "S23"
+        },
+        {
+          "type": "content",
+          "target": "this recall in no way includes Blue Bell ice cream half gallons, pints, quarts, 3 gallons or other 3 oz. cups",
+          "source": "S23"
+        },
+        {
+          "type": "excluded_products",
+          "target": "ENT_BLUE_BELL_ICE_CREAM_EXCLUDED",
+          "source": "S23"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_33",
+      "action": "has been",
+      "source_sentence": "S24",
+      "edges": [
+        {
+          "type": "target_of",
+          "target": "the first product recall",
+          "source": "S24"
+        },
+        {
+          "type": "when",
+          "target": "in the 108-year history of Blue Bell Creameries",
+          "source": "S24"
+        },
+        {
+          "type": "agent_of_info",
+          "target": "ENT_BLUE_BELL",
+          "source": "S24"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_34",
+      "action": "is caused by",
+      "source_sentence": "S25",
+      "edges": [
+        {
+          "type": "target_of",
+          "target": "ENT_LISTERIOSIS",
+          "source": "S25"
+        },
+        {
+          "type": "agent_of",
+          "target": "eating food contaminated with ENT_LISTERIA",
+          "source": "S25"
+        },
+        {
+          "type": "agent_of_info",
+          "target": "ENT_CDC",
+          "source": "S25"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_35",
+      "action": "affects",
+      "source_sentence": "S25",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "ENT_LISTERIOSIS",
+          "source": "S25"
+        },
+        {
+          "type": "target_of",
+          "target": "ENT_VULNERABLE_GROUPS",
+          "source": "S25"
+        },
+        {
+          "type": "how",
+          "target": "primarily",
+          "source": "S25"
+        },
+        {
+          "type": "agent_of_info",
+          "target": "ENT_CDC",
+          "source": "S25"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_36",
+      "action": "are",
+      "source_sentence": "S26",
+      "edges": [
+        {
+          "type": "target_of",
+          "target": "Symptoms of a ENT_LISTERIA infection",
+          "source": "S26"
+        },
+        {
+          "type": "description",
+          "target": "fever and muscle aches, sometimes associated with diarrhea or other gastrointestinal symptoms",
+          "source": "S26"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_37",
+      "action": "become seriously ill",
+      "source_sentence": "S27",
+      "edges": [
+        {
+          "type": "target_of",
+          "target": "ENT_1600_PEOPLE_ESTIMATED",
+          "source": "S27"
+        },
+        {
+          "type": "when",
+          "target": "each year",
+          "source": "S27"
+        },
+        {
+          "type": "where",
+          "target": "ENT_UNITED_STATES",
+          "source": "S27"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_38",
+      "action": "result in death",
+      "source_sentence": "S27",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "approximately 16% of these illnesses",
+          "source": "S27"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_39",
+      "action": "may result in",
+      "source_sentence": "S28",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "Cervical infections caused by ENT_LISTERIOSIS in ENT_PREGNANT_WOMEN",
+          "source": "S28"
+        },
+        {
+          "type": "target_of",
+          "target": "ENT_STILLBIRTH_ABORTION",
+          "source": "S28"
+        },
+        {
+          "type": "when",
+          "target": "during the second or third trimesters",
+          "source": "S28"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_40",
+      "action": "contributed",
+      "source_sentence": "S29",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "ENT_DEBRA_GOLDSCHMIDT",
+          "source": "S29"
+        },
+        {
+          "type": "agent_of",
+          "target": "ENT_AMANDA_WATTS",
+          "source": "S29"
+        },
+        {
+          "type": "agent_of",
+          "target": "ENT_JACQUE_WILSON",
+          "source": "S29"
+        },
+        {
+          "type": "target_of",
+          "target": "ENT_REPORT",
+          "source": "S29"
+        }
+      ]
+    }
+  ],
+  "entities": [
+    {
+      "name": "Blue Bell",
+      "aliases": [
+        "Blue Bell ice cream",
+        "the company",
+        "Blue Bell Creameries"
+      ],
+      "attributes": {
+        "history_length": "108-year"
+      },
+      "participates_in": [
+        "EVT_1",
+        "EVT_3",
+        "EVT_4",
+        "EVT_5",
+        "EVT_6",
+        "EVT_7",
+        "EVT_9",
+        "EVT_12",
+        "EVT_21",
+        "EVT_22",
+        "EVT_23",
+        "EVT_24",
+        "EVT_27",
+        "EVT_28",
+        "EVT_29",
+        "EVT_30",
+        "EVT_32",
+        "EVT_33"
+      ],
+      "source_sentences": [
+        "S0",
+        "S1",
+        "S2",
+        "S3",
+        "S4",
+        "S5",
+        "S6",
+        "S8",
+        "S12",
+        "S14",
+        "S15",
+        "S16",
+        "S17",
+        "S19",
+        "S20",
+        "S21",
+        "S22",
+        "S23",
+        "S24"
+      ],
+      "entity_id": "ENT_BLUE_BELL"
+    },
+    {
+      "name": "Broken Arrow, Oklahoma, Plant",
+      "aliases": [
+        "one of its manufacturing plants",
+        "that plant",
+        "the company's Broken Arrow, Oklahoma, plant",
+        "this plant",
+        "the Broken Arrow facility",
+        "the Broken Arrow plant"
+      ],
+      "attributes": {
+        "location": "Broken Arrow, Oklahoma"
+      },
+      "participates_in": [
+        "EVT_1",
+        "EVT_2",
+        "EVT_3",
+        "EVT_4",
+        "EVT_7",
+        "EVT_12",
+        "EVT_13"
+      ],
+      "source_sentences": [
+        "S0",
+        "S1",
+        "S2",
+        "S5",
+        "S8",
+        "S9"
+      ],
+      "entity_id": "ENT_BROKEN_ARROW_PLANT"
+    },
+    {
+      "name": "Plant in Texas",
+      "aliases": [
+        "a plant in Texas"
+      ],
+      "attributes": {
+        "location": "Texas"
+      },
+      "participates_in": [
+        "EVT_21"
+      ],
+      "source_sentences": [
+        "S15"
+      ],
+      "entity_id": "ENT_TEXAS_PLANT"
+    },
+    {
+      "name": "Listeria",
+      "aliases": [
+        "listeria contamination",
+        "Listeria monocytogenes",
+        "listeria bacteria",
+        "the bacteria"
+      ],
+      "attributes": {},
+      "participates_in": [
+        "EVT_2",
+        "EVT_10",
+        "EVT_11",
+        "EVT_13",
+        "EVT_14",
+        "EVT_15",
+        "EVT_19",
+        "EVT_23",
+        "EVT_24",
+        "EVT_34",
+        "EVT_36"
+      ],
+      "source_sentences": [
+        "S0",
+        "S6",
+        "S7",
+        "S8",
+        "S9",
+        "S10",
+        "S11",
+        "S12",
+        "S17",
+        "S25",
+        "S26"
+      ],
+      "entity_id": "ENT_LISTERIA"
+    },
+    {
+      "name": "Serving of ice cream (contaminated)",
+      "aliases": [
+        "a serving of ice cream originating from that plant"
+      ],
+      "attributes": {},
+      "participates_in": [
+        "EVT_2"
+      ],
+      "source_sentences": [
+        "S0"
+      ],
+      "entity_id": "ENT_CONTAMINATED_ICE_CREAM_SERVING"
+    },
+    {
+      "name": "Blue Bell-branded products (Broken Arrow)",
+      "aliases": [
+        "any Blue Bell-branded products made at the company's Broken Arrow, Oklahoma, plant"
+      ],
+      "attributes": {},
+      "participates_in": [
+        "EVT_3"
+      ],
+      "source_sentences": [
+        "S1"
+      ],
+      "entity_id": "ENT_BLUE_BELL_BRANDED_PRODUCTS_BA"
+    },
+    {
+      "name": "3-ounce servings (Broken Arrow, to institutions)",
+      "aliases": [
+        "3-ounce servings of Blue Bell ice cream from this plant that went to institutions in containers marked with the letters O, P, Q, R, S or T behind the coding date"
+      ],
+      "attributes": {
+        "size": "3-ounce",
+        "packaging_code": "O, P, Q, R, S or T"
+      },
+      "participates_in": [
+        "EVT_4"
+      ],
+      "source_sentences": [
+        "S2"
+      ],
+      "entity_id": "ENT_3OZ_SERVINGS_BA_INSTITUTIONS"
+    },
+    {
+      "name": "Other Blue Bell ice cream (not Broken Arrow)",
+      "aliases": [
+        "other Blue Bell ice cream, including other 3-ounce servings, not made at the plant"
+      ],
+      "attributes": {},
+      "participates_in": [
+        "EVT_5"
+      ],
+      "source_sentences": [
+        "S3"
+      ],
+      "entity_id": "ENT_OTHER_BLUE_BELL_ICE_CREAM"
+    },
+    {
+      "name": "Other products (recalled by Blue Bell)",
+      "aliases": [
+        "other products"
+      ],
+      "attributes": {},
+      "participates_in": [
+        "EVT_6"
+      ],
+      "source_sentences": [
+        "S4"
+      ],
+      "entity_id": "ENT_OTHER_RECALLED_PRODUCTS"
+    },
+    {
+      "name": "Cup of ice cream (Kansas hospital)",
+      "aliases": [
+        "a cup of ice cream recovered from the hospital",
+        "The cup contaminated with the bacteria"
+      ],
+      "attributes": {},
+      "participates_in": [
+        "EVT_11",
+        "EVT_12"
+      ],
+      "source_sentences": [
+        "S7",
+        "S8"
+      ],
+      "entity_id": "ENT_CUP_ICE_CREAM_KANSAS"
+    },
+    {
+      "name": "Additional samples (from plant)",
+      "aliases": [
+        "additional samples of the same product that were recovered from the plant"
+      ],
+      "attributes": {},
+      "participates_in": [
+        "EVT_13"
+      ],
+      "source_sentences": [
+        "S9"
+      ],
+      "entity_id": "ENT_ADDITIONAL_SAMPLES_PLANT"
+    },
+    {
+      "name": "3-ounce Blue Bell cups (Texas hospital)",
+      "aliases": [
+        "3-ounce Blue Bell cups"
+      ],
+      "attributes": {
+        "size": "3-ounce"
+      },
+      "participates_in": [
+        "EVT_18"
+      ],
+      "source_sentences": [
+        "S12"
+      ],
+      "entity_id": "ENT_3OZ_BLUE_BELL_CUPS_TEXAS"
+    },
+    {
+      "name": "Blue Bell products (general)",
+      "aliases": [
+        "Blue Bell products"
+      ],
+      "attributes": {},
+      "participates_in": [
+        "EVT_14",
+        "EVT_20"
+      ],
+      "source_sentences": [
+        "S14"
+      ],
+      "entity_id": "ENT_BLUE_BELL_PRODUCTS_GENERAL"
+    },
+    {
+      "name": "Group of products (Texas plant recall)",
+      "aliases": [
+        "a group of products made at a plant in Texas"
+      ],
+      "attributes": {},
+      "participates_in": [
+        "EVT_21"
+      ],
+      "source_sentences": [
+        "S15"
+      ],
+      "entity_id": "ENT_GROUP_PRODUCTS_TEXAS_RECALL"
+    },
+    {
+      "name": "3-ounce cup servings (added to recall)",
+      "aliases": [
+        "3-ounce cup servings"
+      ],
+      "attributes": {
+        "size": "3-ounce"
+      },
+      "participates_in": [
+        "EVT_22"
+      ],
+      "source_sentences": [
+        "S16"
+      ],
+      "entity_id": "ENT_3OZ_CUP_SERVINGS_ADDED_RECALL"
+    },
+    {
+      "name": "Blue Bell Creameries products",
+      "aliases": [
+        "Blue Bell Creameries products"
+      ],
+      "attributes": {},
+      "participates_in": [
+        "EVT_23",
+        "EVT_24"
+      ],
+      "source_sentences": [
+        "S17"
+      ],
+      "entity_id": "ENT_BLUE_BELL_CREAMERIES_PRODUCTS"
+    },
+    {
+      "name": "Milkshakes made with Blue Bell ice cream",
+      "aliases": [
+        "milkshakes made with Blue Bell ice cream"
+      ],
+      "attributes": {},
+      "participates_in": [
+        "EVT_27"
+      ],
+      "source_sentences": [
+        "S19"
+      ],
+      "entity_id": "ENT_MILKSHAKES_BLUE_BELL"
+    },
+    {
+      "name": "Blue Bell ice cream (excluded from recall)",
+      "aliases": [
+        "Blue Bell ice cream half gallons, pints, quarts, 3 gallons or other 3 oz. cups"
+      ],
+      "attributes": {
+        "types": "half gallons, pints, quarts, 3 gallons, other 3 oz. cups"
+      },
+      "participates_in": [
+        "EVT_32"
+      ],
+      "source_sentences": [
+        "S23"
+      ],
+      "entity_id": "ENT_BLUE_BELL_ICE_CREAM_EXCLUDED"
+    },
+    {
+      "name": "Public health officials",
+      "aliases": [],
+      "attributes": {},
+      "participates_in": [
+        "EVT_3"
+      ],
+      "source_sentences": [
+        "S1"
+      ],
+      "entity_id": "ENT_PUBLIC_HEALTH_OFFICIALS"
+    },
+    {
+      "name": "Consumers",
+      "aliases": [],
+      "attributes": {},
+      "participates_in": [
+        "EVT_3"
+      ],
+      "source_sentences": [
+        "S1"
+      ],
+      "entity_id": "ENT_CONSUMERS"
+    },
+    {
+      "name": "Institutions",
+      "aliases": [],
+      "attributes": {},
+      "participates_in": [
+        "EVT_4",
+        "EVT_31"
+      ],
+      "source_sentences": [
+        "S2",
+        "S22"
+      ],
+      "entity_id": "ENT_INSTITUTIONS"
+    },
+    {
+      "name": "Centers for Disease Control and Prevention",
+      "aliases": [
+        "the CDC"
+      ],
+      "attributes": {},
+      "participates_in": [
+        "EVT_5",
+        "EVT_10",
+        "EVT_13",
+        "EVT_14",
+        "EVT_17",
+        "EVT_20",
+        "EVT_23",
+        "EVT_24",
+        "EVT_25",
+        "EVT_26",
+        "EVT_31",
+        "EVT_34",
+        "EVT_35"
+      ],
+      "source_sentences": [
+        "S3",
+        "S9",
+        "S10",
+        "S11",
+        "S12",
+        "S14",
+        "S17",
+        "S18",
+        "S22",
+        "S25"
+      ],
+      "entity_id": "ENT_CDC"
+    },
+    {
+      "name": "Kansas Hospital",
+      "aliases": [
+        "a Kansas hospital",
+        "the hospital",
+        "the same hospital"
+      ],
+      "attributes": {},
+      "participates_in": [
+        "EVT_10",
+        "EVT_11",
+        "EVT_25"
+      ],
+      "source_sentences": [
+        "S6",
+        "S7",
+        "S18"
+      ],
+      "entity_id": "ENT_KANSAS_HOSPITAL"
+    },
+    {
+      "name": "Hospital sample",
+      "aliases": [
+        "The bacteria in the hospital sample"
+      ],
+      "attributes": {},
+      "participates_in": [
+        "EVT_14",
+        "EVT_15"
+      ],
+      "source_sentences": [
+        "S10",
+        "S11"
+      ],
+      "entity_id": "ENT_HOSPITAL_SAMPLE"
+    },
+    {
+      "name": "Factory sample",
+      "aliases": [
+        "the factory sample"
+      ],
+      "attributes": {},
+      "participates_in": [
+        "EVT_14",
+        "EVT_15"
+      ],
+      "source_sentences": [
+        "S10",
+        "S11"
+      ],
+      "entity_id": "ENT_FACTORY_SAMPLE"
+    },
+    {
+      "name": "Listeria samples from patients (Kansas)",
+      "aliases": [
+        "listeria samples taken from patients infected in the Kansas outbreak"
+      ],
+      "attributes": {},
+      "participates_in": [
+        "EVT_15",
+        "EVT_19"
+      ],
+      "source_sentences": [
+        "S11",
+        "S12"
+      ],
+      "entity_id": "ENT_LISTERIA_SAMPLES_PATIENTS_KANSAS"
+    },
+    {
+      "name": "Patients infected in Kansas outbreak",
+      "aliases": [],
+      "attributes": {},
+      "participates_in": [
+        "EVT_15"
+      ],
+      "source_sentences": [
+        "S11"
+      ],
+      "entity_id": "ENT_PATIENTS_INFECTED_KANSAS"
+    },
+    {
+      "name": "Texas",
+      "aliases": [],
+      "attributes": {},
+      "participates_in": [
+        "EVT_16",
+        "EVT_17",
+        "EVT_21"
+      ],
+      "source_sentences": [
+        "S12",
+        "S15"
+      ],
+      "entity_id": "ENT_TEXAS_LOCATION"
+    },
+    {
+      "name": "Patients (Texas outbreak)",
+      "aliases": [
+        "patients who came down with listeriosis"
+      ],
+      "attributes": {},
+      "participates_in": [
+        "EVT_18",
+        "EVT_19"
+      ],
+      "source_sentences": [
+        "S12"
+      ],
+      "entity_id": "ENT_PATIENTS_TEXAS_OUTBREAK"
+    },
+    {
+      "name": "Listeriosis",
+      "aliases": [],
+      "attributes": {},
+      "participates_in": [
+        "EVT_18",
+        "EVT_26",
+        "EVT_34",
+        "EVT_35",
+        "EVT_39"
+      ],
+      "source_sentences": [
+        "S12",
+        "S18",
+        "S25",
+        "S28"
+      ],
+      "entity_id": "ENT_LISTERIOSIS"
+    },
+    {
+      "name": "Hospital (Texas)",
+      "aliases": [
+        "a hospital that served 3-ounce Blue Bell cups"
+      ],
+      "attributes": {},
+      "participates_in": [
+        "EVT_18"
+      ],
+      "source_sentences": [
+        "S12"
+      ],
+      "entity_id": "ENT_HOSPITAL_TEXAS"
+    },
+    {
+      "name": "Recovered samples (Texas)",
+      "aliases": [
+        "the listeria in recovered samples"
+      ],
+      "attributes": {},
+      "participates_in": [
+        "EVT_19"
+      ],
+      "source_sentences": [
+        "S12"
+      ],
+      "entity_id": "ENT_RECOVERED_SAMPLES_TEXAS"
+    },
+    {
+      "name": "Five people (Kansas)",
+      "aliases": [
+        "Five people",
+        "All five of them"
+      ],
+      "attributes": {},
+      "participates_in": [
+        "EVT_23",
+        "EVT_24",
+        "EVT_25",
+        "EVT_26"
+      ],
+      "source_sentences": [
+        "S17",
+        "S18"
+      ],
+      "entity_id": "ENT_FIVE_PEOPLE_KANSAS"
+    },
+    {
+      "name": "Three people (Kansas)",
+      "aliases": [
+        "three"
+      ],
+      "attributes": {},
+      "participates_in": [
+        "EVT_24"
+      ],
+      "source_sentences": [
+        "S17"
+      ],
+      "entity_id": "ENT_THREE_PEOPLE_KANSAS"
+    },
+    {
+      "name": "At least four people (Kansas)",
+      "aliases": [
+        "At least four of them"
+      ],
+      "attributes": {},
+      "participates_in": [
+        "EVT_27"
+      ],
+      "source_sentences": [
+        "S19"
+      ],
+      "entity_id": "ENT_FOUR_PEOPLE_KANSAS"
+    },
+    {
+      "name": "Paul Kruse",
+      "aliases": [],
+      "attributes": {
+        "title": "CEO and president",
+        "organization": "Blue Bell"
+      },
+      "participates_in": [
+        "EVT_28"
+      ],
+      "source_sentences": [
+        "S20"
+      ],
+      "entity_id": "ENT_PAUL_KRUSE"
+    },
+    {
+      "name": "Quality and safety",
+      "aliases": [],
+      "attributes": {},
+      "participates_in": [
+        "EVT_29"
+      ],
+      "source_sentences": [
+        "S21"
+      ],
+      "entity_id": "ENT_QUALITY_SAFETY"
+    },
+    {
+      "name": "Affected individuals",
+      "aliases": [
+        "all those who have been affected"
+      ],
+      "attributes": {},
+      "participates_in": [
+        "EVT_30"
+      ],
+      "source_sentences": [
+        "S22"
+      ],
+      "entity_id": "ENT_AFFECTED_INDIVIDUALS"
+    },
+    {
+      "name": "Individuals",
+      "aliases": [],
+      "attributes": {},
+      "participates_in": [
+        "EVT_31"
+      ],
+      "source_sentences": [
+        "S22"
+      ],
+      "entity_id": "ENT_INDIVIDUALS"
+    },
+    {
+      "name": "United States",
+      "aliases": [],
+      "attributes": {},
+      "participates_in": [
+        "EVT_37"
+      ],
+      "source_sentences": [
+        "S27"
+      ],
+      "entity_id": "ENT_UNITED_STATES"
+    },
+    {
+      "name": "1,600 people (estimated)",
+      "aliases": [],
+      "attributes": {},
+      "participates_in": [
+        "EVT_37"
+      ],
+      "source_sentences": [
+        "S27"
+      ],
+      "entity_id": "ENT_1600_PEOPLE_ESTIMATED"
+    },
+    {
+      "name": "Pregnant women",
+      "aliases": [],
+      "attributes": {},
+      "participates_in": [
+        "EVT_35",
+        "EVT_39"
+      ],
+      "source_sentences": [
+        "S25",
+        "S28"
+      ],
+      "entity_id": "ENT_PREGNANT_WOMEN"
+    },
+    {
+      "name": "The elderly, pregnant women, newborns and people with weakened immune systems",
+      "aliases": [],
+      "attributes": {},
+      "participates_in": [
+        "EVT_35"
+      ],
+      "source_sentences": [
+        "S25"
+      ],
+      "entity_id": "ENT_VULNERABLE_GROUPS"
+    },
+    {
+      "name": "Stillbirth or spontaneous abortion",
+      "aliases": [],
+      "attributes": {},
+      "participates_in": [
+        "EVT_39"
+      ],
+      "source_sentences": [
+        "S28"
+      ],
+      "entity_id": "ENT_STILLBIRTH_ABORTION"
+    },
+    {
+      "name": "Debra Goldschmidt",
+      "aliases": [],
+      "attributes": {
+        "organization": "CNN"
+      },
+      "participates_in": [
+        "EVT_40"
+      ],
+      "source_sentences": [
+        "S29"
+      ],
+      "entity_id": "ENT_DEBRA_GOLDSCHMIDT"
+    },
+    {
+      "name": "Amanda Watts",
+      "aliases": [],
+      "attributes": {
+        "organization": "CNN"
+      },
+      "participates_in": [
+        "EVT_40"
+      ],
+      "source_sentences": [
+        "S29"
+      ],
+      "entity_id": "ENT_AMANDA_WATTS"
+    },
+    {
+      "name": "Jacque Wilson",
+      "aliases": [],
+      "attributes": {
+        "organization": "CNN"
+      },
+      "participates_in": [
+        "EVT_40"
+      ],
+      "source_sentences": [
+        "S29"
+      ],
+      "entity_id": "ENT_JACQUE_WILSON"
+    },
+    {
+      "name": "Report",
+      "aliases": [
+        "this report"
+      ],
+      "attributes": {},
+      "participates_in": [
+        "EVT_40"
+      ],
+      "source_sentences": [
+        "S29"
+      ],
+      "entity_id": "ENT_REPORT"
+    }
+  ],
+  "inter_event_edges": [
+    {
+      "from": "EVT_1",
+      "to": "EVT_2",
+      "type": "why",
+      "source": "S0"
+    },
+    {
+      "from": "EVT_7",
+      "to": "EVT_8",
+      "type": "purpose",
+      "source": "S5"
+    },
+    {
+      "from": "EVT_9",
+      "to": "EVT_10",
+      "type": "why",
+      "source": "S6"
+    },
+    {
+      "from": "EVT_17",
+      "to": "EVT_19",
+      "type": "target_of",
+      "source": "S12"
+    },
+    {
+      "from": "EVT_18",
+      "to": "EVT_19",
+      "type": "context",
+      "source": "S12"
+    },
+    {
+      "from": "EVT_21",
+      "to": "EVT_10",
+      "type": "why",
+      "source": "S15"
+    },
+    {
+      "from": "EVT_22",
+      "to": "EVT_21",
+      "type": "to_what",
+      "source": "S16"
+    },
+    {
+      "from": "EVT_25",
+      "to": "EVT_26",
+      "type": "before",
+      "source": "S18"
+    },
+    {
+      "from": "EVT_27",
+      "to": "EVT_23",
+      "type": "before",
+      "source": "S19"
+    },
+    {
+      "from": "EVT_27",
+      "to": "EVT_26",
+      "type": "before",
+      "source": "S19"
+    }
+  ],
+  "explicit_unknowns": [
+    {
+      "about": "whether the ice cream is the source of either spate of the infections",
+      "unknown_slots": [
+        "why"
+      ],
+      "source": "S13"
+    },
+    {
+      "about": "whether these illnesses are related to exposure to Blue Bell products",
+      "unknown_slots": [
+        "why"
+      ],
+      "source": "S14"
+    },
+    {
+      "about": "whether listeria is linked to Blue Bell Creameries products",
+      "unknown_slots": [
+        "why"
+      ],
+      "source": "S17"
+    }
+  ],
+  "_elapsed": 142.8
+}

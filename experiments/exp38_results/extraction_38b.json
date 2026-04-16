@@ -1,0 +1,232 @@
+{
+  "threads": [
+    {
+      "thread_name": "Keonna Thomas thread",
+      "starting_entity": "Philadelphia woman / Keonna Thomas",
+      "chain": [
+        {
+          "sentence": "S0",
+          "what": "FBI charged a Philadelphia woman",
+          "connection_to_next": "her identity and initial evidence revealed in S3"
+        },
+        {
+          "sentence": "S3",
+          "what": "Identified as Keonna Thomas; social media messages cited",
+          "connection_to_next": "specific social media message content in S4"
+        },
+        {
+          "sentence": "S4",
+          "what": "First specific social media message content revealed",
+          "connection_to_next": "second specific social media message content in S5"
+        },
+        {
+          "sentence": "S5",
+          "what": "Second specific social media message content revealed",
+          "connection_to_next": "her first travel-related action in S6"
+        },
+        {
+          "sentence": "S6",
+          "what": "Purchased electronic visa to Turkey",
+          "connection_to_next": "her second travel-related action in S9"
+        },
+        {
+          "sentence": "S9",
+          "what": "Purchased ticket to Barcelona",
+          "connection_to_next": "her arrest status in S10"
+        },
+        {
+          "sentence": "S10",
+          "what": "Arrest details unclear",
+          "connection_to_next": "her specific charge in S11"
+        },
+        {
+          "sentence": "S11",
+          "what": "Charged with providing material support to a terrorist organization",
+          "connection_to_next": "her potential sentence in S12"
+        },
+        {
+          "sentence": "S12",
+          "what": "Could be sentenced to 15 years",
+          "connection_to_next": "no further direct information"
+        }
+      ]
+    },
+    {
+      "thread_name": "Broader terror arrests thread",
+      "starting_entity": "Terror charges / Multiple women arrested",
+      "chain": [
+        {
+          "sentence": "S0",
+          "what": "FBI charged a woman on terror charges",
+          "connection_to_next": "context of multiple women arrested on terror charges in S1"
+        },
+        {
+          "sentence": "S1",
+          "what": "She is one of three women arrested this week on terror charges",
+          "connection_to_next": "identification of the other two women in S2"
+        },
+        {
+          "sentence": "S2",
+          "what": "Two New York women also taken into custody",
+          "connection_to_next": "their identities and specific charges in S13"
+        },
+        {
+          "sentence": "S13",
+          "what": "Identified as Noelle Velentzas and Asia Siddiqui, accused of planning explosive device",
+          "connection_to_next": "no further direct information"
+        }
+      ]
+    },
+    {
+      "thread_name": "ISIS travel methods and context thread",
+      "starting_entity": "Trying to travel overseas to fight for ISIS (event)",
+      "chain": [
+        {
+          "sentence": "S0",
+          "what": "Charge involves 'trying to travel overseas to fight for ISIS'",
+          "connection_to_next": "context of Turkey as an entry point for ISIS in S7"
+        },
+        {
+          "sentence": "S7",
+          "what": "Turkey known as easiest place to enter Syria and join ISIS",
+          "connection_to_next": "ISIS manual advice on travel strategy in S8"
+        },
+        {
+          "sentence": "S8",
+          "what": "ISIS manual advises recruits on travel strategy",
+          "connection_to_next": "no further direct information"
+        }
+      ]
+    }
+  ],
+  "sentences_reached": [
+    "S0",
+    "S1",
+    "S2",
+    "S3",
+    "S4",
+    "S5",
+    "S6",
+    "S7",
+    "S8",
+    "S9",
+    "S10",
+    "S11",
+    "S12",
+    "S13"
+  ],
+  "sentences_unreached": [
+    "S14",
+    "S15",
+    "S16",
+    "S17"
+  ],
+  "causal_chains": [
+    {
+      "chain_name": "Why was Keonna Thomas charged?",
+      "chain": [
+        {
+          "sentence": "S11",
+          "fact": "charged with material support",
+          "caused_by": "S0: FBI charging her"
+        },
+        {
+          "sentence": "S0",
+          "fact": "FBI charged a Philadelphia woman",
+          "caused_by": "S9: her purchase of a ticket to Barcelona"
+        },
+        {
+          "sentence": "S9",
+          "fact": "purchased ticket to Barcelona",
+          "caused_by": "S8: ISIS manual advising this travel method"
+        },
+        {
+          "sentence": "S8",
+          "fact": "ISIS manual advises recruits on travel",
+          "caused_by": "S6: her purchase of an electronic visa to Turkey"
+        },
+        {
+          "sentence": "S6",
+          "fact": "purchased electronic visa to Turkey",
+          "caused_by": "S7: Turkey being an easy entry point to Syria/ISIS"
+        },
+        {
+          "sentence": "S7",
+          "fact": "Turkey known as easy entry to Syria/ISIS",
+          "caused_by": "S3: her radicalization and intent expressed in social media messages"
+        },
+        {
+          "sentence": "S3",
+          "fact": "social media messages cited",
+          "caused_by": "S4: specific content of her radicalization in a Twitter message"
+        },
+        {
+          "sentence": "S4",
+          "fact": "Twitter message about rushing to join brothers",
+          "caused_by": "S5: further specific content of her radicalization in another message"
+        },
+        {
+          "sentence": "S5",
+          "fact": "message about death becoming a wedding",
+          "caused_by": "her radical beliefs and intent to join ISIS"
+        }
+      ]
+    },
+    {
+      "chain_name": "Context and nature of current terror threats and arrests",
+      "chain": [
+        {
+          "sentence": "S13",
+          "fact": "NY women accused of planning explosive device",
+          "caused_by": "S2: their arrest as two New York women"
+        },
+        {
+          "sentence": "S2",
+          "fact": "Two New York women taken into custody",
+          "caused_by": "S1: their arrest as part of three women arrested this week"
+        },
+        {
+          "sentence": "S1",
+          "fact": "She's one of three women arrested this week",
+          "caused_by": "S0: the initial charge against the Philadelphia woman, setting the context for 'this week's arrests'"
+        },
+        {
+          "sentence": "S0",
+          "fact": "FBI charged a Philadelphia woman",
+          "caused_by": "S14: these arrests being part of a larger trend of prosecutions"
+        },
+        {
+          "sentence": "S14",
+          "fact": "Justice Dept. prosecuting 30+ terror cases",
+          "caused_by": "S15: many of these cases involving support to ISIS"
+        },
+        {
+          "sentence": "S15",
+          "fact": "18 cases involve support to ISIS",
+          "caused_by": "S16: the evolving nature of the terrorist threat"
+        },
+        {
+          "sentence": "S16",
+          "fact": "terrorist threat is decentralized, diffuse, complicated",
+          "caused_by": "S17: specific characteristics of the threat, e.g., social media, lone wolf"
+        },
+        {
+          "sentence": "S17",
+          "fact": "threat involves lone wolf, social media, Internet",
+          "caused_by": "the evolving global security landscape and terrorist tactics"
+        }
+      ]
+    }
+  ],
+  "newly_connected_sentences": [
+    "S7",
+    "S8",
+    "S14",
+    "S15",
+    "S16",
+    "S17"
+  ],
+  "still_unreached": [],
+  "total_coverage": 18,
+  "_elapsed_seconds": 87.8
+}

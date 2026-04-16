@@ -1,0 +1,61 @@
+{
+  "stories": [
+    {
+      "thread": "Malegaon Cattle Identification Program",
+      "story": "Police in Malegaon, Maharashtra, are requiring identity cards for cattle residents, following a recent state-wide ban on beef. Residents must submit a 'mugshot' of their cattle along with information on unique features like coloring, age, and tail length. Mahesh Sawai, Deputy Superintendent of Malegaon Police, stated this database will help solve cow slaughter cases and enforce the law by allowing quick checks for missing animals. Over 100 owners have already complied with the order, and more are lining up. The exact date the order was issued is not stated.",
+      "key_facts": [
+        "Police in Malegaon, Maharashtra, require identity cards for cattle.",
+        "Residents must submit a 'mugshot' and information on unique features like coloring, age, and tail length.",
+        "The initiative follows a state-wide beef ban and aims to solve cow slaughter cases and enforce the law.",
+        "Mahesh Sawai, Deputy Superintendent of Malegaon Police, confirmed a database is being created.",
+        "Over 100 owners have complied with the police order."
+      ],
+      "explicit_unknowns": [
+        "The exact date the order was issued is not stated."
+      ]
+    },
+    {
+      "thread": "Maharashtra's Beef Ban and Legal Implications",
+      "story": "Maharashtra has implemented a state-wide ban on the sale and consumption of beef, with cows considered holy by the state's majority Hindu population. The Maharashtra Animal Preservation Bill now lists the killing of bulls and bullocks as non-bailable offenses. Consuming or selling beef could lead to five years in prison. However, the slaughter of buffaloes remains permissible. The specific date the bill was passed or enacted is not stated.",
+      "key_facts": [
+        "Maharashtra implemented a state-wide ban on the sale and consumption of beef.",
+        "The Maharashtra Animal Preservation Bill now includes bans on killing bulls and bullocks as non-bailable offenses.",
+        "Consumption or sale of beef could result in five years in prison.",
+        "The slaughter of buffaloes is still permissible.",
+        "Cows are considered holy and revered by the state's majority Hindu population."
+      ],
+      "explicit_unknowns": [
+        "The specific date the Maharashtra Animal Preservation Bill was passed or enacted is not stated."
+      ]
+    },
+    {
+      "thread": "Public and Trader Reactions to Maharashtra's Beef Ban",
+      "story": "Beef traders in the country strongly reacted to Maharashtra's beef ban, calling a month-long strike which ended on Wednesday. During the strike, traders refused to slaughter even buffaloes, depriving the state of all bovine meat. They have now vowed to file a case in the state's high court. Red meat lovers were also not delighted, arguing the government doesn't have a right to interfere in an individual's personal preference. The specific date of 'Wednesday' is not stated.",
+      "key_facts": [
+        "Beef traders in the country strongly reacted to Maharashtra's beef ban.",
+        "They called a month-long strike, which ended on Wednesday.",
+        "Traders refused to slaughter buffaloes, depriving the state of all bovine meat.",
+        "They have vowed to file a case in the state's high court.",
+        "Red meat lovers were not delighted, arguing against government interference in personal preference."
+      ],
+      "explicit_unknowns": [
+        "The specific date of 'Wednesday' is not stated.",
+        "The exact number of traders involved in the strike is not stated."
+      ]
+    },
+    {
+      "thread": "Broader Context of Cow Slaughter Laws in India",
+      "story": "Maharashtra is not the only Indian state to tighten its laws on cow slaughter. Haryana state has implemented the toughest penalty in the country, with a maximum punishment of 10 years in prison. India's Home Minister, Rajnath Singh, has promised to devise a country-wide law against cow slaughter. The specific timeline for Rajnath Singh's promise is not stated.",
+      "key_facts": [
+        "Maharashtra is not the only Indian state to tighten its laws on cow slaughter.",
+        "Haryana state has implemented a maximum punishment of 10 years in prison, the toughest penalty in the country.",
+        "Rajnath Singh, India's Home Minister, has promised to devise a country-wide law against cow slaughter."
+      ],
+      "explicit_unknowns": [
+        "The specific timeline for Rajnath Singh's promise is not stated.",
+        "The exact number of other states with similar laws is not stated."
+      ]
+    }
+  ],
+  "_elapsed": 17.7
+}

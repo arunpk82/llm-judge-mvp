@@ -1,0 +1,1304 @@
+{
+  "event_hubs": [
+    {
+      "event_id": "EVT_1",
+      "action": "died",
+      "source_sentence": "S0",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "Anne Frank",
+          "source": "S0"
+        },
+        {
+          "type": "how",
+          "target": "typhus",
+          "source": "S0"
+        },
+        {
+          "type": "where",
+          "target": "Nazi concentration camp",
+          "source": "S0"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_2",
+      "action": "liberated",
+      "source_sentence": "S1",
+      "edges": [
+        {
+          "type": "target_of",
+          "target": "Bergen-Belsen concentration camp",
+          "source": "S1"
+        },
+        {
+          "type": "when",
+          "target": "Just two weeks after March 31, 1945",
+          "source": "S1"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_3",
+      "action": "imprisoned",
+      "source_sentence": "S1",
+      "edges": [
+        {
+          "type": "target_of",
+          "target": "Anne Frank",
+          "source": "S1"
+        },
+        {
+          "type": "where",
+          "target": "Bergen-Belsen concentration camp",
+          "source": "S1"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_4",
+      "action": "death_supposed",
+      "source_sentence": "S1",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "Anne Frank",
+          "source": "S1"
+        },
+        {
+          "type": "when",
+          "target": "March 31, 1945",
+          "source": "S1"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_5",
+      "action": "released",
+      "source_sentence": "S2",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "Anne Frank House",
+          "source": "S2"
+        },
+        {
+          "type": "target_of",
+          "target": "new research",
+          "source": "S2"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_6",
+      "action": "died",
+      "source_sentence": "S2",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "Anne Frank",
+          "source": "S2"
+        },
+        {
+          "type": "agent_of",
+          "target": "Margot Frank",
+          "source": "S2"
+        },
+        {
+          "type": "when",
+          "target": "at least a month earlier than previously thought",
+          "source": "S2"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_7",
+      "action": "re-examined",
+      "source_sentence": "S3",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "Researchers",
+          "source": "S3"
+        },
+        {
+          "type": "target_of",
+          "target": "Red Cross archives",
+          "source": "S3"
+        },
+        {
+          "type": "target_of",
+          "target": "International Training Service archives",
+          "source": "S3"
+        },
+        {
+          "type": "target_of",
+          "target": "Bergen-Belsen Memorial archives",
+          "source": "S3"
+        },
+        {
+          "type": "target_of",
+          "target": "survivors' testimonies",
+          "source": "S3"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_8",
+      "action": "concluded_non_survival",
+      "source_sentence": "S4",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "Researchers",
+          "source": "S4"
+        },
+        {
+          "type": "target_of",
+          "target": "Anne and Margot probably did not survive to March 1945",
+          "source": "S4"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_9",
+      "action": "death_date_determined",
+      "source_sentence": "S4",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "Dutch authorities",
+          "source": "S4"
+        },
+        {
+          "type": "target_of",
+          "target": "date of death",
+          "source": "S4"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_10",
+      "action": "arrested",
+      "source_sentence": "S5",
+      "edges": [
+        {
+          "type": "target_of",
+          "target": "Anne Frank",
+          "source": "S5"
+        },
+        {
+          "type": "target_of",
+          "target": "seven others",
+          "source": "S5"
+        },
+        {
+          "type": "when",
+          "target": "1944",
+          "source": "S5"
+        },
+        {
+          "type": "where",
+          "target": "Amsterdam secret annex",
+          "source": "S5"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_11",
+      "action": "sent",
+      "source_sentence": "S5",
+      "edges": [
+        {
+          "type": "target_of",
+          "target": "Anne Frank",
+          "source": "S5"
+        },
+        {
+          "type": "target_of",
+          "target": "seven others",
+          "source": "S5"
+        },
+        {
+          "type": "where",
+          "target": "Auschwitz-Birkenau concentration camp",
+          "source": "S5"
+        },
+        {
+          "type": "when",
+          "target": "1944",
+          "source": "S5"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_12",
+      "action": "separated",
+      "source_sentence": "S7",
+      "edges": [
+        {
+          "type": "target_of",
+          "target": "Anne Frank",
+          "source": "S7"
+        },
+        {
+          "type": "target_of",
+          "target": "Margot Frank",
+          "source": "S7"
+        },
+        {
+          "type": "from",
+          "target": "Anne and Margot's mother",
+          "source": "S7"
+        },
+        {
+          "type": "when",
+          "target": "1944",
+          "source": "S7"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_13",
+      "action": "sent",
+      "source_sentence": "S7",
+      "edges": [
+        {
+          "type": "target_of",
+          "target": "Anne Frank",
+          "source": "S7"
+        },
+        {
+          "type": "target_of",
+          "target": "Margot Frank",
+          "source": "S7"
+        },
+        {
+          "type": "where",
+          "target": "Bergen-Belsen camp",
+          "source": "S7"
+        },
+        {
+          "type": "when",
+          "target": "1944",
+          "source": "S7"
+        },
+        {
+          "type": "why",
+          "target": "to work as slave labor",
+          "source": "S7"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_14",
+      "action": "stayed",
+      "source_sentence": "S9",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "Anne Frank",
+          "source": "S9"
+        },
+        {
+          "type": "agent_of",
+          "target": "Margot Frank",
+          "source": "S9"
+        },
+        {
+          "type": "where",
+          "target": "a section of the overcrowded camp",
+          "source": "S9"
+        },
+        {
+          "type": "attributes",
+          "target": "no lighting, little water, no latrine",
+          "source": "S9"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_15",
+      "action": "slept",
+      "source_sentence": "S10",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "Anne Frank",
+          "source": "S10"
+        },
+        {
+          "type": "agent_of",
+          "target": "Margot Frank",
+          "source": "S10"
+        },
+        {
+          "type": "how",
+          "target": "on lice-ridden straw",
+          "source": "S10"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_16",
+      "action": "shredded",
+      "source_sentence": "S10",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "violent storms",
+          "source": "S10"
+        },
+        {
+          "type": "target_of",
+          "target": "tents",
+          "source": "S10"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_17",
+      "action": "endured",
+      "source_sentence": "S11",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "Anne Frank",
+          "source": "S11"
+        },
+        {
+          "type": "agent_of",
+          "target": "Margot Frank",
+          "source": "S11"
+        },
+        {
+          "type": "target_of",
+          "target": "long hours at roll call",
+          "source": "S11"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_18",
+      "action": "recalled seeing",
+      "source_sentence": "S12",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "Nannette Blitz",
+          "source": "S12"
+        },
+        {
+          "type": "target_of",
+          "target": "Anne Frank",
+          "source": "S12"
+        },
+        {
+          "type": "when",
+          "target": "December 1944",
+          "source": "S12"
+        },
+        {
+          "type": "where",
+          "target": "Bergen-Belsen concentration camp",
+          "source": "S12"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_19",
+      "action": "wrapped",
+      "source_sentence": "S13",
+      "edges": [
+        {
+          "type": "target_of",
+          "target": "Anne Frank",
+          "source": "S13"
+        },
+        {
+          "type": "how",
+          "target": "in a blanket",
+          "source": "S13"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_20",
+      "action": "couldn't wear",
+      "source_sentence": "S13",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "Anne Frank",
+          "source": "S13"
+        },
+        {
+          "type": "target_of",
+          "target": "Anne's clothes",
+          "source": "S13"
+        },
+        {
+          "type": "why",
+          "target": "clothes were crawling with lice",
+          "source": "S13"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_21",
+      "action": "crawling",
+      "source_sentence": "S13",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "lice",
+          "source": "S13"
+        },
+        {
+          "type": "target_of",
+          "target": "Anne's clothes",
+          "source": "S13"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_22",
+      "action": "advanced",
+      "source_sentence": "S14",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "Russians",
+          "source": "S14"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_23",
+      "action": "became more crowded",
+      "source_sentence": "S14",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "Bergen-Belsen concentration camp",
+          "source": "S14"
+        },
+        {
+          "type": "why",
+          "target": "As the Russians advanced further",
+          "source": "S14"
+        },
+        {
+          "type": "how",
+          "target": "bringing more disease",
+          "source": "S14"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_24",
+      "action": "caused deaths",
+      "source_sentence": "S15",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "deadly typhus outbreak",
+          "source": "S15"
+        },
+        {
+          "type": "target_of",
+          "target": "thousands",
+          "source": "S15"
+        },
+        {
+          "type": "when",
+          "target": "each day",
+          "source": "S15"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_25",
+      "action": "caused",
+      "source_sentence": "S16",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "lice",
+          "source": "S16"
+        },
+        {
+          "type": "target_of",
+          "target": "typhus",
+          "source": "S16"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_26",
+      "action": "breaks out",
+      "source_sentence": "S16",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "typhus",
+          "source": "S16"
+        },
+        {
+          "type": "where",
+          "target": "places with poor hygiene",
+          "source": "S16"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_27",
+      "action": "causes",
+      "source_sentence": "S17",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "typhus",
+          "source": "S17"
+        },
+        {
+          "type": "target_of",
+          "target": "high fever",
+          "source": "S17"
+        },
+        {
+          "type": "target_of",
+          "target": "chills",
+          "source": "S17"
+        },
+        {
+          "type": "target_of",
+          "target": "skin eruptions",
+          "source": "S17"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_28",
+      "action": "exposed",
+      "source_sentence": "S18",
+      "edges": [
+        {
+          "type": "target_of",
+          "target": "Anne Frank",
+          "source": "S18"
+        },
+        {
+          "type": "target_of",
+          "target": "main carrier of epidemic typhus",
+          "source": "S18"
+        },
+        {
+          "type": "why",
+          "target": "Because of the lice infesting the bedstraw and her clothes",
+          "source": "S18"
+        },
+        {
+          "type": "how",
+          "target": "for an extended period",
+          "source": "S18"
+        },
+        {
+          "type": "source_of_information",
+          "target": "museum researchers",
+          "source": "S18"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_29",
+      "action": "concluded_unlikely_survival",
+      "source_sentence": "S19",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "Researchers",
+          "source": "S19"
+        },
+        {
+          "type": "target_of",
+          "target": "unlikely the sisters survived until March",
+          "source": "S19"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_30",
+      "action": "had symptoms",
+      "source_sentence": "S19",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "Anne Frank",
+          "source": "S19"
+        },
+        {
+          "type": "agent_of",
+          "target": "Margot Frank",
+          "source": "S19"
+        },
+        {
+          "type": "when",
+          "target": "before February 7",
+          "source": "S19"
+        },
+        {
+          "type": "source_of_information",
+          "target": "witnesses at the camp",
+          "source": "S19"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_31",
+      "action": "occur",
+      "source_sentence": "S20",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "deaths caused by typhus",
+          "source": "S20"
+        },
+        {
+          "type": "when",
+          "target": "around twelve days after the first symptoms appear",
+          "source": "S20"
+        },
+        {
+          "type": "source_of_information",
+          "target": "Erika Prins",
+          "source": "S20"
+        },
+        {
+          "type": "source_of_information",
+          "target": "Gertjan Broek",
+          "source": "S20"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_32",
+      "action": "died",
+      "source_sentence": "S22",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "Margot Frank",
+          "source": "S22"
+        },
+        {
+          "type": "when",
+          "target": "before Anne Frank's death",
+          "source": "S22"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_33",
+      "action": "never gave up hope",
+      "source_sentence": "S23",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "Anne Frank",
+          "source": "S23"
+        },
+        {
+          "type": "source_of_information",
+          "target": "Nannette Blitz",
+          "source": "S23"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_34",
+      "action": "was convinced",
+      "source_sentence": "S24",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "Anne Frank",
+          "source": "S24"
+        },
+        {
+          "type": "target_of",
+          "target": "she would survive",
+          "source": "S24"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_35",
+      "action": "endures",
+      "source_sentence": "S24",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "Anne Frank's diary",
+          "source": "S24"
+        },
+        {
+          "type": "how",
+          "target": "as one of the world's most popular books",
+          "source": "S24"
+        }
+      ]
+    }
+  ],
+  "entities": [
+    {
+      "name": "Anne Frank",
+      "aliases": [
+        "Jewish diarist",
+        "She",
+        "Her"
+      ],
+      "attributes": {
+        "age_at_death": "15",
+        "status": "deceased"
+      },
+      "participates_in": [
+        "EVT_1",
+        "EVT_3",
+        "EVT_4",
+        "EVT_6",
+        "EVT_8",
+        "EVT_10",
+        "EVT_11",
+        "EVT_12",
+        "EVT_13",
+        "EVT_14",
+        "EVT_15",
+        "EVT_17",
+        "EVT_18",
+        "EVT_19",
+        "EVT_20",
+        "EVT_28",
+        "EVT_30",
+        "EVT_33",
+        "EVT_34"
+      ],
+      "source_sentences": [
+        "S0",
+        "S1",
+        "S2",
+        "S4",
+        "S5",
+        "S7",
+        "S9",
+        "S10",
+        "S11",
+        "S12",
+        "S13",
+        "S18",
+        "S19",
+        "S21",
+        "S22",
+        "S23",
+        "S24"
+      ]
+    },
+    {
+      "name": "typhus",
+      "aliases": [],
+      "attributes": {
+        "type": "infectious disease",
+        "cause": "lice",
+        "outbreak_condition": "poor hygiene",
+        "symptoms": "high fever, chills, skin eruptions"
+      },
+      "participates_in": [
+        "EVT_1",
+        "EVT_24",
+        "EVT_25",
+        "EVT_26",
+        "EVT_27",
+        "EVT_28",
+        "EVT_31"
+      ],
+      "source_sentences": [
+        "S0",
+        "S15",
+        "S16",
+        "S17",
+        "S18",
+        "S20"
+      ]
+    },
+    {
+      "name": "Nazi concentration camp",
+      "aliases": [],
+      "attributes": {},
+      "participates_in": [
+        "EVT_1"
+      ],
+      "source_sentences": [
+        "S0"
+      ]
+    },
+    {
+      "name": "Bergen-Belsen concentration camp",
+      "aliases": [
+        "Bergen-Belsen camp",
+        "the camp"
+      ],
+      "attributes": {
+        "location": "Germany"
+      },
+      "participates_in": [
+        "EVT_2",
+        "EVT_3",
+        "EVT_13",
+        "EVT_14",
+        "EVT_18",
+        "EVT_23"
+      ],
+      "source_sentences": [
+        "S1",
+        "S7",
+        "S8",
+        "S9",
+        "S14",
+        "S19"
+      ]
+    },
+    {
+      "name": "Margot Frank",
+      "aliases": [],
+      "attributes": {
+        "relationship_to_Anne": "older sister",
+        "status": "deceased"
+      },
+      "participates_in": [
+        "EVT_6",
+        "EVT_8",
+        "EVT_12",
+        "EVT_13",
+        "EVT_14",
+        "EVT_15",
+        "EVT_17",
+        "EVT_30",
+        "EVT_32"
+      ],
+      "source_sentences": [
+        "S2",
+        "S4",
+        "S7",
+        "S9",
+        "S10",
+        "S11",
+        "S19",
+        "S21",
+        "S22"
+      ]
+    },
+    {
+      "name": "Anne Frank House",
+      "aliases": [],
+      "attributes": {},
+      "participates_in": [
+        "EVT_5"
+      ],
+      "source_sentences": [
+        "S2"
+      ]
+    },
+    {
+      "name": "Researchers",
+      "aliases": [
+        "They"
+      ],
+      "attributes": {},
+      "participates_in": [
+        "EVT_7",
+        "EVT_8",
+        "EVT_16",
+        "EVT_29"
+      ],
+      "source_sentences": [
+        "S3",
+        "S4",
+        "S10",
+        "S19"
+      ]
+    },
+    {
+      "name": "Red Cross archives",
+      "aliases": [],
+      "attributes": {},
+      "participates_in": [
+        "EVT_7"
+      ],
+      "source_sentences": [
+        "S3"
+      ]
+    },
+    {
+      "name": "International Training Service archives",
+      "aliases": [],
+      "attributes": {},
+      "participates_in": [
+        "EVT_7"
+      ],
+      "source_sentences": [
+        "S3"
+      ]
+    },
+    {
+      "name": "Bergen-Belsen Memorial archives",
+      "aliases": [],
+      "attributes": {},
+      "participates_in": [
+        "EVT_7"
+      ],
+      "source_sentences": [
+        "S3"
+      ]
+    },
+    {
+      "name": "survivors' testimonies",
+      "aliases": [],
+      "attributes": {},
+      "participates_in": [
+        "EVT_7"
+      ],
+      "source_sentences": [
+        "S3"
+      ]
+    },
+    {
+      "name": "Dutch authorities",
+      "aliases": [],
+      "attributes": {},
+      "participates_in": [
+        "EVT_9"
+      ],
+      "source_sentences": [
+        "S4"
+      ]
+    },
+    {
+      "name": "seven others",
+      "aliases": [],
+      "attributes": {},
+      "participates_in": [
+        "EVT_10",
+        "EVT_11"
+      ],
+      "source_sentences": [
+        "S5"
+      ]
+    },
+    {
+      "name": "Amsterdam secret annex",
+      "aliases": [],
+      "attributes": {
+        "function": "hiding place"
+      },
+      "participates_in": [
+        "EVT_10"
+      ],
+      "source_sentences": [
+        "S5"
+      ]
+    },
+    {
+      "name": "Auschwitz-Birkenau concentration camp",
+      "aliases": [],
+      "attributes": {},
+      "participates_in": [
+        "EVT_11"
+      ],
+      "source_sentences": [
+        "S5"
+      ]
+    },
+    {
+      "name": "Anne and Margot's mother",
+      "aliases": [],
+      "attributes": {},
+      "participates_in": [
+        "EVT_12"
+      ],
+      "source_sentences": [
+        "S7"
+      ]
+    },
+    {
+      "name": "tents",
+      "aliases": [],
+      "attributes": {},
+      "participates_in": [
+        "EVT_16"
+      ],
+      "source_sentences": [
+        "S10"
+      ]
+    },
+    {
+      "name": "violent storms",
+      "aliases": [],
+      "attributes": {},
+      "participates_in": [
+        "EVT_16"
+      ],
+      "source_sentences": [
+        "S10"
+      ]
+    },
+    {
+      "name": "other prisoners",
+      "aliases": [],
+      "attributes": {},
+      "participates_in": [
+        "EVT_17"
+      ],
+      "source_sentences": [
+        "S11"
+      ]
+    },
+    {
+      "name": "Nannette Blitz",
+      "aliases": [
+        "Blitz"
+      ],
+      "attributes": {
+        "relationship_to_Anne": "classmate",
+        "relationship_to_Anne_2": "friend"
+      },
+      "participates_in": [
+        "EVT_18",
+        "EVT_33"
+      ],
+      "source_sentences": [
+        "S12",
+        "S23"
+      ]
+    },
+    {
+      "name": "blanket",
+      "aliases": [],
+      "attributes": {},
+      "participates_in": [
+        "EVT_19"
+      ],
+      "source_sentences": [
+        "S13"
+      ]
+    },
+    {
+      "name": "Anne's clothes",
+      "aliases": [],
+      "attributes": {},
+      "participates_in": [
+        "EVT_20",
+        "EVT_21",
+        "EVT_28"
+      ],
+      "source_sentences": [
+        "S13",
+        "S18"
+      ]
+    },
+    {
+      "name": "lice",
+      "aliases": [],
+      "attributes": {},
+      "participates_in": [
+        "EVT_21",
+        "EVT_25",
+        "EVT_28"
+      ],
+      "source_sentences": [
+        "S13",
+        "S16",
+        "S18"
+      ]
+    },
+    {
+      "name": "Russians",
+      "aliases": [],
+      "attributes": {},
+      "participates_in": [
+        "EVT_22"
+      ],
+      "source_sentences": [
+        "S14"
+      ]
+    },
+    {
+      "name": "deadly typhus outbreak",
+      "aliases": [],
+      "attributes": {},
+      "participates_in": [
+        "EVT_24"
+      ],
+      "source_sentences": [
+        "S15"
+      ]
+    },
+    {
+      "name": "high fever",
+      "aliases": [],
+      "attributes": {},
+      "participates_in": [
+        "EVT_27"
+      ],
+      "source_sentences": [
+        "S17"
+      ]
+    },
+    {
+      "name": "chills",
+      "aliases": [],
+      "attributes": {},
+      "participates_in": [
+        "EVT_27"
+      ],
+      "source_sentences": [
+        "S17"
+      ]
+    },
+    {
+      "name": "skin eruptions",
+      "aliases": [],
+      "attributes": {},
+      "participates_in": [
+        "EVT_27"
+      ],
+      "source_sentences": [
+        "S17"
+      ]
+    },
+    {
+      "name": "bedstraw",
+      "aliases": [],
+      "attributes": {},
+      "participates_in": [
+        "EVT_28"
+      ],
+      "source_sentences": [
+        "S18"
+      ]
+    },
+    {
+      "name": "museum researchers",
+      "aliases": [],
+      "attributes": {},
+      "participates_in": [
+        "EVT_28"
+      ],
+      "source_sentences": [
+        "S18"
+      ]
+    },
+    {
+      "name": "witnesses at the camp",
+      "aliases": [],
+      "attributes": {},
+      "participates_in": [
+        "EVT_30"
+      ],
+      "source_sentences": [
+        "S19"
+      ]
+    },
+    {
+      "name": "Erika Prins",
+      "aliases": [],
+      "attributes": {
+        "role": "author"
+      },
+      "participates_in": [
+        "EVT_31"
+      ],
+      "source_sentences": [
+        "S20"
+      ]
+    },
+    {
+      "name": "Gertjan Broek",
+      "aliases": [],
+      "attributes": {
+        "role": "author"
+      },
+      "participates_in": [
+        "EVT_31"
+      ],
+      "source_sentences": [
+        "S20"
+      ]
+    },
+    {
+      "name": "Anne Frank's diary",
+      "aliases": [],
+      "attributes": {},
+      "participates_in": [
+        "EVT_35"
+      ],
+      "source_sentences": [
+        "S24"
+      ]
+    }
+  ],
+  "inter_event_edges": [
+    {
+      "from": "EVT_4",
+      "to": "EVT_2",
+      "type": "happened_before",
+      "source": "S1"
+    },
+    {
+      "from": "EVT_6",
+      "to": "EVT_4",
+      "type": "contradicts",
+      "source": "S2"
+    },
+    {
+      "from": "EVT_8",
+      "to": "EVT_9",
+      "type": "contradicts",
+      "source": "S4"
+    },
+    {
+      "from": "EVT_10",
+      "to": "EVT_11",
+      "type": "happened_before",
+      "source": "S5"
+    },
+    {
+      "from": "EVT_12",
+      "to": "EVT_13",
+      "type": "happened_concurrently",
+      "source": "S7"
+    },
+    {
+      "from": "EVT_30",
+      "to": "EVT_29",
+      "type": "cause",
+      "source": "S19"
+    },
+    {
+      "from": "EVT_32",
+      "to": "EVT_1",
+      "type": "happened_before",
+      "source": "S22"
+    }
+  ],
+  "explicit_unknowns": [
+    {
+      "about": "Anne Frank and Margot Frank's death dates",
+      "unknown_slots": [
+        "when"
+      ],
+      "source": "S21"
+    }
+  ],
+  "_elapsed": 71.7
+}

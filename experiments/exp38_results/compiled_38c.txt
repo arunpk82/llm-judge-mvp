@@ -1,0 +1,152 @@
+
+EVENT HUB: charged (S0)
+  agent_of -> FBI [S0]
+  target_of -> Keonna Thomas [S0]
+  when -> Thursday [S0]
+  reason -> EVT_TRAVEL_ATTEMPT_THOMAS [S0]
+  specified_by -> EVT_CHARGE_DETAIL_THOMAS [S11]
+
+EVENT HUB: trying to travel overseas (S0)
+  agent_of -> Keonna Thomas [S0]
+  why -> to fight for ISIS [S0]
+  evidence_for -> EVT_CHARGE_THOMAS [S0]
+
+EVENT HUB: arrested (S1,S10)
+  target_of -> Keonna Thomas [S1]
+  why -> terror charges [S1]
+
+EVENT HUB: sent social media messages (S3)
+  agent_of -> Keonna Thomas [S3]
+  when -> dating back to August 2013 [S3]
+  how -> social media (Twitter) [S3,S4]
+  evidence_for -> EVT_TRAVEL_ATTEMPT_THOMAS [S3]
+
+EVENT HUB: expressed desire to join ISIS (S4)
+  agent_of -> Keonna Thomas [S4]
+  how -> Twitter message [S4]
+  enriched_by -> If we truly knew the realities ... we all would be rushing to join our brothers in the front lines pray ALLAH accept us as shuhada [martyrs]. [S4]
+  evidence_for -> EVT_TRAVEL_ATTEMPT_THOMAS [S4]
+
+EVENT HUB: expressed belief about mujahid death (S5)
+  agent_of -> Keonna Thomas [S5]
+  how -> social media message [S5]
+  enriched_by -> When you're a mujahid [violent jihadi fighter] your death becomes a wedding. [S5]
+  evidence_for -> EVT_TRAVEL_ATTEMPT_THOMAS [S5]
+
+EVENT HUB: purchased electronic visa (S6)
+  agent_of -> Keonna Thomas [S6]
+  target_of -> Turkey [S6]
+  when -> March 23 [S6]
+  evidence_for -> EVT_TRAVEL_ATTEMPT_THOMAS [S6]
+  why -> to enter Syria and join ISIS [S7]
+
+EVENT HUB: join ISIS (S7)
+  where -> Syria (via Turkey) [S7]
+  context_for -> EVT_TRAVEL_ATTEMPT_THOMAS [S7]
+
+EVENT HUB: advises recruits (S8)
+  agent_of -> ISIS manual [S8]
+  target_of -> recruits [S8]
+  how -> buy round-trip tickets to vacation spots such as Spain and then purchase tickets for their real destination once they arrive overseas [S8]
+
+EVENT HUB: purchased ticket (S9)
+  agent_of -> Keonna Thomas [S9]
+  target_of -> Barcelona [S9]
+  when -> March 26 (purchase), March 29 (departure), April 15 (return) [S9]
+  where -> to Barcelona, from United States (return) [S9]
+  evidence_for -> EVT_TRAVEL_ATTEMPT_THOMAS [S9]
+
+EVENT HUB: charged with specific offense (S11)
+  target_of -> Keonna Thomas [S11]
+  reason -> knowingly attempting to provide material support and resources to a designated foreign terrorist organization [S11]
+  specifies -> EVT_CHARGE_THOMAS [S11]
+
+EVENT HUB: could be sentenced (S12)
+  target_of -> Keonna Thomas [S12]
+  outcome -> 15 years in prison [S12]
+
+EVENT HUB: arrested (S13)
+  target_of -> Noelle Velentzas [S13]
+  target_of -> Asia Siddiqui [S13]
+  when -> Thursday [S13]
+  where -> New York [S13]
+  reason -> EVT_PLAN_ATTACKS_NY_WOMEN [S13]
+
+EVENT HUB: planning to build an explosive device for attacks (S13)
+  agent_of -> Noelle Velentzas [S13]
+  agent_of -> Asia Siddiqui [S13]
+  target_of -> United States [S13]
+  leads_to -> EVT_ARREST_NY_WOMEN [S13]
+
+EVENT HUB: prosecuted or is prosecuting cases (S14)
+  agent_of -> Justice Department's National Security Division [S14]
+  target_of -> more than 30 cases of people attempting to travel abroad to join or provide support to terrorist groups [S14]
+  when -> past 18 months [S14]
+
+EVENT HUB: involve support to ISIS (S15)
+  target_of -> 18 cases [S15]
+  part_of -> EVT_PROSECUTE_TRAVEL_ABROAD [S15]
+
+EVENT HUB: told reporters (S16)
+  agent_of -> Homeland Security Secretary Jeh Johnson [S16]
+  target_of -> reporters [S16]
+  when -> Thursday [S16]
+  enriched_by -> The terrorist threat is more decentralized, more diffuse, more complicated. [S16]
+
+EVENT HUB: described terrorist threat characteristics (S17)
+  agent_of -> Homeland Security Secretary Jeh Johnson [S17]
+  enriched_by -> potential lone wolf actor, effective use of social media, the Internet [S17]
+  part_of -> EVT_JOHNSON_STATEMENT [S17]
+
+ENTITY: FBI (age=?, loc=?)
+  Aliases: 
+
+ENTITY: Keonna Thomas (age=30, loc=Philadelphia)
+  Aliases: Philadelphia woman, She, Young Lioness, Fatayat Al Khilafah, Thomas
+
+ENTITY: ISIS (age=?, loc=?)
+  Aliases: designated foreign terrorist organization
+
+ENTITY: Noelle Velentzas (age=28, loc=New York)
+  Aliases: 
+
+ENTITY: Asia Siddiqui (age=31, loc=New York)
+  Aliases: 
+
+ENTITY: Turkey (age=?, loc=?)
+  Aliases: 
+
+ENTITY: Syria (age=?, loc=?)
+  Aliases: 
+
+ENTITY: ISIS manual (age=?, loc=?)
+  Aliases: 
+
+ENTITY: Spain (age=?, loc=?)
+  Aliases: 
+
+ENTITY: Barcelona (age=?, loc=?)
+  Aliases: 
+
+ENTITY: United States (age=?, loc=?)
+  Aliases: 
+
+ENTITY: FBI complaint (age=?, loc=?)
+  Aliases: 
+
+ENTITY: federal prosecutors (age=?, loc=?)
+  Aliases: 
+
+ENTITY: Justice Department's National Security Division (age=?, loc=?)
+  Aliases: 
+
+ENTITY: terrorist groups (age=?, loc=?)
+  Aliases: 
+
+ENTITY: Homeland Security Secretary Jeh Johnson (age=?, loc=?)
+  Aliases: 
+
+ENTITY: reporters (age=?, loc=?)
+  Aliases: 
+
+EXPLICITLY UNKNOWN: Keonna Thomas arrest - ['when', 'where']

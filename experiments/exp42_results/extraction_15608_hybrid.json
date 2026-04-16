@@ -1,0 +1,1247 @@
+{
+  "event_hubs": [
+    {
+      "event_id": "EVT_1",
+      "action": "charged",
+      "source_sentence": "S0",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "ENT_CHINA_PROSECUTORS",
+          "source": "S0"
+        },
+        {
+          "type": "target_of",
+          "target": "ENT_ZHOU_YONGKANG",
+          "source": "S0"
+        },
+        {
+          "type": "when",
+          "target": "Friday",
+          "source": "S0"
+        },
+        {
+          "type": "how",
+          "target": "formally, with accepting bribes",
+          "source": "S0"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_2",
+      "action": "charged",
+      "source_sentence": "S1",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "ENT_SUPREME_PROCURATORATE",
+          "source": "S1"
+        },
+        {
+          "type": "target_of",
+          "target": "ENT_ZHOU_YONGKANG",
+          "source": "S1"
+        },
+        {
+          "type": "how",
+          "target": "with abuse of power",
+          "source": "S1"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_3",
+      "action": "charged",
+      "source_sentence": "S1",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "ENT_SUPREME_PROCURATORATE",
+          "source": "S1"
+        },
+        {
+          "type": "target_of",
+          "target": "ENT_ZHOU_YONGKANG",
+          "source": "S1"
+        },
+        {
+          "type": "how",
+          "target": "with leaking state secrets",
+          "source": "S1"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_4",
+      "action": "retired",
+      "source_sentence": "S3",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "ENT_ZHOU_YONGKANG",
+          "source": "S3"
+        },
+        {
+          "type": "when",
+          "target": "2012",
+          "source": "S3"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_5",
+      "action": "accused",
+      "source_sentence": "S4",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "ENT_CHINA_PROSECUTORS",
+          "source": "S4"
+        },
+        {
+          "type": "target_of",
+          "target": "ENT_ZHOU_YONGKANG",
+          "source": "S4"
+        },
+        {
+          "type": "how",
+          "target": "taking advantage of his posts to seek benefits for others and illegally accepting huge amounts of money",
+          "source": "S4"
+        },
+        {
+          "type": "when",
+          "target": "during his long political career",
+          "source": "S4"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_6",
+      "action": "caused losses and harmed interests",
+      "source_sentence": "S5",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "ENT_ZHOU_YONGKANG",
+          "source": "S5"
+        },
+        {
+          "type": "target_of",
+          "target": "ENT_PUBLIC_ASSETS",
+          "source": "S5"
+        },
+        {
+          "type": "target_of",
+          "target": "ENT_NATIONAL_INTERESTS",
+          "source": "S5"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_7",
+      "action": "notified of legal rights",
+      "source_sentence": "S6",
+      "edges": [
+        {
+          "type": "target_of",
+          "target": "ENT_ZHOU_YONGKANG",
+          "source": "S6"
+        },
+        {
+          "type": "when",
+          "target": "during the investigation",
+          "source": "S6"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_8",
+      "action": "views heard",
+      "source_sentence": "S6",
+      "edges": [
+        {
+          "type": "target_of",
+          "target": "ENT_LAWYER_ZHOU",
+          "source": "S6"
+        },
+        {
+          "type": "when",
+          "target": "during the investigation",
+          "source": "S6"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_9",
+      "action": "case trial",
+      "source_sentence": "S7",
+      "edges": [
+        {
+          "type": "target_of",
+          "target": "ENT_ZHOU_YONGKANG",
+          "source": "S7"
+        },
+        {
+          "type": "where",
+          "target": "Tianjin",
+          "source": "S7"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_10",
+      "action": "told reporters",
+      "source_sentence": "S8",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "ENT_PRESIDENT_CHINA_SUPREME_COURT",
+          "source": "S8"
+        },
+        {
+          "type": "target_of",
+          "target": "ENT_REPORTERS",
+          "source": "S8"
+        },
+        {
+          "type": "how",
+          "target": "there would be \"open\" trials for accused former leaders like Zhou",
+          "source": "S8"
+        },
+        {
+          "type": "when",
+          "target": "recently",
+          "source": "S8"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_11",
+      "action": "shield legal proceedings",
+      "source_sentence": "S9",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "ENT_AUTHORITIES",
+          "source": "S9"
+        },
+        {
+          "type": "target_of",
+          "target": "certain legal proceedings in Zhou's case",
+          "source": "S9"
+        },
+        {
+          "type": "why",
+          "target": "the charge of leaking state secrets",
+          "source": "S9"
+        },
+        {
+          "type": "how",
+          "target": "from public view",
+          "source": "S9"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_12",
+      "action": "attended anniversary event",
+      "source_sentence": "S10",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "ENT_ZHOU_YONGKANG",
+          "source": "S10"
+        },
+        {
+          "type": "target_of",
+          "target": "ENT_ANNIVERSARY_EVENT",
+          "source": "S10"
+        },
+        {
+          "type": "where",
+          "target": "ENT_ALMA_MATER_ZHOU",
+          "source": "S10"
+        },
+        {
+          "type": "when",
+          "target": "October 2013",
+          "source": "S10"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_13",
+      "action": "expelled from Communist Party",
+      "source_sentence": "S11",
+      "edges": [
+        {
+          "type": "target_of",
+          "target": "ENT_ZHOU_YONGKANG",
+          "source": "S11"
+        },
+        {
+          "type": "when",
+          "target": "last December",
+          "source": "S11"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_14",
+      "action": "arrested",
+      "source_sentence": "S11",
+      "edges": [
+        {
+          "type": "target_of",
+          "target": "ENT_ZHOU_YONGKANG",
+          "source": "S11"
+        },
+        {
+          "type": "when",
+          "target": "last December",
+          "source": "S11"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_15",
+      "action": "painted a web of connections",
+      "source_sentence": "S12",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "ENT_STATE_MEDIA",
+          "source": "S12"
+        },
+        {
+          "type": "target_of",
+          "target": "ENT_OFFICIALS_CRONIES_TYCOONS",
+          "source": "S12"
+        },
+        {
+          "type": "how",
+          "target": "orbiting around Zhou",
+          "source": "S12"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_16",
+      "action": "crumbling of power structure",
+      "source_sentence": "S12",
+      "edges": [
+        {
+          "type": "target_of",
+          "target": "ENT_ZHOU_YONGKANG",
+          "source": "S12"
+        },
+        {
+          "type": "when",
+          "target": "last summer",
+          "source": "S12"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_17",
+      "action": "accumulated wealth",
+      "source_sentence": "S13",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "ENT_ZHOU_YONGKANG",
+          "source": "S13"
+        },
+        {
+          "type": "agent_of",
+          "target": "ENT_ZHOU_FAMILY",
+          "source": "S13"
+        },
+        {
+          "type": "target_of",
+          "target": "enormous wealth",
+          "source": "S13"
+        },
+        {
+          "type": "how",
+          "target": "in a blatant exchange between money and power",
+          "source": "S13"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_18",
+      "action": "had affairs",
+      "source_sentence": "S14",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "ENT_ZHOU_YONGKANG",
+          "source": "S14"
+        },
+        {
+          "type": "target_of",
+          "target": "ENT_MULTIPLE_WOMEN",
+          "source": "S14"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_19",
+      "action": "traded power for sex",
+      "source_sentence": "S14",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "ENT_ZHOU_YONGKANG",
+          "source": "S14"
+        },
+        {
+          "type": "target_of",
+          "target": "sex",
+          "source": "S14"
+        },
+        {
+          "type": "how",
+          "target": "for power",
+          "source": "S14"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_20",
+      "action": "reported",
+      "source_sentence": "S14",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "ENT_XINHUA",
+          "source": "S14"
+        },
+        {
+          "type": "target_of",
+          "target": "EVT_18",
+          "source": "S14"
+        },
+        {
+          "type": "target_of",
+          "target": "EVT_19",
+          "source": "S14"
+        },
+        {
+          "type": "when",
+          "target": "last year",
+          "source": "S14"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_21",
+      "action": "downfall",
+      "source_sentence": "S15",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "ENT_ZHOU_YONGKANG",
+          "source": "S15"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_22",
+      "action": "viewed downfall as watershed moment",
+      "source_sentence": "S15",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "ENT_ANALYSTS",
+          "source": "S15"
+        },
+        {
+          "type": "target_of",
+          "target": "EVT_21",
+          "source": "S15"
+        },
+        {
+          "type": "how",
+          "target": "as a watershed moment in the secretive world of Chinese politics",
+          "source": "S15"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_23",
+      "action": "spearheading anti-corruption campaign",
+      "source_sentence": "S16",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "ENT_XI_JINPING",
+          "source": "S16"
+        },
+        {
+          "type": "target_of",
+          "target": "ENT_ANTI_CORRUPTION_CAMPAIGN",
+          "source": "S16"
+        },
+        {
+          "type": "how",
+          "target": "targeting both \"tigers\" and \"flies\"",
+          "source": "S16"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_24",
+      "action": "made statement",
+      "source_sentence": "S18",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "ENT_WILLY_LAM",
+          "source": "S18"
+        },
+        {
+          "type": "target_of",
+          "target": "Xi's power to incriminate former Politburo Standing Committee members",
+          "source": "S18"
+        },
+        {
+          "type": "when",
+          "target": "last year",
+          "source": "S18"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_25",
+      "action": "revealed investigation",
+      "source_sentence": "S18",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "ENT_GOVERNMENT",
+          "source": "S18"
+        },
+        {
+          "type": "target_of",
+          "target": "its formal investigation into Zhou",
+          "source": "S18"
+        },
+        {
+          "type": "when",
+          "target": "last year",
+          "source": "S18"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_26",
+      "action": "noted patronage",
+      "source_sentence": "S19",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "ENT_OBSERVERS",
+          "source": "S19"
+        },
+        {
+          "type": "target_of",
+          "target": "ENT_ZHOU_YONGKANG",
+          "source": "S19"
+        },
+        {
+          "type": "how",
+          "target": "patronage of Bo Xilai",
+          "source": "S19"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_27",
+      "action": "sentenced",
+      "source_sentence": "S19",
+      "edges": [
+        {
+          "type": "target_of",
+          "target": "ENT_BO_XILAI",
+          "source": "S19"
+        },
+        {
+          "type": "how",
+          "target": "to life in prison for corruption",
+          "source": "S19"
+        },
+        {
+          "type": "when",
+          "target": "2013",
+          "source": "S19"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_28",
+      "action": "downfall",
+      "source_sentence": "S20",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "ENT_BO_XILAI",
+          "source": "S20"
+        },
+        {
+          "type": "when",
+          "target": "the year before (2012)",
+          "source": "S20"
+        },
+        {
+          "type": "how",
+          "target": "complete with tales of murder, bribery and betrayal",
+          "source": "S20"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_29",
+      "action": "attracted attention",
+      "source_sentence": "S20",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "EVT_28",
+          "source": "S20"
+        },
+        {
+          "type": "target_of",
+          "target": "ENT_GLOBAL_ATTENTION",
+          "source": "S20"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_30",
+      "action": "cited conviction",
+      "source_sentence": "S21",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "ENT_STATE_MEDIA",
+          "source": "S21"
+        },
+        {
+          "type": "target_of",
+          "target": "EVT_27",
+          "source": "S21"
+        },
+        {
+          "type": "how",
+          "target": "as a prime example of Xi's resolve to clean up the party",
+          "source": "S21"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_31",
+      "action": "called political victim",
+      "source_sentence": "S22",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "ENT_SUPPORTERS_BO_XILAI",
+          "source": "S22"
+        },
+        {
+          "type": "target_of",
+          "target": "ENT_BO_XILAI",
+          "source": "S22"
+        },
+        {
+          "type": "how",
+          "target": "a political victim",
+          "source": "S22"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_32",
+      "action": "see similarities",
+      "source_sentence": "S23",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "ENT_POLITICAL_WATCHERS",
+          "source": "S23"
+        },
+        {
+          "type": "target_of",
+          "target": "similarities between the Bo and Zhou cases",
+          "source": "S23"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_33",
+      "action": "predicted sentence",
+      "source_sentence": "S24",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "ENT_WILLY_LAM",
+          "source": "S24"
+        },
+        {
+          "type": "target_of",
+          "target": "a suspended death sentence for Zhou",
+          "source": "S24"
+        }
+      ]
+    }
+  ],
+  "entities": [
+    {
+      "name": "China's state prosecutors",
+      "aliases": [
+        "prosecutors"
+      ],
+      "attributes": {},
+      "participates_in": [
+        "EVT_1",
+        "EVT_5",
+        "EVT_7",
+        "EVT_8"
+      ],
+      "source_sentences": [
+        "S0",
+        "S4",
+        "S6"
+      ]
+    },
+    {
+      "name": "Zhou Yongkang",
+      "aliases": [
+        "country's former security czar",
+        "Zhou",
+        "He",
+        "his"
+      ],
+      "attributes": {
+        "age": "72",
+        "roles": [
+          "former security czar",
+          "highest-ranking Chinese Communist Party official ever to face corruption charges",
+          "member of the ruling Communist Party's Politburo Standing Committee",
+          "one of nine men who effectively ruled the country",
+          "accused former leader",
+          "biggest tiger caught in Xi's dragnet"
+        ],
+        "status": [
+          "controlled police forces, spy agencies, court systems as well as prosecution offices across China",
+          "accused of \"taking advantage of his posts to seek benefits for others and illegally accepting huge amounts of money\"",
+          "alleged actions caused heavy losses to public assets and greatly harmed national interests",
+          "not been seen in public since October 2013",
+          "expelled from the Communist Party",
+          "arrested",
+          "accumulated enormous wealth",
+          "had affairs with multiple women",
+          "allegedly traded power for sex",
+          "on the losing side of factional struggles"
+        ],
+        "connections": [
+          "patronage of Bo Xilai"
+        ]
+      },
+      "participates_in": [
+        "EVT_1",
+        "EVT_2",
+        "EVT_3",
+        "EVT_4",
+        "EVT_5",
+        "EVT_6",
+        "EVT_7",
+        "EVT_9",
+        "EVT_11",
+        "EVT_12",
+        "EVT_13",
+        "EVT_14",
+        "EVT_16",
+        "EVT_17",
+        "EVT_18",
+        "EVT_19",
+        "EVT_21",
+        "EVT_26",
+        "EVT_33"
+      ],
+      "source_sentences": [
+        "S0",
+        "S1",
+        "S2",
+        "S3",
+        "S4",
+        "S5",
+        "S6",
+        "S7",
+        "S8",
+        "S9",
+        "S10",
+        "S11",
+        "S12",
+        "S13",
+        "S14",
+        "S15",
+        "S17",
+        "S18",
+        "S19",
+        "S23",
+        "S24"
+      ]
+    },
+    {
+      "name": "Supreme People's Procuratorate",
+      "aliases": [
+        "the highest prosecution authority in China"
+      ],
+      "attributes": {},
+      "participates_in": [
+        "EVT_2",
+        "EVT_3"
+      ],
+      "source_sentences": [
+        "S1"
+      ]
+    },
+    {
+      "name": "Communist Party's Politburo Standing Committee",
+      "aliases": [
+        "China's top decision-making body"
+      ],
+      "attributes": {},
+      "participates_in": [],
+      "source_sentences": [
+        "S2"
+      ]
+    },
+    {
+      "name": "China",
+      "aliases": [],
+      "attributes": {},
+      "participates_in": [
+        "EVT_6"
+      ],
+      "source_sentences": [
+        "S0",
+        "S1",
+        "S2",
+        "S4",
+        "S7",
+        "S8",
+        "S15"
+      ]
+    },
+    {
+      "name": "President Xi Jinping",
+      "aliases": [
+        "Xi"
+      ],
+      "attributes": {
+        "actions": [
+          "spearheading a massive anti-corruption campaign"
+        ],
+        "status": [
+          "once considered Bo Xilai's main challenger for the top spot of Chinese leadership"
+        ]
+      },
+      "participates_in": [
+        "EVT_23"
+      ],
+      "source_sentences": [
+        "S15",
+        "S16",
+        "S17",
+        "S18",
+        "S21",
+        "S22"
+      ]
+    },
+    {
+      "name": "Willy Lam",
+      "aliases": [
+        "longtime political analyst",
+        "a professor at the Chinese University of Hong Kong",
+        "Lam"
+      ],
+      "attributes": {},
+      "participates_in": [
+        "EVT_24",
+        "EVT_33"
+      ],
+      "source_sentences": [
+        "S18",
+        "S24"
+      ]
+    },
+    {
+      "name": "Bo Xilai",
+      "aliases": [
+        "a former Communist leader",
+        "the former Chongqing Communist Party chief",
+        "Bo"
+      ],
+      "attributes": {
+        "status": [
+          "sentenced to life in prison for corruption in 2013",
+          "spectacular downfall",
+          "political victim (according to supporters)",
+          "once considered Xi's main challenger for the top spot of Chinese leadership"
+        ]
+      },
+      "participates_in": [
+        "EVT_26",
+        "EVT_27",
+        "EVT_28"
+      ],
+      "source_sentences": [
+        "S19",
+        "S20",
+        "S22",
+        "S23"
+      ]
+    },
+    {
+      "name": "Chongqing Communist Party",
+      "aliases": [],
+      "attributes": {},
+      "participates_in": [],
+      "source_sentences": [
+        "S22"
+      ]
+    },
+    {
+      "name": "CNN",
+      "aliases": [],
+      "attributes": {},
+      "participates_in": [],
+      "source_sentences": [
+        "S0"
+      ]
+    },
+    {
+      "name": "Xinhua news agency",
+      "aliases": [
+        "state-run Xinhua news agency"
+      ],
+      "attributes": {},
+      "participates_in": [
+        "EVT_20"
+      ],
+      "source_sentences": [
+        "S14"
+      ]
+    },
+    {
+      "name": "Chinese University of Hong Kong",
+      "aliases": [],
+      "attributes": {},
+      "participates_in": [],
+      "source_sentences": [
+        "S18"
+      ]
+    },
+    {
+      "name": "authorities",
+      "aliases": [],
+      "attributes": {},
+      "participates_in": [
+        "EVT_11"
+      ],
+      "source_sentences": [
+        "S9"
+      ]
+    },
+    {
+      "name": "president of China's supreme court",
+      "aliases": [],
+      "attributes": {},
+      "participates_in": [
+        "EVT_10"
+      ],
+      "source_sentences": [
+        "S8"
+      ]
+    },
+    {
+      "name": "State media",
+      "aliases": [],
+      "attributes": {},
+      "participates_in": [
+        "EVT_15",
+        "EVT_30"
+      ],
+      "source_sentences": [
+        "S12",
+        "S21"
+      ]
+    },
+    {
+      "name": "Analysts",
+      "aliases": [],
+      "attributes": {},
+      "participates_in": [
+        "EVT_22"
+      ],
+      "source_sentences": [
+        "S15"
+      ]
+    },
+    {
+      "name": "Many observers",
+      "aliases": [],
+      "attributes": {},
+      "participates_in": [
+        "EVT_26"
+      ],
+      "source_sentences": [
+        "S19"
+      ]
+    },
+    {
+      "name": "The former Chongqing Communist Party chief's supporters",
+      "aliases": [],
+      "attributes": {},
+      "participates_in": [
+        "EVT_31"
+      ],
+      "source_sentences": [
+        "S22"
+      ]
+    },
+    {
+      "name": "Political watchers",
+      "aliases": [],
+      "attributes": {},
+      "participates_in": [
+        "EVT_32"
+      ],
+      "source_sentences": [
+        "S23"
+      ]
+    },
+    {
+      "name": "Zhou and his family members",
+      "aliases": [
+        "his family members"
+      ],
+      "attributes": {},
+      "participates_in": [
+        "EVT_17"
+      ],
+      "source_sentences": [
+        "S13"
+      ]
+    },
+    {
+      "name": "officials, cronies and tycoons",
+      "aliases": [],
+      "attributes": {
+        "connections": [
+          "some with alleged mafia connections"
+        ]
+      },
+      "participates_in": [
+        "EVT_15"
+      ],
+      "source_sentences": [
+        "S12"
+      ]
+    },
+    {
+      "name": "multiple women",
+      "aliases": [],
+      "attributes": {},
+      "participates_in": [
+        "EVT_18"
+      ],
+      "source_sentences": [
+        "S14"
+      ]
+    },
+    {
+      "name": "Zhou's lawyer",
+      "aliases": [
+        "his lawyer"
+      ],
+      "attributes": {},
+      "participates_in": [
+        "EVT_8"
+      ],
+      "source_sentences": [
+        "S6"
+      ]
+    },
+    {
+      "name": "government",
+      "aliases": [],
+      "attributes": {},
+      "participates_in": [
+        "EVT_25"
+      ],
+      "source_sentences": [
+        "S18"
+      ]
+    },
+    {
+      "name": "reporters",
+      "aliases": [],
+      "attributes": {},
+      "participates_in": [
+        "EVT_10"
+      ],
+      "source_sentences": [
+        "S8"
+      ]
+    },
+    {
+      "name": "public assets",
+      "aliases": [],
+      "attributes": {},
+      "participates_in": [
+        "EVT_6"
+      ],
+      "source_sentences": [
+        "S5"
+      ]
+    },
+    {
+      "name": "national interests",
+      "aliases": [],
+      "attributes": {},
+      "participates_in": [
+        "EVT_6"
+      ],
+      "source_sentences": [
+        "S5"
+      ]
+    },
+    {
+      "name": "a massive anti-corruption campaign",
+      "aliases": [],
+      "attributes": {},
+      "participates_in": [
+        "EVT_23"
+      ],
+      "source_sentences": [
+        "S16"
+      ]
+    },
+    {
+      "name": "\"tigers\" and \"flies\"",
+      "aliases": [],
+      "attributes": {
+        "description": "high-ranking, and low-level, officials"
+      },
+      "participates_in": [
+        "EVT_23"
+      ],
+      "source_sentences": [
+        "S16"
+      ]
+    },
+    {
+      "name": "an anniversary event",
+      "aliases": [],
+      "attributes": {},
+      "participates_in": [
+        "EVT_12"
+      ],
+      "source_sentences": [
+        "S10"
+      ]
+    },
+    {
+      "name": "his alma mater",
+      "aliases": [],
+      "attributes": {},
+      "participates_in": [
+        "EVT_12"
+      ],
+      "source_sentences": [
+        "S10"
+      ]
+    },
+    {
+      "name": "global attention",
+      "aliases": [],
+      "attributes": {},
+      "participates_in": [
+        "EVT_29"
+      ],
+      "source_sentences": [
+        "S20"
+      ]
+    },
+    {
+      "name": "Chinese politics",
+      "aliases": [],
+      "attributes": {},
+      "participates_in": [
+        "EVT_22"
+      ],
+      "source_sentences": [
+        "S15"
+      ]
+    }
+  ],
+  "inter_event_edges": [
+    {
+      "from": "EVT_1",
+      "to": "EVT_2",
+      "type": "also_includes",
+      "source": "S1"
+    },
+    {
+      "from": "EVT_1",
+      "to": "EVT_3",
+      "type": "also_includes",
+      "source": "S1"
+    },
+    {
+      "from": "EVT_5",
+      "to": "EVT_6",
+      "type": "resulted_in",
+      "source": "S5"
+    },
+    {
+      "from": "EVT_25",
+      "to": "EVT_24",
+      "type": "context_for",
+      "source": "S18"
+    },
+    {
+      "from": "EVT_28",
+      "to": "EVT_27",
+      "type": "precedes",
+      "source": "S19"
+    },
+    {
+      "from": "EVT_28",
+      "to": "EVT_29",
+      "type": "causes",
+      "source": "S20"
+    },
+    {
+      "from": "EVT_27",
+      "to": "EVT_30",
+      "type": "target_of_citation",
+      "source": "S21"
+    }
+  ],
+  "explicit_unknowns": [
+    {
+      "about": "visibility of certain legal proceedings in Zhou's case",
+      "unknown_slots": [
+        "visibility"
+      ],
+      "source": "S9"
+    }
+  ],
+  "_elapsed": 71.2
+}

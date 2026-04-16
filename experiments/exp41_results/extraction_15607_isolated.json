@@ -1,0 +1,51 @@
+{
+  "stories": [
+    {
+      "thread": "Arrest of British citizens",
+      "story": "Nine British citizens, consisting of three men, two women, and four children, were arrested at the Turkey-Syria border on Wednesday. The Turkish military stated they were suspected of trying to cross illegally into Syria. The children's ages range from the youngest born in 2013 to the oldest being 10 or 11. All nine individuals possessed British passports.",
+      "key_facts": [
+        "9 British citizens arrested",
+        "Arrested on Wednesday at Turkey-Syria border",
+        "Group composition: 3 men, 2 women, 4 children",
+        "Children's ages: youngest born 2013, oldest 10 or 11",
+        "All had British passports"
+      ],
+      "explicit_unknowns": [
+        "The reason why the group was allegedly trying to enter Syria"
+      ]
+    },
+    {
+      "thread": "Syrian conflict context",
+      "story": "Syria has been torn by a roughly four-year war between Syrian government forces, Islamist extremist groups, and other rebels. ISIS is among the combatants and has taken over parts of Syria and Iraq for its claimed Islamic caliphate. ISIS is known to recruit Westerners.",
+      "key_facts": [
+        "Roughly four-year war in Syria",
+        "Combatants include Syrian government forces, Islamist extremist groups, and other rebels",
+        "ISIS took over parts of Syria and Iraq for an Islamic caliphate",
+        "ISIS recruits Westerners"
+      ],
+      "explicit_unknowns": []
+    },
+    {
+      "thread": "UK government and legal response",
+      "story": "The British Foreign Office stated on Wednesday that it is aware of the arrests and is seeking information from Turkish authorities. Additionally, UK police have charged a man with terror offenses after a trip to Turkey.",
+      "key_facts": [
+        "British Foreign Office seeking information from Turkish authorities on Wednesday",
+        "UK police charged a man with terror offenses following a Turkey trip"
+      ],
+      "explicit_unknowns": [
+        "Whether the man charged with terror offenses is connected to the nine arrested citizens"
+      ]
+    },
+    {
+      "thread": "Reporting credits",
+      "story": "CNN's Gul Tuysuz reported from Istanbul and Elaine Ly reported from London. Jason Hanna contributed to the report.",
+      "key_facts": [
+        "Gul Tuysuz reported from Istanbul",
+        "Elaine Ly reported from London",
+        "Jason Hanna contributed to the report"
+      ],
+      "explicit_unknowns": []
+    }
+  ],
+  "_elapsed": 75.2
+}

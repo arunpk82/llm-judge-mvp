@@ -1,0 +1,472 @@
+{
+  "event_hubs": [
+    {
+      "event_id": "EVT_1",
+      "action": "asking about prize",
+      "source_sentence": "S0",
+      "edges": [
+        {
+          "type": "target_of",
+          "target": "contestant",
+          "source": "S0"
+        },
+        {
+          "type": "where",
+          "target": "The Price Is Right",
+          "source": "S0"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_2",
+      "action": "revealing prize",
+      "source_sentence": "S1",
+      "edges": [
+        {
+          "type": "target_of",
+          "target": "car",
+          "source": "S1"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_3",
+      "action": "exclaiming 'Whoops.'",
+      "source_sentence": "S2",
+      "edges": []
+    },
+    {
+      "event_id": "EVT_4",
+      "action": "stating 'That wasn't supposed to happen.'",
+      "source_sentence": "S3",
+      "edges": []
+    },
+    {
+      "event_id": "EVT_5",
+      "action": "revealed",
+      "source_sentence": "S4",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "Manuela Arbelaez",
+          "source": "S4"
+        },
+        {
+          "type": "target_of",
+          "target": "correct answer",
+          "source": "S4"
+        },
+        {
+          "type": "related_to",
+          "target": "guessing game",
+          "source": "S4"
+        },
+        {
+          "type": "related_to",
+          "target": "car",
+          "source": "S4"
+        },
+        {
+          "type": "when",
+          "target": "Thursday",
+          "source": "S4"
+        },
+        {
+          "type": "where",
+          "target": "The Price Is Right",
+          "source": "S4"
+        },
+        {
+          "type": "how",
+          "target": "accidentally",
+          "source": "S4"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_6",
+      "action": "couldn't stop laughing",
+      "source_sentence": "S5",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "Drew Carey",
+          "source": "S5"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_7",
+      "action": "exclaiming 'Congratulations!'",
+      "source_sentence": "S6",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "Drew Carey",
+          "source": "S7"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_8",
+      "action": "exulted",
+      "source_sentence": "S7",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "Drew Carey",
+          "source": "S7"
+        },
+        {
+          "type": "target_of",
+          "target": "Manuela just gave you a car!",
+          "source": "S7"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_9",
+      "action": "gave",
+      "source_sentence": "S7",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "Manuela Arbelaez",
+          "source": "S7"
+        },
+        {
+          "type": "target_of",
+          "target": "car",
+          "source": "S7"
+        },
+        {
+          "type": "recipient_of",
+          "target": "contestant",
+          "source": "S7"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_10",
+      "action": "was mortified",
+      "source_sentence": "S8",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "Manuela Arbelaez",
+          "source": "S8"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_11",
+      "action": "attempting to hide",
+      "source_sentence": "S8",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "Manuela Arbelaez",
+          "source": "S8"
+        },
+        {
+          "type": "where",
+          "target": "display",
+          "source": "S8"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_12",
+      "action": "turned out OK",
+      "source_sentence": "S9",
+      "edges": [
+        {
+          "type": "target_of",
+          "target": "everything",
+          "source": "S9"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_13",
+      "action": "tweeted",
+      "source_sentence": "S9",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "Manuela Arbelaez",
+          "source": "S9"
+        },
+        {
+          "type": "when",
+          "target": "later",
+          "source": "S9"
+        },
+        {
+          "type": "target_of",
+          "target": "everything turned out OK",
+          "source": "S9"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_14",
+      "action": "It's been a busy week",
+      "source_sentence": "S10",
+      "edges": [
+        {
+          "type": "target_of",
+          "target": "The Price Is Right",
+          "source": "S10"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_15",
+      "action": "showed up to run",
+      "source_sentence": "S10",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "Bob Barker",
+          "source": "S10"
+        },
+        {
+          "type": "when",
+          "target": "Wednesday",
+          "source": "S10"
+        },
+        {
+          "type": "target_of",
+          "target": "The Price Is Right",
+          "source": "S10"
+        }
+      ]
+    }
+  ],
+  "entities": [
+    {
+      "name": "The Price Is Right",
+      "aliases": [
+        "popular game show",
+        "his old show"
+      ],
+      "attributes": {
+        "type": "game show",
+        "popularity": "popular"
+      },
+      "participates_in": [
+        "EVT_1",
+        "EVT_5",
+        "EVT_14",
+        "EVT_15"
+      ],
+      "source_sentences": [
+        "S0",
+        "S4",
+        "S10"
+      ]
+    },
+    {
+      "name": "contestant",
+      "aliases": [
+        "you"
+      ],
+      "attributes": {},
+      "participates_in": [
+        "EVT_1",
+        "EVT_9"
+      ],
+      "source_sentences": [
+        "S0",
+        "S7"
+      ]
+    },
+    {
+      "name": "car",
+      "aliases": [
+        "A brand-new car!",
+        "new Hyundai Sonata"
+      ],
+      "attributes": {
+        "condition": "brand-new",
+        "model": "Hyundai Sonata"
+      },
+      "participates_in": [
+        "EVT_2",
+        "EVT_5",
+        "EVT_9"
+      ],
+      "source_sentences": [
+        "S1",
+        "S4",
+        "S7"
+      ]
+    },
+    {
+      "name": "Manuela Arbelaez",
+      "aliases": [
+        "Arbelaez",
+        "Manuela",
+        "she"
+      ],
+      "attributes": {
+        "role": "model"
+      },
+      "participates_in": [
+        "EVT_5",
+        "EVT_9",
+        "EVT_10",
+        "EVT_11",
+        "EVT_13"
+      ],
+      "source_sentences": [
+        "S4",
+        "S7",
+        "S8",
+        "S9"
+      ]
+    },
+    {
+      "name": "Drew Carey",
+      "aliases": [
+        "he"
+      ],
+      "attributes": {
+        "role": "Host"
+      },
+      "participates_in": [
+        "EVT_6",
+        "EVT_7",
+        "EVT_8"
+      ],
+      "source_sentences": [
+        "S5",
+        "S7"
+      ]
+    },
+    {
+      "name": "Bob Barker",
+      "aliases": [],
+      "attributes": {
+        "age": "91",
+        "role": "former host"
+      },
+      "participates_in": [
+        "EVT_15"
+      ],
+      "source_sentences": [
+        "S10"
+      ]
+    },
+    {
+      "name": "guessing game",
+      "aliases": [],
+      "attributes": {},
+      "participates_in": [
+        "EVT_5"
+      ],
+      "source_sentences": [
+        "S4"
+      ]
+    },
+    {
+      "name": "display",
+      "aliases": [],
+      "attributes": {},
+      "participates_in": [
+        "EVT_11"
+      ],
+      "source_sentences": [
+        "S8"
+      ]
+    },
+    {
+      "name": "correct answer",
+      "aliases": [],
+      "attributes": {},
+      "participates_in": [
+        "EVT_5"
+      ],
+      "source_sentences": [
+        "S4"
+      ]
+    }
+  ],
+  "inter_event_edges": [
+    {
+      "from": "EVT_3",
+      "to": "EVT_5",
+      "type": "reaction_to",
+      "source": "S2"
+    },
+    {
+      "from": "EVT_4",
+      "to": "EVT_5",
+      "type": "reaction_to",
+      "source": "S3"
+    },
+    {
+      "from": "EVT_6",
+      "to": "EVT_5",
+      "type": "reaction_to",
+      "source": "S5"
+    },
+    {
+      "from": "EVT_8",
+      "to": "EVT_9",
+      "type": "contains_speech_about",
+      "source": "S7"
+    },
+    {
+      "from": "EVT_10",
+      "to": "EVT_5",
+      "type": "reaction_to",
+      "source": "S8"
+    },
+    {
+      "from": "EVT_11",
+      "to": "EVT_5",
+      "type": "reaction_to",
+      "source": "S8"
+    },
+    {
+      "from": "EVT_13",
+      "to": "EVT_12",
+      "type": "reports_on",
+      "source": "S9"
+    },
+    {
+      "from": "EVT_15",
+      "to": "EVT_14",
+      "type": "example_of",
+      "source": "S10"
+    }
+  ],
+  "explicit_unknowns": [
+    {
+      "about": "EVT_5",
+      "unknown_slots": [
+        "why"
+      ],
+      "source": "S4"
+    },
+    {
+      "about": "EVT_6",
+      "unknown_slots": [
+        "why"
+      ],
+      "source": "S5"
+    },
+    {
+      "about": "contestant",
+      "unknown_slots": [
+        "name",
+        "gender",
+        "age"
+      ],
+      "source": "S0"
+    }
+  ],
+  "_elapsed": 40.4
+}

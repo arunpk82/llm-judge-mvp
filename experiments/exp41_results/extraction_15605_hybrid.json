@@ -1,0 +1,754 @@
+{
+  "event_hubs": [
+    {
+      "event_id": "EVT_1",
+      "action": "Altamont fiasco",
+      "source_sentence": "S2",
+      "edges": [
+        {
+          "type": "participant",
+          "target": "Rolling Stones",
+          "source": "S2"
+        },
+        {
+          "type": "time",
+          "target": "December 1969",
+          "source": "S2"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_2",
+      "action": "Kent State shootings",
+      "source_sentence": "S2",
+      "edges": [
+        {
+          "type": "time",
+          "target": "May 1970",
+          "source": "S2"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_3",
+      "action": "Richard Nixon's re-election",
+      "source_sentence": "S2",
+      "edges": [
+        {
+          "type": "participant",
+          "target": "Richard Nixon",
+          "source": "S2"
+        },
+        {
+          "type": "time",
+          "target": "1972",
+          "source": "S2"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_4",
+      "action": "Mad Men begins",
+      "source_sentence": "S3",
+      "edges": [
+        {
+          "type": "participant",
+          "target": "Mad Men",
+          "source": "S3"
+        },
+        {
+          "type": "time",
+          "target": "Sunday",
+          "source": "S3"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_5",
+      "action": "Creation of fashion lines",
+      "source_sentence": "S5",
+      "edges": [
+        {
+          "type": "inspired_by",
+          "target": "Mad Men",
+          "source": "S5"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_6",
+      "action": "Creation of cocktails",
+      "source_sentence": "S5",
+      "edges": [
+        {
+          "type": "inspired_by",
+          "target": "Mad Men",
+          "source": "S5"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_7",
+      "action": "Creation of museum exhibits",
+      "source_sentence": "S5",
+      "edges": [
+        {
+          "type": "inspired_by",
+          "target": "Mad Men",
+          "source": "S5"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_8",
+      "action": "Presidential references",
+      "source_sentence": "S5",
+      "edges": [
+        {
+          "type": "inspired_by",
+          "target": "Mad Men",
+          "source": "S5"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_9",
+      "action": "Unveiling of Mad Men bench",
+      "source_sentence": "S8",
+      "edges": [
+        {
+          "type": "time",
+          "target": "March",
+          "source": "S8"
+        },
+        {
+          "type": "place",
+          "target": "Time & Life Building",
+          "source": "S8"
+        },
+        {
+          "type": "location",
+          "target": "New York",
+          "source": "S8"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_10",
+      "action": "The Sopranos finale",
+      "source_sentence": "S10",
+      "edges": [
+        {
+          "type": "participant",
+          "target": "The Sopranos",
+          "source": "S10"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_11",
+      "action": "Breaking Bad landing",
+      "source_sentence": "S11",
+      "edges": [
+        {
+          "type": "participant",
+          "target": "Breaking Bad",
+          "source": "S11"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_12",
+      "action": "Moon landing",
+      "source_sentence": "S12",
+      "edges": [
+        {
+          "type": "time",
+          "target": "July 1969",
+          "source": "S12"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_13",
+      "action": "End of Mad Men last season (first half of season 7)",
+      "source_sentence": "S12",
+      "edges": [
+        {
+          "type": "participant",
+          "target": "Mad Men",
+          "source": "S12"
+        },
+        {
+          "type": "time",
+          "target": "July 1969",
+          "source": "S12"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_14",
+      "action": "Matthew Weiner hiding the finale from the cast",
+      "source_sentence": "S13",
+      "edges": [
+        {
+          "type": "participant",
+          "target": "Matthew Weiner",
+          "source": "S13"
+        },
+        {
+          "type": "participant",
+          "target": "Mad Men cast",
+          "source": "S13"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_15",
+      "action": "Manson murders",
+      "source_sentence": "S17",
+      "edges": [
+        {
+          "type": "time",
+          "target": "latter half of 1969",
+          "source": "S17"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_16",
+      "action": "Woodstock festival",
+      "source_sentence": "S17",
+      "edges": [
+        {
+          "type": "time",
+          "target": "latter half of 1969",
+          "source": "S17"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_17",
+      "action": "New York mayoral campaign",
+      "source_sentence": "S17",
+      "edges": [
+        {
+          "type": "time",
+          "target": "latter half of 1969",
+          "source": "S17"
+        },
+        {
+          "type": "place",
+          "target": "New York",
+          "source": "S17"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_18",
+      "action": "Vietnam War moratorium demonstrations",
+      "source_sentence": "S17",
+      "edges": [
+        {
+          "type": "time",
+          "target": "latter half of 1969",
+          "source": "S17"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_19",
+      "action": "Merger between Sterling Cooper and Cutler Gleason and Chaough",
+      "source_sentence": "S25",
+      "edges": [
+        {
+          "type": "participant",
+          "target": "Sterling Cooper",
+          "source": "S25"
+        },
+        {
+          "type": "participant",
+          "target": "Cutler Gleason and Chaough",
+          "source": "S25"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_20",
+      "action": "Acquisition of agency by McCann Erickson",
+      "source_sentence": "S26",
+      "edges": [
+        {
+          "type": "participant",
+          "target": "McCann Erickson",
+          "source": "S26"
+        },
+        {
+          "type": "participant",
+          "target": "Sterling Cooper",
+          "source": "S26"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_21",
+      "action": "Peggy Olson leaving Sterling Cooper",
+      "source_sentence": "S34",
+      "edges": [
+        {
+          "type": "participant",
+          "target": "Peggy Olson",
+          "source": "S34"
+        },
+        {
+          "type": "participant",
+          "target": "Sterling Cooper",
+          "source": "S34"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_22",
+      "action": "Merger of Peggy Olson's new agency with her old one",
+      "source_sentence": "S34",
+      "edges": [
+        {
+          "type": "participant",
+          "target": "Peggy Olson",
+          "source": "S34"
+        }
+      ]
+    }
+  ],
+  "entities": [
+    {
+      "name": "Rolling Stones",
+      "aliases": [],
+      "attributes": {},
+      "participates_in": [
+        "EVT_1"
+      ],
+      "source_sentences": [
+        "S2"
+      ]
+    },
+    {
+      "name": "Richard Nixon",
+      "aliases": [],
+      "attributes": {},
+      "participates_in": [
+        "EVT_3"
+      ],
+      "source_sentences": [
+        "S2"
+      ]
+    },
+    {
+      "name": "Mad Men",
+      "aliases": [],
+      "attributes": {
+        "type": "TV series",
+        "subject": "1960s advertising agency"
+      },
+      "participates_in": [
+        "EVT_4",
+        "EVT_5",
+        "EVT_6",
+        "EVT_7",
+        "EVT_8",
+        "EVT_13"
+      ],
+      "source_sentences": [
+        "S3",
+        "S4",
+        "S5",
+        "S12"
+      ]
+    },
+    {
+      "name": "Don Draper",
+      "aliases": [],
+      "attributes": {
+        "role": "creative director",
+        "played_by": "Jon Hamm"
+      },
+      "participates_in": [],
+      "source_sentences": [
+        "S6"
+      ]
+    },
+    {
+      "name": "Sterling Cooper & Partners",
+      "aliases": [],
+      "attributes": {
+        "type": "fictional firm",
+        "headquarters": "Time & Life Building"
+      },
+      "participates_in": [],
+      "source_sentences": [
+        "S8"
+      ]
+    },
+    {
+      "name": "Time & Life Building",
+      "aliases": [],
+      "attributes": {
+        "location": "New York"
+      },
+      "participates_in": [
+        "EVT_9"
+      ],
+      "source_sentences": [
+        "S8"
+      ]
+    },
+    {
+      "name": "The Sopranos",
+      "aliases": [],
+      "attributes": {
+        "type": "TV series"
+      },
+      "participates_in": [
+        "EVT_10"
+      ],
+      "source_sentences": [
+        "S10"
+      ]
+    },
+    {
+      "name": "Matthew Weiner",
+      "aliases": [],
+      "attributes": {
+        "role": "creator of Mad Men",
+        "former_employer": "The Sopranos",
+        "origin": "Baltimore"
+      },
+      "participates_in": [
+        "EVT_14"
+      ],
+      "source_sentences": [
+        "S10",
+        "S13",
+        "S21"
+      ]
+    },
+    {
+      "name": "Breaking Bad",
+      "aliases": [],
+      "attributes": {
+        "type": "TV series",
+        "network_relation": "AMC stablemate of Mad Men"
+      },
+      "participates_in": [
+        "EVT_11"
+      ],
+      "source_sentences": [
+        "S11"
+      ]
+    },
+    {
+      "name": "Lane Pryce",
+      "aliases": [],
+      "attributes": {
+        "status": "late"
+      },
+      "participates_in": [],
+      "source_sentences": [
+        "S20"
+      ]
+    },
+    {
+      "name": "Sterling Cooper",
+      "aliases": [],
+      "attributes": {
+        "type": "white-shoe WASP firm"
+      },
+      "participates_in": [
+        "EVT_19",
+        "EVT_20",
+        "EVT_21"
+      ],
+      "source_sentences": [
+        "S23",
+        "S25",
+        "S26",
+        "S34"
+      ]
+    },
+    {
+      "name": "Doyle Dane Bernbach",
+      "aliases": [],
+      "attributes": {
+        "type": "ethnic pace-setters"
+      },
+      "participates_in": [],
+      "source_sentences": [
+        "S23"
+      ]
+    },
+    {
+      "name": "Cutler Gleason and Chaough",
+      "aliases": [],
+      "attributes": {
+        "relation": "former rival of Sterling Cooper"
+      },
+      "participates_in": [
+        "EVT_19"
+      ],
+      "source_sentences": [
+        "S25"
+      ]
+    },
+    {
+      "name": "Bert Cooper",
+      "aliases": [],
+      "attributes": {
+        "played_by": "Robert Morse"
+      },
+      "participates_in": [],
+      "source_sentences": [
+        "S26"
+      ]
+    },
+    {
+      "name": "McCann Erickson",
+      "aliases": [],
+      "attributes": {
+        "type": "Madison Avenue titan"
+      },
+      "participates_in": [
+        "EVT_20"
+      ],
+      "source_sentences": [
+        "S26"
+      ]
+    },
+    {
+      "name": "Ken Cosgrove",
+      "aliases": [],
+      "attributes": {
+        "played_by": "Aaron Staton"
+      },
+      "participates_in": [],
+      "source_sentences": [
+        "S27"
+      ]
+    },
+    {
+      "name": "Harry Crane",
+      "aliases": [],
+      "attributes": {
+        "played_by": "Rich Sommer"
+      },
+      "participates_in": [],
+      "source_sentences": [
+        "S27"
+      ]
+    },
+    {
+      "name": "Joan Harris",
+      "aliases": [],
+      "attributes": {
+        "played_by": "Christina Hendricks"
+      },
+      "participates_in": [],
+      "source_sentences": [
+        "S27"
+      ]
+    },
+    {
+      "name": "Roger Sterling",
+      "aliases": [],
+      "attributes": {
+        "role": "wisecracking executive",
+        "played_by": "John Slattery",
+        "health": "suffered two heart attacks",
+        "habits": "drinks to excess",
+        "personality": "never grown up"
+      },
+      "participates_in": [],
+      "source_sentences": [
+        "S28",
+        "S29",
+        "S30",
+        "S31"
+      ]
+    },
+    {
+      "name": "Peggy Olson",
+      "aliases": [],
+      "attributes": {
+        "played_by": "Elisabeth Moss"
+      },
+      "participates_in": [
+        "EVT_21",
+        "EVT_22"
+      ],
+      "source_sentences": [
+        "S33",
+        "S34",
+        "S35"
+      ]
+    },
+    {
+      "name": "Mary Wells Lawrence",
+      "aliases": [],
+      "attributes": {
+        "role": "advertising wunderkind"
+      },
+      "participates_in": [],
+      "source_sentences": [
+        "S33"
+      ]
+    },
+    {
+      "name": "Betty",
+      "aliases": [],
+      "attributes": {
+        "relation": "Don's ex-wife",
+        "played_by": "January Jones"
+      },
+      "participates_in": [],
+      "source_sentences": [
+        "S37"
+      ]
+    },
+    {
+      "name": "Henry Francis",
+      "aliases": [],
+      "attributes": {
+        "relation": "Betty's husband",
+        "played_by": "Christopher Stanley"
+      },
+      "participates_in": [],
+      "source_sentences": [
+        "S38"
+      ]
+    },
+    {
+      "name": "Sally",
+      "aliases": [],
+      "attributes": {
+        "relation": "Don's daughter",
+        "played_by": "Kiernan Shipka",
+        "traits": [
+          "bright",
+          "teenager",
+          "rebel",
+          "run away",
+          "sneaking cigarettes",
+          "fighting with mother"
+        ]
+      },
+      "participates_in": [],
+      "source_sentences": [
+        "S39",
+        "S40",
+        "S41"
+      ]
+    },
+    {
+      "name": "Glen Bishop",
+      "aliases": [],
+      "attributes": {},
+      "participates_in": [],
+      "source_sentences": [
+        "S43"
+      ]
+    }
+  ],
+  "explicit_unknowns": [
+    {
+      "about": "EVT_4 (Mad Men begins)",
+      "unknown_slots": [
+        "year"
+      ],
+      "source": "S3"
+    },
+    {
+      "about": "EVT_9 (Unveiling of bench)",
+      "unknown_slots": [
+        "year"
+      ],
+      "source": "S8"
+    },
+    {
+      "about": "EVT_10 (The Sopranos finale)",
+      "unknown_slots": [
+        "date"
+      ],
+      "source": "S10"
+    },
+    {
+      "about": "EVT_11 (Breaking Bad landing)",
+      "unknown_slots": [
+        "date"
+      ],
+      "source": "S11"
+    },
+    {
+      "about": "EVT_14 (Weiner hiding finale)",
+      "unknown_slots": [
+        "date"
+      ],
+      "source": "S13"
+    },
+    {
+      "about": "EVT_15 (Manson murders)",
+      "unknown_slots": [
+        "specific date"
+      ],
+      "source": "S17"
+    },
+    {
+      "about": "EVT_16 (Woodstock festival)",
+      "unknown_slots": [
+        "specific date"
+      ],
+      "source": "S17"
+    },
+    {
+      "about": "EVT_17 (New York mayoral campaign)",
+      "unknown_slots": [
+        "specific date"
+      ],
+      "source": "S17"
+    },
+    {
+      "about": "EVT_18 (Vietnam War moratorium demonstrations)",
+      "unknown_slots": [
+        "specific date"
+      ],
+      "source": "S17"
+    },
+    {
+      "about": "EVT_19 (Merger of Sterling Cooper and Cutler Gleason and Chaough)",
+      "unknown_slots": [
+        "date"
+      ],
+      "source": "S25"
+    },
+    {
+      "about": "EVT_20 (Acquisition by McCann Erickson)",
+      "unknown_slots": [
+        "date"
+      ],
+      "source": "S26"
+    },
+    {
+      "about": "EVT_21 (Peggy Olson leaving Sterling Cooper)",
+      "unknown_slots": [
+        "date"
+      ],
+      "source": "S34"
+    },
+    {
+      "about": "EVT_22 (Merger of Peggy's new agency with old one)",
+      "unknown_slots": [
+        "date"
+      ],
+      "source": "S34"
+    }
+  ],
+  "_elapsed": 283.7
+}

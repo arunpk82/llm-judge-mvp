@@ -1,0 +1,83 @@
+{
+  "stories": [
+    {
+      "thread": "Charges",
+      "story": "China's state prosecutors formally charged former security czar Zhou Yongkang, 72, with accepting bribes, abuse of power, and leaking state secrets. Former security czar Zhou Yongkang is the highest-ranking Chinese Communist Party official ever to face corruption charges. As a member of the ruling Communist Party's Politburo Standing Committee, former security czar Zhou Yongkang was one of nine men who effectively ruled the country of more than 1.3 billion people. Former security czar Zhou Yongkang retired in 2012.",
+      "key_facts": [
+        "Former security czar Zhou Yongkang, 72, charged with bribes, abuse of power, and leaking state secrets",
+        "Zhou Yongkang is the highest-ranking CCP official ever to face corruption charges",
+        "Zhou Yongkang was a member of the Politburo Standing Committee",
+        "Zhou Yongkang retired in 2012"
+      ],
+      "explicit_unknowns": [
+        "The specific amount of bribes accepted by Zhou Yongkang"
+      ]
+    },
+    {
+      "thread": "Power",
+      "story": "Former security czar Zhou Yongkang, who retired in 2012, controlled police forces, spy agencies, court systems, and prosecution offices. Former security czar Zhou Yongkang used these assets to crush dissent in the name of \"preserving social stability.\" Prosecutors accuse former security czar Zhou Yongkang of taking advantage of his posts to seek benefits for others and illegally accepting huge amounts of money. These alleged actions by former security czar Zhou Yongkang caused heavy losses to public assets and harmed national interests.",
+      "key_facts": [
+        "Zhou Yongkang controlled police, spy agencies, courts, and prosecution offices",
+        "Zhou Yongkang used assets to crush dissent for 'preserving social stability'",
+        "Zhou Yongkang is accused of taking advantage of posts for illegal money and benefits",
+        "Zhou Yongkang's actions caused losses to public assets and harmed national interests"
+      ],
+      "explicit_unknowns": [
+        "The specific amount of money illegally accepted by Zhou Yongkang"
+      ]
+    },
+    {
+      "thread": "Legal",
+      "story": "Former security czar Zhou Yongkang was notified of his legal rights and his lawyer's views were heard. The case of former security czar Zhou Yongkang will be tried in Tianjin. While the president of China's supreme court mentioned \"open\" trials for former leaders like former security czar Zhou Yongkang, the charge of leaking state secrets may shield proceedings from public view.",
+      "key_facts": [
+        "Zhou Yongkang was notified of legal rights and his lawyer was heard",
+        "The trial of Zhou Yongkang will be in Tianjin",
+        "The charge of leaking state secrets may allow authorities to shield proceedings from public view"
+      ],
+      "explicit_unknowns": [
+        "The specific date of the trial in Tianjin"
+      ]
+    },
+    {
+      "thread": "Personal",
+      "story": "Former security czar Zhou Yongkang has not been seen in public since attending an anniversary event at his alma mater in October 2013. Former security czar Zhou Yongkang was expelled from the Communist Party and arrested last December. State-run Xinhua news agency reported that former security czar Zhou Yongkang and his family accumulated enormous wealth and that former security czar Zhou Yongkang had affairs with multiple women, trading power for sex. A web of officials, cronies, and tycoons with alleged mafia connections orbited around former security czar Zhou Yongkang.",
+      "key_facts": [
+        "Zhou Yongkang has not been seen in public since October 2013",
+        "Zhou Yongkang was expelled from the CCP and arrested last December",
+        "Xinhua reported Zhou Yongkang and family accumulated enormous wealth and traded power for sex",
+        "Zhou Yongkang was surrounded by a web of officials, cronies, and tycoons with alleged mafia connections"
+      ],
+      "explicit_unknowns": [
+        "The names of the women Zhou Yongkang had affairs with",
+        "The names of the cronies and tycoons in Zhou Yongkang's orbit"
+      ]
+    },
+    {
+      "thread": "Political",
+      "story": "President Xi Jinping is spearheading a massive anti-corruption campaign targeting high-ranking \"tigers\" and low-level \"flies.\" Former security czar Zhou Yongkang is the biggest tiger caught in President Xi Jinping's dragnet. Analyst Willy Lam, a professor at the Chinese University of Hong Kong, says President Xi Jinping broke the taboo of incriminating former Politburo Standing Committee members. This downfall of former security czar Zhou Yongkang is viewed as a watershed moment in Chinese politics.",
+      "key_facts": [
+        "President Xi Jinping is targeting 'tigers' and 'flies' in an anti-corruption campaign",
+        "Zhou Yongkang is the biggest 'tiger' caught by President Xi Jinping",
+        "Willy Lam states President Xi Jinping broke the taboo of incriminating former Politburo Standing Committee members",
+        "Zhou Yongkang's downfall is a watershed moment in Chinese politics"
+      ],
+      "explicit_unknowns": [
+        "The total number of 'tigers' and 'flies' targeted in the campaign"
+      ]
+    },
+    {
+      "thread": "Factional",
+      "story": "Former security czar Zhou Yongkang patronized Bo Xilai, a former Chongqing Communist Party chief, who was sentenced to life in prison for corruption in 2013. Bo Xilai's downfall involved murder, bribery, and betrayal, and Bo Xilai, who some supporters called a political victim, was once President Xi Jinping's main challenger. State media cited the conviction of Bo Xilai as a prime example of President Xi Jinping's resolve to clean up the party. Political watchers see similarities between the cases of Bo Xilai and former security czar Zhou Yongkang. Analyst Willy Lam, a professor at the Chinese University of Hong Kong, predicts a suspended death sentence for former security czar Zhou Yongkang, stating those investigated are on the losing side of factional struggles.",
+      "key_facts": [
+        "Zhou Yongkang patronized Bo Xilai, a former Chongqing Communist Party chief sentenced to life in 2013",
+        "Bo Xilai's downfall involved murder, bribery, and betrayal",
+        "Bo Xilai was once President Xi Jinping's main challenger and was called a political victim by supporters",
+        "Willy Lam predicts a suspended death sentence for Zhou Yongkang due to factional struggles"
+      ],
+      "explicit_unknowns": [
+        "The specific nature of the factional struggles mentioned by Willy Lam"
+      ]
+    }
+  ],
+  "_elapsed": 240.9
+}

@@ -1,0 +1,1249 @@
+{
+  "event_hubs": [
+    {
+      "event_id": "EVT_1",
+      "action": "flying",
+      "source_sentence": "S0",
+      "edges": [
+        {
+          "type": "target_of",
+          "target": "bullets",
+          "source": "S0"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_2",
+      "action": "chasing",
+      "source_sentence": "S0",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "FBI",
+          "source": "S0"
+        },
+        {
+          "type": "target_of",
+          "target": "Kevone Charleston",
+          "source": "S0"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_3",
+      "action": "injured",
+      "source_sentence": "S1",
+      "edges": [
+        {
+          "type": "target_of",
+          "target": "two agents",
+          "source": "S1"
+        },
+        {
+          "type": "how",
+          "target": "in a crash",
+          "source": "S1"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_4",
+      "action": "shot",
+      "source_sentence": "S1, S14",
+      "edges": [
+        {
+          "type": "target_of",
+          "target": "Kevone Charleston",
+          "source": "S1"
+        },
+        {
+          "type": "agent_of",
+          "target": "FBI agents",
+          "source": "S14"
+        },
+        {
+          "type": "agent_of",
+          "target": "task force officers",
+          "source": "S14"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_5",
+      "action": "captured",
+      "source_sentence": "S1",
+      "edges": [
+        {
+          "type": "target_of",
+          "target": "Kevone Charleston",
+          "source": "S1"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_6",
+      "action": "following",
+      "source_sentence": "S2, S5, S11",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "FBI agents",
+          "source": "S2"
+        },
+        {
+          "type": "agent_of",
+          "target": "task force officers",
+          "source": "S2"
+        },
+        {
+          "type": "target_of",
+          "target": "Kevone Charleston",
+          "source": "S2"
+        },
+        {
+          "type": "when",
+          "target": "early Saturday",
+          "source": "S2"
+        },
+        {
+          "type": "agent_of",
+          "target": "multiple agents and officers",
+          "source": "S5"
+        },
+        {
+          "type": "why",
+          "target": "based on his prior MO",
+          "source": "S5"
+        },
+        {
+          "type": "agent_of",
+          "target": "Twelve FBI agents",
+          "source": "S11"
+        },
+        {
+          "type": "agent_of",
+          "target": "six government vehicles",
+          "source": "S11"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_7",
+      "action": "pulled into",
+      "source_sentence": "S2",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "Kevone Charleston",
+          "source": "S2"
+        },
+        {
+          "type": "where",
+          "target": "CVS pharmacy",
+          "source": "S2"
+        },
+        {
+          "type": "where",
+          "target": "Forsyth County, Georgia",
+          "source": "S2"
+        },
+        {
+          "type": "when",
+          "target": "early Saturday",
+          "source": "S2"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_8",
+      "action": "commercial robberies",
+      "source_sentence": "S3",
+      "edges": [
+        {
+          "type": "suspected_agent_of",
+          "target": "Kevone Charleston",
+          "source": "S3"
+        },
+        {
+          "type": "quantity",
+          "target": "32",
+          "source": "S3"
+        },
+        {
+          "type": "when",
+          "target": "dating to November 2013",
+          "source": "S3"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_9",
+      "action": "happened",
+      "source_sentence": "S4",
+      "edges": [
+        {
+          "type": "when",
+          "target": "around 7 o'clock Saturday morning",
+          "source": "S4"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_10",
+      "action": "about to rob",
+      "source_sentence": "S5",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "Kevone Charleston",
+          "source": "S5"
+        },
+        {
+          "type": "target_of",
+          "target": "CVS pharmacy",
+          "source": "S5"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_11",
+      "action": "moved in",
+      "source_sentence": "S5",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "multiple agents and officers",
+          "source": "S5"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_12",
+      "action": "parked",
+      "source_sentence": "S5",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "Kevone Charleston",
+          "source": "S5"
+        },
+        {
+          "type": "target_of",
+          "target": "Charleston's vehicle",
+          "source": "S5"
+        },
+        {
+          "type": "where",
+          "target": "nearby",
+          "source": "S5"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_13",
+      "action": "popped",
+      "source_sentence": "S5",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "Kevone Charleston",
+          "source": "S5"
+        },
+        {
+          "type": "target_of",
+          "target": "the hood",
+          "source": "S5"
+        },
+        {
+          "type": "why",
+          "target": "as if there were something wrong",
+          "source": "S5"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_14",
+      "action": "walked to",
+      "source_sentence": "S6",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "Kevone Charleston",
+          "source": "S6"
+        },
+        {
+          "type": "target_of",
+          "target": "CVS pharmacy",
+          "source": "S6"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_15",
+      "action": "preparing to enter",
+      "source_sentence": "S6",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "Kevone Charleston",
+          "source": "S6"
+        },
+        {
+          "type": "target_of",
+          "target": "CVS pharmacy",
+          "source": "S6"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_16",
+      "action": "confronted",
+      "source_sentence": "S7",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "FBI agents",
+          "source": "S7"
+        },
+        {
+          "type": "target_of",
+          "target": "Kevone Charleston",
+          "source": "S7"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_17",
+      "action": "ran",
+      "source_sentence": "S7",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "Kevone Charleston",
+          "source": "S7"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_18",
+      "action": "got in",
+      "source_sentence": "S7",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "Kevone Charleston",
+          "source": "S7"
+        },
+        {
+          "type": "target_of",
+          "target": "Charleston's vehicle",
+          "source": "S7"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_19",
+      "action": "traveled",
+      "source_sentence": "S7",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "Kevone Charleston",
+          "source": "S7"
+        },
+        {
+          "type": "distance",
+          "target": "about 75 yards",
+          "source": "S7"
+        },
+        {
+          "type": "how",
+          "target": "in his car",
+          "source": "S7"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_20",
+      "action": "opened fire",
+      "source_sentence": "S7",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "FBI agents",
+          "source": "S7"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_21",
+      "action": "rammed or were hit",
+      "source_sentence": "S8",
+      "edges": [
+        {
+          "type": "target_of",
+          "target": "several FBI vehicles",
+          "source": "S8"
+        },
+        {
+          "type": "agent_of",
+          "target": "Charleston's vehicle",
+          "source": "S8"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_22",
+      "action": "trying to flee",
+      "source_sentence": "S8, S12",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "Kevone Charleston",
+          "source": "S8"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_23",
+      "action": "sustained damage",
+      "source_sentence": "S9",
+      "edges": [
+        {
+          "type": "target_of",
+          "target": "One government vehicle",
+          "source": "S9"
+        },
+        {
+          "type": "attribute",
+          "target": "heavy damage to its front and side",
+          "source": "S9"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_24",
+      "action": "ended up on its side",
+      "source_sentence": "S9, S13",
+      "edges": [
+        {
+          "type": "target_of",
+          "target": "another government SUV",
+          "source": "S9"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_25",
+      "action": "sustained injuries",
+      "source_sentence": "S10",
+      "edges": [
+        {
+          "type": "target_of",
+          "target": "two agents",
+          "source": "S10"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_26",
+      "action": "collided with",
+      "source_sentence": "S13",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "Kevone Charleston",
+          "source": "S13"
+        },
+        {
+          "type": "target_of",
+          "target": "the first government vehicle, the Taurus",
+          "source": "S13"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_27",
+      "action": "collided with",
+      "source_sentence": "S13",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "Kevone Charleston",
+          "source": "S13"
+        },
+        {
+          "type": "target_of",
+          "target": "the second government vehicle",
+          "source": "S13"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_28",
+      "action": "stopped",
+      "source_sentence": "S14",
+      "edges": [
+        {
+          "type": "target_of",
+          "target": "Kevone Charleston",
+          "source": "S14"
+        },
+        {
+          "type": "where",
+          "target": "8 feet away in the median",
+          "source": "S14"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_29",
+      "action": "received gunshot wounds",
+      "source_sentence": "S14",
+      "edges": [
+        {
+          "type": "target_of",
+          "target": "Kevone Charleston",
+          "source": "S14"
+        },
+        {
+          "type": "where",
+          "target": "in the median",
+          "source": "S14"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_30",
+      "action": "declined to give details",
+      "source_sentence": "S15",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "Stephen Emmett",
+          "source": "S15"
+        },
+        {
+          "type": "target_of",
+          "target": "32 previous robberies",
+          "source": "S15"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_31",
+      "action": "investigation underway",
+      "source_sentence": "S15",
+      "edges": [
+        {
+          "type": "attribute",
+          "target": "intensive",
+          "source": "S15"
+        },
+        {
+          "type": "agent_of",
+          "target": "FBI's violent crimes and major offender squad",
+          "source": "S15"
+        },
+        {
+          "type": "why",
+          "target": "as a priority",
+          "source": "S15"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_32",
+      "action": "involved",
+      "source_sentence": "S16",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "Kevone Charleston's MO",
+          "source": "S16"
+        },
+        {
+          "type": "target_of",
+          "target": "armed confrontations",
+          "source": "S16"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_33",
+      "action": "went into this fully prepared",
+      "source_sentence": "S16",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "FBI officers",
+          "source": "S16"
+        },
+        {
+          "type": "target_of",
+          "target": "an armed confrontation",
+          "source": "S16"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_34",
+      "action": "are OK",
+      "source_sentence": "S17",
+      "edges": [
+        {
+          "type": "target_of",
+          "target": "FBI's officers and agents",
+          "source": "S17"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_35",
+      "action": "is in custody",
+      "source_sentence": "S17",
+      "edges": [
+        {
+          "type": "target_of",
+          "target": "Kevone Charleston",
+          "source": "S17"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_36",
+      "action": "conclusion",
+      "source_sentence": "S18",
+      "edges": [
+        {
+          "type": "target_of",
+          "target": "an intensive and lengthy investigation",
+          "source": "S18"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_37",
+      "action": "contributed to",
+      "source_sentence": "S19",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "Vivian Kuo",
+          "source": "S19"
+        },
+        {
+          "type": "agent_of",
+          "target": "Ryan Scallan",
+          "source": "S19"
+        },
+        {
+          "type": "target_of",
+          "target": "this report",
+          "source": "S19"
+        }
+      ]
+    }
+  ],
+  "entities": [
+    {
+      "name": "bullets",
+      "aliases": [],
+      "attributes": {},
+      "participates_in": [
+        "EVT_1"
+      ],
+      "source_sentences": [
+        "S0"
+      ]
+    },
+    {
+      "name": "FBI",
+      "aliases": [
+        "the FBI"
+      ],
+      "attributes": {},
+      "participates_in": [
+        "EVT_2"
+      ],
+      "source_sentences": [
+        "S0"
+      ]
+    },
+    {
+      "name": "Kevone Charleston",
+      "aliases": [
+        "armed robbery suspect",
+        "the suspect",
+        "he",
+        "him",
+        "the perp",
+        "Charleston"
+      ],
+      "attributes": {
+        "age": "36-year-old",
+        "location": "Austell, Georgia"
+      },
+      "participates_in": [
+        "EVT_2",
+        "EVT_4",
+        "EVT_5",
+        "EVT_6",
+        "EVT_7",
+        "EVT_8",
+        "EVT_10",
+        "EVT_12",
+        "EVT_13",
+        "EVT_14",
+        "EVT_15",
+        "EVT_16",
+        "EVT_17",
+        "EVT_18",
+        "EVT_19",
+        "EVT_22",
+        "EVT_26",
+        "EVT_27",
+        "EVT_28",
+        "EVT_29",
+        "EVT_35"
+      ],
+      "source_sentences": [
+        "S0",
+        "S1",
+        "S2",
+        "S3",
+        "S5",
+        "S6",
+        "S7",
+        "S8",
+        "S11",
+        "S12",
+        "S13",
+        "S14",
+        "S16",
+        "S17"
+      ]
+    },
+    {
+      "name": "two agents",
+      "aliases": [
+        "the two agents"
+      ],
+      "attributes": {},
+      "participates_in": [
+        "EVT_3",
+        "EVT_25"
+      ],
+      "source_sentences": [
+        "S1",
+        "S10",
+        "S14"
+      ]
+    },
+    {
+      "name": "crash",
+      "aliases": [],
+      "attributes": {},
+      "participates_in": [
+        "EVT_3"
+      ],
+      "source_sentences": [
+        "S1"
+      ]
+    },
+    {
+      "name": "FBI agents",
+      "aliases": [
+        "agents",
+        "our agents",
+        "FBI's officers and agents"
+      ],
+      "attributes": {},
+      "participates_in": [
+        "EVT_4",
+        "EVT_6",
+        "EVT_16",
+        "EVT_20",
+        "EVT_34"
+      ],
+      "source_sentences": [
+        "S2",
+        "S7",
+        "S10",
+        "S11",
+        "S12",
+        "S14",
+        "S17"
+      ]
+    },
+    {
+      "name": "task force officers",
+      "aliases": [
+        "our officers"
+      ],
+      "attributes": {},
+      "participates_in": [
+        "EVT_4",
+        "EVT_6",
+        "EVT_33"
+      ],
+      "source_sentences": [
+        "S2",
+        "S14",
+        "S16"
+      ]
+    },
+    {
+      "name": "CVS pharmacy",
+      "aliases": [
+        "a CVS pharmacy",
+        "another CVS",
+        "the CVS"
+      ],
+      "attributes": {
+        "location": "Forsyth County, Georgia"
+      },
+      "participates_in": [
+        "EVT_7",
+        "EVT_10",
+        "EVT_14",
+        "EVT_15"
+      ],
+      "source_sentences": [
+        "S2",
+        "S5",
+        "S6"
+      ]
+    },
+    {
+      "name": "Forsyth County, Georgia",
+      "aliases": [],
+      "attributes": {},
+      "participates_in": [
+        "EVT_7"
+      ],
+      "source_sentences": [
+        "S2"
+      ]
+    },
+    {
+      "name": "FBI officials",
+      "aliases": [],
+      "attributes": {},
+      "participates_in": [
+        "EVT_8"
+      ],
+      "source_sentences": [
+        "S3"
+      ]
+    },
+    {
+      "name": "Stephen Emmett",
+      "aliases": [
+        "FBI Special Agent Stephen Emmett",
+        "Emmett",
+        "he"
+      ],
+      "attributes": {
+        "role": "FBI Special Agent"
+      },
+      "participates_in": [
+        "EVT_30"
+      ],
+      "source_sentences": [
+        "S4",
+        "S10",
+        "S11",
+        "S12",
+        "S14",
+        "S15",
+        "S16",
+        "S17",
+        "S18"
+      ]
+    },
+    {
+      "name": "multiple agents and officers",
+      "aliases": [
+        "they"
+      ],
+      "attributes": {},
+      "participates_in": [
+        "EVT_6",
+        "EVT_11"
+      ],
+      "source_sentences": [
+        "S5"
+      ]
+    },
+    {
+      "name": "Authorities",
+      "aliases": [],
+      "attributes": {},
+      "participates_in": [],
+      "source_sentences": [
+        "S5"
+      ]
+    },
+    {
+      "name": "Charleston's vehicle",
+      "aliases": [
+        "his vehicle",
+        "his car",
+        "the suspect's vehicle"
+      ],
+      "attributes": {},
+      "participates_in": [
+        "EVT_12",
+        "EVT_13",
+        "EVT_18",
+        "EVT_19",
+        "EVT_21"
+      ],
+      "source_sentences": [
+        "S5",
+        "S7",
+        "S8"
+      ]
+    },
+    {
+      "name": "the hood",
+      "aliases": [],
+      "attributes": {},
+      "participates_in": [
+        "EVT_13"
+      ],
+      "source_sentences": [
+        "S5"
+      ]
+    },
+    {
+      "name": "several FBI vehicles",
+      "aliases": [],
+      "attributes": {},
+      "participates_in": [
+        "EVT_21"
+      ],
+      "source_sentences": [
+        "S8"
+      ]
+    },
+    {
+      "name": "One government vehicle",
+      "aliases": [
+        "government vehicle"
+      ],
+      "attributes": {},
+      "participates_in": [
+        "EVT_23"
+      ],
+      "source_sentences": [
+        "S9"
+      ]
+    },
+    {
+      "name": "another government SUV",
+      "aliases": [
+        "the SUV"
+      ],
+      "attributes": {},
+      "participates_in": [
+        "EVT_24"
+      ],
+      "source_sentences": [
+        "S9",
+        "S13"
+      ]
+    },
+    {
+      "name": "Twelve FBI agents",
+      "aliases": [],
+      "attributes": {},
+      "participates_in": [
+        "EVT_6"
+      ],
+      "source_sentences": [
+        "S11"
+      ]
+    },
+    {
+      "name": "six government vehicles",
+      "aliases": [],
+      "attributes": {},
+      "participates_in": [
+        "EVT_6"
+      ],
+      "source_sentences": [
+        "S11"
+      ]
+    },
+    {
+      "name": "the first government vehicle, the Taurus",
+      "aliases": [
+        "the Taurus"
+      ],
+      "attributes": {},
+      "participates_in": [
+        "EVT_26"
+      ],
+      "source_sentences": [
+        "S13"
+      ]
+    },
+    {
+      "name": "the second government vehicle",
+      "aliases": [
+        "the second"
+      ],
+      "attributes": {},
+      "participates_in": [
+        "EVT_27"
+      ],
+      "source_sentences": [
+        "S13"
+      ]
+    },
+    {
+      "name": "Robin Regan",
+      "aliases": [
+        "Forsyth County Sheriff's Deputy Robin Regan"
+      ],
+      "attributes": {
+        "role": "Forsyth County Sheriff's Deputy"
+      },
+      "participates_in": [],
+      "source_sentences": [
+        "S14"
+      ]
+    },
+    {
+      "name": "32 previous robberies",
+      "aliases": [],
+      "attributes": {},
+      "participates_in": [
+        "EVT_30"
+      ],
+      "source_sentences": [
+        "S15"
+      ]
+    },
+    {
+      "name": "FBI's violent crimes and major offender squad",
+      "aliases": [],
+      "attributes": {},
+      "participates_in": [
+        "EVT_31"
+      ],
+      "source_sentences": [
+        "S15"
+      ]
+    },
+    {
+      "name": "Kevone Charleston's MO",
+      "aliases": [
+        "His MO",
+        "his past history"
+      ],
+      "attributes": {},
+      "participates_in": [
+        "EVT_32",
+        "EVT_33"
+      ],
+      "source_sentences": [
+        "S16"
+      ]
+    },
+    {
+      "name": "armed confrontations",
+      "aliases": [
+        "an armed confrontation"
+      ],
+      "attributes": {},
+      "participates_in": [
+        "EVT_32",
+        "EVT_33"
+      ],
+      "source_sentences": [
+        "S16"
+      ]
+    },
+    {
+      "name": "FBI officers",
+      "aliases": [
+        "our officers"
+      ],
+      "attributes": {},
+      "participates_in": [
+        "EVT_33"
+      ],
+      "source_sentences": [
+        "S16"
+      ]
+    },
+    {
+      "name": "FBI's officers and agents",
+      "aliases": [],
+      "attributes": {},
+      "participates_in": [
+        "EVT_34"
+      ],
+      "source_sentences": [
+        "S17"
+      ]
+    },
+    {
+      "name": "an intensive and lengthy investigation",
+      "aliases": [],
+      "attributes": {},
+      "participates_in": [
+        "EVT_36"
+      ],
+      "source_sentences": [
+        "S18"
+      ]
+    },
+    {
+      "name": "Vivian Kuo",
+      "aliases": [
+        "CNN's Vivian Kuo"
+      ],
+      "attributes": {},
+      "participates_in": [
+        "EVT_37"
+      ],
+      "source_sentences": [
+        "S19"
+      ]
+    },
+    {
+      "name": "Ryan Scallan",
+      "aliases": [],
+      "attributes": {},
+      "participates_in": [
+        "EVT_37"
+      ],
+      "source_sentences": [
+        "S19"
+      ]
+    },
+    {
+      "name": "this report",
+      "aliases": [],
+      "attributes": {},
+      "participates_in": [
+        "EVT_37"
+      ],
+      "source_sentences": [
+        "S19"
+      ]
+    }
+  ],
+  "inter_event_edges": [
+    {
+      "from": "EVT_4",
+      "to": "EVT_5",
+      "type": "precedes",
+      "source": "S1"
+    },
+    {
+      "from": "EVT_16",
+      "to": "EVT_17",
+      "type": "causes",
+      "source": "S7"
+    },
+    {
+      "from": "EVT_17",
+      "to": "EVT_18",
+      "type": "precedes",
+      "source": "S7"
+    },
+    {
+      "from": "EVT_18",
+      "to": "EVT_19",
+      "type": "precedes",
+      "source": "S7"
+    },
+    {
+      "from": "EVT_19",
+      "to": "EVT_20",
+      "type": "concurrent_with",
+      "source": "S7"
+    },
+    {
+      "from": "EVT_22",
+      "to": "EVT_21",
+      "type": "causes",
+      "source": "S8"
+    },
+    {
+      "from": "EVT_21",
+      "to": "EVT_25",
+      "type": "causes",
+      "source": "S10"
+    },
+    {
+      "from": "EVT_26",
+      "to": "EVT_25",
+      "type": "causes",
+      "source": "S10, S13"
+    },
+    {
+      "from": "EVT_27",
+      "to": "EVT_25",
+      "type": "causes",
+      "source": "S10, S13"
+    },
+    {
+      "from": "EVT_26",
+      "to": "EVT_24",
+      "type": "causes",
+      "source": "S13"
+    },
+    {
+      "from": "EVT_27",
+      "to": "EVT_24",
+      "type": "causes",
+      "source": "S13"
+    },
+    {
+      "from": "EVT_28",
+      "to": "EVT_29",
+      "type": "concurrent_with",
+      "source": "S14"
+    },
+    {
+      "from": "EVT_8",
+      "to": "EVT_30",
+      "type": "target_of",
+      "source": "S15"
+    },
+    {
+      "from": "EVT_31",
+      "to": "EVT_36",
+      "type": "result_of",
+      "source": "S18"
+    },
+    {
+      "from": "EVT_32",
+      "to": "EVT_33",
+      "type": "reason_for",
+      "source": "S16"
+    },
+    {
+      "from": "EVT_10",
+      "to": "EVT_11",
+      "type": "reason_for",
+      "source": "S5"
+    }
+  ],
+  "explicit_unknowns": [
+    {
+      "about": "details of the 32 previous robberies",
+      "unknown_slots": [
+        "details"
+      ],
+      "source": "S15"
+    }
+  ],
+  "_elapsed": 107.3
+}

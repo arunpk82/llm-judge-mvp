@@ -1,0 +1,51 @@
+{
+  "stories": [
+    {
+      "thread": "Keonna Thomas's Arrest and Charges",
+      "story": "The FBI charged Keonna Thomas, a 30-year-old Philadelphia woman, on Thursday with trying to travel overseas to fight for ISIS. An FBI complaint cites numerous social media messages dating back to August 2013 from Thomas, also known as \"Young Lioness\" and \"Fatayat Al Khilafah.\" She purchased an electronic visa to Turkey on March 23 and a ticket to Barcelona on March 26, with a March 29 departure and an April 15 return. Thomas was charged with knowingly attempting to provide material support and resources to a designated foreign terrorist organization and could face 15 years in prison. It is not clear when or where she was arrested.",
+      "key_facts": [
+        "FBI charged Keonna Thomas, 30, a Philadelphia woman, on Thursday.",
+        "She was charged with trying to travel overseas to fight for ISIS.",
+        "Social media messages dating back to August 2013 were cited, identifying her as 'Young Lioness' and 'Fatayat Al Khilafah'.",
+        "Thomas purchased an electronic visa to Turkey on March 23.",
+        "On March 26, she purchased a ticket to Barcelona with a March 29 departure and April 15 return.",
+        "She was charged with knowingly attempting to provide material support and resources to a designated foreign terrorist organization.",
+        "She could be sentenced to 15 years in prison."
+      ],
+      "explicit_unknowns": [
+        "It is not clear when or where she was arrested."
+      ]
+    },
+    {
+      "thread": "Noelle Velentzas and Asia Siddiqui's Arrest",
+      "story": "On Thursday, Noelle Velentzas, 28, and her former roommate, Asia Siddiqui, 31, were arrested in New York. Federal prosecutors accused them of planning to build an explosive device for attacks in the United States. These two New York women were taken into custody as part of three women arrested this week on terror charges.",
+      "key_facts": [
+        "On Thursday, Noelle Velentzas, 28, and Asia Siddiqui, 31, were arrested in New York.",
+        "They were accused of planning to build an explosive device for attacks in the United States.",
+        "They are two of three women arrested this week on terror charges."
+      ],
+      "explicit_unknowns": []
+    },
+    {
+      "thread": "Justice Department's Terror Case Statistics",
+      "story": "In the past 18 months, the Justice Department's National Security Division has prosecuted or is prosecuting more than 30 cases. These cases involve individuals attempting to travel abroad to join or provide support to terrorist groups. Of those cases, 18 allegedly involve support to ISIS.",
+      "key_facts": [
+        "In the past 18 months, the Justice Department's National Security Division has prosecuted or is prosecuting more than 30 cases.",
+        "These cases involve people attempting to travel abroad to join or provide support to terrorist groups.",
+        "Of those cases, 18 allegedly involve support to ISIS."
+      ],
+      "explicit_unknowns": []
+    },
+    {
+      "thread": "Homeland Security Secretary's Statement on Terror Threat",
+      "story": "Homeland Security Secretary Jeh Johnson told reporters Thursday that the terrorist threat is \"more decentralized, more diffuse, more complicated.\" He stated that this threat involves \"the potential lone wolf actor\" and \"the effective use of social media, the Internet.\"",
+      "key_facts": [
+        "Homeland Security Secretary Jeh Johnson spoke to reporters on Thursday.",
+        "He stated that the terrorist threat is 'more decentralized, more diffuse, more complicated'.",
+        "Johnson added that it involves 'the potential lone wolf actor' and 'the effective use of social media, the Internet'."
+      ],
+      "explicit_unknowns": []
+    }
+  ],
+  "_elapsed": 19.7
+}

@@ -1,0 +1,1083 @@
+{
+  "event_hubs": [
+    {
+      "event_id": "EVT_1",
+      "action": "settled a lawsuit",
+      "source_sentence": "S0",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "ENT_KanyeWest",
+          "source": "S0"
+        },
+        {
+          "type": "agent_of",
+          "target": "ENT_DanielRamos",
+          "source": "S0"
+        },
+        {
+          "type": "enriched_by",
+          "target": "EVT_14",
+          "source": "S5"
+        },
+        {
+          "type": "enriched_by",
+          "target": "EVT_15",
+          "source": "S5"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_2",
+      "action": "assaulted",
+      "source_sentence": "S0",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "ENT_KanyeWest",
+          "source": "S0"
+        },
+        {
+          "type": "target_of",
+          "target": "ENT_DanielRamos",
+          "source": "S0"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_3",
+      "action": "shaken on it (settlement)",
+      "source_sentence": "S0",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "ENT_KanyeWest",
+          "source": "S0"
+        },
+        {
+          "type": "agent_of",
+          "target": "ENT_DanielRamos",
+          "source": "S0"
+        },
+        {
+          "type": "context_for",
+          "target": "EVT_1",
+          "source": "S0"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_4",
+      "action": "filed the civil suit",
+      "source_sentence": "S1",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "ENT_DanielRamos",
+          "source": "S1"
+        },
+        {
+          "type": "target_of",
+          "target": "ENT_KanyeWest",
+          "source": "S1"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_5",
+      "action": "attacked him and tried to wrestle his camera from him",
+      "source_sentence": "S1",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "ENT_KanyeWest",
+          "source": "S1"
+        },
+        {
+          "type": "target_of",
+          "target": "ENT_DanielRamos",
+          "source": "S1"
+        },
+        {
+          "type": "target_of",
+          "target": "camera",
+          "source": "S1"
+        },
+        {
+          "type": "when",
+          "target": "July 2013",
+          "source": "S1"
+        },
+        {
+          "type": "where",
+          "target": "Los Angeles International Airport",
+          "source": "S1"
+        },
+        {
+          "type": "enriched_by",
+          "target": "EVT_16",
+          "source": "S6"
+        },
+        {
+          "type": "enriched_by",
+          "target": "EVT_17",
+          "source": "S9"
+        },
+        {
+          "type": "enriched_by",
+          "target": "EVT_18",
+          "source": "S12"
+        },
+        {
+          "type": "enriched_by",
+          "target": "EVT_19",
+          "source": "S12"
+        },
+        {
+          "type": "enriched_by",
+          "target": "EVT_20",
+          "source": "S13"
+        },
+        {
+          "type": "enriched_by",
+          "target": "EVT_21",
+          "source": "S13"
+        },
+        {
+          "type": "enriched_by",
+          "target": "EVT_22",
+          "source": "S14"
+        },
+        {
+          "type": "enriched_by",
+          "target": "EVT_23",
+          "source": "S15"
+        },
+        {
+          "type": "enriched_by",
+          "target": "EVT_24",
+          "source": "S15"
+        },
+        {
+          "type": "enriched_by",
+          "target": "EVT_26",
+          "source": "S16"
+        },
+        {
+          "type": "enriched_by",
+          "target": "EVT_27",
+          "source": "S16"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_7",
+      "action": "pleaded no contest",
+      "source_sentence": "S2",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "ENT_KanyeWest",
+          "source": "S2"
+        },
+        {
+          "type": "target_of",
+          "target": "misdemeanor count of battery",
+          "source": "S2"
+        },
+        {
+          "type": "when",
+          "target": "last year",
+          "source": "S2"
+        },
+        {
+          "type": "why",
+          "target": "over the scuffle",
+          "source": "S2"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_8",
+      "action": "sentenced him",
+      "source_sentence": "S3",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "ENT_Judge",
+          "source": "S3"
+        },
+        {
+          "type": "target_of",
+          "target": "ENT_KanyeWest",
+          "source": "S3"
+        },
+        {
+          "type": "outcome",
+          "target": "two years' probation",
+          "source": "S3"
+        },
+        {
+          "type": "outcome",
+          "target": "anger management sessions",
+          "source": "S3"
+        },
+        {
+          "type": "outcome",
+          "target": "community service",
+          "source": "S3"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_9",
+      "action": "sought general and punitive damages",
+      "source_sentence": "S4",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "ENT_DanielRamos",
+          "source": "S4"
+        },
+        {
+          "type": "agent_of",
+          "target": "ENT_GloriaAllred",
+          "source": "S4"
+        },
+        {
+          "type": "context_for",
+          "target": "EVT_4",
+          "source": "S4"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_10",
+      "action": "interfered with the photographer's rights to pursue a lawful occupation",
+      "source_sentence": "S4",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "ENT_KanyeWest",
+          "source": "S4"
+        },
+        {
+          "type": "target_of",
+          "target": "ENT_DanielRamos",
+          "source": "S4"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_11",
+      "action": "case had been set for trial",
+      "source_sentence": "S5",
+      "edges": [
+        {
+          "type": "target_of",
+          "target": "EVT_4",
+          "source": "S5"
+        },
+        {
+          "type": "when",
+          "target": "next week",
+          "source": "S5"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_12",
+      "action": "issued a statement",
+      "source_sentence": "S5",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "ENT_GloriaAllred",
+          "source": "S5"
+        },
+        {
+          "type": "when",
+          "target": "Tuesday night",
+          "source": "S5"
+        },
+        {
+          "type": "content",
+          "target": "Ramos' side had filed a dismissal",
+          "source": "S5"
+        },
+        {
+          "type": "content",
+          "target": "the case was settled to the satisfaction of the parties",
+          "source": "S5"
+        },
+        {
+          "type": "content",
+          "target": "one important aspect of it was an apology by Kanye West to our client, Daniel Ramos",
+          "source": "S5"
+        },
+        {
+          "type": "content",
+          "target": "a picture of West and Ramos shaking hands",
+          "source": "S5"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_13",
+      "action": "filed a dismissal",
+      "source_sentence": "S5",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "ENT_DanielRamos",
+          "source": "S5"
+        },
+        {
+          "type": "agent_of",
+          "target": "ENT_GloriaAllred",
+          "source": "S5"
+        },
+        {
+          "type": "target_of",
+          "target": "EVT_4",
+          "source": "S5"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_14",
+      "action": "apology by Kanye West",
+      "source_sentence": "S5",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "ENT_KanyeWest",
+          "source": "S5"
+        },
+        {
+          "type": "target_of",
+          "target": "ENT_DanielRamos",
+          "source": "S5"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_15",
+      "action": "shaking hands",
+      "source_sentence": "S5",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "ENT_KanyeWest",
+          "source": "S5"
+        },
+        {
+          "type": "agent_of",
+          "target": "ENT_DanielRamos",
+          "source": "S5"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_16",
+      "action": "original incident was caught on video",
+      "source_sentence": "S6",
+      "edges": [
+        {
+          "type": "target_of",
+          "target": "EVT_5",
+          "source": "S6"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_17",
+      "action": "Ramos shouts",
+      "source_sentence": "S9",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "ENT_DanielRamos",
+          "source": "S9"
+        },
+        {
+          "type": "content",
+          "target": "\"Kanye! Kanye! Talk to me, Kanye!\"",
+          "source": "S7, S8, S9"
+        },
+        {
+          "type": "where",
+          "target": "outside a terminal at the Los Angeles airport",
+          "source": "S9"
+        },
+        {
+          "type": "when",
+          "target": "night of July 19, 2013",
+          "source": "S9"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_18",
+      "action": "he asks",
+      "source_sentence": "S12",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "ENT_DanielRamos",
+          "source": "S12"
+        },
+        {
+          "type": "content",
+          "target": "\"What's' going on? Why can't we talk to you? I mean, why?\"",
+          "source": "S10, S11, S12"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_19",
+      "action": "West moves through a group of paparazzi",
+      "source_sentence": "S12",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "ENT_KanyeWest",
+          "source": "S12"
+        },
+        {
+          "type": "target_of",
+          "target": "group of paparazzi",
+          "source": "S12"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_20",
+      "action": "he says",
+      "source_sentence": "S13",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "ENT_DanielRamos",
+          "source": "S13"
+        },
+        {
+          "type": "content",
+          "target": "\"Now come on, Kanye, I don't want to fight with you,\"",
+          "source": "S13"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_21",
+      "action": "West advances toward him",
+      "source_sentence": "S13",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "ENT_KanyeWest",
+          "source": "S13"
+        },
+        {
+          "type": "target_of",
+          "target": "ENT_DanielRamos",
+          "source": "S13"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_22",
+      "action": "West says",
+      "source_sentence": "S14",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "ENT_KanyeWest",
+          "source": "S14"
+        },
+        {
+          "type": "content",
+          "target": "\"I told you, don't talk to me, right\"",
+          "source": "S14"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_23",
+      "action": "West says",
+      "source_sentence": "S15",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "ENT_KanyeWest",
+          "source": "S15"
+        },
+        {
+          "type": "content",
+          "target": "\"You're trying to get me in trouble so I step off and have to pay you like $250,000.\"",
+          "source": "S15"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_24",
+      "action": "rushing the photographer and attempting to wrestle his camera from his hands",
+      "source_sentence": "S15",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "ENT_KanyeWest",
+          "source": "S15"
+        },
+        {
+          "type": "target_of",
+          "target": "ENT_DanielRamos",
+          "source": "S15"
+        },
+        {
+          "type": "target_of",
+          "target": "camera",
+          "source": "S15"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_26",
+      "action": "West retreats",
+      "source_sentence": "S16",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "ENT_KanyeWest",
+          "source": "S16"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_27",
+      "action": "scuffling with the photographer",
+      "source_sentence": "S16",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "ENT_KanyeWest",
+          "source": "S16"
+        },
+        {
+          "type": "agent_of",
+          "target": "ENT_DanielRamos",
+          "source": "S16"
+        },
+        {
+          "type": "duration",
+          "target": "about 15 seconds",
+          "source": "S16"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_28",
+      "action": "Allred said",
+      "source_sentence": "S17",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "ENT_GloriaAllred",
+          "source": "S17"
+        },
+        {
+          "type": "content",
+          "target": "\"We believe that this case sent an important message,\"",
+          "source": "S17"
+        },
+        {
+          "type": "about",
+          "target": "EVT_4",
+          "source": "S17"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_29",
+      "action": "investigated an incident",
+      "source_sentence": "S18",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "ENT_BeverlyHillsPolice",
+          "source": "S18"
+        },
+        {
+          "type": "when",
+          "target": "January 2014",
+          "source": "S18"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_30",
+      "action": "West was accused of assaulting a man",
+      "source_sentence": "S18",
+      "edges": [
+        {
+          "type": "target_of",
+          "target": "ENT_KanyeWest",
+          "source": "S18"
+        },
+        {
+          "type": "target_of",
+          "target": "ENT_Man_BeverlyHills",
+          "source": "S18"
+        },
+        {
+          "type": "where",
+          "target": "at a Beverly Hills chiropractor's office",
+          "source": "S18"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_31",
+      "action": "West avoided criminal charges",
+      "source_sentence": "S19",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "ENT_KanyeWest",
+          "source": "S19"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_32",
+      "action": "reaching a civil settlement with the man",
+      "source_sentence": "S19",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "ENT_KanyeWest",
+          "source": "S19"
+        },
+        {
+          "type": "agent_of",
+          "target": "ENT_Man_BeverlyHills",
+          "source": "S19"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_33",
+      "action": "Kanye West apologizes",
+      "source_sentence": "S20",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "ENT_KanyeWest",
+          "source": "S20"
+        },
+        {
+          "type": "target_of",
+          "target": "ENT_Beck",
+          "source": "S20"
+        },
+        {
+          "type": "target_of",
+          "target": "ENT_BrunoMars",
+          "source": "S20"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_34",
+      "action": "contributed to this report",
+      "source_sentence": "S21",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "ENT_SonyaHamasaki",
+          "source": "S21"
+        },
+        {
+          "type": "target_of",
+          "target": "this report",
+          "source": "S21"
+        }
+      ]
+    }
+  ],
+  "entities": [
+    {
+      "name": "Kanye West",
+      "aliases": [
+        "hip-hop star",
+        "West",
+        "him"
+      ],
+      "attributes": {
+        "type": "celebrity"
+      },
+      "participates_in": [
+        "EVT_1",
+        "EVT_2",
+        "EVT_3",
+        "EVT_4",
+        "EVT_5",
+        "EVT_7",
+        "EVT_8",
+        "EVT_9",
+        "EVT_10",
+        "EVT_14",
+        "EVT_15",
+        "EVT_19",
+        "EVT_21",
+        "EVT_22",
+        "EVT_23",
+        "EVT_24",
+        "EVT_26",
+        "EVT_27",
+        "EVT_30",
+        "EVT_31",
+        "EVT_32",
+        "EVT_33"
+      ],
+      "source_sentences": [
+        "S0",
+        "S1",
+        "S2",
+        "S3",
+        "S4",
+        "S5",
+        "S12",
+        "S13",
+        "S14",
+        "S15",
+        "S16",
+        "S18",
+        "S19",
+        "S20"
+      ]
+    },
+    {
+      "name": "Daniel Ramos",
+      "aliases": [
+        "paparazzi photographer",
+        "the photographer",
+        "him",
+        "our client",
+        "Ramos",
+        "you"
+      ],
+      "attributes": {
+        "occupation": "paparazzi photographer"
+      },
+      "participates_in": [
+        "EVT_1",
+        "EVT_2",
+        "EVT_3",
+        "EVT_4",
+        "EVT_5",
+        "EVT_9",
+        "EVT_10",
+        "EVT_13",
+        "EVT_14",
+        "EVT_15",
+        "EVT_17",
+        "EVT_18",
+        "EVT_20",
+        "EVT_21",
+        "EVT_23",
+        "EVT_24",
+        "EVT_27"
+      ],
+      "source_sentences": [
+        "S0",
+        "S1",
+        "S4",
+        "S5",
+        "S9",
+        "S13",
+        "S15",
+        "S16"
+      ]
+    },
+    {
+      "name": "judge",
+      "aliases": [],
+      "attributes": {
+        "role": "judge"
+      },
+      "participates_in": [
+        "EVT_8"
+      ],
+      "source_sentences": [
+        "S3"
+      ]
+    },
+    {
+      "name": "Gloria Allred",
+      "aliases": [
+        "Ramos' lawyer",
+        "Allred",
+        "She"
+      ],
+      "attributes": {
+        "role": "lawyer"
+      },
+      "participates_in": [
+        "EVT_9",
+        "EVT_12",
+        "EVT_13",
+        "EVT_28"
+      ],
+      "source_sentences": [
+        "S4",
+        "S5",
+        "S17"
+      ]
+    },
+    {
+      "name": "a man",
+      "aliases": [
+        "the man"
+      ],
+      "attributes": {
+        "location_of_incident": "Beverly Hills chiropractor's office"
+      },
+      "participates_in": [
+        "EVT_30",
+        "EVT_32"
+      ],
+      "source_sentences": [
+        "S18",
+        "S19"
+      ]
+    },
+    {
+      "name": "Beverly Hills Police",
+      "aliases": [],
+      "attributes": {
+        "type": "police department"
+      },
+      "participates_in": [
+        "EVT_29"
+      ],
+      "source_sentences": [
+        "S18"
+      ]
+    },
+    {
+      "name": "Beck",
+      "aliases": [],
+      "attributes": {},
+      "participates_in": [
+        "EVT_33"
+      ],
+      "source_sentences": [
+        "S20"
+      ]
+    },
+    {
+      "name": "Bruno Mars",
+      "aliases": [],
+      "attributes": {},
+      "participates_in": [
+        "EVT_33"
+      ],
+      "source_sentences": [
+        "S20"
+      ]
+    },
+    {
+      "name": "Sonya Hamasaki",
+      "aliases": [
+        "CNN's Sonya Hamasaki"
+      ],
+      "attributes": {
+        "affiliation": "CNN"
+      },
+      "participates_in": [
+        "EVT_34"
+      ],
+      "source_sentences": [
+        "S21"
+      ]
+    }
+  ],
+  "inter_event_edges": [
+    {
+      "from": "EVT_1",
+      "to": "EVT_13",
+      "type": "leads_to",
+      "source": "S5"
+    },
+    {
+      "from": "EVT_14",
+      "to": "EVT_1",
+      "type": "part_of",
+      "source": "S5"
+    },
+    {
+      "from": "EVT_15",
+      "to": "EVT_14",
+      "type": "happened_after",
+      "source": "S5"
+    },
+    {
+      "from": "EVT_2",
+      "to": "EVT_5",
+      "type": "further_described_by",
+      "source": "S0, S1"
+    },
+    {
+      "from": "EVT_5",
+      "to": "EVT_4",
+      "type": "leads_to",
+      "source": "S1"
+    },
+    {
+      "from": "EVT_5",
+      "to": "EVT_7",
+      "type": "leads_to",
+      "source": "S2"
+    },
+    {
+      "from": "EVT_7",
+      "to": "EVT_8",
+      "type": "leads_to",
+      "source": "S3"
+    },
+    {
+      "from": "EVT_10",
+      "to": "EVT_9",
+      "type": "why",
+      "source": "S4"
+    },
+    {
+      "from": "EVT_13",
+      "to": "EVT_1",
+      "type": "why",
+      "source": "S5"
+    },
+    {
+      "from": "EVT_16",
+      "to": "EVT_5",
+      "type": "evidence_for",
+      "source": "S6"
+    },
+    {
+      "from": "EVT_17",
+      "to": "EVT_5",
+      "type": "part_of",
+      "source": "S9"
+    },
+    {
+      "from": "EVT_18",
+      "to": "EVT_5",
+      "type": "part_of",
+      "source": "S12"
+    },
+    {
+      "from": "EVT_19",
+      "to": "EVT_18",
+      "type": "context_for",
+      "source": "S12"
+    },
+    {
+      "from": "EVT_20",
+      "to": "EVT_5",
+      "type": "part_of",
+      "source": "S13"
+    },
+    {
+      "from": "EVT_21",
+      "to": "EVT_20",
+      "type": "context_for",
+      "source": "S13"
+    },
+    {
+      "from": "EVT_22",
+      "to": "EVT_5",
+      "type": "part_of",
+      "source": "S14"
+    },
+    {
+      "from": "EVT_23",
+      "to": "EVT_5",
+      "type": "part_of",
+      "source": "S15"
+    },
+    {
+      "from": "EVT_24",
+      "to": "EVT_5",
+      "type": "part_of",
+      "source": "S15"
+    },
+    {
+      "from": "EVT_26",
+      "to": "EVT_5",
+      "type": "part_of",
+      "source": "S16"
+    },
+    {
+      "from": "EVT_27",
+      "to": "EVT_5",
+      "type": "part_of",
+      "source": "S16"
+    },
+    {
+      "from": "EVT_27",
+      "to": "EVT_26",
+      "type": "leads_to",
+      "source": "S16"
+    },
+    {
+      "from": "EVT_30",
+      "to": "EVT_29",
+      "type": "leads_to",
+      "source": "S18"
+    },
+    {
+      "from": "EVT_30",
+      "to": "EVT_31",
+      "type": "leads_to",
+      "source": "S19"
+    },
+    {
+      "from": "EVT_32",
+      "to": "EVT_31",
+      "type": "how",
+      "source": "S19"
+    }
+  ],
+  "explicit_unknowns": [
+    {
+      "about": "details of the settlement between Kanye West and Daniel Ramos",
+      "unknown_slots": [
+        "details"
+      ],
+      "source": "S5"
+    },
+    {
+      "about": "the specific year of 'last year' when West pleaded no contest",
+      "unknown_slots": [
+        "when"
+      ],
+      "source": "S2"
+    },
+    {
+      "about": "the specific date of 'next week' when the case was set for trial",
+      "unknown_slots": [
+        "when"
+      ],
+      "source": "S5"
+    },
+    {
+      "about": "details of Kanye West's apology to Beck and Bruno Mars",
+      "unknown_slots": [
+        "details"
+      ],
+      "source": "S20"
+    }
+  ],
+  "_elapsed": 88.5
+}

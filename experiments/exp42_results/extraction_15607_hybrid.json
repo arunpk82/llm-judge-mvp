@@ -1,0 +1,751 @@
+{
+  "event_hubs": [
+    {
+      "event_id": "EVT_1",
+      "action": "arrested",
+      "source_sentence": "S0",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "Turkish military",
+          "source": "S0"
+        },
+        {
+          "type": "target_of",
+          "target": "Nine British citizens",
+          "source": "S0"
+        },
+        {
+          "type": "when",
+          "target": "Wednesday",
+          "source": "S0"
+        },
+        {
+          "type": "where",
+          "target": "Turkey",
+          "source": "S0"
+        },
+        {
+          "type": "where",
+          "target": "Turkey-Syria border",
+          "source": "S2"
+        },
+        {
+          "type": "why",
+          "target": "suspected of trying to cross illegally into Syria",
+          "source": "S0"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_2",
+      "action": "trying to cross illegally",
+      "source_sentence": "S0",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "Nine British citizens",
+          "source": "S0"
+        },
+        {
+          "type": "target_of",
+          "target": "Syria",
+          "source": "S0"
+        },
+        {
+          "type": "where",
+          "target": "into Syria",
+          "source": "S0"
+        },
+        {
+          "type": "why",
+          "target": "EXPLICITLY_UNKNOWN",
+          "source": "S3"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_3",
+      "action": "told",
+      "source_sentence": "S1",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "Turkish official",
+          "source": "S1"
+        },
+        {
+          "type": "target_of",
+          "target": "CNN",
+          "source": "S1"
+        },
+        {
+          "type": "how",
+          "target": "on condition of anonymity",
+          "source": "S1"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_4",
+      "action": "torn by war",
+      "source_sentence": "S3",
+      "edges": [
+        {
+          "type": "where",
+          "target": "Syria",
+          "source": "S3"
+        },
+        {
+          "type": "when",
+          "target": "roughly four-year (duration)",
+          "source": "S3"
+        },
+        {
+          "type": "agent_of",
+          "target": "Syrian government forces",
+          "source": "S3"
+        },
+        {
+          "type": "agent_of",
+          "target": "Islamist extremist groups",
+          "source": "S3"
+        },
+        {
+          "type": "agent_of",
+          "target": "other rebels",
+          "source": "S3"
+        },
+        {
+          "type": "agent_of",
+          "target": "ISIS",
+          "source": "S4"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_5",
+      "action": "taken over",
+      "source_sentence": "S4",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "ISIS",
+          "source": "S4"
+        },
+        {
+          "type": "target_of",
+          "target": "parts of Syria and Iraq",
+          "source": "S4"
+        },
+        {
+          "type": "why",
+          "target": "for what it claims is its Islamic caliphate",
+          "source": "S4"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_6",
+      "action": "recruiting",
+      "source_sentence": "S4",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "ISIS",
+          "source": "S4"
+        },
+        {
+          "type": "target_of",
+          "target": "Westerners",
+          "source": "S4"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_7",
+      "action": "Accompanying",
+      "source_sentence": "S5",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "Three men",
+          "source": "S5"
+        },
+        {
+          "type": "agent_of",
+          "target": "Two women",
+          "source": "S5"
+        },
+        {
+          "type": "target_of",
+          "target": "Four children",
+          "source": "S5"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_8",
+      "action": "said",
+      "source_sentence": "S5",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "Turkish official",
+          "source": "S5"
+        },
+        {
+          "type": "what",
+          "target": "all nine had British passports",
+          "source": "S5"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_9",
+      "action": "charge",
+      "source_sentence": "S6",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "UK police",
+          "source": "S6"
+        },
+        {
+          "type": "target_of",
+          "target": "Man (charged)",
+          "source": "S6"
+        },
+        {
+          "type": "what",
+          "target": "terror offenses",
+          "source": "S6"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_10",
+      "action": "trip",
+      "source_sentence": "S6",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "Man (charged)",
+          "source": "S6"
+        },
+        {
+          "type": "where",
+          "target": "Turkey",
+          "source": "S6"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_11",
+      "action": "aware of reports",
+      "source_sentence": "S7",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "British Foreign Office",
+          "source": "S7"
+        },
+        {
+          "type": "target_of",
+          "target": "reports of the arrests",
+          "source": "S7"
+        },
+        {
+          "type": "when",
+          "target": "Wednesday",
+          "source": "S7"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_12",
+      "action": "seeking information",
+      "source_sentence": "S7",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "British Foreign Office",
+          "source": "S7"
+        },
+        {
+          "type": "target_of",
+          "target": "Turkish authorities",
+          "source": "S7"
+        },
+        {
+          "type": "what",
+          "target": "about the incident",
+          "source": "S7"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_13",
+      "action": "reported",
+      "source_sentence": "S8",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "Gul Tuysuz",
+          "source": "S8"
+        },
+        {
+          "type": "where",
+          "target": "Istanbul",
+          "source": "S8"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_14",
+      "action": "reported",
+      "source_sentence": "S8",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "Elaine Ly",
+          "source": "S8"
+        },
+        {
+          "type": "where",
+          "target": "London",
+          "source": "S8"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_15",
+      "action": "contributed",
+      "source_sentence": "S9",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "Jason Hanna",
+          "source": "S9"
+        },
+        {
+          "type": "target_of",
+          "target": "this report",
+          "source": "S9"
+        }
+      ]
+    }
+  ],
+  "entities": [
+    {
+      "name": "Nine British citizens",
+      "aliases": [
+        "The group",
+        "The nine"
+      ],
+      "attributes": {
+        "nationality": "British",
+        "number": "Nine",
+        "includes": "four children",
+        "composition": "three men and two women",
+        "possessions": "British passports"
+      },
+      "participates_in": [
+        "EVT_1",
+        "EVT_2"
+      ],
+      "source_sentences": [
+        "S0",
+        "S1",
+        "S2",
+        "S5"
+      ]
+    },
+    {
+      "name": "Turkey",
+      "aliases": [],
+      "attributes": {},
+      "participates_in": [
+        "EVT_1",
+        "EVT_10"
+      ],
+      "source_sentences": [
+        "S0",
+        "S6"
+      ]
+    },
+    {
+      "name": "Wednesday",
+      "aliases": [],
+      "attributes": {},
+      "participates_in": [
+        "EVT_1",
+        "EVT_11"
+      ],
+      "source_sentences": [
+        "S0",
+        "S7"
+      ]
+    },
+    {
+      "name": "Syria",
+      "aliases": [],
+      "attributes": {
+        "state": "torn by a roughly four-year war"
+      },
+      "participates_in": [
+        "EVT_2",
+        "EVT_4",
+        "EVT_5"
+      ],
+      "source_sentences": [
+        "S0",
+        "S3",
+        "S4"
+      ]
+    },
+    {
+      "name": "Turkish military",
+      "aliases": [],
+      "attributes": {},
+      "participates_in": [
+        "EVT_1"
+      ],
+      "source_sentences": [
+        "S0",
+        "S2"
+      ]
+    },
+    {
+      "name": "Four children",
+      "aliases": [],
+      "attributes": {
+        "part_of": "Nine British citizens",
+        "oldest_age": "10 or 11",
+        "youngest_born": "2013"
+      },
+      "participates_in": [
+        "EVT_7"
+      ],
+      "source_sentences": [
+        "S1",
+        "S5"
+      ]
+    },
+    {
+      "name": "Turkish official",
+      "aliases": [],
+      "attributes": {
+        "status": "anonymous"
+      },
+      "participates_in": [
+        "EVT_3",
+        "EVT_8"
+      ],
+      "source_sentences": [
+        "S1",
+        "S5"
+      ]
+    },
+    {
+      "name": "CNN",
+      "aliases": [],
+      "attributes": {},
+      "participates_in": [
+        "EVT_3"
+      ],
+      "source_sentences": [
+        "S1"
+      ]
+    },
+    {
+      "name": "Turkey-Syria border",
+      "aliases": [],
+      "attributes": {},
+      "participates_in": [
+        "EVT_1"
+      ],
+      "source_sentences": [
+        "S2"
+      ]
+    },
+    {
+      "name": "Syrian government forces",
+      "aliases": [],
+      "attributes": {
+        "role": "combatant"
+      },
+      "participates_in": [
+        "EVT_4"
+      ],
+      "source_sentences": [
+        "S3"
+      ]
+    },
+    {
+      "name": "Islamist extremist groups",
+      "aliases": [],
+      "attributes": {
+        "role": "combatant"
+      },
+      "participates_in": [
+        "EVT_4"
+      ],
+      "source_sentences": [
+        "S3"
+      ]
+    },
+    {
+      "name": "other rebels",
+      "aliases": [],
+      "attributes": {
+        "role": "combatant"
+      },
+      "participates_in": [
+        "EVT_4"
+      ],
+      "source_sentences": [
+        "S3"
+      ]
+    },
+    {
+      "name": "ISIS",
+      "aliases": [],
+      "attributes": {
+        "role": "combatant in the war",
+        "claim": "Islamic caliphate"
+      },
+      "participates_in": [
+        "EVT_4",
+        "EVT_5",
+        "EVT_6"
+      ],
+      "source_sentences": [
+        "S4"
+      ]
+    },
+    {
+      "name": "Iraq",
+      "aliases": [],
+      "attributes": {},
+      "participates_in": [
+        "EVT_5"
+      ],
+      "source_sentences": [
+        "S4"
+      ]
+    },
+    {
+      "name": "Westerners",
+      "aliases": [],
+      "attributes": {},
+      "participates_in": [
+        "EVT_6"
+      ],
+      "source_sentences": [
+        "S4"
+      ]
+    },
+    {
+      "name": "Three men",
+      "aliases": [],
+      "attributes": {
+        "part_of": "Nine British citizens"
+      },
+      "participates_in": [
+        "EVT_7"
+      ],
+      "source_sentences": [
+        "S5"
+      ]
+    },
+    {
+      "name": "Two women",
+      "aliases": [],
+      "attributes": {
+        "part_of": "Nine British citizens"
+      },
+      "participates_in": [
+        "EVT_7"
+      ],
+      "source_sentences": [
+        "S5"
+      ]
+    },
+    {
+      "name": "UK police",
+      "aliases": [],
+      "attributes": {},
+      "participates_in": [
+        "EVT_9"
+      ],
+      "source_sentences": [
+        "S6"
+      ]
+    },
+    {
+      "name": "Man (charged)",
+      "aliases": [],
+      "attributes": {
+        "identity": "EXPLICITLY_UNKNOWN"
+      },
+      "participates_in": [
+        "EVT_9",
+        "EVT_10"
+      ],
+      "source_sentences": [
+        "S6"
+      ]
+    },
+    {
+      "name": "British Foreign Office",
+      "aliases": [],
+      "attributes": {},
+      "participates_in": [
+        "EVT_11",
+        "EVT_12"
+      ],
+      "source_sentences": [
+        "S7"
+      ]
+    },
+    {
+      "name": "Turkish authorities",
+      "aliases": [],
+      "attributes": {},
+      "participates_in": [
+        "EVT_12"
+      ],
+      "source_sentences": [
+        "S7"
+      ]
+    },
+    {
+      "name": "Gul Tuysuz",
+      "aliases": [],
+      "attributes": {},
+      "participates_in": [
+        "EVT_13"
+      ],
+      "source_sentences": [
+        "S8"
+      ]
+    },
+    {
+      "name": "Istanbul",
+      "aliases": [],
+      "attributes": {},
+      "participates_in": [
+        "EVT_13"
+      ],
+      "source_sentences": [
+        "S8"
+      ]
+    },
+    {
+      "name": "Elaine Ly",
+      "aliases": [],
+      "attributes": {},
+      "participates_in": [
+        "EVT_14"
+      ],
+      "source_sentences": [
+        "S8"
+      ]
+    },
+    {
+      "name": "London",
+      "aliases": [],
+      "attributes": {},
+      "participates_in": [
+        "EVT_14"
+      ],
+      "source_sentences": [
+        "S8"
+      ]
+    },
+    {
+      "name": "Jason Hanna",
+      "aliases": [],
+      "attributes": {},
+      "participates_in": [
+        "EVT_15"
+      ],
+      "source_sentences": [
+        "S9"
+      ]
+    },
+    {
+      "name": "this report",
+      "aliases": [],
+      "attributes": {},
+      "participates_in": [
+        "EVT_15"
+      ],
+      "source_sentences": [
+        "S9"
+      ]
+    }
+  ],
+  "inter_event_edges": [
+    {
+      "from": "EVT_1",
+      "to": "EVT_2",
+      "type": "suspected_reason",
+      "source": "S0"
+    },
+    {
+      "from": "EVT_2",
+      "to": "EVT_4",
+      "type": "context",
+      "source": "S3"
+    },
+    {
+      "from": "EVT_4",
+      "to": "EVT_5",
+      "type": "part_of_war_activity",
+      "source": "S4"
+    },
+    {
+      "from": "EVT_4",
+      "to": "EVT_6",
+      "type": "context_for_war_activity",
+      "source": "S4"
+    },
+    {
+      "from": "EVT_9",
+      "to": "EVT_10",
+      "type": "after_event",
+      "source": "S6"
+    },
+    {
+      "from": "EVT_11",
+      "to": "EVT_1",
+      "type": "about",
+      "source": "S7"
+    },
+    {
+      "from": "EVT_12",
+      "to": "EVT_1",
+      "type": "about",
+      "source": "S7"
+    }
+  ],
+  "explicit_unknowns": [
+    {
+      "about": "why the group allegedly was trying to get into Syria",
+      "unknown_slots": [
+        "why"
+      ],
+      "source": "S3"
+    },
+    {
+      "about": "identity of the man charged",
+      "unknown_slots": [
+        "name"
+      ],
+      "source": "S6"
+    }
+  ],
+  "_elapsed": 55.8
+}

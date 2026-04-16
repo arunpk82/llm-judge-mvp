@@ -1,0 +1,43 @@
+{
+  "stories": [
+    {
+      "thread": "Keonna Thomas Arrest",
+      "story": "Keonna Thomas, 30, a Philadelphia woman also known as \"Young Lioness\" and \"Fatayat Al Khilafah,\" was charged by the FBI with trying to travel overseas to fight for ISIS. Social media messages from August 2013 showed her desire to join \"brothers in the front lines\" and become a \"mujahid.\" Thomas purchased an electronic visa to Turkey on March 23 and, on March 26, a round-trip ticket to Barcelona departing March 29 and returning April 15. The FBI noted Turkey is an easy entry to Syria and that an ISIS manual suggests using vacation spots like Spain as cover. She is charged with knowingly attempting to provide material support and resources to a designated foreign terrorist organization and faces up to 15 years in prison, though it is not clear when or where she was arrested.",
+      "key_facts": [
+        "Keonna Thomas, 30, Philadelphia",
+        "Aliases: \"Young Lioness\" and \"Fatayat Al Khilafah\"",
+        "Electronic visa to Turkey purchased March 23",
+        "Ticket to Barcelona purchased March 26 (departure March 29, return April 15)",
+        "Charged with knowingly attempting to provide material support and resources to a designated foreign terrorist organization",
+        "Potential sentence of 15 years"
+      ],
+      "explicit_unknowns": [
+        "When Keonna Thomas was arrested",
+        "Where Keonna Thomas was arrested"
+      ]
+    },
+    {
+      "thread": "New York Terror Arrests",
+      "story": "Noelle Velentzas, 28, and her former roommate, Asia Siddiqui, 31, were arrested in New York on Thursday. Federal prosecutors accused the two women of planning to build an explosive device for attacks in the United States.",
+      "key_facts": [
+        "Noelle Velentzas, 28",
+        "Asia Siddiqui, 31",
+        "Arrested in New York on Thursday",
+        "Accused of planning to build an explosive device for attacks in the United States"
+      ],
+      "explicit_unknowns": []
+    },
+    {
+      "thread": "National Terrorist Threat Trends",
+      "story": "In the past 18 months, the Justice Department's National Security Division has prosecuted or is prosecuting more than 30 cases of people attempting to travel abroad to join or support terrorist groups, with 18 allegedly involving ISIS. Homeland Security Secretary Jeh Johnson stated the terrorist threat is now more decentralized, diffuse, and complicated. He noted the threat involves the potential for lone wolf actors and the effective use of the Internet and social media.",
+      "key_facts": [
+        "Justice Department's National Security Division prosecuted 30+ travel cases in 18 months",
+        "18 cases allegedly involve support to ISIS",
+        "Jeh Johnson described the threat as decentralized, diffuse, and complicated",
+        "Threat involves lone wolf actors, social media, and the Internet"
+      ],
+      "explicit_unknowns": []
+    }
+  ],
+  "_elapsed": 110.0
+}

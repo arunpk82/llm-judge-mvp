@@ -1,0 +1,71 @@
+{
+  "stories": [
+    {
+      "thread": "Author's Background",
+      "story": "In 1967, the author was elected to the Kentucky State Senate, becoming the first woman and first person of color to serve in the body. Five decades later, the author finds it unfathomable that a politician from Kentucky is launching a presidential campaign while questioning landmark voting and civil rights legislation.",
+      "key_facts": [
+        "1967",
+        "Kentucky State Senate",
+        "first woman to serve",
+        "first person of color to serve"
+      ],
+      "explicit_unknowns": [
+        "The author's name"
+      ]
+    },
+    {
+      "thread": "Rand Paul's Campaign Branding",
+      "story": "Rand Paul declared his candidacy for president of the United States. His campaign team told reporters that his announcement message would be about inclusion and \"expanding the Republican Party.\" Paul has attempted to brand himself as a different type of Republican and the GOP's minority outreach candidate.",
+      "key_facts": [
+        "Rand Paul",
+        "presidential campaign",
+        "\"expanding the Republican Party\"",
+        "minority outreach candidate"
+      ],
+      "explicit_unknowns": [
+        "The specific date of the announcement"
+      ]
+    },
+    {
+      "thread": "Policy Critiques",
+      "story": "The author argues that Rand Paul and the GOP do not back their words with policies or a real commitment to minority communities. During his Louisville announcement, Paul stated, \"We have come to take our country back.\" The author claims this implies returning to a time of debating the Civil Rights Act, removing the Department of Education, limiting women's choices, and opposing DREAMer protections.",
+      "key_facts": [
+        "Louisville announcement",
+        "\"We have come to take our country back\"",
+        "Civil Rights Act",
+        "Department of Education",
+        "DREAMer protections"
+      ],
+      "explicit_unknowns": [
+        "The specific choices Paul seeks to limit for women"
+      ]
+    },
+    {
+      "thread": "Civil Rights and Cultural Competency",
+      "story": "Rand Paul has been described as condescending and lacking cultural competency during speaking engagements at historically black colleges and universities. He has questioned the Civil Rights Act and claimed private business owners have a right to discriminate. When asked about the need for a more robust Voting Rights Act, Paul dismissively remarked, \"We have an African-American President.\"",
+      "key_facts": [
+        "historically black colleges and universities",
+        "Civil Rights Act",
+        "private business owners' right to discriminate",
+        "\"We have an African-American President\""
+      ],
+      "explicit_unknowns": [
+        "The specific historically black colleges and universities visited"
+      ]
+    },
+    {
+      "thread": "Democracy and Leadership",
+      "story": "President Obama marked the 50th anniversary of Bloody Sunday at the Edmund Pettus Bridge, emphasizing the right to vote and rolling back poverty. The author asserts that Rand Paul disagrees with the principle that more democracy solves more problems. The author concludes that Paul's views are outdated and disqualifying, stating the American people deserve a leader who does not pander or dismantle progress.",
+      "key_facts": [
+        "President Obama",
+        "50th anniversary of Bloody Sunday",
+        "Edmund Pettus Bridge",
+        "right to vote"
+      ],
+      "explicit_unknowns": [
+        "The specific progress the author claims Paul would dismantle"
+      ]
+    }
+  ],
+  "_elapsed": 69.8
+}

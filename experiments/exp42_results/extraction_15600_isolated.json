@@ -1,0 +1,74 @@
+{
+  "stories": [
+    {
+      "thread": "The Crime and Initial Discovery",
+      "story": "Hong Kong police responded to a call in the early hours of Saturday morning, November 1, last November, encountering a grisly scene. They found one woman, later identified as 29-year-old Seneng Mujiasih, lying on the blood-splattered floor with cuts to her neck and buttocks. During a search of the upmarket apartment in Wan Chai, officers uncovered another body, 25-year-old Sumarti Ningsih, hidden in a suitcase on the balcony. Police say 29-year-old Briton Rurik Jutting, who allegedly lived at the scene, called them to the apartment. Jutting was charged with two counts of murder.",
+      "key_facts": [
+        "Hong Kong police responded to a call in the early hours of Saturday morning, November 1, last November.",
+        "One woman, 29-year-old Seneng Mujiasih, was found on the floor with cuts to her neck and buttocks.",
+        "Another woman, 25-year-old Sumarti Ningsih, was found stuffed inside a suitcase on the balcony.",
+        "29-year-old Briton Rurik Jutting was charged with two counts of murder.",
+        "Jutting allegedly lived at the murder scene, an upmarket apartment in Wan Chai."
+      ],
+      "explicit_unknowns": []
+    },
+    {
+      "thread": "Victim: Sumarti Ningsih",
+      "story": "Sumarti Ningsih, allegedly killed on October 27, was from Cilacap, Central Java, and was the mother of a five-year-old girl. Her cousin, Jumiati, described her as \"just an ordinary woman from Indonesia\" who worked abroad to support her family. Ningsih was visiting Hong Kong as a tourist and was due to fly back to Jakarta the day after her body was found. Her father, Ahmad Khaliman, stated she had worked as a domestic helper in Hong Kong between 2011 and 2013, returning twice since. Khaliman called for the perpetrator's execution, saying, \"He has already taken my daughter's life, so he has to pay with his life.\"",
+      "key_facts": [
+        "Sumarti Ningsih was allegedly killed on October 27, five days before her body was found.",
+        "She was from Cilacap, Central Java, and was the mother of a five-year-old girl.",
+        "Her cousin, Jumiati, described her as an ordinary woman who worked abroad to support her family.",
+        "Ningsih was visiting Hong Kong as a tourist and was due to fly back to Jakarta the day after her body was found.",
+        "Her father, Ahmad Khaliman, stated she worked as a domestic helper in Hong Kong between 2011 and 2013, and called for the perpetrator's execution."
+      ],
+      "explicit_unknowns": []
+    },
+    {
+      "thread": "Victim: Seneng Mujiasih",
+      "story": "Seneng Mujiasih, also known as Jesse Lorena, had recently worked as a domestic worker in Hong Kong but had overstayed her visa. She was from the city of Muna in Sulawesi province, in southeast Indonesia. Few details are known about her life and why she stayed on in Hong Kong.",
+      "key_facts": [
+        "Seneng Mujiasih had recently worked as a domestic worker in Hong Kong but had overstayed her visa.",
+        "She was also known as Jesse Lorena.",
+        "Mujiasih was from the city of Muna in Sulawesi province, in southeast Indonesia."
+      ],
+      "explicit_unknowns": [
+        "Few details are known about her life and why she stayed on in Hong Kong."
+      ]
+    },
+    {
+      "thread": "Rurik Jutting's Background and Arrest",
+      "story": "Rurik Jutting, a 29-year-old Briton and former banker, lived in the upmarket J Residence in Wan Chai and was detained at the scene. Police seized a knife during a search of the premises. His LinkedIn profile stated he worked at Bank of America Merrill Lynch in Hong Kong since July 2013, and in London for three years prior. Before that, he worked in capital markets for Barclays and studied history and law at the University of Cambridge between 2004 and 2008. It is unclear when Jutting left his job as a trader at the Bank of America Merrill Lynch.",
+      "key_facts": [
+        "Rurik Jutting, a 29-year-old Briton and former banker, lived in the upmarket J Residence in Wan Chai.",
+        "He was detained at the scene, where police seized a knife.",
+        "His LinkedIn profile stated he worked at Bank of America Merrill Lynch in Hong Kong since July 2013, and in London for three years prior.",
+        "He previously worked for Barclays and studied history and law at the University of Cambridge between 2004 and 2008."
+      ],
+      "explicit_unknowns": [
+        "It is unclear when Jutting left his job as a trader at the Bank of America Merrill Lynch."
+      ]
+    },
+    {
+      "thread": "Legal Proceedings",
+      "story": "A court hearing to determine if there was enough evidence to proceed to trial was adjourned until May. As part of the trial process, tests were conducted to determine if Rurik Jutting was psychologically fit to enter a plea, and he was found to be fit. The case was subsequently adjourned to allow for the analysis of more than 200 pieces of forensic and DNA evidence.",
+      "key_facts": [
+        "A court hearing was adjourned until May to determine if there was enough evidence for trial.",
+        "Tests confirmed Rurik Jutting was psychologically fit to enter a plea.",
+        "The case was adjourned to allow for the analysis of over 200 pieces of forensic and DNA evidence."
+      ],
+      "explicit_unknowns": []
+    },
+    {
+      "thread": "Public Reaction and Aftermath",
+      "story": "After news of their deaths spread, approximately 200 fellow domestic workers held a vigil in Hong Kong's Victoria Park. They gathered to sing, pray, and lay flowers beside photos of the two women. The victims' bodies were buried after being repatriated to Indonesia in November.",
+      "key_facts": [
+        "Around 200 fellow domestic workers held a vigil in Hong Kong's Victoria Park.",
+        "They gathered to sing, pray, and lay flowers beside photos of the two women.",
+        "The victims' bodies were buried after being repatriated to Indonesia in November."
+      ],
+      "explicit_unknowns": []
+    }
+  ],
+  "_elapsed": 21.6
+}
