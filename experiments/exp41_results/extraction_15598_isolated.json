@@ -1,0 +1,47 @@
+{
+  "stories": [
+    {
+      "thread": "The Arrest of Kevone Charleston",
+      "story": "Around 7 o'clock Saturday morning, FBI agents and task force officers confronted 36-year-old Kevone Charleston of Austell, Georgia, at a CVS pharmacy in Forsyth County, Georgia. Charleston parked his vehicle, popped the hood, and walked toward the pharmacy before fleeing in his car. Agents opened fire as he traveled about 75 yards. He was stopped 8 feet away in the median and shot. His injuries are not life-threatening.",
+      "key_facts": [
+        "7 o'clock Saturday morning",
+        "Kevone Charleston, 36, of Austell, Georgia",
+        "CVS pharmacy in Forsyth County, Georgia",
+        "Suspect shot 8 feet away in the median",
+        "Injuries are not life-threatening"
+      ],
+      "explicit_unknowns": [
+        "The specific calendar date of the Saturday mentioned"
+      ]
+    },
+    {
+      "thread": "The Vehicle Pursuit and Injuries",
+      "story": "Twelve FBI agents and six government vehicles pursued Kevone Charleston. During the flight, Charleston rammed several FBI vehicles, including a Taurus and another vehicle, which caused a government SUV to end up on its side. One government vehicle sustained heavy damage to its front and side. Two agents were injured in these crashes. The injured agents were treated at an area hospital and released.",
+      "key_facts": [
+        "12 FBI agents",
+        "6 government vehicles",
+        "Taurus and another vehicle rammed",
+        "Government SUV ended on its side",
+        "2 agents injured, treated, and released"
+      ],
+      "explicit_unknowns": [
+        "The names of the two injured agents"
+      ]
+    },
+    {
+      "thread": "The FBI Investigation",
+      "story": "Kevone Charleston is suspected of involvement in 32 commercial robberies dating to November 2013. The FBI's violent crimes and major offender squad conducted an intensive and lengthy investigation into Charleston, whose MO involved armed confrontations. FBI Special Agent Stephen Emmett stated that the arrest concluded the investigation. Details of the 32 previous robberies were not disclosed.",
+      "key_facts": [
+        "32 commercial robberies",
+        "Dating to November 2013",
+        "FBI violent crimes and major offender squad",
+        "MO involved armed confrontations",
+        "Stephen Emmett"
+      ],
+      "explicit_unknowns": [
+        "Details of the 32 previous robberies"
+      ]
+    }
+  ],
+  "_elapsed": 55.6
+}

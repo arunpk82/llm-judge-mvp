@@ -1,0 +1,99 @@
+{
+  "stories": [
+    {
+      "thread": "B.B. King's Recent Health Scare",
+      "story": "Blues legend B.B. King, 89, was hospitalized for dehydration, though the ailment didn't keep him out for long. King's dehydration was caused by his Type II diabetes, but he \"is much better,\" his daughter, Claudette King, told the Los Angeles Times. \"I'm feeling much better and am leaving the hospital today,\" B.B. King, the legendary guitarist and vocalist, said in a message Tuesday. Angela Moore, a publicist for Claudette King, said later in the day that B.B. King, 89, was back home resting and enjoying time with his grandchildren. No more information on B.B. King's condition or where he was hospitalized was immediately available.",
+      "key_facts": [
+        "Blues legend B.B. King, 89, was hospitalized for dehydration.",
+        "His dehydration was caused by Type II diabetes.",
+        "His daughter, Claudette King, confirmed he is 'much better'.",
+        "B.B. King stated he was leaving the hospital.",
+        "Angela Moore, a publicist for Claudette King, confirmed B.B. King was home resting."
+      ],
+      "shared_context": [
+        "Blues legend B.B. King, 89, was hospitalized for dehydration, though the ailment didn't keep him out for long.",
+        "King's dehydration was caused by his Type II diabetes, but he \"is much better,\" his daughter, Claudette King, told the Los Angeles Times.",
+        "\"I'm feeling much better and am leaving the hospital today,\" B.B. King, the legendary guitarist and vocalist, said in a message Tuesday.",
+        "Angela Moore, a publicist for Claudette King, said later in the day that B.B. King, 89, was back home resting and enjoying time with his grandchildren.",
+        "No more information on B.B. King's condition or where he was hospitalized was immediately available."
+      ],
+      "explicit_unknowns": [
+        "No more information on King's condition was immediately available.",
+        "No more information on where King was hospitalized was immediately available."
+      ]
+    },
+    {
+      "thread": "Updates on B.B. King's Condition",
+      "story": "King's dehydration was caused by his Type II diabetes, but he \"is much better,\" his daughter, Claudette King, told the Los Angeles Times. \"I'm feeling much better and am leaving the hospital today,\" B.B. King, the legendary guitarist and vocalist, said in a message Tuesday. Angela Moore, a publicist for Claudette King, said later in the day that B.B. King, 89, was back home resting and enjoying time with his grandchildren. Angela Moore also stated, \"He was struggling before, and he is a trouper,\" adding, \"He wasn't going to let his fans down.\" No more information on B.B. King's condition or where he was hospitalized was immediately available.",
+      "key_facts": [
+        "Claudette King, B.B. King's daughter, confirmed his improvement.",
+        "B.B. King, the legendary guitarist and vocalist, announced he was leaving the hospital.",
+        "Angela Moore, a publicist for Claudette King, confirmed B.B. King, 89, was home.",
+        "Angela Moore described B.B. King as a 'trouper' who wouldn't let fans down."
+      ],
+      "shared_context": [
+        "King's dehydration was caused by his Type II diabetes, but he \"is much better,\" his daughter, Claudette King, told the Los Angeles Times.",
+        "\"I'm feeling much better and am leaving the hospital today,\" B.B. King, the legendary guitarist and vocalist, said in a message Tuesday.",
+        "Angela Moore, a publicist for Claudette King, said later in the day that B.B. King, 89, was back home resting and enjoying time with his grandchildren.",
+        "No more information on B.B. King's condition or where he was hospitalized was immediately available."
+      ],
+      "explicit_unknowns": [
+        "No more information on King's condition was immediately available.",
+        "No more information on where King was hospitalized was immediately available."
+      ]
+    },
+    {
+      "thread": "B.B. King's Resilience and Prior Health Scares",
+      "story": "Angela Moore, a publicist for Claudette King, stated that B.B. King, 89, \"was struggling before, and he is a trouper,\" adding, \"He wasn't going to let his fans down.\" No more information on B.B. King's condition or where he was hospitalized was immediately available after his recent hospitalization for dehydration. Last year, the bluesman B.B. King, 89, suffered from dehydration and exhaustion after a show in Chicago, forcing him to cancel the remainder of his tour. Blues legend B.B. King, 89, was hospitalized for dehydration, though the ailment didn't keep him out for long.",
+      "key_facts": [
+        "Angela Moore, a publicist for Claudette King, described B.B. King, 89, as a 'trouper' dedicated to his fans.",
+        "B.B. King, 89, had a previous incident of dehydration and exhaustion in Chicago last year.",
+        "The previous incident forced B.B. King to cancel the remainder of his tour.",
+        "Blues legend B.B. King, 89, was recently hospitalized for dehydration."
+      ],
+      "shared_context": [
+        "Angela Moore, a publicist for Claudette King, stated that B.B. King, 89, \"was struggling before, and he is a trouper,\" adding, \"He wasn't going to let his fans down.\"",
+        "No more information on B.B. King's condition or where he was hospitalized was immediately available.",
+        "Blues legend B.B. King, 89, was hospitalized for dehydration, though the ailment didn't keep him out for long."
+      ],
+      "explicit_unknowns": [
+        "No more information on King's condition was immediately available.",
+        "No more information on where King was hospitalized was immediately available."
+      ]
+    },
+    {
+      "thread": "The Musical Journey of B.B. King",
+      "story": "Blues legend B.B. King, 89, is known for his extensive career. B.B. is short for Blues Boy, part of the name he used as a Memphis disc jockey, the Beale Street Blues Boy. B.B. King, the legendary guitarist and vocalist, was inducted into the Rock and Roll Hall of Fame in 1987, and has 30 Grammy nominations. Some of his hits include \"The Thrill Is Gone,\" which won him his first Grammy in 1970, \"There Must be a Better World Somewhere\" and \"When Love Comes to Town,\" a collaboration with U2. B.B. King, the \"King of the Blues,\" has used various models of Gibson guitars over the years, and named each one of them Lucille.",
+      "key_facts": [
+        "B.B. King's name, B.B., is short for Blues Boy, from his time as a Memphis disc jockey.",
+        "B.B. King, the legendary guitarist and vocalist, was inducted into the Rock and Roll Hall of Fame in 1987.",
+        "He has 30 Grammy nominations.",
+        "His hits include \"The Thrill Is Gone\" (first Grammy in 1970), \"There Must be a Better World Somewhere,\" and \"When Love Comes to Town\" with U2.",
+        "B.B. King, the \"King of the Blues,\" named all his Gibson guitars Lucille."
+      ],
+      "shared_context": [
+        "Blues legend B.B. King, 89, is known for his extensive career.",
+        "B.B. King, the legendary guitarist and vocalist, was inducted into the Rock and Roll Hall of Fame in 1987, and has 30 Grammy nominations.",
+        "B.B. King, the \"King of the Blues,\" has used various models of Gibson guitars over the years, and named each one of them Lucille."
+      ],
+      "explicit_unknowns": []
+    },
+    {
+      "thread": "B.B. King's Signature Guitars",
+      "story": "Blues legend B.B. King, 89, has used various models of Gibson guitars over the years, and named each one of them Lucille. In the 1980s, Gibson officially dropped the model number on the guitar B.B. King, the legendary guitarist and vocalist, used last and most. It became a custom-made signature model named Lucille, manufactured exclusively for B.B. King, the \"King of the Blues.\" Some of B.B. King's hits include \"The Thrill Is Gone,\" which won him his first Grammy in 1970, \"There Must be a Better World Somewhere\" and \"When Love Comes to Town,\" a collaboration with U2.",
+      "key_facts": [
+        "Blues legend B.B. King, 89, named all his Gibson guitars Lucille.",
+        "In the 1980s, Gibson created a custom-made signature model named Lucille for B.B. King.",
+        "This Lucille model was manufactured exclusively for B.B. King, the \"King of the Blues.\"",
+        "His hits include \"The Thrill Is Gone\" (first Grammy in 1970), \"There Must be a Better World Somewhere,\" and \"When Love Comes to Town\" with U2."
+      ],
+      "shared_context": [
+        "Blues legend B.B. King, 89, has used various models of Gibson guitars over the years, and named each one of them Lucille.",
+        "It became a custom-made signature model named Lucille, manufactured exclusively for B.B. King, the \"King of the Blues.\"",
+        "Some of B.B. King's hits include \"The Thrill Is Gone,\" which won him his first Grammy in 1970, \"There Must be a Better World Somewhere\" and \"When Love Comes to Town,\" a collaboration with U2."
+      ],
+      "explicit_unknowns": []
+    }
+  ],
+  "_elapsed": 27.1
+}

@@ -1,0 +1,994 @@
+{
+  "experiment": "Exp 40: Gemma 4 verifier",
+  "note": "Extractions from 38d (Gemini). Only verifier changed.",
+  "per_model": {
+    "gemma-4-31b-it": {
+      "raw": [
+        {
+          "verdict": "HALLUCINATED",
+          "confidence": 1.0,
+          "reasoning": "The text states that Gordon Getty has a net worth of $2.1 billion (S11), not Andrew Getty, who is the primary subject of the report.",
+          "_elapsed": 25.9,
+          "_test_id": "ragtruth_10",
+          "_expected": "hallucinated",
+          "_hall_type": "Evident Conflict",
+          "_source_chars": 2212,
+          "_correct": true
+        },
+        {
+          "verdict": "GROUNDED",
+          "confidence": 1.0,
+          "reasoning": "S0 states the FBI charged a Philadelphia woman with trying to travel overseas to fight for ISIS, and S3 identifies the woman as Keonna Thomas.",
+          "_elapsed": 10.1,
+          "_test_id": "ragtruth_24",
+          "_expected": "grounded",
+          "_hall_type": "clean",
+          "_source_chars": 2155,
+          "_correct": true
+        },
+        {
+          "verdict": "GROUNDED",
+          "confidence": 1.0,
+          "reasoning": "The claim is directly supported by S0, which mentions the FBI charging a Philadelphia woman with trying to travel overseas to fight for ISIS, and S3, which identifies her as Keonna Thomas, also known as 'Young Lioness' and 'Fatayat Al Khilafah'.",
+          "_elapsed": 12.0,
+          "_test_id": "ragtruth_26",
+          "_expected": "grounded",
+          "_hall_type": "clean",
+          "_source_chars": 2155,
+          "_correct": true
+        },
+        {
+          "verdict": "HALLUCINATED",
+          "confidence": 1.0,
+          "reasoning": "While three women were arrested on terror charges, only Keonna Thomas was charged with attempting to join ISIS; the other two women (Noelle Velentzas and Asia Siddiqui) were accused of planning to build an explosive device for attacks in the United States.",
+          "_elapsed": 14.0,
+          "_test_id": "ragtruth_28",
+          "_expected": "hallucinated",
+          "_hall_type": "Evident Conflict",
+          "_source_chars": 2155,
+          "_correct": true
+        },
+        {
+          "verdict": "GROUNDED",
+          "confidence": 1.0,
+          "reasoning": "S7 confirms Thomas purchased a ticket to Barcelona, and S0 states she was charged with 'trying to travel overseas,' indicating she was arrested before the trip occurred.",
+          "_elapsed": 18.1,
+          "_test_id": "ragtruth_28",
+          "_expected": "hallucinated",
+          "_hall_type": "Evident Conflict",
+          "_source_chars": 2155,
+          "_correct": false
+        },
+        {
+          "verdict": "HALLUCINATED",
+          "confidence": 1.0,
+          "reasoning": "The text states that on March 26, Thomas purchased a ticket to Barcelona (S7), and explicitly mentions that it is 'not clear when or where she was arrested' (S8).",
+          "_elapsed": 14.3,
+          "_test_id": "ragtruth_29",
+          "_expected": "hallucinated",
+          "_hall_type": "Evident Conflict",
+          "_source_chars": 2155,
+          "_correct": true
+        },
+        {
+          "verdict": "HALLUCINATED",
+          "confidence": 1.0,
+          "reasoning": "The claim states 'No Blue Bell Ice Cream Is Linked to Infections in Patients,' but S12 explicitly states that in a Texas outbreak, the CDC found that listeria samples from patients matched the listeria in recovered samples, and S17 mentions infections that 'might be linked' to Blue Bell products.",
+          "_elapsed": 25.0,
+          "_test_id": "ragtruth_44",
+          "_expected": "hallucinated",
+          "_hall_type": "Evident Conflict",
+          "_source_chars": 4039,
+          "_correct": true
+        },
+        {
+          "verdict": "HALLUCINATED",
+          "confidence": 1.0,
+          "reasoning": "The source states the group consisted of four children, three men, and two women, whereas the claim incorrectly states there were five men and four women.",
+          "_elapsed": 10.2,
+          "_test_id": "ragtruth_86",
+          "_expected": "hallucinated",
+          "_hall_type": "Evident Conflict",
+          "_source_chars": 1261,
+          "_correct": true
+        },
+        {
+          "verdict": "HALLUCINATED",
+          "confidence": 1.0,
+          "reasoning": "The claim states West pleaded 'guilty', but S2 explicitly states he pleaded 'no contest'.",
+          "_elapsed": 10.9,
+          "_test_id": "ragtruth_141",
+          "_expected": "hallucinated",
+          "_hall_type": "Evident Conflict",
+          "_source_chars": 2477,
+          "_correct": true
+        },
+        {
+          "verdict": "HALLUCINATED",
+          "confidence": 1.0,
+          "reasoning": "S2 explicitly states that King's dehydration was caused by his Type II diabetes, which contradicts the claim that it was caused by his busy schedule and not drinking enough water.",
+          "_elapsed": 11.1,
+          "_test_id": "ragtruth_146",
+          "_expected": "hallucinated",
+          "_hall_type": "Evident Conflict",
+          "_source_chars": 1747,
+          "_correct": true
+        },
+        {
+          "verdict": "HALLUCINATED",
+          "confidence": 1.0,
+          "reasoning": "The text identifies Katrine Saltara as a 'female companion,' not Chris Copeland's wife. Additionally, the text explicitly states the stabbing occurred 'in front of the Fulton Houses project down the street' from 1OAK, rather than 'outside' the nightclub itself.",
+          "_elapsed": 19.4,
+          "_test_id": "ragtruth_180",
+          "_expected": "hallucinated",
+          "_hall_type": "Evident Conflict",
+          "_source_chars": 6456,
+          "_correct": true
+        }
+      ],
+      "hybrid": [
+        {
+          "verdict": "GROUNDED",
+          "confidence": 1.0,
+          "reasoning": "The source document explicitly lists Gordon Getty's net worth as $2.1 billion.",
+          "_elapsed": 24.3,
+          "_test_id": "ragtruth_10",
+          "_expected": "hallucinated",
+          "_hall_type": "Evident Conflict",
+          "_source_chars": 4563,
+          "_correct": false
+        },
+        {
+          "verdict": "GROUNDED",
+          "confidence": 1.0,
+          "reasoning": "The source document explicitly states that the FBI charged Keonna Thomas (identified as being from Philadelphia) for trying to travel overseas to fight for ISIS.",
+          "_elapsed": 10.0,
+          "_test_id": "ragtruth_24",
+          "_expected": "grounded",
+          "_hall_type": "clean",
+          "_source_chars": 4537,
+          "_correct": true
+        },
+        {
+          "verdict": "HALLUCINATED",
+          "confidence": 1.0,
+          "reasoning": "The claim includes aliases for Keonna Thomas ('Young Lioness' and 'Fatayat Al Khilafah') that are not present in the source document.",
+          "_elapsed": 15.2,
+          "_test_id": "ragtruth_26",
+          "_expected": "grounded",
+          "_hall_type": "clean",
+          "_source_chars": 4537,
+          "_correct": false
+        },
+        {
+          "verdict": "HALLUCINATED",
+          "confidence": 1.0,
+          "reasoning": "While three women were arrested this week, only Keonna Thomas was charged with attempting to join ISIS; the other two women, Noelle Velentzas and Asia Siddiqui, were arrested for planning to build an explosive device.",
+          "_elapsed": 20.1,
+          "_test_id": "ragtruth_28",
+          "_expected": "hallucinated",
+          "_hall_type": "Evident Conflict",
+          "_source_chars": 4537,
+          "_correct": true
+        },
+        {
+          "verdict": "GROUNDED",
+          "confidence": 1.0,
+          "reasoning": "The source document confirms Keonna Thomas purchased a ticket to Barcelona (S7) and was among three women arrested (S1) and charged (S0) for trying to travel overseas to join ISIS (EVT_2).",
+          "_elapsed": 29.0,
+          "_test_id": "ragtruth_28",
+          "_expected": "hallucinated",
+          "_hall_type": "Evident Conflict",
+          "_source_chars": 4537,
+          "_correct": false
+        },
+        {
+          "verdict": "HALLUCINATED",
+          "confidence": 1.0,
+          "reasoning": "The source document states that Keonna Thomas purchased a ticket to Barcelona on March 26, not that she was arrested on that date.",
+          "_elapsed": 12.3,
+          "_test_id": "ragtruth_29",
+          "_expected": "hallucinated",
+          "_hall_type": "Evident Conflict",
+          "_source_chars": 4537,
+          "_correct": true
+        },
+        {
+          "verdict": "HALLUCINATED",
+          "confidence": 1.0,
+          "reasoning": "The claim states that 'No Blue Bell Ice Cream Is Linked to Infections in Patients,' but the source document contradicts this by stating that the investigation is ongoing (S14) and that listeria contamination 'might be linked' to Blue Bell ice cream (S17).",
+          "_elapsed": 75.6,
+          "_test_id": "ragtruth_44",
+          "_expected": "hallucinated",
+          "_hall_type": "Evident Conflict",
+          "_source_chars": 10006,
+          "_correct": true
+        },
+        {
+          "verdict": "HALLUCINATED",
+          "confidence": 1.0,
+          "reasoning": "The source document states the group consisted of three men, two women, and four children, whereas the claim incorrectly states there were five men and four women.",
+          "_elapsed": 13.3,
+          "_test_id": "ragtruth_86",
+          "_expected": "hallucinated",
+          "_hall_type": "Evident Conflict",
+          "_source_chars": 3505,
+          "_correct": true
+        },
+        {
+          "verdict": "HALLUCINATED",
+          "confidence": 1.0,
+          "reasoning": "The claim states West 'pleaded guilty', but the source document explicitly states he 'pleads no contest' to misdemeanor battery.",
+          "_elapsed": 12.5,
+          "_test_id": "ragtruth_141",
+          "_expected": "hallucinated",
+          "_hall_type": "Evident Conflict",
+          "_source_chars": 5908,
+          "_correct": true
+        },
+        {
+          "verdict": "HALLUCINATED",
+          "confidence": 1.0,
+          "reasoning": "The source document states that the dehydration was caused by Type II diabetes, not a busy schedule or lack of water.",
+          "_elapsed": 8.3,
+          "_test_id": "ragtruth_146",
+          "_expected": "hallucinated",
+          "_hall_type": "Evident Conflict",
+          "_source_chars": 3777,
+          "_correct": true
+        },
+        {
+          "verdict": "HALLUCINATED",
+          "confidence": 1.0,
+          "reasoning": "The claim identifies Katrine Saltara as Chris Copeland's 'wife', but the source document identifies her as his 'female companion'.",
+          "_elapsed": 17.1,
+          "_test_id": "ragtruth_180",
+          "_expected": "hallucinated",
+          "_hall_type": "Evident Conflict",
+          "_source_chars": 10163,
+          "_correct": true
+        }
+      ],
+      "isolated": [
+        {
+          "verdict": "HALLUCINATED",
+          "confidence": 1.0,
+          "reasoning": "The net worth of $2.1 billion is attributed to Gordon Getty, not Andrew Getty, who is the primary subject of the documents.",
+          "_elapsed": 41.7,
+          "_test_id": "ragtruth_10",
+          "_expected": "hallucinated",
+          "_hall_type": "Evident Conflict",
+          "_source_chars": 1903,
+          "_correct": true
+        },
+        {
+          "verdict": "GROUNDED",
+          "confidence": 1.0,
+          "reasoning": "The claim is directly supported by the first sentence of the source document.",
+          "_elapsed": 9.6,
+          "_test_id": "ragtruth_24",
+          "_expected": "grounded",
+          "_hall_type": "clean",
+          "_source_chars": 1774,
+          "_correct": true
+        },
+        {
+          "verdict": "GROUNDED",
+          "confidence": 1.0,
+          "reasoning": "The claim accurately reflects the information provided in the first section of the source document regarding Keonna Thomas's name, location, aliases, and the charges filed by the FBI.",
+          "_elapsed": 11.6,
+          "_test_id": "ragtruth_26",
+          "_expected": "grounded",
+          "_hall_type": "clean",
+          "_source_chars": 1774,
+          "_correct": true
+        },
+        {
+          "verdict": "HALLUCINATED",
+          "confidence": 1.0,
+          "reasoning": "While three women were arrested on terror charges, only Keonna Thomas was charged with attempting to join ISIS; Noelle Velentzas and Asia Siddiqui were accused of planning an explosive device for attacks in the United States.",
+          "_elapsed": 13.2,
+          "_test_id": "ragtruth_28",
+          "_expected": "hallucinated",
+          "_hall_type": "Evident Conflict",
+          "_source_chars": 1774,
+          "_correct": true
+        },
+        {
+          "verdict": "HALLUCINATED",
+          "confidence": 1.0,
+          "reasoning": "The source document explicitly states, 'It is not clear when or where she was arrested,' which contradicts the claim's assertion that she was arrested before her trip.",
+          "_elapsed": 14.9,
+          "_test_id": "ragtruth_28",
+          "_expected": "hallucinated",
+          "_hall_type": "Evident Conflict",
+          "_source_chars": 1774,
+          "_correct": true
+        },
+        {
+          "verdict": "HALLUCINATED",
+          "confidence": 1.0,
+          "reasoning": "The document explicitly states it is not clear when Keonna Thomas was arrested; March 26 was the date she purchased a ticket to Barcelona, not the date of her arrest.",
+          "_elapsed": 8.8,
+          "_test_id": "ragtruth_29",
+          "_expected": "hallucinated",
+          "_hall_type": "Evident Conflict",
+          "_source_chars": 1774,
+          "_correct": true
+        },
+        {
+          "verdict": "HALLUCINATED",
+          "confidence": 1.0,
+          "reasoning": "The claim states that 'No Blue Bell Ice Cream Is Linked to Infections in Patients,' but the source text explicitly mentions that in a Texas outbreak, listeria samples from patients matched recovered samples from a hospital that served 3-ounce Blue Bell cups.",
+          "_elapsed": 20.8,
+          "_test_id": "ragtruth_44",
+          "_expected": "hallucinated",
+          "_hall_type": "Evident Conflict",
+          "_source_chars": 3969,
+          "_correct": true
+        },
+        {
+          "verdict": "HALLUCINATED",
+          "confidence": 1.0,
+          "reasoning": "The source states the group consisted of four children, three men, and two women, whereas the claim incorrectly states there were five men and four women.",
+          "_elapsed": 8.6,
+          "_test_id": "ragtruth_86",
+          "_expected": "hallucinated",
+          "_hall_type": "Evident Conflict",
+          "_source_chars": 1652,
+          "_correct": true
+        },
+        {
+          "verdict": "HALLUCINATED",
+          "confidence": 1.0,
+          "reasoning": "The source document states that West pleaded 'no contest' to the misdemeanor count of battery, not 'guilty'.",
+          "_elapsed": 8.1,
+          "_test_id": "ragtruth_141",
+          "_expected": "hallucinated",
+          "_hall_type": "Evident Conflict",
+          "_source_chars": 3354,
+          "_correct": true
+        },
+        {
+          "verdict": "HALLUCINATED",
+          "confidence": 1.0,
+          "reasoning": "The source document explicitly states that B.B. King's dehydration was caused by his Type II diabetes, not by his busy schedule or a lack of water.",
+          "_elapsed": 10.4,
+          "_test_id": "ragtruth_146",
+          "_expected": "hallucinated",
+          "_hall_type": "Evident Conflict",
+          "_source_chars": 1839,
+          "_correct": true
+        },
+        {
+          "verdict": "HALLUCINATED",
+          "confidence": 1.0,
+          "reasoning": "The text explicitly states the stabbing occurred in front of the Fulton Houses project, 'not at the 1OAK club,' and refers to Katrine Saltara as a 'female companion' rather than Chris Copeland's wife.",
+          "_elapsed": 12.9,
+          "_test_id": "ragtruth_180",
+          "_expected": "hallucinated",
+          "_hall_type": "Evident Conflict",
+          "_source_chars": 3970,
+          "_correct": true
+        }
+      ],
+      "overlapping": [
+        {
+          "verdict": "HALLUCINATED",
+          "confidence": 1.0,
+          "reasoning": "The net worth of $2.1 billion is attributed to Gordon Getty, not Andrew Getty.",
+          "_elapsed": 13.3,
+          "_test_id": "ragtruth_10",
+          "_expected": "hallucinated",
+          "_hall_type": "Evident Conflict",
+          "_source_chars": 3316,
+          "_correct": true
+        },
+        {
+          "verdict": "GROUNDED",
+          "confidence": 1.0,
+          "reasoning": "The claim is explicitly stated in the first and second sections of the source document.",
+          "_elapsed": 8.4,
+          "_test_id": "ragtruth_24",
+          "_expected": "grounded",
+          "_hall_type": "clean",
+          "_source_chars": 2889,
+          "_correct": true
+        },
+        {
+          "verdict": "GROUNDED",
+          "confidence": 1.0,
+          "reasoning": "The source text explicitly states that the FBI charged Keonna Thomas, a Philadelphia woman, with trying to travel overseas to fight for ISIS and identifies her aliases as 'Young Lioness' and 'Fatayat Al Khilafah.'",
+          "_elapsed": 11.1,
+          "_test_id": "ragtruth_26",
+          "_expected": "grounded",
+          "_hall_type": "clean",
+          "_source_chars": 2889,
+          "_correct": true
+        },
+        {
+          "verdict": "HALLUCINATED",
+          "confidence": 1.0,
+          "reasoning": "While three women were arrested this week, only Keonna Thomas was charged with attempting to join ISIS. The other two women, Noelle Velentzas and Asia Siddiqui, were accused of planning to build an explosive device for attacks within the United States.",
+          "_elapsed": 16.0,
+          "_test_id": "ragtruth_28",
+          "_expected": "hallucinated",
+          "_hall_type": "Evident Conflict",
+          "_source_chars": 2889,
+          "_correct": true
+        },
+        {
+          "verdict": "GROUNDED",
+          "confidence": 1.0,
+          "reasoning": "The text explicitly states that Keonna Thomas purchased a ticket to Barcelona with a March 29 departure and was charged by the FBI with 'trying to travel overseas to fight for ISIS,' which confirms she was arrested before the trip took place.",
+          "_elapsed": 42.0,
+          "_test_id": "ragtruth_28",
+          "_expected": "hallucinated",
+          "_hall_type": "Evident Conflict",
+          "_source_chars": 2889,
+          "_correct": false
+        },
+        {
+          "verdict": "HALLUCINATED",
+          "confidence": 1.0,
+          "reasoning": "The source text explicitly states it is 'not clear when or where Keonna Thomas, 30, was arrested.' March 26 is the date she purchased a ticket to Barcelona, not the date of her arrest.",
+          "_elapsed": 12.1,
+          "_test_id": "ragtruth_29",
+          "_expected": "hallucinated",
+          "_hall_type": "Evident Conflict",
+          "_source_chars": 2889,
+          "_correct": true
+        },
+        {
+          "verdict": "HALLUCINATED",
+          "confidence": 1.0,
+          "reasoning": "The claim states that 'No Blue Bell Ice Cream Is Linked to Infections in Patients,' but the source document explicitly states that in a Texas outbreak, listeria samples from patients 'matched the listeria in recovered samples' and that infections in Kansas 'might be linked to Blue Bell Creameries products.'",
+          "_elapsed": 23.4,
+          "_test_id": "ragtruth_44",
+          "_expected": "hallucinated",
+          "_hall_type": "Evident Conflict",
+          "_source_chars": 5775,
+          "_correct": true
+        },
+        {
+          "verdict": "HALLUCINATED",
+          "confidence": 1.0,
+          "reasoning": "The source document states the group consisted of four children, three men, and two women, which contradicts the claim of five men and four women.",
+          "_elapsed": 10.6,
+          "_test_id": "ragtruth_86",
+          "_expected": "hallucinated",
+          "_hall_type": "Evident Conflict",
+          "_source_chars": 3974,
+          "_correct": true
+        },
+        {
+          "verdict": "HALLUCINATED",
+          "confidence": 1.0,
+          "reasoning": "The claim states West pleaded 'guilty', but the source documents explicitly state he pleaded 'no contest'.",
+          "_elapsed": 10.6,
+          "_test_id": "ragtruth_141",
+          "_expected": "hallucinated",
+          "_hall_type": "Evident Conflict",
+          "_source_chars": 3831,
+          "_correct": true
+        },
+        {
+          "verdict": "HALLUCINATED",
+          "confidence": 1.0,
+          "reasoning": "The source documents explicitly state that B.B. King's dehydration was caused by his Type II diabetes, not by a busy schedule or not drinking enough water.",
+          "_elapsed": 9.1,
+          "_test_id": "ragtruth_146",
+          "_expected": "hallucinated",
+          "_hall_type": "Evident Conflict",
+          "_source_chars": 3732,
+          "_correct": true
+        },
+        {
+          "verdict": "HALLUCINATED",
+          "confidence": 1.0,
+          "reasoning": "The source document describes Katrine Saltara as Chris Copeland's 'female companion,' not his 'wife.' Additionally, the stabbing occurred in front of the Fulton Houses project, which was 'down the street' from the nightclub 1OAK, rather than directly outside the club.",
+          "_elapsed": 16.1,
+          "_test_id": "ragtruth_180",
+          "_expected": "hallucinated",
+          "_hall_type": "Evident Conflict",
+          "_source_chars": 6229,
+          "_correct": true
+        }
+      ]
+    },
+    "gemma-4-26b-a4b-it": {
+      "raw": [
+        {
+          "verdict": "GROUNDED",
+          "confidence": 1.0,
+          "reasoning": "Sentence S11 explicitly states that Gordon Getty has a net worth of $2.1 billion according to Forbes.",
+          "_elapsed": 11.3,
+          "_test_id": "ragtruth_10",
+          "_expected": "hallucinated",
+          "_hall_type": "Evident Conflict",
+          "_source_chars": 2212,
+          "_correct": false
+        },
+        {
+          "verdict": "GROUNDED",
+          "confidence": 1.0,
+          "reasoning": "The claim is directly supported by sentences S0 and S3, which identify the person as Keonna Thomas, a Philadelphia woman, and state she was charged by the FBI for attempting to travel overseas to fight for ISIS.",
+          "_elapsed": 7.3,
+          "_test_id": "ragtruth_24",
+          "_expected": "grounded",
+          "_hall_type": "clean",
+          "_source_chars": 2155,
+          "_correct": true
+        },
+        {
+          "verdict": "GROUNDED",
+          "confidence": 1.0,
+          "reasoning": "The claim accurately reflects the information provided in sentences S0 and S3 regarding the individual's name, aliases, location, and the nature of the FBI charges.",
+          "_elapsed": 8.0,
+          "_test_id": "ragtruth_26",
+          "_expected": "grounded",
+          "_hall_type": "clean",
+          "_source_chars": 2155,
+          "_correct": true
+        },
+        {
+          "verdict": "HALLUCINATED",
+          "confidence": 0.9,
+          "reasoning": "The claim implies all three women were charged with attempting to join ISIS, but the text states that only Keonna Thomas was charged with that; the other two women were accused of planning to build an explosive device.",
+          "_elapsed": 36.1,
+          "_test_id": "ragtruth_28",
+          "_expected": "hallucinated",
+          "_hall_type": "Evident Conflict",
+          "_source_chars": 2155,
+          "_correct": true
+        },
+        {
+          "verdict": "GROUNDED",
+          "confidence": 0.95,
+          "reasoning": "S7 explicitly states that Thomas purchased a ticket to Barcelona with a March 29 departure. S0 states she was charged with 'trying to travel overseas,' which implies the attempt was intercepted before the trip could be completed, supporting the claim that she was arrested before her trip.",
+          "_elapsed": 82.8,
+          "_test_id": "ragtruth_28",
+          "_expected": "hallucinated",
+          "_hall_type": "Evident Conflict",
+          "_source_chars": 2155,
+          "_correct": false
+        },
+        {
+          "verdict": "HALLUCINATED",
+          "confidence": 1.0,
+          "reasoning": "The claim states she was arrested on March 26, but the source document says she purchased a ticket to Barcelona on March 26 and explicitly states it is not clear when she was arrested.",
+          "_elapsed": 12.4,
+          "_test_id": "ragtruth_29",
+          "_expected": "hallucinated",
+          "_hall_type": "Evident Conflict",
+          "_source_chars": 2155,
+          "_correct": true
+        },
+        {
+          "verdict": "HALLUCINATED",
+          "confidence": 0.95,
+          "reasoning": "The claim states that 'No Blue Bell Ice Cream Is Linked to Infections in Patients,' which is contradicted by sentence S12, which states that in a separate outbreak in Texas, the CDC found that listeria samples from patients matched the listeria in recovered samples, establishing a link.",
+          "_elapsed": 29.5,
+          "_test_id": "ragtruth_44",
+          "_expected": "hallucinated",
+          "_hall_type": "Evident Conflict",
+          "_source_chars": 4039,
+          "_correct": true
+        },
+        {
+          "verdict": "HALLUCINATED",
+          "confidence": 1.0,
+          "reasoning": "The source states the group consisted of four children, three men, and two women, whereas the claim incorrectly states there were five men and four women.",
+          "_elapsed": 10.6,
+          "_test_id": "ragtruth_86",
+          "_expected": "hallucinated",
+          "_hall_type": "Evident Conflict",
+          "_source_chars": 1261,
+          "_correct": true
+        },
+        {
+          "verdict": "HALLUCINATED",
+          "confidence": 0.9,
+          "reasoning": "The claim states West pleaded 'guilty', but the source specifies he pleaded 'no contest', which is a different legal plea.",
+          "_elapsed": 20.1,
+          "_test_id": "ragtruth_141",
+          "_expected": "hallucinated",
+          "_hall_type": "Evident Conflict",
+          "_source_chars": 2477,
+          "_correct": true
+        },
+        {
+          "verdict": "HALLUCINATED",
+          "confidence": 1.0,
+          "reasoning": "The source document explicitly states that King's dehydration was caused by his Type II diabetes (S2), contradicting the claim that it was due to a busy schedule and not drinking enough water.",
+          "_elapsed": 7.8,
+          "_test_id": "ragtruth_146",
+          "_expected": "hallucinated",
+          "_hall_type": "Evident Conflict",
+          "_source_chars": 1747,
+          "_correct": true
+        },
+        {
+          "verdict": "HALLUCINATED",
+          "confidence": 1.0,
+          "reasoning": "The source document identifies Katrine Saltara as a 'female companion,' not Chris Copeland's wife.",
+          "_elapsed": 14.8,
+          "_test_id": "ragtruth_180",
+          "_expected": "hallucinated",
+          "_hall_type": "Evident Conflict",
+          "_source_chars": 6456,
+          "_correct": true
+        }
+      ],
+      "hybrid": [
+        {
+          "verdict": "GROUNDED",
+          "confidence": 1.0,
+          "reasoning": "The document explicitly states that Gordon Getty's net worth is $2.1 billion.",
+          "_elapsed": 83.5,
+          "_test_id": "ragtruth_10",
+          "_expected": "hallucinated",
+          "_hall_type": "Evident Conflict",
+          "_source_chars": 4563,
+          "_correct": false
+        },
+        {
+          "verdict": "GROUNDED",
+          "confidence": 1.0,
+          "reasoning": "The source document explicitly states that the FBI charged Keonna Thomas, who is identified as being from Philadelphia, with trying to travel overseas to fight for ISIS.",
+          "_elapsed": 7.9,
+          "_test_id": "ragtruth_24",
+          "_expected": "grounded",
+          "_hall_type": "clean",
+          "_source_chars": 4537,
+          "_correct": true
+        },
+        {
+          "verdict": "HALLUCINATED",
+          "confidence": 1.0,
+          "reasoning": "The source document does not mention the aliases 'Young Lioness' or 'Fatayat Al Khilafah'.",
+          "_elapsed": 24.9,
+          "_test_id": "ragtruth_26",
+          "_expected": "grounded",
+          "_hall_type": "clean",
+          "_source_chars": 4537,
+          "_correct": false
+        },
+        {
+          "verdict": "GROUNDED",
+          "confidence": 1.0,
+          "reasoning": "The source document confirms that three women (Keonna Thomas, Noelle Velentzas, and Asia Siddiqui) were arrested/charged on terror charges this week, and specifically identifies Keonna Thomas as being from Philadelphia and attempting to join ISIS.",
+          "_elapsed": 13.7,
+          "_test_id": "ragtruth_28",
+          "_expected": "hallucinated",
+          "_hall_type": "Evident Conflict",
+          "_source_chars": 4537,
+          "_correct": false
+        },
+        {
+          "verdict": "GROUNDED",
+          "confidence": 1.0,
+          "reasoning": "The document states that Keonna Thomas purchased a ticket to Barcelona (S7) with a scheduled departure of March 29, and that she was among three women arrested (S1) and charged (S0) for her attempt to travel to join ISIS.",
+          "_elapsed": 52.8,
+          "_test_id": "ragtruth_28",
+          "_expected": "hallucinated",
+          "_hall_type": "Evident Conflict",
+          "_source_chars": 4537,
+          "_correct": false
+        },
+        {
+          "verdict": "HALLUCINATED",
+          "confidence": 1.0,
+          "reasoning": "The claim states she was arrested on March 26, but the source document indicates that March 26 was the date she purchased a ticket to Barcelona, not the date of her arrest.",
+          "_elapsed": 12.2,
+          "_test_id": "ragtruth_29",
+          "_expected": "hallucinated",
+          "_hall_type": "Evident Conflict",
+          "_source_chars": 4537,
+          "_correct": true
+        },
+        {
+          "verdict": "HALLUCINATED",
+          "confidence": 0.95,
+          "reasoning": "The claim states that 'No Blue Bell Ice Cream Is Linked to Infections in Patients,' which contradicts the source document's statement that listeria contamination 'might be linked' to Blue Bell ice cream (S17) and that investigations are 'ongoing' (S14). While the second sentence of the claim is grounded, the definitive negative in the first sentence is a hallucination of the source's nuanced information.",
+          "_elapsed": 63.0,
+          "_test_id": "ragtruth_44",
+          "_expected": "hallucinated",
+          "_hall_type": "Evident Conflict",
+          "_source_chars": 10006,
+          "_correct": true
+        },
+        {
+          "verdict": "HALLUCINATED",
+          "confidence": 1.0,
+          "reasoning": "The source document specifies the group consists of three men, two women, and four children, whereas the claim incorrectly states there were five men and four women.",
+          "_elapsed": 19.0,
+          "_test_id": "ragtruth_86",
+          "_expected": "hallucinated",
+          "_hall_type": "Evident Conflict",
+          "_source_chars": 3505,
+          "_correct": true
+        },
+        {
+          "verdict": "GROUNDED",
+          "confidence": 0.95,
+          "reasoning": "The claim accurately summarizes the key facts from the source document (S2 and S3), including the individual involved (West), the charge (battery), and the sentence (probation and anger management). While it uses general terms like 'guilty' instead of 'no contest' and omits specific details like 'misdemeanor' and 'two years', these are standard linguistic simplifications that do not contradict the core information provided.",
+          "_elapsed": 101.2,
+          "_test_id": "ragtruth_141",
+          "_expected": "hallucinated",
+          "_hall_type": "Evident Conflict",
+          "_source_chars": 5908,
+          "_correct": false
+        },
+        {
+          "verdict": "HALLUCINATED",
+          "confidence": 1.0,
+          "reasoning": "The source document states that dehydration was caused by Type II diabetes (S2), whereas the claim attributes it to a busy schedule and not drinking enough water, which is not mentioned in the text.",
+          "_elapsed": 9.7,
+          "_test_id": "ragtruth_146",
+          "_expected": "hallucinated",
+          "_hall_type": "Evident Conflict",
+          "_source_chars": 3777,
+          "_correct": true
+        },
+        {
+          "verdict": "HALLUCINATED",
+          "confidence": 1.0,
+          "reasoning": "The claim identifies Katrine Saltara as Chris Copeland's 'wife,' but the source document explicitly defines her relationship to him as 'female companion.'",
+          "_elapsed": 16.4,
+          "_test_id": "ragtruth_180",
+          "_expected": "hallucinated",
+          "_hall_type": "Evident Conflict",
+          "_source_chars": 10163,
+          "_correct": true
+        }
+      ],
+      "isolated": [
+        {
+          "verdict": "GROUNDED",
+          "confidence": 1.0,
+          "reasoning": "The text explicitly states that Gordon Getty has a net worth of $2.1 billion according to Forbes, which matches the claim.",
+          "_elapsed": 88.3,
+          "_test_id": "ragtruth_10",
+          "_expected": "hallucinated",
+          "_hall_type": "Evident Conflict",
+          "_source_chars": 1903,
+          "_correct": false
+        },
+        {
+          "verdict": "GROUNDED",
+          "confidence": 1.0,
+          "reasoning": "The claim is directly stated in the first sentence of the source document.",
+          "_elapsed": 5.8,
+          "_test_id": "ragtruth_24",
+          "_expected": "grounded",
+          "_hall_type": "clean",
+          "_source_chars": 1774,
+          "_correct": true
+        },
+        {
+          "verdict": "GROUNDED",
+          "confidence": 1.0,
+          "reasoning": "The claim accurately reflects the details provided in the source document regarding Keonna Thomas's name, location, aliases, and the specific charges brought by the FBI.",
+          "_elapsed": 7.7,
+          "_test_id": "ragtruth_26",
+          "_expected": "grounded",
+          "_hall_type": "clean",
+          "_source_chars": 1774,
+          "_correct": true
+        },
+        {
+          "verdict": "HALLUCINATED",
+          "confidence": 1.0,
+          "reasoning": "The claim implies all three women were charged with attempting to join ISIS, but the text specifies that only Keonna Thomas was charged with that, while the other two women were accused of planning to build an explosive device.",
+          "_elapsed": 18.7,
+          "_test_id": "ragtruth_28",
+          "_expected": "hallucinated",
+          "_hall_type": "Evident Conflict",
+          "_source_chars": 1774,
+          "_correct": true
+        },
+        {
+          "verdict": "HALLUCINATED",
+          "confidence": 1.0,
+          "reasoning": "The text explicitly states 'It is not clear when or where she was arrested,' so the claim that she was arrested before her trip is not supported by the document.",
+          "_elapsed": 18.0,
+          "_test_id": "ragtruth_28",
+          "_expected": "hallucinated",
+          "_hall_type": "Evident Conflict",
+          "_source_chars": 1774,
+          "_correct": true
+        },
+        {
+          "verdict": "HALLUCINATED",
+          "confidence": 1.0,
+          "reasoning": "The document states she purchased a ticket to Barcelona on March 26, but explicitly mentions it is not clear when or where she was arrested.",
+          "_elapsed": 8.4,
+          "_test_id": "ragtruth_29",
+          "_expected": "hallucinated",
+          "_hall_type": "Evident Conflict",
+          "_source_chars": 1774,
+          "_correct": true
+        },
+        {
+          "verdict": "HALLUCINATED",
+          "confidence": 0.9,
+          "reasoning": "The claim states 'No Blue Bell Ice Cream Is Linked to Infections in Patients,' but the source text states that 'it is not clear if the ice cream is the source of the infections' and that the listeria 'might be linked' to the products, making the claim's definitive negative statement inaccurate.",
+          "_elapsed": 18.1,
+          "_test_id": "ragtruth_44",
+          "_expected": "hallucinated",
+          "_hall_type": "Evident Conflict",
+          "_source_chars": 3969,
+          "_correct": true
+        },
+        {
+          "verdict": "HALLUCINATED",
+          "confidence": 1.0,
+          "reasoning": "The source states the group consisted of four children, three men, and two women, whereas the claim incorrectly states there were five men and four women.",
+          "_elapsed": 6.9,
+          "_test_id": "ragtruth_86",
+          "_expected": "hallucinated",
+          "_hall_type": "Evident Conflict",
+          "_source_chars": 1652,
+          "_correct": true
+        },
+        {
+          "verdict": "HALLUCINATED",
+          "confidence": 1.0,
+          "reasoning": "The source document states that West pleaded 'no contest' to a misdemeanor count of battery, whereas the claim states he pleaded 'guilty'.",
+          "_elapsed": 12.1,
+          "_test_id": "ragtruth_141",
+          "_expected": "hallucinated",
+          "_hall_type": "Evident Conflict",
+          "_source_chars": 3354,
+          "_correct": true
+        },
+        {
+          "verdict": "HALLUCINATED",
+          "confidence": 1.0,
+          "reasoning": "The source document explicitly states that his dehydration was caused by his Type II diabetes, contradicting the claim that it was due to a busy schedule and not drinking enough water.",
+          "_elapsed": 10.8,
+          "_test_id": "ragtruth_146",
+          "_expected": "hallucinated",
+          "_hall_type": "Evident Conflict",
+          "_source_chars": 1839,
+          "_correct": true
+        },
+        {
+          "verdict": "HALLUCINATED",
+          "confidence": 1.0,
+          "reasoning": "The text identifies Katrine Saltara as a 'female companion,' not Chris Copeland's wife.",
+          "_elapsed": 13.4,
+          "_test_id": "ragtruth_180",
+          "_expected": "hallucinated",
+          "_hall_type": "Evident Conflict",
+          "_source_chars": 3970,
+          "_correct": true
+        }
+      ],
+      "overlapping": [
+        {
+          "verdict": "HALLUCINATED",
+          "confidence": 1.0,
+          "reasoning": "The text states that Gordon Getty has a net worth of $2.1 billion, not Andrew Getty.",
+          "_elapsed": 9.3,
+          "_test_id": "ragtruth_10",
+          "_expected": "hallucinated",
+          "_hall_type": "Evident Conflict",
+          "_source_chars": 3316,
+          "_correct": true
+        },
+        {
+          "verdict": "GROUNDED",
+          "confidence": 1.0,
+          "reasoning": "The claim is directly stated in the first sentence of the source document.",
+          "_elapsed": 6.0,
+          "_test_id": "ragtruth_24",
+          "_expected": "grounded",
+          "_hall_type": "clean",
+          "_source_chars": 2889,
+          "_correct": true
+        },
+        {
+          "verdict": "GROUNDED",
+          "confidence": 1.0,
+          "reasoning": "The claim accurately reflects the details provided in the source document regarding Keonna Thomas's name, location, aliases, and the specific charges brought by the FBI.",
+          "_elapsed": 7.6,
+          "_test_id": "ragtruth_26",
+          "_expected": "grounded",
+          "_hall_type": "clean",
+          "_source_chars": 2889,
+          "_correct": true
+        },
+        {
+          "verdict": "HALLUCINATED",
+          "confidence": 0.95,
+          "reasoning": "The claim implies all three women were charged with attempting to join ISIS, but the source text states that only Keonna Thomas was charged with attempting to join ISIS, while the other two women were charged with planning to build an explosive device.",
+          "_elapsed": 25.6,
+          "_test_id": "ragtruth_28",
+          "_expected": "hallucinated",
+          "_hall_type": "Evident Conflict",
+          "_source_chars": 2889,
+          "_correct": true
+        },
+        {
+          "verdict": "GROUNDED",
+          "confidence": 0.95,
+          "reasoning": "The text explicitly states that Keonna Thomas purchased a ticket to Barcelona for a March 29 departure and was charged with 'trying to travel overseas,' which logically implies her arrest/charge occurred before the trip could be completed.",
+          "_elapsed": 95.0,
+          "_test_id": "ragtruth_28",
+          "_expected": "hallucinated",
+          "_hall_type": "Evident Conflict",
+          "_source_chars": 2889,
+          "_correct": false
+        },
+        {
+          "verdict": "HALLUCINATED",
+          "confidence": 1.0,
+          "reasoning": "The text explicitly states that it is not clear when Keonna Thomas was arrested. It mentions March 26 as the date she purchased a ticket to Barcelona, not the date of her arrest.",
+          "_elapsed": 11.2,
+          "_test_id": "ragtruth_29",
+          "_expected": "hallucinated",
+          "_hall_type": "Evident Conflict",
+          "_source_chars": 2889,
+          "_correct": true
+        },
+        {
+          "verdict": "GROUNDED",
+          "confidence": 1.0,
+          "reasoning": "The claim accurately reflects the text, which states that Blue Bell shut down its Broken Arrow, Oklahoma plant due to listeria contamination and that the CDC emphasizes the ice cream has not been confirmed as the source of the infections.",
+          "_elapsed": 23.4,
+          "_test_id": "ragtruth_44",
+          "_expected": "hallucinated",
+          "_hall_type": "Evident Conflict",
+          "_source_chars": 5775,
+          "_correct": false
+        },
+        {
+          "verdict": "HALLUCINATED",
+          "confidence": 1.0,
+          "reasoning": "The source states the group of nine included four children, three men, and two women. The claim incorrectly states the group consisted of five men and four women.",
+          "_elapsed": 7.5,
+          "_test_id": "ragtruth_86",
+          "_expected": "hallucinated",
+          "_hall_type": "Evident Conflict",
+          "_source_chars": 3974,
+          "_correct": true
+        },
+        {
+          "verdict": "HALLUCINATED",
+          "confidence": 0.95,
+          "reasoning": "The claim states West pleaded 'guilty', whereas the source document specifies he pleaded 'no contest'.",
+          "_elapsed": 13.1,
+          "_test_id": "ragtruth_141",
+          "_expected": "hallucinated",
+          "_hall_type": "Evident Conflict",
+          "_source_chars": 3831,
+          "_correct": true
+        },
+        {
+          "verdict": "HALLUCINATED",
+          "confidence": 1.0,
+          "reasoning": "The source document explicitly states that King's dehydration was caused by his Type II diabetes, contradicting the claim that it was due to a busy schedule and not drinking enough water.",
+          "_elapsed": 7.5,
+          "_test_id": "ragtruth_146",
+          "_expected": "hallucinated",
+          "_hall_type": "Evident Conflict",
+          "_source_chars": 3732,
+          "_correct": true
+        },
+        {
+          "verdict": "HALLUCINATED",
+          "confidence": 1.0,
+          "reasoning": "The source document identifies Katrine Saltara as Chris Copeland's 'female companion,' not his wife.",
+          "_elapsed": 20.9,
+          "_test_id": "ragtruth_180",
+          "_expected": "hallucinated",
+          "_hall_type": "Evident Conflict",
+          "_source_chars": 6229,
+          "_correct": true
+        }
+      ]
+    }
+  }
+}

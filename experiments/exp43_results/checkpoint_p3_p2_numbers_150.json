@@ -1,0 +1,842 @@
+{
+  "phase": "p2_numbers_150",
+  "results": [
+    {
+      "numbers_dates_correct": true,
+      "checks": [
+        {
+          "claim_value": "at least a month",
+          "source_value": "at least a month",
+          "match": "exact"
+        }
+      ],
+      "_idx": 0,
+      "_expected": "grounded"
+    },
+    {
+      "numbers_dates_correct": true,
+      "checks": [
+        {
+          "claim_value": "March 1945",
+          "source_value": "March 1945",
+          "match": "exact"
+        },
+        {
+          "claim_value": "two weeks",
+          "source_value": "two weeks",
+          "match": "exact"
+        }
+      ],
+      "_idx": 1,
+      "_expected": "grounded"
+    },
+    {
+      "numbers_dates_correct": true,
+      "checks": [
+        {
+          "claim_value": "March",
+          "source_value": "March",
+          "match": "exact"
+        }
+      ],
+      "_idx": 2,
+      "_expected": "grounded"
+    },
+    {
+      "numbers_dates_correct": false,
+      "checks": [
+        {
+          "claim_value": "February 7, 1945",
+          "source_value": "February 7",
+          "match": "approximate"
+        }
+      ],
+      "_idx": 3,
+      "_expected": "grounded"
+    },
+    {
+      "numbers_dates_correct": true,
+      "checks": [
+        {
+          "claim_value": "at least a month",
+          "source_value": "at least a month",
+          "match": "exact"
+        }
+      ],
+      "_idx": 4,
+      "_expected": "grounded"
+    },
+    {
+      "numbers_dates_correct": true,
+      "checks": [],
+      "_idx": 5,
+      "_expected": "grounded"
+    },
+    {
+      "numbers_dates_correct": true,
+      "checks": [
+        {
+          "claim_value": "1944",
+          "source_value": "1944",
+          "match": "exact"
+        }
+      ],
+      "_idx": 6,
+      "_expected": "grounded"
+    },
+    {
+      "numbers_dates_correct": true,
+      "checks": [],
+      "_idx": 7,
+      "_expected": "grounded"
+    },
+    {
+      "numbers_dates_correct": true,
+      "checks": [
+        {
+          "claim_value": "March",
+          "source_value": "March",
+          "match": "exact"
+        },
+        {
+          "claim_value": "February 7",
+          "source_value": "February 7",
+          "match": "exact"
+        }
+      ],
+      "_idx": 8,
+      "_expected": "grounded"
+    },
+    {
+      "numbers_dates_correct": true,
+      "checks": [],
+      "_idx": 9,
+      "_expected": "grounded"
+    },
+    {
+      "numbers_dates_correct": true,
+      "checks": [],
+      "_idx": 10,
+      "_expected": "grounded"
+    },
+    {
+      "numbers_dates_correct": true,
+      "checks": [
+        {
+          "claim_value": "at least a month",
+          "source_value": "at least a month",
+          "match": "exact"
+        }
+      ],
+      "_idx": 11,
+      "_expected": "grounded"
+    },
+    {
+      "numbers_dates_correct": true,
+      "checks": [],
+      "_idx": 12,
+      "_expected": "grounded"
+    },
+    {
+      "numbers_dates_correct": true,
+      "checks": [
+        {
+          "claim_value": "little water",
+          "source_value": "little water",
+          "match": "exact"
+        }
+      ],
+      "_idx": 13,
+      "_expected": "grounded"
+    },
+    {
+      "numbers_dates_correct": false,
+      "checks": [
+        {
+          "claim_value": "February 7, 2022",
+          "source_value": "February 7",
+          "match": "contradicted"
+        }
+      ],
+      "_idx": 14,
+      "_expected": "hallucinated"
+    },
+    {
+      "numbers_dates_correct": true,
+      "checks": [],
+      "_idx": 15,
+      "_expected": "grounded"
+    },
+    {
+      "numbers_dates_correct": true,
+      "checks": [],
+      "_idx": 16,
+      "_expected": "hallucinated"
+    },
+    {
+      "_error": "[Errno -3] Temporary failure in name resolution",
+      "_idx": 17,
+      "_expected": "grounded"
+    },
+    {
+      "_error": "[Errno -3] Temporary failure in name resolution",
+      "_idx": 18,
+      "_expected": "grounded"
+    },
+    {
+      "_error": "[Errno -3] Temporary failure in name resolution",
+      "_idx": 19,
+      "_expected": "grounded"
+    },
+    {
+      "_error": "[Errno -3] Temporary failure in name resolution",
+      "_idx": 20,
+      "_expected": "grounded"
+    },
+    {
+      "_error": "[Errno -3] Temporary failure in name resolution",
+      "_idx": 21,
+      "_expected": "grounded"
+    },
+    {
+      "_error": "[Errno -3] Temporary failure in name resolution",
+      "_idx": 22,
+      "_expected": "hallucinated"
+    },
+    {
+      "_error": "[Errno -3] Temporary failure in name resolution",
+      "_idx": 23,
+      "_expected": "grounded"
+    },
+    {
+      "_error": "[Errno -3] Temporary failure in name resolution",
+      "_idx": 24,
+      "_expected": "grounded"
+    },
+    {
+      "_error": "[Errno -3] Temporary failure in name resolution",
+      "_idx": 25,
+      "_expected": "grounded"
+    },
+    {
+      "_error": "[Errno -3] Temporary failure in name resolution",
+      "_idx": 26,
+      "_expected": "grounded"
+    },
+    {
+      "_error": "[Errno -3] Temporary failure in name resolution",
+      "_idx": 27,
+      "_expected": "grounded"
+    },
+    {
+      "_error": "[Errno -3] Temporary failure in name resolution",
+      "_idx": 28,
+      "_expected": "grounded"
+    },
+    {
+      "_error": "[Errno -3] Temporary failure in name resolution",
+      "_idx": 29,
+      "_expected": "hallucinated"
+    },
+    {
+      "_error": "[Errno -3] Temporary failure in name resolution",
+      "_idx": 30,
+      "_expected": "grounded"
+    },
+    {
+      "_error": "[Errno -3] Temporary failure in name resolution",
+      "_idx": 31,
+      "_expected": "grounded"
+    },
+    {
+      "_error": "[Errno -3] Temporary failure in name resolution",
+      "_idx": 32,
+      "_expected": "hallucinated"
+    },
+    {
+      "_error": "[Errno -3] Temporary failure in name resolution",
+      "_idx": 33,
+      "_expected": "grounded"
+    },
+    {
+      "_error": "[Errno -3] Temporary failure in name resolution",
+      "_idx": 34,
+      "_expected": "grounded"
+    },
+    {
+      "_error": "[Errno -3] Temporary failure in name resolution",
+      "_idx": 35,
+      "_expected": "grounded"
+    },
+    {
+      "_error": "[Errno -3] Temporary failure in name resolution",
+      "_idx": 36,
+      "_expected": "grounded"
+    },
+    {
+      "_error": "[Errno -3] Temporary failure in name resolution",
+      "_idx": 37,
+      "_expected": "grounded"
+    },
+    {
+      "_error": "[Errno -3] Temporary failure in name resolution",
+      "_idx": 38,
+      "_expected": "grounded"
+    },
+    {
+      "_error": "[Errno -3] Temporary failure in name resolution",
+      "_idx": 39,
+      "_expected": "grounded"
+    },
+    {
+      "_error": "[Errno -3] Temporary failure in name resolution",
+      "_idx": 40,
+      "_expected": "grounded"
+    },
+    {
+      "_error": "[Errno -3] Temporary failure in name resolution",
+      "_idx": 41,
+      "_expected": "grounded"
+    },
+    {
+      "_error": "[Errno -3] Temporary failure in name resolution",
+      "_idx": 42,
+      "_expected": "grounded"
+    },
+    {
+      "_error": "[Errno -3] Temporary failure in name resolution",
+      "_idx": 43,
+      "_expected": "grounded"
+    },
+    {
+      "_error": "[Errno -3] Temporary failure in name resolution",
+      "_idx": 44,
+      "_expected": "grounded"
+    },
+    {
+      "_error": "[Errno -3] Temporary failure in name resolution",
+      "_idx": 45,
+      "_expected": "grounded"
+    },
+    {
+      "_error": "[Errno -3] Temporary failure in name resolution",
+      "_idx": 46,
+      "_expected": "grounded"
+    },
+    {
+      "_error": "[Errno -3] Temporary failure in name resolution",
+      "_idx": 47,
+      "_expected": "grounded"
+    },
+    {
+      "_error": "[Errno -3] Temporary failure in name resolution",
+      "_idx": 48,
+      "_expected": "grounded"
+    },
+    {
+      "_error": "[Errno -3] Temporary failure in name resolution",
+      "_idx": 49,
+      "_expected": "grounded"
+    },
+    {
+      "_error": "[Errno -3] Temporary failure in name resolution",
+      "_idx": 50,
+      "_expected": "grounded"
+    },
+    {
+      "_error": "[Errno -3] Temporary failure in name resolution",
+      "_idx": 51,
+      "_expected": "grounded"
+    },
+    {
+      "_error": "[Errno -3] Temporary failure in name resolution",
+      "_idx": 52,
+      "_expected": "grounded"
+    },
+    {
+      "_error": "[Errno -3] Temporary failure in name resolution",
+      "_idx": 53,
+      "_expected": "grounded"
+    },
+    {
+      "_error": "[Errno -3] Temporary failure in name resolution",
+      "_idx": 54,
+      "_expected": "grounded"
+    },
+    {
+      "_error": "[Errno -3] Temporary failure in name resolution",
+      "_idx": 55,
+      "_expected": "grounded"
+    },
+    {
+      "_error": "[Errno -3] Temporary failure in name resolution",
+      "_idx": 56,
+      "_expected": "grounded"
+    },
+    {
+      "_error": "[Errno -3] Temporary failure in name resolution",
+      "_idx": 57,
+      "_expected": "hallucinated"
+    },
+    {
+      "_error": "[Errno -3] Temporary failure in name resolution",
+      "_idx": 58,
+      "_expected": "grounded"
+    },
+    {
+      "_error": "[Errno -3] Temporary failure in name resolution",
+      "_idx": 59,
+      "_expected": "grounded"
+    },
+    {
+      "_error": "[Errno -3] Temporary failure in name resolution",
+      "_idx": 60,
+      "_expected": "grounded"
+    },
+    {
+      "_error": "[Errno -3] Temporary failure in name resolution",
+      "_idx": 61,
+      "_expected": "grounded"
+    },
+    {
+      "_error": "[Errno -3] Temporary failure in name resolution",
+      "_idx": 62,
+      "_expected": "grounded"
+    },
+    {
+      "_error": "[Errno -3] Temporary failure in name resolution",
+      "_idx": 63,
+      "_expected": "grounded"
+    },
+    {
+      "_error": "[Errno -3] Temporary failure in name resolution",
+      "_idx": 64,
+      "_expected": "grounded"
+    },
+    {
+      "_error": "[Errno -3] Temporary failure in name resolution",
+      "_idx": 65,
+      "_expected": "grounded"
+    },
+    {
+      "_error": "[Errno -3] Temporary failure in name resolution",
+      "_idx": 66,
+      "_expected": "grounded"
+    },
+    {
+      "_error": "[Errno -3] Temporary failure in name resolution",
+      "_idx": 67,
+      "_expected": "grounded"
+    },
+    {
+      "_error": "[Errno -3] Temporary failure in name resolution",
+      "_idx": 68,
+      "_expected": "grounded"
+    },
+    {
+      "_error": "[Errno -3] Temporary failure in name resolution",
+      "_idx": 69,
+      "_expected": "grounded"
+    },
+    {
+      "_error": "[Errno -3] Temporary failure in name resolution",
+      "_idx": 70,
+      "_expected": "grounded"
+    },
+    {
+      "_error": "[Errno -3] Temporary failure in name resolution",
+      "_idx": 71,
+      "_expected": "grounded"
+    },
+    {
+      "_error": "[Errno -3] Temporary failure in name resolution",
+      "_idx": 72,
+      "_expected": "grounded"
+    },
+    {
+      "_error": "[Errno -3] Temporary failure in name resolution",
+      "_idx": 73,
+      "_expected": "grounded"
+    },
+    {
+      "_error": "[Errno -3] Temporary failure in name resolution",
+      "_idx": 74,
+      "_expected": "grounded"
+    },
+    {
+      "_error": "[Errno -3] Temporary failure in name resolution",
+      "_idx": 75,
+      "_expected": "grounded"
+    },
+    {
+      "_error": "[Errno -3] Temporary failure in name resolution",
+      "_idx": 76,
+      "_expected": "grounded"
+    },
+    {
+      "_error": "[Errno -3] Temporary failure in name resolution",
+      "_idx": 77,
+      "_expected": "grounded"
+    },
+    {
+      "_error": "[Errno -3] Temporary failure in name resolution",
+      "_idx": 78,
+      "_expected": "grounded"
+    },
+    {
+      "_error": "[Errno -3] Temporary failure in name resolution",
+      "_idx": 79,
+      "_expected": "grounded"
+    },
+    {
+      "_error": "[Errno -3] Temporary failure in name resolution",
+      "_idx": 80,
+      "_expected": "grounded"
+    },
+    {
+      "_error": "[Errno -3] Temporary failure in name resolution",
+      "_idx": 81,
+      "_expected": "grounded"
+    },
+    {
+      "_error": "[Errno -3] Temporary failure in name resolution",
+      "_idx": 82,
+      "_expected": "grounded"
+    },
+    {
+      "_error": "[Errno -3] Temporary failure in name resolution",
+      "_idx": 83,
+      "_expected": "grounded"
+    },
+    {
+      "_error": "[Errno -3] Temporary failure in name resolution",
+      "_idx": 84,
+      "_expected": "grounded"
+    },
+    {
+      "_error": "[Errno -3] Temporary failure in name resolution",
+      "_idx": 85,
+      "_expected": "grounded"
+    },
+    {
+      "_error": "[Errno -3] Temporary failure in name resolution",
+      "_idx": 86,
+      "_expected": "grounded"
+    },
+    {
+      "_error": "[Errno -3] Temporary failure in name resolution",
+      "_idx": 87,
+      "_expected": "grounded"
+    },
+    {
+      "_error": "[Errno -3] Temporary failure in name resolution",
+      "_idx": 88,
+      "_expected": "grounded"
+    },
+    {
+      "_error": "[Errno -3] Temporary failure in name resolution",
+      "_idx": 89,
+      "_expected": "grounded"
+    },
+    {
+      "_error": "[Errno -3] Temporary failure in name resolution",
+      "_idx": 90,
+      "_expected": "grounded"
+    },
+    {
+      "_error": "[Errno -3] Temporary failure in name resolution",
+      "_idx": 91,
+      "_expected": "grounded"
+    },
+    {
+      "_error": "[Errno -3] Temporary failure in name resolution",
+      "_idx": 92,
+      "_expected": "grounded"
+    },
+    {
+      "_error": "[Errno -3] Temporary failure in name resolution",
+      "_idx": 93,
+      "_expected": "grounded"
+    },
+    {
+      "_error": "[Errno -3] Temporary failure in name resolution",
+      "_idx": 94,
+      "_expected": "grounded"
+    },
+    {
+      "_error": "[Errno -3] Temporary failure in name resolution",
+      "_idx": 95,
+      "_expected": "grounded"
+    },
+    {
+      "_error": "[Errno -3] Temporary failure in name resolution",
+      "_idx": 96,
+      "_expected": "grounded"
+    },
+    {
+      "_error": "[Errno -3] Temporary failure in name resolution",
+      "_idx": 97,
+      "_expected": "grounded"
+    },
+    {
+      "_error": "[Errno -3] Temporary failure in name resolution",
+      "_idx": 98,
+      "_expected": "grounded"
+    },
+    {
+      "_error": "[Errno -3] Temporary failure in name resolution",
+      "_idx": 99,
+      "_expected": "grounded"
+    },
+    {
+      "_error": "[Errno -3] Temporary failure in name resolution",
+      "_idx": 100,
+      "_expected": "grounded"
+    },
+    {
+      "_error": "[Errno -3] Temporary failure in name resolution",
+      "_idx": 101,
+      "_expected": "grounded"
+    },
+    {
+      "_error": "[Errno -3] Temporary failure in name resolution",
+      "_idx": 102,
+      "_expected": "grounded"
+    },
+    {
+      "_error": "[Errno -3] Temporary failure in name resolution",
+      "_idx": 103,
+      "_expected": "grounded"
+    },
+    {
+      "_error": "[Errno -3] Temporary failure in name resolution",
+      "_idx": 104,
+      "_expected": "grounded"
+    },
+    {
+      "_error": "[Errno -3] Temporary failure in name resolution",
+      "_idx": 105,
+      "_expected": "grounded"
+    },
+    {
+      "_error": "[Errno -3] Temporary failure in name resolution",
+      "_idx": 106,
+      "_expected": "grounded"
+    },
+    {
+      "_error": "[Errno -3] Temporary failure in name resolution",
+      "_idx": 107,
+      "_expected": "grounded"
+    },
+    {
+      "_error": "[Errno -3] Temporary failure in name resolution",
+      "_idx": 108,
+      "_expected": "grounded"
+    },
+    {
+      "_error": "[Errno -3] Temporary failure in name resolution",
+      "_idx": 109,
+      "_expected": "grounded"
+    },
+    {
+      "_error": "[Errno -3] Temporary failure in name resolution",
+      "_idx": 110,
+      "_expected": "grounded"
+    },
+    {
+      "_error": "[Errno -3] Temporary failure in name resolution",
+      "_idx": 111,
+      "_expected": "grounded"
+    },
+    {
+      "_error": "[Errno -3] Temporary failure in name resolution",
+      "_idx": 112,
+      "_expected": "grounded"
+    },
+    {
+      "_error": "[Errno -3] Temporary failure in name resolution",
+      "_idx": 113,
+      "_expected": "grounded"
+    },
+    {
+      "_error": "[Errno -3] Temporary failure in name resolution",
+      "_idx": 114,
+      "_expected": "grounded"
+    },
+    {
+      "_error": "[Errno -3] Temporary failure in name resolution",
+      "_idx": 115,
+      "_expected": "grounded"
+    },
+    {
+      "_error": "[Errno -3] Temporary failure in name resolution",
+      "_idx": 116,
+      "_expected": "grounded"
+    },
+    {
+      "_error": "[Errno -3] Temporary failure in name resolution",
+      "_idx": 117,
+      "_expected": "grounded"
+    },
+    {
+      "_error": "[Errno -3] Temporary failure in name resolution",
+      "_idx": 118,
+      "_expected": "grounded"
+    },
+    {
+      "_error": "[Errno -3] Temporary failure in name resolution",
+      "_idx": 119,
+      "_expected": "grounded"
+    },
+    {
+      "_error": "[Errno -3] Temporary failure in name resolution",
+      "_idx": 120,
+      "_expected": "grounded"
+    },
+    {
+      "_error": "[Errno -3] Temporary failure in name resolution",
+      "_idx": 121,
+      "_expected": "grounded"
+    },
+    {
+      "_error": "[Errno -3] Temporary failure in name resolution",
+      "_idx": 122,
+      "_expected": "grounded"
+    },
+    {
+      "_error": "[Errno -3] Temporary failure in name resolution",
+      "_idx": 123,
+      "_expected": "grounded"
+    },
+    {
+      "_error": "[Errno -3] Temporary failure in name resolution",
+      "_idx": 124,
+      "_expected": "grounded"
+    },
+    {
+      "_error": "[Errno -3] Temporary failure in name resolution",
+      "_idx": 125,
+      "_expected": "hallucinated"
+    },
+    {
+      "_error": "[Errno -3] Temporary failure in name resolution",
+      "_idx": 126,
+      "_expected": "grounded"
+    },
+    {
+      "_error": "[Errno -3] Temporary failure in name resolution",
+      "_idx": 127,
+      "_expected": "grounded"
+    },
+    {
+      "_error": "[Errno -3] Temporary failure in name resolution",
+      "_idx": 128,
+      "_expected": "grounded"
+    },
+    {
+      "_error": "[Errno -3] Temporary failure in name resolution",
+      "_idx": 129,
+      "_expected": "grounded"
+    },
+    {
+      "_error": "[Errno -3] Temporary failure in name resolution",
+      "_idx": 130,
+      "_expected": "grounded"
+    },
+    {
+      "_error": "[Errno -3] Temporary failure in name resolution",
+      "_idx": 131,
+      "_expected": "grounded"
+    },
+    {
+      "_error": "[Errno -3] Temporary failure in name resolution",
+      "_idx": 132,
+      "_expected": "grounded"
+    },
+    {
+      "_error": "[Errno -3] Temporary failure in name resolution",
+      "_idx": 133,
+      "_expected": "grounded"
+    },
+    {
+      "_error": "[Errno -3] Temporary failure in name resolution",
+      "_idx": 134,
+      "_expected": "grounded"
+    },
+    {
+      "_error": "[Errno -3] Temporary failure in name resolution",
+      "_idx": 135,
+      "_expected": "grounded"
+    },
+    {
+      "_error": "[Errno -3] Temporary failure in name resolution",
+      "_idx": 136,
+      "_expected": "grounded"
+    },
+    {
+      "_error": "[Errno -3] Temporary failure in name resolution",
+      "_idx": 137,
+      "_expected": "grounded"
+    },
+    {
+      "_error": "[Errno -3] Temporary failure in name resolution",
+      "_idx": 138,
+      "_expected": "grounded"
+    },
+    {
+      "_error": "[Errno -3] Temporary failure in name resolution",
+      "_idx": 139,
+      "_expected": "grounded"
+    },
+    {
+      "_error": "[Errno -3] Temporary failure in name resolution",
+      "_idx": 140,
+      "_expected": "hallucinated"
+    },
+    {
+      "_error": "[Errno -3] Temporary failure in name resolution",
+      "_idx": 141,
+      "_expected": "grounded"
+    },
+    {
+      "_error": "[Errno -3] Temporary failure in name resolution",
+      "_idx": 142,
+      "_expected": "grounded"
+    },
+    {
+      "_error": "[Errno -3] Temporary failure in name resolution",
+      "_idx": 143,
+      "_expected": "grounded"
+    },
+    {
+      "_error": "[Errno -3] Temporary failure in name resolution",
+      "_idx": 144,
+      "_expected": "grounded"
+    },
+    {
+      "_error": "[Errno -3] Temporary failure in name resolution",
+      "_idx": 145,
+      "_expected": "hallucinated"
+    },
+    {
+      "_error": "[Errno -3] Temporary failure in name resolution",
+      "_idx": 146,
+      "_expected": "hallucinated"
+    },
+    {
+      "_error": "[Errno -3] Temporary failure in name resolution",
+      "_idx": 147,
+      "_expected": "grounded"
+    },
+    {
+      "_error": "[Errno -3] Temporary failure in name resolution",
+      "_idx": 148,
+      "_expected": "grounded"
+    },
+    {
+      "_error": "[Errno -3] Temporary failure in name resolution",
+      "_idx": 149,
+      "_expected": "grounded"
+    }
+  ]
+}

@@ -1,0 +1,74 @@
+{
+  "stories": [
+    {
+      "thread": "Arrest and Transfer",
+      "story": "In 1944, Anne Frank and seven others were arrested in the Amsterdam secret annex and sent to Auschwitz-Birkenau. That same year, Anne and Margot were separated from their mother and sent to the Bergen-Belsen camp in Germany for slave labor. Anne Frank's final entry was made. Anne Frank's cousin is a keeper of her legacy.",
+      "key_facts": [
+        "1944 arrest in Amsterdam secret annex",
+        "Sent to Auschwitz-Birkenau",
+        "Anne and Margot separated from mother and sent to Bergen-Belsen for slave labor",
+        "Anne Frank's final entry",
+        "Anne Frank's cousin is a keeper of her legacy"
+      ],
+      "explicit_unknowns": [
+        "not stated"
+      ]
+    },
+    {
+      "thread": "Conditions at Bergen-Belsen",
+      "story": "Witnesses described days at the Bergen-Belsen camp as filled with terror and dread. The sisters stayed in an overcrowded section with no lighting, little water, no latrine, and lice-ridden straw while violent storms shredded the tents. They endured long hours at roll call. In December 1944, classmate Nannette Blitz saw Anne, who was like a skeleton wrapped in a blanket because her clothes were crawling with lice.",
+      "key_facts": [
+        "Camp days filled with terror and dread",
+        "Overcrowded section with no lighting, little water, no latrine, and lice-ridden straw",
+        "Violent storms shredded tents",
+        "Long hours at roll call",
+        "Nannette Blitz saw Anne in December 1944 as a skeleton wrapped in a blanket due to lice"
+      ],
+      "explicit_unknowns": [
+        "not stated"
+      ]
+    },
+    {
+      "thread": "The Typhus Outbreak",
+      "story": "As the Russians advanced, the Bergen-Belsen camp became more crowded, leading to a deadly typhus outbreak that killed thousands daily. Typhus is an infectious disease caused by lice in places with poor hygiene, causing high fever, chills, and skin eruptions. Museum researchers wrote that Anne was exposed to the main carrier of epidemic typhus for an extended period due to lice in her clothes and bedstraw.",
+      "key_facts": [
+        "Russian advance increased crowding and disease",
+        "Typhus outbreak killed thousands daily",
+        "Typhus is caused by lice in poor hygiene and causes high fever, chills, and skin eruptions",
+        "Anne was exposed to the typhus carrier via lice in bedstraw and clothes"
+      ],
+      "explicit_unknowns": [
+        "not stated"
+      ]
+    },
+    {
+      "thread": "Research on Death Dates",
+      "story": "Anne Frank died of typhus at age 15 in a Nazi concentration camp. While the Bergen-Belsen camp was liberated on March 31, 1945, new research from the Anne Frank House shows Anne and Margot died at least a month earlier than previously thought. Researchers re-examined survivor testimonies and archives from the Red Cross, the International Training Service, and the Bergen-Belsen Memorial. They concluded the sisters probably did not survive to March 1945, contradicting previous determinations by Dutch authorities.",
+      "key_facts": [
+        "Anne died of typhus at age 15",
+        "Bergen-Belsen liberated March 31, 1945",
+        "Anne Frank House research indicates death was at least a month earlier than previously thought",
+        "Research sources included Red Cross, International Training Service, Bergen-Belsen Memorial, and survivor testimonies",
+        "Conclusion contradicts Dutch authorities' determination that they survived to March 1945"
+      ],
+      "explicit_unknowns": [
+        "not stated"
+      ]
+    },
+    {
+      "thread": "Final Timeline and Legacy",
+      "story": "Witnesses stated that Anne and Margot had symptoms before February 7, and authors Erika Prins and Gertjan Broek noted that typhus deaths usually occur around twelve days after symptoms appear. While Margot died before Anne, the exact dates of death remain unclear. Nannette Blitz recalled that Anne never gave up hope and was convinced she would survive. Anne's diary endures as one of the world's most popular books.",
+      "key_facts": [
+        "Symptoms appeared before February 7",
+        "Typhus deaths usually occur around 12 days after symptoms per Erika Prins and Gertjan Broek",
+        "Margot died before Anne",
+        "Nannette Blitz stated Anne never gave up hope and believed she would survive",
+        "Anne's diary is one of the world's most popular books"
+      ],
+      "explicit_unknowns": [
+        "exact dates of death"
+      ]
+    }
+  ],
+  "_elapsed": 169.6
+}

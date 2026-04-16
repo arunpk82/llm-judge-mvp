@@ -1,0 +1,329 @@
+{
+  "summary": [
+    {
+      "format": "raw",
+      "correct": 4,
+      "total": 4,
+      "accuracy": "4/4",
+      "avg_confidence": 0.975
+    },
+    {
+      "format": "38a",
+      "correct": 3,
+      "total": 4,
+      "accuracy": "3/4",
+      "avg_confidence": 0.95
+    },
+    {
+      "format": "38b",
+      "correct": 3,
+      "total": 4,
+      "accuracy": "3/4",
+      "avg_confidence": 0.975
+    },
+    {
+      "format": "38c",
+      "correct": 4,
+      "total": 4,
+      "accuracy": "4/4",
+      "avg_confidence": 0.975
+    },
+    {
+      "format": "38d",
+      "correct": 4,
+      "total": 4,
+      "accuracy": "4/4",
+      "avg_confidence": 1.0
+    }
+  ],
+  "per_format": {
+    "raw": [
+      {
+        "verdict": "HALLUCINATED",
+        "confidence": 0.9,
+        "reasoning": "The claim states that 'Three women, including Keonna Thomas of Philadelphia, were charged with attempting to join ISIS this week.' The source confirms that three women were arrested/charged this week (S1, S2, S13) and that Keonna Thomas of Philadelphia was one of them (S0, S3). The source also confirms that Keonna Thomas was charged with 'trying to travel overseas to fight for ISIS' (S0) and 'knowingly attempting to provide material support and resources to a designated foreign terrorist organization' (S11), which aligns with 'attempting to join ISIS.' However, the source explicitly states that the other two women, Noelle Velentzas and Asia Siddiqui, 'were arrested in New York and accused of planning to build an explosive device for attacks in the United States' (S13). This charge is distinct from 'attempting to join ISIS.' Therefore, the claim incorrectly generalizes the charge of 'attempting to join ISIS' to all three women, when the source specifies a different charge for two of them.",
+        "specific_issues": [
+          {
+            "claim_part": "Three women... were charged with attempting to join ISIS this week.",
+            "source_says": "Keonna Thomas was charged with trying to travel overseas to fight for ISIS (S0). Noelle Velentzas and Asia Siddiqui were accused of planning to build an explosive device for attacks in the United States (S13).",
+            "issue": "fabrication/misattribution"
+          }
+        ],
+        "test_id": "ragtruth_28_S0",
+        "expected": "hallucinated",
+        "correct": true
+      },
+      {
+        "verdict": "HALLUCINATED",
+        "confidence": 1.0,
+        "reasoning": "The claim consists of two parts. The first part, 'She was arrested on March 26,' is a hallucination. Source S10 explicitly states, 'It's not clear when or where she was arrested,' directly contradicting the claim's specific date. The second part, 'and could face 15 years in prison,' is grounded. Source S12 states, 'She could be sentenced to 15 years in prison,' which directly supports this assertion. However, since one part of the claim is a hallucination, the entire claim is deemed HALLUCINATED.",
+        "specific_issues": [
+          {
+            "claim_part": "She was arrested on March 26",
+            "source_says": "S10: It's not clear when or where she was arrested.",
+            "issue": "contradiction"
+          }
+        ],
+        "test_id": "ragtruth_29_S1",
+        "expected": "hallucinated",
+        "correct": true
+      },
+      {
+        "verdict": "GROUNDED",
+        "confidence": 1.0,
+        "reasoning": "The claim states that 'The FBI has charged a Philadelphia woman, Keonna Thomas, with trying to travel overseas to fight for ISIS.' This is directly supported by the COMPILED SOURCE. S0 explicitly states, 'The FBI charged a Philadelphia woman on Thursday with trying to travel overseas to fight for ISIS.' S3 identifies this woman as 'Keonna Thomas'. Therefore, all elements of the claim are explicitly grounded in the source.",
+        "specific_issues": [],
+        "test_id": "ragtruth_24_S0_clean",
+        "expected": "grounded",
+        "correct": true
+      },
+      {
+        "verdict": "GROUNDED",
+        "confidence": 1.0,
+        "reasoning": "The claim states two factual assertions. First, 'She purchased an electronic visa for Turkey on March 23'. Source S6 explicitly states, 'The FBI said Thomas purchased an electronic visa to Turkey on March 23.' The 'She' refers to Keonna Thomas, identified in S3. Second, the claim states 'and later bought a round-trip ticket to Barcelona on March 26.' Source S9 explicitly states, 'On March 26, Thomas purchased a ticket to Barcelona, with a March 29 departure and an April 15 return to the United States, the complaint said.' A ticket with both a departure and return date is a round-trip ticket. Both assertions are directly supported by the source, and the temporal order ('later bought') is also consistent with the dates provided in the source.",
+        "specific_issues": [],
+        "test_id": "ragtruth_26_S2_clean",
+        "expected": "grounded",
+        "correct": true
+      }
+    ],
+    "38a": [
+      {
+        "verdict": "HALLUCINATED",
+        "confidence": 0.9,
+        "reasoning": "The claim states that 'Three women, including Keonna Thomas of Philadelphia, were charged with attempting to join ISIS this week.' Let's break this down:\n\n1.  **'Three women... were charged'**: The source (S0) explicitly states that 'FBI charged Philadelphia woman' (Keonna Thomas), which is one woman. EVENT (S1) mentions 'Three women arrested... on terror charges', but specifies 'arrested', not 'charged'. EVENT (S13) mentions 'Noelle Velentzas and Asia Siddiqui arrested and accused', which are two women, also 'arrested'. The source does not state that 'three women were charged'. It conflates 'arrested' with 'charged' for the group of three, and misrepresents the number of individuals explicitly stated as 'charged'.\n2.  **'...including Keonna Thomas of Philadelphia'**: This part is grounded. EVENT (S0) states 'FBI charged Philadelphia woman', and entity resolution confirms 'a Philadelphia woman' = 'Keonna Thomas'.\n3.  **'...charged with attempting to join ISIS'**: For Keonna Thomas, this is grounded. EVENT (S0) states she was charged for 'trying to travel overseas to fight for ISIS', which is equivalent to 'attempting to join ISIS'. However, the claim attributes this specific charge to 'three women'. The 'three women' mentioned in S1 were 'arrested... on terror charges' (a general term), and the two women in S13 were 'accused planning to build an explosive device', not attempting to join ISIS. Therefore, attributing this specific charge to all three women is a fabrication.\n4.  **'...this week.'**: This part is grounded. Keonna Thomas was charged on 'Thursday' (S0), which falls within 'this week'. EVENT (S1) explicitly states 'Three women arrested this week'.\n\nIn summary, the claim fabricates the number of women explicitly charged and incorrectly attributes the specific charge of 'attempting to join ISIS' to all three women mentioned.",
+        "specific_issues": [
+          {
+            "claim_part": "Three women... were charged",
+            "source_says": "EVENT (S0) states 'FBI charged Philadelphia woman' (Keonna Thomas), which is one woman. EVENT (S1) states 'Three women arrested... on terror charges'. EVENT (S13) states 'Noelle Velentzas and Asia Siddiqui arrested and accused'. The source does not state that three women were charged.",
+            "issue": "fabrication"
+          },
+          {
+            "claim_part": "charged with attempting to join ISIS",
+            "source_says": "EVENT (S0) states Keonna Thomas was charged for 'trying to travel overseas to fight for ISIS'. EVENT (S1) states 'Three women arrested... on terror charges'. EVENT (S13) states Noelle Velentzas and Asia Siddiqui were 'accused planning to build an explosive device'. The source only attributes 'attempting to join ISIS' to Keonna Thomas.",
+            "issue": "fabrication"
+          }
+        ],
+        "test_id": "ragtruth_28_S0",
+        "expected": "hallucinated",
+        "correct": true
+      },
+      {
+        "verdict": "HALLUCINATED",
+        "confidence": 1.0,
+        "reasoning": "The claim states 'She was arrested on March 26'. The source explicitly states 'EXPLICITLY UNKNOWN: when she was arrested' (S10), referring to Keonna Thomas ('She'). While Keonna Thomas (Thomas) purchased a ticket on March 26 (S9), this is not the date of her arrest. Therefore, providing a specific arrest date is a fabrication and contradicts the source's explicit unknown status. The claim also states 'could face 15 years in prison'. There is no information in the provided COMPILED SOURCE about any potential prison sentence or the duration of such a sentence for Keonna Thomas or any other individual mentioned. This part of the claim is a fabrication.",
+        "specific_issues": [
+          {
+            "claim_part": "She was arrested on March 26",
+            "source_says": "EXPLICITLY UNKNOWN: when she was arrested (S10). Keonna Thomas (Thomas) purchased a ticket on March 26 (S9), but this is not stated as her arrest date.",
+            "issue": "contradiction/fabrication"
+          },
+          {
+            "claim_part": "could face 15 years in prison",
+            "source_says": "The source does not contain any information about a potential prison sentence or '15 years in prison' for Keonna Thomas or any other individual.",
+            "issue": "fabrication"
+          }
+        ],
+        "test_id": "ragtruth_29_S1",
+        "expected": "hallucinated",
+        "correct": true
+      },
+      {
+        "verdict": "GROUNDED",
+        "confidence": 1.0,
+        "reasoning": "The claim states that 'The FBI has charged a Philadelphia woman, Keonna Thomas, with trying to travel overseas to fight for ISIS.'\n\n1.  'The FBI has charged': EVENT (S0) explicitly states 'FBI charged Philadelphia woman'. This is grounded.\n2.  'a Philadelphia woman': EVENT (S0) explicitly states 'FBI charged Philadelphia woman'. This is grounded.\n3.  'Keonna Thomas': The entity resolution states 'a Philadelphia woman' = 'Keonna Thomas' (resolved at S3). This links the general description to the specific name, making it grounded.\n4.  'with trying to travel overseas': EVENT (S0) states the 'WHY' as 'trying to travel overseas'. This is grounded.\n5.  'to fight for ISIS': EVENT (S0) states the 'WHY' as 'trying to travel overseas to fight for ISIS'. This is grounded.\n\nAll components of the claim are directly supported by EVENT (S0) and the entity resolution.",
+        "specific_issues": [],
+        "test_id": "ragtruth_24_S0_clean",
+        "expected": "grounded",
+        "correct": true
+      },
+      {
+        "verdict": "HALLUCINATED",
+        "confidence": 0.9,
+        "reasoning": "The claim states that 'She purchased an electronic visa for Turkey on March 23 and later bought a round-trip ticket to Barcelona on March 26.' The compiled source (EVENT S6) confirms that 'Thomas' (resolved to 'Keonna Thomas') purchased an electronic visa for Turkey on March 23. The source (EVENT S9) also confirms that 'Thomas' purchased a ticket to Barcelona on March 26. However, the source only states 'purchased a ticket' and does not specify if it was a 'round-trip ticket'. Adding the detail 'round-trip' is a fabrication beyond the information provided in the compiled source.",
+        "specific_issues": [
+          {
+            "claim_part": "round-trip ticket",
+            "source_says": "purchased a ticket (from S9)",
+            "issue": "fabrication"
+          }
+        ],
+        "test_id": "ragtruth_26_S2_clean",
+        "expected": "grounded",
+        "correct": false
+      }
+    ],
+    "38b": [
+      {
+        "verdict": "HALLUCINATED",
+        "confidence": 0.9,
+        "reasoning": "The claim states that 'Three women, including Keonna Thomas of Philadelphia, were charged with attempting to join ISIS this week.' Let's break this down:\n\n1.  **'Three women... were charged this week.'**: The source states 'She is one of three women arrested this week on terror charges' (S1), referring to Keonna Thomas. It also mentions 'Two New York women also taken into custody' (S2) and identified as Noelle Velentzas and Asia Siddiqui (S13). Keonna Thomas was explicitly 'charged' (S0, Keonna Thomas thread). The New York women were 'taken into custody' and 'accused' (S13), and S1 implies they were 'arrested... on terror charges'. This part is largely supported.\n\n2.  **'...including Keonna Thomas of Philadelphia...'**: The source explicitly states 'FBI charged a Philadelphia woman' (S0, Keonna Thomas thread) and 'Identified as Keonna Thomas' (S3, Keonna Thomas thread). This part is grounded.\n\n3.  **'...charged with attempting to join ISIS...'**: For Keonna Thomas, the source states her 'Charge involves 'trying to travel overseas to fight for ISIS'' (S0, ISIS travel methods thread), which supports 'attempting to join ISIS'. However, for the two New York women, Noelle Velentzas and Asia Siddiqui, the source states they were 'accused of planning explosive device' (S13). The source does not state that the New York women were charged with 'attempting to join ISIS'. Therefore, generalizing this specific charge to all three women is a fabrication.",
+        "specific_issues": [
+          {
+            "claim_part": "Three women... were charged with attempting to join ISIS",
+            "source_says": "Keonna Thomas's charge involves 'trying to travel overseas to fight for ISIS' (S0, ISIS travel methods thread). Noelle Velentzas and Asia Siddiqui were 'accused of planning explosive device' (S13).",
+            "issue": "fabrication/generalization"
+          }
+        ],
+        "test_id": "ragtruth_28_S0",
+        "expected": "hallucinated",
+        "correct": true
+      },
+      {
+        "verdict": "HALLUCINATED",
+        "confidence": 1.0,
+        "reasoning": "The claim states that 'She was arrested on March 26'. However, the COMPILED SOURCE explicitly states in S10 of the 'Keonna Thomas thread' that 'Arrest details unclear'. Providing a specific date when the source states the details are unclear constitutes a fabrication. The second part of the claim, 'could face 15 years in prison', is directly supported by S12 of the 'Keonna Thomas thread', which states 'Could be sentenced to 15 years'. Since one part of the claim is fabricated, the entire claim is considered HALLUCINATED.",
+        "specific_issues": [
+          {
+            "claim_part": "She was arrested on March 26",
+            "source_says": "S10: Arrest details unclear",
+            "issue": "fabrication"
+          }
+        ],
+        "test_id": "ragtruth_29_S1",
+        "expected": "hallucinated",
+        "correct": true
+      },
+      {
+        "verdict": "GROUNDED",
+        "confidence": 1.0,
+        "reasoning": "The claim 'The FBI has charged a Philadelphia woman, Keonna Thomas, with trying to travel overseas to fight for ISIS' is fully supported by the compiled source. \n- 'The FBI has charged a Philadelphia woman' is directly stated in 'THREAD: Keonna Thomas thread' (S0) and 'CAUSAL: Why was Keonna Thomas charged?' (S0).\n- 'Keonna Thomas' is identified in 'THREAD: Keonna Thomas thread' (S3).\n- 'with trying to travel overseas to fight for ISIS' is explicitly stated as what the charge 'involves' in 'THREAD: ISIS travel methods and context thread' (S0). Furthermore, the 'CAUSAL: Why was Keonna Thomas charged?' section details her actions (purchasing a visa to Turkey, a ticket to Barcelona) and intent (radicalization in social media messages, intent to join ISIS) which align with 'trying to travel overseas to fight for ISIS'.",
+        "specific_issues": [],
+        "test_id": "ragtruth_24_S0_clean",
+        "expected": "grounded",
+        "correct": true
+      },
+      {
+        "verdict": "HALLUCINATED",
+        "confidence": 1.0,
+        "reasoning": "The claim states that Keonna Thomas purchased an electronic visa for Turkey on March 23 and a round-trip ticket to Barcelona on March 26. While the source confirms that Keonna Thomas (referred to as 'She' in the context of the 'Keonna Thomas thread') 'Purchased electronic visa to Turkey' (S6) and 'Purchased ticket to Barcelona' (S9), it does not provide any specific dates for these purchases. Additionally, the source does not specify that the ticket to Barcelona was 'round-trip'. Therefore, the specific dates (March 23 and March 26) and the 'round-trip' detail are fabricated beyond the information provided in the compiled source.",
+        "specific_issues": [
+          {
+            "claim_part": "on March 23",
+            "source_says": "The source states 'S6: Purchased electronic visa to Turkey' but provides no date for this purchase.",
+            "issue": "fabrication"
+          },
+          {
+            "claim_part": "round-trip ticket",
+            "source_says": "The source states 'S9: Purchased ticket to Barcelona' but does not specify if it was a 'round-trip' ticket.",
+            "issue": "fabrication"
+          },
+          {
+            "claim_part": "on March 26",
+            "source_says": "The source states 'S9: Purchased ticket to Barcelona' but provides no date for this purchase.",
+            "issue": "fabrication"
+          }
+        ],
+        "test_id": "ragtruth_26_S2_clean",
+        "expected": "grounded",
+        "correct": false
+      }
+    ],
+    "38c": [
+      {
+        "verdict": "HALLUCINATED",
+        "confidence": 0.9,
+        "reasoning": "The claim states that 'Three women, including Keonna Thomas of Philadelphia, were charged with attempting to join ISIS this week.' While Keonna Thomas was indeed charged with attempting to join ISIS (S0, S11) and was from Philadelphia, the source indicates that only Keonna Thomas was charged for this reason. The source also mentions the arrest of Noelle Velentzas and Asia Siddiqui on Thursday (S13), but their reason for arrest was 'planning to build an explosive device for attacks' (S13), not attempting to join ISIS. Therefore, the claim incorrectly groups Velentzas and Siddiqui with Thomas under the charge of 'attempting to join ISIS'.",
+        "specific_issues": [
+          {
+            "claim_part": "Three women... were charged with attempting to join ISIS",
+            "source_says": "Keonna Thomas was charged with trying to travel overseas to fight for ISIS (S0, S11). Noelle Velentzas and Asia Siddiqui were arrested for planning to build an explosive device for attacks (S13).",
+            "issue": "fabrication/misattribution"
+          }
+        ],
+        "test_id": "ragtruth_28_S0",
+        "expected": "hallucinated",
+        "correct": true
+      },
+      {
+        "verdict": "HALLUCINATED",
+        "confidence": 1.0,
+        "reasoning": "The claim states that Keonna Thomas was arrested on March 26. However, the compiled source explicitly lists 'Keonna Thomas arrest - ['when', 'where']' as UNKNOWN. Providing a specific date for the arrest when the source states it is unknown constitutes a hallucination. The second part of the claim, that she 'could face 15 years in prison', is directly supported by the source (S12: 'could be sentenced', 'target_of -> Keonna Thomas', 'outcome -> 15 years in prison'). Since one part of the claim is a fabrication, the overall claim is considered hallucinated.",
+        "specific_issues": [
+          {
+            "claim_part": "She was arrested on March 26",
+            "source_says": "The source states that Keonna Thomas was arrested (S1, S10) but explicitly marks the 'when' of her arrest as UNKNOWN.",
+            "issue": "fabrication"
+          }
+        ],
+        "test_id": "ragtruth_29_S1",
+        "expected": "hallucinated",
+        "correct": true
+      },
+      {
+        "verdict": "GROUNDED",
+        "confidence": 1.0,
+        "reasoning": "The claim states that 'The FBI has charged a Philadelphia woman, Keonna Thomas, with trying to travel overseas to fight for ISIS.' Each part of this claim is directly supported by the COMPILED SOURCE:\n- 'The FBI has charged': The source states 'EVENT HUB: charged (S0) agent_of -> FBI [S0] target_of -> Keonna Thomas [S0]'.\n- 'a Philadelphia woman, Keonna Thomas': The source identifies 'ENTITY: Keonna Thomas (age=30, loc=Philadelphia)'.\n- 'with trying to travel overseas': The source states 'EVENT HUB: trying to travel overseas (S0) agent_of -> Keonna Thomas [S0]'.\n- 'to fight for ISIS': The source specifies the reason for trying to travel overseas as 'why -> to fight for ISIS [S0]'.\nAll elements of the claim are explicitly present and correctly attributed in the source.",
+        "specific_issues": [],
+        "test_id": "ragtruth_24_S0_clean",
+        "expected": "grounded",
+        "correct": true
+      },
+      {
+        "verdict": "GROUNDED",
+        "confidence": 1.0,
+        "reasoning": "The claim states that Keonna Thomas purchased an electronic visa for Turkey on March 23 and a round-trip ticket to Barcelona on March 26. The compiled source explicitly supports both parts of this claim:\n- 'EVENT HUB: purchased electronic visa (S6) agent_of -> Keonna Thomas [S6] target_of -> Turkey [S6] when -> March 23 [S6]' confirms the visa purchase for Turkey on March 23 by Keonna Thomas.\n- 'EVENT HUB: purchased ticket (S9) agent_of -> Keonna Thomas [S9] target_of -> Barcelona [S9] when -> March 26 (purchase) [S9] where -> to Barcelona, from United States (return) [S9]' confirms Keonna Thomas purchased a round-trip ticket to Barcelona on March 26. \nAll details in the claim are directly and accurately supported by the source.",
+        "specific_issues": [],
+        "test_id": "ragtruth_26_S2_clean",
+        "expected": "grounded",
+        "correct": true
+      }
+    ],
+    "38d": [
+      {
+        "verdict": "HALLUCINATED",
+        "confidence": 1.0,
+        "reasoning": "The claim states that 'Three women, including Keonna Thomas of Philadelphia, were charged with attempting to join ISIS this week.' The source confirms that three women were arrested/charged this week, including Keonna Thomas of Philadelphia ([NY women's case], [Thomas case]). The source also confirms that Keonna Thomas was charged with 'trying to travel overseas to fight for ISIS' ([Thomas case]), which aligns with 'attempting to join ISIS'. However, the source explicitly states that the other two women, Noelle Velentzas and Asia Siddiqui, were 'accused them of planning to build an explosive device for attacks in the United States' ([NY women's case]). Therefore, the claim incorrectly attributes the charge of 'attempting to join ISIS' to all three women, when it only applies to Keonna Thomas. The charges for the other two women were different.",
+        "specific_issues": [
+          {
+            "claim_part": "Three women... were charged with attempting to join ISIS this week.",
+            "source_says": "Keonna Thomas was charged with trying to travel overseas to fight for ISIS. Noelle Velentzas and Asia Siddiqui were accused of planning to build an explosive device for attacks in the United States. All three were arrested/charged this week.",
+            "issue": "fabrication/misattribution - The claim incorrectly states that all three women were charged with attempting to join ISIS. Only Keonna Thomas was charged with this; the other two were charged with planning a domestic explosive device attack."
+          }
+        ],
+        "test_id": "ragtruth_28_S0",
+        "expected": "hallucinated",
+        "correct": true
+      },
+      {
+        "verdict": "HALLUCINATED",
+        "confidence": 1.0,
+        "reasoning": "The claim states two factual assertions about Keonna Thomas. The first assertion, 'She was arrested on March 26,' is contradicted by the source. The '[Thomas case]' section explicitly states, 'It is not clear when or where she was arrested.' While March 26 is mentioned in the source, it refers to the date she purchased a round-trip ticket to Barcelona, not her arrest. The second assertion, 'and could face 15 years in prison,' is directly supported by the source, which states, 'and could face 15 years in prison.' However, since one part of the claim is a direct fabrication/contradiction of the source, the overall claim is considered HALLUCINATED.",
+        "specific_issues": [
+          {
+            "claim_part": "She was arrested on March 26",
+            "source_says": "It is not clear when or where she was arrested.",
+            "issue": "contradiction"
+          }
+        ],
+        "test_id": "ragtruth_29_S1",
+        "expected": "hallucinated",
+        "correct": true
+      },
+      {
+        "verdict": "GROUNDED",
+        "confidence": 1.0,
+        "reasoning": "The claim states that 'The FBI has charged a Philadelphia woman, Keonna Thomas, with trying to travel overseas to fight for ISIS.' The source explicitly states in the '[Thomas case]' section: 'The FBI charged Keonna Thomas, a 30-year-old Philadelphia woman, on Thursday with trying to travel overseas to fight for ISIS.' Every factual assertion in the claim is directly supported by the source without any contradiction, fabrication, or unsupported combination of facts.",
+        "specific_issues": [],
+        "test_id": "ragtruth_24_S0_clean",
+        "expected": "grounded",
+        "correct": true
+      },
+      {
+        "verdict": "GROUNDED",
+        "confidence": 1.0,
+        "reasoning": "The claim states that 'She purchased an electronic visa for Turkey on March 23 and later bought a round-trip ticket to Barcelona on March 26.' The COMPILED SOURCE, specifically the '[Thomas case]' section, explicitly states: 'She purchased an electronic visa to Turkey on March 23 and a round-trip ticket to Barcelona on March 26.' The claim accurately reflects the information provided in the source, including the dates and the sequence of events (implicitly 'later' due to the dates).",
+        "specific_issues": [],
+        "test_id": "ragtruth_26_S2_clean",
+        "expected": "grounded",
+        "correct": true
+      }
+    ]
+  },
+  "extraction_times": {
+    "38a": 39.6,
+    "38b": 87.8,
+    "38c": 69.7,
+    "38d": 21.1
+  }
+}

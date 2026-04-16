@@ -1,0 +1,1281 @@
+{
+  "event_hubs": [
+    {
+      "event_id": "EVT_1",
+      "action": "charged",
+      "source_sentence": "S0",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "ENT_1",
+          "source": "S0"
+        },
+        {
+          "type": "target_of",
+          "target": "ENT_2",
+          "source": "S0"
+        },
+        {
+          "type": "when",
+          "target": "TIME_1",
+          "source": "S0"
+        },
+        {
+          "type": "why",
+          "target": "EVT_2",
+          "source": "S0"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_2",
+      "action": "trying to travel",
+      "source_sentence": "S0",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "ENT_2",
+          "source": "S0"
+        },
+        {
+          "type": "where",
+          "target": "PLACE_1",
+          "source": "S0"
+        },
+        {
+          "type": "why",
+          "target": "EVT_3",
+          "source": "S0"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_3",
+      "action": "fight",
+      "source_sentence": "S0",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "ENT_2",
+          "source": "S0"
+        },
+        {
+          "type": "target_of",
+          "target": "ENT_3",
+          "source": "S0"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_4",
+      "action": "arrested",
+      "source_sentence": "S1",
+      "edges": [
+        {
+          "type": "target_of",
+          "target": "ENT_2",
+          "source": "S1"
+        },
+        {
+          "type": "when",
+          "target": "TIME_2",
+          "source": "S1"
+        },
+        {
+          "type": "why",
+          "target": "EVT_5",
+          "source": "S1"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_5",
+      "action": "charges",
+      "source_sentence": "S1",
+      "edges": [
+        {
+          "type": "target_of",
+          "target": "ENT_2",
+          "source": "S1"
+        },
+        {
+          "type": "how",
+          "target": "terror",
+          "source": "S1"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_6",
+      "action": "taken into custody",
+      "source_sentence": "S2",
+      "edges": [
+        {
+          "type": "target_of",
+          "target": "ENT_4",
+          "source": "S2"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_7",
+      "action": "cites",
+      "source_sentence": "S3",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "ENT_5",
+          "source": "S3"
+        },
+        {
+          "type": "target_of",
+          "target": "ENT_6",
+          "source": "S3"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_8",
+      "action": "sent",
+      "source_sentence": "S3",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "ENT_2",
+          "source": "S3"
+        },
+        {
+          "type": "target_of",
+          "target": "ENT_6",
+          "source": "S3"
+        },
+        {
+          "type": "when",
+          "target": "TIME_3",
+          "source": "S3"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_9",
+      "action": "said",
+      "source_sentence": "S3",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "ENT_7",
+          "source": "S3"
+        },
+        {
+          "type": "content",
+          "target": "If we truly knew the realities ... we all would be rushing to join our brothers in the front lines pray ALLAH accept us as shuhada [martyrs].",
+          "source": "S3"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_10",
+      "action": "said",
+      "source_sentence": "S4",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "ENT_8",
+          "source": "S4"
+        },
+        {
+          "type": "content",
+          "target": "When you're a mujahid [violent jihadi fighter] your death becomes a wedding.",
+          "source": "S4"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_11",
+      "action": "said",
+      "source_sentence": "S4",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "ENT_1",
+          "source": "S4"
+        },
+        {
+          "type": "reports_on",
+          "target": "EVT_12",
+          "source": "S4"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_12",
+      "action": "purchased",
+      "source_sentence": "S4",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "ENT_2",
+          "source": "S4"
+        },
+        {
+          "type": "target_of",
+          "target": "ENT_9",
+          "source": "S4"
+        },
+        {
+          "type": "where",
+          "target": "PLACE_2",
+          "source": "S4"
+        },
+        {
+          "type": "when",
+          "target": "TIME_4",
+          "source": "S4"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_13",
+      "action": "enter",
+      "source_sentence": "S5",
+      "edges": [
+        {
+          "type": "where",
+          "target": "PLACE_3",
+          "source": "S5"
+        },
+        {
+          "type": "how",
+          "target": "from Turkey",
+          "source": "S5"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_14",
+      "action": "join",
+      "source_sentence": "S5",
+      "edges": [
+        {
+          "type": "target_of",
+          "target": "ENT_3",
+          "source": "S5"
+        },
+        {
+          "type": "how",
+          "target": "from Turkey",
+          "source": "S5"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_15",
+      "action": "advises",
+      "source_sentence": "S6",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "ENT_10",
+          "source": "S6"
+        },
+        {
+          "type": "target_of",
+          "target": "ENT_11",
+          "source": "S6"
+        },
+        {
+          "type": "how",
+          "target": "EVT_16",
+          "source": "S6"
+        },
+        {
+          "type": "how",
+          "target": "EVT_17",
+          "source": "S6"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_16",
+      "action": "buy",
+      "source_sentence": "S6",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "ENT_11",
+          "source": "S6"
+        },
+        {
+          "type": "target_of",
+          "target": "ENT_12",
+          "source": "S6"
+        },
+        {
+          "type": "where",
+          "target": "PLACE_4",
+          "source": "S6"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_17",
+      "action": "purchase",
+      "source_sentence": "S6",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "ENT_11",
+          "source": "S6"
+        },
+        {
+          "type": "target_of",
+          "target": "ENT_13",
+          "source": "S6"
+        },
+        {
+          "type": "when",
+          "target": "once they arrive overseas",
+          "source": "S6"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_18",
+      "action": "said",
+      "source_sentence": "S6",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "ENT_1",
+          "source": "S6"
+        },
+        {
+          "type": "reports_on",
+          "target": "EVT_15",
+          "source": "S6"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_19",
+      "action": "purchased",
+      "source_sentence": "S7",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "ENT_2",
+          "source": "S7"
+        },
+        {
+          "type": "target_of",
+          "target": "ENT_14",
+          "source": "S7"
+        },
+        {
+          "type": "when",
+          "target": "TIME_5",
+          "source": "S7"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_20",
+      "action": "departure",
+      "source_sentence": "S7",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "ENT_2",
+          "source": "S7"
+        },
+        {
+          "type": "when",
+          "target": "TIME_6",
+          "source": "S7"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_21",
+      "action": "return",
+      "source_sentence": "S7",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "ENT_2",
+          "source": "S7"
+        },
+        {
+          "type": "when",
+          "target": "TIME_7",
+          "source": "S7"
+        },
+        {
+          "type": "where",
+          "target": "PLACE_5",
+          "source": "S7"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_22",
+      "action": "said",
+      "source_sentence": "S7",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "ENT_5",
+          "source": "S7"
+        },
+        {
+          "type": "reports_on",
+          "target": "EVT_19",
+          "source": "S7"
+        },
+        {
+          "type": "reports_on",
+          "target": "EVT_20",
+          "source": "S7"
+        },
+        {
+          "type": "reports_on",
+          "target": "EVT_21",
+          "source": "S7"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_23",
+      "action": "charged",
+      "source_sentence": "S9",
+      "edges": [
+        {
+          "type": "target_of",
+          "target": "ENT_2",
+          "source": "S9"
+        },
+        {
+          "type": "why",
+          "target": "EVT_24",
+          "source": "S9"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_24",
+      "action": "attempting to provide",
+      "source_sentence": "S9",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "ENT_2",
+          "source": "S9"
+        },
+        {
+          "type": "target_of",
+          "target": "ENT_15",
+          "source": "S9"
+        },
+        {
+          "type": "recipient",
+          "target": "ENT_16",
+          "source": "S9"
+        },
+        {
+          "type": "how",
+          "target": "knowingly",
+          "source": "S9"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_25",
+      "action": "sentenced",
+      "source_sentence": "S10",
+      "edges": [
+        {
+          "type": "target_of",
+          "target": "ENT_2",
+          "source": "S10"
+        },
+        {
+          "type": "outcome",
+          "target": "15 years in prison",
+          "source": "S10"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_26",
+      "action": "arrested",
+      "source_sentence": "S11",
+      "edges": [
+        {
+          "type": "target_of",
+          "target": "ENT_17",
+          "source": "S11"
+        },
+        {
+          "type": "target_of",
+          "target": "ENT_18",
+          "source": "S11"
+        },
+        {
+          "type": "when",
+          "target": "TIME_1",
+          "source": "S11"
+        },
+        {
+          "type": "where",
+          "target": "PLACE_6",
+          "source": "S11"
+        },
+        {
+          "type": "why",
+          "target": "EVT_27",
+          "source": "S11"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_27",
+      "action": "planning to build",
+      "source_sentence": "S11",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "ENT_17",
+          "source": "S11"
+        },
+        {
+          "type": "agent_of",
+          "target": "ENT_18",
+          "source": "S11"
+        },
+        {
+          "type": "target_of",
+          "target": "ENT_19",
+          "source": "S11"
+        },
+        {
+          "type": "why",
+          "target": "EVT_28",
+          "source": "S11"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_28",
+      "action": "attacks",
+      "source_sentence": "S11",
+      "edges": [
+        {
+          "type": "where",
+          "target": "PLACE_5",
+          "source": "S11"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_29",
+      "action": "said",
+      "source_sentence": "S11",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "ENT_20",
+          "source": "S11"
+        },
+        {
+          "type": "reports_on",
+          "target": "EVT_26",
+          "source": "S11"
+        },
+        {
+          "type": "reports_on",
+          "target": "EVT_27",
+          "source": "S11"
+        },
+        {
+          "type": "reports_on",
+          "target": "EVT_28",
+          "source": "S11"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_30",
+      "action": "prosecuted or is prosecuting",
+      "source_sentence": "S12",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "ENT_21",
+          "source": "S12"
+        },
+        {
+          "type": "target_of",
+          "target": "ENT_22",
+          "source": "S12"
+        },
+        {
+          "type": "when",
+          "target": "TIME_8",
+          "source": "S12"
+        },
+        {
+          "type": "about",
+          "target": "EVT_31",
+          "source": "S12"
+        },
+        {
+          "type": "about",
+          "target": "EVT_32",
+          "source": "S12"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_31",
+      "action": "attempting to travel",
+      "source_sentence": "S12",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "ENT_23",
+          "source": "S12"
+        },
+        {
+          "type": "where",
+          "target": "PLACE_7",
+          "source": "S12"
+        },
+        {
+          "type": "why",
+          "target": "EVT_33",
+          "source": "S12"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_32",
+      "action": "provide support",
+      "source_sentence": "S12",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "ENT_23",
+          "source": "S12"
+        },
+        {
+          "type": "recipient",
+          "target": "ENT_24",
+          "source": "S12"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_33",
+      "action": "join",
+      "source_sentence": "S12",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "ENT_23",
+          "source": "S12"
+        },
+        {
+          "type": "target_of",
+          "target": "ENT_24",
+          "source": "S12"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_34",
+      "action": "involve support",
+      "source_sentence": "S13",
+      "edges": [
+        {
+          "type": "target_of",
+          "target": "ENT_25",
+          "source": "S13"
+        },
+        {
+          "type": "recipient",
+          "target": "ENT_3",
+          "source": "S13"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_35",
+      "action": "told",
+      "source_sentence": "S14",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "ENT_26",
+          "source": "S14"
+        },
+        {
+          "type": "target_of",
+          "target": "ENT_27",
+          "source": "S14"
+        },
+        {
+          "type": "when",
+          "target": "TIME_1",
+          "source": "S14"
+        },
+        {
+          "type": "content",
+          "target": "The terrorist threat is more decentralized, more diffuse, more complicated. It involves the potential lone wolf actor, it involves the effective use of social media, the Internet.",
+          "source": "S14"
+        }
+      ]
+    }
+  ],
+  "entities": [
+    {
+      "name": "FBI",
+      "aliases": [],
+      "attributes": {},
+      "participates_in": [
+        "EVT_1",
+        "EVT_11",
+        "EVT_18"
+      ],
+      "source_sentences": [
+        "S0",
+        "S4",
+        "S6"
+      ]
+    },
+    {
+      "name": "Keonna Thomas",
+      "aliases": [
+        "Young Lioness",
+        "Fatayat Al Khilafah"
+      ],
+      "attributes": {
+        "age": "30",
+        "location": "Philadelphia",
+        "description": "one of three women arrested this week on terror charges"
+      },
+      "participates_in": [
+        "EVT_1",
+        "EVT_2",
+        "EVT_3",
+        "EVT_4",
+        "EVT_5",
+        "EVT_8",
+        "EVT_12",
+        "EVT_19",
+        "EVT_20",
+        "EVT_21",
+        "EVT_23",
+        "EVT_24",
+        "EVT_25"
+      ],
+      "source_sentences": [
+        "S0",
+        "S1",
+        "S3",
+        "S4",
+        "S7",
+        "S9",
+        "S10"
+      ]
+    },
+    {
+      "name": "ISIS",
+      "aliases": [],
+      "attributes": {},
+      "participates_in": [
+        "EVT_3",
+        "EVT_14",
+        "EVT_34"
+      ],
+      "source_sentences": [
+        "S0",
+        "S5",
+        "S13"
+      ]
+    },
+    {
+      "name": "Two New York women",
+      "aliases": [],
+      "attributes": {
+        "location": "New York"
+      },
+      "participates_in": [
+        "EVT_6"
+      ],
+      "source_sentences": [
+        "S2"
+      ]
+    },
+    {
+      "name": "FBI complaint",
+      "aliases": [],
+      "attributes": {},
+      "participates_in": [
+        "EVT_7",
+        "EVT_22"
+      ],
+      "source_sentences": [
+        "S3",
+        "S7"
+      ]
+    },
+    {
+      "name": "numerous social media messages",
+      "aliases": [],
+      "attributes": {},
+      "participates_in": [
+        "EVT_7",
+        "EVT_8"
+      ],
+      "source_sentences": [
+        "S3"
+      ]
+    },
+    {
+      "name": "One Twitter message",
+      "aliases": [],
+      "attributes": {},
+      "participates_in": [
+        "EVT_9"
+      ],
+      "source_sentences": [
+        "S3"
+      ]
+    },
+    {
+      "name": "Another message",
+      "aliases": [],
+      "attributes": {},
+      "participates_in": [
+        "EVT_10"
+      ],
+      "source_sentences": [
+        "S4"
+      ]
+    },
+    {
+      "name": "an electronic visa",
+      "aliases": [],
+      "attributes": {},
+      "participates_in": [
+        "EVT_12"
+      ],
+      "source_sentences": [
+        "S4"
+      ]
+    },
+    {
+      "name": "An ISIS manual",
+      "aliases": [],
+      "attributes": {},
+      "participates_in": [
+        "EVT_15"
+      ],
+      "source_sentences": [
+        "S6"
+      ]
+    },
+    {
+      "name": "recruits",
+      "aliases": [],
+      "attributes": {},
+      "participates_in": [
+        "EVT_15",
+        "EVT_16",
+        "EVT_17"
+      ],
+      "source_sentences": [
+        "S6"
+      ]
+    },
+    {
+      "name": "round-trip tickets",
+      "aliases": [],
+      "attributes": {},
+      "participates_in": [
+        "EVT_16"
+      ],
+      "source_sentences": [
+        "S6"
+      ]
+    },
+    {
+      "name": "tickets for their real destination",
+      "aliases": [],
+      "attributes": {},
+      "participates_in": [
+        "EVT_17"
+      ],
+      "source_sentences": [
+        "S6"
+      ]
+    },
+    {
+      "name": "a ticket to Barcelona",
+      "aliases": [],
+      "attributes": {},
+      "participates_in": [
+        "EVT_19"
+      ],
+      "source_sentences": [
+        "S7"
+      ]
+    },
+    {
+      "name": "material support and resources",
+      "aliases": [],
+      "attributes": {},
+      "participates_in": [
+        "EVT_24"
+      ],
+      "source_sentences": [
+        "S9"
+      ]
+    },
+    {
+      "name": "a designated foreign terrorist organization",
+      "aliases": [],
+      "attributes": {},
+      "participates_in": [
+        "EVT_24"
+      ],
+      "source_sentences": [
+        "S9"
+      ]
+    },
+    {
+      "name": "Noelle Velentzas",
+      "aliases": [],
+      "attributes": {
+        "age": "28",
+        "relationship": "former roommate of Asia Siddiqui"
+      },
+      "participates_in": [
+        "EVT_26",
+        "EVT_27"
+      ],
+      "source_sentences": [
+        "S11"
+      ]
+    },
+    {
+      "name": "Asia Siddiqui",
+      "aliases": [],
+      "attributes": {
+        "age": "31",
+        "relationship": "former roommate of Noelle Velentzas"
+      },
+      "participates_in": [
+        "EVT_26",
+        "EVT_27"
+      ],
+      "source_sentences": [
+        "S11"
+      ]
+    },
+    {
+      "name": "an explosive device",
+      "aliases": [],
+      "attributes": {},
+      "participates_in": [
+        "EVT_27"
+      ],
+      "source_sentences": [
+        "S11"
+      ]
+    },
+    {
+      "name": "federal prosecutors",
+      "aliases": [],
+      "attributes": {},
+      "participates_in": [
+        "EVT_29"
+      ],
+      "source_sentences": [
+        "S11"
+      ]
+    },
+    {
+      "name": "the Justice Department's National Security Division",
+      "aliases": [],
+      "attributes": {},
+      "participates_in": [
+        "EVT_30"
+      ],
+      "source_sentences": [
+        "S12"
+      ]
+    },
+    {
+      "name": "more than 30 cases",
+      "aliases": [],
+      "attributes": {},
+      "participates_in": [
+        "EVT_30"
+      ],
+      "source_sentences": [
+        "S12"
+      ]
+    },
+    {
+      "name": "people (in these cases)",
+      "aliases": [],
+      "attributes": {},
+      "participates_in": [
+        "EVT_31",
+        "EVT_32",
+        "EVT_33"
+      ],
+      "source_sentences": [
+        "S12"
+      ]
+    },
+    {
+      "name": "terrorist groups",
+      "aliases": [],
+      "attributes": {},
+      "participates_in": [
+        "EVT_32",
+        "EVT_33"
+      ],
+      "source_sentences": [
+        "S12"
+      ]
+    },
+    {
+      "name": "18 cases",
+      "aliases": [],
+      "attributes": {
+        "description": "allegedly involve support to ISIS"
+      },
+      "participates_in": [
+        "EVT_34"
+      ],
+      "source_sentences": [
+        "S13"
+      ]
+    },
+    {
+      "name": "Homeland Security Secretary Jeh Johnson",
+      "aliases": [],
+      "attributes": {
+        "title": "Homeland Security Secretary"
+      },
+      "participates_in": [
+        "EVT_35"
+      ],
+      "source_sentences": [
+        "S14"
+      ]
+    },
+    {
+      "name": "reporters",
+      "aliases": [],
+      "attributes": {},
+      "participates_in": [
+        "EVT_35"
+      ],
+      "source_sentences": [
+        "S14"
+      ]
+    },
+    {
+      "name": "Thursday",
+      "aliases": [],
+      "attributes": {},
+      "participates_in": [
+        "EVT_1",
+        "EVT_26",
+        "EVT_35"
+      ],
+      "source_sentences": [
+        "S0",
+        "S11",
+        "S14"
+      ]
+    },
+    {
+      "name": "this week",
+      "aliases": [],
+      "attributes": {},
+      "participates_in": [
+        "EVT_4"
+      ],
+      "source_sentences": [
+        "S1"
+      ]
+    },
+    {
+      "name": "August 2013",
+      "aliases": [],
+      "attributes": {},
+      "participates_in": [
+        "EVT_8"
+      ],
+      "source_sentences": [
+        "S3"
+      ]
+    },
+    {
+      "name": "March 23",
+      "aliases": [],
+      "attributes": {},
+      "participates_in": [
+        "EVT_12"
+      ],
+      "source_sentences": [
+        "S4"
+      ]
+    },
+    {
+      "name": "March 26",
+      "aliases": [],
+      "attributes": {},
+      "participates_in": [
+        "EVT_19"
+      ],
+      "source_sentences": [
+        "S7"
+      ]
+    },
+    {
+      "name": "March 29",
+      "aliases": [],
+      "attributes": {},
+      "participates_in": [
+        "EVT_20"
+      ],
+      "source_sentences": [
+        "S7"
+      ]
+    },
+    {
+      "name": "April 15",
+      "aliases": [],
+      "attributes": {},
+      "participates_in": [
+        "EVT_21"
+      ],
+      "source_sentences": [
+        "S7"
+      ]
+    },
+    {
+      "name": "past 18 months",
+      "aliases": [],
+      "attributes": {},
+      "participates_in": [
+        "EVT_30"
+      ],
+      "source_sentences": [
+        "S12"
+      ]
+    },
+    {
+      "name": "overseas",
+      "aliases": [],
+      "attributes": {},
+      "participates_in": [
+        "EVT_2",
+        "EVT_17"
+      ],
+      "source_sentences": [
+        "S0",
+        "S6"
+      ]
+    },
+    {
+      "name": "Turkey",
+      "aliases": [],
+      "attributes": {},
+      "participates_in": [
+        "EVT_12",
+        "EVT_13",
+        "EVT_14"
+      ],
+      "source_sentences": [
+        "S4",
+        "S5"
+      ]
+    },
+    {
+      "name": "Syria",
+      "aliases": [],
+      "attributes": {},
+      "participates_in": [
+        "EVT_13"
+      ],
+      "source_sentences": [
+        "S5"
+      ]
+    },
+    {
+      "name": "Spain",
+      "aliases": [],
+      "attributes": {},
+      "participates_in": [
+        "EVT_16"
+      ],
+      "source_sentences": [
+        "S6"
+      ]
+    },
+    {
+      "name": "United States",
+      "aliases": [],
+      "attributes": {},
+      "participates_in": [
+        "EVT_21",
+        "EVT_28"
+      ],
+      "source_sentences": [
+        "S7",
+        "S11"
+      ]
+    },
+    {
+      "name": "New York",
+      "aliases": [],
+      "attributes": {},
+      "participates_in": [
+        "EVT_26"
+      ],
+      "source_sentences": [
+        "S11"
+      ]
+    },
+    {
+      "name": "abroad",
+      "aliases": [],
+      "attributes": {},
+      "participates_in": [
+        "EVT_31"
+      ],
+      "source_sentences": [
+        "S12"
+      ]
+    }
+  ],
+  "inter_event_edges": [],
+  "explicit_unknowns": [
+    {
+      "about": "Keonna Thomas's arrest",
+      "unknown_slots": [
+        "when",
+        "where"
+      ],
+      "source": "S8"
+    }
+  ],
+  "_elapsed": 90.5
+}

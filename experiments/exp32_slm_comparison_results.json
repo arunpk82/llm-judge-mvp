@@ -1,0 +1,689 @@
+{
+  "experiment": "exp32_slm_comparison",
+  "timestamp": "2026-04-12T18:39:42Z",
+  "elapsed_s": 3726.1,
+  "n_sources": 2,
+  "models_tested": [
+    "gemini-baseline",
+    "gemma-4-31b",
+    "gemma-4-26b-moe",
+    "llama-3.3-70b",
+    "qwen3-32b"
+  ],
+  "results": [
+    {
+      "model_key": "gemini-baseline",
+      "display_name": "Gemini 2.5 Flash (BASELINE)",
+      "provider": "baseline",
+      "aggregate": {
+        "avg_entities": 65.5,
+        "avg_events": 59.0,
+        "avg_relationships": 44.0,
+        "avg_numerical": 14.5,
+        "avg_total_items": 206.0,
+        "avg_passes_ok": 5.0,
+        "total_time_s": 478.6,
+        "avg_time_per_source_s": 239.3,
+        "n_failures": 0,
+        "json_parse_success_rate": 1.0,
+        "avg_cross_val_gaps": 16.0
+      },
+      "sources": [
+        {
+          "source_idx": 0,
+          "source_len": 2086,
+          "case_ids": [
+            "ragtruth_24",
+            "ragtruth_25",
+            "ragtruth_26",
+            "ragtruth_27",
+            "ragtruth_28",
+            "ragtruth_29"
+          ],
+          "metrics": {
+            "entities": 54,
+            "events": 41,
+            "relationships": 41,
+            "numerical_facts": 11,
+            "temporal_facts": 8,
+            "negations": 0,
+            "absent_info": 1,
+            "corrections": 0,
+            "boundaries": 4,
+            "total_items": 160,
+            "passes_ok": 5,
+            "passes_total": 5
+          },
+          "cross_validation": {
+            "gaps": [
+              "P3\u2192P1: Entity 'brothers' not in P1 entities",
+              "P3\u2192P1: Entity 'custody' not in P1 entities",
+              "P3\u2192P1: Entity 'custody' not in P1 entities"
+            ],
+            "n_gaps": 3,
+            "stats": {
+              "p2_actors_in_p1": 41,
+              "p2_actors_total": 41,
+              "p3_entities_in_p1": 79,
+              "p3_entities_total": 82,
+              "p4_entities_in_p1": 22,
+              "p4_entities_total": 0,
+              "p2_resolution_rate": 1.0,
+              "p3_resolution_rate": 0.963
+            }
+          },
+          "pass_times": {
+            "P1_entities": 45.8,
+            "P2_events": 53.3,
+            "P3_relationships": 46.0,
+            "P4_numbers": 24.9,
+            "P5_negations": 8.9,
+            "P6_verify": 30.4
+          },
+          "pass_failures": [],
+          "total_time_s": 209.3
+        },
+        {
+          "source_idx": 1,
+          "source_len": 3900,
+          "case_ids": [
+            "ragtruth_42",
+            "ragtruth_43",
+            "ragtruth_44",
+            "ragtruth_45",
+            "ragtruth_46",
+            "ragtruth_47"
+          ],
+          "metrics": {
+            "entities": 77,
+            "events": 77,
+            "relationships": 47,
+            "numerical_facts": 18,
+            "temporal_facts": 7,
+            "negations": 5,
+            "absent_info": 1,
+            "corrections": 4,
+            "boundaries": 16,
+            "total_items": 252,
+            "passes_ok": 5,
+            "passes_total": 5
+          },
+          "cross_validation": {
+            "gaps": [
+              "P2\u2192P1: Actor 'N/A' not in P1 entities",
+              "P2\u2192P1: Actor 'That' not in P1 entities",
+              "P2\u2192P1: Actor 'N/A' not in P1 entities",
+              "P2\u2192P1: Actor 'N/A' not in P1 entities",
+              "P2\u2192P1: Actor 'N/A' not in P1 entities",
+              "P2\u2192P1: Actor 'N/A' not in P1 entities",
+              "P2\u2192P1: Actor 'N/A' not in P1 entities",
+              "P2\u2192P1: Actor 'N/A' not in P1 entities",
+              "P2\u2192P1: Actor 'N/A' not in P1 entities",
+              "P2\u2192P1: Actor 'they' not in P1 entities",
+              "P2\u2192P1: Actor 'N/A' not in P1 entities",
+              "P2\u2192P1: Actor 'N/A' not in P1 entities",
+              "P2\u2192P1: Actor 'None of this' not in P1 entities",
+              "P2\u2192P1: Actor 'N/A' not in P1 entities",
+              "P2\u2192P1: Actor 'N/A' not in P1 entities",
+              "P2\u2192P1: Actor 'N/A' not in P1 entities",
+              "P2\u2192P1: Actor 'N/A' not in P1 entities",
+              "P2\u2192P1: Actor 'N/A' not in P1 entities",
+              "P2\u2192P1: Actor 'We' not in P1 entities",
+              "P2\u2192P1: Actor 'We' not in P1 entities"
+            ],
+            "n_gaps": 29,
+            "stats": {
+              "p2_actors_in_p1": 51,
+              "p2_actors_total": 77,
+              "p3_entities_in_p1": 93,
+              "p3_entities_total": 94,
+              "p4_entities_in_p1": 34,
+              "p4_entities_total": 0,
+              "p2_resolution_rate": 0.662,
+              "p3_resolution_rate": 0.989
+            }
+          },
+          "pass_times": {
+            "P1_entities": 54.4,
+            "P2_events": 66.0,
+            "P3_relationships": 43.3,
+            "P4_numbers": 26.8,
+            "P5_negations": 27.4,
+            "P6_verify": 51.4
+          },
+          "pass_failures": [],
+          "total_time_s": 269.3
+        }
+      ]
+    },
+    {
+      "model_key": "gemma-4-31b",
+      "display_name": "Gemma 4 31B Dense",
+      "provider": "google",
+      "aggregate": {
+        "avg_entities": 61.0,
+        "avg_events": 34.0,
+        "avg_relationships": 11.5,
+        "avg_numerical": 14.0,
+        "avg_total_items": 137.5,
+        "avg_passes_ok": 5.0,
+        "total_time_s": 1132.3,
+        "avg_time_per_source_s": 566.2,
+        "n_failures": 0,
+        "json_parse_success_rate": 1.0,
+        "avg_cross_val_gaps": 5.0
+      },
+      "sources": [
+        {
+          "source_idx": 0,
+          "source_len": 2086,
+          "case_ids": [
+            "ragtruth_24",
+            "ragtruth_25",
+            "ragtruth_26",
+            "ragtruth_27",
+            "ragtruth_28",
+            "ragtruth_29"
+          ],
+          "metrics": {
+            "entities": 62,
+            "events": 21,
+            "relationships": 10,
+            "numerical_facts": 9,
+            "temporal_facts": 8,
+            "negations": 1,
+            "absent_info": 1,
+            "corrections": 1,
+            "boundaries": 3,
+            "total_items": 116,
+            "passes_ok": 5,
+            "passes_total": 5
+          },
+          "cross_validation": {
+            "gaps": [
+              "P2\u2192P1: Actor 'Another' not in P1 entities",
+              "P3\u2192P1: Entity 'Homeland Security' not in P1 entities",
+              "P4\u2192P1: Entity 'prison sentence' not in P1 entities"
+            ],
+            "n_gaps": 3,
+            "stats": {
+              "p2_actors_in_p1": 20,
+              "p2_actors_total": 21,
+              "p3_entities_in_p1": 19,
+              "p3_entities_total": 20,
+              "p4_entities_in_p1": 17,
+              "p4_entities_total": 0,
+              "p2_resolution_rate": 0.952,
+              "p3_resolution_rate": 0.95
+            }
+          },
+          "pass_times": {
+            "P1_entities": 139.2,
+            "P2_events": 97.54,
+            "P3_relationships": 107.26,
+            "P4_numbers": 90.81,
+            "P5_negations": 36.54
+          },
+          "pass_failures": [],
+          "total_time_s": 471.5268511772156
+        },
+        {
+          "source_idx": 1,
+          "source_len": 3900,
+          "case_ids": [
+            "ragtruth_42",
+            "ragtruth_43",
+            "ragtruth_44",
+            "ragtruth_45",
+            "ragtruth_46",
+            "ragtruth_47"
+          ],
+          "metrics": {
+            "entities": 60,
+            "events": 47,
+            "relationships": 13,
+            "numerical_facts": 19,
+            "temporal_facts": 6,
+            "negations": 5,
+            "absent_info": 2,
+            "corrections": 3,
+            "boundaries": 4,
+            "total_items": 159,
+            "passes_ok": 5,
+            "passes_total": 5
+          },
+          "cross_validation": {
+            "gaps": [
+              "P2\u2192P1: Actor 'The cup contaminated with the bacteria' not in P1 entities",
+              "P2\u2192P1: Actor 'they' not in P1 entities",
+              "P2\u2192P1: Actor 'Investigation' not in P1 entities",
+              "P2\u2192P1: Actor 'It' not in P1 entities",
+              "P2\u2192P1: Actor 'All five of them' not in P1 entities",
+              "P2\u2192P1: Actor 'All five of them' not in P1 entities",
+              "P4\u2192P1: Entity 'product recall' not in P1 entities"
+            ],
+            "n_gaps": 7,
+            "stats": {
+              "p2_actors_in_p1": 41,
+              "p2_actors_total": 47,
+              "p3_entities_in_p1": 26,
+              "p3_entities_total": 26,
+              "p4_entities_in_p1": 37,
+              "p4_entities_total": 0,
+              "p2_resolution_rate": 0.872,
+              "p3_resolution_rate": 1.0
+            }
+          },
+          "pass_times": {
+            "P1_entities": 154.55,
+            "P2_events": 232.21,
+            "P3_relationships": 63.44,
+            "P4_numbers": 156.92,
+            "P5_negations": 53.69
+          },
+          "pass_failures": [],
+          "total_time_s": 660.8061301708221
+        }
+      ]
+    },
+    {
+      "model_key": "gemma-4-26b-moe",
+      "display_name": "Gemma 4 26B MoE (3.8B active)",
+      "provider": "google",
+      "aggregate": {
+        "avg_entities": 0.0,
+        "avg_events": 0.0,
+        "avg_relationships": 0.0,
+        "avg_numerical": 0.0,
+        "avg_total_items": 9.5,
+        "avg_passes_ok": 1.0,
+        "total_time_s": 2510.1,
+        "avg_time_per_source_s": 1255.0,
+        "n_failures": 8,
+        "json_parse_success_rate": 0.2,
+        "avg_cross_val_gaps": 0.0
+      },
+      "sources": [
+        {
+          "source_idx": 0,
+          "source_len": 2086,
+          "case_ids": [
+            "ragtruth_24",
+            "ragtruth_25",
+            "ragtruth_26",
+            "ragtruth_27",
+            "ragtruth_28",
+            "ragtruth_29"
+          ],
+          "metrics": {
+            "entities": 0,
+            "events": 0,
+            "relationships": 0,
+            "numerical_facts": 0,
+            "temporal_facts": 0,
+            "negations": 1,
+            "absent_info": 1,
+            "corrections": 0,
+            "boundaries": 2,
+            "total_items": 4,
+            "passes_ok": 1,
+            "passes_total": 5
+          },
+          "cross_validation": {
+            "gaps": [
+              "P1 entities missing \u2014 cannot cross-validate"
+            ],
+            "stats": {
+              "p2_actors_in_p1": 0,
+              "p2_actors_total": 0,
+              "p3_entities_in_p1": 0,
+              "p3_entities_total": 0,
+              "p4_entities_in_p1": 0,
+              "p4_entities_total": 0
+            }
+          },
+          "pass_times": {
+            "P1_entities": 300.27,
+            "P2_events": 300.3,
+            "P3_relationships": 300.23,
+            "P4_numbers": 300.25,
+            "P5_negations": 46.09
+          },
+          "pass_failures": [
+            "P1_entities",
+            "P2_events",
+            "P3_relationships",
+            "P4_numbers"
+          ],
+          "total_time_s": 1247.1402139663696
+        },
+        {
+          "source_idx": 1,
+          "source_len": 3900,
+          "case_ids": [
+            "ragtruth_42",
+            "ragtruth_43",
+            "ragtruth_44",
+            "ragtruth_45",
+            "ragtruth_46",
+            "ragtruth_47"
+          ],
+          "metrics": {
+            "entities": 0,
+            "events": 0,
+            "relationships": 0,
+            "numerical_facts": 0,
+            "temporal_facts": 0,
+            "negations": 6,
+            "absent_info": 2,
+            "corrections": 3,
+            "boundaries": 4,
+            "total_items": 15,
+            "passes_ok": 1,
+            "passes_total": 5
+          },
+          "cross_validation": {
+            "gaps": [
+              "P1 entities missing \u2014 cannot cross-validate"
+            ],
+            "stats": {
+              "p2_actors_in_p1": 0,
+              "p2_actors_total": 0,
+              "p3_entities_in_p1": 0,
+              "p3_entities_total": 0,
+              "p4_entities_in_p1": 0,
+              "p4_entities_total": 0
+            }
+          },
+          "pass_times": {
+            "P1_entities": 300.29,
+            "P2_events": 300.22,
+            "P3_relationships": 300.25,
+            "P4_numbers": 300.29,
+            "P5_negations": 61.91
+          },
+          "pass_failures": [
+            "P1_entities",
+            "P2_events",
+            "P3_relationships",
+            "P4_numbers"
+          ],
+          "total_time_s": 1262.9539859294891
+        }
+      ]
+    },
+    {
+      "model_key": "llama-3.3-70b",
+      "display_name": "Llama 3.3 70B (Groq)",
+      "provider": "groq",
+      "aggregate": {
+        "avg_entities": 19.5,
+        "avg_events": 19.5,
+        "avg_relationships": 12.5,
+        "avg_numerical": 11.5,
+        "avg_total_items": 76.5,
+        "avg_passes_ok": 5.0,
+        "total_time_s": 45.9,
+        "avg_time_per_source_s": 22.9,
+        "n_failures": 0,
+        "json_parse_success_rate": 1.0,
+        "avg_cross_val_gaps": 12.5
+      },
+      "sources": [
+        {
+          "source_idx": 0,
+          "source_len": 2086,
+          "case_ids": [
+            "ragtruth_24",
+            "ragtruth_25",
+            "ragtruth_26",
+            "ragtruth_27",
+            "ragtruth_28",
+            "ragtruth_29"
+          ],
+          "metrics": {
+            "entities": 18,
+            "events": 16,
+            "relationships": 12,
+            "numerical_facts": 14,
+            "temporal_facts": 6,
+            "negations": 1,
+            "absent_info": 2,
+            "corrections": 1,
+            "boundaries": 2,
+            "total_items": 72,
+            "passes_ok": 5,
+            "passes_total": 5
+          },
+          "cross_validation": {
+            "gaps": [
+              "P2\u2192P1: Actor 'Three women' not in P1 entities",
+              "P2\u2192P1: Actor 'Federal prosecutors' not in P1 entities",
+              "P4\u2192P1: Entity 'women' not in P1 entities",
+              "P4\u2192P1: Entity 'women' not in P1 entities",
+              "P4\u2192P1: Entity 'years' not in P1 entities",
+              "P4\u2192P1: Entity 'days' not in P1 entities",
+              "P4\u2192P1: Entity 'days' not in P1 entities",
+              "P4\u2192P1: Entity 'days' not in P1 entities",
+              "P4\u2192P1: Entity 'days' not in P1 entities",
+              "P4\u2192P1: Entity 'years' not in P1 entities",
+              "P4\u2192P1: Entity 'months' not in P1 entities",
+              "P4\u2192P1: Entity 'cases' not in P1 entities",
+              "P4\u2192P1: Entity 'cases' not in P1 entities"
+            ],
+            "n_gaps": 13,
+            "stats": {
+              "p2_actors_in_p1": 14,
+              "p2_actors_total": 16,
+              "p3_entities_in_p1": 24,
+              "p3_entities_total": 24,
+              "p4_entities_in_p1": 17,
+              "p4_entities_total": 0,
+              "p2_resolution_rate": 0.875,
+              "p3_resolution_rate": 1.0
+            }
+          },
+          "pass_times": {
+            "P1_entities": 2.02,
+            "P2_events": 2.06,
+            "P3_relationships": 1.35,
+            "P4_numbers": 2.85,
+            "P5_negations": 1.1
+          },
+          "pass_failures": [],
+          "total_time_s": 21.888713836669922
+        },
+        {
+          "source_idx": 1,
+          "source_len": 3900,
+          "case_ids": [
+            "ragtruth_42",
+            "ragtruth_43",
+            "ragtruth_44",
+            "ragtruth_45",
+            "ragtruth_46",
+            "ragtruth_47"
+          ],
+          "metrics": {
+            "entities": 21,
+            "events": 23,
+            "relationships": 13,
+            "numerical_facts": 9,
+            "temporal_facts": 6,
+            "negations": 3,
+            "absent_info": 2,
+            "corrections": 2,
+            "boundaries": 2,
+            "total_items": 81,
+            "passes_ok": 5,
+            "passes_total": 5
+          },
+          "cross_validation": {
+            "gaps": [
+              "P2\u2192P1: Actor 'The cup' not in P1 entities",
+              "P2\u2192P1: Actor 'The bacteria' not in P1 entities",
+              "P2\u2192P1: Actor 'The bacteria' not in P1 entities",
+              "P2\u2192P1: Actor 'Five people' not in P1 entities",
+              "P2\u2192P1: Actor 'Three people' not in P1 entities",
+              "P2\u2192P1: Actor 'The five people' not in P1 entities",
+              "P2\u2192P1: Actor 'At least four of them' not in P1 entities",
+              "P4\u2192P1: Entity 'people infected' not in P1 entities",
+              "P4\u2192P1: Entity 'people who died' not in P1 entities",
+              "P4\u2192P1: Entity 'people who consumed milkshakes' not in P1 entities",
+              "P4\u2192P1: Entity 'people who become ill' not in P1 entities",
+              "P4\u2192P1: Entity 'illnesses that result in death' not in P1 entities"
+            ],
+            "n_gaps": 12,
+            "stats": {
+              "p2_actors_in_p1": 16,
+              "p2_actors_total": 23,
+              "p3_entities_in_p1": 26,
+              "p3_entities_total": 26,
+              "p4_entities_in_p1": 13,
+              "p4_entities_total": 0,
+              "p2_resolution_rate": 0.696,
+              "p3_resolution_rate": 1.0
+            }
+          },
+          "pass_times": {
+            "P1_entities": 2.49,
+            "P2_events": 3.02,
+            "P3_relationships": 1.65,
+            "P4_numbers": 2.78,
+            "P5_negations": 1.54
+          },
+          "pass_failures": [],
+          "total_time_s": 23.986873388290405
+        }
+      ]
+    },
+    {
+      "model_key": "qwen3-32b",
+      "display_name": "Qwen3 32B (Groq)",
+      "provider": "groq",
+      "aggregate": {
+        "avg_entities": 0.0,
+        "avg_events": 0.0,
+        "avg_relationships": 0.0,
+        "avg_numerical": 0.0,
+        "avg_total_items": 0.0,
+        "avg_passes_ok": 0.0,
+        "total_time_s": 37.8,
+        "avg_time_per_source_s": 18.9,
+        "n_failures": 10,
+        "json_parse_success_rate": 0.0,
+        "avg_cross_val_gaps": 0.0
+      },
+      "sources": [
+        {
+          "source_idx": 0,
+          "source_len": 2086,
+          "case_ids": [
+            "ragtruth_24",
+            "ragtruth_25",
+            "ragtruth_26",
+            "ragtruth_27",
+            "ragtruth_28",
+            "ragtruth_29"
+          ],
+          "metrics": {
+            "entities": 0,
+            "events": 0,
+            "relationships": 0,
+            "numerical_facts": 0,
+            "temporal_facts": 0,
+            "negations": 0,
+            "absent_info": 0,
+            "corrections": 0,
+            "boundaries": 0,
+            "total_items": 0,
+            "passes_ok": 0,
+            "passes_total": 5
+          },
+          "cross_validation": {
+            "gaps": [
+              "P1 entities missing \u2014 cannot cross-validate"
+            ],
+            "stats": {
+              "p2_actors_in_p1": 0,
+              "p2_actors_total": 0,
+              "p3_entities_in_p1": 0,
+              "p3_entities_total": 0,
+              "p4_entities_in_p1": 0,
+              "p4_entities_total": 0
+            }
+          },
+          "pass_times": {
+            "P1_entities": 4.07,
+            "P2_events": 4.02,
+            "P3_relationships": 0.22,
+            "P4_numbers": 0.42,
+            "P5_negations": 2.81
+          },
+          "pass_failures": [
+            "P1_entities",
+            "P2_events",
+            "P3_relationships",
+            "P4_numbers",
+            "P5_negations"
+          ],
+          "total_time_s": 24.034480571746826
+        },
+        {
+          "source_idx": 1,
+          "source_len": 3900,
+          "case_ids": [
+            "ragtruth_42",
+            "ragtruth_43",
+            "ragtruth_44",
+            "ragtruth_45",
+            "ragtruth_46",
+            "ragtruth_47"
+          ],
+          "metrics": {
+            "entities": 0,
+            "events": 0,
+            "relationships": 0,
+            "numerical_facts": 0,
+            "temporal_facts": 0,
+            "negations": 0,
+            "absent_info": 0,
+            "corrections": 0,
+            "boundaries": 0,
+            "total_items": 0,
+            "passes_ok": 0,
+            "passes_total": 5
+          },
+          "cross_validation": {
+            "gaps": [
+              "P1 entities missing \u2014 cannot cross-validate"
+            ],
+            "stats": {
+              "p2_actors_in_p1": 0,
+              "p2_actors_total": 0,
+              "p3_entities_in_p1": 0,
+              "p3_entities_total": 0,
+              "p4_entities_in_p1": 0,
+              "p4_entities_total": 0
+            }
+          },
+          "pass_times": {
+            "P1_entities": 0.19,
+            "P2_events": 0.3,
+            "P3_relationships": 0.28,
+            "P4_numbers": 0.29,
+            "P5_negations": 0.21
+          },
+          "pass_failures": [
+            "P1_entities",
+            "P2_events",
+            "P3_relationships",
+            "P4_numbers",
+            "P5_negations"
+          ],
+          "total_time_s": 13.78499960899353
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,77 @@
+{
+  "stories": [
+    {
+      "thread": "The Incident/Confrontation",
+      "story": "FBI agents and task force officers confronted 36-year-old Kevone Charleston at a CVS pharmacy in Forsyth County, Georgia, early Saturday morning, around 7 o'clock. Charleston, suspected of 32 commercial robberies, ran, got into his car, and traveled about 75 yards as agents opened fire. During his attempt to flee, Charleston's vehicle rammed or hit several FBI vehicles, causing one government SUV to end up on its side. Charleston was stopped 8 feet away in the median, where he received gunshot wounds before being captured. Two agents were injured in the crash.",
+      "key_facts": [
+        "FBI agents and task force officers confronted Kevone Charleston.",
+        "Incident occurred at a CVS pharmacy in Forsyth County, Georgia, early Saturday, around 7 o'clock.",
+        "Charleston fled in his car, traveling about 75 yards as agents opened fire.",
+        "His vehicle rammed or hit several FBI vehicles, injuring two agents.",
+        "Charleston was stopped 8 feet away in the median and received gunshot wounds before capture."
+      ],
+      "explicit_unknowns": [
+        "The specific details of the 'task force officers' are not provided.",
+        "The exact number of shots fired by agents is not stated."
+      ]
+    },
+    {
+      "thread": "Kevone Charleston (Suspect)",
+      "story": "Kevone Charleston, a 36-year-old from Austell, Georgia, was identified as the armed robbery suspect. He is suspected of involvement in 32 commercial robberies dating to November 2013. FBI officials stated his modus operandi (MO) involved armed confrontations. During his capture, Charleston was shot and wounded by FBI agents and task force officers. His injuries are not life threatening, according to Forsyth County Sheriff's Deputy Robin Regan.",
+      "key_facts": [
+        "Kevone Charleston is 36 years old and from Austell, Georgia.",
+        "He is suspected of involvement in 32 commercial robberies dating to November 2013.",
+        "His modus operandi (MO) involved armed confrontations.",
+        "He was shot and wounded by FBI agents and task force officers.",
+        "His injuries are not life threatening."
+      ],
+      "explicit_unknowns": [
+        "Details of the 32 previous robberies were not provided by FBI Special Agent Stephen Emmett."
+      ]
+    },
+    {
+      "thread": "FBI Agents and Investigation",
+      "story": "Twelve FBI agents and six government vehicles were involved in following Kevone Charleston. The FBI's investigation into Charleston was described as intensive and lengthy, being a priority for their violent crimes and major offender squad. Agents were prepared for an armed confrontation due to Charleston's past history involving such incidents. During the incident, two agents sustained injuries in a crash. They were treated at an area hospital and released, with FBI Special Agent Stephen Emmett stating 'they are fine.'",
+      "key_facts": [
+        "Twelve FBI agents and six government vehicles followed Charleston.",
+        "The investigation was intensive, lengthy, and a priority for the FBI's violent crimes and major offender squad.",
+        "Agents were prepared for an armed confrontation based on Charleston's MO.",
+        "Two agents were injured in a crash, treated at a hospital, and released, described as 'fine.'"
+      ],
+      "explicit_unknowns": [
+        "The names of the two injured agents are not provided.",
+        "The specific roles of all twelve FBI agents involved are not detailed."
+      ]
+    },
+    {
+      "thread": "Details of the Chase and Collisions",
+      "story": "When confronted, Kevone Charleston ran, entered his car, and traveled about 75 yards as agents opened fire. During his flight, Charleston's vehicle rammed or hit several FBI vehicles. He collided with the first government vehicle, identified as a Taurus, then a second government vehicle. One government vehicle sustained heavy damage to its front and side. Another government SUV ended up on its side, which is how the two agents sustained their injuries.",
+      "key_facts": [
+        "Charleston traveled about 75 yards in his car as agents opened fire.",
+        "His vehicle rammed or hit several FBI vehicles.",
+        "He collided with a government Taurus and a second government vehicle.",
+        "One government vehicle sustained heavy damage to its front and side.",
+        "Another government SUV ended up on its side, causing injuries to two agents."
+      ],
+      "explicit_unknowns": [
+        "The exact number of 'several' FBI vehicles rammed or hit is not specified.",
+        "The specific models of all government vehicles involved, beyond the 'Taurus' and 'SUV,' are not detailed."
+      ]
+    },
+    {
+      "thread": "Charleston's Modus Operandi (MO)",
+      "story": "Kevone Charleston is suspected of involvement in 32 commercial robberies dating to November 2013. His modus operandi (MO) involved armed confrontations, and agents went into the situation fully prepared for such an encounter. Authorities were following Charleston based on his prior MO when they saw he was about to rob another CVS. Charleston parked his vehicle nearby and popped the hood as if there were something wrong. He then walked to the CVS, preparing to enter, before agents confronted him.",
+      "key_facts": [
+        "Charleston is suspected of 32 commercial robberies since November 2013.",
+        "His MO involved armed confrontations, for which agents were prepared.",
+        "Agents moved in when they saw him about to rob another CVS.",
+        "His method involved parking nearby, popping the hood, and then walking to the CVS."
+      ],
+      "explicit_unknowns": [
+        "Details of the 32 previous robberies were not provided.",
+        "The exact nature of the 'armed confrontations' in his MO is not detailed."
+      ]
+    }
+  ],
+  "_elapsed": 24.4
+}

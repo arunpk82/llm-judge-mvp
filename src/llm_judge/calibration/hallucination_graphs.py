@@ -44,7 +44,7 @@ def _safe_list(val: Any) -> list:
     return []
 
 
-def build_g1_entities(p1: dict) -> dict:
+def build_g1_entities(p1: dict):  # returns nx.DiGraph
     """Graph from P1: entity nodes with attribute edges."""
     import networkx as nx
 
@@ -74,7 +74,7 @@ def build_g1_entities(p1: dict) -> dict:
     return G
 
 
-def build_g2_events(p2: dict, p1: dict | None = None) -> dict:
+def build_g2_events(p2: dict, p1: dict | None = None):  # returns nx.DiGraph
     """Graph from P2: entity → action → target paths. Cross-references P1 for actor resolution."""
     import networkx as nx
 
@@ -155,7 +155,7 @@ def build_g2_events(p2: dict, p1: dict | None = None) -> dict:
     return G
 
 
-def build_g3_relationships(p3: dict) -> dict:
+def build_g3_relationships(p3: dict):  # returns nx.DiGraph
     """Graph from P3: entity → relationship → entity with NOT edges."""
     import networkx as nx
 
@@ -177,7 +177,7 @@ def build_g3_relationships(p3: dict) -> dict:
     return G
 
 
-def build_g4_numbers(p4: dict) -> dict:
+def build_g4_numbers(p4: dict):  # returns nx.DiGraph
     """Graph from P4: entity → number nodes with context."""
     import networkx as nx
 
@@ -218,7 +218,7 @@ def build_g4_numbers(p4: dict) -> dict:
     return G
 
 
-def build_g5_negations(p5: dict) -> dict:
+def build_g5_negations(p5: dict):  # returns nx.DiGraph
     """Graph from P5: negation statements, absent info, corrections."""
     import networkx as nx
 

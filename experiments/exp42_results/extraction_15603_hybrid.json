@@ -1,0 +1,1254 @@
+{
+  "event_hubs": [
+    {
+      "event_id": "EVT_1",
+      "action": "explosion",
+      "source_sentence": "S0",
+      "edges": [
+        {
+          "type": "where",
+          "target": "ENTITY_3",
+          "source": "S0"
+        },
+        {
+          "type": "where",
+          "target": "ENTITY_4",
+          "source": "S0"
+        },
+        {
+          "type": "where",
+          "target": "ENTITY_11",
+          "source": "S2"
+        },
+        {
+          "type": "when",
+          "target": "ENTITY_12",
+          "source": "S2"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_2",
+      "action": "were hurt",
+      "source_sentence": "S0",
+      "edges": [
+        {
+          "type": "target_of",
+          "target": "ENTITY_1",
+          "source": "S0"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_3",
+      "action": "sparked",
+      "source_sentence": "S0",
+      "edges": [
+        {
+          "type": "target_of",
+          "target": "ENTITY_5",
+          "source": "S0"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_4",
+      "action": "told",
+      "source_sentence": "S0",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "ENTITY_6",
+          "source": "S0"
+        },
+        {
+          "type": "target_of",
+          "target": "ENTITY_7",
+          "source": "S0"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_5",
+      "action": "produces",
+      "source_sentence": "S1",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "ENTITY_3",
+          "source": "S1"
+        },
+        {
+          "type": "target_of",
+          "target": "ENTITY_9",
+          "source": "S1"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_6",
+      "action": "used",
+      "source_sentence": "S1",
+      "edges": [
+        {
+          "type": "target_of",
+          "target": "ENTITY_9",
+          "source": "S1"
+        },
+        {
+          "type": "purpose",
+          "target": "ENTITY_10",
+          "source": "S1"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_8",
+      "action": "leak",
+      "source_sentence": "S2",
+      "edges": [
+        {
+          "type": "target_of",
+          "target": "ENTITY_13",
+          "source": "S2"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_9",
+      "action": "has not reported",
+      "source_sentence": "S2",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "ENTITY_14",
+          "source": "S2"
+        },
+        {
+          "type": "target_of",
+          "target": "ENTITY_15",
+          "source": "S2"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_10",
+      "action": "were injured",
+      "source_sentence": "S3",
+      "edges": [
+        {
+          "type": "target_of",
+          "target": "ENTITY_16",
+          "source": "S3"
+        },
+        {
+          "type": "how",
+          "target": "ENTITY_17",
+          "source": "S3"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_11",
+      "action": "have been sent",
+      "source_sentence": "S3",
+      "edges": [
+        {
+          "type": "target_of",
+          "target": "ENTITY_16",
+          "source": "S3"
+        },
+        {
+          "type": "where",
+          "target": "ENTITY_18",
+          "source": "S3"
+        },
+        {
+          "type": "why",
+          "target": "ENTITY_19",
+          "source": "S3"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_12",
+      "action": "reported",
+      "source_sentence": "S3",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "ENTITY_20",
+          "source": "S3"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_13",
+      "action": "were sent",
+      "source_sentence": "S4",
+      "edges": [
+        {
+          "type": "target_of",
+          "target": "ENTITY_21",
+          "source": "S4"
+        },
+        {
+          "type": "purpose",
+          "target": "EVT_3",
+          "source": "S4"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_14",
+      "action": "is now under control",
+      "source_sentence": "S4",
+      "edges": [
+        {
+          "type": "target_of",
+          "target": "ENTITY_5",
+          "source": "S4"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_15",
+      "action": "wrote",
+      "source_sentence": "S4",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "ENTITY_22",
+          "source": "S4"
+        },
+        {
+          "type": "where",
+          "target": "ENTITY_23",
+          "source": "S4"
+        },
+        {
+          "type": "when",
+          "target": "ENTITY_24",
+          "source": "S4"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_16",
+      "action": "had heard",
+      "source_sentence": "S5",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "ENTITY_25",
+          "source": "S5"
+        },
+        {
+          "type": "target_of",
+          "target": "EVT_1",
+          "source": "S5"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_17",
+      "action": "took to Weibo to post",
+      "source_sentence": "S5",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "ENTITY_25",
+          "source": "S5"
+        },
+        {
+          "type": "where",
+          "target": "ENTITY_26",
+          "source": "S5"
+        },
+        {
+          "type": "target_of",
+          "target": "ENTITY_27",
+          "source": "S5"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_18",
+      "action": "wrote",
+      "source_sentence": "S6",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "ENTITY_28",
+          "source": "S6"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_19",
+      "action": "heard",
+      "source_sentence": "S6",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "ENTITY_28",
+          "source": "S6"
+        },
+        {
+          "type": "target_of",
+          "target": "EVT_1",
+          "source": "S6"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_20",
+      "action": "felt",
+      "source_sentence": "S6",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "ENTITY_28",
+          "source": "S6"
+        },
+        {
+          "type": "target_of",
+          "target": "ENTITY_29",
+          "source": "S6"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_21",
+      "action": "was hit by another explosion",
+      "source_sentence": "S7",
+      "edges": [
+        {
+          "type": "target_of",
+          "target": "ENTITY_3",
+          "source": "S7"
+        },
+        {
+          "type": "agent_of",
+          "target": "ENTITY_30",
+          "source": "S7"
+        },
+        {
+          "type": "when",
+          "target": "ENTITY_31",
+          "source": "S7"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_22",
+      "action": "were no reports",
+      "source_sentence": "S7",
+      "edges": [
+        {
+          "type": "target_of",
+          "target": "ENTITY_32",
+          "source": "S7"
+        },
+        {
+          "type": "target_of",
+          "target": "ENTITY_33",
+          "source": "S7"
+        },
+        {
+          "type": "when",
+          "target": "ENTITY_31",
+          "source": "S7"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_23",
+      "action": "are illegal",
+      "source_sentence": "S8",
+      "edges": [
+        {
+          "type": "target_of",
+          "target": "ENTITY_34",
+          "source": "S8"
+        },
+        {
+          "type": "where",
+          "target": "ENTITY_4",
+          "source": "S8"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_24",
+      "action": "has sparked",
+      "source_sentence": "S8",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "ENTITY_35",
+          "source": "S8"
+        },
+        {
+          "type": "target_of",
+          "target": "ENTITY_36",
+          "source": "S8"
+        },
+        {
+          "type": "where",
+          "target": "ENTITY_37",
+          "source": "S8"
+        },
+        {
+          "type": "when",
+          "target": "ENTITY_38",
+          "source": "S8"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_25",
+      "action": "turned violent",
+      "source_sentence": "S8",
+      "edges": [
+        {
+          "type": "target_of",
+          "target": "ENTITY_36",
+          "source": "S8"
+        },
+        {
+          "type": "how",
+          "target": "occasionally",
+          "source": "S8"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_26",
+      "action": "was slated for",
+      "source_sentence": "S9",
+      "edges": [
+        {
+          "type": "target_of",
+          "target": "ENTITY_3",
+          "source": "S9"
+        },
+        {
+          "type": "where",
+          "target": "ENTITY_39",
+          "source": "S9"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_27",
+      "action": "provoked",
+      "source_sentence": "S10",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "EVT_26",
+          "source": "S10"
+        },
+        {
+          "type": "target_of",
+          "target": "ENTITY_40",
+          "source": "S10"
+        },
+        {
+          "type": "when",
+          "target": "ENTITY_41",
+          "source": "S10"
+        },
+        {
+          "type": "why",
+          "target": "ENTITY_42",
+          "source": "S10"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_28",
+      "action": "prompted",
+      "source_sentence": "S10",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "EVT_26",
+          "source": "S10"
+        },
+        {
+          "type": "target_of",
+          "target": "EVT_29",
+          "source": "S10"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_29",
+      "action": "relocate",
+      "source_sentence": "S10",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "ENTITY_43",
+          "source": "S10"
+        },
+        {
+          "type": "target_of",
+          "target": "ENTITY_3",
+          "source": "S10"
+        },
+        {
+          "type": "to",
+          "target": "ENTITY_8",
+          "source": "S10"
+        }
+      ]
+    }
+  ],
+  "entities": [
+    {
+      "name": "Six people",
+      "aliases": [],
+      "attributes": {},
+      "participates_in": [
+        "EVT_2"
+      ],
+      "source_sentences": [
+        "S0"
+      ]
+    },
+    {
+      "name": "controversial chemical plant",
+      "aliases": [
+        "The plant",
+        "the plant",
+        "The Zhangzhou plant",
+        "the factory"
+      ],
+      "attributes": {
+        "type": "chemical plant",
+        "controversy": "true"
+      },
+      "participates_in": [
+        "EVT_1",
+        "EVT_5",
+        "EVT_21",
+        "EVT_26",
+        "EVT_29"
+      ],
+      "source_sentences": [
+        "S0",
+        "S1",
+        "S5",
+        "S7",
+        "S9",
+        "S10"
+      ]
+    },
+    {
+      "name": "China's southeastern Fujian province",
+      "aliases": [
+        "China"
+      ],
+      "attributes": {
+        "type": "province",
+        "country": "China",
+        "region": "southeastern"
+      },
+      "participates_in": [
+        "EVT_1",
+        "EVT_23"
+      ],
+      "source_sentences": [
+        "S0",
+        "S8"
+      ]
+    },
+    {
+      "name": "huge fire",
+      "aliases": [
+        "the blaze",
+        "the fire"
+      ],
+      "attributes": {
+        "size": "huge"
+      },
+      "participates_in": [
+        "EVT_3",
+        "EVT_14"
+      ],
+      "source_sentences": [
+        "S0",
+        "S4",
+        "S5"
+      ]
+    },
+    {
+      "name": "provincial authorities",
+      "aliases": [],
+      "attributes": {
+        "type": "authorities",
+        "level": "provincial"
+      },
+      "participates_in": [
+        "EVT_4"
+      ],
+      "source_sentences": [
+        "S0"
+      ]
+    },
+    {
+      "name": "state media",
+      "aliases": [],
+      "attributes": {
+        "type": "media",
+        "affiliation": "state"
+      },
+      "participates_in": [
+        "EVT_4"
+      ],
+      "source_sentences": [
+        "S0"
+      ]
+    },
+    {
+      "name": "Zhangzhou city",
+      "aliases": [
+        "its current, more remote location"
+      ],
+      "attributes": {
+        "type": "city"
+      },
+      "participates_in": [
+        "EVT_29"
+      ],
+      "source_sentences": [
+        "S1",
+        "S10"
+      ]
+    },
+    {
+      "name": "paraxylene (PX)",
+      "aliases": [],
+      "attributes": {
+        "type": "chemical",
+        "carcinogenic": "reportedly"
+      },
+      "participates_in": [
+        "EVT_5",
+        "EVT_6"
+      ],
+      "source_sentences": [
+        "S1"
+      ]
+    },
+    {
+      "name": "polyester films and fabrics",
+      "aliases": [],
+      "attributes": {
+        "type": "products"
+      },
+      "participates_in": [
+        "EVT_6"
+      ],
+      "source_sentences": [
+        "S1"
+      ]
+    },
+    {
+      "name": "an oil storage facility",
+      "aliases": [],
+      "attributes": {
+        "type": "facility",
+        "content": "oil storage"
+      },
+      "participates_in": [
+        "EVT_1"
+      ],
+      "source_sentences": [
+        "S2"
+      ]
+    },
+    {
+      "name": "Monday night",
+      "aliases": [],
+      "attributes": {
+        "type": "time"
+      },
+      "participates_in": [
+        "EVT_1"
+      ],
+      "source_sentences": [
+        "S2"
+      ]
+    },
+    {
+      "name": "an oil leak",
+      "aliases": [],
+      "attributes": {
+        "type": "leak",
+        "substance": "oil"
+      },
+      "participates_in": [
+        "EVT_8"
+      ],
+      "source_sentences": [
+        "S2"
+      ]
+    },
+    {
+      "name": "local media",
+      "aliases": [],
+      "attributes": {
+        "type": "media",
+        "level": "local"
+      },
+      "participates_in": [
+        "EVT_9"
+      ],
+      "source_sentences": [
+        "S2"
+      ]
+    },
+    {
+      "name": "toxic chemical spill",
+      "aliases": [],
+      "attributes": {
+        "type": "spill",
+        "substance": "toxic chemical"
+      },
+      "participates_in": [
+        "EVT_9"
+      ],
+      "source_sentences": [
+        "S2"
+      ]
+    },
+    {
+      "name": "Five out of six people",
+      "aliases": [],
+      "attributes": {
+        "count": 5,
+        "total_group_size": 6
+      },
+      "participates_in": [
+        "EVT_10",
+        "EVT_11"
+      ],
+      "source_sentences": [
+        "S3"
+      ]
+    },
+    {
+      "name": "broken glass",
+      "aliases": [],
+      "attributes": {
+        "state": "broken"
+      },
+      "participates_in": [
+        "EVT_10"
+      ],
+      "source_sentences": [
+        "S3"
+      ]
+    },
+    {
+      "name": "the hospital",
+      "aliases": [],
+      "attributes": {
+        "type": "hospital"
+      },
+      "participates_in": [
+        "EVT_11"
+      ],
+      "source_sentences": [
+        "S3"
+      ]
+    },
+    {
+      "name": "treatment",
+      "aliases": [],
+      "attributes": {
+        "type": "medical"
+      },
+      "participates_in": [
+        "EVT_11"
+      ],
+      "source_sentences": [
+        "S3"
+      ]
+    },
+    {
+      "name": "Xinhua news agency",
+      "aliases": [],
+      "attributes": {
+        "type": "news agency"
+      },
+      "participates_in": [
+        "EVT_12"
+      ],
+      "source_sentences": [
+        "S3"
+      ]
+    },
+    {
+      "name": "More than 600 firefighters",
+      "aliases": [],
+      "attributes": {
+        "count": ">600",
+        "occupation": "firefighter"
+      },
+      "participates_in": [
+        "EVT_13"
+      ],
+      "source_sentences": [
+        "S4"
+      ]
+    },
+    {
+      "name": "Zhangzhou fire department",
+      "aliases": [],
+      "attributes": {
+        "type": "fire department",
+        "location": "Zhangzhou"
+      },
+      "participates_in": [
+        "EVT_15"
+      ],
+      "source_sentences": [
+        "S4"
+      ]
+    },
+    {
+      "name": "official microblogging account",
+      "aliases": [],
+      "attributes": {
+        "type": "account",
+        "platform": "microblogging",
+        "status": "official"
+      },
+      "participates_in": [
+        "EVT_15"
+      ],
+      "source_sentences": [
+        "S4"
+      ]
+    },
+    {
+      "name": "Tuesday morning",
+      "aliases": [],
+      "attributes": {
+        "type": "time"
+      },
+      "participates_in": [
+        "EVT_15"
+      ],
+      "source_sentences": [
+        "S4"
+      ]
+    },
+    {
+      "name": "Residents",
+      "aliases": [],
+      "attributes": {
+        "location_relative_to_plant": "close"
+      },
+      "participates_in": [
+        "EVT_16",
+        "EVT_17"
+      ],
+      "source_sentences": [
+        "S5"
+      ]
+    },
+    {
+      "name": "Weibo",
+      "aliases": [],
+      "attributes": {
+        "type": "social media platform"
+      },
+      "participates_in": [
+        "EVT_17"
+      ],
+      "source_sentences": [
+        "S5"
+      ]
+    },
+    {
+      "name": "photos of the fire",
+      "aliases": [],
+      "attributes": {
+        "type": "photos",
+        "content": "the fire"
+      },
+      "participates_in": [
+        "EVT_17"
+      ],
+      "source_sentences": [
+        "S5"
+      ]
+    },
+    {
+      "name": "One user",
+      "aliases": [],
+      "attributes": {
+        "type": "user"
+      },
+      "participates_in": [
+        "EVT_18",
+        "EVT_19",
+        "EVT_20"
+      ],
+      "source_sentences": [
+        "S6"
+      ]
+    },
+    {
+      "name": "slight tremors",
+      "aliases": [],
+      "attributes": {
+        "intensity": "slight"
+      },
+      "participates_in": [
+        "EVT_20"
+      ],
+      "source_sentences": [
+        "S6"
+      ]
+    },
+    {
+      "name": "another explosion",
+      "aliases": [],
+      "attributes": {
+        "type": "explosion",
+        "occurrence": "previous"
+      },
+      "participates_in": [
+        "EVT_21"
+      ],
+      "source_sentences": [
+        "S7"
+      ]
+    },
+    {
+      "name": "July 2013",
+      "aliases": [],
+      "attributes": {
+        "type": "date"
+      },
+      "participates_in": [
+        "EVT_21",
+        "EVT_22"
+      ],
+      "source_sentences": [
+        "S7"
+      ]
+    },
+    {
+      "name": "casualties",
+      "aliases": [],
+      "attributes": {
+        "type": "human impact"
+      },
+      "participates_in": [
+        "EVT_22"
+      ],
+      "source_sentences": [
+        "S7"
+      ]
+    },
+    {
+      "name": "toxic leaks",
+      "aliases": [],
+      "attributes": {
+        "type": "leak",
+        "substance": "toxic"
+      },
+      "participates_in": [
+        "EVT_22"
+      ],
+      "source_sentences": [
+        "S7"
+      ]
+    },
+    {
+      "name": "demonstrations",
+      "aliases": [],
+      "attributes": {
+        "type": "public gathering"
+      },
+      "participates_in": [
+        "EVT_23"
+      ],
+      "source_sentences": [
+        "S8"
+      ]
+    },
+    {
+      "name": "PX plants",
+      "aliases": [],
+      "attributes": {
+        "type": "chemical plant",
+        "product": "PX"
+      },
+      "participates_in": [
+        "EVT_24"
+      ],
+      "source_sentences": [
+        "S8"
+      ]
+    },
+    {
+      "name": "protests",
+      "aliases": [],
+      "attributes": {
+        "type": "social unrest"
+      },
+      "participates_in": [
+        "EVT_24",
+        "EVT_25"
+      ],
+      "source_sentences": [
+        "S8"
+      ]
+    },
+    {
+      "name": "several cities",
+      "aliases": [],
+      "attributes": {
+        "type": "cities",
+        "count": "several"
+      },
+      "participates_in": [
+        "EVT_24"
+      ],
+      "source_sentences": [
+        "S8"
+      ]
+    },
+    {
+      "name": "recent years",
+      "aliases": [],
+      "attributes": {
+        "type": "time period"
+      },
+      "participates_in": [
+        "EVT_24"
+      ],
+      "source_sentences": [
+        "S8"
+      ]
+    },
+    {
+      "name": "Xiamen",
+      "aliases": [],
+      "attributes": {
+        "type": "city",
+        "population_density": "densely populated",
+        "region": "southeast of the country"
+      },
+      "participates_in": [
+        "EVT_26"
+      ],
+      "source_sentences": [
+        "S9"
+      ]
+    },
+    {
+      "name": "an angry backlash",
+      "aliases": [],
+      "attributes": {
+        "emotion": "angry"
+      },
+      "participates_in": [
+        "EVT_27"
+      ],
+      "source_sentences": [
+        "S10"
+      ]
+    },
+    {
+      "name": "2007",
+      "aliases": [],
+      "attributes": {
+        "type": "year"
+      },
+      "participates_in": [
+        "EVT_27"
+      ],
+      "source_sentences": [
+        "S10"
+      ]
+    },
+    {
+      "name": "pollution concerns",
+      "aliases": [],
+      "attributes": {
+        "type": "concerns",
+        "about": "pollution"
+      },
+      "participates_in": [
+        "EVT_27"
+      ],
+      "source_sentences": [
+        "S10"
+      ]
+    },
+    {
+      "name": "the local government",
+      "aliases": [],
+      "attributes": {
+        "type": "government",
+        "level": "local"
+      },
+      "participates_in": [
+        "EVT_29"
+      ],
+      "source_sentences": [
+        "S10"
+      ]
+    }
+  ],
+  "inter_event_edges": [
+    {
+      "from": "EVT_1",
+      "to": "EVT_2",
+      "type": "causes",
+      "source": "S0"
+    },
+    {
+      "from": "EVT_1",
+      "to": "EVT_3",
+      "type": "causes",
+      "source": "S0"
+    },
+    {
+      "from": "EVT_4",
+      "to": "EVT_1",
+      "type": "reports_on",
+      "source": "S0"
+    },
+    {
+      "from": "EVT_4",
+      "to": "EVT_2",
+      "type": "reports_on",
+      "source": "S0"
+    },
+    {
+      "from": "EVT_4",
+      "to": "EVT_3",
+      "type": "reports_on",
+      "source": "S0"
+    },
+    {
+      "from": "EVT_8",
+      "to": "EVT_1",
+      "type": "causes",
+      "source": "S2"
+    },
+    {
+      "from": "EVT_12",
+      "to": "EVT_10",
+      "type": "reports_on",
+      "source": "S3"
+    },
+    {
+      "from": "EVT_12",
+      "to": "EVT_11",
+      "type": "reports_on",
+      "source": "S3"
+    },
+    {
+      "from": "EVT_15",
+      "to": "EVT_14",
+      "type": "reports_on",
+      "source": "S4"
+    },
+    {
+      "from": "EVT_16",
+      "to": "EVT_17",
+      "type": "precedes",
+      "source": "S5"
+    },
+    {
+      "from": "EVT_17",
+      "to": "ENTITY_5",
+      "type": "depicts",
+      "source": "S5"
+    },
+    {
+      "from": "EVT_18",
+      "to": "EVT_19",
+      "type": "reports_on",
+      "source": "S6"
+    },
+    {
+      "from": "EVT_18",
+      "to": "EVT_20",
+      "type": "reports_on",
+      "source": "S6"
+    },
+    {
+      "from": "EVT_1",
+      "to": "EVT_19",
+      "type": "causes",
+      "source": "S6"
+    },
+    {
+      "from": "EVT_1",
+      "to": "EVT_20",
+      "type": "causes",
+      "source": "S6"
+    },
+    {
+      "from": "EVT_24",
+      "to": "EVT_25",
+      "type": "causes",
+      "source": "S8"
+    },
+    {
+      "from": "EVT_26",
+      "to": "EVT_27",
+      "type": "causes",
+      "source": "S10"
+    },
+    {
+      "from": "EVT_26",
+      "to": "EVT_28",
+      "type": "causes",
+      "source": "S10"
+    },
+    {
+      "from": "EVT_28",
+      "to": "EVT_29",
+      "type": "causes",
+      "source": "S10"
+    }
+  ],
+  "explicit_unknowns": [
+    {
+      "about": "ENTITY_15",
+      "unknown_slots": [
+        "occurrence"
+      ],
+      "source": "S2"
+    },
+    {
+      "about": "ENTITY_32",
+      "unknown_slots": [
+        "occurrence"
+      ],
+      "source": "S7"
+    },
+    {
+      "about": "ENTITY_33",
+      "unknown_slots": [
+        "occurrence"
+      ],
+      "source": "S7"
+    }
+  ],
+  "_elapsed": 89.1
+}

@@ -1,0 +1,1535 @@
+{
+  "phase": "p4_additions_200",
+  "results": [
+    {
+      "has_additions": false,
+      "additions": [],
+      "_idx": 0,
+      "_expected": "grounded"
+    },
+    {
+      "has_additions": false,
+      "additions": [],
+      "_idx": 1,
+      "_expected": "grounded"
+    },
+    {
+      "has_additions": true,
+      "additions": [
+        {
+          "added_text": "International Tracing Service",
+          "why_added": "The source refers to the 'International Training Service', not the 'International Tracing Service'."
+        }
+      ],
+      "_idx": 2,
+      "_expected": "grounded"
+    },
+    {
+      "has_additions": false,
+      "additions": [],
+      "_idx": 3,
+      "_expected": "grounded"
+    },
+    {
+      "has_additions": false,
+      "additions": [],
+      "_idx": 4,
+      "_expected": "grounded"
+    },
+    {
+      "has_additions": false,
+      "additions": [],
+      "_idx": 5,
+      "_expected": "grounded"
+    },
+    {
+      "has_additions": true,
+      "additions": [
+        {
+          "added_text": "the sisters were arrested and sent to Auschwitz-Birkenau",
+          "why_added": "The source explicitly states that Anne and seven others were sent to Auschwitz-Birkenau, but it does not explicitly state that Margot was among them."
+        }
+      ],
+      "_idx": 6,
+      "_expected": "grounded"
+    },
+    {
+      "has_additions": false,
+      "additions": [],
+      "_idx": 7,
+      "_expected": "grounded"
+    },
+    {
+      "has_additions": false,
+      "additions": [],
+      "_idx": 8,
+      "_expected": "grounded"
+    },
+    {
+      "has_additions": false,
+      "additions": [],
+      "_idx": 9,
+      "_expected": "grounded"
+    },
+    {
+      "has_additions": true,
+      "additions": [
+        {
+          "added_text": "beloved and influential",
+          "why_added": "The source describes the diary as 'one of the world's most popular books,' but does not characterize it as 'beloved' or 'influential'."
+        }
+      ],
+      "_idx": 10,
+      "_expected": "grounded"
+    },
+    {
+      "has_additions": false,
+      "additions": [],
+      "_idx": 11,
+      "_expected": "grounded"
+    },
+    {
+      "has_additions": false,
+      "additions": [],
+      "_idx": 12,
+      "_expected": "grounded"
+    },
+    {
+      "has_additions": true,
+      "additions": [
+        {
+          "added_text": "food",
+          "why_added": "not in source"
+        }
+      ],
+      "_idx": 13,
+      "_expected": "grounded"
+    },
+    {
+      "has_additions": true,
+      "additions": [
+        {
+          "added_text": "died before February 7",
+          "why_added": "The source states that witnesses said the sisters had symptoms before February 7, not that they died before that date."
+        },
+        {
+          "added_text": "2022",
+          "why_added": "not in source"
+        }
+      ],
+      "_idx": 14,
+      "_expected": "hallucinated"
+    },
+    {
+      "has_additions": false,
+      "additions": [],
+      "_idx": 15,
+      "_expected": "grounded"
+    },
+    {
+      "has_additions": true,
+      "additions": [
+        {
+          "added_text": "reevaluation of the events surrounding Anne Frank's death",
+          "why_added": "not in source"
+        },
+        {
+          "added_text": "prompted the Anne Frank House to issue a corrected statement",
+          "why_added": "not in source"
+        }
+      ],
+      "_idx": 16,
+      "_expected": "hallucinated"
+    },
+    {
+      "has_additions": true,
+      "additions": [
+        {
+          "added_text": "two weeks after her supposed death on March 31, 1945",
+          "why_added": "The source states that the camp was liberated two weeks after her supposed death, not that she died two weeks after her supposed death."
+        }
+      ],
+      "_idx": 17,
+      "_expected": "grounded"
+    },
+    {
+      "has_additions": false,
+      "additions": [],
+      "_idx": 18,
+      "_expected": "grounded"
+    },
+    {
+      "has_additions": false,
+      "additions": [],
+      "_idx": 19,
+      "_expected": "grounded"
+    },
+    {
+      "has_additions": false,
+      "additions": [],
+      "_idx": 20,
+      "_expected": "grounded"
+    },
+    {
+      "has_additions": false,
+      "additions": [],
+      "_idx": 21,
+      "_expected": "grounded"
+    },
+    {
+      "has_additions": true,
+      "additions": [
+        {
+          "added_text": "a powerful symbol of hope and resilience",
+          "why_added": "not in source"
+        }
+      ],
+      "_idx": 22,
+      "_expected": "hallucinated"
+    },
+    {
+      "has_additions": false,
+      "additions": [],
+      "_idx": 23,
+      "_expected": "grounded"
+    },
+    {
+      "has_additions": true,
+      "additions": [
+        {
+          "added_text": "likely in February 1945",
+          "why_added": "The source states that researchers concluded the sisters 'probably did not survive to March 1945' and mentions symptoms appearing before February 7, but it does not explicitly state the conclusion that they 'likely' died in February 1945."
+        }
+      ],
+      "_idx": 24,
+      "_expected": "grounded"
+    },
+    {
+      "has_additions": true,
+      "additions": [
+        {
+          "added_text": "brutal",
+          "why_added": "not in source"
+        },
+        {
+          "added_text": "little food",
+          "why_added": "not in source"
+        }
+      ],
+      "_idx": 25,
+      "_expected": "grounded"
+    },
+    {
+      "has_additions": false,
+      "additions": [],
+      "_idx": 26,
+      "_expected": "grounded"
+    },
+    {
+      "has_additions": false,
+      "additions": [],
+      "_idx": 27,
+      "_expected": "grounded"
+    },
+    {
+      "has_additions": true,
+      "additions": [
+        {
+          "added_text": "early March",
+          "why_added": "The source states the sisters died 'at least a month earlier' than March 31, which would mean they died on or before February 28, excluding early March."
+        }
+      ],
+      "_idx": 28,
+      "_expected": "grounded"
+    },
+    {
+      "has_additions": true,
+      "additions": [
+        {
+          "added_text": "did not survive past February 7",
+          "why_added": "The source states that witnesses said the sisters had symptoms *before* February 7 and that death typically occurs twelve days after symptoms appear; it also explicitly states that the exact dates of death remain unclear."
+        }
+      ],
+      "_idx": 29,
+      "_expected": "hallucinated"
+    },
+    {
+      "has_additions": false,
+      "additions": [],
+      "_idx": 30,
+      "_expected": "grounded"
+    },
+    {
+      "has_additions": false,
+      "additions": [],
+      "_idx": 31,
+      "_expected": "grounded"
+    },
+    {
+      "has_additions": true,
+      "additions": [
+        {
+          "added_text": "powerful symbol of her resilience",
+          "why_added": "not in source"
+        },
+        {
+          "added_text": "reminder of the horrors of the Holocaust",
+          "why_added": "not in source"
+        }
+      ],
+      "_idx": 32,
+      "_expected": "hallucinated"
+    },
+    {
+      "has_additions": false,
+      "additions": [],
+      "_idx": 33,
+      "_expected": "grounded"
+    },
+    {
+      "has_additions": false,
+      "additions": [],
+      "_idx": 34,
+      "_expected": "grounded"
+    },
+    {
+      "has_additions": false,
+      "additions": [],
+      "_idx": 35,
+      "_expected": "grounded"
+    },
+    {
+      "has_additions": false,
+      "additions": [],
+      "_idx": 36,
+      "_expected": "grounded"
+    },
+    {
+      "has_additions": false,
+      "additions": [],
+      "_idx": 37,
+      "_expected": "grounded"
+    },
+    {
+      "has_additions": true,
+      "additions": [
+        {
+          "added_text": "has died of natural causes",
+          "why_added": "The source states he 'appears to have died of natural causes,' whereas the claim presents it as a definitive fact."
+        }
+      ],
+      "_idx": 38,
+      "_expected": "grounded"
+    },
+    {
+      "has_additions": false,
+      "additions": [],
+      "_idx": 39,
+      "_expected": "grounded"
+    },
+    {
+      "has_additions": false,
+      "additions": [],
+      "_idx": 40,
+      "_expected": "grounded"
+    },
+    {
+      "has_additions": false,
+      "additions": [],
+      "_idx": 41,
+      "_expected": "grounded"
+    },
+    {
+      "has_additions": false,
+      "additions": [],
+      "_idx": 42,
+      "_expected": "grounded"
+    },
+    {
+      "has_additions": false,
+      "additions": [],
+      "_idx": 43,
+      "_expected": "grounded"
+    },
+    {
+      "has_additions": false,
+      "additions": [],
+      "_idx": 44,
+      "_expected": "grounded"
+    },
+    {
+      "has_additions": false,
+      "additions": [],
+      "_idx": 45,
+      "_expected": "grounded"
+    },
+    {
+      "has_additions": false,
+      "additions": [],
+      "_idx": 46,
+      "_expected": "grounded"
+    },
+    {
+      "has_additions": false,
+      "additions": [],
+      "_idx": 47,
+      "_expected": "grounded"
+    },
+    {
+      "has_additions": false,
+      "additions": [],
+      "_idx": 48,
+      "_expected": "grounded"
+    },
+    {
+      "has_additions": false,
+      "additions": [],
+      "_idx": 49,
+      "_expected": "grounded"
+    },
+    {
+      "has_additions": true,
+      "additions": [
+        {
+          "added_text": "billionaire",
+          "why_added": "The source states he was 'one of the heirs to billions of oil money,' but does not explicitly state that he himself was a billionaire."
+        }
+      ],
+      "_idx": 50,
+      "_expected": "grounded"
+    },
+    {
+      "has_additions": false,
+      "additions": [],
+      "_idx": 51,
+      "_expected": "grounded"
+    },
+    {
+      "has_additions": false,
+      "additions": [],
+      "_idx": 52,
+      "_expected": "grounded"
+    },
+    {
+      "has_additions": true,
+      "additions": [
+        {
+          "added_text": "granted",
+          "why_added": "The source states that Andrew Getty had 'filed to get' a restraining order and that a hearing was 'scheduled for next week,' but it does not state that the order was granted."
+        }
+      ],
+      "_idx": 53,
+      "_expected": "grounded"
+    },
+    {
+      "has_additions": true,
+      "additions": [
+        {
+          "added_text": "died of natural causes",
+          "why_added": "The source states that Andrew Getty 'appears to have died of natural causes,' whereas the claim presents this as a definitive fact."
+        }
+      ],
+      "_idx": 54,
+      "_expected": "grounded"
+    },
+    {
+      "has_additions": false,
+      "additions": [],
+      "_idx": 55,
+      "_expected": "grounded"
+    },
+    {
+      "has_additions": false,
+      "additions": [],
+      "_idx": 56,
+      "_expected": "grounded"
+    },
+    {
+      "has_additions": true,
+      "additions": [
+        {
+          "added_text": "His net worth was estimated to be $2.1 billion.",
+          "why_added": "The source attributes the $2.1 billion net worth to Gordon Getty, not Andrew Getty."
+        }
+      ],
+      "_idx": 57,
+      "_expected": "hallucinated"
+    },
+    {
+      "has_additions": false,
+      "additions": [],
+      "_idx": 58,
+      "_expected": "grounded"
+    },
+    {
+      "has_additions": false,
+      "additions": [],
+      "_idx": 59,
+      "_expected": "grounded"
+    },
+    {
+      "has_additions": false,
+      "additions": [],
+      "_idx": 60,
+      "_expected": "grounded"
+    },
+    {
+      "has_additions": false,
+      "additions": [],
+      "_idx": 61,
+      "_expected": "grounded"
+    },
+    {
+      "has_additions": true,
+      "additions": [
+        {
+          "added_text": "lift its ban on women attending sports events",
+          "why_added": "The source specifies that the ban will only be lifted for 'some events' (specifically indoor sports) and explicitly states that 'rules won't change for all matches,' whereas the claim implies a general lifting of the ban."
+        }
+      ],
+      "_idx": 62,
+      "_expected": "grounded"
+    },
+    {
+      "has_additions": false,
+      "additions": [],
+      "_idx": 63,
+      "_expected": "grounded"
+    },
+    {
+      "has_additions": false,
+      "additions": [],
+      "_idx": 64,
+      "_expected": "grounded"
+    },
+    {
+      "has_additions": false,
+      "additions": [],
+      "_idx": 65,
+      "_expected": "grounded"
+    },
+    {
+      "has_additions": false,
+      "additions": [],
+      "_idx": 66,
+      "_expected": "grounded"
+    },
+    {
+      "has_additions": false,
+      "additions": [],
+      "_idx": 67,
+      "_expected": "grounded"
+    },
+    {
+      "has_additions": false,
+      "additions": [],
+      "_idx": 68,
+      "_expected": "grounded"
+    },
+    {
+      "has_additions": false,
+      "additions": [],
+      "_idx": 69,
+      "_expected": "grounded"
+    },
+    {
+      "has_additions": false,
+      "additions": [],
+      "_idx": 70,
+      "_expected": "grounded"
+    },
+    {
+      "has_additions": false,
+      "additions": [],
+      "_idx": 71,
+      "_expected": "grounded"
+    },
+    {
+      "has_additions": false,
+      "additions": [],
+      "_idx": 72,
+      "_expected": "grounded"
+    },
+    {
+      "has_additions": true,
+      "additions": [
+        {
+          "added_text": "only",
+          "why_added": "not in source"
+        },
+        {
+          "added_text": "the ban... has... been lifted",
+          "why_added": "the source specifies that only volleyball matches were permitted, not that the general ban was lifted"
+        }
+      ],
+      "_idx": 73,
+      "_expected": "grounded"
+    },
+    {
+      "has_additions": true,
+      "additions": [
+        {
+          "added_text": "only",
+          "why_added": "The source states that restrictions would be lifted for indoor sports events, but explicitly notes that 'it isn't clear exactly which games women will be able to attend,' meaning the source does not establish that indoor sports are the only events allowed."
+        }
+      ],
+      "_idx": 74,
+      "_expected": "grounded"
+    },
+    {
+      "has_additions": true,
+      "additions": [
+        {
+          "added_text": "The lifting of the ban comes under pressure from international sports officials",
+          "why_added": "causal claim not in source"
+        }
+      ],
+      "_idx": 75,
+      "_expected": "grounded"
+    },
+    {
+      "has_additions": true,
+      "additions": [
+        {
+          "added_text": "ultimately",
+          "why_added": "not in source"
+        }
+      ],
+      "_idx": 76,
+      "_expected": "grounded"
+    },
+    {
+      "has_additions": false,
+      "additions": [],
+      "_idx": 77,
+      "_expected": "grounded"
+    },
+    {
+      "has_additions": true,
+      "additions": [
+        {
+          "added_text": "human rights organizations",
+          "why_added": "not in source"
+        },
+        {
+          "added_text": "international leaders",
+          "why_added": "not in source"
+        }
+      ],
+      "_idx": 78,
+      "_expected": "grounded"
+    },
+    {
+      "has_additions": true,
+      "additions": [
+        {
+          "added_text": "In an effort to improve Iran's chances of hosting future international sports events",
+          "why_added": "attributed motive not explicitly stated in source"
+        }
+      ],
+      "_idx": 79,
+      "_expected": "grounded"
+    },
+    {
+      "has_additions": false,
+      "additions": [],
+      "_idx": 80,
+      "_expected": "grounded"
+    },
+    {
+      "has_additions": false,
+      "additions": [],
+      "_idx": 81,
+      "_expected": "grounded"
+    },
+    {
+      "has_additions": false,
+      "additions": [],
+      "_idx": 82,
+      "_expected": "grounded"
+    },
+    {
+      "has_additions": false,
+      "additions": [],
+      "_idx": 83,
+      "_expected": "grounded"
+    },
+    {
+      "has_additions": false,
+      "additions": [],
+      "_idx": 84,
+      "_expected": "grounded"
+    },
+    {
+      "has_additions": false,
+      "additions": [],
+      "_idx": 85,
+      "_expected": "grounded"
+    },
+    {
+      "has_additions": true,
+      "additions": [
+        {
+          "added_text": "human rights activists",
+          "why_added": "The source mentions 'activists' but does not specify that they are 'human rights activists'."
+        }
+      ],
+      "_idx": 86,
+      "_expected": "grounded"
+    },
+    {
+      "has_additions": true,
+      "additions": [
+        {
+          "added_text": "starting with",
+          "why_added": "not in source"
+        }
+      ],
+      "_idx": 87,
+      "_expected": "grounded"
+    },
+    {
+      "has_additions": false,
+      "additions": [],
+      "_idx": 88,
+      "_expected": "grounded"
+    },
+    {
+      "has_additions": false,
+      "additions": [],
+      "_idx": 89,
+      "_expected": "grounded"
+    },
+    {
+      "has_additions": false,
+      "additions": [],
+      "_idx": 90,
+      "_expected": "grounded"
+    },
+    {
+      "has_additions": true,
+      "additions": [
+        {
+          "added_text": "usually incredible tales of human endurance",
+          "why_added": "not in source"
+        }
+      ],
+      "_idx": 91,
+      "_expected": "grounded"
+    },
+    {
+      "has_additions": false,
+      "additions": [],
+      "_idx": 92,
+      "_expected": "grounded"
+    },
+    {
+      "has_additions": false,
+      "additions": [],
+      "_idx": 93,
+      "_expected": "grounded"
+    },
+    {
+      "has_additions": true,
+      "additions": [
+        {
+          "added_text": "eating raw birds",
+          "why_added": "The source states that Alvarenga's partner died because he refused to eat raw birds, but it does not explicitly state that Alvarenga himself ate them."
+        }
+      ],
+      "_idx": 94,
+      "_expected": "grounded"
+    },
+    {
+      "has_additions": true,
+      "additions": [
+        {
+          "added_text": "surviving on what he could catch from the sea",
+          "why_added": "not in source"
+        }
+      ],
+      "_idx": 95,
+      "_expected": "grounded"
+    },
+    {
+      "has_additions": false,
+      "additions": [],
+      "_idx": 96,
+      "_expected": "grounded"
+    },
+    {
+      "has_additions": false,
+      "additions": [],
+      "_idx": 97,
+      "_expected": "grounded"
+    },
+    {
+      "has_additions": false,
+      "additions": [],
+      "_idx": 98,
+      "_expected": "grounded"
+    },
+    {
+      "has_additions": false,
+      "additions": [],
+      "_idx": 99,
+      "_expected": "grounded"
+    },
+    {
+      "has_additions": false,
+      "additions": [],
+      "_idx": 100,
+      "_expected": "grounded"
+    },
+    {
+      "has_additions": false,
+      "additions": [],
+      "_idx": 101,
+      "_expected": "grounded"
+    },
+    {
+      "has_additions": false,
+      "additions": [],
+      "_idx": 102,
+      "_expected": "grounded"
+    },
+    {
+      "has_additions": false,
+      "additions": [],
+      "_idx": 103,
+      "_expected": "grounded"
+    },
+    {
+      "has_additions": true,
+      "additions": [
+        {
+          "added_text": "several weeks",
+          "why_added": "not in source"
+        }
+      ],
+      "_idx": 104,
+      "_expected": "grounded"
+    },
+    {
+      "has_additions": false,
+      "additions": [],
+      "_idx": 105,
+      "_expected": "grounded"
+    },
+    {
+      "has_additions": false,
+      "additions": [],
+      "_idx": 106,
+      "_expected": "grounded"
+    },
+    {
+      "has_additions": false,
+      "additions": [],
+      "_idx": 107,
+      "_expected": "grounded"
+    },
+    {
+      "has_additions": false,
+      "additions": [],
+      "_idx": 108,
+      "_expected": "grounded"
+    },
+    {
+      "has_additions": false,
+      "additions": [],
+      "_idx": 109,
+      "_expected": "grounded"
+    },
+    {
+      "has_additions": false,
+      "additions": [],
+      "_idx": 110,
+      "_expected": "grounded"
+    },
+    {
+      "has_additions": false,
+      "additions": [],
+      "_idx": 111,
+      "_expected": "grounded"
+    },
+    {
+      "has_additions": true,
+      "additions": [
+        {
+          "added_text": "rescued by fishermen",
+          "why_added": "The source states that fishermen spotted the vessel, but the Ecuadorian navy picked up the survivor."
+        }
+      ],
+      "_idx": 112,
+      "_expected": "grounded"
+    },
+    {
+      "has_additions": false,
+      "additions": [],
+      "_idx": 113,
+      "_expected": "grounded"
+    },
+    {
+      "has_additions": true,
+      "additions": [
+        {
+          "added_text": "swept away",
+          "why_added": "not in source"
+        },
+        {
+          "added_text": "floating house",
+          "why_added": "not in source"
+        }
+      ],
+      "_idx": 114,
+      "_expected": "grounded"
+    },
+    {
+      "has_additions": false,
+      "additions": [],
+      "_idx": 115,
+      "_expected": "grounded"
+    },
+    {
+      "has_additions": true,
+      "additions": [
+        {
+          "added_text": "incredible resilience",
+          "why_added": "not in source"
+        }
+      ],
+      "_idx": 116,
+      "_expected": "grounded"
+    },
+    {
+      "has_additions": false,
+      "additions": [],
+      "_idx": 117,
+      "_expected": "grounded"
+    },
+    {
+      "has_additions": false,
+      "additions": [],
+      "_idx": 118,
+      "_expected": "grounded"
+    },
+    {
+      "has_additions": true,
+      "additions": [
+        {
+          "added_text": "Mexican fisherman",
+          "why_added": "The source explicitly identifies Alvarenga as an 'El Salvador native', not Mexican, and while it mentions a 'fishing companion', it does not explicitly label Alvarenga as a fisherman."
+        }
+      ],
+      "_idx": 119,
+      "_expected": "grounded"
+    },
+    {
+      "has_additions": false,
+      "additions": [],
+      "_idx": 120,
+      "_expected": "grounded"
+    },
+    {
+      "has_additions": true,
+      "additions": [
+        {
+          "added_text": "highlight the incredible human spirit and the determination to survive against all odds",
+          "why_added": "editorial characterization and conclusion not explicitly stated in the source"
+        }
+      ],
+      "_idx": 121,
+      "_expected": "grounded"
+    },
+    {
+      "has_additions": true,
+      "additions": [
+        {
+          "added_text": "They also serve as a reminder of the dangers and unpredictability of life at sea.",
+          "why_added": "conclusion not explicitly stated"
+        }
+      ],
+      "_idx": 122,
+      "_expected": "grounded"
+    },
+    {
+      "has_additions": false,
+      "additions": [],
+      "_idx": 123,
+      "_expected": "grounded"
+    },
+    {
+      "has_additions": true,
+      "additions": [
+        {
+          "added_text": "testaments to the resilience and determination of the human spirit",
+          "why_added": "not in source"
+        }
+      ],
+      "_idx": 124,
+      "_expected": "grounded"
+    },
+    {
+      "has_additions": true,
+      "additions": [
+        {
+          "added_text": "35-year-old",
+          "why_added": "The source mentions a 35-foot sailboat, not the person's age."
+        },
+        {
+          "added_text": "five days",
+          "why_added": "The source does not specify the number of days he was stranded."
+        }
+      ],
+      "_idx": 125,
+      "_expected": "hallucinated"
+    },
+    {
+      "has_additions": false,
+      "additions": [],
+      "_idx": 126,
+      "_expected": "grounded"
+    },
+    {
+      "has_additions": false,
+      "additions": [],
+      "_idx": 127,
+      "_expected": "grounded"
+    },
+    {
+      "has_additions": true,
+      "additions": [
+        {
+          "added_text": "Mexican fisherman",
+          "why_added": "The source identifies Alvarenga as an 'El Salvador native', not Mexican."
+        }
+      ],
+      "_idx": 128,
+      "_expected": "grounded"
+    },
+    {
+      "has_additions": true,
+      "additions": [
+        {
+          "added_text": "eating raw birds",
+          "why_added": "not in source"
+        },
+        {
+          "added_text": "using his fishing net",
+          "why_added": "not in source"
+        }
+      ],
+      "_idx": 129,
+      "_expected": "grounded"
+    },
+    {
+      "has_additions": true,
+      "additions": [
+        {
+          "added_text": "by a passing boat",
+          "why_added": "not in source"
+        }
+      ],
+      "_idx": 130,
+      "_expected": "grounded"
+    },
+    {
+      "has_additions": false,
+      "additions": [],
+      "_idx": 131,
+      "_expected": "grounded"
+    },
+    {
+      "has_additions": true,
+      "additions": [
+        {
+          "added_text": "but was unable to contact authorities",
+          "why_added": "not in source"
+        }
+      ],
+      "_idx": 132,
+      "_expected": "grounded"
+    },
+    {
+      "has_additions": true,
+      "additions": [
+        {
+          "added_text": "Coast Guard vessel",
+          "why_added": "not in source"
+        }
+      ],
+      "_idx": 133,
+      "_expected": "grounded"
+    },
+    {
+      "has_additions": false,
+      "additions": [],
+      "_idx": 134,
+      "_expected": "grounded"
+    },
+    {
+      "has_additions": false,
+      "additions": [],
+      "_idx": 135,
+      "_expected": "grounded"
+    },
+    {
+      "has_additions": false,
+      "additions": [],
+      "_idx": 136,
+      "_expected": "grounded"
+    },
+    {
+      "has_additions": false,
+      "additions": [],
+      "_idx": 137,
+      "_expected": "grounded"
+    },
+    {
+      "has_additions": false,
+      "additions": [],
+      "_idx": 138,
+      "_expected": "grounded"
+    },
+    {
+      "has_additions": false,
+      "additions": [],
+      "_idx": 139,
+      "_expected": "grounded"
+    },
+    {
+      "has_additions": true,
+      "additions": [
+        {
+          "added_text": "20 days",
+          "why_added": "not in source"
+        }
+      ],
+      "_idx": 140,
+      "_expected": "hallucinated"
+    },
+    {
+      "has_additions": false,
+      "additions": [],
+      "_idx": 141,
+      "_expected": "grounded"
+    },
+    {
+      "has_additions": true,
+      "additions": [
+        {
+          "added_text": "highlight the human spirit and the will to survive, even in the face of incredible adversity",
+          "why_added": "not in source"
+        }
+      ],
+      "_idx": 142,
+      "_expected": "grounded"
+    },
+    {
+      "has_additions": false,
+      "additions": [],
+      "_idx": 143,
+      "_expected": "grounded"
+    },
+    {
+      "has_additions": false,
+      "additions": [],
+      "_idx": 144,
+      "_expected": "grounded"
+    },
+    {
+      "has_additions": true,
+      "additions": [
+        {
+          "added_text": "66 days",
+          "why_added": "not in source"
+        },
+        {
+          "added_text": "using a makeshift mast and sail to catch fish and collect rainwater",
+          "why_added": "not in source; the source states Louis Jordan used laundry to catch fish and a bucket to collect fresh water, while the mast and sail were used for movement"
+        }
+      ],
+      "_idx": 145,
+      "_expected": "hallucinated"
+    },
+    {
+      "has_additions": true,
+      "additions": [
+        {
+          "added_text": "438 days",
+          "why_added": "not in source"
+        }
+      ],
+      "_idx": 146,
+      "_expected": "hallucinated"
+    },
+    {
+      "has_additions": true,
+      "additions": [
+        {
+          "added_text": "eating raw birds",
+          "why_added": "not in source"
+        }
+      ],
+      "_idx": 147,
+      "_expected": "grounded"
+    },
+    {
+      "has_additions": false,
+      "additions": [],
+      "_idx": 148,
+      "_expected": "grounded"
+    },
+    {
+      "has_additions": false,
+      "additions": [],
+      "_idx": 149,
+      "_expected": "grounded"
+    },
+    {
+      "has_additions": true,
+      "additions": [
+        {
+          "added_text": "These incredible stories of survival against the odds are a testament to the human spirit and the will to live in the face of adversity.",
+          "why_added": "not in source"
+        }
+      ],
+      "_idx": 150,
+      "_expected": "grounded"
+    },
+    {
+      "has_additions": false,
+      "additions": [],
+      "_idx": 151,
+      "_expected": "grounded"
+    },
+    {
+      "has_additions": false,
+      "additions": [],
+      "_idx": 152,
+      "_expected": "grounded"
+    },
+    {
+      "has_additions": true,
+      "additions": [
+        {
+          "added_text": "following the advice given in an ISIS manual for recruits",
+          "why_added": "The source mentions the manual's advice and Thomas's actions as separate facts; it does not explicitly state that she acted specifically in accordance with or following that advice."
+        }
+      ],
+      "_idx": 153,
+      "_expected": "grounded"
+    },
+    {
+      "has_additions": false,
+      "additions": [],
+      "_idx": 154,
+      "_expected": "grounded"
+    },
+    {
+      "has_additions": false,
+      "additions": [],
+      "_idx": 155,
+      "_expected": "grounded"
+    },
+    {
+      "has_additions": false,
+      "additions": [],
+      "_idx": 156,
+      "_expected": "grounded"
+    },
+    {
+      "has_additions": false,
+      "additions": [],
+      "_idx": 157,
+      "_expected": "grounded"
+    },
+    {
+      "has_additions": false,
+      "additions": [],
+      "_idx": 158,
+      "_expected": "grounded"
+    },
+    {
+      "has_additions": false,
+      "additions": [],
+      "_idx": 159,
+      "_expected": "grounded"
+    },
+    {
+      "has_additions": false,
+      "additions": [],
+      "_idx": 160,
+      "_expected": "grounded"
+    },
+    {
+      "has_additions": false,
+      "additions": [],
+      "_idx": 161,
+      "_expected": "grounded"
+    },
+    {
+      "has_additions": false,
+      "additions": [],
+      "_idx": 162,
+      "_expected": "grounded"
+    },
+    {
+      "has_additions": false,
+      "additions": [],
+      "_idx": 163,
+      "_expected": "grounded"
+    },
+    {
+      "has_additions": false,
+      "additions": [],
+      "_idx": 164,
+      "_expected": "grounded"
+    },
+    {
+      "has_additions": false,
+      "additions": [],
+      "_idx": 165,
+      "_expected": "grounded"
+    },
+    {
+      "has_additions": false,
+      "additions": [],
+      "_idx": 166,
+      "_expected": "grounded"
+    },
+    {
+      "has_additions": false,
+      "additions": [],
+      "_idx": 167,
+      "_expected": "grounded"
+    },
+    {
+      "has_additions": false,
+      "additions": [],
+      "_idx": 168,
+      "_expected": "grounded"
+    },
+    {
+      "has_additions": true,
+      "additions": [
+        {
+          "added_text": "Three women... were charged with attempting to join ISIS",
+          "why_added": "The source states that only Keonna Thomas was charged with trying to travel to fight for ISIS; the other two women were accused of planning to build an explosive device for attacks in the United States."
+        }
+      ],
+      "_idx": 169,
+      "_expected": "hallucinated"
+    },
+    {
+      "has_additions": true,
+      "additions": [
+        {
+          "added_text": "arrested before her trip",
+          "why_added": "The source explicitly states, 'It's not clear when or where she was arrested.'"
+        }
+      ],
+      "_idx": 170,
+      "_expected": "hallucinated"
+    },
+    {
+      "has_additions": false,
+      "additions": [],
+      "_idx": 171,
+      "_expected": "grounded"
+    },
+    {
+      "has_additions": false,
+      "additions": [],
+      "_idx": 172,
+      "_expected": "grounded"
+    },
+    {
+      "has_additions": true,
+      "additions": [
+        {
+          "added_text": "US citizens",
+          "why_added": "not in source"
+        }
+      ],
+      "_idx": 173,
+      "_expected": "grounded"
+    },
+    {
+      "has_additions": true,
+      "additions": [
+        {
+          "added_text": "to Syria",
+          "why_added": "The source states she was charged with trying to travel 'overseas' to fight for ISIS; while it mentions Turkey is a gateway to Syria, it does not explicitly state she was charged with traveling to Syria specifically."
+        }
+      ],
+      "_idx": 174,
+      "_expected": "grounded"
+    },
+    {
+      "has_additions": true,
+      "additions": [
+        {
+          "added_text": "arrested on March 26",
+          "why_added": "not in source"
+        }
+      ],
+      "_idx": 175,
+      "_expected": "hallucinated"
+    },
+    {
+      "has_additions": false,
+      "additions": [],
+      "_idx": 176,
+      "_expected": "grounded"
+    },
+    {
+      "has_additions": false,
+      "additions": [],
+      "_idx": 177,
+      "_expected": "grounded"
+    },
+    {
+      "has_additions": false,
+      "additions": [],
+      "_idx": 178,
+      "_expected": "grounded"
+    },
+    {
+      "has_additions": false,
+      "additions": [],
+      "_idx": 179,
+      "_expected": "grounded"
+    },
+    {
+      "has_additions": false,
+      "additions": [],
+      "_idx": 180,
+      "_expected": "grounded"
+    },
+    {
+      "has_additions": false,
+      "additions": [],
+      "_idx": 181,
+      "_expected": "grounded"
+    },
+    {
+      "has_additions": false,
+      "additions": [],
+      "_idx": 182,
+      "_expected": "grounded"
+    },
+    {
+      "has_additions": false,
+      "additions": [],
+      "_idx": 183,
+      "_expected": "grounded"
+    },
+    {
+      "has_additions": false,
+      "additions": [],
+      "_idx": 184,
+      "_expected": "grounded"
+    },
+    {
+      "has_additions": false,
+      "additions": [],
+      "_idx": 185,
+      "_expected": "grounded"
+    },
+    {
+      "has_additions": false,
+      "additions": [],
+      "_idx": 186,
+      "_expected": "grounded"
+    },
+    {
+      "has_additions": false,
+      "additions": [],
+      "_idx": 187,
+      "_expected": "grounded"
+    },
+    {
+      "has_additions": false,
+      "additions": [],
+      "_idx": 188,
+      "_expected": "grounded"
+    },
+    {
+      "has_additions": false,
+      "additions": [],
+      "_idx": 189,
+      "_expected": "grounded"
+    },
+    {
+      "has_additions": false,
+      "additions": [],
+      "_idx": 190,
+      "_expected": "grounded"
+    },
+    {
+      "has_additions": false,
+      "additions": [],
+      "_idx": 191,
+      "_expected": "grounded"
+    },
+    {
+      "has_additions": false,
+      "additions": [],
+      "_idx": 192,
+      "_expected": "grounded"
+    },
+    {
+      "has_additions": true,
+      "additions": [
+        {
+          "added_text": "have filed a case in the state's high court",
+          "why_added": "The source states that beef traders 'vowed to file' a case, not that they have already filed it."
+        }
+      ],
+      "_idx": 193,
+      "_expected": "grounded"
+    },
+    {
+      "has_additions": false,
+      "additions": [],
+      "_idx": 194,
+      "_expected": "grounded"
+    },
+    {
+      "has_additions": false,
+      "additions": [],
+      "_idx": 195,
+      "_expected": "grounded"
+    },
+    {
+      "has_additions": false,
+      "additions": [],
+      "_idx": 196,
+      "_expected": "grounded"
+    },
+    {
+      "has_additions": false,
+      "additions": [],
+      "_idx": 197,
+      "_expected": "grounded"
+    },
+    {
+      "has_additions": false,
+      "additions": [],
+      "_idx": 198,
+      "_expected": "grounded"
+    },
+    {
+      "has_additions": true,
+      "additions": [
+        {
+          "added_text": "calling it an invasion of privacy",
+          "why_added": "not in source"
+        }
+      ],
+      "_idx": 199,
+      "_expected": "hallucinated"
+    }
+  ]
+}

@@ -1,0 +1,95 @@
+{
+  "stories": [
+    {
+      "thread": "General Context of Survival at Sea",
+      "story": "Survival at sea for extended periods, as depicted in movies like \"All Is Lost\" or \"Life of Pi,\" is difficult to believe in real life, yet miracles do happen. These rare cases involve individuals lost long enough to exhaust their food and water, relying on ingenuity, resourcefulness, and luck rather than technology or nearby help. While many such stories end sadly, happy endings do occur, though accounts from sole survivors are difficult to prove or refute. The exact number of stories that end sadly is not stated, only that it is a much higher number than those that end in rescues.",
+      "key_facts": [
+        "Survival at sea for extended periods is rare and difficult.",
+        "It requires ingenuity, resourcefulness, and luck.",
+        "More stories end sadly than in rescues.",
+        "Sole survivor accounts are hard to prove or refute."
+      ],
+      "explicit_unknowns": [
+        "The exact number of stories that end sadly is not stated, only that it is a much higher number than those that end in rescues."
+      ]
+    },
+    {
+      "thread": "Louis Jordan's Survival Story",
+      "story": "Louis Jordan set off from South Carolina in late January on his 35-foot sailboat, heading into the Gulf Stream to fish, when his boat capsized and its mast broke, also breaking his shoulder. He survived by rationing water, collecting fresh water in a bucket, and using laundry to trap fish for food. Jordan rigged a makeshift mast and sail, but his boat capsized two more times before he was spotted by the German-flagged container ship, the Houston Express, about 200 miles off the North Carolina coast on a Thursday. His father greeted him with a hug, saying, \"I thought I lost you.\" The exact date of his rescue is not stated, only that it occurred \"on Thursday.\"",
+      "key_facts": [
+        "Louis Jordan set off from South Carolina in late January on a 35-foot sailboat.",
+        "His boat capsized, its mast broke, and his shoulder broke.",
+        "He rationed water, collected fresh water, and used laundry to catch fish.",
+        "He rigged a makeshift mast and sail.",
+        "His boat capsized two more times.",
+        "He was rescued by the Houston Express (German-flagged container ship) about 200 miles off the North Carolina coast on a Thursday."
+      ],
+      "explicit_unknowns": [
+        "The exact date of his rescue is not stated, only that it occurred \"on Thursday.\"",
+        "The exact duration of his ordeal is not stated, only that \"It took so long.\""
+      ]
+    },
+    {
+      "thread": "Jose Salvador Alvarenga's Survival Story",
+      "story": "Jose Salvador Alvarenga's journey began in late 2012 from Paredon Viejo, Mexico, though the exact month is debated. What was supposed to be a one-day fishing trip turned into an arduous odyssey after winds blew his boat off course and a storm caused it to lose its engine, radio, and GPS. Four weeks in, his 23-year-old fishing companion, Ezequiel Cordova, died after refusing to eat raw birds. Alvarenga survived for 13 or 14 months by drinking rainwater, his own urine, and eating sea turtles, eventually arriving on the Ebon Atoll in January 2013, thousands of miles away. He credited his faith in God for his survival.",
+      "key_facts": [
+        "Jose Salvador Alvarenga's journey began in late 2012 from Paredon Viejo, Mexico.",
+        "His boat lost its engine, radio, and GPS after winds and a storm.",
+        "His 23-year-old fishing companion, Ezequiel Cordova, died four weeks in.",
+        "Alvarenga survived for 13 or 14 months by drinking rainwater, his own urine, and eating sea turtles.",
+        "He arrived on the Ebon Atoll in January 2013.",
+        "He credited his faith in God for his survival."
+      ],
+      "explicit_unknowns": [
+        "The exact month Alvarenga set off is debated (he says December, locals say November).",
+        "The exact date of his arrival on Ebon Atoll is not stated, only \"January 2013.\""
+      ]
+    },
+    {
+      "thread": "Ron Ingraham's Survival Story",
+      "story": "Ron Ingraham, a 67-year-old fisherman, set off solo from Molokai, Hawaii, around last Thanksgiving on his 25-foot sailboat. After bad weather hit, a huge wave pushed his mast and him into the water, but he used a rope to pull himself back in. A distress call prompted a 12,000 square mile search, which was called off on December 1, though his son Zakary believed he was still alive. Twelve days after the distress call, Ingraham was rescued about 64 miles (103 kilometers) south of Honolulu, \"weak, hungry and dehydrated\" but alive, and insisted his damaged boat come with him. The exact date of his departure is not stated, only \"around last Thanksgiving.\"",
+      "key_facts": [
+        "Ron Ingraham, 67, set off solo from Molokai, Hawaii, around last Thanksgiving on his 25-foot sailboat.",
+        "A huge wave pushed his mast and him into the water, but he pulled himself back in.",
+        "A distress call led to a 12,000 square mile search, called off on December 1.",
+        "He was rescued 12 days after the distress call, about 64 miles (103 kilometers) south of Honolulu.",
+        "He was \"weak, hungry and dehydrated\" but alive, and insisted his damaged boat be recovered."
+      ],
+      "explicit_unknowns": [
+        "The exact date of his departure is not stated, only \"around last Thanksgiving.\"",
+        "The exact date of his rescue is not stated, only \"Twelve days after that first distress call.\""
+      ]
+    },
+    {
+      "thread": "Adrian Vasquez's Survival Story",
+      "story": "In February 2012, 18-year-old Adrian Vasquez and two friends set off from San Carlos, Panama, on a small boat for an overnight fishing trip. After catching plenty of fish, their boat's engine died, and with no tools or navigational experience, they were adrift. Vasquez survived by eating raw fish and drinking rainwater as currents swept his boat, the Fifty Cents, into the Pacific Ocean. His two companions died somewhere along the way, though it is not clear exactly how, with Vasquez reportedly throwing their badly decomposed bodies into the sea. Some 26 days later and nearly 600 miles from their start, Vasquez was rescued by the Ecuadorian navy north of the Galapagos Islands, having lost 20 pounds and showing severe dehydration and lack of nutrition.",
+      "key_facts": [
+        "In February 2012, 18-year-old Adrian Vasquez and two friends set off from San Carlos, Panama.",
+        "Their boat's engine died, leaving them adrift without tools or navigational experience.",
+        "Vasquez ate raw fish and drank rainwater.",
+        "His two companions died.",
+        "He was rescued 26 days later, nearly 600 miles from his starting point, north of the Galapagos Islands.",
+        "He had lost 20 pounds and showed \"severe signs of dehydration and lack of nutrition.\""
+      ],
+      "explicit_unknowns": [
+        "It is not clear exactly how his two companions died."
+      ]
+    },
+    {
+      "thread": "Hiromitsu Shinkawa's Survival Story",
+      "story": "On March 11, 2011, Hiromitsu Shinkawa was at home in Minamisoma when a 9.0 magnitude earthquake struck northeast of Tokyo, followed by a devastating tsunami with 30-foot waves that killed nearly 16,000 people. While collecting belongings with his wife, his home was destroyed, and he was saved by holding onto the roof, but his wife was swept away. More than two days later, the 60-year-old was spotted over nine miles (15 kilometers) out to sea amid debris, waving a self-made red flag. Rescued by a Japanese Maritime Self-Defense Force destroyer crew, he burst into tears and told them, \"I thought today was the last day of my life.\" The exact time or date of his rescue is not stated, only that it occurred \"More than two days later.\"",
+      "key_facts": [
+        "Hiromitsu Shinkawa was at home on March 11, 2011, when a 9.0 magnitude earthquake and tsunami hit.",
+        "His home in Minamisoma was destroyed, and his wife was swept away.",
+        "He was saved by holding onto the roof.",
+        "More than two days later, he was found over nine miles (15 kilometers) out to sea, waving a self-made red flag.",
+        "He was rescued by a Japanese Maritime Self-Defense Force destroyer crew.",
+        "He stated, \"I thought today was the last day of my life.\""
+      ],
+      "explicit_unknowns": [
+        "The exact time or date of his rescue is not stated, only that it occurred \"More than two days later.\""
+      ]
+    }
+  ],
+  "_elapsed": 25.8
+}

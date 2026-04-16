@@ -1,0 +1,2732 @@
+{
+  "phase": "minicheck_done",
+  "mc_results": [
+    {
+      "prob_supported": 0.9836,
+      "verdict": "GROUNDED",
+      "input_tokens": 688,
+      "truncated": false,
+      "_idx": 0,
+      "_response_id": "0",
+      "_expected": "grounded"
+    },
+    {
+      "prob_supported": 0.9067,
+      "verdict": "GROUNDED",
+      "input_tokens": 701,
+      "truncated": false,
+      "_idx": 1,
+      "_response_id": "0",
+      "_expected": "grounded"
+    },
+    {
+      "prob_supported": 0.9559,
+      "verdict": "GROUNDED",
+      "input_tokens": 704,
+      "truncated": false,
+      "_idx": 2,
+      "_response_id": "0",
+      "_expected": "grounded"
+    },
+    {
+      "prob_supported": 0.9687,
+      "verdict": "GROUNDED",
+      "input_tokens": 694,
+      "truncated": false,
+      "_idx": 3,
+      "_response_id": "0",
+      "_expected": "grounded"
+    },
+    {
+      "prob_supported": 0.9814,
+      "verdict": "GROUNDED",
+      "input_tokens": 691,
+      "truncated": false,
+      "_idx": 4,
+      "_response_id": "1",
+      "_expected": "grounded"
+    },
+    {
+      "prob_supported": 0.9842,
+      "verdict": "GROUNDED",
+      "input_tokens": 687,
+      "truncated": false,
+      "_idx": 5,
+      "_response_id": "1",
+      "_expected": "grounded"
+    },
+    {
+      "prob_supported": 0.9165,
+      "verdict": "GROUNDED",
+      "input_tokens": 693,
+      "truncated": false,
+      "_idx": 6,
+      "_response_id": "1",
+      "_expected": "grounded"
+    },
+    {
+      "prob_supported": 0.9843,
+      "verdict": "GROUNDED",
+      "input_tokens": 691,
+      "truncated": false,
+      "_idx": 7,
+      "_response_id": "1",
+      "_expected": "grounded"
+    },
+    {
+      "prob_supported": 0.9843,
+      "verdict": "GROUNDED",
+      "input_tokens": 679,
+      "truncated": false,
+      "_idx": 8,
+      "_response_id": "1",
+      "_expected": "grounded"
+    },
+    {
+      "prob_supported": 0.9842,
+      "verdict": "GROUNDED",
+      "input_tokens": 668,
+      "truncated": false,
+      "_idx": 9,
+      "_response_id": "1",
+      "_expected": "grounded"
+    },
+    {
+      "prob_supported": 0.9793,
+      "verdict": "GROUNDED",
+      "input_tokens": 682,
+      "truncated": false,
+      "_idx": 10,
+      "_response_id": "1",
+      "_expected": "grounded"
+    },
+    {
+      "prob_supported": 0.9825,
+      "verdict": "GROUNDED",
+      "input_tokens": 699,
+      "truncated": false,
+      "_idx": 11,
+      "_response_id": "2",
+      "_expected": "grounded"
+    },
+    {
+      "prob_supported": 0.9775,
+      "verdict": "GROUNDED",
+      "input_tokens": 692,
+      "truncated": false,
+      "_idx": 12,
+      "_response_id": "2",
+      "_expected": "grounded"
+    },
+    {
+      "prob_supported": 0.9681,
+      "verdict": "GROUNDED",
+      "input_tokens": 695,
+      "truncated": false,
+      "_idx": 13,
+      "_response_id": "2",
+      "_expected": "grounded"
+    },
+    {
+      "prob_supported": 0.0389,
+      "verdict": "HALLUCINATED",
+      "input_tokens": 686,
+      "truncated": false,
+      "_idx": 14,
+      "_response_id": "2",
+      "_expected": "hallucinated"
+    },
+    {
+      "prob_supported": 0.9711,
+      "verdict": "GROUNDED",
+      "input_tokens": 682,
+      "truncated": false,
+      "_idx": 15,
+      "_response_id": "2",
+      "_expected": "grounded"
+    },
+    {
+      "prob_supported": 0.952,
+      "verdict": "GROUNDED",
+      "input_tokens": 701,
+      "truncated": false,
+      "_idx": 16,
+      "_response_id": "2",
+      "_expected": "hallucinated"
+    },
+    {
+      "prob_supported": 0.5577,
+      "verdict": "GROUNDED",
+      "input_tokens": 701,
+      "truncated": false,
+      "_idx": 17,
+      "_response_id": "3",
+      "_expected": "grounded"
+    },
+    {
+      "prob_supported": 0.9846,
+      "verdict": "GROUNDED",
+      "input_tokens": 683,
+      "truncated": false,
+      "_idx": 18,
+      "_response_id": "3",
+      "_expected": "grounded"
+    },
+    {
+      "prob_supported": 0.9732,
+      "verdict": "GROUNDED",
+      "input_tokens": 682,
+      "truncated": false,
+      "_idx": 19,
+      "_response_id": "3",
+      "_expected": "grounded"
+    },
+    {
+      "prob_supported": 0.9824,
+      "verdict": "GROUNDED",
+      "input_tokens": 687,
+      "truncated": false,
+      "_idx": 20,
+      "_response_id": "3",
+      "_expected": "grounded"
+    },
+    {
+      "prob_supported": 0.9807,
+      "verdict": "GROUNDED",
+      "input_tokens": 685,
+      "truncated": false,
+      "_idx": 21,
+      "_response_id": "3",
+      "_expected": "grounded"
+    },
+    {
+      "prob_supported": 0.8548,
+      "verdict": "GROUNDED",
+      "input_tokens": 677,
+      "truncated": false,
+      "_idx": 22,
+      "_response_id": "3",
+      "_expected": "hallucinated"
+    },
+    {
+      "prob_supported": 0.9673,
+      "verdict": "GROUNDED",
+      "input_tokens": 683,
+      "truncated": false,
+      "_idx": 23,
+      "_response_id": "4",
+      "_expected": "grounded"
+    },
+    {
+      "prob_supported": 0.9792,
+      "verdict": "GROUNDED",
+      "input_tokens": 684,
+      "truncated": false,
+      "_idx": 24,
+      "_response_id": "4",
+      "_expected": "grounded"
+    },
+    {
+      "prob_supported": 0.9805,
+      "verdict": "GROUNDED",
+      "input_tokens": 697,
+      "truncated": false,
+      "_idx": 25,
+      "_response_id": "4",
+      "_expected": "grounded"
+    },
+    {
+      "prob_supported": 0.7424,
+      "verdict": "GROUNDED",
+      "input_tokens": 686,
+      "truncated": false,
+      "_idx": 26,
+      "_response_id": "4",
+      "_expected": "grounded"
+    },
+    {
+      "prob_supported": 0.9833,
+      "verdict": "GROUNDED",
+      "input_tokens": 681,
+      "truncated": false,
+      "_idx": 27,
+      "_response_id": "5",
+      "_expected": "grounded"
+    },
+    {
+      "prob_supported": 0.9747,
+      "verdict": "GROUNDED",
+      "input_tokens": 687,
+      "truncated": false,
+      "_idx": 28,
+      "_response_id": "5",
+      "_expected": "grounded"
+    },
+    {
+      "prob_supported": 0.9221,
+      "verdict": "GROUNDED",
+      "input_tokens": 706,
+      "truncated": false,
+      "_idx": 29,
+      "_response_id": "5",
+      "_expected": "hallucinated"
+    },
+    {
+      "prob_supported": 0.984,
+      "verdict": "GROUNDED",
+      "input_tokens": 690,
+      "truncated": false,
+      "_idx": 30,
+      "_response_id": "5",
+      "_expected": "grounded"
+    },
+    {
+      "prob_supported": 0.974,
+      "verdict": "GROUNDED",
+      "input_tokens": 675,
+      "truncated": false,
+      "_idx": 31,
+      "_response_id": "5",
+      "_expected": "grounded"
+    },
+    {
+      "prob_supported": 0.8789,
+      "verdict": "GROUNDED",
+      "input_tokens": 681,
+      "truncated": false,
+      "_idx": 32,
+      "_response_id": "5",
+      "_expected": "hallucinated"
+    },
+    {
+      "prob_supported": 0.9653,
+      "verdict": "GROUNDED",
+      "input_tokens": 566,
+      "truncated": false,
+      "_idx": 33,
+      "_response_id": "6",
+      "_expected": "grounded"
+    },
+    {
+      "prob_supported": 0.97,
+      "verdict": "GROUNDED",
+      "input_tokens": 565,
+      "truncated": false,
+      "_idx": 34,
+      "_response_id": "6",
+      "_expected": "grounded"
+    },
+    {
+      "prob_supported": 0.9793,
+      "verdict": "GROUNDED",
+      "input_tokens": 557,
+      "truncated": false,
+      "_idx": 35,
+      "_response_id": "6",
+      "_expected": "grounded"
+    },
+    {
+      "prob_supported": 0.9749,
+      "verdict": "GROUNDED",
+      "input_tokens": 546,
+      "truncated": false,
+      "_idx": 36,
+      "_response_id": "6",
+      "_expected": "grounded"
+    },
+    {
+      "prob_supported": 0.9178,
+      "verdict": "GROUNDED",
+      "input_tokens": 551,
+      "truncated": false,
+      "_idx": 37,
+      "_response_id": "6",
+      "_expected": "grounded"
+    },
+    {
+      "prob_supported": 0.9753,
+      "verdict": "GROUNDED",
+      "input_tokens": 569,
+      "truncated": false,
+      "_idx": 38,
+      "_response_id": "7",
+      "_expected": "grounded"
+    },
+    {
+      "prob_supported": 0.9787,
+      "verdict": "GROUNDED",
+      "input_tokens": 553,
+      "truncated": false,
+      "_idx": 39,
+      "_response_id": "7",
+      "_expected": "grounded"
+    },
+    {
+      "prob_supported": 0.9823,
+      "verdict": "GROUNDED",
+      "input_tokens": 555,
+      "truncated": false,
+      "_idx": 40,
+      "_response_id": "7",
+      "_expected": "grounded"
+    },
+    {
+      "prob_supported": 0.9731,
+      "verdict": "GROUNDED",
+      "input_tokens": 544,
+      "truncated": false,
+      "_idx": 41,
+      "_response_id": "7",
+      "_expected": "grounded"
+    },
+    {
+      "prob_supported": 0.9834,
+      "verdict": "GROUNDED",
+      "input_tokens": 559,
+      "truncated": false,
+      "_idx": 42,
+      "_response_id": "7",
+      "_expected": "grounded"
+    },
+    {
+      "prob_supported": 0.5442,
+      "verdict": "GROUNDED",
+      "input_tokens": 573,
+      "truncated": false,
+      "_idx": 43,
+      "_response_id": "7",
+      "_expected": "grounded"
+    },
+    {
+      "prob_supported": 0.9812,
+      "verdict": "GROUNDED",
+      "input_tokens": 569,
+      "truncated": false,
+      "_idx": 44,
+      "_response_id": "7",
+      "_expected": "grounded"
+    },
+    {
+      "prob_supported": 0.9787,
+      "verdict": "GROUNDED",
+      "input_tokens": 563,
+      "truncated": false,
+      "_idx": 45,
+      "_response_id": "8",
+      "_expected": "grounded"
+    },
+    {
+      "prob_supported": 0.9468,
+      "verdict": "GROUNDED",
+      "input_tokens": 555,
+      "truncated": false,
+      "_idx": 46,
+      "_response_id": "8",
+      "_expected": "grounded"
+    },
+    {
+      "prob_supported": 0.9811,
+      "verdict": "GROUNDED",
+      "input_tokens": 552,
+      "truncated": false,
+      "_idx": 47,
+      "_response_id": "8",
+      "_expected": "grounded"
+    },
+    {
+      "prob_supported": 0.9668,
+      "verdict": "GROUNDED",
+      "input_tokens": 564,
+      "truncated": false,
+      "_idx": 48,
+      "_response_id": "8",
+      "_expected": "grounded"
+    },
+    {
+      "prob_supported": 0.5919,
+      "verdict": "GROUNDED",
+      "input_tokens": 550,
+      "truncated": false,
+      "_idx": 49,
+      "_response_id": "8",
+      "_expected": "grounded"
+    },
+    {
+      "prob_supported": 0.9148,
+      "verdict": "GROUNDED",
+      "input_tokens": 560,
+      "truncated": false,
+      "_idx": 50,
+      "_response_id": "9",
+      "_expected": "grounded"
+    },
+    {
+      "prob_supported": 0.9668,
+      "verdict": "GROUNDED",
+      "input_tokens": 555,
+      "truncated": false,
+      "_idx": 51,
+      "_response_id": "9",
+      "_expected": "grounded"
+    },
+    {
+      "prob_supported": 0.9851,
+      "verdict": "GROUNDED",
+      "input_tokens": 545,
+      "truncated": false,
+      "_idx": 52,
+      "_response_id": "9",
+      "_expected": "grounded"
+    },
+    {
+      "prob_supported": 0.1888,
+      "verdict": "HALLUCINATED",
+      "input_tokens": 569,
+      "truncated": false,
+      "_idx": 53,
+      "_response_id": "9",
+      "_expected": "grounded"
+    },
+    {
+      "prob_supported": 0.969,
+      "verdict": "GROUNDED",
+      "input_tokens": 563,
+      "truncated": false,
+      "_idx": 54,
+      "_response_id": "10",
+      "_expected": "grounded"
+    },
+    {
+      "prob_supported": 0.9572,
+      "verdict": "GROUNDED",
+      "input_tokens": 556,
+      "truncated": false,
+      "_idx": 55,
+      "_response_id": "10",
+      "_expected": "grounded"
+    },
+    {
+      "prob_supported": 0.9772,
+      "verdict": "GROUNDED",
+      "input_tokens": 562,
+      "truncated": false,
+      "_idx": 56,
+      "_response_id": "10",
+      "_expected": "grounded"
+    },
+    {
+      "prob_supported": 0.9723,
+      "verdict": "GROUNDED",
+      "input_tokens": 549,
+      "truncated": false,
+      "_idx": 57,
+      "_response_id": "10",
+      "_expected": "hallucinated"
+    },
+    {
+      "prob_supported": 0.9569,
+      "verdict": "GROUNDED",
+      "input_tokens": 560,
+      "truncated": false,
+      "_idx": 58,
+      "_response_id": "11",
+      "_expected": "grounded"
+    },
+    {
+      "prob_supported": 0.9742,
+      "verdict": "GROUNDED",
+      "input_tokens": 566,
+      "truncated": false,
+      "_idx": 59,
+      "_response_id": "11",
+      "_expected": "grounded"
+    },
+    {
+      "prob_supported": 0.9811,
+      "verdict": "GROUNDED",
+      "input_tokens": 569,
+      "truncated": false,
+      "_idx": 60,
+      "_response_id": "11",
+      "_expected": "grounded"
+    },
+    {
+      "prob_supported": 0.9759,
+      "verdict": "GROUNDED",
+      "input_tokens": 551,
+      "truncated": false,
+      "_idx": 61,
+      "_response_id": "11",
+      "_expected": "grounded"
+    },
+    {
+      "prob_supported": 0.9862,
+      "verdict": "GROUNDED",
+      "input_tokens": 574,
+      "truncated": false,
+      "_idx": 62,
+      "_response_id": "12",
+      "_expected": "grounded"
+    },
+    {
+      "prob_supported": 0.9819,
+      "verdict": "GROUNDED",
+      "input_tokens": 600,
+      "truncated": false,
+      "_idx": 63,
+      "_response_id": "12",
+      "_expected": "grounded"
+    },
+    {
+      "prob_supported": 0.9878,
+      "verdict": "GROUNDED",
+      "input_tokens": 573,
+      "truncated": false,
+      "_idx": 64,
+      "_response_id": "12",
+      "_expected": "grounded"
+    },
+    {
+      "prob_supported": 0.9877,
+      "verdict": "GROUNDED",
+      "input_tokens": 593,
+      "truncated": false,
+      "_idx": 65,
+      "_response_id": "12",
+      "_expected": "grounded"
+    },
+    {
+      "prob_supported": 0.6095,
+      "verdict": "GROUNDED",
+      "input_tokens": 587,
+      "truncated": false,
+      "_idx": 66,
+      "_response_id": "12",
+      "_expected": "grounded"
+    },
+    {
+      "prob_supported": 0.9856,
+      "verdict": "GROUNDED",
+      "input_tokens": 589,
+      "truncated": false,
+      "_idx": 67,
+      "_response_id": "13",
+      "_expected": "grounded"
+    },
+    {
+      "prob_supported": 0.9792,
+      "verdict": "GROUNDED",
+      "input_tokens": 606,
+      "truncated": false,
+      "_idx": 68,
+      "_response_id": "13",
+      "_expected": "grounded"
+    },
+    {
+      "prob_supported": 0.9852,
+      "verdict": "GROUNDED",
+      "input_tokens": 577,
+      "truncated": false,
+      "_idx": 69,
+      "_response_id": "13",
+      "_expected": "grounded"
+    },
+    {
+      "prob_supported": 0.9861,
+      "verdict": "GROUNDED",
+      "input_tokens": 581,
+      "truncated": false,
+      "_idx": 70,
+      "_response_id": "13",
+      "_expected": "grounded"
+    },
+    {
+      "prob_supported": 0.9894,
+      "verdict": "GROUNDED",
+      "input_tokens": 579,
+      "truncated": false,
+      "_idx": 71,
+      "_response_id": "13",
+      "_expected": "grounded"
+    },
+    {
+      "prob_supported": 0.9858,
+      "verdict": "GROUNDED",
+      "input_tokens": 578,
+      "truncated": false,
+      "_idx": 72,
+      "_response_id": "14",
+      "_expected": "grounded"
+    },
+    {
+      "prob_supported": 0.7822,
+      "verdict": "GROUNDED",
+      "input_tokens": 592,
+      "truncated": false,
+      "_idx": 73,
+      "_response_id": "14",
+      "_expected": "grounded"
+    },
+    {
+      "prob_supported": 0.9312,
+      "verdict": "GROUNDED",
+      "input_tokens": 583,
+      "truncated": false,
+      "_idx": 74,
+      "_response_id": "14",
+      "_expected": "grounded"
+    },
+    {
+      "prob_supported": 0.9798,
+      "verdict": "GROUNDED",
+      "input_tokens": 602,
+      "truncated": false,
+      "_idx": 75,
+      "_response_id": "14",
+      "_expected": "grounded"
+    },
+    {
+      "prob_supported": 0.9786,
+      "verdict": "GROUNDED",
+      "input_tokens": 585,
+      "truncated": false,
+      "_idx": 76,
+      "_response_id": "14",
+      "_expected": "grounded"
+    },
+    {
+      "prob_supported": 0.9841,
+      "verdict": "GROUNDED",
+      "input_tokens": 590,
+      "truncated": false,
+      "_idx": 77,
+      "_response_id": "14",
+      "_expected": "grounded"
+    },
+    {
+      "prob_supported": 0.1772,
+      "verdict": "HALLUCINATED",
+      "input_tokens": 580,
+      "truncated": false,
+      "_idx": 78,
+      "_response_id": "14",
+      "_expected": "grounded"
+    },
+    {
+      "prob_supported": 0.9582,
+      "verdict": "GROUNDED",
+      "input_tokens": 599,
+      "truncated": false,
+      "_idx": 79,
+      "_response_id": "15",
+      "_expected": "grounded"
+    },
+    {
+      "prob_supported": 0.9857,
+      "verdict": "GROUNDED",
+      "input_tokens": 576,
+      "truncated": false,
+      "_idx": 80,
+      "_response_id": "15",
+      "_expected": "grounded"
+    },
+    {
+      "prob_supported": 0.9877,
+      "verdict": "GROUNDED",
+      "input_tokens": 583,
+      "truncated": false,
+      "_idx": 81,
+      "_response_id": "15",
+      "_expected": "grounded"
+    },
+    {
+      "prob_supported": 0.9799,
+      "verdict": "GROUNDED",
+      "input_tokens": 589,
+      "truncated": false,
+      "_idx": 82,
+      "_response_id": "15",
+      "_expected": "grounded"
+    },
+    {
+      "prob_supported": 0.9853,
+      "verdict": "GROUNDED",
+      "input_tokens": 578,
+      "truncated": false,
+      "_idx": 83,
+      "_response_id": "16",
+      "_expected": "grounded"
+    },
+    {
+      "prob_supported": 0.983,
+      "verdict": "GROUNDED",
+      "input_tokens": 596,
+      "truncated": false,
+      "_idx": 84,
+      "_response_id": "16",
+      "_expected": "grounded"
+    },
+    {
+      "prob_supported": 0.9848,
+      "verdict": "GROUNDED",
+      "input_tokens": 583,
+      "truncated": false,
+      "_idx": 85,
+      "_response_id": "16",
+      "_expected": "grounded"
+    },
+    {
+      "prob_supported": 0.0512,
+      "verdict": "HALLUCINATED",
+      "input_tokens": 575,
+      "truncated": false,
+      "_idx": 86,
+      "_response_id": "16",
+      "_expected": "grounded"
+    },
+    {
+      "prob_supported": 0.9827,
+      "verdict": "GROUNDED",
+      "input_tokens": 597,
+      "truncated": false,
+      "_idx": 87,
+      "_response_id": "17",
+      "_expected": "grounded"
+    },
+    {
+      "prob_supported": 0.9048,
+      "verdict": "GROUNDED",
+      "input_tokens": 578,
+      "truncated": false,
+      "_idx": 88,
+      "_response_id": "17",
+      "_expected": "grounded"
+    },
+    {
+      "prob_supported": 0.9825,
+      "verdict": "GROUNDED",
+      "input_tokens": 599,
+      "truncated": false,
+      "_idx": 89,
+      "_response_id": "17",
+      "_expected": "grounded"
+    },
+    {
+      "prob_supported": 0.9861,
+      "verdict": "GROUNDED",
+      "input_tokens": 583,
+      "truncated": false,
+      "_idx": 90,
+      "_response_id": "17",
+      "_expected": "grounded"
+    },
+    {
+      "prob_supported": 0.8688,
+      "verdict": "GROUNDED",
+      "input_tokens": 2048,
+      "truncated": true,
+      "_idx": 91,
+      "_response_id": "18",
+      "_expected": "grounded"
+    },
+    {
+      "prob_supported": 0.8688,
+      "verdict": "GROUNDED",
+      "input_tokens": 2048,
+      "truncated": true,
+      "_idx": 92,
+      "_response_id": "18",
+      "_expected": "grounded"
+    },
+    {
+      "prob_supported": 0.8688,
+      "verdict": "GROUNDED",
+      "input_tokens": 2048,
+      "truncated": true,
+      "_idx": 93,
+      "_response_id": "18",
+      "_expected": "grounded"
+    },
+    {
+      "prob_supported": 0.8688,
+      "verdict": "GROUNDED",
+      "input_tokens": 2048,
+      "truncated": true,
+      "_idx": 94,
+      "_response_id": "18",
+      "_expected": "grounded"
+    },
+    {
+      "prob_supported": 0.8688,
+      "verdict": "GROUNDED",
+      "input_tokens": 2048,
+      "truncated": true,
+      "_idx": 95,
+      "_response_id": "18",
+      "_expected": "grounded"
+    },
+    {
+      "prob_supported": 0.8688,
+      "verdict": "GROUNDED",
+      "input_tokens": 2048,
+      "truncated": true,
+      "_idx": 96,
+      "_response_id": "18",
+      "_expected": "grounded"
+    },
+    {
+      "prob_supported": 0.8688,
+      "verdict": "GROUNDED",
+      "input_tokens": 2048,
+      "truncated": true,
+      "_idx": 97,
+      "_response_id": "18",
+      "_expected": "grounded"
+    },
+    {
+      "prob_supported": 0.8688,
+      "verdict": "GROUNDED",
+      "input_tokens": 2048,
+      "truncated": true,
+      "_idx": 98,
+      "_response_id": "18",
+      "_expected": "grounded"
+    },
+    {
+      "prob_supported": 0.8688,
+      "verdict": "GROUNDED",
+      "input_tokens": 2048,
+      "truncated": true,
+      "_idx": 99,
+      "_response_id": "18",
+      "_expected": "grounded"
+    },
+    {
+      "prob_supported": 0.8688,
+      "verdict": "GROUNDED",
+      "input_tokens": 2048,
+      "truncated": true,
+      "_idx": 100,
+      "_response_id": "19",
+      "_expected": "grounded"
+    },
+    {
+      "prob_supported": 0.8688,
+      "verdict": "GROUNDED",
+      "input_tokens": 2048,
+      "truncated": true,
+      "_idx": 101,
+      "_response_id": "19",
+      "_expected": "grounded"
+    },
+    {
+      "prob_supported": 0.8688,
+      "verdict": "GROUNDED",
+      "input_tokens": 2048,
+      "truncated": true,
+      "_idx": 102,
+      "_response_id": "19",
+      "_expected": "grounded"
+    },
+    {
+      "prob_supported": 0.8688,
+      "verdict": "GROUNDED",
+      "input_tokens": 2048,
+      "truncated": true,
+      "_idx": 103,
+      "_response_id": "19",
+      "_expected": "grounded"
+    },
+    {
+      "prob_supported": 0.8688,
+      "verdict": "GROUNDED",
+      "input_tokens": 2048,
+      "truncated": true,
+      "_idx": 104,
+      "_response_id": "19",
+      "_expected": "grounded"
+    },
+    {
+      "prob_supported": 0.8688,
+      "verdict": "GROUNDED",
+      "input_tokens": 2048,
+      "truncated": true,
+      "_idx": 105,
+      "_response_id": "19",
+      "_expected": "grounded"
+    },
+    {
+      "prob_supported": 0.8688,
+      "verdict": "GROUNDED",
+      "input_tokens": 2048,
+      "truncated": true,
+      "_idx": 106,
+      "_response_id": "19",
+      "_expected": "grounded"
+    },
+    {
+      "prob_supported": 0.8688,
+      "verdict": "GROUNDED",
+      "input_tokens": 2048,
+      "truncated": true,
+      "_idx": 107,
+      "_response_id": "19",
+      "_expected": "grounded"
+    },
+    {
+      "prob_supported": 0.8688,
+      "verdict": "GROUNDED",
+      "input_tokens": 2048,
+      "truncated": true,
+      "_idx": 108,
+      "_response_id": "19",
+      "_expected": "grounded"
+    },
+    {
+      "prob_supported": 0.8688,
+      "verdict": "GROUNDED",
+      "input_tokens": 2048,
+      "truncated": true,
+      "_idx": 109,
+      "_response_id": "19",
+      "_expected": "grounded"
+    },
+    {
+      "prob_supported": 0.8688,
+      "verdict": "GROUNDED",
+      "input_tokens": 2048,
+      "truncated": true,
+      "_idx": 110,
+      "_response_id": "19",
+      "_expected": "grounded"
+    },
+    {
+      "prob_supported": 0.8688,
+      "verdict": "GROUNDED",
+      "input_tokens": 2048,
+      "truncated": true,
+      "_idx": 111,
+      "_response_id": "19",
+      "_expected": "grounded"
+    },
+    {
+      "prob_supported": 0.8688,
+      "verdict": "GROUNDED",
+      "input_tokens": 2048,
+      "truncated": true,
+      "_idx": 112,
+      "_response_id": "19",
+      "_expected": "grounded"
+    },
+    {
+      "prob_supported": 0.8688,
+      "verdict": "GROUNDED",
+      "input_tokens": 2048,
+      "truncated": true,
+      "_idx": 113,
+      "_response_id": "19",
+      "_expected": "grounded"
+    },
+    {
+      "prob_supported": 0.8688,
+      "verdict": "GROUNDED",
+      "input_tokens": 2048,
+      "truncated": true,
+      "_idx": 114,
+      "_response_id": "19",
+      "_expected": "grounded"
+    },
+    {
+      "prob_supported": 0.8688,
+      "verdict": "GROUNDED",
+      "input_tokens": 2048,
+      "truncated": true,
+      "_idx": 115,
+      "_response_id": "19",
+      "_expected": "grounded"
+    },
+    {
+      "prob_supported": 0.8688,
+      "verdict": "GROUNDED",
+      "input_tokens": 2048,
+      "truncated": true,
+      "_idx": 116,
+      "_response_id": "19",
+      "_expected": "grounded"
+    },
+    {
+      "prob_supported": 0.8688,
+      "verdict": "GROUNDED",
+      "input_tokens": 2048,
+      "truncated": true,
+      "_idx": 117,
+      "_response_id": "19",
+      "_expected": "grounded"
+    },
+    {
+      "prob_supported": 0.8688,
+      "verdict": "GROUNDED",
+      "input_tokens": 2048,
+      "truncated": true,
+      "_idx": 118,
+      "_response_id": "20",
+      "_expected": "grounded"
+    },
+    {
+      "prob_supported": 0.8688,
+      "verdict": "GROUNDED",
+      "input_tokens": 2048,
+      "truncated": true,
+      "_idx": 119,
+      "_response_id": "20",
+      "_expected": "grounded"
+    },
+    {
+      "prob_supported": 0.8688,
+      "verdict": "GROUNDED",
+      "input_tokens": 2048,
+      "truncated": true,
+      "_idx": 120,
+      "_response_id": "20",
+      "_expected": "grounded"
+    },
+    {
+      "prob_supported": 0.8688,
+      "verdict": "GROUNDED",
+      "input_tokens": 2048,
+      "truncated": true,
+      "_idx": 121,
+      "_response_id": "20",
+      "_expected": "grounded"
+    },
+    {
+      "prob_supported": 0.8688,
+      "verdict": "GROUNDED",
+      "input_tokens": 2048,
+      "truncated": true,
+      "_idx": 122,
+      "_response_id": "20",
+      "_expected": "grounded"
+    },
+    {
+      "prob_supported": 0.8688,
+      "verdict": "GROUNDED",
+      "input_tokens": 2048,
+      "truncated": true,
+      "_idx": 123,
+      "_response_id": "21",
+      "_expected": "grounded"
+    },
+    {
+      "prob_supported": 0.8688,
+      "verdict": "GROUNDED",
+      "input_tokens": 2048,
+      "truncated": true,
+      "_idx": 124,
+      "_response_id": "21",
+      "_expected": "grounded"
+    },
+    {
+      "prob_supported": 0.8688,
+      "verdict": "GROUNDED",
+      "input_tokens": 2048,
+      "truncated": true,
+      "_idx": 125,
+      "_response_id": "21",
+      "_expected": "hallucinated"
+    },
+    {
+      "prob_supported": 0.8688,
+      "verdict": "GROUNDED",
+      "input_tokens": 2048,
+      "truncated": true,
+      "_idx": 126,
+      "_response_id": "21",
+      "_expected": "grounded"
+    },
+    {
+      "prob_supported": 0.8688,
+      "verdict": "GROUNDED",
+      "input_tokens": 2048,
+      "truncated": true,
+      "_idx": 127,
+      "_response_id": "21",
+      "_expected": "grounded"
+    },
+    {
+      "prob_supported": 0.8688,
+      "verdict": "GROUNDED",
+      "input_tokens": 2048,
+      "truncated": true,
+      "_idx": 128,
+      "_response_id": "21",
+      "_expected": "grounded"
+    },
+    {
+      "prob_supported": 0.8688,
+      "verdict": "GROUNDED",
+      "input_tokens": 2048,
+      "truncated": true,
+      "_idx": 129,
+      "_response_id": "21",
+      "_expected": "grounded"
+    },
+    {
+      "prob_supported": 0.8688,
+      "verdict": "GROUNDED",
+      "input_tokens": 2048,
+      "truncated": true,
+      "_idx": 130,
+      "_response_id": "21",
+      "_expected": "grounded"
+    },
+    {
+      "prob_supported": 0.8688,
+      "verdict": "GROUNDED",
+      "input_tokens": 2048,
+      "truncated": true,
+      "_idx": 131,
+      "_response_id": "21",
+      "_expected": "grounded"
+    },
+    {
+      "prob_supported": 0.8688,
+      "verdict": "GROUNDED",
+      "input_tokens": 2048,
+      "truncated": true,
+      "_idx": 132,
+      "_response_id": "21",
+      "_expected": "grounded"
+    },
+    {
+      "prob_supported": 0.8688,
+      "verdict": "GROUNDED",
+      "input_tokens": 2048,
+      "truncated": true,
+      "_idx": 133,
+      "_response_id": "21",
+      "_expected": "grounded"
+    },
+    {
+      "prob_supported": 0.8688,
+      "verdict": "GROUNDED",
+      "input_tokens": 2048,
+      "truncated": true,
+      "_idx": 134,
+      "_response_id": "21",
+      "_expected": "grounded"
+    },
+    {
+      "prob_supported": 0.8688,
+      "verdict": "GROUNDED",
+      "input_tokens": 2048,
+      "truncated": true,
+      "_idx": 135,
+      "_response_id": "21",
+      "_expected": "grounded"
+    },
+    {
+      "prob_supported": 0.8688,
+      "verdict": "GROUNDED",
+      "input_tokens": 2048,
+      "truncated": true,
+      "_idx": 136,
+      "_response_id": "21",
+      "_expected": "grounded"
+    },
+    {
+      "prob_supported": 0.8688,
+      "verdict": "GROUNDED",
+      "input_tokens": 2048,
+      "truncated": true,
+      "_idx": 137,
+      "_response_id": "21",
+      "_expected": "grounded"
+    },
+    {
+      "prob_supported": 0.8688,
+      "verdict": "GROUNDED",
+      "input_tokens": 2048,
+      "truncated": true,
+      "_idx": 138,
+      "_response_id": "22",
+      "_expected": "grounded"
+    },
+    {
+      "prob_supported": 0.8688,
+      "verdict": "GROUNDED",
+      "input_tokens": 2048,
+      "truncated": true,
+      "_idx": 139,
+      "_response_id": "22",
+      "_expected": "grounded"
+    },
+    {
+      "prob_supported": 0.8688,
+      "verdict": "GROUNDED",
+      "input_tokens": 2048,
+      "truncated": true,
+      "_idx": 140,
+      "_response_id": "22",
+      "_expected": "hallucinated"
+    },
+    {
+      "prob_supported": 0.8688,
+      "verdict": "GROUNDED",
+      "input_tokens": 2048,
+      "truncated": true,
+      "_idx": 141,
+      "_response_id": "22",
+      "_expected": "grounded"
+    },
+    {
+      "prob_supported": 0.8688,
+      "verdict": "GROUNDED",
+      "input_tokens": 2048,
+      "truncated": true,
+      "_idx": 142,
+      "_response_id": "22",
+      "_expected": "grounded"
+    },
+    {
+      "prob_supported": 0.8688,
+      "verdict": "GROUNDED",
+      "input_tokens": 2048,
+      "truncated": true,
+      "_idx": 143,
+      "_response_id": "23",
+      "_expected": "grounded"
+    },
+    {
+      "prob_supported": 0.8688,
+      "verdict": "GROUNDED",
+      "input_tokens": 2048,
+      "truncated": true,
+      "_idx": 144,
+      "_response_id": "23",
+      "_expected": "grounded"
+    },
+    {
+      "prob_supported": 0.8688,
+      "verdict": "GROUNDED",
+      "input_tokens": 2048,
+      "truncated": true,
+      "_idx": 145,
+      "_response_id": "23",
+      "_expected": "hallucinated"
+    },
+    {
+      "prob_supported": 0.8688,
+      "verdict": "GROUNDED",
+      "input_tokens": 2048,
+      "truncated": true,
+      "_idx": 146,
+      "_response_id": "23",
+      "_expected": "hallucinated"
+    },
+    {
+      "prob_supported": 0.8688,
+      "verdict": "GROUNDED",
+      "input_tokens": 2048,
+      "truncated": true,
+      "_idx": 147,
+      "_response_id": "23",
+      "_expected": "grounded"
+    },
+    {
+      "prob_supported": 0.8688,
+      "verdict": "GROUNDED",
+      "input_tokens": 2048,
+      "truncated": true,
+      "_idx": 148,
+      "_response_id": "23",
+      "_expected": "grounded"
+    },
+    {
+      "prob_supported": 0.8688,
+      "verdict": "GROUNDED",
+      "input_tokens": 2048,
+      "truncated": true,
+      "_idx": 149,
+      "_response_id": "23",
+      "_expected": "grounded"
+    },
+    {
+      "prob_supported": 0.8688,
+      "verdict": "GROUNDED",
+      "input_tokens": 2048,
+      "truncated": true,
+      "_idx": 150,
+      "_response_id": "23",
+      "_expected": "grounded"
+    },
+    {
+      "prob_supported": 0.984,
+      "verdict": "GROUNDED",
+      "input_tokens": 511,
+      "truncated": false,
+      "_idx": 151,
+      "_response_id": "24",
+      "_expected": "grounded"
+    },
+    {
+      "prob_supported": 0.4407,
+      "verdict": "HALLUCINATED",
+      "input_tokens": 529,
+      "truncated": false,
+      "_idx": 152,
+      "_response_id": "24",
+      "_expected": "grounded"
+    },
+    {
+      "prob_supported": 0.9422,
+      "verdict": "GROUNDED",
+      "input_tokens": 517,
+      "truncated": false,
+      "_idx": 153,
+      "_response_id": "24",
+      "_expected": "grounded"
+    },
+    {
+      "prob_supported": 0.9771,
+      "verdict": "GROUNDED",
+      "input_tokens": 511,
+      "truncated": false,
+      "_idx": 154,
+      "_response_id": "24",
+      "_expected": "grounded"
+    },
+    {
+      "prob_supported": 0.9832,
+      "verdict": "GROUNDED",
+      "input_tokens": 513,
+      "truncated": false,
+      "_idx": 155,
+      "_response_id": "25",
+      "_expected": "grounded"
+    },
+    {
+      "prob_supported": 0.9582,
+      "verdict": "GROUNDED",
+      "input_tokens": 500,
+      "truncated": false,
+      "_idx": 156,
+      "_response_id": "25",
+      "_expected": "grounded"
+    },
+    {
+      "prob_supported": 0.9772,
+      "verdict": "GROUNDED",
+      "input_tokens": 521,
+      "truncated": false,
+      "_idx": 157,
+      "_response_id": "25",
+      "_expected": "grounded"
+    },
+    {
+      "prob_supported": 0.9628,
+      "verdict": "GROUNDED",
+      "input_tokens": 528,
+      "truncated": false,
+      "_idx": 158,
+      "_response_id": "25",
+      "_expected": "grounded"
+    },
+    {
+      "prob_supported": 0.9836,
+      "verdict": "GROUNDED",
+      "input_tokens": 508,
+      "truncated": false,
+      "_idx": 159,
+      "_response_id": "25",
+      "_expected": "grounded"
+    },
+    {
+      "prob_supported": 0.9745,
+      "verdict": "GROUNDED",
+      "input_tokens": 537,
+      "truncated": false,
+      "_idx": 160,
+      "_response_id": "26",
+      "_expected": "grounded"
+    },
+    {
+      "prob_supported": 0.9805,
+      "verdict": "GROUNDED",
+      "input_tokens": 510,
+      "truncated": false,
+      "_idx": 161,
+      "_response_id": "26",
+      "_expected": "grounded"
+    },
+    {
+      "prob_supported": 0.974,
+      "verdict": "GROUNDED",
+      "input_tokens": 498,
+      "truncated": false,
+      "_idx": 162,
+      "_response_id": "26",
+      "_expected": "grounded"
+    },
+    {
+      "prob_supported": 0.9464,
+      "verdict": "GROUNDED",
+      "input_tokens": 502,
+      "truncated": false,
+      "_idx": 163,
+      "_response_id": "26",
+      "_expected": "grounded"
+    },
+    {
+      "prob_supported": 0.9769,
+      "verdict": "GROUNDED",
+      "input_tokens": 514,
+      "truncated": false,
+      "_idx": 164,
+      "_response_id": "26",
+      "_expected": "grounded"
+    },
+    {
+      "prob_supported": 0.9707,
+      "verdict": "GROUNDED",
+      "input_tokens": 505,
+      "truncated": false,
+      "_idx": 165,
+      "_response_id": "27",
+      "_expected": "grounded"
+    },
+    {
+      "prob_supported": 0.9805,
+      "verdict": "GROUNDED",
+      "input_tokens": 532,
+      "truncated": false,
+      "_idx": 166,
+      "_response_id": "27",
+      "_expected": "grounded"
+    },
+    {
+      "prob_supported": 0.9789,
+      "verdict": "GROUNDED",
+      "input_tokens": 495,
+      "truncated": false,
+      "_idx": 167,
+      "_response_id": "27",
+      "_expected": "grounded"
+    },
+    {
+      "prob_supported": 0.9281,
+      "verdict": "GROUNDED",
+      "input_tokens": 519,
+      "truncated": false,
+      "_idx": 168,
+      "_response_id": "27",
+      "_expected": "grounded"
+    },
+    {
+      "prob_supported": 0.9508,
+      "verdict": "GROUNDED",
+      "input_tokens": 509,
+      "truncated": false,
+      "_idx": 169,
+      "_response_id": "28",
+      "_expected": "hallucinated"
+    },
+    {
+      "prob_supported": 0.0455,
+      "verdict": "HALLUCINATED",
+      "input_tokens": 501,
+      "truncated": false,
+      "_idx": 170,
+      "_response_id": "28",
+      "_expected": "hallucinated"
+    },
+    {
+      "prob_supported": 0.9617,
+      "verdict": "GROUNDED",
+      "input_tokens": 518,
+      "truncated": false,
+      "_idx": 171,
+      "_response_id": "28",
+      "_expected": "grounded"
+    },
+    {
+      "prob_supported": 0.9882,
+      "verdict": "GROUNDED",
+      "input_tokens": 501,
+      "truncated": false,
+      "_idx": 172,
+      "_response_id": "28",
+      "_expected": "grounded"
+    },
+    {
+      "prob_supported": 0.6851,
+      "verdict": "GROUNDED",
+      "input_tokens": 519,
+      "truncated": false,
+      "_idx": 173,
+      "_response_id": "28",
+      "_expected": "grounded"
+    },
+    {
+      "prob_supported": 0.9766,
+      "verdict": "GROUNDED",
+      "input_tokens": 513,
+      "truncated": false,
+      "_idx": 174,
+      "_response_id": "29",
+      "_expected": "grounded"
+    },
+    {
+      "prob_supported": 0.1432,
+      "verdict": "HALLUCINATED",
+      "input_tokens": 501,
+      "truncated": false,
+      "_idx": 175,
+      "_response_id": "29",
+      "_expected": "hallucinated"
+    },
+    {
+      "prob_supported": 0.955,
+      "verdict": "GROUNDED",
+      "input_tokens": 523,
+      "truncated": false,
+      "_idx": 176,
+      "_response_id": "29",
+      "_expected": "grounded"
+    },
+    {
+      "prob_supported": 0.9812,
+      "verdict": "GROUNDED",
+      "input_tokens": 520,
+      "truncated": false,
+      "_idx": 177,
+      "_response_id": "29",
+      "_expected": "grounded"
+    },
+    {
+      "prob_supported": 0.971,
+      "verdict": "GROUNDED",
+      "input_tokens": 524,
+      "truncated": false,
+      "_idx": 178,
+      "_response_id": "29",
+      "_expected": "grounded"
+    },
+    {
+      "prob_supported": 0.9843,
+      "verdict": "GROUNDED",
+      "input_tokens": 589,
+      "truncated": false,
+      "_idx": 179,
+      "_response_id": "30",
+      "_expected": "grounded"
+    },
+    {
+      "prob_supported": 0.9816,
+      "verdict": "GROUNDED",
+      "input_tokens": 562,
+      "truncated": false,
+      "_idx": 180,
+      "_response_id": "30",
+      "_expected": "grounded"
+    },
+    {
+      "prob_supported": 0.9843,
+      "verdict": "GROUNDED",
+      "input_tokens": 569,
+      "truncated": false,
+      "_idx": 181,
+      "_response_id": "30",
+      "_expected": "grounded"
+    },
+    {
+      "prob_supported": 0.9745,
+      "verdict": "GROUNDED",
+      "input_tokens": 574,
+      "truncated": false,
+      "_idx": 182,
+      "_response_id": "30",
+      "_expected": "grounded"
+    },
+    {
+      "prob_supported": 0.9895,
+      "verdict": "GROUNDED",
+      "input_tokens": 558,
+      "truncated": false,
+      "_idx": 183,
+      "_response_id": "30",
+      "_expected": "grounded"
+    },
+    {
+      "prob_supported": 0.9848,
+      "verdict": "GROUNDED",
+      "input_tokens": 590,
+      "truncated": false,
+      "_idx": 184,
+      "_response_id": "31",
+      "_expected": "grounded"
+    },
+    {
+      "prob_supported": 0.9856,
+      "verdict": "GROUNDED",
+      "input_tokens": 562,
+      "truncated": false,
+      "_idx": 185,
+      "_response_id": "31",
+      "_expected": "grounded"
+    },
+    {
+      "prob_supported": 0.9852,
+      "verdict": "GROUNDED",
+      "input_tokens": 556,
+      "truncated": false,
+      "_idx": 186,
+      "_response_id": "31",
+      "_expected": "grounded"
+    },
+    {
+      "prob_supported": 0.9749,
+      "verdict": "GROUNDED",
+      "input_tokens": 572,
+      "truncated": false,
+      "_idx": 187,
+      "_response_id": "31",
+      "_expected": "grounded"
+    },
+    {
+      "prob_supported": 0.9839,
+      "verdict": "GROUNDED",
+      "input_tokens": 575,
+      "truncated": false,
+      "_idx": 188,
+      "_response_id": "31",
+      "_expected": "grounded"
+    },
+    {
+      "prob_supported": 0.9767,
+      "verdict": "GROUNDED",
+      "input_tokens": 556,
+      "truncated": false,
+      "_idx": 189,
+      "_response_id": "31",
+      "_expected": "grounded"
+    },
+    {
+      "prob_supported": 0.9747,
+      "verdict": "GROUNDED",
+      "input_tokens": 576,
+      "truncated": false,
+      "_idx": 190,
+      "_response_id": "32",
+      "_expected": "grounded"
+    },
+    {
+      "prob_supported": 0.9872,
+      "verdict": "GROUNDED",
+      "input_tokens": 561,
+      "truncated": false,
+      "_idx": 191,
+      "_response_id": "32",
+      "_expected": "grounded"
+    },
+    {
+      "prob_supported": 0.9671,
+      "verdict": "GROUNDED",
+      "input_tokens": 573,
+      "truncated": false,
+      "_idx": 192,
+      "_response_id": "32",
+      "_expected": "grounded"
+    },
+    {
+      "prob_supported": 0.7715,
+      "verdict": "GROUNDED",
+      "input_tokens": 571,
+      "truncated": false,
+      "_idx": 193,
+      "_response_id": "32",
+      "_expected": "grounded"
+    },
+    {
+      "prob_supported": 0.9736,
+      "verdict": "GROUNDED",
+      "input_tokens": 571,
+      "truncated": false,
+      "_idx": 194,
+      "_response_id": "32",
+      "_expected": "grounded"
+    },
+    {
+      "prob_supported": 0.9811,
+      "verdict": "GROUNDED",
+      "input_tokens": 577,
+      "truncated": false,
+      "_idx": 195,
+      "_response_id": "33",
+      "_expected": "grounded"
+    },
+    {
+      "prob_supported": 0.9861,
+      "verdict": "GROUNDED",
+      "input_tokens": 558,
+      "truncated": false,
+      "_idx": 196,
+      "_response_id": "33",
+      "_expected": "grounded"
+    },
+    {
+      "prob_supported": 0.9877,
+      "verdict": "GROUNDED",
+      "input_tokens": 559,
+      "truncated": false,
+      "_idx": 197,
+      "_response_id": "33",
+      "_expected": "grounded"
+    },
+    {
+      "prob_supported": 0.9819,
+      "verdict": "GROUNDED",
+      "input_tokens": 568,
+      "truncated": false,
+      "_idx": 198,
+      "_response_id": "33",
+      "_expected": "grounded"
+    },
+    {
+      "prob_supported": 0.9404,
+      "verdict": "GROUNDED",
+      "input_tokens": 582,
+      "truncated": false,
+      "_idx": 199,
+      "_response_id": "33",
+      "_expected": "hallucinated"
+    },
+    {
+      "prob_supported": 0.9836,
+      "verdict": "GROUNDED",
+      "input_tokens": 569,
+      "truncated": false,
+      "_idx": 200,
+      "_response_id": "34",
+      "_expected": "grounded"
+    },
+    {
+      "prob_supported": 0.9865,
+      "verdict": "GROUNDED",
+      "input_tokens": 567,
+      "truncated": false,
+      "_idx": 201,
+      "_response_id": "34",
+      "_expected": "grounded"
+    },
+    {
+      "prob_supported": 0.9454,
+      "verdict": "GROUNDED",
+      "input_tokens": 572,
+      "truncated": false,
+      "_idx": 202,
+      "_response_id": "34",
+      "_expected": "grounded"
+    },
+    {
+      "prob_supported": 0.9669,
+      "verdict": "GROUNDED",
+      "input_tokens": 583,
+      "truncated": false,
+      "_idx": 203,
+      "_response_id": "34",
+      "_expected": "grounded"
+    },
+    {
+      "prob_supported": 0.9822,
+      "verdict": "GROUNDED",
+      "input_tokens": 585,
+      "truncated": false,
+      "_idx": 204,
+      "_response_id": "35",
+      "_expected": "grounded"
+    },
+    {
+      "prob_supported": 0.986,
+      "verdict": "GROUNDED",
+      "input_tokens": 553,
+      "truncated": false,
+      "_idx": 205,
+      "_response_id": "35",
+      "_expected": "grounded"
+    },
+    {
+      "prob_supported": 0.9728,
+      "verdict": "GROUNDED",
+      "input_tokens": 576,
+      "truncated": false,
+      "_idx": 206,
+      "_response_id": "35",
+      "_expected": "grounded"
+    },
+    {
+      "prob_supported": 0.9831,
+      "verdict": "GROUNDED",
+      "input_tokens": 573,
+      "truncated": false,
+      "_idx": 207,
+      "_response_id": "35",
+      "_expected": "grounded"
+    },
+    {
+      "prob_supported": 0.3315,
+      "verdict": "HALLUCINATED",
+      "input_tokens": 659,
+      "truncated": false,
+      "_idx": 208,
+      "_response_id": "36",
+      "_expected": "grounded"
+    },
+    {
+      "prob_supported": 0.9856,
+      "verdict": "GROUNDED",
+      "input_tokens": 641,
+      "truncated": false,
+      "_idx": 209,
+      "_response_id": "36",
+      "_expected": "grounded"
+    },
+    {
+      "prob_supported": 0.9749,
+      "verdict": "GROUNDED",
+      "input_tokens": 647,
+      "truncated": false,
+      "_idx": 210,
+      "_response_id": "36",
+      "_expected": "grounded"
+    },
+    {
+      "prob_supported": 0.9723,
+      "verdict": "GROUNDED",
+      "input_tokens": 644,
+      "truncated": false,
+      "_idx": 211,
+      "_response_id": "36",
+      "_expected": "grounded"
+    },
+    {
+      "prob_supported": 0.9728,
+      "verdict": "GROUNDED",
+      "input_tokens": 645,
+      "truncated": false,
+      "_idx": 212,
+      "_response_id": "36",
+      "_expected": "grounded"
+    },
+    {
+      "prob_supported": 0.9807,
+      "verdict": "GROUNDED",
+      "input_tokens": 644,
+      "truncated": false,
+      "_idx": 213,
+      "_response_id": "36",
+      "_expected": "grounded"
+    },
+    {
+      "prob_supported": 0.9682,
+      "verdict": "GROUNDED",
+      "input_tokens": 657,
+      "truncated": false,
+      "_idx": 214,
+      "_response_id": "37",
+      "_expected": "grounded"
+    },
+    {
+      "prob_supported": 0.9826,
+      "verdict": "GROUNDED",
+      "input_tokens": 657,
+      "truncated": false,
+      "_idx": 215,
+      "_response_id": "37",
+      "_expected": "grounded"
+    },
+    {
+      "prob_supported": 0.6515,
+      "verdict": "GROUNDED",
+      "input_tokens": 658,
+      "truncated": false,
+      "_idx": 216,
+      "_response_id": "37",
+      "_expected": "grounded"
+    },
+    {
+      "prob_supported": 0.9807,
+      "verdict": "GROUNDED",
+      "input_tokens": 646,
+      "truncated": false,
+      "_idx": 217,
+      "_response_id": "37",
+      "_expected": "grounded"
+    },
+    {
+      "prob_supported": 0.9816,
+      "verdict": "GROUNDED",
+      "input_tokens": 652,
+      "truncated": false,
+      "_idx": 218,
+      "_response_id": "37",
+      "_expected": "grounded"
+    },
+    {
+      "prob_supported": 0.978,
+      "verdict": "GROUNDED",
+      "input_tokens": 642,
+      "truncated": false,
+      "_idx": 219,
+      "_response_id": "37",
+      "_expected": "grounded"
+    },
+    {
+      "prob_supported": 0.9802,
+      "verdict": "GROUNDED",
+      "input_tokens": 635,
+      "truncated": false,
+      "_idx": 220,
+      "_response_id": "37",
+      "_expected": "grounded"
+    },
+    {
+      "prob_supported": 0.9861,
+      "verdict": "GROUNDED",
+      "input_tokens": 647,
+      "truncated": false,
+      "_idx": 221,
+      "_response_id": "37",
+      "_expected": "grounded"
+    },
+    {
+      "prob_supported": 0.8708,
+      "verdict": "GROUNDED",
+      "input_tokens": 663,
+      "truncated": false,
+      "_idx": 222,
+      "_response_id": "38",
+      "_expected": "grounded"
+    },
+    {
+      "prob_supported": 0.9711,
+      "verdict": "GROUNDED",
+      "input_tokens": 648,
+      "truncated": false,
+      "_idx": 223,
+      "_response_id": "38",
+      "_expected": "grounded"
+    },
+    {
+      "prob_supported": 0.3311,
+      "verdict": "HALLUCINATED",
+      "input_tokens": 652,
+      "truncated": false,
+      "_idx": 224,
+      "_response_id": "38",
+      "_expected": "grounded"
+    },
+    {
+      "prob_supported": 0.9646,
+      "verdict": "GROUNDED",
+      "input_tokens": 643,
+      "truncated": false,
+      "_idx": 225,
+      "_response_id": "38",
+      "_expected": "grounded"
+    },
+    {
+      "prob_supported": 0.2376,
+      "verdict": "HALLUCINATED",
+      "input_tokens": 675,
+      "truncated": false,
+      "_idx": 226,
+      "_response_id": "39",
+      "_expected": "hallucinated"
+    },
+    {
+      "prob_supported": 0.9803,
+      "verdict": "GROUNDED",
+      "input_tokens": 646,
+      "truncated": false,
+      "_idx": 227,
+      "_response_id": "39",
+      "_expected": "grounded"
+    },
+    {
+      "prob_supported": 0.9521,
+      "verdict": "GROUNDED",
+      "input_tokens": 643,
+      "truncated": false,
+      "_idx": 228,
+      "_response_id": "39",
+      "_expected": "grounded"
+    },
+    {
+      "prob_supported": 0.8584,
+      "verdict": "GROUNDED",
+      "input_tokens": 649,
+      "truncated": false,
+      "_idx": 229,
+      "_response_id": "39",
+      "_expected": "grounded"
+    },
+    {
+      "prob_supported": 0.7441,
+      "verdict": "GROUNDED",
+      "input_tokens": 655,
+      "truncated": false,
+      "_idx": 230,
+      "_response_id": "40",
+      "_expected": "hallucinated"
+    },
+    {
+      "prob_supported": 0.9761,
+      "verdict": "GROUNDED",
+      "input_tokens": 645,
+      "truncated": false,
+      "_idx": 231,
+      "_response_id": "40",
+      "_expected": "grounded"
+    },
+    {
+      "prob_supported": 0.1413,
+      "verdict": "HALLUCINATED",
+      "input_tokens": 663,
+      "truncated": false,
+      "_idx": 232,
+      "_response_id": "40",
+      "_expected": "grounded"
+    },
+    {
+      "prob_supported": 0.9724,
+      "verdict": "GROUNDED",
+      "input_tokens": 639,
+      "truncated": false,
+      "_idx": 233,
+      "_response_id": "40",
+      "_expected": "grounded"
+    },
+    {
+      "prob_supported": 0.9815,
+      "verdict": "GROUNDED",
+      "input_tokens": 634,
+      "truncated": false,
+      "_idx": 234,
+      "_response_id": "40",
+      "_expected": "grounded"
+    },
+    {
+      "prob_supported": 0.0817,
+      "verdict": "HALLUCINATED",
+      "input_tokens": 671,
+      "truncated": false,
+      "_idx": 235,
+      "_response_id": "41",
+      "_expected": "grounded"
+    },
+    {
+      "prob_supported": 0.959,
+      "verdict": "GROUNDED",
+      "input_tokens": 641,
+      "truncated": false,
+      "_idx": 236,
+      "_response_id": "41",
+      "_expected": "grounded"
+    },
+    {
+      "prob_supported": 0.63,
+      "verdict": "GROUNDED",
+      "input_tokens": 643,
+      "truncated": false,
+      "_idx": 237,
+      "_response_id": "41",
+      "_expected": "grounded"
+    },
+    {
+      "prob_supported": 0.6245,
+      "verdict": "GROUNDED",
+      "input_tokens": 646,
+      "truncated": false,
+      "_idx": 238,
+      "_response_id": "41",
+      "_expected": "grounded"
+    },
+    {
+      "prob_supported": 0.9836,
+      "verdict": "GROUNDED",
+      "input_tokens": 909,
+      "truncated": false,
+      "_idx": 239,
+      "_response_id": "42",
+      "_expected": "grounded"
+    },
+    {
+      "prob_supported": 0.9479,
+      "verdict": "GROUNDED",
+      "input_tokens": 926,
+      "truncated": false,
+      "_idx": 240,
+      "_response_id": "42",
+      "_expected": "grounded"
+    },
+    {
+      "prob_supported": 0.9757,
+      "verdict": "GROUNDED",
+      "input_tokens": 896,
+      "truncated": false,
+      "_idx": 241,
+      "_response_id": "42",
+      "_expected": "grounded"
+    },
+    {
+      "prob_supported": 0.9822,
+      "verdict": "GROUNDED",
+      "input_tokens": 897,
+      "truncated": false,
+      "_idx": 242,
+      "_response_id": "42",
+      "_expected": "grounded"
+    },
+    {
+      "prob_supported": 0.9836,
+      "verdict": "GROUNDED",
+      "input_tokens": 899,
+      "truncated": false,
+      "_idx": 243,
+      "_response_id": "42",
+      "_expected": "grounded"
+    },
+    {
+      "prob_supported": 0.9636,
+      "verdict": "GROUNDED",
+      "input_tokens": 924,
+      "truncated": false,
+      "_idx": 244,
+      "_response_id": "42",
+      "_expected": "grounded"
+    },
+    {
+      "prob_supported": 0.9726,
+      "verdict": "GROUNDED",
+      "input_tokens": 900,
+      "truncated": false,
+      "_idx": 245,
+      "_response_id": "42",
+      "_expected": "grounded"
+    },
+    {
+      "prob_supported": 0.9838,
+      "verdict": "GROUNDED",
+      "input_tokens": 912,
+      "truncated": false,
+      "_idx": 246,
+      "_response_id": "43",
+      "_expected": "grounded"
+    },
+    {
+      "prob_supported": 0.9603,
+      "verdict": "GROUNDED",
+      "input_tokens": 952,
+      "truncated": false,
+      "_idx": 247,
+      "_response_id": "43",
+      "_expected": "grounded"
+    },
+    {
+      "prob_supported": 0.9536,
+      "verdict": "GROUNDED",
+      "input_tokens": 888,
+      "truncated": false,
+      "_idx": 248,
+      "_response_id": "43",
+      "_expected": "grounded"
+    },
+    {
+      "prob_supported": 0.9879,
+      "verdict": "GROUNDED",
+      "input_tokens": 893,
+      "truncated": false,
+      "_idx": 249,
+      "_response_id": "43",
+      "_expected": "grounded"
+    },
+    {
+      "prob_supported": 0.9431,
+      "verdict": "GROUNDED",
+      "input_tokens": 893,
+      "truncated": false,
+      "_idx": 250,
+      "_response_id": "43",
+      "_expected": "grounded"
+    },
+    {
+      "prob_supported": 0.9639,
+      "verdict": "GROUNDED",
+      "input_tokens": 906,
+      "truncated": false,
+      "_idx": 251,
+      "_response_id": "43",
+      "_expected": "grounded"
+    },
+    {
+      "prob_supported": 0.9742,
+      "verdict": "GROUNDED",
+      "input_tokens": 894,
+      "truncated": false,
+      "_idx": 252,
+      "_response_id": "43",
+      "_expected": "grounded"
+    },
+    {
+      "prob_supported": 0.9843,
+      "verdict": "GROUNDED",
+      "input_tokens": 895,
+      "truncated": false,
+      "_idx": 253,
+      "_response_id": "43",
+      "_expected": "grounded"
+    },
+    {
+      "prob_supported": 0.985,
+      "verdict": "GROUNDED",
+      "input_tokens": 896,
+      "truncated": false,
+      "_idx": 254,
+      "_response_id": "43",
+      "_expected": "grounded"
+    },
+    {
+      "prob_supported": 0.9682,
+      "verdict": "GROUNDED",
+      "input_tokens": 909,
+      "truncated": false,
+      "_idx": 255,
+      "_response_id": "43",
+      "_expected": "grounded"
+    },
+    {
+      "prob_supported": 0.9791,
+      "verdict": "GROUNDED",
+      "input_tokens": 883,
+      "truncated": false,
+      "_idx": 256,
+      "_response_id": "44",
+      "_expected": "grounded"
+    },
+    {
+      "prob_supported": 0.0408,
+      "verdict": "HALLUCINATED",
+      "input_tokens": 929,
+      "truncated": false,
+      "_idx": 257,
+      "_response_id": "44",
+      "_expected": "hallucinated"
+    },
+    {
+      "prob_supported": 0.9854,
+      "verdict": "GROUNDED",
+      "input_tokens": 900,
+      "truncated": false,
+      "_idx": 258,
+      "_response_id": "44",
+      "_expected": "grounded"
+    },
+    {
+      "prob_supported": 0.9758,
+      "verdict": "GROUNDED",
+      "input_tokens": 905,
+      "truncated": false,
+      "_idx": 259,
+      "_response_id": "44",
+      "_expected": "grounded"
+    },
+    {
+      "prob_supported": 0.983,
+      "verdict": "GROUNDED",
+      "input_tokens": 946,
+      "truncated": false,
+      "_idx": 260,
+      "_response_id": "44",
+      "_expected": "grounded"
+    },
+    {
+      "prob_supported": 0.8745,
+      "verdict": "GROUNDED",
+      "input_tokens": 925,
+      "truncated": false,
+      "_idx": 261,
+      "_response_id": "44",
+      "_expected": "grounded"
+    },
+    {
+      "prob_supported": 0.9477,
+      "verdict": "GROUNDED",
+      "input_tokens": 895,
+      "truncated": false,
+      "_idx": 262,
+      "_response_id": "44",
+      "_expected": "grounded"
+    },
+    {
+      "prob_supported": 0.4046,
+      "verdict": "HALLUCINATED",
+      "input_tokens": 903,
+      "truncated": false,
+      "_idx": 263,
+      "_response_id": "44",
+      "_expected": "grounded"
+    },
+    {
+      "prob_supported": 0.9836,
+      "verdict": "GROUNDED",
+      "input_tokens": 899,
+      "truncated": false,
+      "_idx": 264,
+      "_response_id": "44",
+      "_expected": "grounded"
+    },
+    {
+      "prob_supported": 0.9847,
+      "verdict": "GROUNDED",
+      "input_tokens": 896,
+      "truncated": false,
+      "_idx": 265,
+      "_response_id": "44",
+      "_expected": "grounded"
+    },
+    {
+      "prob_supported": 0.9834,
+      "verdict": "GROUNDED",
+      "input_tokens": 907,
+      "truncated": false,
+      "_idx": 266,
+      "_response_id": "45",
+      "_expected": "grounded"
+    },
+    {
+      "prob_supported": 0.9838,
+      "verdict": "GROUNDED",
+      "input_tokens": 922,
+      "truncated": false,
+      "_idx": 267,
+      "_response_id": "45",
+      "_expected": "grounded"
+    },
+    {
+      "prob_supported": 0.9531,
+      "verdict": "GROUNDED",
+      "input_tokens": 907,
+      "truncated": false,
+      "_idx": 268,
+      "_response_id": "45",
+      "_expected": "grounded"
+    },
+    {
+      "prob_supported": 0.982,
+      "verdict": "GROUNDED",
+      "input_tokens": 892,
+      "truncated": false,
+      "_idx": 269,
+      "_response_id": "45",
+      "_expected": "grounded"
+    },
+    {
+      "prob_supported": 0.9642,
+      "verdict": "GROUNDED",
+      "input_tokens": 903,
+      "truncated": false,
+      "_idx": 270,
+      "_response_id": "45",
+      "_expected": "grounded"
+    },
+    {
+      "prob_supported": 0.9654,
+      "verdict": "GROUNDED",
+      "input_tokens": 892,
+      "truncated": false,
+      "_idx": 271,
+      "_response_id": "45",
+      "_expected": "grounded"
+    },
+    {
+      "prob_supported": 0.9852,
+      "verdict": "GROUNDED",
+      "input_tokens": 903,
+      "truncated": false,
+      "_idx": 272,
+      "_response_id": "46",
+      "_expected": "grounded"
+    },
+    {
+      "prob_supported": 0.9878,
+      "verdict": "GROUNDED",
+      "input_tokens": 895,
+      "truncated": false,
+      "_idx": 273,
+      "_response_id": "46",
+      "_expected": "grounded"
+    },
+    {
+      "prob_supported": 0.9846,
+      "verdict": "GROUNDED",
+      "input_tokens": 892,
+      "truncated": false,
+      "_idx": 274,
+      "_response_id": "46",
+      "_expected": "grounded"
+    },
+    {
+      "prob_supported": 0.206,
+      "verdict": "HALLUCINATED",
+      "input_tokens": 900,
+      "truncated": false,
+      "_idx": 275,
+      "_response_id": "46",
+      "_expected": "grounded"
+    },
+    {
+      "prob_supported": 0.065,
+      "verdict": "HALLUCINATED",
+      "input_tokens": 912,
+      "truncated": false,
+      "_idx": 276,
+      "_response_id": "46",
+      "_expected": "hallucinated"
+    },
+    {
+      "prob_supported": 0.9856,
+      "verdict": "GROUNDED",
+      "input_tokens": 901,
+      "truncated": false,
+      "_idx": 277,
+      "_response_id": "47",
+      "_expected": "grounded"
+    },
+    {
+      "prob_supported": 0.9818,
+      "verdict": "GROUNDED",
+      "input_tokens": 914,
+      "truncated": false,
+      "_idx": 278,
+      "_response_id": "47",
+      "_expected": "grounded"
+    },
+    {
+      "prob_supported": 0.9849,
+      "verdict": "GROUNDED",
+      "input_tokens": 890,
+      "truncated": false,
+      "_idx": 279,
+      "_response_id": "47",
+      "_expected": "grounded"
+    },
+    {
+      "prob_supported": 0.9767,
+      "verdict": "GROUNDED",
+      "input_tokens": 897,
+      "truncated": false,
+      "_idx": 280,
+      "_response_id": "47",
+      "_expected": "grounded"
+    },
+    {
+      "prob_supported": 0.9344,
+      "verdict": "GROUNDED",
+      "input_tokens": 928,
+      "truncated": false,
+      "_idx": 281,
+      "_response_id": "47",
+      "_expected": "grounded"
+    },
+    {
+      "prob_supported": 0.9835,
+      "verdict": "GROUNDED",
+      "input_tokens": 883,
+      "truncated": false,
+      "_idx": 282,
+      "_response_id": "47",
+      "_expected": "grounded"
+    },
+    {
+      "prob_supported": 0.9841,
+      "verdict": "GROUNDED",
+      "input_tokens": 893,
+      "truncated": false,
+      "_idx": 283,
+      "_response_id": "47",
+      "_expected": "grounded"
+    },
+    {
+      "prob_supported": 0.9654,
+      "verdict": "GROUNDED",
+      "input_tokens": 892,
+      "truncated": false,
+      "_idx": 284,
+      "_response_id": "47",
+      "_expected": "grounded"
+    },
+    {
+      "prob_supported": 0.9685,
+      "verdict": "GROUNDED",
+      "input_tokens": 1043,
+      "truncated": false,
+      "_idx": 285,
+      "_response_id": "48",
+      "_expected": "grounded"
+    },
+    {
+      "prob_supported": 0.5887,
+      "verdict": "GROUNDED",
+      "input_tokens": 1028,
+      "truncated": false,
+      "_idx": 286,
+      "_response_id": "48",
+      "_expected": "grounded"
+    },
+    {
+      "prob_supported": 0.9803,
+      "verdict": "GROUNDED",
+      "input_tokens": 1036,
+      "truncated": false,
+      "_idx": 287,
+      "_response_id": "48",
+      "_expected": "grounded"
+    },
+    {
+      "prob_supported": 0.9515,
+      "verdict": "GROUNDED",
+      "input_tokens": 1037,
+      "truncated": false,
+      "_idx": 288,
+      "_response_id": "48",
+      "_expected": "grounded"
+    },
+    {
+      "prob_supported": 0.8598,
+      "verdict": "GROUNDED",
+      "input_tokens": 1041,
+      "truncated": false,
+      "_idx": 289,
+      "_response_id": "48",
+      "_expected": "grounded"
+    },
+    {
+      "prob_supported": 0.9778,
+      "verdict": "GROUNDED",
+      "input_tokens": 1007,
+      "truncated": false,
+      "_idx": 290,
+      "_response_id": "48",
+      "_expected": "grounded"
+    },
+    {
+      "prob_supported": 0.9746,
+      "verdict": "GROUNDED",
+      "input_tokens": 1034,
+      "truncated": false,
+      "_idx": 291,
+      "_response_id": "48",
+      "_expected": "grounded"
+    },
+    {
+      "prob_supported": 0.9754,
+      "verdict": "GROUNDED",
+      "input_tokens": 1015,
+      "truncated": false,
+      "_idx": 292,
+      "_response_id": "48",
+      "_expected": "grounded"
+    },
+    {
+      "prob_supported": 0.9775,
+      "verdict": "GROUNDED",
+      "input_tokens": 1024,
+      "truncated": false,
+      "_idx": 293,
+      "_response_id": "49",
+      "_expected": "grounded"
+    },
+    {
+      "prob_supported": 0.9833,
+      "verdict": "GROUNDED",
+      "input_tokens": 1023,
+      "truncated": false,
+      "_idx": 294,
+      "_response_id": "49",
+      "_expected": "grounded"
+    },
+    {
+      "prob_supported": 0.9704,
+      "verdict": "GROUNDED",
+      "input_tokens": 1032,
+      "truncated": false,
+      "_idx": 295,
+      "_response_id": "49",
+      "_expected": "grounded"
+    },
+    {
+      "prob_supported": 0.9556,
+      "verdict": "GROUNDED",
+      "input_tokens": 1023,
+      "truncated": false,
+      "_idx": 296,
+      "_response_id": "49",
+      "_expected": "grounded"
+    },
+    {
+      "prob_supported": 0.91,
+      "verdict": "GROUNDED",
+      "input_tokens": 1025,
+      "truncated": false,
+      "_idx": 297,
+      "_response_id": "49",
+      "_expected": "grounded"
+    },
+    {
+      "prob_supported": 0.985,
+      "verdict": "GROUNDED",
+      "input_tokens": 1013,
+      "truncated": false,
+      "_idx": 298,
+      "_response_id": "49",
+      "_expected": "grounded"
+    },
+    {
+      "prob_supported": 0.9833,
+      "verdict": "GROUNDED",
+      "input_tokens": 1018,
+      "truncated": false,
+      "_idx": 299,
+      "_response_id": "49",
+      "_expected": "grounded"
+    },
+    {
+      "prob_supported": 0.9847,
+      "verdict": "GROUNDED",
+      "input_tokens": 1017,
+      "truncated": false,
+      "_idx": 300,
+      "_response_id": "49",
+      "_expected": "grounded"
+    },
+    {
+      "prob_supported": 0.9331,
+      "verdict": "GROUNDED",
+      "input_tokens": 1022,
+      "truncated": false,
+      "_idx": 301,
+      "_response_id": "49",
+      "_expected": "grounded"
+    },
+    {
+      "prob_supported": 0.9763,
+      "verdict": "GROUNDED",
+      "input_tokens": 1033,
+      "truncated": false,
+      "_idx": 302,
+      "_response_id": "49",
+      "_expected": "grounded"
+    }
+  ]
+}

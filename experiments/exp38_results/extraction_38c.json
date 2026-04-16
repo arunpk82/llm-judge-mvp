@@ -1,0 +1,784 @@
+{
+  "event_hubs": [
+    {
+      "event_id": "EVT_CHARGE_THOMAS",
+      "action": "charged",
+      "source_sentence": "S0",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "FBI",
+          "source": "S0"
+        },
+        {
+          "type": "target_of",
+          "target": "Keonna Thomas",
+          "source": "S0"
+        },
+        {
+          "type": "when",
+          "target": "Thursday",
+          "source": "S0"
+        },
+        {
+          "type": "reason",
+          "target": "EVT_TRAVEL_ATTEMPT_THOMAS",
+          "source": "S0"
+        },
+        {
+          "type": "specified_by",
+          "target": "EVT_CHARGE_DETAIL_THOMAS",
+          "source": "S11"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_TRAVEL_ATTEMPT_THOMAS",
+      "action": "trying to travel overseas",
+      "source_sentence": "S0",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "Keonna Thomas",
+          "source": "S0"
+        },
+        {
+          "type": "why",
+          "target": "to fight for ISIS",
+          "source": "S0"
+        },
+        {
+          "type": "evidence_for",
+          "target": "EVT_CHARGE_THOMAS",
+          "source": "S0"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_ARREST_THOMAS",
+      "action": "arrested",
+      "source_sentence": "S1,S10",
+      "edges": [
+        {
+          "type": "target_of",
+          "target": "Keonna Thomas",
+          "source": "S1"
+        },
+        {
+          "type": "why",
+          "target": "terror charges",
+          "source": "S1"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_SEND_MESSAGES_THOMAS",
+      "action": "sent social media messages",
+      "source_sentence": "S3",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "Keonna Thomas",
+          "source": "S3"
+        },
+        {
+          "type": "when",
+          "target": "dating back to August 2013",
+          "source": "S3"
+        },
+        {
+          "type": "how",
+          "target": "social media (Twitter)",
+          "source": "S3,S4"
+        },
+        {
+          "type": "evidence_for",
+          "target": "EVT_TRAVEL_ATTEMPT_THOMAS",
+          "source": "S3"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_EXPRESS_DESIRE_S4",
+      "action": "expressed desire to join ISIS",
+      "source_sentence": "S4",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "Keonna Thomas",
+          "source": "S4"
+        },
+        {
+          "type": "how",
+          "target": "Twitter message",
+          "source": "S4"
+        },
+        {
+          "type": "enriched_by",
+          "target": "If we truly knew the realities ... we all would be rushing to join our brothers in the front lines pray ALLAH accept us as shuhada [martyrs].",
+          "source": "S4"
+        },
+        {
+          "type": "evidence_for",
+          "target": "EVT_TRAVEL_ATTEMPT_THOMAS",
+          "source": "S4"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_EXPRESS_DESIRE_S5",
+      "action": "expressed belief about mujahid death",
+      "source_sentence": "S5",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "Keonna Thomas",
+          "source": "S5"
+        },
+        {
+          "type": "how",
+          "target": "social media message",
+          "source": "S5"
+        },
+        {
+          "type": "enriched_by",
+          "target": "When you're a mujahid [violent jihadi fighter] your death becomes a wedding.",
+          "source": "S5"
+        },
+        {
+          "type": "evidence_for",
+          "target": "EVT_TRAVEL_ATTEMPT_THOMAS",
+          "source": "S5"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_PURCHASE_VISA_THOMAS",
+      "action": "purchased electronic visa",
+      "source_sentence": "S6",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "Keonna Thomas",
+          "source": "S6"
+        },
+        {
+          "type": "target_of",
+          "target": "Turkey",
+          "source": "S6"
+        },
+        {
+          "type": "when",
+          "target": "March 23",
+          "source": "S6"
+        },
+        {
+          "type": "evidence_for",
+          "target": "EVT_TRAVEL_ATTEMPT_THOMAS",
+          "source": "S6"
+        },
+        {
+          "type": "why",
+          "target": "to enter Syria and join ISIS",
+          "source": "S7"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_JOIN_ISIS",
+      "action": "join ISIS",
+      "source_sentence": "S7",
+      "edges": [
+        {
+          "type": "where",
+          "target": "Syria (via Turkey)",
+          "source": "S7"
+        },
+        {
+          "type": "context_for",
+          "target": "EVT_TRAVEL_ATTEMPT_THOMAS",
+          "source": "S7"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_ISIS_ADVICE",
+      "action": "advises recruits",
+      "source_sentence": "S8",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "ISIS manual",
+          "source": "S8"
+        },
+        {
+          "type": "target_of",
+          "target": "recruits",
+          "source": "S8"
+        },
+        {
+          "type": "how",
+          "target": "buy round-trip tickets to vacation spots such as Spain and then purchase tickets for their real destination once they arrive overseas",
+          "source": "S8"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_PURCHASE_TICKET_THOMAS",
+      "action": "purchased ticket",
+      "source_sentence": "S9",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "Keonna Thomas",
+          "source": "S9"
+        },
+        {
+          "type": "target_of",
+          "target": "Barcelona",
+          "source": "S9"
+        },
+        {
+          "type": "when",
+          "target": "March 26 (purchase), March 29 (departure), April 15 (return)",
+          "source": "S9"
+        },
+        {
+          "type": "where",
+          "target": "to Barcelona, from United States (return)",
+          "source": "S9"
+        },
+        {
+          "type": "evidence_for",
+          "target": "EVT_TRAVEL_ATTEMPT_THOMAS",
+          "source": "S9"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_CHARGE_DETAIL_THOMAS",
+      "action": "charged with specific offense",
+      "source_sentence": "S11",
+      "edges": [
+        {
+          "type": "target_of",
+          "target": "Keonna Thomas",
+          "source": "S11"
+        },
+        {
+          "type": "reason",
+          "target": "knowingly attempting to provide material support and resources to a designated foreign terrorist organization",
+          "source": "S11"
+        },
+        {
+          "type": "specifies",
+          "target": "EVT_CHARGE_THOMAS",
+          "source": "S11"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_SENTENCE_THOMAS_POTENTIAL",
+      "action": "could be sentenced",
+      "source_sentence": "S12",
+      "edges": [
+        {
+          "type": "target_of",
+          "target": "Keonna Thomas",
+          "source": "S12"
+        },
+        {
+          "type": "outcome",
+          "target": "15 years in prison",
+          "source": "S12"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_ARREST_NY_WOMEN",
+      "action": "arrested",
+      "source_sentence": "S13",
+      "edges": [
+        {
+          "type": "target_of",
+          "target": "Noelle Velentzas",
+          "source": "S13"
+        },
+        {
+          "type": "target_of",
+          "target": "Asia Siddiqui",
+          "source": "S13"
+        },
+        {
+          "type": "when",
+          "target": "Thursday",
+          "source": "S13"
+        },
+        {
+          "type": "where",
+          "target": "New York",
+          "source": "S13"
+        },
+        {
+          "type": "reason",
+          "target": "EVT_PLAN_ATTACKS_NY_WOMEN",
+          "source": "S13"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_PLAN_ATTACKS_NY_WOMEN",
+      "action": "planning to build an explosive device for attacks",
+      "source_sentence": "S13",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "Noelle Velentzas",
+          "source": "S13"
+        },
+        {
+          "type": "agent_of",
+          "target": "Asia Siddiqui",
+          "source": "S13"
+        },
+        {
+          "type": "target_of",
+          "target": "United States",
+          "source": "S13"
+        },
+        {
+          "type": "leads_to",
+          "target": "EVT_ARREST_NY_WOMEN",
+          "source": "S13"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_PROSECUTE_TRAVEL_ABROAD",
+      "action": "prosecuted or is prosecuting cases",
+      "source_sentence": "S14",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "Justice Department's National Security Division",
+          "source": "S14"
+        },
+        {
+          "type": "target_of",
+          "target": "more than 30 cases of people attempting to travel abroad to join or provide support to terrorist groups",
+          "source": "S14"
+        },
+        {
+          "type": "when",
+          "target": "past 18 months",
+          "source": "S14"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_ISIS_SUPPORT_CASES",
+      "action": "involve support to ISIS",
+      "source_sentence": "S15",
+      "edges": [
+        {
+          "type": "target_of",
+          "target": "18 cases",
+          "source": "S15"
+        },
+        {
+          "type": "part_of",
+          "target": "EVT_PROSECUTE_TRAVEL_ABROAD",
+          "source": "S15"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_JOHNSON_STATEMENT",
+      "action": "told reporters",
+      "source_sentence": "S16",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "Homeland Security Secretary Jeh Johnson",
+          "source": "S16"
+        },
+        {
+          "type": "target_of",
+          "target": "reporters",
+          "source": "S16"
+        },
+        {
+          "type": "when",
+          "target": "Thursday",
+          "source": "S16"
+        },
+        {
+          "type": "enriched_by",
+          "target": "The terrorist threat is more decentralized, more diffuse, more complicated.",
+          "source": "S16"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_JOHNSON_STATEMENT_DETAIL",
+      "action": "described terrorist threat characteristics",
+      "source_sentence": "S17",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "Homeland Security Secretary Jeh Johnson",
+          "source": "S17"
+        },
+        {
+          "type": "enriched_by",
+          "target": "potential lone wolf actor, effective use of social media, the Internet",
+          "source": "S17"
+        },
+        {
+          "type": "part_of",
+          "target": "EVT_JOHNSON_STATEMENT",
+          "source": "S17"
+        }
+      ]
+    }
+  ],
+  "entities": [
+    {
+      "name": "FBI",
+      "aliases": [],
+      "attributes": {},
+      "participates_in": [
+        "EVT_CHARGE_THOMAS",
+        "EVT_ISIS_ADVICE"
+      ],
+      "source_sentences": [
+        "S0",
+        "S3",
+        "S6",
+        "S8"
+      ]
+    },
+    {
+      "name": "Keonna Thomas",
+      "aliases": [
+        "Philadelphia woman",
+        "She",
+        "Young Lioness",
+        "Fatayat Al Khilafah",
+        "Thomas"
+      ],
+      "attributes": {
+        "age": 30,
+        "location": "Philadelphia"
+      },
+      "participates_in": [
+        "EVT_CHARGE_THOMAS",
+        "EVT_TRAVEL_ATTEMPT_THOMAS",
+        "EVT_ARREST_THOMAS",
+        "EVT_SEND_MESSAGES_THOMAS",
+        "EVT_EXPRESS_DESIRE_S4",
+        "EVT_EXPRESS_DESIRE_S5",
+        "EVT_PURCHASE_VISA_THOMAS",
+        "EVT_PURCHASE_TICKET_THOMAS",
+        "EVT_CHARGE_DETAIL_THOMAS",
+        "EVT_SENTENCE_THOMAS_POTENTIAL"
+      ],
+      "source_sentences": [
+        "S0",
+        "S1",
+        "S3",
+        "S4",
+        "S5",
+        "S6",
+        "S9",
+        "S10",
+        "S11",
+        "S12"
+      ]
+    },
+    {
+      "name": "ISIS",
+      "aliases": [
+        "designated foreign terrorist organization"
+      ],
+      "attributes": {},
+      "participates_in": [
+        "EVT_TRAVEL_ATTEMPT_THOMAS",
+        "EVT_JOIN_ISIS",
+        "EVT_ISIS_ADVICE",
+        "EVT_CHARGE_DETAIL_THOMAS",
+        "EVT_ISIS_SUPPORT_CASES"
+      ],
+      "source_sentences": [
+        "S0",
+        "S7",
+        "S8",
+        "S11",
+        "S15"
+      ]
+    },
+    {
+      "name": "Noelle Velentzas",
+      "aliases": [],
+      "attributes": {
+        "age": 28,
+        "location": "New York"
+      },
+      "participates_in": [
+        "EVT_ARREST_NY_WOMEN",
+        "EVT_PLAN_ATTACKS_NY_WOMEN"
+      ],
+      "source_sentences": [
+        "S1",
+        "S13"
+      ]
+    },
+    {
+      "name": "Asia Siddiqui",
+      "aliases": [],
+      "attributes": {
+        "age": 31,
+        "location": "New York",
+        "relationship": "former roommate of Noelle Velentzas"
+      },
+      "participates_in": [
+        "EVT_ARREST_NY_WOMEN",
+        "EVT_PLAN_ATTACKS_NY_WOMEN"
+      ],
+      "source_sentences": [
+        "S1",
+        "S13"
+      ]
+    },
+    {
+      "name": "Turkey",
+      "aliases": [],
+      "attributes": {
+        "description": "easiest place from which to enter Syria and join ISIS"
+      },
+      "participates_in": [
+        "EVT_PURCHASE_VISA_THOMAS",
+        "EVT_JOIN_ISIS"
+      ],
+      "source_sentences": [
+        "S6",
+        "S7"
+      ]
+    },
+    {
+      "name": "Syria",
+      "aliases": [],
+      "attributes": {},
+      "participates_in": [
+        "EVT_JOIN_ISIS"
+      ],
+      "source_sentences": [
+        "S7"
+      ]
+    },
+    {
+      "name": "ISIS manual",
+      "aliases": [],
+      "attributes": {
+        "type": "document"
+      },
+      "participates_in": [
+        "EVT_ISIS_ADVICE"
+      ],
+      "source_sentences": [
+        "S8"
+      ]
+    },
+    {
+      "name": "Spain",
+      "aliases": [],
+      "attributes": {
+        "type": "vacation spot"
+      },
+      "participates_in": [
+        "EVT_ISIS_ADVICE"
+      ],
+      "source_sentences": [
+        "S8"
+      ]
+    },
+    {
+      "name": "Barcelona",
+      "aliases": [],
+      "attributes": {},
+      "participates_in": [
+        "EVT_PURCHASE_TICKET_THOMAS"
+      ],
+      "source_sentences": [
+        "S9"
+      ]
+    },
+    {
+      "name": "United States",
+      "aliases": [],
+      "attributes": {},
+      "participates_in": [
+        "EVT_PURCHASE_TICKET_THOMAS",
+        "EVT_PLAN_ATTACKS_NY_WOMEN"
+      ],
+      "source_sentences": [
+        "S9",
+        "S13"
+      ]
+    },
+    {
+      "name": "FBI complaint",
+      "aliases": [],
+      "attributes": {
+        "type": "document"
+      },
+      "participates_in": [],
+      "source_sentences": [
+        "S3",
+        "S9"
+      ]
+    },
+    {
+      "name": "federal prosecutors",
+      "aliases": [],
+      "attributes": {},
+      "participates_in": [
+        "EVT_ARREST_NY_WOMEN"
+      ],
+      "source_sentences": [
+        "S13"
+      ]
+    },
+    {
+      "name": "Justice Department's National Security Division",
+      "aliases": [],
+      "attributes": {},
+      "participates_in": [
+        "EVT_PROSECUTE_TRAVEL_ABROAD"
+      ],
+      "source_sentences": [
+        "S14"
+      ]
+    },
+    {
+      "name": "terrorist groups",
+      "aliases": [],
+      "attributes": {},
+      "participates_in": [
+        "EVT_PROSECUTE_TRAVEL_ABROAD"
+      ],
+      "source_sentences": [
+        "S14"
+      ]
+    },
+    {
+      "name": "Homeland Security Secretary Jeh Johnson",
+      "aliases": [],
+      "attributes": {},
+      "participates_in": [
+        "EVT_JOHNSON_STATEMENT",
+        "EVT_JOHNSON_STATEMENT_DETAIL"
+      ],
+      "source_sentences": [
+        "S16",
+        "S17"
+      ]
+    },
+    {
+      "name": "reporters",
+      "aliases": [],
+      "attributes": {},
+      "participates_in": [
+        "EVT_JOHNSON_STATEMENT"
+      ],
+      "source_sentences": [
+        "S16"
+      ]
+    }
+  ],
+  "inter_event_edges": [
+    {
+      "from": "EVT_TRAVEL_ATTEMPT_THOMAS",
+      "to": "EVT_CHARGE_THOMAS",
+      "type": "leads_to",
+      "source": "S0"
+    },
+    {
+      "from": "EVT_ARREST_THOMAS",
+      "to": "EVT_CHARGE_THOMAS",
+      "type": "leads_to",
+      "source": "S0,S10"
+    },
+    {
+      "from": "EVT_SEND_MESSAGES_THOMAS",
+      "to": "EVT_EXPRESS_DESIRE_S4",
+      "type": "enriched_by",
+      "source": "S4"
+    },
+    {
+      "from": "EVT_SEND_MESSAGES_THOMAS",
+      "to": "EVT_EXPRESS_DESIRE_S5",
+      "type": "enriched_by",
+      "source": "S5"
+    },
+    {
+      "from": "EVT_PURCHASE_VISA_THOMAS",
+      "to": "EVT_PURCHASE_TICKET_THOMAS",
+      "type": "leads_to",
+      "source": "S6,S9"
+    },
+    {
+      "from": "EVT_ISIS_ADVICE",
+      "to": "EVT_PURCHASE_TICKET_THOMAS",
+      "type": "explains",
+      "source": "S8,S9"
+    },
+    {
+      "from": "EVT_ARREST_NY_WOMEN",
+      "to": "EVT_ARREST_THOMAS",
+      "type": "parallels",
+      "source": "S1,S13"
+    },
+    {
+      "from": "EVT_PROSECUTE_TRAVEL_ABROAD",
+      "to": "EVT_ISIS_SUPPORT_CASES",
+      "type": "includes",
+      "source": "S14,S15"
+    },
+    {
+      "from": "EVT_CHARGE_THOMAS",
+      "to": "EVT_PROSECUTE_TRAVEL_ABROAD",
+      "type": "parallels",
+      "source": "S0,S14"
+    },
+    {
+      "from": "EVT_CHARGE_THOMAS",
+      "to": "EVT_ISIS_SUPPORT_CASES",
+      "type": "parallels",
+      "source": "S0,S15"
+    },
+    {
+      "from": "EVT_JOHNSON_STATEMENT",
+      "to": "EVT_JOHNSON_STATEMENT_DETAIL",
+      "type": "includes",
+      "source": "S16,S17"
+    },
+    {
+      "from": "EVT_JOHNSON_STATEMENT_DETAIL",
+      "to": "EVT_SEND_MESSAGES_THOMAS",
+      "type": "explains",
+      "source": "S17,S3"
+    }
+  ],
+  "explicit_unknowns": [
+    {
+      "about": "Keonna Thomas arrest",
+      "unknown_slots": [
+        "when",
+        "where"
+      ],
+      "source": "S10"
+    }
+  ],
+  "_elapsed_seconds": 69.7
+}

@@ -1,0 +1,76 @@
+
+EVENT (S0): FBI charged Philadelphia woman
+  WHO_actor: FBI [from S0]
+  WHO_target: a Philadelphia woman [from S0]
+  WHAT: charged [from S0]
+  WHEN: Thursday [from S0]
+  WHERE: NOT_STATED
+  WHERE_TO: NOT_STATED
+  WHERE_FROM: NOT_STATED
+  WHY: trying to travel overseas to fight for ISIS [from S0]
+  HOW: NOT_STATED
+  RESULT: NOT_STATED
+  STATUS: attempting (travel not completed) [from S0]
+
+EVENT (S1): Three women arrested
+  WHO_actor: NOT_STATED
+  WHO_target: three women [from S1]
+  WHAT: arrested [from S1]
+  WHEN: this week [from S1]
+  WHERE: NOT_STATED
+  WHERE_TO: NOT_STATED
+  WHERE_FROM: NOT_STATED
+  WHY: on terror charges [from S1]
+  HOW: NOT_STATED
+  RESULT: NOT_STATED
+  STATUS: completed [from S1]
+
+EVENT (S6): Thomas purchased an electronic visa
+  WHO_actor: Thomas [from S6]
+  WHO_target: NOT_STATED
+  WHAT: purchased an electronic visa [from S6]
+  WHEN: March 23 [from S6]
+  WHERE: NOT_STATED
+  WHERE_TO: Turkey [from S6]
+  WHERE_FROM: NOT_STATED
+  WHY: NOT_STATED
+  HOW: NOT_STATED
+  RESULT: NOT_STATED
+  STATUS: completed [from S6]
+
+EVENT (S9): Thomas purchased a ticket to Barcelona
+  WHO_actor: Thomas [from S9]
+  WHO_target: NOT_STATED
+  WHAT: purchased a ticket [from S9]
+  WHEN: March 26 [from S9]
+  WHERE: NOT_STATED
+  WHERE_TO: Barcelona [from S9]
+  WHERE_FROM: NOT_STATED
+  WHY: NOT_STATED
+  HOW: NOT_STATED
+  RESULT: NOT_STATED
+  STATUS: completed [from S9]
+
+EVENT (S13): Noelle Velentzas and Asia Siddiqui arrested
+  WHO_actor: NOT_STATED
+  WHO_target: Noelle Velentzas, 28, and Asia Siddiqui, 31 [from S13]
+  WHAT: arrested and accused [from S13]
+  WHEN: Thursday [from S13]
+  WHERE: New York [from S13]
+  WHERE_TO: NOT_STATED
+  WHERE_FROM: NOT_STATED
+  WHY: planning to build an explosive device for attacks in the United States [from S13]
+  HOW: NOT_STATED
+  RESULT: NOT_STATED
+  STATUS: completed (arrest); attempting (planning to build device) [from S13]
+
+EXPLICITLY UNKNOWN: when she was arrested [source: S10]
+
+EXPLICITLY UNKNOWN: where she was arrested [source: S10]
+ENTITY: 'a Philadelphia woman' = 'Keonna Thomas' (resolved at S3)
+ENTITY: 'She' = 'Keonna Thomas' (resolved at S1)
+ENTITY: 'Thomas' = 'Keonna Thomas' (resolved at S6)
+ENTITY: 'Thomas' = 'Keonna Thomas' (resolved at S9)
+ENTITY: 'She' = 'Keonna Thomas' (resolved at S11)
+ENTITY: 'She' = 'Keonna Thomas' (resolved at S12)
+ENTITY: 'Two New York women' = 'Noelle Velentzas and Asia Siddiqui' (resolved at S13)

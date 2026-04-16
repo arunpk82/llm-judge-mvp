@@ -1,0 +1,849 @@
+{
+  "event_hubs": [
+    {
+      "event_id": "EVT_1",
+      "action": "hospitalized",
+      "source_sentence": "S1",
+      "edges": [
+        {
+          "type": "target_of",
+          "target": "B.B. King",
+          "source": "S1"
+        },
+        {
+          "type": "why",
+          "target": "Dehydration",
+          "source": "S1"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_2",
+      "action": "caused",
+      "source_sentence": "S2",
+      "edges": [
+        {
+          "type": "target_of",
+          "target": "Dehydration",
+          "source": "S2"
+        },
+        {
+          "type": "agent_of",
+          "target": "Type II diabetes",
+          "source": "S2"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_3",
+      "action": "told",
+      "source_sentence": "S2",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "Claudette King",
+          "source": "S2"
+        },
+        {
+          "type": "target_of",
+          "target": "Los Angeles Times",
+          "source": "S2"
+        },
+        {
+          "type": "enriched_by",
+          "target": "King 'is much better'",
+          "source": "S2"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_4",
+      "action": "released a statement",
+      "source_sentence": "S3",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "B.B. King",
+          "source": "S3"
+        },
+        {
+          "type": "enriched_by",
+          "target": "thanking those who have expressed their concerns",
+          "source": "S3"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_5",
+      "action": "leaving the hospital",
+      "source_sentence": "S4",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "B.B. King",
+          "source": "S4"
+        },
+        {
+          "type": "where",
+          "target": "the hospital",
+          "source": "S4"
+        },
+        {
+          "type": "when",
+          "target": "today (relative to Tuesday)",
+          "source": "S4"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_6",
+      "action": "said",
+      "source_sentence": "S5",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "Angela Moore",
+          "source": "S5"
+        },
+        {
+          "type": "when",
+          "target": "later in the day (relative to Tuesday)",
+          "source": "S5"
+        },
+        {
+          "type": "enriched_by",
+          "target": "he was back home resting and enjoying time with his grandchildren",
+          "source": "S5"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_7",
+      "action": "was back home resting",
+      "source_sentence": "S5",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "B.B. King",
+          "source": "S5"
+        },
+        {
+          "type": "where",
+          "target": "home",
+          "source": "S5"
+        },
+        {
+          "type": "enriched_by",
+          "target": "enjoying time with his grandchildren",
+          "source": "S5"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_8",
+      "action": "said",
+      "source_sentence": "S6",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "Angela Moore",
+          "source": "S6"
+        },
+        {
+          "type": "enriched_by",
+          "target": "He was struggling before, and he is a trouper",
+          "source": "S6"
+        },
+        {
+          "type": "when",
+          "target": "before (relative to current state)",
+          "source": "S6"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_9",
+      "action": "was inducted",
+      "source_sentence": "S10",
+      "edges": [
+        {
+          "type": "target_of",
+          "target": "B.B. King",
+          "source": "S10"
+        },
+        {
+          "type": "where",
+          "target": "Rock and Roll Hall of Fame",
+          "source": "S10"
+        },
+        {
+          "type": "when",
+          "target": "1987",
+          "source": "S10"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_10",
+      "action": "has used",
+      "source_sentence": "S11",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "B.B. King",
+          "source": "S11"
+        },
+        {
+          "type": "target_of",
+          "target": "Gibson guitars",
+          "source": "S11"
+        },
+        {
+          "type": "when",
+          "target": "over the years",
+          "source": "S11"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_11",
+      "action": "named",
+      "source_sentence": "S11",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "B.B. King",
+          "source": "S11"
+        },
+        {
+          "type": "target_of",
+          "target": "Gibson guitars",
+          "source": "S11"
+        },
+        {
+          "type": "enriched_by",
+          "target": "Lucille (name)",
+          "source": "S11"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_12",
+      "action": "dropped the model number",
+      "source_sentence": "S12",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "Gibson",
+          "source": "S12"
+        },
+        {
+          "type": "target_of",
+          "target": "Gibson guitars",
+          "source": "S12"
+        },
+        {
+          "type": "when",
+          "target": "In the 1980s",
+          "source": "S12"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_13",
+      "action": "became a custom-made signature model",
+      "source_sentence": "S13",
+      "edges": [
+        {
+          "type": "target_of",
+          "target": "Lucille",
+          "source": "S13"
+        },
+        {
+          "type": "agent_of",
+          "target": "Gibson",
+          "source": "S13"
+        },
+        {
+          "type": "for",
+          "target": "B.B. King",
+          "source": "S13"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_14",
+      "action": "won",
+      "source_sentence": "S13",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "The Thrill Is Gone",
+          "source": "S13"
+        },
+        {
+          "type": "target_of",
+          "target": "B.B. King",
+          "source": "S13"
+        },
+        {
+          "type": "award",
+          "target": "Grammy",
+          "source": "S13"
+        },
+        {
+          "type": "when",
+          "target": "1970",
+          "source": "S13"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_15",
+      "action": "collaboration",
+      "source_sentence": "S13",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "B.B. King",
+          "source": "S13"
+        },
+        {
+          "type": "with",
+          "target": "U2",
+          "source": "S13"
+        },
+        {
+          "type": "target_of",
+          "target": "When Love Comes to Town",
+          "source": "S13"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_16",
+      "action": "suffered from",
+      "source_sentence": "S14",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "B.B. King",
+          "source": "S14"
+        },
+        {
+          "type": "target_of",
+          "target": "Dehydration",
+          "source": "S14"
+        },
+        {
+          "type": "target_of",
+          "target": "Exhaustion",
+          "source": "S14"
+        },
+        {
+          "type": "when",
+          "target": "Last year",
+          "source": "S14"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_17",
+      "action": "performing a show",
+      "source_sentence": "S14",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "B.B. King",
+          "source": "S14"
+        },
+        {
+          "type": "where",
+          "target": "Chicago",
+          "source": "S14"
+        },
+        {
+          "type": "when",
+          "target": "Last year",
+          "source": "S14"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_18",
+      "action": "cancel",
+      "source_sentence": "S14",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "B.B. King",
+          "source": "S14"
+        },
+        {
+          "type": "target_of",
+          "target": "the remainder of his tour",
+          "source": "S14"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_19",
+      "action": "contributed",
+      "source_sentence": "S15",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "Greg Botelho",
+          "source": "S15"
+        },
+        {
+          "type": "agent_of",
+          "target": "Sonya Hamasaki",
+          "source": "S15"
+        },
+        {
+          "type": "organization",
+          "target": "CNN",
+          "source": "S15"
+        },
+        {
+          "type": "target_of",
+          "target": "this report",
+          "source": "S15"
+        }
+      ]
+    }
+  ],
+  "entities": [
+    {
+      "name": "B.B. King",
+      "aliases": [
+        "King",
+        "The legendary guitarist and vocalist",
+        "B.B.",
+        "Blues Boy",
+        "the Beale Street Blues Boy",
+        "King of the Blues",
+        "the bluesman"
+      ],
+      "attributes": {
+        "description": "Blues legend",
+        "profession_1": "legendary guitarist",
+        "profession_2": "vocalist",
+        "past_profession": "Memphis disc jockey",
+        "hall_of_fame_induction": "Rock and Roll Hall of Fame in 1987",
+        "grammy_nominations": "30",
+        "age": "89",
+        "character_trait": "trouper"
+      },
+      "participates_in": [
+        "EVT_1",
+        "EVT_3",
+        "EVT_4",
+        "EVT_5",
+        "EVT_7",
+        "EVT_9",
+        "EVT_10",
+        "EVT_11",
+        "EVT_13",
+        "EVT_14",
+        "EVT_15",
+        "EVT_16",
+        "EVT_17",
+        "EVT_18"
+      ],
+      "source_sentences": [
+        "S0",
+        "S1",
+        "S2",
+        "S3",
+        "S4",
+        "S5",
+        "S6",
+        "S7",
+        "S8",
+        "S9",
+        "S10",
+        "S11",
+        "S12",
+        "S13",
+        "S14"
+      ]
+    },
+    {
+      "name": "Dehydration",
+      "aliases": [
+        "the ailment"
+      ],
+      "attributes": {
+        "type": "ailment"
+      },
+      "participates_in": [
+        "EVT_1",
+        "EVT_2",
+        "EVT_16"
+      ],
+      "source_sentences": [
+        "S1",
+        "S2",
+        "S14"
+      ]
+    },
+    {
+      "name": "Type II diabetes",
+      "aliases": [],
+      "attributes": {
+        "type": "ailment"
+      },
+      "participates_in": [
+        "EVT_2"
+      ],
+      "source_sentences": [
+        "S2"
+      ]
+    },
+    {
+      "name": "Claudette King",
+      "aliases": [],
+      "attributes": {
+        "relationship_to_BB_King": "daughter"
+      },
+      "participates_in": [
+        "EVT_3"
+      ],
+      "source_sentences": [
+        "S2",
+        "S5"
+      ]
+    },
+    {
+      "name": "Los Angeles Times",
+      "aliases": [],
+      "attributes": {
+        "type": "organization",
+        "role": "news outlet"
+      },
+      "participates_in": [
+        "EVT_3"
+      ],
+      "source_sentences": [
+        "S2"
+      ]
+    },
+    {
+      "name": "Angela Moore",
+      "aliases": [],
+      "attributes": {
+        "profession": "publicist",
+        "for_entity": "Claudette King"
+      },
+      "participates_in": [
+        "EVT_6",
+        "EVT_8"
+      ],
+      "source_sentences": [
+        "S5",
+        "S6"
+      ]
+    },
+    {
+      "name": "Rock and Roll Hall of Fame",
+      "aliases": [],
+      "attributes": {
+        "type": "institution"
+      },
+      "participates_in": [
+        "EVT_9"
+      ],
+      "source_sentences": [
+        "S10"
+      ]
+    },
+    {
+      "name": "Gibson guitars",
+      "aliases": [
+        "various models of Gibson guitars",
+        "the guitar he used last and most"
+      ],
+      "attributes": {
+        "type": "musical instrument",
+        "manufacturer": "Gibson"
+      },
+      "participates_in": [
+        "EVT_10",
+        "EVT_11",
+        "EVT_12"
+      ],
+      "source_sentences": [
+        "S11",
+        "S12"
+      ]
+    },
+    {
+      "name": "Lucille",
+      "aliases": [],
+      "attributes": {
+        "type": "guitar name",
+        "model_type": "custom-made signature model"
+      },
+      "participates_in": [
+        "EVT_11",
+        "EVT_13"
+      ],
+      "source_sentences": [
+        "S11",
+        "S13"
+      ]
+    },
+    {
+      "name": "Gibson",
+      "aliases": [],
+      "attributes": {
+        "type": "company",
+        "role": "guitar manufacturer"
+      },
+      "participates_in": [
+        "EVT_12",
+        "EVT_13"
+      ],
+      "source_sentences": [
+        "S12",
+        "S13"
+      ]
+    },
+    {
+      "name": "The Thrill Is Gone",
+      "aliases": [],
+      "attributes": {
+        "type": "song",
+        "award_won": "first Grammy in 1970"
+      },
+      "participates_in": [
+        "EVT_14"
+      ],
+      "source_sentences": [
+        "S13"
+      ]
+    },
+    {
+      "name": "Grammy",
+      "aliases": [],
+      "attributes": {
+        "type": "award"
+      },
+      "participates_in": [
+        "EVT_14"
+      ],
+      "source_sentences": [
+        "S10",
+        "S13"
+      ]
+    },
+    {
+      "name": "There Must be a Better World Somewhere",
+      "aliases": [],
+      "attributes": {
+        "type": "song"
+      },
+      "participates_in": [],
+      "source_sentences": [
+        "S13"
+      ]
+    },
+    {
+      "name": "When Love Comes to Town",
+      "aliases": [],
+      "attributes": {
+        "type": "song",
+        "collaboration_with": "U2"
+      },
+      "participates_in": [
+        "EVT_15"
+      ],
+      "source_sentences": [
+        "S13"
+      ]
+    },
+    {
+      "name": "U2",
+      "aliases": [],
+      "attributes": {
+        "type": "band"
+      },
+      "participates_in": [
+        "EVT_15"
+      ],
+      "source_sentences": [
+        "S13"
+      ]
+    },
+    {
+      "name": "Exhaustion",
+      "aliases": [],
+      "attributes": {
+        "type": "ailment"
+      },
+      "participates_in": [
+        "EVT_16"
+      ],
+      "source_sentences": [
+        "S14"
+      ]
+    },
+    {
+      "name": "Chicago",
+      "aliases": [],
+      "attributes": {
+        "type": "city"
+      },
+      "participates_in": [
+        "EVT_17"
+      ],
+      "source_sentences": [
+        "S14"
+      ]
+    },
+    {
+      "name": "CNN",
+      "aliases": [],
+      "attributes": {
+        "type": "news organization"
+      },
+      "participates_in": [
+        "EVT_19"
+      ],
+      "source_sentences": [
+        "S15"
+      ]
+    },
+    {
+      "name": "Greg Botelho",
+      "aliases": [],
+      "attributes": {
+        "role": "contributor"
+      },
+      "participates_in": [
+        "EVT_19"
+      ],
+      "source_sentences": [
+        "S15"
+      ]
+    },
+    {
+      "name": "Sonya Hamasaki",
+      "aliases": [],
+      "attributes": {
+        "role": "contributor"
+      },
+      "participates_in": [
+        "EVT_19"
+      ],
+      "source_sentences": [
+        "S15"
+      ]
+    }
+  ],
+  "inter_event_edges": [
+    {
+      "from": "EVT_1",
+      "to": "EVT_5",
+      "type": "leads_to",
+      "source": "S1, S4"
+    },
+    {
+      "from": "EVT_2",
+      "to": "EVT_1",
+      "type": "explains",
+      "source": "S2"
+    },
+    {
+      "from": "EVT_5",
+      "to": "EVT_3",
+      "type": "evidence_for",
+      "source": "S2, S4"
+    },
+    {
+      "from": "EVT_5",
+      "to": "EVT_7",
+      "type": "leads_to",
+      "source": "S4, S5"
+    },
+    {
+      "from": "EVT_6",
+      "to": "EVT_7",
+      "type": "evidence_for",
+      "source": "S5"
+    },
+    {
+      "from": "EVT_10",
+      "to": "EVT_11",
+      "type": "leads_to",
+      "source": "S11"
+    },
+    {
+      "from": "EVT_11",
+      "to": "EVT_10",
+      "type": "evidence_for",
+      "source": "S11"
+    },
+    {
+      "from": "EVT_12",
+      "to": "EVT_13",
+      "type": "leads_to",
+      "source": "S12, S13"
+    },
+    {
+      "from": "EVT_13",
+      "to": "EVT_12",
+      "type": "evidence_for",
+      "source": "S12, S13"
+    },
+    {
+      "from": "EVT_17",
+      "to": "EVT_16",
+      "type": "leads_to",
+      "source": "S14"
+    },
+    {
+      "from": "EVT_16",
+      "to": "EVT_18",
+      "type": "leads_to",
+      "source": "S14"
+    },
+    {
+      "from": "EVT_16",
+      "to": "EVT_1",
+      "type": "parallels",
+      "source": "S1, S14"
+    },
+    {
+      "from": "EVT_3",
+      "to": "EVT_4",
+      "type": "parallels",
+      "source": "S2, S3"
+    },
+    {
+      "from": "EVT_4",
+      "to": "EVT_6",
+      "type": "parallels",
+      "source": "S3, S5"
+    }
+  ],
+  "explicit_unknowns": [
+    {
+      "about": "King's condition",
+      "unknown_slots": [
+        "condition"
+      ],
+      "source": "S7"
+    },
+    {
+      "about": "where King was hospitalized",
+      "unknown_slots": [
+        "where"
+      ],
+      "source": "S7"
+    }
+  ],
+  "_elapsed": 76.5
+}

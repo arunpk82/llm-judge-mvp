@@ -1,0 +1,866 @@
+{
+  "phase": "p3_semantic_100",
+  "results": [
+    {
+      "semantic_match": true,
+      "shifts": [],
+      "_idx": 0,
+      "_expected": "grounded"
+    },
+    {
+      "semantic_match": true,
+      "shifts": [],
+      "_idx": 1,
+      "_expected": "grounded"
+    },
+    {
+      "semantic_match": false,
+      "shifts": [
+        {
+          "claim_phrase": "International Tracing Service",
+          "source_phrase": "International Training Service",
+          "shift_type": "other"
+        },
+        {
+          "claim_phrase": "suggests",
+          "source_phrase": "concluded that Anne and Margot probably",
+          "shift_type": "intensity"
+        }
+      ],
+      "_idx": 2,
+      "_expected": "grounded"
+    },
+    {
+      "semantic_match": false,
+      "shifts": [
+        {
+          "claim_phrase": "it is thought that both had symptoms",
+          "source_phrase": "witnesses at the camp said the sisters both had symptoms",
+          "shift_type": "other"
+        }
+      ],
+      "_idx": 3,
+      "_expected": "grounded"
+    },
+    {
+      "semantic_match": true,
+      "shifts": [],
+      "_idx": 4,
+      "_expected": "grounded"
+    },
+    {
+      "semantic_match": true,
+      "shifts": [],
+      "_idx": 5,
+      "_expected": "grounded"
+    },
+    {
+      "semantic_match": true,
+      "shifts": [],
+      "_idx": 6,
+      "_expected": "grounded"
+    },
+    {
+      "semantic_match": true,
+      "shifts": [],
+      "_idx": 7,
+      "_expected": "grounded"
+    },
+    {
+      "semantic_match": true,
+      "shifts": [],
+      "_idx": 8,
+      "_expected": "grounded"
+    },
+    {
+      "semantic_match": true,
+      "shifts": [],
+      "_idx": 9,
+      "_expected": "grounded"
+    },
+    {
+      "semantic_match": false,
+      "shifts": [
+        {
+          "claim_phrase": "beloved and influential book",
+          "source_phrase": "one of the world's most popular books",
+          "shift_type": "connotation"
+        }
+      ],
+      "_idx": 10,
+      "_expected": "grounded"
+    },
+    {
+      "semantic_match": true,
+      "shifts": [],
+      "_idx": 11,
+      "_expected": "grounded"
+    },
+    {
+      "semantic_match": false,
+      "shifts": [
+        {
+          "claim_phrase": "examined",
+          "source_phrase": "re-examined",
+          "shift_type": "other"
+        }
+      ],
+      "_idx": 12,
+      "_expected": "grounded"
+    },
+    {
+      "semantic_match": false,
+      "shifts": [
+        {
+          "claim_phrase": "food",
+          "source_phrase": "no more than a skeleton",
+          "shift_type": "other"
+        }
+      ],
+      "_idx": 13,
+      "_expected": "grounded"
+    },
+    {
+      "semantic_match": false,
+      "shifts": [
+        {
+          "claim_phrase": "died before February 7, 2022",
+          "source_phrase": "symptoms before February 7",
+          "shift_type": "other"
+        }
+      ],
+      "_idx": 14,
+      "_expected": "hallucinated"
+    },
+    {
+      "semantic_match": false,
+      "shifts": [
+        {
+          "claim_phrase": "witness accounts suggest",
+          "source_phrase": "witnesses at the camp said",
+          "shift_type": "causation"
+        },
+        {
+          "claim_phrase": "before then",
+          "source_phrase": "before February 7",
+          "shift_type": "other"
+        }
+      ],
+      "_idx": 15,
+      "_expected": "grounded"
+    },
+    {
+      "semantic_match": true,
+      "shifts": [],
+      "_idx": 16,
+      "_expected": "hallucinated"
+    },
+    {
+      "semantic_match": false,
+      "shifts": [
+        {
+          "claim_phrase": "died of typhus in a Nazi concentration camp at age 15, two weeks after her supposed death on March 31, 1945",
+          "source_phrase": "Just two weeks after her supposed death on March 31, 1945, the Bergen-Belsen concentration camp where she had been imprisoned was liberated",
+          "shift_type": "other"
+        }
+      ],
+      "_idx": 17,
+      "_expected": "grounded"
+    },
+    {
+      "semantic_match": false,
+      "shifts": [
+        {
+          "claim_phrase": "previous estimates",
+          "source_phrase": "date of death which had previously been determined",
+          "shift_type": "intensity"
+        }
+      ],
+      "_idx": 18,
+      "_expected": "grounded"
+    },
+    {
+      "semantic_match": true,
+      "shifts": [],
+      "_idx": 19,
+      "_expected": "grounded"
+    },
+    {
+      "semantic_match": true,
+      "shifts": [],
+      "_idx": 20,
+      "_expected": "grounded"
+    },
+    {
+      "semantic_match": true,
+      "shifts": [],
+      "_idx": 21,
+      "_expected": "grounded"
+    },
+    {
+      "semantic_match": false,
+      "shifts": [
+        {
+          "claim_phrase": "powerful symbol of hope and resilience",
+          "source_phrase": "one of the world's most popular books",
+          "shift_type": "connotation"
+        }
+      ],
+      "_idx": 22,
+      "_expected": "hallucinated"
+    },
+    {
+      "semantic_match": true,
+      "shifts": [],
+      "_idx": 23,
+      "_expected": "grounded"
+    },
+    {
+      "semantic_match": true,
+      "shifts": [],
+      "_idx": 24,
+      "_expected": "grounded"
+    },
+    {
+      "semantic_match": false,
+      "shifts": [
+        {
+          "claim_phrase": "brutal",
+          "source_phrase": "filled with terror and dread",
+          "shift_type": "emotion"
+        },
+        {
+          "claim_phrase": "little food",
+          "source_phrase": "no lighting, little water and no latrine",
+          "shift_type": "other"
+        }
+      ],
+      "_idx": 25,
+      "_expected": "grounded"
+    },
+    {
+      "semantic_match": false,
+      "shifts": [
+        {
+          "claim_phrase": "it is believed that Margot died before Anne",
+          "source_phrase": "Margot died before Anne",
+          "shift_type": "other"
+        },
+        {
+          "claim_phrase": "who remained hopeful until the end",
+          "source_phrase": "'Anne never gave up hope,' said Blitz",
+          "shift_type": "other"
+        }
+      ],
+      "_idx": 26,
+      "_expected": "grounded"
+    },
+    {
+      "semantic_match": false,
+      "shifts": [
+        {
+          "claim_phrase": "suggests",
+          "source_phrase": "shows",
+          "shift_type": "intensity"
+        }
+      ],
+      "_idx": 27,
+      "_expected": "grounded"
+    },
+    {
+      "semantic_match": false,
+      "shifts": [
+        {
+          "claim_phrase": "February or early March 1945",
+          "source_phrase": "probably did not survive to March 1945",
+          "shift_type": "other"
+        }
+      ],
+      "_idx": 28,
+      "_expected": "grounded"
+    },
+    {
+      "semantic_match": false,
+      "shifts": [
+        {
+          "claim_phrase": "concluding that the sisters did not survive past February 7",
+          "source_phrase": "witnesses at the camp said the sisters both had symptoms before February 7",
+          "shift_type": "other"
+        }
+      ],
+      "_idx": 29,
+      "_expected": "hallucinated"
+    },
+    {
+      "semantic_match": true,
+      "shifts": [],
+      "_idx": 30,
+      "_expected": "grounded"
+    },
+    {
+      "semantic_match": true,
+      "shifts": [],
+      "_idx": 31,
+      "_expected": "grounded"
+    },
+    {
+      "semantic_match": false,
+      "shifts": [
+        {
+          "claim_phrase": "powerful symbol of her resilience",
+          "source_phrase": "one of the world's most popular books",
+          "shift_type": "connotation"
+        },
+        {
+          "claim_phrase": "reminder of the horrors of the Holocaust",
+          "source_phrase": "Days at the camp were filled with terror and dread",
+          "shift_type": "other"
+        }
+      ],
+      "_idx": 32,
+      "_expected": "hallucinated"
+    },
+    {
+      "semantic_match": true,
+      "shifts": [],
+      "_idx": 33,
+      "_expected": "grounded"
+    },
+    {
+      "semantic_match": true,
+      "shifts": [],
+      "_idx": 34,
+      "_expected": "grounded"
+    },
+    {
+      "semantic_match": true,
+      "shifts": [],
+      "_idx": 35,
+      "_expected": "grounded"
+    },
+    {
+      "semantic_match": true,
+      "shifts": [],
+      "_idx": 36,
+      "_expected": "grounded"
+    },
+    {
+      "semantic_match": true,
+      "shifts": [],
+      "_idx": 37,
+      "_expected": "grounded"
+    },
+    {
+      "semantic_match": false,
+      "shifts": [
+        {
+          "claim_phrase": "has died of natural causes",
+          "source_phrase": "appears to have died of natural causes",
+          "shift_type": "causation"
+        }
+      ],
+      "_idx": 38,
+      "_expected": "grounded"
+    },
+    {
+      "semantic_match": false,
+      "shifts": [
+        {
+          "claim_phrase": "suggests no foul play was involved",
+          "source_phrase": "is there was no foul play involved",
+          "shift_type": "intensity"
+        }
+      ],
+      "_idx": 39,
+      "_expected": "grounded"
+    },
+    {
+      "semantic_match": true,
+      "shifts": [],
+      "_idx": 40,
+      "_expected": "grounded"
+    },
+    {
+      "semantic_match": true,
+      "shifts": [],
+      "_idx": 41,
+      "_expected": "grounded"
+    },
+    {
+      "semantic_match": true,
+      "shifts": [],
+      "_idx": 42,
+      "_expected": "grounded"
+    },
+    {
+      "semantic_match": true,
+      "shifts": [],
+      "_idx": 43,
+      "_expected": "grounded"
+    },
+    {
+      "semantic_match": true,
+      "shifts": [],
+      "_idx": 44,
+      "_expected": "grounded"
+    },
+    {
+      "semantic_match": true,
+      "shifts": [],
+      "_idx": 45,
+      "_expected": "grounded"
+    },
+    {
+      "semantic_match": false,
+      "shifts": [
+        {
+          "claim_phrase": "There was no foul play involved in his death",
+          "source_phrase": "The coroner's preliminary assessment is there was no foul play involved in the death of Getty",
+          "shift_type": "causation"
+        }
+      ],
+      "_idx": 46,
+      "_expected": "grounded"
+    },
+    {
+      "semantic_match": true,
+      "shifts": [],
+      "_idx": 47,
+      "_expected": "grounded"
+    },
+    {
+      "semantic_match": true,
+      "shifts": [],
+      "_idx": 48,
+      "_expected": "grounded"
+    },
+    {
+      "semantic_match": true,
+      "shifts": [],
+      "_idx": 49,
+      "_expected": "grounded"
+    },
+    {
+      "semantic_match": true,
+      "shifts": [],
+      "_idx": 50,
+      "_expected": "grounded"
+    },
+    {
+      "semantic_match": true,
+      "shifts": [],
+      "_idx": 51,
+      "_expected": "grounded"
+    },
+    {
+      "semantic_match": true,
+      "shifts": [],
+      "_idx": 52,
+      "_expected": "grounded"
+    },
+    {
+      "semantic_match": false,
+      "shifts": [
+        {
+          "claim_phrase": "was recently granted a restraining order",
+          "source_phrase": "had recently filed to get a restraining order",
+          "shift_type": "other"
+        }
+      ],
+      "_idx": 53,
+      "_expected": "grounded"
+    },
+    {
+      "semantic_match": false,
+      "shifts": [
+        {
+          "claim_phrase": "died of natural causes",
+          "source_phrase": "appears to have died of natural causes",
+          "shift_type": "causation"
+        }
+      ],
+      "_idx": 54,
+      "_expected": "grounded"
+    },
+    {
+      "semantic_match": true,
+      "shifts": [],
+      "_idx": 55,
+      "_expected": "grounded"
+    },
+    {
+      "semantic_match": true,
+      "shifts": [],
+      "_idx": 56,
+      "_expected": "grounded"
+    },
+    {
+      "semantic_match": false,
+      "shifts": [
+        {
+          "claim_phrase": "His net worth",
+          "source_phrase": "Gordon Getty, 81, has a net worth",
+          "shift_type": "other"
+        }
+      ],
+      "_idx": 57,
+      "_expected": "hallucinated"
+    },
+    {
+      "semantic_match": true,
+      "shifts": [],
+      "_idx": 58,
+      "_expected": "grounded"
+    },
+    {
+      "semantic_match": true,
+      "shifts": [],
+      "_idx": 59,
+      "_expected": "grounded"
+    },
+    {
+      "semantic_match": true,
+      "shifts": [],
+      "_idx": 60,
+      "_expected": "grounded"
+    },
+    {
+      "semantic_match": true,
+      "shifts": [],
+      "_idx": 61,
+      "_expected": "grounded"
+    },
+    {
+      "semantic_match": false,
+      "shifts": [
+        {
+          "claim_phrase": "lift its ban on women attending sports events",
+          "source_phrase": "the ban will be lifted for some events",
+          "shift_type": "other"
+        }
+      ],
+      "_idx": 62,
+      "_expected": "grounded"
+    },
+    {
+      "semantic_match": true,
+      "shifts": [],
+      "_idx": 63,
+      "_expected": "grounded"
+    },
+    {
+      "semantic_match": true,
+      "shifts": [],
+      "_idx": 64,
+      "_expected": "grounded"
+    },
+    {
+      "semantic_match": true,
+      "shifts": [],
+      "_idx": 65,
+      "_expected": "grounded"
+    },
+    {
+      "semantic_match": true,
+      "shifts": [],
+      "_idx": 66,
+      "_expected": "grounded"
+    },
+    {
+      "semantic_match": false,
+      "shifts": [
+        {
+          "claim_phrase": "The ban on women attending sports events",
+          "source_phrase": "the ban on women attending men's sports events",
+          "shift_type": "other"
+        }
+      ],
+      "_idx": 67,
+      "_expected": "grounded"
+    },
+    {
+      "semantic_match": true,
+      "shifts": [],
+      "_idx": 68,
+      "_expected": "grounded"
+    },
+    {
+      "semantic_match": true,
+      "shifts": [],
+      "_idx": 69,
+      "_expected": "grounded"
+    },
+    {
+      "semantic_match": true,
+      "shifts": [],
+      "_idx": 70,
+      "_expected": "grounded"
+    },
+    {
+      "semantic_match": true,
+      "shifts": [],
+      "_idx": 71,
+      "_expected": "grounded"
+    },
+    {
+      "semantic_match": true,
+      "shifts": [],
+      "_idx": 72,
+      "_expected": "grounded"
+    },
+    {
+      "semantic_match": false,
+      "shifts": [
+        {
+          "claim_phrase": "has only been lifted briefly",
+          "source_phrase": "briefly permitted to attend volleyball matches",
+          "shift_type": "other"
+        }
+      ],
+      "_idx": 73,
+      "_expected": "grounded"
+    },
+    {
+      "semantic_match": false,
+      "shifts": [
+        {
+          "claim_phrase": "Women will only be allowed to attend indoor sports events",
+          "source_phrase": "Ahmadi said the restrictions would be lifted for indoor sports events",
+          "shift_type": "other"
+        }
+      ],
+      "_idx": 74,
+      "_expected": "grounded"
+    },
+    {
+      "semantic_match": false,
+      "shifts": [
+        {
+          "claim_phrase": "The lifting of the ban comes under pressure from international sports officials",
+          "source_phrase": "The Iranian government has come under pressure from international sports officials over the restrictions",
+          "shift_type": "causation"
+        }
+      ],
+      "_idx": 75,
+      "_expected": "grounded"
+    },
+    {
+      "semantic_match": false,
+      "shifts": [
+        {
+          "claim_phrase": "was ultimately awarded the tournament to the United Arab Emirates",
+          "source_phrase": "the tournament was awarded to the United Arab Emirates",
+          "shift_type": "other"
+        }
+      ],
+      "_idx": 76,
+      "_expected": "grounded"
+    },
+    {
+      "semantic_match": true,
+      "shifts": [],
+      "_idx": 77,
+      "_expected": "grounded"
+    },
+    {
+      "semantic_match": false,
+      "shifts": [
+        {
+          "claim_phrase": "human rights organizations",
+          "source_phrase": "N/A",
+          "shift_type": "other"
+        },
+        {
+          "claim_phrase": "international leaders",
+          "source_phrase": "international sports officials",
+          "shift_type": "other"
+        },
+        {
+          "claim_phrase": "widely criticized",
+          "source_phrase": "come under pressure",
+          "shift_type": "intensity"
+        }
+      ],
+      "_idx": 78,
+      "_expected": "grounded"
+    },
+    {
+      "semantic_match": false,
+      "shifts": [
+        {
+          "claim_phrase": "In an effort to improve Iran's chances of hosting future international sports events",
+          "source_phrase": "The ban on women attending matches was widely seen as a major impediment to Iran's chances of securing the event",
+          "shift_type": "causation"
+        },
+        {
+          "claim_phrase": "lift the ban on women attending men's sports events",
+          "source_phrase": "the ban will be lifted for some events",
+          "shift_type": "other"
+        }
+      ],
+      "_idx": 79,
+      "_expected": "grounded"
+    },
+    {
+      "semantic_match": true,
+      "shifts": [],
+      "_idx": 80,
+      "_expected": "grounded"
+    },
+    {
+      "semantic_match": true,
+      "shifts": [],
+      "_idx": 81,
+      "_expected": "grounded"
+    },
+    {
+      "semantic_match": true,
+      "shifts": [],
+      "_idx": 82,
+      "_expected": "grounded"
+    },
+    {
+      "semantic_match": true,
+      "shifts": [],
+      "_idx": 83,
+      "_expected": "grounded"
+    },
+    {
+      "semantic_match": true,
+      "shifts": [],
+      "_idx": 84,
+      "_expected": "grounded"
+    },
+    {
+      "semantic_match": false,
+      "shifts": [
+        {
+          "claim_phrase": "may be exempt from the ban",
+          "source_phrase": "restrictions would be lifted",
+          "shift_type": "other"
+        }
+      ],
+      "_idx": 85,
+      "_expected": "grounded"
+    },
+    {
+      "semantic_match": false,
+      "shifts": [
+        {
+          "claim_phrase": "human rights activists",
+          "source_phrase": "activists",
+          "shift_type": "other"
+        }
+      ],
+      "_idx": 86,
+      "_expected": "grounded"
+    },
+    {
+      "semantic_match": false,
+      "shifts": [
+        {
+          "claim_phrase": "starting with indoor sports",
+          "source_phrase": "restrictions would be lifted for indoor sports events",
+          "shift_type": "other"
+        }
+      ],
+      "_idx": 87,
+      "_expected": "grounded"
+    },
+    {
+      "semantic_match": true,
+      "shifts": [],
+      "_idx": 88,
+      "_expected": "grounded"
+    },
+    {
+      "semantic_match": true,
+      "shifts": [],
+      "_idx": 89,
+      "_expected": "grounded"
+    },
+    {
+      "semantic_match": true,
+      "shifts": [],
+      "_idx": 90,
+      "_expected": "grounded"
+    },
+    {
+      "semantic_match": false,
+      "shifts": [
+        {
+          "claim_phrase": "usually incredible tales of human endurance",
+          "source_phrase": "Much rarer are cases in which individuals become lost at sea long enough that they run out of whatever food and drinking water they'd brought aboard",
+          "shift_type": "other"
+        }
+      ],
+      "_idx": 91,
+      "_expected": "grounded"
+    },
+    {
+      "semantic_match": true,
+      "shifts": [],
+      "_idx": 92,
+      "_expected": "grounded"
+    },
+    {
+      "semantic_match": true,
+      "shifts": [],
+      "_idx": 93,
+      "_expected": "grounded"
+    },
+    {
+      "semantic_match": false,
+      "shifts": [
+        {
+          "claim_phrase": "survived a year",
+          "source_phrase": "survived over a year",
+          "shift_type": "intensity"
+        },
+        {
+          "claim_phrase": "eating raw birds",
+          "source_phrase": "refused to eat raw birds",
+          "shift_type": "other"
+        }
+      ],
+      "_idx": 94,
+      "_expected": "grounded"
+    },
+    {
+      "semantic_match": false,
+      "shifts": [
+        {
+          "claim_phrase": "surviving on what he could catch from the sea",
+          "source_phrase": "picked up about 64 miles (103 kilometers) south of Honolulu \"weak, hungry and dehydrated\"",
+          "shift_type": "other"
+        }
+      ],
+      "_idx": 95,
+      "_expected": "grounded"
+    },
+    {
+      "semantic_match": true,
+      "shifts": [],
+      "_idx": 96,
+      "_expected": "grounded"
+    },
+    {
+      "semantic_match": true,
+      "shifts": [],
+      "_idx": 97,
+      "_expected": "grounded"
+    },
+    {
+      "semantic_match": true,
+      "shifts": [],
+      "_idx": 98,
+      "_expected": "grounded"
+    },
+    {
+      "semantic_match": true,
+      "shifts": [],
+      "_idx": 99,
+      "_expected": "grounded"
+    }
+  ]
+}

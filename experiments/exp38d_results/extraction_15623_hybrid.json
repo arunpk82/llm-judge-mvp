@@ -1,0 +1,1779 @@
+{
+  "event_hubs": [
+    {
+      "event_id": "EVT_1",
+      "action": "stabbing incident",
+      "source_sentence": "S0",
+      "edges": [
+        {
+          "type": "target_of",
+          "target": "Chris Copeland",
+          "source": "S0"
+        },
+        {
+          "type": "when",
+          "target": "early Wednesday",
+          "source": "S0"
+        },
+        {
+          "type": "where",
+          "target": "after leaving a trendy New York nightclub",
+          "source": "S0"
+        },
+        {
+          "type": "when",
+          "target": "just before 4 a.m.",
+          "source": "S3"
+        },
+        {
+          "type": "where",
+          "target": "in front of the Fulton Houses project down the street",
+          "source": "S4"
+        },
+        {
+          "type": "how",
+          "target": "occurred beyond 1OAK staff's view in a different location",
+          "source": "S5"
+        },
+        {
+          "type": "agent_of",
+          "target": "The suspect",
+          "source": "S10"
+        },
+        {
+          "type": "target_of",
+          "target": "Katrine Saltara",
+          "source": "S10"
+        },
+        {
+          "type": "where",
+          "target": "in front of Fulton Houses",
+          "source": "S10"
+        },
+        {
+          "type": "evidence_for",
+          "target": "review of the video footage seems to reveal the incident did not originate from the venue or its immediate surroundings that are under 1OAK supervision",
+          "source": "S8"
+        },
+        {
+          "type": "evidence_for",
+          "target": "surveillance footage will not show the actual stabbing because it occurred too far away from the club",
+          "source": "S13"
+        },
+        {
+          "type": "how",
+          "target": "knife wound to his left elbow and abdomen",
+          "source": "S24"
+        },
+        {
+          "type": "target_of",
+          "target": "another woman",
+          "source": "S38"
+        },
+        {
+          "type": "how",
+          "target": "stabbed the 6-foot-8-inch Copeland in the abdomen",
+          "source": "S38"
+        },
+        {
+          "type": "how",
+          "target": "slashed Saltara",
+          "source": "S38"
+        },
+        {
+          "type": "how",
+          "target": "slashed another woman",
+          "source": "S38"
+        },
+        {
+          "type": "why",
+          "target": "some sort of dispute",
+          "source": "S38"
+        },
+        {
+          "type": "how",
+          "target": "Saltara suffered cuts to her arm, breast and buttock",
+          "source": "S39"
+        },
+        {
+          "type": "how",
+          "target": "the other woman suffered a slash to her stomach",
+          "source": "S39"
+        },
+        {
+          "type": "evidence_for",
+          "target": "considerable amount of blood on the sidewalk and a white sports coupe, roped off with police tape, with several streaks of blood on its driver's side",
+          "source": "S41"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_2",
+      "action": "arrest of two Atlanta Hawks players",
+      "source_sentence": "S0",
+      "edges": [
+        {
+          "type": "target_of",
+          "target": "two Atlanta Hawks",
+          "source": "S0"
+        },
+        {
+          "type": "when",
+          "target": "early Wednesday",
+          "source": "S0"
+        },
+        {
+          "type": "when",
+          "target": "later",
+          "source": "S1"
+        },
+        {
+          "type": "why",
+          "target": "on obstruction and other charges",
+          "source": "S1"
+        },
+        {
+          "type": "target_of",
+          "target": "Pero Antic",
+          "source": "S16"
+        },
+        {
+          "type": "target_of",
+          "target": "Thabo Sefolosha",
+          "source": "S16"
+        },
+        {
+          "type": "why",
+          "target": "on charges of obstructing governmental administration and disorderly conduct",
+          "source": "S16"
+        },
+        {
+          "type": "why",
+          "target": "resisting arrest",
+          "source": "S17"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_3",
+      "action": "Atlanta Hawks home game",
+      "source_sentence": "S0",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "two Atlanta Hawks",
+          "source": "S0"
+        },
+        {
+          "type": "when",
+          "target": "hours before the incident",
+          "source": "S0"
+        },
+        {
+          "type": "agent_of",
+          "target": "Pero Antic",
+          "source": "S34"
+        },
+        {
+          "type": "agent_of",
+          "target": "Thabo Sefolosha",
+          "source": "S34"
+        },
+        {
+          "type": "target_of",
+          "target": "Phoenix Suns",
+          "source": "S34"
+        },
+        {
+          "type": "where",
+          "target": "in Atlanta",
+          "source": "S34"
+        },
+        {
+          "type": "when",
+          "target": "on Tuesday night",
+          "source": "S34"
+        },
+        {
+          "type": "how",
+          "target": "96-69 win",
+          "source": "S34"
+        },
+        {
+          "type": "enriched_by",
+          "target": "Antic played 12 minutes",
+          "source": "S35"
+        },
+        {
+          "type": "enriched_by",
+          "target": "Sefolosha played 20 minutes",
+          "source": "S35"
+        },
+        {
+          "type": "when",
+          "target": "ended around 10 p.m.",
+          "source": "S36"
+        },
+        {
+          "type": "enriched_by",
+          "target": "marked a franchise-best 58 wins in a season for the club",
+          "source": "S45"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_4",
+      "action": "1OAK team assisting Copeland",
+      "source_sentence": "S6",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "1OAK's team",
+          "source": "S6"
+        },
+        {
+          "type": "target_of",
+          "target": "Chris Copeland",
+          "source": "S6"
+        },
+        {
+          "type": "how",
+          "target": "to their fullest capabilities",
+          "source": "S7"
+        },
+        {
+          "type": "how",
+          "target": "called for help",
+          "source": "S7"
+        },
+        {
+          "type": "when",
+          "target": "as soon as he was seen walking back towards the venue",
+          "source": "S7"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_5",
+      "action": "Copeland walking back towards venue",
+      "source_sentence": "S7",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "Chris Copeland",
+          "source": "S7"
+        },
+        {
+          "type": "target_of",
+          "target": "1OAK",
+          "source": "S7"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_6",
+      "action": "Copeland and Saltara in club",
+      "source_sentence": "S8",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "Chris Copeland",
+          "source": "S8"
+        },
+        {
+          "type": "agent_of",
+          "target": "Katrine Saltara",
+          "source": "S8"
+        },
+        {
+          "type": "where",
+          "target": "1OAK",
+          "source": "S8"
+        },
+        {
+          "type": "when",
+          "target": "for about 10 minutes",
+          "source": "S8"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_7",
+      "action": "Copeland and Saltara leaving club and walking",
+      "source_sentence": "S8",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "Chris Copeland",
+          "source": "S8"
+        },
+        {
+          "type": "agent_of",
+          "target": "Katrine Saltara",
+          "source": "S8"
+        },
+        {
+          "type": "where",
+          "target": "from 1OAK",
+          "source": "S8"
+        },
+        {
+          "type": "where",
+          "target": "toward Fulton Houses",
+          "source": "S8"
+        },
+        {
+          "type": "why",
+          "target": "where their car was parked",
+          "source": "S8"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_8",
+      "action": "Copeland's driver accosting and detaining suspect",
+      "source_sentence": "S11",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "Copeland's driver",
+          "source": "S11"
+        },
+        {
+          "type": "target_of",
+          "target": "The suspect",
+          "source": "S11"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_9",
+      "action": "suspect in police custody",
+      "source_sentence": "S11",
+      "edges": [
+        {
+          "type": "target_of",
+          "target": "The suspect",
+          "source": "S11"
+        },
+        {
+          "type": "agent_of",
+          "target": "police",
+          "source": "S11"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_10",
+      "action": "Copeland and Saltara trying to return to club",
+      "source_sentence": "S12",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "Chris Copeland",
+          "source": "S12"
+        },
+        {
+          "type": "agent_of",
+          "target": "Katrine Saltara",
+          "source": "S12"
+        },
+        {
+          "type": "target_of",
+          "target": "1OAK",
+          "source": "S12"
+        },
+        {
+          "type": "why",
+          "target": "to seek help from the 20 or so security personnel on hand",
+          "source": "S12"
+        },
+        {
+          "type": "how",
+          "target": "leaving a 'bloody trail of handprints' between the site of the stabbing and the club",
+          "source": "S12"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_11",
+      "action": "club shut down",
+      "source_sentence": "S14",
+      "edges": [
+        {
+          "type": "target_of",
+          "target": "1OAK",
+          "source": "S14"
+        },
+        {
+          "type": "when",
+          "target": "immediately after the incident",
+          "source": "S14"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_12",
+      "action": "people taken to area hospitals",
+      "source_sentence": "S15",
+      "edges": [
+        {
+          "type": "target_of",
+          "target": "A male",
+          "source": "S15"
+        },
+        {
+          "type": "target_of",
+          "target": "two females",
+          "source": "S15"
+        },
+        {
+          "type": "where",
+          "target": "area hospitals",
+          "source": "S15"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_13",
+      "action": "knife recovered",
+      "source_sentence": "S16",
+      "edges": [
+        {
+          "type": "target_of",
+          "target": "A knife",
+          "source": "S16"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_14",
+      "action": "suspect arrested (stabbing perpetrator)",
+      "source_sentence": "S16",
+      "edges": [
+        {
+          "type": "target_of",
+          "target": "The suspect",
+          "source": "S16"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_15",
+      "action": "word of stabbing spreading",
+      "source_sentence": "S18",
+      "edges": [
+        {
+          "type": "target_of",
+          "target": "Pero Antic",
+          "source": "S18"
+        },
+        {
+          "type": "target_of",
+          "target": "Thabo Sefolosha",
+          "source": "S18"
+        },
+        {
+          "type": "where",
+          "target": "through the club",
+          "source": "S18"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_16",
+      "action": "Antic and Sefolosha going outside",
+      "source_sentence": "S18",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "Pero Antic",
+          "source": "S18"
+        },
+        {
+          "type": "agent_of",
+          "target": "Thabo Sefolosha",
+          "source": "S18"
+        },
+        {
+          "type": "why",
+          "target": "to check on their friend, Copeland",
+          "source": "S18"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_17",
+      "action": "Antic and Sefolosha pushing through crowd",
+      "source_sentence": "S19",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "Pero Antic",
+          "source": "S19"
+        },
+        {
+          "type": "agent_of",
+          "target": "Thabo Sefolosha",
+          "source": "S19"
+        },
+        {
+          "type": "where",
+          "target": "around the scene",
+          "source": "S19"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_18",
+      "action": "players' statement on charges",
+      "source_sentence": "S20",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "Pero Antic",
+          "source": "S20"
+        },
+        {
+          "type": "agent_of",
+          "target": "Thabo Sefolosha",
+          "source": "S20"
+        },
+        {
+          "type": "enriched_by",
+          "target": "We will contest these charges and look forward to communicating the facts of the situation at the appropriate time",
+          "source": "S20"
+        },
+        {
+          "type": "enriched_by",
+          "target": "We apologize to our respective families, teammates, and the Hawks' organization for any negative attention this incident has brought upon them",
+          "source": "S21"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_19",
+      "action": "Hawks in New York for game",
+      "source_sentence": "S21",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "Atlanta Hawks",
+          "source": "S21"
+        },
+        {
+          "type": "where",
+          "target": "New York",
+          "source": "S21"
+        },
+        {
+          "type": "when",
+          "target": "Wednesday night",
+          "source": "S21"
+        },
+        {
+          "type": "target_of",
+          "target": "Brooklyn Nets",
+          "source": "S21"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_20",
+      "action": "players not in uniform",
+      "source_sentence": "S22",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "Pero Antic",
+          "source": "S22"
+        },
+        {
+          "type": "agent_of",
+          "target": "Thabo Sefolosha",
+          "source": "S22"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_21",
+      "action": "police releasing information",
+      "source_sentence": "S23",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "police",
+          "source": "S23"
+        },
+        {
+          "type": "enriched_by",
+          "target": "released little information",
+          "source": "S23"
+        },
+        {
+          "type": "when",
+          "target": "Wednesday",
+          "source": "S23"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_22",
+      "action": "local media identifying Copeland",
+      "source_sentence": "S23",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "local media",
+          "source": "S23"
+        },
+        {
+          "type": "target_of",
+          "target": "Chris Copeland",
+          "source": "S23"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_23",
+      "action": "Pacers statement on Copeland's injuries",
+      "source_sentence": "S24",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "Indiana Pacers",
+          "source": "S24"
+        },
+        {
+          "type": "enriched_by",
+          "target": "Copeland suffered a knife wound to his left elbow and abdomen, and he's in stable condition at a New York hospital",
+          "source": "S24"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_24",
+      "action": "Copeland's condition",
+      "source_sentence": "S24",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "Chris Copeland",
+          "source": "S24"
+        },
+        {
+          "type": "enriched_by",
+          "target": "stable condition",
+          "source": "S24"
+        },
+        {
+          "type": "where",
+          "target": "at a New York hospital",
+          "source": "S24"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_25",
+      "action": "Pacers awareness of Copeland's injury",
+      "source_sentence": "S25",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "Indiana Pacers",
+          "source": "S25"
+        },
+        {
+          "type": "enriched_by",
+          "target": "aware that Chris Copeland was injured",
+          "source": "S25"
+        },
+        {
+          "type": "when",
+          "target": "early this morning",
+          "source": "S25"
+        },
+        {
+          "type": "where",
+          "target": "in New York City",
+          "source": "S25"
+        },
+        {
+          "type": "enriched_by",
+          "target": "still gathering information and will update when we know more",
+          "source": "S26"
+        },
+        {
+          "type": "agent_of",
+          "target": "Larry Bird",
+          "source": "S27"
+        },
+        {
+          "type": "enriched_by",
+          "target": "Our thoughts are with Chris and those injured",
+          "source": "S27"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_26",
+      "action": "John Spencer's statement",
+      "source_sentence": "S28",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "John Spencer",
+          "source": "S28"
+        },
+        {
+          "type": "enriched_by",
+          "target": "concerned about the safety of Chris and Katrine",
+          "source": "S28"
+        },
+        {
+          "type": "enriched_by",
+          "target": "We don't have any details at this particular time",
+          "source": "S29"
+        },
+        {
+          "type": "enriched_by",
+          "target": "All we can do is pray and wait",
+          "source": "S30"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_27",
+      "action": "NBA and Hawks looking into incident",
+      "source_sentence": "S30",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "NBA",
+          "source": "S30"
+        },
+        {
+          "type": "agent_of",
+          "target": "Hawks front office",
+          "source": "S30"
+        },
+        {
+          "type": "target_of",
+          "target": "the incident",
+          "source": "S30"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_28",
+      "action": "Hawks awareness of Antic/Sefolosha situation",
+      "source_sentence": "S31",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "Atlanta Hawks",
+          "source": "S31"
+        },
+        {
+          "type": "enriched_by",
+          "target": "aware of the situation involving Pero Antic and Thabo Sefolosha",
+          "source": "S31"
+        },
+        {
+          "type": "when",
+          "target": "this morning",
+          "source": "S31"
+        },
+        {
+          "type": "enriched_by",
+          "target": "in the process of gathering more information and will have further comment at the appropriate time",
+          "source": "S32"
+        },
+        {
+          "type": "agent_of",
+          "target": "Garin Narain",
+          "source": "S32"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_29",
+      "action": "Pacers game vs New York Knicks",
+      "source_sentence": "S33",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "Indiana Pacers",
+          "source": "S33"
+        },
+        {
+          "type": "target_of",
+          "target": "New York Knicks",
+          "source": "S33"
+        },
+        {
+          "type": "when",
+          "target": "Wednesday night",
+          "source": "S33"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_30",
+      "action": "Antic and Sefolosha arriving in New York",
+      "source_sentence": "S34",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "Pero Antic",
+          "source": "S34"
+        },
+        {
+          "type": "agent_of",
+          "target": "Thabo Sefolosha",
+          "source": "S34"
+        },
+        {
+          "type": "where",
+          "target": "New York",
+          "source": "S34"
+        },
+        {
+          "type": "when",
+          "target": "prior to their arrests",
+          "source": "S34"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_32",
+      "action": "Brooklyn man approaching Copeland and Saltara",
+      "source_sentence": "S37",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "The suspect",
+          "source": "S37"
+        },
+        {
+          "type": "target_of",
+          "target": "Chris Copeland",
+          "source": "S37"
+        },
+        {
+          "type": "target_of",
+          "target": "Katrine Saltara",
+          "source": "S37"
+        },
+        {
+          "type": "where",
+          "target": "near the nightclub",
+          "source": "S37"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_33",
+      "action": "dispute",
+      "source_sentence": "S38",
+      "edges": [
+        {
+          "type": "when",
+          "target": "before the suspect stabbed",
+          "source": "S38"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_34",
+      "action": "officers establishing crime scene",
+      "source_sentence": "S42",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "officers",
+          "source": "S42"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_35",
+      "action": "Antic and Sefolosha interfering with officers",
+      "source_sentence": "S42",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "Pero Antic",
+          "source": "S42"
+        },
+        {
+          "type": "agent_of",
+          "target": "Thabo Sefolosha",
+          "source": "S42"
+        },
+        {
+          "type": "target_of",
+          "target": "officers",
+          "source": "S42"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_36",
+      "action": "one of the Hawks pushing a police officer",
+      "source_sentence": "S42",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "one of the Hawks",
+          "source": "S42"
+        },
+        {
+          "type": "target_of",
+          "target": "a police officer",
+          "source": "S42"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_37",
+      "action": "Hawks preparing for playoff run",
+      "source_sentence": "S43",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "Atlanta Hawks",
+          "source": "S43"
+        },
+        {
+          "type": "why",
+          "target": "after clinching the No. 1 seed in the NBA's Eastern Conference",
+          "source": "S43"
+        },
+        {
+          "type": "why",
+          "target": "clinching the No. 1 seed in the NBA's Eastern Conference",
+          "source": "S44"
+        }
+      ]
+    }
+  ],
+  "entities": [
+    {
+      "name": "Chris Copeland",
+      "aliases": [
+        "Mr. Copeland",
+        "he"
+      ],
+      "attributes": {
+        "team": "Indiana Pacers",
+        "age": "31",
+        "origin": "Orange, New Jersey",
+        "height": "6-foot-8-inch",
+        "former_team": "New York Knicks"
+      },
+      "participates_in": [
+        "EVT_1",
+        "EVT_4",
+        "EVT_5",
+        "EVT_6",
+        "EVT_7",
+        "EVT_10",
+        "EVT_12",
+        "EVT_16",
+        "EVT_22",
+        "EVT_24",
+        "EVT_25",
+        "EVT_32"
+      ],
+      "source_sentences": [
+        "S0",
+        "S6",
+        "S7",
+        "S8",
+        "S10",
+        "S12",
+        "S16",
+        "S18",
+        "S23",
+        "S24",
+        "S25",
+        "S27",
+        "S28",
+        "S33",
+        "S37",
+        "S38"
+      ]
+    },
+    {
+      "name": "Indiana Pacers",
+      "aliases": [
+        "The Pacers",
+        "Copeland's Pacers"
+      ],
+      "attributes": {
+        "conference_standing": "10th spot",
+        "playoff_status": "one game out of playoff contention"
+      },
+      "participates_in": [
+        "EVT_23",
+        "EVT_25",
+        "EVT_29"
+      ],
+      "source_sentences": [
+        "S0",
+        "S24",
+        "S25",
+        "S27",
+        "S33",
+        "S46"
+      ]
+    },
+    {
+      "name": "Atlanta Hawks",
+      "aliases": [
+        "The Hawks",
+        "the Hawks' organization",
+        "the club"
+      ],
+      "attributes": {},
+      "participates_in": [
+        "EVT_2",
+        "EVT_3",
+        "EVT_19",
+        "EVT_21",
+        "EVT_28",
+        "EVT_37"
+      ],
+      "source_sentences": [
+        "S0",
+        "S1",
+        "S16",
+        "S21",
+        "S30",
+        "S31",
+        "S32",
+        "S34",
+        "S43",
+        "S45"
+      ]
+    },
+    {
+      "name": "New York nightclub",
+      "aliases": [],
+      "attributes": {
+        "type": "trendy"
+      },
+      "participates_in": [
+        "EVT_1",
+        "EVT_37"
+      ],
+      "source_sentences": [
+        "S0",
+        "S37"
+      ]
+    },
+    {
+      "name": "police",
+      "aliases": [],
+      "attributes": {},
+      "participates_in": [
+        "EVT_9",
+        "EVT_21"
+      ],
+      "source_sentences": [
+        "S0",
+        "S1",
+        "S11",
+        "S23",
+        "S37"
+      ]
+    },
+    {
+      "name": "CNN affiliates",
+      "aliases": [],
+      "attributes": {},
+      "participates_in": [],
+      "source_sentences": [
+        "S0"
+      ]
+    },
+    {
+      "name": "Kelly Ort",
+      "aliases": [],
+      "attributes": {
+        "title": "New York Police Department Det."
+      },
+      "participates_in": [],
+      "source_sentences": [
+        "S3",
+        "S11",
+        "S15",
+        "S16",
+        "S17"
+      ]
+    },
+    {
+      "name": "CNN",
+      "aliases": [],
+      "attributes": {},
+      "participates_in": [],
+      "source_sentences": [
+        "S3",
+        "S4",
+        "S9"
+      ]
+    },
+    {
+      "name": "1OAK",
+      "aliases": [
+        "the club",
+        "the venue"
+      ],
+      "attributes": {
+        "type": "club",
+        "location": "New York's Chelsea neighborhood",
+        "known_for": "draw celebrities among its clientele"
+      },
+      "participates_in": [
+        "EVT_1",
+        "EVT_4",
+        "EVT_5",
+        "EVT_6",
+        "EVT_7",
+        "EVT_10",
+        "EVT_11"
+      ],
+      "source_sentences": [
+        "S4",
+        "S5",
+        "S6",
+        "S7",
+        "S8",
+        "S9",
+        "S10",
+        "S12",
+        "S13",
+        "S14",
+        "S18"
+      ]
+    },
+    {
+      "name": "Chelsea neighborhood",
+      "aliases": [],
+      "attributes": {},
+      "participates_in": [],
+      "source_sentences": [
+        "S4"
+      ]
+    },
+    {
+      "name": "Fulton Houses project",
+      "aliases": [
+        "Fulton Houses"
+      ],
+      "attributes": {},
+      "participates_in": [
+        "EVT_1",
+        "EVT_7"
+      ],
+      "source_sentences": [
+        "S4",
+        "S8",
+        "S10"
+      ]
+    },
+    {
+      "name": "1OAK staff",
+      "aliases": [
+        "1OAK's team"
+      ],
+      "attributes": {},
+      "participates_in": [
+        "EVT_4"
+      ],
+      "source_sentences": [
+        "S5",
+        "S6"
+      ]
+    },
+    {
+      "name": "Katrine Saltara",
+      "aliases": [],
+      "attributes": {
+        "relationship_to_Copeland": "female companion"
+      },
+      "participates_in": [
+        "EVT_1",
+        "EVT_6",
+        "EVT_7",
+        "EVT_10",
+        "EVT_12",
+        "EVT_26",
+        "EVT_32"
+      ],
+      "source_sentences": [
+        "S8",
+        "S10",
+        "S12",
+        "S28",
+        "S37",
+        "S38",
+        "S39"
+      ]
+    },
+    {
+      "name": "1OAK spokesperson",
+      "aliases": [],
+      "attributes": {},
+      "participates_in": [],
+      "source_sentences": [
+        "S8",
+        "S9",
+        "S12",
+        "S13",
+        "S14",
+        "S18",
+        "S19"
+      ]
+    },
+    {
+      "name": "The suspect",
+      "aliases": [
+        "the apparent perpetrator",
+        "that individual",
+        "a 22-year-old Brooklyn man"
+      ],
+      "attributes": {
+        "entered_1OAK": "never",
+        "age": "22-year-old",
+        "origin": "Brooklyn"
+      },
+      "participates_in": [
+        "EVT_1",
+        "EVT_8",
+        "EVT_9",
+        "EVT_14",
+        "EVT_32",
+        "EVT_33"
+      ],
+      "source_sentences": [
+        "S10",
+        "S11",
+        "S16",
+        "S37",
+        "S38"
+      ]
+    },
+    {
+      "name": "1OAK's legal team",
+      "aliases": [],
+      "attributes": {},
+      "participates_in": [],
+      "source_sentences": [
+        "S9"
+      ]
+    },
+    {
+      "name": "Copeland's driver",
+      "aliases": [],
+      "attributes": {},
+      "participates_in": [
+        "EVT_8"
+      ],
+      "source_sentences": [
+        "S11"
+      ]
+    },
+    {
+      "name": "security personnel",
+      "aliases": [],
+      "attributes": {
+        "count": "20 or so"
+      },
+      "participates_in": [
+        "EVT_10"
+      ],
+      "source_sentences": [
+        "S12"
+      ]
+    },
+    {
+      "name": "A male",
+      "aliases": [],
+      "attributes": {},
+      "participates_in": [
+        "EVT_12"
+      ],
+      "source_sentences": [
+        "S15"
+      ]
+    },
+    {
+      "name": "two females",
+      "aliases": [],
+      "attributes": {},
+      "participates_in": [
+        "EVT_12"
+      ],
+      "source_sentences": [
+        "S15"
+      ]
+    },
+    {
+      "name": "A knife",
+      "aliases": [],
+      "attributes": {},
+      "participates_in": [
+        "EVT_13"
+      ],
+      "source_sentences": [
+        "S16"
+      ]
+    },
+    {
+      "name": "Pero Antic",
+      "aliases": [],
+      "attributes": {
+        "age": "32",
+        "team": "Atlanta Hawks"
+      },
+      "participates_in": [
+        "EVT_2",
+        "EVT_3",
+        "EVT_15",
+        "EVT_16",
+        "EVT_17",
+        "EVT_18",
+        "EVT_20",
+        "EVT_28",
+        "EVT_30",
+        "EVT_35"
+      ],
+      "source_sentences": [
+        "S16",
+        "S18",
+        "S19",
+        "S20",
+        "S22",
+        "S31",
+        "S34",
+        "S35",
+        "S42"
+      ]
+    },
+    {
+      "name": "Thabo Sefolosha",
+      "aliases": [],
+      "attributes": {
+        "age": "30",
+        "team": "Atlanta Hawks"
+      },
+      "participates_in": [
+        "EVT_2",
+        "EVT_3",
+        "EVT_15",
+        "EVT_16",
+        "EVT_17",
+        "EVT_18",
+        "EVT_20",
+        "EVT_28",
+        "EVT_30",
+        "EVT_35"
+      ],
+      "source_sentences": [
+        "S16",
+        "S17",
+        "S18",
+        "S19",
+        "S20",
+        "S22",
+        "S31",
+        "S34",
+        "S35",
+        "S42"
+      ]
+    },
+    {
+      "name": "Brooklyn Nets",
+      "aliases": [],
+      "attributes": {},
+      "participates_in": [
+        "EVT_19"
+      ],
+      "source_sentences": [
+        "S21"
+      ]
+    },
+    {
+      "name": "local media",
+      "aliases": [],
+      "attributes": {},
+      "participates_in": [
+        "EVT_22"
+      ],
+      "source_sentences": [
+        "S23"
+      ]
+    },
+    {
+      "name": "New York hospital",
+      "aliases": [],
+      "attributes": {},
+      "participates_in": [
+        "EVT_24"
+      ],
+      "source_sentences": [
+        "S24"
+      ]
+    },
+    {
+      "name": "Larry Bird",
+      "aliases": [],
+      "attributes": {
+        "title": "president of basketball operations",
+        "team": "Indiana Pacers"
+      },
+      "participates_in": [
+        "EVT_25"
+      ],
+      "source_sentences": [
+        "S27"
+      ]
+    },
+    {
+      "name": "John Spencer",
+      "aliases": [],
+      "attributes": {
+        "role": "Copeland's agent"
+      },
+      "participates_in": [
+        "EVT_26"
+      ],
+      "source_sentences": [
+        "S28"
+      ]
+    },
+    {
+      "name": "NBA",
+      "aliases": [],
+      "attributes": {},
+      "participates_in": [
+        "EVT_27"
+      ],
+      "source_sentences": [
+        "S30"
+      ]
+    },
+    {
+      "name": "Hawks front office",
+      "aliases": [],
+      "attributes": {},
+      "participates_in": [
+        "EVT_27"
+      ],
+      "source_sentences": [
+        "S30"
+      ]
+    },
+    {
+      "name": "Garin Narain",
+      "aliases": [],
+      "attributes": {
+        "title": "Hawks spokesman",
+        "team": "Atlanta Hawks"
+      },
+      "participates_in": [
+        "EVT_28"
+      ],
+      "source_sentences": [
+        "S32"
+      ]
+    },
+    {
+      "name": "New York Knicks",
+      "aliases": [],
+      "attributes": {},
+      "participates_in": [
+        "EVT_29"
+      ],
+      "source_sentences": [
+        "S33"
+      ]
+    },
+    {
+      "name": "Phoenix Suns",
+      "aliases": [],
+      "attributes": {},
+      "participates_in": [
+        "EVT_3"
+      ],
+      "source_sentences": [
+        "S34"
+      ]
+    },
+    {
+      "name": "CNN affiliate WABC",
+      "aliases": [
+        "WABC",
+        "the station"
+      ],
+      "attributes": {},
+      "participates_in": [],
+      "source_sentences": [
+        "S37",
+        "S38",
+        "S40",
+        "S42"
+      ]
+    },
+    {
+      "name": "another woman",
+      "aliases": [
+        "the other woman",
+        "the second woman"
+      ],
+      "attributes": {
+        "age_WCBS_report": "53 years old",
+        "age_WABC_report": "23"
+      },
+      "participates_in": [
+        "EVT_1",
+        "EVT_12"
+      ],
+      "source_sentences": [
+        "S38",
+        "S39",
+        "S40"
+      ]
+    },
+    {
+      "name": "CNN affiliate WCBS",
+      "aliases": [
+        "WCBS"
+      ],
+      "attributes": {},
+      "participates_in": [],
+      "source_sentences": [
+        "S39",
+        "S40"
+      ]
+    },
+    {
+      "name": "New York Daily News",
+      "aliases": [],
+      "attributes": {},
+      "participates_in": [],
+      "source_sentences": [
+        "S41"
+      ]
+    },
+    {
+      "name": "officers",
+      "aliases": [],
+      "attributes": {},
+      "participates_in": [
+        "EVT_34",
+        "EVT_35"
+      ],
+      "source_sentences": [
+        "S42"
+      ]
+    },
+    {
+      "name": "a police officer",
+      "aliases": [],
+      "attributes": {},
+      "participates_in": [
+        "EVT_36"
+      ],
+      "source_sentences": [
+        "S42"
+      ]
+    },
+    {
+      "name": "one of the Hawks",
+      "aliases": [],
+      "attributes": {},
+      "participates_in": [
+        "EVT_36"
+      ],
+      "source_sentences": [
+        "S42"
+      ]
+    },
+    {
+      "name": "NBA's Eastern Conference",
+      "aliases": [],
+      "attributes": {},
+      "participates_in": [
+        "EVT_37"
+      ],
+      "source_sentences": [
+        "S44"
+      ]
+    },
+    {
+      "name": "Laura Ly",
+      "aliases": [],
+      "attributes": {
+        "role": "contributor to this report"
+      },
+      "participates_in": [],
+      "source_sentences": [
+        "S47"
+      ]
+    },
+    {
+      "name": "Jason Durand",
+      "aliases": [],
+      "attributes": {
+        "role": "contributor to this report"
+      },
+      "participates_in": [],
+      "source_sentences": [
+        "S47"
+      ]
+    },
+    {
+      "name": "Jill Martin",
+      "aliases": [],
+      "attributes": {
+        "role": "contributor to this report"
+      },
+      "participates_in": [],
+      "source_sentences": [
+        "S47"
+      ]
+    }
+  ],
+  "inter_event_edges": [
+    {
+      "from": "EVT_5",
+      "to": "EVT_4",
+      "type": "leads_to",
+      "source": "S7"
+    },
+    {
+      "from": "EVT_6",
+      "to": "EVT_7",
+      "type": "leads_to",
+      "source": "S8"
+    },
+    {
+      "from": "EVT_7",
+      "to": "EVT_1",
+      "type": "leads_to",
+      "source": "S8"
+    },
+    {
+      "from": "EVT_8",
+      "to": "EVT_9",
+      "type": "leads_to",
+      "source": "S11"
+    },
+    {
+      "from": "EVT_1",
+      "to": "EVT_10",
+      "type": "leads_to",
+      "source": "S12"
+    },
+    {
+      "from": "EVT_1",
+      "to": "EVT_11",
+      "type": "leads_to",
+      "source": "S14"
+    },
+    {
+      "from": "EVT_15",
+      "to": "EVT_16",
+      "type": "leads_to",
+      "source": "S18"
+    },
+    {
+      "from": "EVT_16",
+      "to": "EVT_17",
+      "type": "leads_to",
+      "source": "S19"
+    },
+    {
+      "from": "EVT_17",
+      "to": "EVT_2",
+      "type": "leads_to",
+      "source": "S19"
+    },
+    {
+      "from": "EVT_2",
+      "to": "EVT_20",
+      "type": "leads_to",
+      "source": "S22"
+    },
+    {
+      "from": "EVT_1",
+      "to": "EVT_24",
+      "type": "leads_to",
+      "source": "S24"
+    },
+    {
+      "from": "EVT_31",
+      "to": "EVT_30",
+      "type": "explains",
+      "source": "S34"
+    },
+    {
+      "from": "EVT_32",
+      "to": "EVT_1",
+      "type": "leads_to",
+      "source": "S37"
+    },
+    {
+      "from": "EVT_33",
+      "to": "EVT_1",
+      "type": "leads_to",
+      "source": "S38"
+    },
+    {
+      "from": "EVT_35",
+      "to": "EVT_2",
+      "type": "explains",
+      "source": "S42"
+    },
+    {
+      "from": "EVT_36",
+      "to": "EVT_2",
+      "type": "explains",
+      "source": "S42"
+    }
+  ],
+  "explicit_unknowns": [
+    {
+      "about": "The suspect's name",
+      "unknown_slots": [
+        "name"
+      ],
+      "source": "S11"
+    },
+    {
+      "about": "The name of 'another woman'",
+      "unknown_slots": [
+        "name"
+      ],
+      "source": "S38"
+    },
+    {
+      "about": "The age of 'another woman'",
+      "unknown_slots": [
+        "age"
+      ],
+      "source": "S40"
+    },
+    {
+      "about": "Which Hawk pushed a police officer",
+      "unknown_slots": [
+        "agent_of"
+      ],
+      "source": "S42"
+    }
+  ],
+  "_elapsed": 105.1
+}

@@ -1,0 +1,508 @@
+{
+  "event_hubs": [
+    {
+      "event_id": "EVT_1",
+      "action": "Shut down manufacturing plant",
+      "source_sentence": "S0",
+      "edges": [
+        {
+          "type": "actor",
+          "target": "ENT_1",
+          "source": "S0"
+        },
+        {
+          "type": "location",
+          "target": "ENT_2",
+          "source": "S1"
+        },
+        {
+          "type": "reason",
+          "target": "ENT_7",
+          "source": "S0"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_2",
+      "action": "Warned consumers",
+      "source_sentence": "S1",
+      "edges": [
+        {
+          "type": "actor",
+          "target": "ENT_3",
+          "source": "S1"
+        },
+        {
+          "type": "target",
+          "target": "Consumers",
+          "source": "S1"
+        },
+        {
+          "type": "subject",
+          "target": "ENT_1",
+          "source": "S1"
+        },
+        {
+          "type": "subject_location",
+          "target": "ENT_2",
+          "source": "S1"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_3",
+      "action": "Recalled other products",
+      "source_sentence": "S4",
+      "edges": [
+        {
+          "type": "actor",
+          "target": "ENT_1",
+          "source": "S4"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_4",
+      "action": "Found listeria monocytogenes in ice cream cup",
+      "source_sentence": "S7",
+      "edges": [
+        {
+          "type": "location",
+          "target": "ENT_4",
+          "source": "S7"
+        },
+        {
+          "type": "object",
+          "target": "ENT_8",
+          "source": "S7"
+        },
+        {
+          "type": "pathogen",
+          "target": "ENT_7",
+          "source": "S7"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_5",
+      "action": "Produced contaminated cup",
+      "source_sentence": "S8",
+      "edges": [
+        {
+          "type": "actor",
+          "target": "ENT_2",
+          "source": "S8"
+        },
+        {
+          "type": "time",
+          "target": "April 2014",
+          "source": "S8"
+        },
+        {
+          "type": "object",
+          "target": "ENT_8",
+          "source": "S8"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_6",
+      "action": "Found listeria in additional samples",
+      "source_sentence": "S9",
+      "edges": [
+        {
+          "type": "actor",
+          "target": "ENT_5",
+          "source": "S9"
+        },
+        {
+          "type": "location",
+          "target": "ENT_2",
+          "source": "S9"
+        },
+        {
+          "type": "pathogen",
+          "target": "ENT_7",
+          "source": "S9"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_7",
+      "action": "Genetic match of bacteria samples",
+      "source_sentence": "S10",
+      "edges": [
+        {
+          "type": "sample_1",
+          "target": "Hospital sample",
+          "source": "S10"
+        },
+        {
+          "type": "sample_2",
+          "target": "Factory sample",
+          "source": "S10"
+        },
+        {
+          "type": "reporter",
+          "target": "ENT_5",
+          "source": "S10"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_8",
+      "action": "Genetic non-match of bacteria samples",
+      "source_sentence": "S11",
+      "edges": [
+        {
+          "type": "sample_1",
+          "target": "Hospital/Factory samples",
+          "source": "S11"
+        },
+        {
+          "type": "sample_2",
+          "target": "Patient samples (Kansas outbreak)",
+          "source": "S11"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_9",
+      "action": "Genetic match of patient and recovered samples",
+      "source_sentence": "S12",
+      "edges": [
+        {
+          "type": "location",
+          "target": "Texas",
+          "source": "S12"
+        },
+        {
+          "type": "time",
+          "target": "2010-2014",
+          "source": "S12"
+        },
+        {
+          "type": "actor",
+          "target": "ENT_5",
+          "source": "S12"
+        },
+        {
+          "type": "sample_1",
+          "target": "Patient samples",
+          "source": "S12"
+        },
+        {
+          "type": "sample_2",
+          "target": "Recovered samples (3-ounce cups)",
+          "source": "S12"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_10",
+      "action": "Investigation of illness relation to products",
+      "source_sentence": "S14",
+      "edges": [
+        {
+          "type": "actor",
+          "target": "ENT_5",
+          "source": "S14"
+        },
+        {
+          "type": "status",
+          "target": "Ongoing",
+          "source": "S14"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_11",
+      "action": "Recalled products from Texas plant",
+      "source_sentence": "S15",
+      "edges": [
+        {
+          "type": "actor",
+          "target": "ENT_1",
+          "source": "S15"
+        },
+        {
+          "type": "location",
+          "target": "ENT_6",
+          "source": "S15"
+        },
+        {
+          "type": "time",
+          "target": "Early March",
+          "source": "S15"
+        },
+        {
+          "type": "reason",
+          "target": "EVT_12",
+          "source": "S15"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_12",
+      "action": "Listeria outbreak",
+      "source_sentence": "S17",
+      "edges": [
+        {
+          "type": "location",
+          "target": "Kansas",
+          "source": "S17"
+        },
+        {
+          "type": "time",
+          "target": "Past year",
+          "source": "S17"
+        },
+        {
+          "type": "impact_infected",
+          "target": "5 people",
+          "source": "S17"
+        },
+        {
+          "type": "impact_deaths",
+          "target": "3 people",
+          "source": "S17"
+        },
+        {
+          "type": "linked_to",
+          "target": "ENT_1",
+          "source": "S17"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_13",
+      "action": "Issued statement",
+      "source_sentence": "S20",
+      "edges": [
+        {
+          "type": "actor",
+          "target": "ENT_9",
+          "source": "S20"
+        }
+      ]
+    }
+  ],
+  "entities": [
+    {
+      "name": "Blue Bell Creameries",
+      "aliases": [
+        "Blue Bell"
+      ],
+      "attributes": {
+        "type": "Company",
+        "history_length": "108-year"
+      },
+      "participates_in": [
+        "EVT_1",
+        "EVT_3",
+        "EVT_11",
+        "EVT_12"
+      ],
+      "source_sentences": [
+        "S0",
+        "S1",
+        "S4",
+        "S15",
+        "S17",
+        "S24"
+      ]
+    },
+    {
+      "name": "Broken Arrow plant",
+      "aliases": [
+        "Broken Arrow facility"
+      ],
+      "attributes": {
+        "location": "Oklahoma"
+      },
+      "participates_in": [
+        "EVT_1",
+        "EVT_5",
+        "EVT_6"
+      ],
+      "source_sentences": [
+        "S1",
+        "S5",
+        "S8",
+        "S9"
+      ]
+    },
+    {
+      "name": "Public health officials",
+      "aliases": [],
+      "attributes": {
+        "type": "Group"
+      },
+      "participates_in": [
+        "EVT_2"
+      ],
+      "source_sentences": [
+        "S1"
+      ]
+    },
+    {
+      "name": "Kansas hospital",
+      "aliases": [],
+      "attributes": {
+        "location": "Kansas"
+      },
+      "participates_in": [
+        "EVT_4"
+      ],
+      "source_sentences": [
+        "S6",
+        "S7",
+        "S18"
+      ]
+    },
+    {
+      "name": "Centers for Disease Control and Prevention",
+      "aliases": [
+        "CDC"
+      ],
+      "attributes": {
+        "type": "Organization"
+      },
+      "participates_in": [
+        "EVT_2",
+        "EVT_6",
+        "EVT_7",
+        "EVT_9",
+        "EVT_10"
+      ],
+      "source_sentences": [
+        "S3",
+        "S9",
+        "S10",
+        "S12",
+        "S14",
+        "S17",
+        "S18",
+        "S22",
+        "S25"
+      ]
+    },
+    {
+      "name": "Texas plant",
+      "aliases": [],
+      "attributes": {
+        "location": "Texas"
+      },
+      "participates_in": [
+        "EVT_11"
+      ],
+      "source_sentences": [
+        "S15"
+      ]
+    },
+    {
+      "name": "Listeria monocytogenes",
+      "aliases": [
+        "listeria bacteria",
+        "listeria"
+      ],
+      "attributes": {
+        "type": "Pathogen"
+      },
+      "participates_in": [
+        "EVT_1",
+        "EVT_4",
+        "EVT_6"
+      ],
+      "source_sentences": [
+        "S0",
+        "S7",
+        "S9",
+        "S25"
+      ]
+    },
+    {
+      "name": "3-ounce servings",
+      "aliases": [
+        "3-ounce cup servings",
+        "3 oz. cups"
+      ],
+      "attributes": {
+        "type": "Product",
+        "coding_markers": [
+          "O",
+          "P",
+          "Q",
+          "R",
+          "S",
+          "T"
+        ]
+      },
+      "participates_in": [
+        "EVT_2",
+        "EVT_4",
+        "EVT_5",
+        "EVT_9",
+        "EVT_11"
+      ],
+      "source_sentences": [
+        "S2",
+        "S3",
+        "S8",
+        "S12",
+        "S16",
+        "S23"
+      ]
+    },
+    {
+      "name": "Paul Kruse",
+      "aliases": [],
+      "attributes": {
+        "role": "CEO and president"
+      },
+      "participates_in": [
+        "EVT_13"
+      ],
+      "source_sentences": [
+        "S20"
+      ]
+    }
+  ],
+  "inter_event_edges": [
+    {
+      "from": "EVT_12",
+      "to": "EVT_11",
+      "type": "triggered",
+      "source": "S15"
+    },
+    {
+      "from": "EVT_4",
+      "to": "EVT_1",
+      "type": "triggered",
+      "source": "S0"
+    },
+    {
+      "from": "EVT_11",
+      "to": "EVT_1",
+      "type": "sequence_of_action",
+      "source": "S6"
+    }
+  ],
+  "explicit_unknowns": [
+    {
+      "about": "source of infections",
+      "unknown_slots": [
+        "causal_link_to_ice_cream"
+      ],
+      "source": "S13"
+    },
+    {
+      "about": "relation between illnesses and Blue Bell products",
+      "unknown_slots": [
+        "determination"
+      ],
+      "source": "S14"
+    }
+  ],
+  "_elapsed": 158.7
+}

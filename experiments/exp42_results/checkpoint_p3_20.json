@@ -1,0 +1,813 @@
+{
+  "phase": "gemma_20",
+  "gemma_results": {
+    "raw": [
+      {
+        "verdict": "GROUNDED",
+        "confidence": 1.0,
+        "reasoning": "The claim is directly supported by sentence S2, which states: 'But new research released by the Anne Frank House shows that Anne and her older sister, Margot Frank, died at least a month earlier than previously thought.'",
+        "_elapsed": 10.1,
+        "_test_id": "ragtruth_0",
+        "_expected": "grounded",
+        "_hall_type": "clean",
+        "_correct": true
+      },
+      {
+        "verdict": "GROUNDED",
+        "confidence": 1.0,
+        "reasoning": "The claim is directly supported by sentence S2, which states: 'But new research released by the Anne Frank House shows that Anne and her older sister, Margot Frank, died at least a month earlier than previously thought.'",
+        "_elapsed": 9.1,
+        "_test_id": "ragtruth_1",
+        "_expected": "grounded",
+        "_hall_type": "clean",
+        "_correct": true
+      },
+      {
+        "verdict": "HALLUCINATED",
+        "confidence": 1.0,
+        "reasoning": "The claim states that the sisters are believed to have died before February 7, 2022. However, the source discusses events occurring in 1945, and specifically mentions that witnesses saw symptoms before February 7 (implicitly in 1945), not 2022.",
+        "_elapsed": 14.9,
+        "_test_id": "ragtruth_2",
+        "_expected": "hallucinated",
+        "_hall_type": "Evident Conflict",
+        "_correct": true
+      },
+      {
+        "verdict": "GROUNDED",
+        "confidence": 1.0,
+        "reasoning": "The source states that 'new research released by the Anne Frank House shows that Anne and her older sister, Margot Frank, died at least a month earlier than previously thought' (S2). This supports the claim that a discovery led to a reevaluation of the events and that the Anne Frank House provided corrected information regarding the date of her passing.",
+        "_elapsed": 30.6,
+        "_test_id": "ragtruth_2",
+        "_expected": "hallucinated",
+        "_hall_type": "Evident Baseless Info",
+        "_correct": false
+      },
+      {
+        "verdict": "HALLUCINATED",
+        "confidence": 1.0,
+        "reasoning": "The claim states that the sisters are believed to have died before February 7, 2022. However, the source discusses events occurring in 1945, and specifically mentions that witnesses saw symptoms before February 7 (implicitly in 1945), not 2022.",
+        "_elapsed": 15.0,
+        "_test_id": "ragtruth_2",
+        "_expected": "hallucinated",
+        "_hall_type": "Evident Conflict",
+        "_correct": true
+      },
+      {
+        "verdict": "GROUNDED",
+        "confidence": 0.9,
+        "reasoning": "The source supports the claim through several points: S23 and S24 explicitly mention that Anne 'never gave up hope' and was 'absolutely convinced she would survive' (resilience), and S24 states that her diary 'endures as one of the world's most popular books,' supporting the idea that it remains a powerful and enduring symbol.",
+        "_elapsed": 32.4,
+        "_test_id": "ragtruth_3",
+        "_expected": "hallucinated",
+        "_hall_type": "Subtle Baseless Info",
+        "_correct": false
+      },
+      {
+        "verdict": "GROUNDED",
+        "confidence": 1.0,
+        "reasoning": "The claim is a direct quote from the first sentence (S0) of the source text.",
+        "_elapsed": 8.3,
+        "_test_id": "ragtruth_4",
+        "_expected": "grounded",
+        "_hall_type": "clean",
+        "_correct": true
+      },
+      {
+        "verdict": "HALLUCINATED",
+        "confidence": 1.0,
+        "reasoning": "The claim states that the sisters 'did not survive past February 7'. However, the source (S19) states that witnesses said the sisters 'both had symptoms before February 7' and (S20) notes that 'most deaths caused by typhus occur around twelve days after the first symptoms appear'. This implies they likely died approximately 12 days after the symptoms appeared before February 7, meaning they survived past February 7.",
+        "_elapsed": 19.8,
+        "_test_id": "ragtruth_5",
+        "_expected": "hallucinated",
+        "_hall_type": "Evident Conflict",
+        "_correct": true
+      },
+      {
+        "verdict": "GROUNDED",
+        "confidence": 0.9,
+        "reasoning": "The source supports all elements of the claim: it mentions that the diary 'endures as one of the world's most popular books' (S24), describes Anne's resilience through her friend's testimony that she 'never gave up hope' and was 'convinced she would survive' (S23, S24), and provides extensive details on the 'horrors of the Holocaust' including slave labor, typhus, and the conditions at Bergen-Belsen (S0-S22).",
+        "_elapsed": 90.5,
+        "_test_id": "ragtruth_5",
+        "_expected": "hallucinated",
+        "_hall_type": "Subtle Baseless Info",
+        "_correct": false
+      },
+      {
+        "verdict": "HALLUCINATED",
+        "confidence": 1.0,
+        "reasoning": "The claim identifies Andrew Getty as 'oil tycoon J.', whereas the source explicitly states in S1 and S2 that Andrew Getty is the grandson of oil tycoon J. Paul Getty.",
+        "_elapsed": 13.6,
+        "_test_id": "ragtruth_6",
+        "_expected": "grounded",
+        "_hall_type": "clean",
+        "_correct": false
+      },
+      {
+        "verdict": "GROUNDED",
+        "confidence": 0.95,
+        "reasoning": "The claim accurately reflects the information in S0. S0 states that Andrew Getty, an heir to billions of oil money, 'appears to have died of natural causes,' according to a Los Angeles Police Department spokesman. The claim summarizes this attribution correctly.",
+        "_elapsed": 58.0,
+        "_test_id": "ragtruth_7",
+        "_expected": "grounded",
+        "_hall_type": "clean",
+        "_correct": true
+      },
+      {
+        "verdict": "GROUNDED",
+        "confidence": 1.0,
+        "reasoning": "The claim is a direct paraphrase of sentence S0, which states: 'Andrew Getty, one of the heirs to billions of oil money, appears to have died of natural causes, a Los Angeles Police Department spokesman said.'",
+        "_elapsed": 11.0,
+        "_test_id": "ragtruth_8",
+        "_expected": "grounded",
+        "_hall_type": "clean",
+        "_correct": true
+      },
+      {
+        "verdict": "GROUNDED",
+        "confidence": 1.0,
+        "reasoning": "The source explicitly states that Andrew Getty died (S0, S1, S7), that he was 47 years old (S3), and that he was one of the heirs to billions of oil money (S0).",
+        "_elapsed": 16.5,
+        "_test_id": "ragtruth_9",
+        "_expected": "grounded",
+        "_hall_type": "clean",
+        "_correct": true
+      },
+      {
+        "verdict": "HALLUCINATED",
+        "confidence": 1.0,
+        "reasoning": "The claim attributes a net worth of $2.1 billion to 'him' (implying Andrew Getty, the subject of the article), but the source explicitly states in S11 that this net worth belongs to Gordon Getty, Andrew's father.",
+        "_elapsed": 13.3,
+        "_test_id": "ragtruth_10",
+        "_expected": "hallucinated",
+        "_hall_type": "Evident Conflict",
+        "_correct": true
+      },
+      {
+        "verdict": "GROUNDED",
+        "confidence": 1.0,
+        "reasoning": "The source explicitly states that Andrew Getty, an heir to billions of oil money (S0), died (S0, S1, S7) and was 47 years old (S3).",
+        "_elapsed": 10.7,
+        "_test_id": "ragtruth_11",
+        "_expected": "grounded",
+        "_hall_type": "clean",
+        "_correct": true
+      },
+      {
+        "verdict": "HALLUCINATED",
+        "confidence": 0.9,
+        "reasoning": "The claim states that Iran is set to lift its ban on women attending sports events, implying a general removal of the restriction. However, the source specifies that the ban will only be lifted for 'some events' (S1), specifically 'indoor sports events' (S4), and explicitly states that 'the rules won't change for all matches' (S5).",
+        "_elapsed": 46.2,
+        "_test_id": "ragtruth_12",
+        "_expected": "grounded",
+        "_hall_type": "clean",
+        "_correct": false
+      },
+      {
+        "verdict": "GROUNDED",
+        "confidence": 1.0,
+        "reasoning": "The claim is directly supported by the source. S1 states the ban will be lifted for some events, S4 specifies that Deputy Sports Minister Abdolhamid Ahmadi said restrictions would be lifted for indoor sports events, and S2 identifies Ahmadi as a top official (Deputy Sports Minister).",
+        "_elapsed": 11.6,
+        "_test_id": "ragtruth_13",
+        "_expected": "grounded",
+        "_hall_type": "clean",
+        "_correct": true
+      },
+      {
+        "verdict": "GROUNDED",
+        "confidence": 1.0,
+        "reasoning": "The claim is directly supported by S1, which states 'the ban will be lifted for some events,' and S2, which mentions a plan to allow 'women and families' to enter sports stadiums in the next year as stated by Deputy Sports Minister Abdolhamid Ahmadi.",
+        "_elapsed": 11.4,
+        "_test_id": "ragtruth_14",
+        "_expected": "grounded",
+        "_hall_type": "clean",
+        "_correct": true
+      },
+      {
+        "verdict": "HALLUCINATED",
+        "confidence": 0.9,
+        "reasoning": "The claim contains two inaccuracies based on the source text. First, it attributes a specific motive to the announcement ('In an effort to improve Iran's chances of hosting future international sports events'), which is not explicitly stated in the text; while the text mentions that the ban was an impediment to hosting the Asian Cup and that there was international pressure, it does not explicitly link this as the reason for the Deputy Sports Minister's announcement. Second, the claim suggests a general lifting of the ban on women attending men's sports events, whereas the source specifies that the ban will only be lifted for 'some events' (S1) and specifically 'indoor sports events' (S4), and that rules 'won't change for all matches' (S5).",
+        "_elapsed": 53.3,
+        "_test_id": "ragtruth_15",
+        "_expected": "grounded",
+        "_hall_type": "clean",
+        "_correct": false
+      },
+      {
+        "verdict": "GROUNDED",
+        "confidence": 1.0,
+        "reasoning": "The source states that women have been barred from most sports events involving men since the 1979 revolution (S0), making it a decades-old ban. It also reports that Deputy Sports Minister Abdolhamid Ahmadi announced a plan to allow women and families to enter sports stadiums in the next year (S2), and that the ban will be lifted for some events, specifically indoor sports (S1, S4).",
+        "_elapsed": 13.0,
+        "_test_id": "ragtruth_16",
+        "_expected": "grounded",
+        "_hall_type": "clean",
+        "_correct": true
+      }
+    ],
+    "hybrid": [
+      {
+        "verdict": "GROUNDED",
+        "confidence": 1.0,
+        "reasoning": "The source explicitly states in EVENT: released (S2) that the Anne Frank House released new research, and in EVENT: died (S2) that Anne Frank and Margot Frank died 'at least a month earlier than previously thought'. Additionally, the ENTITY section confirms Margot Frank is Anne's older sister.",
+        "_elapsed": 14.1,
+        "_test_id": "ragtruth_0",
+        "_expected": "grounded",
+        "_hall_type": "clean",
+        "_correct": true
+      },
+      {
+        "verdict": "GROUNDED",
+        "confidence": 1.0,
+        "reasoning": "The source explicitly states that the Anne Frank House released new research (S2) and that this research indicates Anne Frank and Margot Frank (identified as her older sister in the ENTITY section) died at least a month earlier than previously thought (S2).",
+        "_elapsed": 9.8,
+        "_test_id": "ragtruth_1",
+        "_expected": "grounded",
+        "_hall_type": "clean",
+        "_correct": true
+      },
+      {
+        "verdict": "HALLUCINATED",
+        "confidence": 1.0,
+        "reasoning": "The claim states that the sisters are believed to have died before February 7, 2022. While the source mentions they had symptoms before February 7 (S19), the context of the entire source is the period of 1944-1945 (S1, S5, S7, S12). The year 2022 is not mentioned in the source and is a fabrication/error.",
+        "_elapsed": 25.3,
+        "_test_id": "ragtruth_2",
+        "_expected": "hallucinated",
+        "_hall_type": "Evident Conflict",
+        "_correct": true
+      },
+      {
+        "verdict": "GROUNDED",
+        "confidence": 0.9,
+        "reasoning": "The source states that researchers re-examined archives and testimonies (S3), concluding that Anne and Margot Frank died at least a month earlier than previously thought (S2) and likely did not survive until March 1945 (S4). It also explicitly mentions that the Anne Frank House released this new research (S2), which supports the claim that a discovery led to a reevaluation and a correction regarding the date of her passing.",
+        "_elapsed": 22.1,
+        "_test_id": "ragtruth_2",
+        "_expected": "hallucinated",
+        "_hall_type": "Evident Baseless Info",
+        "_correct": false
+      },
+      {
+        "verdict": "HALLUCINATED",
+        "confidence": 1.0,
+        "reasoning": "The claim states that the sisters are believed to have died before February 7, 2022. While the source mentions they had symptoms before February 7 (S19), the context of the entire source is the period of 1944-1945 (S1, S5, S7, S12). The year 2022 is not mentioned in the source and is a fabrication/error.",
+        "_elapsed": 25.5,
+        "_test_id": "ragtruth_2",
+        "_expected": "hallucinated",
+        "_hall_type": "Evident Conflict",
+        "_correct": true
+      },
+      {
+        "verdict": "HALLUCINATED",
+        "confidence": 0.9,
+        "reasoning": "The source states that Anne Frank's diary 'endures... as one of the world's most popular books' and mentions that Anne herself 'never gave up hope,' but it does not explicitly describe the diary as a 'powerful symbol of hope and resilience.'",
+        "_elapsed": 27.1,
+        "_test_id": "ragtruth_3",
+        "_expected": "hallucinated",
+        "_hall_type": "Subtle Baseless Info",
+        "_correct": true
+      },
+      {
+        "verdict": "HALLUCINATED",
+        "confidence": 1.0,
+        "reasoning": "While the source supports that Anne Frank died of typhus in a Nazi concentration camp at the age of 15, it does not contain the information 'Seventy years ago'. The source provides dates from 1944 and 1945, but it does not provide a current reference date to support the 'seventy years ago' claim.",
+        "_elapsed": 21.3,
+        "_test_id": "ragtruth_4",
+        "_expected": "grounded",
+        "_hall_type": "clean",
+        "_correct": false
+      },
+      {
+        "verdict": "HALLUCINATED",
+        "confidence": 1.0,
+        "reasoning": "The claim states that the sisters 'did not survive past February 7'. However, the source states that they 'had symptoms... before February 7' (S19) and that deaths caused by typhus 'occur around twelve days after the first symptoms appear' (S20). This implies they would have died after February 7, not before. The source only concludes that they 'probably did not survive to March 1945' (S4).",
+        "_elapsed": 31.2,
+        "_test_id": "ragtruth_5",
+        "_expected": "hallucinated",
+        "_hall_type": "Evident Conflict",
+        "_correct": true
+      },
+      {
+        "verdict": "HALLUCINATED",
+        "confidence": 1.0,
+        "reasoning": "The claim contains several points not supported by the source: 1) The word 'Holocaust' does not appear in the source. 2) The source states the diary 'endures as one of the world's most popular books,' but it does not describe it as a 'powerful symbol of her resilience' or a 'reminder of the horrors of the Holocaust.' While the source describes horrific conditions and Anne's hope, it does not explicitly link the diary to these qualitative descriptions.",
+        "_elapsed": 27.8,
+        "_test_id": "ragtruth_5",
+        "_expected": "hallucinated",
+        "_hall_type": "Subtle Baseless Info",
+        "_correct": true
+      },
+      {
+        "verdict": "HALLUCINATED",
+        "confidence": 1.0,
+        "reasoning": "The claim identifies Andrew Getty as 'oil tycoon J.', but the source specifies that J. Paul Getty was the oil tycoon and Andrew Getty was his grandson.",
+        "_elapsed": 15.5,
+        "_test_id": "ragtruth_6",
+        "_expected": "grounded",
+        "_hall_type": "clean",
+        "_correct": false
+      },
+      {
+        "verdict": "GROUNDED",
+        "confidence": 1.0,
+        "reasoning": "The source explicitly states that Andrew Getty, described as 'one of the heirs to billions of oil money', died of 'natural causes', and attributes this information to a 'Los Angeles Police Department spokesman'.",
+        "_elapsed": 8.2,
+        "_test_id": "ragtruth_7",
+        "_expected": "grounded",
+        "_hall_type": "clean",
+        "_correct": true
+      },
+      {
+        "verdict": "GROUNDED",
+        "confidence": 1.0,
+        "reasoning": "The source explicitly states in the entity description for Andrew Getty that he is 'one of the heirs to billions of oil money' and in EVENT (S0) that he 'died' and the cause was 'natural causes'.",
+        "_elapsed": 10.4,
+        "_test_id": "ragtruth_8",
+        "_expected": "grounded",
+        "_hall_type": "clean",
+        "_correct": true
+      },
+      {
+        "verdict": "GROUNDED",
+        "confidence": 1.0,
+        "reasoning": "The source explicitly states that Andrew Getty died (EVENT S0), identifies him as one of the heirs to billions of oil money (ENTITY: Andrew Getty), and lists his age as 47 (ENTITY: Andrew Getty).",
+        "_elapsed": 9.5,
+        "_test_id": "ragtruth_9",
+        "_expected": "grounded",
+        "_hall_type": "clean",
+        "_correct": true
+      },
+      {
+        "verdict": "GROUNDED",
+        "confidence": 1.0,
+        "reasoning": "The source explicitly states in the entity description for Gordon Getty that his net_worth is $2.1 billion.",
+        "_elapsed": 18.0,
+        "_test_id": "ragtruth_10",
+        "_expected": "hallucinated",
+        "_hall_type": "Evident Conflict",
+        "_correct": false
+      },
+      {
+        "verdict": "GROUNDED",
+        "confidence": 1.0,
+        "reasoning": "The source explicitly states that Andrew Getty died (S0), describes him as 'one of the heirs to billions of oil money' (Entity: Andrew Getty), and lists his age as 47 (Entity: Andrew Getty).",
+        "_elapsed": 8.9,
+        "_test_id": "ragtruth_11",
+        "_expected": "grounded",
+        "_hall_type": "clean",
+        "_correct": true
+      },
+      {
+        "verdict": "GROUNDED",
+        "confidence": 0.9,
+        "reasoning": "The source explicitly states that the ban will be lifted 'for some events' (S1) and that 'restrictions would be lifted... for indoor sports events' (S4). It also mentions a plan to allow 'women and families' to enter sports stadiums in the next year (S2). While S5 clarifies that the rules will not change for all matches, the general claim that Iran is set to lift its ban is supported by these specific planned actions.",
+        "_elapsed": 54.6,
+        "_test_id": "ragtruth_12",
+        "_expected": "grounded",
+        "_hall_type": "clean",
+        "_correct": true
+      },
+      {
+        "verdict": "GROUNDED",
+        "confidence": 1.0,
+        "reasoning": "The source explicitly states that a top Iranian sports official said the ban will be lifted for some events (S1) and specifically that restrictions would be lifted for indoor sports events (S4).",
+        "_elapsed": 14.9,
+        "_test_id": "ragtruth_13",
+        "_expected": "grounded",
+        "_hall_type": "clean",
+        "_correct": true
+      },
+      {
+        "verdict": "GROUNDED",
+        "confidence": 1.0,
+        "reasoning": "The source explicitly states that a top Iranian sports official said the ban will be lifted for some events (S1) and that Abdolhamid Ahmadi mentioned a plan to allow 'women and families' to enter sports stadiums will come into effect in the next year (S2).",
+        "_elapsed": 16.7,
+        "_test_id": "ragtruth_14",
+        "_expected": "grounded",
+        "_hall_type": "clean",
+        "_correct": true
+      },
+      {
+        "verdict": "HALLUCINATED",
+        "confidence": 0.9,
+        "reasoning": "The claim contains two inaccuracies based on the provided source: 1) It identifies the official as the 'deputy sports minister,' whereas the source only refers to him as a 'top Iranian sports official' (Abdolhamid Ahmadi). 2) It suggests a general plan to 'lift the ban on women attending men's sports events,' while the source specifies that the ban will be lifted only 'for some events' and specifically for 'indoor sports events,' noting that rules won't change for all matches.",
+        "_elapsed": 27.9,
+        "_test_id": "ragtruth_15",
+        "_expected": "grounded",
+        "_hall_type": "clean",
+        "_correct": false
+      },
+      {
+        "verdict": "GROUNDED",
+        "confidence": 1.0,
+        "reasoning": "The source explicitly states that women have been barred from attending most sports events involving men since the 1979 Islamic Revolution (making it a decades-old ban). It also mentions that a top Iranian sports official said the ban will be lifted for some events in the coming months and that Abdolhamid Ahmadi stated a plan to allow women and families into sports stadiums will come into effect in the next year.",
+        "_elapsed": 17.4,
+        "_test_id": "ragtruth_16",
+        "_expected": "grounded",
+        "_hall_type": "clean",
+        "_correct": true
+      }
+    ],
+    "isolated": [
+      {
+        "verdict": "GROUNDED",
+        "confidence": 1.0,
+        "reasoning": "The source explicitly states that 'new research from the Anne Frank House indicates Anne and her sister Margot died at least a month earlier than previously thought.'",
+        "_elapsed": 13.5,
+        "_test_id": "ragtruth_0",
+        "_expected": "grounded",
+        "_hall_type": "clean",
+        "_correct": true
+      },
+      {
+        "verdict": "GROUNDED",
+        "confidence": 1.0,
+        "reasoning": "The source explicitly states in the first section that 'new research from the Anne Frank House indicates Anne and her sister Margot died at least a month earlier than previously thought.'",
+        "_elapsed": 22.7,
+        "_test_id": "ragtruth_1",
+        "_expected": "grounded",
+        "_hall_type": "clean",
+        "_correct": true
+      },
+      {
+        "verdict": "HALLUCINATED",
+        "confidence": 1.0,
+        "reasoning": "The claim states that the sisters are believed to have died before February 7, 2022. The source discusses events occurring in 1944 and 1945; the year 2022 is a fabrication and chronologically impossible.",
+        "_elapsed": 14.4,
+        "_test_id": "ragtruth_2",
+        "_expected": "hallucinated",
+        "_hall_type": "Evident Conflict",
+        "_correct": true
+      },
+      {
+        "verdict": "GROUNDED",
+        "confidence": 0.9,
+        "reasoning": "The source explicitly states that 'new research from the Anne Frank House indicates Anne and her sister Margot died at least a month earlier than previously thought,' which supports the claim that a discovery led to a reevaluation and a correction regarding the date of her passing.",
+        "_elapsed": 63.7,
+        "_test_id": "ragtruth_2",
+        "_expected": "hallucinated",
+        "_hall_type": "Evident Baseless Info",
+        "_correct": false
+      },
+      {
+        "verdict": "HALLUCINATED",
+        "confidence": 1.0,
+        "reasoning": "The claim states that the sisters are believed to have died before February 7, 2022. The source discusses events occurring in 1944 and 1945; the year 2022 is a fabrication and chronologically impossible.",
+        "_elapsed": 14.3,
+        "_test_id": "ragtruth_2",
+        "_expected": "hallucinated",
+        "_hall_type": "Evident Conflict",
+        "_correct": true
+      },
+      {
+        "verdict": "GROUNDED",
+        "confidence": 0.9,
+        "reasoning": "The source explicitly states that Anne 'never gave up hope' and was 'absolutely convinced she would survive,' and notes that her diary 'endures as one of the world's most popular books.' This supports the claim that the diary serves as a symbol of hope and resilience.",
+        "_elapsed": 26.3,
+        "_test_id": "ragtruth_3",
+        "_expected": "hallucinated",
+        "_hall_type": "Subtle Baseless Info",
+        "_correct": false
+      },
+      {
+        "verdict": "GROUNDED",
+        "confidence": 1.0,
+        "reasoning": "The claim is directly supported by the first sentence of the source: 'Seventy years ago, Anne Frank died of typhus at age 15 in a Nazi concentration camp.'",
+        "_elapsed": 8.4,
+        "_test_id": "ragtruth_4",
+        "_expected": "grounded",
+        "_hall_type": "clean",
+        "_correct": true
+      },
+      {
+        "verdict": "HALLUCINATED",
+        "confidence": 1.0,
+        "reasoning": "The claim states that researchers concluded the sisters did not survive past February 7. However, the source actually states that witnesses said the sisters had symptoms *before* February 7, which made it 'unlikely they survived until March.' The source does not conclude they died by February 7; in fact, it notes that typhus deaths typically occur around twelve days after the first symptoms appear.",
+        "_elapsed": 20.5,
+        "_test_id": "ragtruth_5",
+        "_expected": "hallucinated",
+        "_hall_type": "Evident Conflict",
+        "_correct": true
+      },
+      {
+        "verdict": "GROUNDED",
+        "confidence": 0.9,
+        "reasoning": "The claim is a synthesis of information provided in the source. The source states that the diary 'endures as one of the world's most popular books' (supporting 'powerful symbol'), that Anne 'never gave up hope' and was 'convinced she would survive' (supporting 'resilience'), and provides extensive details about the 'terror and dread' and 'deadly typhus outbreak' in 'Nazi concentration camps' (supporting 'reminder of the horrors of the Holocaust').",
+        "_elapsed": 60.8,
+        "_test_id": "ragtruth_5",
+        "_expected": "hallucinated",
+        "_hall_type": "Subtle Baseless Info",
+        "_correct": false
+      },
+      {
+        "verdict": "HALLUCINATED",
+        "confidence": 1.0,
+        "reasoning": "The claim conflates Andrew Getty with J. Paul Getty. The source identifies J. Paul Getty as the 'oil tycoon', while Andrew Getty is described as one of the 'heirs to billions of oil money'.",
+        "_elapsed": 9.9,
+        "_test_id": "ragtruth_6",
+        "_expected": "grounded",
+        "_hall_type": "clean",
+        "_correct": false
+      },
+      {
+        "verdict": "GROUNDED",
+        "confidence": 1.0,
+        "reasoning": "The claim is directly supported by the first paragraph of the source, which states that Andrew Getty, 'one of the heirs to billions of oil money,' 'appears to have died of natural causes, according to a Los Angeles Police Department spokesman.'",
+        "_elapsed": 14.5,
+        "_test_id": "ragtruth_7",
+        "_expected": "grounded",
+        "_hall_type": "clean",
+        "_correct": true
+      },
+      {
+        "verdict": "GROUNDED",
+        "confidence": 1.0,
+        "reasoning": "The claim is directly supported by the first sentence of the 'Andrew Getty's Death Investigation' section, which states: 'Andrew Getty, 47, one of the heirs to billions of oil money, appears to have died of natural causes, according to a Los Angeles Police Department spokesman.'",
+        "_elapsed": 11.8,
+        "_test_id": "ragtruth_8",
+        "_expected": "grounded",
+        "_hall_type": "clean",
+        "_correct": true
+      },
+      {
+        "verdict": "GROUNDED",
+        "confidence": 1.0,
+        "reasoning": "The source explicitly states that Andrew Getty, 47, was 'one of the heirs to billions of oil money' and confirms his death.",
+        "_elapsed": 14.2,
+        "_test_id": "ragtruth_9",
+        "_expected": "grounded",
+        "_hall_type": "clean",
+        "_correct": true
+      },
+      {
+        "verdict": "HALLUCINATED",
+        "confidence": 1.0,
+        "reasoning": "The source states that Gordon Getty has a net worth of $2.1 billion, not Andrew Getty.",
+        "_elapsed": 12.6,
+        "_test_id": "ragtruth_10",
+        "_expected": "hallucinated",
+        "_hall_type": "Evident Conflict",
+        "_correct": true
+      },
+      {
+        "verdict": "GROUNDED",
+        "confidence": 1.0,
+        "reasoning": "The source explicitly states that Andrew Getty, 47, who is described as 'one of the heirs to billions of oil money,' has died.",
+        "_elapsed": 11.3,
+        "_test_id": "ragtruth_11",
+        "_expected": "grounded",
+        "_hall_type": "clean",
+        "_correct": true
+      },
+      {
+        "verdict": "HALLUCINATED",
+        "confidence": 0.9,
+        "reasoning": "The claim states that Iran is set to lift its ban on women attending sports events, implying a general or total lift. However, the source explicitly states that the ban will only be lifted for 'some events, specifically indoor sports events' and that 'the rules won't change for all matches' because some sports are considered mainly related to men.",
+        "_elapsed": 30.8,
+        "_test_id": "ragtruth_12",
+        "_expected": "grounded",
+        "_hall_type": "clean",
+        "_correct": false
+      },
+      {
+        "verdict": "GROUNDED",
+        "confidence": 1.0,
+        "reasoning": "The source explicitly states that Deputy Sports Minister Abdolhamid Ahmadi (a top sports official) announced a plan to allow women and families into sports stadiums and specifically stated that the ban will be lifted for some indoor sports events.",
+        "_elapsed": 11.2,
+        "_test_id": "ragtruth_13",
+        "_expected": "grounded",
+        "_hall_type": "clean",
+        "_correct": true
+      },
+      {
+        "verdict": "GROUNDED",
+        "confidence": 1.0,
+        "reasoning": "The source explicitly states that Deputy Sports Minister Abdolhamid Ahmadi announced a plan to allow 'women and families' to enter sports stadiums and that 'the ban will be lifted for some events, specifically indoor sports events.'",
+        "_elapsed": 10.1,
+        "_test_id": "ragtruth_14",
+        "_expected": "grounded",
+        "_hall_type": "clean",
+        "_correct": true
+      },
+      {
+        "verdict": "HALLUCINATED",
+        "confidence": 0.9,
+        "reasoning": "The claim attributes a specific motive to the Deputy Sports Minister's announcement ('In an effort to improve Iran's chances of hosting future international sports events'). While the source mentions that the ban was seen as an impediment to hosting the 2019 Asian Cup and that there was international pressure, it never explicitly states that the minister's plan was created for the purpose of improving the country's chances of hosting future events.",
+        "_elapsed": 28.7,
+        "_test_id": "ragtruth_15",
+        "_expected": "grounded",
+        "_hall_type": "clean",
+        "_correct": false
+      },
+      {
+        "verdict": "GROUNDED",
+        "confidence": 1.0,
+        "reasoning": "The source states that the ban has existed since 1979 (making it decades-old) and that Deputy Sports Minister Abdolhamid Ahmadi announced a plan to allow 'women and families' to enter sports stadiums in the next year, supporting the claim that Iran may lift the ban.",
+        "_elapsed": 12.9,
+        "_test_id": "ragtruth_16",
+        "_expected": "grounded",
+        "_hall_type": "clean",
+        "_correct": true
+      }
+    ],
+    "overlapping": [
+      {
+        "verdict": "GROUNDED",
+        "confidence": 1.0,
+        "reasoning": "The source explicitly states that 'new research released by the Anne Frank House shows that Anne Frank, the Jewish diarist, and her older sister, Margot Frank, died at least a month earlier than previously thought.'",
+        "_elapsed": 9.5,
+        "_test_id": "ragtruth_0",
+        "_expected": "grounded",
+        "_hall_type": "clean",
+        "_correct": true
+      },
+      {
+        "verdict": "GROUNDED",
+        "confidence": 1.0,
+        "reasoning": "The claim is directly supported by the first section of the source text, which states: 'new research released by the Anne Frank House shows that Anne Frank, the Jewish diarist, and her older sister, Margot Frank, died at least a month earlier than previously thought.'",
+        "_elapsed": 10.2,
+        "_test_id": "ragtruth_1",
+        "_expected": "grounded",
+        "_hall_type": "clean",
+        "_correct": true
+      },
+      {
+        "verdict": "HALLUCINATED",
+        "confidence": 1.0,
+        "reasoning": "The claim states that the sisters are believed to have died before February 7, 2022. However, the source discusses events occurring in 1944 and 1945, noting that they had symptoms of typhus before February 7 (implicitly 1945) and probably did not survive to March 1945. The year 2022 is a fabrication.",
+        "_elapsed": 14.7,
+        "_test_id": "ragtruth_2",
+        "_expected": "hallucinated",
+        "_hall_type": "Evident Conflict",
+        "_correct": true
+      },
+      {
+        "verdict": "GROUNDED",
+        "confidence": 0.9,
+        "reasoning": "The source states that 'new research released by the Anne Frank House shows that Anne Frank... died at least a month earlier than previously thought,' which supports the claim that the Anne Frank House issued a correction/new finding regarding her date of death. The source also describes how researchers 're-examined archives' and testimonies, which supports the claim that a reevaluation of the events occurred.",
+        "_elapsed": 28.9,
+        "_test_id": "ragtruth_2",
+        "_expected": "hallucinated",
+        "_hall_type": "Evident Baseless Info",
+        "_correct": false
+      },
+      {
+        "verdict": "HALLUCINATED",
+        "confidence": 1.0,
+        "reasoning": "The claim states that the sisters are believed to have died before February 7, 2022. However, the source discusses events occurring in 1944 and 1945, noting that they had symptoms of typhus before February 7 (implicitly 1945) and probably did not survive to March 1945. The year 2022 is a fabrication.",
+        "_elapsed": 14.4,
+        "_test_id": "ragtruth_2",
+        "_expected": "hallucinated",
+        "_hall_type": "Evident Conflict",
+        "_correct": true
+      },
+      {
+        "verdict": "GROUNDED",
+        "confidence": 0.9,
+        "reasoning": "The source explicitly states that Anne Frank 'never gave up hope' despite 'horrific conditions' and that her diary 'endures as one of the world's most popular books.' The claim that the diary remains a symbol of hope and resilience is a direct synthesis of these points.",
+        "_elapsed": 35.3,
+        "_test_id": "ragtruth_3",
+        "_expected": "hallucinated",
+        "_hall_type": "Subtle Baseless Info",
+        "_correct": false
+      },
+      {
+        "verdict": "GROUNDED",
+        "confidence": 1.0,
+        "reasoning": "The claim is directly supported by the first sentence of the source, which states: 'Seventy years ago, Anne Frank, a 15-year-old Jewish diarist, died of typhus in a Nazi concentration camp.'",
+        "_elapsed": 11.2,
+        "_test_id": "ragtruth_4",
+        "_expected": "grounded",
+        "_hall_type": "clean",
+        "_correct": true
+      },
+      {
+        "verdict": "HALLUCINATED",
+        "confidence": 1.0,
+        "reasoning": "The claim states that researchers concluded the sisters did not survive past February 7. However, the source states that witnesses saw them with symptoms of typhus *before* February 7 and notes that deaths typically occur around twelve days *after* the first symptoms appear. This implies they died in mid-to-late February, not that they died by February 7. The source only explicitly concludes they 'probably did not survive to March 1945'.",
+        "_elapsed": 22.5,
+        "_test_id": "ragtruth_5",
+        "_expected": "hallucinated",
+        "_hall_type": "Evident Conflict",
+        "_correct": true
+      },
+      {
+        "verdict": "GROUNDED",
+        "confidence": 0.9,
+        "reasoning": "The claim is a synthesis of several points in the source: 1) The source states that Anne Frank 'never gave up hope' despite 'horrific conditions,' which supports the mention of her 'resilience.' 2) It states that her diary 'endures as one of the world's most popular books,' which supports the idea of it being a 'powerful symbol.' 3) The source describes the 'terror and dread,' 'horrific conditions,' and 'deadly typhus outbreak' in 'Nazi concentration camps,' which supports the claim that the diary serves as a 'reminder of the horrors of the Holocaust.'",
+        "_elapsed": 73.2,
+        "_test_id": "ragtruth_5",
+        "_expected": "hallucinated",
+        "_hall_type": "Subtle Baseless Info",
+        "_correct": false
+      },
+      {
+        "verdict": "HALLUCINATED",
+        "confidence": 1.0,
+        "reasoning": "The claim is an incomplete fragment that suggests Andrew Getty is 'oil tycoon J.' The source explicitly states that J. Paul Getty was the oil tycoon/baron and that Andrew Getty was his grandson and an heir to the money, not the tycoon himself.",
+        "_elapsed": 15.3,
+        "_test_id": "ragtruth_6",
+        "_expected": "grounded",
+        "_hall_type": "clean",
+        "_correct": false
+      },
+      {
+        "verdict": "GROUNDED",
+        "confidence": 1.0,
+        "reasoning": "The source explicitly states that Andrew Getty was 'one of the heirs to billions of oil money' and that a 'Los Angeles Police Department spokesman said' he 'appears to have died of natural causes.'",
+        "_elapsed": 17.2,
+        "_test_id": "ragtruth_7",
+        "_expected": "grounded",
+        "_hall_type": "clean",
+        "_correct": true
+      },
+      {
+        "verdict": "GROUNDED",
+        "confidence": 1.0,
+        "reasoning": "The source explicitly states in multiple sections that Andrew Getty was 'one of the heirs to billions of oil money' and that a Los Angeles Police Department spokesman said he 'appears to have died of natural causes.'",
+        "_elapsed": 11.5,
+        "_test_id": "ragtruth_8",
+        "_expected": "grounded",
+        "_hall_type": "clean",
+        "_correct": true
+      },
+      {
+        "verdict": "GROUNDED",
+        "confidence": 1.0,
+        "reasoning": "The source explicitly states that Andrew Getty, 47, was one of the heirs to billions of oil money (the Getty oil fortune) and confirms his death through statements from the LAPD and his parents.",
+        "_elapsed": 12.3,
+        "_test_id": "ragtruth_9",
+        "_expected": "grounded",
+        "_hall_type": "clean",
+        "_correct": true
+      },
+      {
+        "verdict": "HALLUCINATED",
+        "confidence": 1.0,
+        "reasoning": "The source states that Gordon Getty's net worth was $2.1 billion, not Andrew Getty's. The claim attributes this specific figure to 'His', and in the context of the provided text, the primary subject is Andrew Getty.",
+        "_elapsed": 21.1,
+        "_test_id": "ragtruth_10",
+        "_expected": "hallucinated",
+        "_hall_type": "Evident Conflict",
+        "_correct": true
+      },
+      {
+        "verdict": "GROUNDED",
+        "confidence": 1.0,
+        "reasoning": "The source explicitly states that Andrew Getty, who is described as 'one of the heirs to billions of oil money' and the grandson of oil tycoon J. Paul Getty, has died and was 47 years old.",
+        "_elapsed": 9.5,
+        "_test_id": "ragtruth_11",
+        "_expected": "grounded",
+        "_hall_type": "clean",
+        "_correct": true
+      },
+      {
+        "verdict": "HALLUCINATED",
+        "confidence": 1.0,
+        "reasoning": "The claim states that Iran is set to lift its ban on women attending sports events, implying a general lift. However, the source specifies that the ban will only be lifted for 'some events' (specifically indoor sports events) and explicitly states that 'the rules won't change for all matches' because some sports are considered mainly related to men.",
+        "_elapsed": 16.0,
+        "_test_id": "ragtruth_12",
+        "_expected": "grounded",
+        "_hall_type": "clean",
+        "_correct": false
+      },
+      {
+        "verdict": "GROUNDED",
+        "confidence": 1.0,
+        "reasoning": "The claim is directly supported by the 'Upcoming Changes to Iran's Sports Ban' section, which states that a top Iranian sports official (Deputy Sports Minister Abdolhamid Ahmadi) said the ban on women attending men's sports events will be lifted for some events, specifically specifying that restrictions would be lifted for indoor sports events.",
+        "_elapsed": 12.1,
+        "_test_id": "ragtruth_13",
+        "_expected": "grounded",
+        "_hall_type": "clean",
+        "_correct": true
+      },
+      {
+        "verdict": "GROUNDED",
+        "confidence": 1.0,
+        "reasoning": "The source explicitly states that a top Iranian sports official, Deputy Sports Minister Abdolhamid Ahmadi, said the ban on women attending men's sports events will be lifted for some events and that a plan to allow 'women and families' to enter sports stadiums will come into effect in the next year.",
+        "_elapsed": 12.4,
+        "_test_id": "ragtruth_14",
+        "_expected": "grounded",
+        "_hall_type": "clean",
+        "_correct": true
+      },
+      {
+        "verdict": "HALLUCINATED",
+        "confidence": 1.0,
+        "reasoning": "While the source confirms that Deputy Sports Minister Abdolhamid Ahmadi announced plans to lift the ban on women attending some men's sports events, it does not state that this was done 'in an effort to improve Iran's chances of hosting future international sports events.' The source mentions that the ban was seen as an impediment to hosting the 2019 Asian Cup, but it does not explicitly link this as the motivation for the minister's announcement.",
+        "_elapsed": 21.9,
+        "_test_id": "ragtruth_15",
+        "_expected": "grounded",
+        "_hall_type": "clean",
+        "_correct": false
+      },
+      {
+        "verdict": "GROUNDED",
+        "confidence": 1.0,
+        "reasoning": "The source states that the ban has existed since 1979 ('ensuing decades') and that Deputy Sports Minister Abdolhamid Ahmadi announced a plan to allow 'women and families' to enter sports stadiums in the next year, specifically for indoor sports events, indicating that the ban may be lifted for some events.",
+        "_elapsed": 12.4,
+        "_test_id": "ragtruth_16",
+        "_expected": "grounded",
+        "_hall_type": "clean",
+        "_correct": true
+      }
+    ]
+  }
+}

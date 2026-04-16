@@ -1,0 +1,94 @@
+{
+  "stories": [
+    {
+      "thread": "New Research on Death Dates",
+      "story": "Anne Frank died of typhus in a Nazi concentration camp at age 15 seventy years ago. The Bergen-Belsen concentration camp was liberated on March 31, 1945, two weeks after her supposed death, showing how close the Jewish diarist, Anne Frank, had been to surviving the Holocaust. New research from the Anne Frank House shows Anne Frank and her older sister Margot Frank died at least a month earlier than previously thought. Researchers re-examined archives of the Red Cross, the International Training Service, and the Bergen-Belsen Memorial, along with survivor testimonies. They concluded Anne Frank and Margot Frank probably did not survive to March 1945, contradicting Dutch authorities.",
+      "key_facts": [
+        "Anne Frank died of typhus at age 15",
+        "Bergen-Belsen liberated March 31, 1945",
+        "Anne Frank House research suggests Anne Frank and Margot Frank died at least a month earlier than thought",
+        "Researchers used Red Cross, International Training Service, and Bergen-Belsen Memorial archives"
+      ],
+      "explicit_unknowns": [
+        "not stated"
+      ]
+    },
+    {
+      "thread": "Arrest and Transfer",
+      "story": "Researchers concluded Anne Frank and Margot Frank probably did not survive to March 1945. In 1944, Anne Frank and seven others hiding in the Amsterdam secret annex were arrested and sent to the Auschwitz-Birkenau concentration camp. Anne Frank also left a final entry. That same year, Anne Frank and Margot Frank were separated from their mother and sent to work as slave labor at the Bergen-Belsen camp in Germany. Days at the Bergen-Belsen camp were filled with terror and dread.",
+      "key_facts": [
+        "Anne Frank and seven others arrested in Amsterdam secret annex in 1944",
+        "Anne Frank and Margot Frank sent to Auschwitz-Birkenau",
+        "Anne Frank and Margot Frank sent to Bergen-Belsen for slave labor",
+        "Anne Frank left a final entry"
+      ],
+      "explicit_unknowns": [
+        "not stated"
+      ]
+    },
+    {
+      "thread": "Conditions at Bergen-Belsen",
+      "story": "Anne Frank and Margot Frank were sent to work as slave labor at the Bergen-Belsen camp in Germany. Days at the Bergen-Belsen camp were filled with terror and dread. Anne Frank and Margot Frank stayed in an overcrowded section of the Bergen-Belsen camp with no lighting, little water, and no latrine. They slept on lice-ridden straw and violent storms shredded the tents. Like other prisoners, Anne Frank and Margot Frank endured long hours at roll call.",
+      "key_facts": [
+        "Anne Frank and Margot Frank worked as slave labor at Bergen-Belsen",
+        "Camp conditions included no lighting, little water, and no latrine",
+        "Prisoners slept on lice-ridden straw in tents shredded by storms",
+        "Anne Frank and Margot Frank endured long roll calls"
+      ],
+      "explicit_unknowns": [
+        "not stated"
+      ]
+    },
+    {
+      "thread": "Nannette Blitz's Account",
+      "story": "Anne Frank and Margot Frank endured long hours at roll call. Anne Frank's classmate, Nannette Blitz, recalled seeing Anne Frank there in December 1944, stating she was no more than a skeleton. Anne Frank was wrapped in a blanket because her clothes were crawling with lice. Nannette Blitz and other friends described Anne Frank's concentration camp experience.",
+      "key_facts": [
+        "Nannette Blitz saw Anne Frank in December 1944",
+        "Anne Frank appeared as a skeleton",
+        "Anne Frank's clothes were crawling with lice"
+      ],
+      "explicit_unknowns": [
+        "not stated"
+      ]
+    },
+    {
+      "thread": "The Typhus Outbreak",
+      "story": "Anne Frank's clothes were crawling with lice. As the Russians advanced, the Bergen-Belsen concentration camp became more crowded, bringing more disease. A deadly typhus outbreak caused thousands to die each day. Typhus is an infectious disease caused by lice that breaks out in places with poor hygiene. Typhus causes high fever, chills, and skin eruptions.",
+      "key_facts": [
+        "Bergen-Belsen became more crowded as Russians advanced",
+        "Typhus outbreak caused thousands of daily deaths",
+        "Typhus is caused by lice in poor hygiene conditions",
+        "Typhus symptoms include high fever, chills, and skin eruptions"
+      ],
+      "explicit_unknowns": [
+        "not stated"
+      ]
+    },
+    {
+      "thread": "Cause of Death",
+      "story": "Typhus causes high fever, chills, and skin eruptions. Museum researchers wrote that Anne Frank was exposed to the main carrier of epidemic typhus for an extended period because of lice infesting her bedstraw and clothes. They concluded it is unlikely Anne Frank and Margot Frank survived until March, as witnesses said both had symptoms before February 7. Authors Erika Prins and Gertjan Broek wrote that most deaths caused by typhus occur around twelve days after the first symptoms appear.",
+      "key_facts": [
+        "Anne Frank was exposed to typhus via lice in bedstraw and clothes",
+        "Anne Frank and Margot Frank showed symptoms before February 7",
+        "Erika Prins and Gertjan Broek stated typhus deaths usually occur around twelve days after symptoms"
+      ],
+      "explicit_unknowns": [
+        "not stated"
+      ]
+    },
+    {
+      "thread": "Final Days and Legacy",
+      "story": "Witnesses said Anne Frank and Margot Frank had symptoms before February 7. The exact dates of death for Anne Frank and Margot Frank remain unclear. Margot Frank died before Anne Frank. Nannette Blitz said Anne Frank never gave up hope and was convinced she would survive. Anne Frank's diary endures as one of the world's most popular books, and there is more to read about Anne Frank's cousin, a keeper of her legacy.",
+      "key_facts": [
+        "Margot Frank died before Anne Frank",
+        "Nannette Blitz noted Anne Frank's conviction that she would survive",
+        "Anne Frank's diary is one of the world's most popular books",
+        "Anne Frank has a cousin who is a keeper of her legacy"
+      ],
+      "explicit_unknowns": [
+        "Exact dates of death for Anne Frank and Margot Frank"
+      ]
+    }
+  ],
+  "_elapsed": 300.1
+}

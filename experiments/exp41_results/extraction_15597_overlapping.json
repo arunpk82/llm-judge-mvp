@@ -1,0 +1,64 @@
+{
+  "stories": [
+    {
+      "thread": "Cattle ID Cards",
+      "story": "Police in the Indian city of Malegaon, in the western state of Maharashtra, are requiring identity cards for cattle. Following a state-wide ban on the sale and consumption of beef, residents must submit 'mugshots' and information on unique features like coloring, age, and tail length. Police believe this is the only way to solve cow slaughter cases and enforce the law. Cows are considered holy and revered by the majority Hindu population in Maharashtra.",
+      "key_facts": [
+        "Malegaon police in Maharashtra require cattle identity cards",
+        "Residents must provide mugshots and unique features of cattle",
+        "Cows are revered by the majority Hindu population in Maharashtra"
+      ],
+      "explicit_unknowns": [
+        "The specific date the state-wide ban was implemented"
+      ]
+    },
+    {
+      "thread": "Police Database",
+      "story": "Cows are considered holy and revered by the majority Hindu population in Maharashtra. Mahesh Sawai, Deputy Superintendent of Malegaon Police, is creating a database to quickly check if a cow is present after slaughter reports. Mahesh Sawai believes this will be very effective. Over 100 owners in Malegaon have complied and more are lining up at police stations. This follows a case in Malegaon where two men were charged for killing a cow and selling its meat.",
+      "key_facts": [
+        "Mahesh Sawai, Deputy Superintendent of Malegaon Police, is creating a cattle database",
+        "Over 100 owners in Malegaon have complied with the order",
+        "Two men were charged for cow slaughter and selling meat in Malegaon"
+      ],
+      "explicit_unknowns": [
+        "The names of the two men charged"
+      ]
+    },
+    {
+      "thread": "Maharashtra Law",
+      "story": "Two men were charged for killing a cow and selling its meat in Malegaon, Maharashtra. The Maharashtra Animal Preservation Bill now includes bans on the killing of bulls and bullocks as non-bailable offenses. Even the consumption or sale of beef in Maharashtra could now land a person in prison for five years. However, the slaughter of buffaloes is still permissible.",
+      "key_facts": [
+        "The Maharashtra Animal Preservation Bill bans killing bulls and bullocks",
+        "Beef consumption or sale in Maharashtra carries a five-year prison sentence",
+        "Buffalo slaughter remains permissible"
+      ],
+      "explicit_unknowns": [
+        "The date the Maharashtra Animal Preservation Bill was updated"
+      ]
+    },
+    {
+      "thread": "Trader Protests",
+      "story": "While the slaughter of buffaloes is still permissible in Maharashtra, beef traders reacted to the decision with a month-long strike that ended Wednesday. These beef traders refused to slaughter buffaloes to deprive the state of all bovine meat. The beef traders have now vowed to file a case in the state's high court. Red meat lovers also argue the government does not have a right to interfere in an individual's personal preference.",
+      "key_facts": [
+        "Beef traders held a month-long strike ending Wednesday",
+        "Beef traders refused to slaughter buffaloes",
+        "Beef traders intend to file a case in the state's high court"
+      ],
+      "explicit_unknowns": [
+        "The specific calendar date of the Wednesday the strike ended"
+      ]
+    },
+    {
+      "thread": "National Laws",
+      "story": "Red meat lovers argue the government does not have a right to interfere in an individual's personal preference. Maharashtra is not the only Indian state to tighten its laws on cow slaughter. Haryana state has implemented a maximum punishment of 10 years in prison, the toughest penalty in the country. Rajnath Singh, India's Home Minister, has promised that he would do all to devise a country-wide law against cow slaughter.",
+      "key_facts": [
+        "Haryana state has a maximum punishment of 10 years in prison for cow slaughter",
+        "Rajnath Singh, India's Home Minister, promised a country-wide law against cow slaughter"
+      ],
+      "explicit_unknowns": [
+        "The timeline for the implementation of the country-wide law"
+      ]
+    }
+  ],
+  "_elapsed": 80.9
+}

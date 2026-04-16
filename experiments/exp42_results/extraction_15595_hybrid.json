@@ -1,0 +1,2397 @@
+{
+  "event_hubs": [
+    {
+      "event_id": "EVT_1",
+      "action": "role",
+      "source_sentence": "S0",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "Robert Redford",
+          "source": "S0"
+        },
+        {
+          "type": "target_of",
+          "target": "\"All Is Lost\"",
+          "source": "S0"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_2",
+      "action": "movie",
+      "source_sentence": "S0",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "Ang Lee",
+          "source": "S0"
+        },
+        {
+          "type": "target_of",
+          "target": "\"Life of Pi\"",
+          "source": "S0"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_3",
+      "action": "being stranded",
+      "source_sentence": "S0",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "single person",
+          "source": "S0"
+        },
+        {
+          "type": "where",
+          "target": "at sea",
+          "source": "S0"
+        },
+        {
+          "type": "when",
+          "target": "for days, weeks, if not months",
+          "source": "S0"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_4",
+      "action": "picked up",
+      "source_sentence": "S2",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "U.S. Coast Guard",
+          "source": "S3"
+        },
+        {
+          "type": "target_of",
+          "target": "people",
+          "source": "S2"
+        },
+        {
+          "type": "when",
+          "target": "a few hours later",
+          "source": "S2"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_5",
+      "action": "become lost",
+      "source_sentence": "S4",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "individuals",
+          "source": "S4"
+        },
+        {
+          "type": "where",
+          "target": "at sea",
+          "source": "S4"
+        },
+        {
+          "type": "when",
+          "target": "long enough that they run out of whatever food and drinking water they'd brought aboard, if any",
+          "source": "S4"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_6",
+      "action": "dying",
+      "source_sentence": "S6",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "sailor",
+          "source": "S6"
+        },
+        {
+          "type": "where",
+          "target": "at sea",
+          "source": "S6"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_7",
+      "action": "occur",
+      "source_sentence": "S7",
+      "edges": [
+        {
+          "type": "target_of",
+          "target": "happy endings (rescues)",
+          "source": "S7"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_8",
+      "action": "set off",
+      "source_sentence": "S9",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "Louis Jordan",
+          "source": "S9"
+        },
+        {
+          "type": "target_of",
+          "target": "his 35-foot sailboat",
+          "source": "S9"
+        },
+        {
+          "type": "where",
+          "target": "from South Carolina",
+          "source": "S9"
+        },
+        {
+          "type": "when",
+          "target": "late January",
+          "source": "S9"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_9",
+      "action": "headed",
+      "source_sentence": "S10",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "Louis Jordan",
+          "source": "S10"
+        },
+        {
+          "type": "where",
+          "target": "into the Gulf Stream",
+          "source": "S10"
+        },
+        {
+          "type": "why",
+          "target": "looking for a good spot to catch fish",
+          "source": "S10"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_10",
+      "action": "capsized",
+      "source_sentence": "S12",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "his boat",
+          "source": "S12"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_11",
+      "action": "broke",
+      "source_sentence": "S12",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "its mast",
+          "source": "S12"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_12",
+      "action": "broke",
+      "source_sentence": "S13",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "his shoulder",
+          "source": "S13"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_13",
+      "action": "rationing",
+      "source_sentence": "S14",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "Louis Jordan",
+          "source": "S14"
+        },
+        {
+          "type": "target_of",
+          "target": "water",
+          "source": "S14"
+        },
+        {
+          "type": "how",
+          "target": "by rationing",
+          "source": "S14"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_14",
+      "action": "collecting",
+      "source_sentence": "S14",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "Louis Jordan",
+          "source": "S14"
+        },
+        {
+          "type": "target_of",
+          "target": "fresh water",
+          "source": "S14"
+        },
+        {
+          "type": "how",
+          "target": "in a bucket",
+          "source": "S14"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_15",
+      "action": "trap and scoop up",
+      "source_sentence": "S15",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "Louis Jordan",
+          "source": "S15"
+        },
+        {
+          "type": "target_of",
+          "target": "fish",
+          "source": "S15"
+        },
+        {
+          "type": "how",
+          "target": "used laundry",
+          "source": "S15"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_16",
+      "action": "rigged",
+      "source_sentence": "S16",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "Louis Jordan",
+          "source": "S16"
+        },
+        {
+          "type": "target_of",
+          "target": "a makeshift mast and sail",
+          "source": "S16"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_17",
+      "action": "capsize",
+      "source_sentence": "S18",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "his sailboat",
+          "source": "S18"
+        },
+        {
+          "type": "when",
+          "target": "two more times",
+          "source": "S18"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_18",
+      "action": "spotted",
+      "source_sentence": "S18",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "crew members on a German-flagged container ship, the Houston Express",
+          "source": "S18"
+        },
+        {
+          "type": "target_of",
+          "target": "Louis Jordan",
+          "source": "S18"
+        },
+        {
+          "type": "where",
+          "target": "about 200 miles off the North Carolina coast",
+          "source": "S18"
+        },
+        {
+          "type": "when",
+          "target": "Thursday",
+          "source": "S18"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_19",
+      "action": "greeted",
+      "source_sentence": "S19",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "Louis Jordan's father",
+          "source": "S19"
+        },
+        {
+          "type": "target_of",
+          "target": "Louis Jordan",
+          "source": "S19"
+        },
+        {
+          "type": "how",
+          "target": "with a hug",
+          "source": "S19"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_20",
+      "action": "admission",
+      "source_sentence": "S19",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "Louis Jordan's father",
+          "source": "S19"
+        },
+        {
+          "type": "target_of",
+          "target": "'I thought I lost you.'",
+          "source": "S19"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_21",
+      "action": "began",
+      "source_sentence": "S20",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "Jose Salvador Alvarenga's journey",
+          "source": "S20"
+        },
+        {
+          "type": "where",
+          "target": "in Paredon Viejo, a port on Mexico's Pacific coast",
+          "source": "S20"
+        },
+        {
+          "type": "when",
+          "target": "late 2012",
+          "source": "S20"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_22",
+      "action": "set off",
+      "source_sentence": "S21",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "Jose Salvador Alvarenga",
+          "source": "S21"
+        },
+        {
+          "type": "when",
+          "target": "December (Alvarenga's claim), November (locals' claim)",
+          "source": "S21"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_23",
+      "action": "disappeared",
+      "source_sentence": "S22",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "Jose Salvador Alvarenga",
+          "source": "S22"
+        },
+        {
+          "type": "when",
+          "target": "after he left",
+          "source": "S22"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_24",
+      "action": "interacted",
+      "source_sentence": "S24",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "Jose Salvador Alvarenga",
+          "source": "S24"
+        },
+        {
+          "type": "target_of",
+          "target": "humans",
+          "source": "S24"
+        },
+        {
+          "type": "when",
+          "target": "January 2013",
+          "source": "S23, S24"
+        },
+        {
+          "type": "where",
+          "target": "thousands of miles away on a remote atoll in the Marshall Islands",
+          "source": "S24"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_25",
+      "action": "turned into",
+      "source_sentence": "S26",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "What was supposed to be a one-day trip",
+          "source": "S26"
+        },
+        {
+          "type": "target_of",
+          "target": "an arduous odyssey",
+          "source": "S26"
+        },
+        {
+          "type": "where",
+          "target": "across the Pacific Ocean",
+          "source": "S26"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_26",
+      "action": "lose",
+      "source_sentence": "S26",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "Jose Salvador Alvarenga",
+          "source": "S26"
+        },
+        {
+          "type": "target_of",
+          "target": "his fishing companion",
+          "source": "S26"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_27",
+      "action": "blew off course",
+      "source_sentence": "S27",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "winds",
+          "source": "S27"
+        },
+        {
+          "type": "target_of",
+          "target": "the pair",
+          "source": "S27"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_28",
+      "action": "hit",
+      "source_sentence": "S28",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "a storm",
+          "source": "S28"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_29",
+      "action": "lose",
+      "source_sentence": "S28",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "their boat",
+          "source": "S28"
+        },
+        {
+          "type": "target_of",
+          "target": "its engine and use of its radio communication and GPS systems",
+          "source": "S28"
+        },
+        {
+          "type": "why",
+          "target": "storm hit",
+          "source": "S28"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_30",
+      "action": "died",
+      "source_sentence": "S29",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "Ezequiel Cordova",
+          "source": "S29"
+        },
+        {
+          "type": "when",
+          "target": "Four weeks in",
+          "source": "S29"
+        },
+        {
+          "type": "why",
+          "target": "because he refused to eat raw birds",
+          "source": "S29"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_31",
+      "action": "drank",
+      "source_sentence": "S31",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "Jose Salvador Alvarenga",
+          "source": "S31"
+        },
+        {
+          "type": "target_of",
+          "target": "rainwater",
+          "source": "S31"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_32",
+      "action": "drank",
+      "source_sentence": "S31",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "Jose Salvador Alvarenga",
+          "source": "S31"
+        },
+        {
+          "type": "target_of",
+          "target": "his own urine",
+          "source": "S31"
+        },
+        {
+          "type": "when",
+          "target": "when there wasn't any available",
+          "source": "S31"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_33",
+      "action": "ate",
+      "source_sentence": "S32",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "Jose Salvador Alvarenga",
+          "source": "S32"
+        },
+        {
+          "type": "target_of",
+          "target": "sea turtles",
+          "source": "S32"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_34",
+      "action": "arrived",
+      "source_sentence": "S33",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "Jose Salvador Alvarenga and his small, heavily damaged boat",
+          "source": "S33"
+        },
+        {
+          "type": "where",
+          "target": "on the Ebon Atoll",
+          "source": "S33"
+        },
+        {
+          "type": "when",
+          "target": "after 13 or 14 months adrift",
+          "source": "S33"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_35",
+      "action": "spotted",
+      "source_sentence": "S34",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "Jose Salvador Alvarenga",
+          "source": "S34"
+        },
+        {
+          "type": "target_of",
+          "target": "two of whom (residents)",
+          "source": "S34"
+        },
+        {
+          "type": "when",
+          "target": "after spending a night in the woods",
+          "source": "S34"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_36",
+      "action": "shouted to",
+      "source_sentence": "S34",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "Jose Salvador Alvarenga",
+          "source": "S34"
+        },
+        {
+          "type": "target_of",
+          "target": "two of whom (residents)",
+          "source": "S34"
+        },
+        {
+          "type": "when",
+          "target": "after spending a night in the woods",
+          "source": "S34"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_37",
+      "action": "told",
+      "source_sentence": "S35",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "Jose Salvador Alvarenga",
+          "source": "S35"
+        },
+        {
+          "type": "target_of",
+          "target": "CNN",
+          "source": "S35"
+        },
+        {
+          "type": "why",
+          "target": "his faith in God helped him survive",
+          "source": "S35"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_38",
+      "action": "setting off",
+      "source_sentence": "S43",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "Ron Ingraham",
+          "source": "S43"
+        },
+        {
+          "type": "where",
+          "target": "from the Hawaiian island of Molokai",
+          "source": "S43"
+        },
+        {
+          "type": "when",
+          "target": "around last Thanksgiving",
+          "source": "S43"
+        },
+        {
+          "type": "how",
+          "target": "solo",
+          "source": "S43"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_39",
+      "action": "hit",
+      "source_sentence": "S45",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "bad weather",
+          "source": "S45"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_40",
+      "action": "went \"backwards all night long\"",
+      "source_sentence": "S45",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "his 25-foot sailboat",
+          "source": "S45"
+        },
+        {
+          "type": "when",
+          "target": "all night long",
+          "source": "S45"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_41",
+      "action": "struck",
+      "source_sentence": "S45",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "a huge wave",
+          "source": "S45"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_42",
+      "action": "pushing",
+      "source_sentence": "S45",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "a huge wave",
+          "source": "S45"
+        },
+        {
+          "type": "target_of",
+          "target": "his mast",
+          "source": "S45"
+        },
+        {
+          "type": "where",
+          "target": "into the water",
+          "source": "S45"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_43",
+      "action": "pushing",
+      "source_sentence": "S45",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "a huge wave",
+          "source": "S45"
+        },
+        {
+          "type": "target_of",
+          "target": "Ron Ingraham",
+          "source": "S45"
+        },
+        {
+          "type": "where",
+          "target": "into the water",
+          "source": "S45"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_44",
+      "action": "pull himself back in",
+      "source_sentence": "S46",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "Ron Ingraham",
+          "source": "S46"
+        },
+        {
+          "type": "how",
+          "target": "used a rope",
+          "source": "S46"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_45",
+      "action": "went out",
+      "source_sentence": "S48",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "A distress call",
+          "source": "S48"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_46",
+      "action": "cover",
+      "source_sentence": "S48",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "a search",
+          "source": "S48"
+        },
+        {
+          "type": "target_of",
+          "target": "12,000 square miles",
+          "source": "S48"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_47",
+      "action": "told him the search was being called off",
+      "source_sentence": "S49",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "A Coast Guard official",
+          "source": "S49"
+        },
+        {
+          "type": "target_of",
+          "target": "Zakary Ingraham",
+          "source": "S49"
+        },
+        {
+          "type": "when",
+          "target": "December 1",
+          "source": "S49"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_48",
+      "action": "picked up",
+      "source_sentence": "S51",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "EXPLICITLY_UNKNOWN",
+          "source": "S51"
+        },
+        {
+          "type": "target_of",
+          "target": "Ron Ingraham",
+          "source": "S51"
+        },
+        {
+          "type": "when",
+          "target": "Twelve days after that first distress call",
+          "source": "S51"
+        },
+        {
+          "type": "where",
+          "target": "about 64 miles (103 kilometers) south of Honolulu",
+          "source": "S51"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_49",
+      "action": "headed back",
+      "source_sentence": "S52",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "Ron Ingraham",
+          "source": "S52"
+        },
+        {
+          "type": "where",
+          "target": "to shore",
+          "source": "S52"
+        },
+        {
+          "type": "why",
+          "target": "after getting assurances his damaged boat would come with him",
+          "source": "S52"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_50",
+      "action": "asked",
+      "source_sentence": "S53",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "Adrian Vasquez's two friends",
+          "source": "S53"
+        },
+        {
+          "type": "target_of",
+          "target": "Adrian Vasquez",
+          "source": "S53"
+        },
+        {
+          "type": "why",
+          "target": "whether he wanted to tag along on an overnight fishing expedition",
+          "source": "S53"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_51",
+      "action": "said yes",
+      "source_sentence": "S54",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "Adrian Vasquez",
+          "source": "S54"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_52",
+      "action": "set off",
+      "source_sentence": "S54",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "Adrian Vasquez and his two friends",
+          "source": "S54"
+        },
+        {
+          "type": "where",
+          "target": "from the Panama town of San Carlos",
+          "source": "S54"
+        },
+        {
+          "type": "how",
+          "target": "on a small boat",
+          "source": "S54"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_53",
+      "action": "caught",
+      "source_sentence": "S56",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "Adrian Vasquez and his two friends",
+          "source": "S56"
+        },
+        {
+          "type": "target_of",
+          "target": "plenty of fish",
+          "source": "S56"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_54",
+      "action": "died",
+      "source_sentence": "S57",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "their boat's engine",
+          "source": "S57"
+        },
+        {
+          "type": "when",
+          "target": "without warning",
+          "source": "S57"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_55",
+      "action": "didn't know what to do",
+      "source_sentence": "S58",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "Adrian Vasquez and his two friends",
+          "source": "S58"
+        },
+        {
+          "type": "why",
+          "target": "with no tools and scant navigational experience",
+          "source": "S58"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_56",
+      "action": "ate",
+      "source_sentence": "S59",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "Adrian Vasquez",
+          "source": "S59"
+        },
+        {
+          "type": "target_of",
+          "target": "raw fish",
+          "source": "S59"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_57",
+      "action": "drank",
+      "source_sentence": "S59",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "Adrian Vasquez",
+          "source": "S59"
+        },
+        {
+          "type": "target_of",
+          "target": "rainwater",
+          "source": "S59"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_58",
+      "action": "swept",
+      "source_sentence": "S59",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "currents",
+          "source": "S59"
+        },
+        {
+          "type": "target_of",
+          "target": "his boat, the Fifty Cents",
+          "source": "S59"
+        },
+        {
+          "type": "where",
+          "target": "further and further from the coast and into the Pacific Ocean",
+          "source": "S59"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_59",
+      "action": "died",
+      "source_sentence": "S60",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "Adrian Vasquez's two friends",
+          "source": "S60"
+        },
+        {
+          "type": "when",
+          "target": "Somewhere along the way",
+          "source": "S60"
+        },
+        {
+          "type": "why",
+          "target": "EXPLICITLY_UNKNOWN",
+          "source": "S61"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_60",
+      "action": "threw",
+      "source_sentence": "S63",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "Adrian Vasquez",
+          "source": "S63"
+        },
+        {
+          "type": "target_of",
+          "target": "their bodies",
+          "source": "S63"
+        },
+        {
+          "type": "where",
+          "target": "into the sea",
+          "source": "S63"
+        },
+        {
+          "type": "why",
+          "target": "because they had become badly decomposed",
+          "source": "S63"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_61",
+      "action": "spotted",
+      "source_sentence": "S63",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "fishermen",
+          "source": "S63"
+        },
+        {
+          "type": "target_of",
+          "target": "the tiny vessel",
+          "source": "S63"
+        },
+        {
+          "type": "when",
+          "target": "Some 26 days after and nearly 600 miles away from where the journey began",
+          "source": "S63"
+        },
+        {
+          "type": "where",
+          "target": "north of the Galapagos Islands",
+          "source": "S63"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_62",
+      "action": "came in and picked up",
+      "source_sentence": "S64",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "The Ecuadorian navy",
+          "source": "S64"
+        },
+        {
+          "type": "target_of",
+          "target": "Adrian Vasquez",
+          "source": "S64"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_63",
+      "action": "returned home",
+      "source_sentence": "S65",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "Adrian Vasquez",
+          "source": "S65"
+        },
+        {
+          "type": "target_of",
+          "target": "loved ones",
+          "source": "S65"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_64",
+      "action": "struck",
+      "source_sentence": "S70",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "a massive 9.0 magnitude earthquake",
+          "source": "S70"
+        },
+        {
+          "type": "when",
+          "target": "March 11, 2011",
+          "source": "S70"
+        },
+        {
+          "type": "where",
+          "target": "231 miles northeast of Tokyo",
+          "source": "S70"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_65",
+      "action": "followed",
+      "source_sentence": "S71",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "A devastating tsunami",
+          "source": "S71"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_66",
+      "action": "ravaging",
+      "source_sentence": "S71",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "its 30-foot waves",
+          "source": "S71"
+        },
+        {
+          "type": "target_of",
+          "target": "cities and towns",
+          "source": "S71"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_67",
+      "action": "damaging",
+      "source_sentence": "S71",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "its 30-foot waves",
+          "source": "S71"
+        },
+        {
+          "type": "target_of",
+          "target": "several nuclear reactors",
+          "source": "S71"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_68",
+      "action": "dead",
+      "source_sentence": "S72",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "nearly 16,000 people",
+          "source": "S72"
+        },
+        {
+          "type": "when",
+          "target": "By the time it had run the course",
+          "source": "S72"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_69",
+      "action": "had gone to collect",
+      "source_sentence": "S74",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "Hiromitsu Shinkawa and his wife",
+          "source": "S74"
+        },
+        {
+          "type": "target_of",
+          "target": "some belongings",
+          "source": "S74"
+        },
+        {
+          "type": "when",
+          "target": "Shortly after the quake",
+          "source": "S74"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_70",
+      "action": " slammed",
+      "source_sentence": "S74",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "the tsunami",
+          "source": "S74"
+        },
+        {
+          "type": "target_of",
+          "target": "their hometown of Minamisoma",
+          "source": "S74"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_71",
+      "action": "destroyed",
+      "source_sentence": "S75",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "the huge, powerful tsunami wave",
+          "source": "S75"
+        },
+        {
+          "type": "target_of",
+          "target": "His home",
+          "source": "S75"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_72",
+      "action": "saved",
+      "source_sentence": "S76",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "EXPLICITLY_UNKNOWN",
+          "source": "S76"
+        },
+        {
+          "type": "target_of",
+          "target": "Hiromitsu Shinkawa",
+          "source": "S76"
+        },
+        {
+          "type": "how",
+          "target": "by holding onto the roof",
+          "source": "S76"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_73",
+      "action": "swept away",
+      "source_sentence": "S77",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "EXPLICITLY_UNKNOWN",
+          "source": "S77"
+        },
+        {
+          "type": "target_of",
+          "target": "Hiromitsu Shinkawa's wife",
+          "source": "S77"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_74",
+      "action": "showed",
+      "source_sentence": "S77",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "video",
+          "source": "S77"
+        },
+        {
+          "type": "target_of",
+          "target": "Hiromitsu Shinkawa",
+          "source": "S77"
+        },
+        {
+          "type": "when",
+          "target": "More than two days later",
+          "source": "S77"
+        },
+        {
+          "type": "where",
+          "target": "amid heaps of splintered wood, shattered homes and other debris floating more than nine miles (15 kilometers) out to sea",
+          "source": "S77"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_75",
+      "action": "waving",
+      "source_sentence": "S78",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "Hiromitsu Shinkawa",
+          "source": "S78"
+        },
+        {
+          "type": "target_of",
+          "target": "a self-made red flag",
+          "source": "S78"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_76",
+      "action": "spotted",
+      "source_sentence": "S79",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "crew aboard a Japanese Maritime Self-Defense Force destroyer",
+          "source": "S79"
+        },
+        {
+          "type": "target_of",
+          "target": "Hiromitsu Shinkawa",
+          "source": "S79"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_77",
+      "action": "picked up",
+      "source_sentence": "S79",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "crew aboard a Japanese Maritime Self-Defense Force destroyer",
+          "source": "S79"
+        },
+        {
+          "type": "target_of",
+          "target": "Hiromitsu Shinkawa",
+          "source": "S79"
+        },
+        {
+          "type": "how",
+          "target": "in a smaller rescue boat",
+          "source": "S79"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_78",
+      "action": "took",
+      "source_sentence": "S79",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "Hiromitsu Shinkawa",
+          "source": "S79"
+        },
+        {
+          "type": "target_of",
+          "target": "a drink",
+          "source": "S79"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_79",
+      "action": "burst into tears",
+      "source_sentence": "S79",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "Hiromitsu Shinkawa",
+          "source": "S79"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_80",
+      "action": "told",
+      "source_sentence": "S80",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "Hiromitsu Shinkawa",
+          "source": "S80"
+        },
+        {
+          "type": "target_of",
+          "target": "his rescuers",
+          "source": "S80"
+        }
+      ]
+    }
+  ],
+  "entities": [
+    {
+      "name": "Robert Redford",
+      "aliases": [],
+      "attributes": {
+        "role": "actor"
+      },
+      "participates_in": [
+        "EVT_1"
+      ],
+      "source_sentences": [
+        "S0"
+      ]
+    },
+    {
+      "name": "Ang Lee",
+      "aliases": [],
+      "attributes": {
+        "role": "director"
+      },
+      "participates_in": [
+        "EVT_2"
+      ],
+      "source_sentences": [
+        "S0"
+      ]
+    },
+    {
+      "name": "single person",
+      "aliases": [],
+      "attributes": {},
+      "participates_in": [
+        "EVT_3"
+      ],
+      "source_sentences": [
+        "S0"
+      ]
+    },
+    {
+      "name": "people",
+      "aliases": [],
+      "attributes": {},
+      "participates_in": [
+        "EVT_4"
+      ],
+      "source_sentences": [
+        "S2"
+      ]
+    },
+    {
+      "name": "U.S. Coast Guard",
+      "aliases": [],
+      "attributes": {
+        "type": "organization"
+      },
+      "participates_in": [
+        "EVT_4",
+        "EVT_47"
+      ],
+      "source_sentences": [
+        "S3",
+        "S49"
+      ]
+    },
+    {
+      "name": "individuals",
+      "aliases": [],
+      "attributes": {},
+      "participates_in": [
+        "EVT_5"
+      ],
+      "source_sentences": [
+        "S4"
+      ]
+    },
+    {
+      "name": "sailor",
+      "aliases": [],
+      "attributes": {},
+      "participates_in": [
+        "EVT_6"
+      ],
+      "source_sentences": [
+        "S6"
+      ]
+    },
+    {
+      "name": "Louis Jordan",
+      "aliases": [
+        "Jordan",
+        "him"
+      ],
+      "attributes": {
+        "boat": "35-foot sailboat"
+      },
+      "participates_in": [
+        "EVT_8",
+        "EVT_9",
+        "EVT_13",
+        "EVT_14",
+        "EVT_15",
+        "EVT_16",
+        "EVT_18",
+        "EVT_19"
+      ],
+      "source_sentences": [
+        "S9",
+        "S10",
+        "S12",
+        "S13",
+        "S14",
+        "S15",
+        "S16",
+        "S17",
+        "S18",
+        "S19"
+      ]
+    },
+    {
+      "name": "his boat",
+      "aliases": [],
+      "attributes": {},
+      "participates_in": [
+        "EVT_10"
+      ],
+      "source_sentences": [
+        "S12"
+      ]
+    },
+    {
+      "name": "its mast",
+      "aliases": [],
+      "attributes": {},
+      "participates_in": [
+        "EVT_11"
+      ],
+      "source_sentences": [
+        "S12"
+      ]
+    },
+    {
+      "name": "his shoulder",
+      "aliases": [],
+      "attributes": {},
+      "participates_in": [
+        "EVT_12"
+      ],
+      "source_sentences": [
+        "S13"
+      ]
+    },
+    {
+      "name": "his sailboat",
+      "aliases": [],
+      "attributes": {},
+      "participates_in": [
+        "EVT_17"
+      ],
+      "source_sentences": [
+        "S18"
+      ]
+    },
+    {
+      "name": "crew members on a German-flagged container ship, the Houston Express",
+      "aliases": [],
+      "attributes": {
+        "type": "group",
+        "vessel": "Houston Express"
+      },
+      "participates_in": [
+        "EVT_18"
+      ],
+      "source_sentences": [
+        "S18"
+      ]
+    },
+    {
+      "name": "Louis Jordan's father",
+      "aliases": [
+        "his father"
+      ],
+      "attributes": {
+        "relationship": "father of Louis Jordan"
+      },
+      "participates_in": [
+        "EVT_19",
+        "EVT_20"
+      ],
+      "source_sentences": [
+        "S19"
+      ]
+    },
+    {
+      "name": "Jose Salvador Alvarenga",
+      "aliases": [
+        "Alvarenga",
+        "he",
+        "El Salvador native"
+      ],
+      "attributes": {
+        "nationality": "El Salvador",
+        "boat": "small, heavily damaged boat"
+      },
+      "participates_in": [
+        "EVT_21",
+        "EVT_22",
+        "EVT_23",
+        "EVT_24",
+        "EVT_25",
+        "EVT_26",
+        "EVT_27",
+        "EVT_31",
+        "EVT_32",
+        "EVT_33",
+        "EVT_34",
+        "EVT_35",
+        "EVT_36",
+        "EVT_37"
+      ],
+      "source_sentences": [
+        "S20",
+        "S21",
+        "S22",
+        "S24",
+        "S26",
+        "S29",
+        "S31",
+        "S32",
+        "S33",
+        "S34",
+        "S35",
+        "S36"
+      ]
+    },
+    {
+      "name": "Ezequiel Cordova",
+      "aliases": [
+        "his partner"
+      ],
+      "attributes": {
+        "age": "23-year-old",
+        "relationship": "fishing companion of Alvarenga"
+      },
+      "participates_in": [
+        "EVT_27",
+        "EVT_30"
+      ],
+      "source_sentences": [
+        "S29"
+      ]
+    },
+    {
+      "name": "their boat",
+      "aliases": [],
+      "attributes": {},
+      "participates_in": [
+        "EVT_29"
+      ],
+      "source_sentences": [
+        "S28"
+      ]
+    },
+    {
+      "name": "CNN",
+      "aliases": [],
+      "attributes": {
+        "type": "organization"
+      },
+      "participates_in": [
+        "EVT_37"
+      ],
+      "source_sentences": [
+        "S35"
+      ]
+    },
+    {
+      "name": "Ron Ingraham",
+      "aliases": [
+        "he",
+        "the 67-year-old",
+        "the veteran fisherman",
+        "him"
+      ],
+      "attributes": {
+        "age": "67-year-old",
+        "occupation": "fisherman",
+        "boat": "25-foot sailboat"
+      },
+      "participates_in": [
+        "EVT_38",
+        "EVT_40",
+        "EVT_43",
+        "EVT_44",
+        "EVT_48",
+        "EVT_49"
+      ],
+      "source_sentences": [
+        "S39",
+        "S40",
+        "S43",
+        "S45",
+        "S46",
+        "S51",
+        "S52"
+      ]
+    },
+    {
+      "name": "his 25-foot sailboat",
+      "aliases": [],
+      "attributes": {},
+      "participates_in": [
+        "EVT_40"
+      ],
+      "source_sentences": [
+        "S45"
+      ]
+    },
+    {
+      "name": "a huge wave",
+      "aliases": [],
+      "attributes": {},
+      "participates_in": [
+        "EVT_41",
+        "EVT_42",
+        "EVT_43"
+      ],
+      "source_sentences": [
+        "S45"
+      ]
+    },
+    {
+      "name": "A distress call",
+      "aliases": [],
+      "attributes": {},
+      "participates_in": [
+        "EVT_45"
+      ],
+      "source_sentences": [
+        "S48"
+      ]
+    },
+    {
+      "name": "a search",
+      "aliases": [],
+      "attributes": {},
+      "participates_in": [
+        "EVT_46"
+      ],
+      "source_sentences": [
+        "S48"
+      ]
+    },
+    {
+      "name": "Zakary Ingraham",
+      "aliases": [
+        "his son"
+      ],
+      "attributes": {
+        "relationship": "son of Ron Ingraham"
+      },
+      "participates_in": [
+        "EVT_47"
+      ],
+      "source_sentences": [
+        "S41",
+        "S49"
+      ]
+    },
+    {
+      "name": "Adrian Vasquez",
+      "aliases": [
+        "he",
+        "Vazquez",
+        "the teenage survivor"
+      ],
+      "attributes": {
+        "age": "18-year-old",
+        "boat": "the Fifty Cents"
+      },
+      "participates_in": [
+        "EVT_50",
+        "EVT_51",
+        "EVT_52",
+        "EVT_56",
+        "EVT_57",
+        "EVT_59",
+        "EVT_60",
+        "EVT_62",
+        "EVT_63"
+      ],
+      "source_sentences": [
+        "S53",
+        "S54",
+        "S58",
+        "S59",
+        "S61",
+        "S63",
+        "S64",
+        "S65"
+      ]
+    },
+    {
+      "name": "Adrian Vasquez's two friends",
+      "aliases": [
+        "two friends",
+        "his two companions"
+      ],
+      "attributes": {},
+      "participates_in": [
+        "EVT_50",
+        "EVT_52",
+        "EVT_53",
+        "EVT_55",
+        "EVT_59"
+      ],
+      "source_sentences": [
+        "S53",
+        "S60"
+      ]
+    },
+    {
+      "name": "their boat's engine",
+      "aliases": [],
+      "attributes": {},
+      "participates_in": [
+        "EVT_54"
+      ],
+      "source_sentences": [
+        "S57"
+      ]
+    },
+    {
+      "name": "currents",
+      "aliases": [],
+      "attributes": {},
+      "participates_in": [
+        "EVT_58"
+      ],
+      "source_sentences": [
+        "S59"
+      ]
+    },
+    {
+      "name": "fishermen",
+      "aliases": [],
+      "attributes": {},
+      "participates_in": [
+        "EVT_61"
+      ],
+      "source_sentences": [
+        "S63"
+      ]
+    },
+    {
+      "name": "The Ecuadorian navy",
+      "aliases": [],
+      "attributes": {
+        "type": "organization"
+      },
+      "participates_in": [
+        "EVT_62"
+      ],
+      "source_sentences": [
+        "S64"
+      ]
+    },
+    {
+      "name": "a massive 9.0 magnitude earthquake",
+      "aliases": [],
+      "attributes": {},
+      "participates_in": [
+        "EVT_64"
+      ],
+      "source_sentences": [
+        "S70"
+      ]
+    },
+    {
+      "name": "A devastating tsunami",
+      "aliases": [],
+      "attributes": {},
+      "participates_in": [
+        "EVT_65"
+      ],
+      "source_sentences": [
+        "S71"
+      ]
+    },
+    {
+      "name": "its 30-foot waves",
+      "aliases": [],
+      "attributes": {},
+      "participates_in": [
+        "EVT_66",
+        "EVT_67"
+      ],
+      "source_sentences": [
+        "S71"
+      ]
+    },
+    {
+      "name": "nearly 16,000 people",
+      "aliases": [],
+      "attributes": {},
+      "participates_in": [
+        "EVT_68"
+      ],
+      "source_sentences": [
+        "S72"
+      ]
+    },
+    {
+      "name": "Hiromitsu Shinkawa",
+      "aliases": [
+        "he",
+        "the 60-year-old",
+        "I",
+        "him"
+      ],
+      "attributes": {
+        "age": "60-year-old"
+      },
+      "participates_in": [
+        "EVT_69",
+        "EVT_72",
+        "EVT_74",
+        "EVT_75",
+        "EVT_76",
+        "EVT_77",
+        "EVT_78",
+        "EVT_79",
+        "EVT_80"
+      ],
+      "source_sentences": [
+        "S68",
+        "S69",
+        "S73",
+        "S74",
+        "S76",
+        "S77",
+        "S78",
+        "S79",
+        "S80"
+      ]
+    },
+    {
+      "name": "Hiromitsu Shinkawa's wife",
+      "aliases": [
+        "his wife",
+        "my wife"
+      ],
+      "attributes": {
+        "relationship": "wife of Hiromitsu Shinkawa"
+      },
+      "participates_in": [
+        "EVT_69",
+        "EVT_73"
+      ],
+      "source_sentences": [
+        "S74",
+        "S77"
+      ]
+    },
+    {
+      "name": "the tsunami",
+      "aliases": [],
+      "attributes": {},
+      "participates_in": [
+        "EVT_70"
+      ],
+      "source_sentences": [
+        "S74"
+      ]
+    },
+    {
+      "name": "the huge, powerful tsunami wave",
+      "aliases": [],
+      "attributes": {},
+      "participates_in": [
+        "EVT_71"
+      ],
+      "source_sentences": [
+        "S75"
+      ]
+    },
+    {
+      "name": "video",
+      "aliases": [],
+      "attributes": {},
+      "participates_in": [
+        "EVT_74"
+      ],
+      "source_sentences": [
+        "S77"
+      ]
+    },
+    {
+      "name": "Japanese Maritime Self-Defense Force destroyer",
+      "aliases": [],
+      "attributes": {
+        "type": "vessel"
+      },
+      "participates_in": [
+        "EVT_76",
+        "EVT_77"
+      ],
+      "source_sentences": [
+        "S79"
+      ]
+    },
+    {
+      "name": "his rescuers",
+      "aliases": [],
+      "attributes": {},
+      "participates_in": [
+        "EVT_80"
+      ],
+      "source_sentences": [
+        "S80"
+      ]
+    }
+  ],
+  "inter_event_edges": [
+    {
+      "from": "EVT_10",
+      "to": "EVT_11",
+      "type": "consequential",
+      "source": "S12"
+    },
+    {
+      "from": "EVT_11",
+      "to": "EVT_12",
+      "type": "consequential",
+      "source": "S13"
+    },
+    {
+      "from": "EVT_13",
+      "to": "EVT_14",
+      "type": "sequential",
+      "source": "S14"
+    },
+    {
+      "from": "EVT_14",
+      "to": "EVT_15",
+      "type": "sequential",
+      "source": "S15"
+    },
+    {
+      "from": "EVT_15",
+      "to": "EVT_16",
+      "type": "sequential",
+      "source": "S16"
+    },
+    {
+      "from": "EVT_18",
+      "to": "EVT_19",
+      "type": "sequential",
+      "source": "S19"
+    },
+    {
+      "from": "EVT_21",
+      "to": "EVT_23",
+      "type": "sequential",
+      "source": "S22"
+    },
+    {
+      "from": "EVT_23",
+      "to": "EVT_24",
+      "type": "sequential",
+      "source": "S24"
+    },
+    {
+      "from": "EVT_27",
+      "to": "EVT_28",
+      "type": "sequential",
+      "source": "S28"
+    },
+    {
+      "from": "EVT_28",
+      "to": "EVT_29",
+      "type": "causal",
+      "source": "S28"
+    },
+    {
+      "from": "EVT_29",
+      "to": "EVT_30",
+      "type": "consequential",
+      "source": "S29"
+    },
+    {
+      "from": "EVT_31",
+      "to": "EVT_32",
+      "type": "sequential",
+      "source": "S31"
+    },
+    {
+      "from": "EVT_32",
+      "to": "EVT_33",
+      "type": "sequential",
+      "source": "S32"
+    },
+    {
+      "from": "EVT_34",
+      "to": "EVT_35",
+      "type": "sequential",
+      "source": "S34"
+    },
+    {
+      "from": "EVT_35",
+      "to": "EVT_36",
+      "type": "sequential",
+      "source": "S34"
+    },
+    {
+      "from": "EVT_39",
+      "to": "EVT_40",
+      "type": "causal",
+      "source": "S45"
+    },
+    {
+      "from": "EVT_41",
+      "to": "EVT_42",
+      "type": "causal",
+      "source": "S45"
+    },
+    {
+      "from": "EVT_41",
+      "to": "EVT_43",
+      "type": "causal",
+      "source": "S45"
+    },
+    {
+      "from": "EVT_45",
+      "to": "EVT_46",
+      "type": "causal",
+      "source": "S48"
+    },
+    {
+      "from": "EVT_47",
+      "to": "EVT_48",
+      "type": "sequential",
+      "source": "S51"
+    },
+    {
+      "from": "EVT_50",
+      "to": "EVT_51",
+      "type": "sequential",
+      "source": "S54"
+    },
+    {
+      "from": "EVT_51",
+      "to": "EVT_52",
+      "type": "sequential",
+      "source": "S54"
+    },
+    {
+      "from": "EVT_54",
+      "to": "EVT_55",
+      "type": "causal",
+      "source": "S58"
+    },
+    {
+      "from": "EVT_58",
+      "to": "EVT_59",
+      "type": "consequential",
+      "source": "S60"
+    },
+    {
+      "from": "EVT_61",
+      "to": "EVT_62",
+      "type": "sequential",
+      "source": "S64"
+    },
+    {
+      "from": "EVT_64",
+      "to": "EVT_65",
+      "type": "causal",
+      "source": "S71"
+    },
+    {
+      "from": "EVT_65",
+      "to": "EVT_66",
+      "type": "causal",
+      "source": "S71"
+    },
+    {
+      "from": "EVT_65",
+      "to": "EVT_67",
+      "type": "causal",
+      "source": "S71"
+    },
+    {
+      "from": "EVT_65",
+      "to": "EVT_70",
+      "type": "causal",
+      "source": "S74"
+    },
+    {
+      "from": "EVT_70",
+      "to": "EVT_71",
+      "type": "consequential",
+      "source": "S75"
+    },
+    {
+      "from": "EVT_69",
+      "to": "EVT_70",
+      "type": "sequential",
+      "source": "S74"
+    },
+    {
+      "from": "EVT_70",
+      "to": "EVT_72",
+      "type": "consequential",
+      "source": "S76"
+    },
+    {
+      "from": "EVT_70",
+      "to": "EVT_73",
+      "type": "consequential",
+      "source": "S77"
+    },
+    {
+      "from": "EVT_75",
+      "to": "EVT_76",
+      "type": "causal",
+      "source": "S79"
+    },
+    {
+      "from": "EVT_76",
+      "to": "EVT_77",
+      "type": "sequential",
+      "source": "S79"
+    },
+    {
+      "from": "EVT_77",
+      "to": "EVT_78",
+      "type": "sequential",
+      "source": "S79"
+    },
+    {
+      "from": "EVT_78",
+      "to": "EVT_79",
+      "type": "sequential",
+      "source": "S79"
+    }
+  ],
+  "explicit_unknowns": [
+    {
+      "about": "exact date Alvarenga set off",
+      "unknown_slots": [
+        "when"
+      ],
+      "source": "S21"
+    },
+    {
+      "about": "how Vasquez's two companions died",
+      "unknown_slots": [
+        "how"
+      ],
+      "source": "S61"
+    }
+  ],
+  "_elapsed": 112.9
+}

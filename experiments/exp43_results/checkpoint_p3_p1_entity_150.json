@@ -1,0 +1,997 @@
+{
+  "phase": "p1_entity_150",
+  "results": [
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 0,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 1,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 2,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 3,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 4,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 5,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 6,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": false,
+      "issues": [
+        {
+          "claim_says": "Witnesses described the terrible conditions at the camp, with overcrowding, lack of basic necessities, and a deadly typhus outbreak.",
+          "source_says": "Days at the camp were filled with terror and dread, witnesses said. The sisters stayed in a section of the overcrowded camp with no lighting, little water and no latrine... according to the researchers.",
+          "problem": "misattribution"
+        }
+      ],
+      "_idx": 7,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 8,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 9,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 10,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 11,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 12,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 13,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 14,
+      "_expected": "hallucinated"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 15,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 16,
+      "_expected": "hallucinated"
+    },
+    {
+      "entity_binding_correct": false,
+      "issues": [
+        {
+          "claim_says": "Anne Frank died... two weeks after her supposed death on March 31, 1945",
+          "source_says": "Just two weeks after her supposed death on March 31, 1945, the Bergen-Belsen concentration camp where she had been imprisoned was liberated",
+          "problem": "misattribution"
+        }
+      ],
+      "_idx": 17,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 18,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 19,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 20,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 21,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 22,
+      "_expected": "hallucinated"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 23,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 24,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": false,
+      "issues": [
+        {
+          "claim_says": "witnesses described the conditions as brutal, with little food, water, or sanitation",
+          "source_says": "Days at the camp were filled with terror and dread, witnesses said. The sisters stayed in a section of the overcrowded camp with no lighting, little water and no latrine... according to the researchers.",
+          "problem": "misattribution"
+        }
+      ],
+      "_idx": 25,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 26,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 27,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 28,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 29,
+      "_expected": "hallucinated"
+    },
+    {
+      "entity_binding_correct": false,
+      "issues": [
+        {
+          "claim_says": "Witnesses described... overcrowding",
+          "source_says": "The sisters stayed in a section of the overcrowded camp... according to the researchers",
+          "problem": "misattribution"
+        },
+        {
+          "claim_says": "Witnesses described... poor hygiene",
+          "source_says": "The sisters stayed in a section of the overcrowded camp with no lighting, little water and no latrine... according to the researchers",
+          "problem": "misattribution"
+        },
+        {
+          "claim_says": "Witnesses described... the spread of diseases like typhus",
+          "source_says": "A deadly typhus outbreak caused thousands to die each day",
+          "problem": "misattribution"
+        }
+      ],
+      "_idx": 30,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 31,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 32,
+      "_expected": "hallucinated"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 33,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 34,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 35,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 36,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 37,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 38,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 39,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 40,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 41,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 42,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 43,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 44,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 45,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 46,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 47,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 48,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 49,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 50,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 51,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 52,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 53,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 54,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 55,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 56,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": false,
+      "issues": [
+        {
+          "claim_says": "His [Andrew Getty] net worth was estimated to be $2.1 billion.",
+          "source_says": "Gordon Getty, 81, has a net worth of $2.1 billion",
+          "problem": "misattribution"
+        }
+      ],
+      "_idx": 57,
+      "_expected": "hallucinated"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 58,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 59,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 60,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 61,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 62,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 63,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 64,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 65,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 66,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 67,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 68,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 69,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 70,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 71,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 72,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 73,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 74,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 75,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": false,
+      "issues": [
+        {
+          "claim_says": "Iran... was ultimately awarded the tournament to the United Arab Emirates",
+          "source_says": "the tournament was awarded to the United Arab Emirates",
+          "problem": "misattribution"
+        }
+      ],
+      "_idx": 76,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 77,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": false,
+      "issues": [
+        {
+          "claim_says": "The ban on women attending matches has been widely criticized by human rights organizations",
+          "source_says": "The Iranian government has come under pressure from international sports officials over the restrictions",
+          "problem": "misattribution"
+        }
+      ],
+      "_idx": 78,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 79,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 80,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 81,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 82,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 83,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 84,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 85,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 86,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 87,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 88,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 89,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 90,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 91,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 92,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 93,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 94,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": false,
+      "issues": [
+        {
+          "claim_says": "Ron Ingraham... surviving on what he could catch from the sea",
+          "source_says": "Ron Ingraham was picked up... 'weak, hungry and dehydrated'. Other survivors such as Louis Jordan, Jose Salvador Alvarenga, and Adrian Vasquez are described as eating fish or sea turtles.",
+          "problem": "misattribution"
+        }
+      ],
+      "_idx": 95,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 96,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 97,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 98,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 99,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 100,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 101,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 102,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 103,
+      "_expected": "grounded"
+    },
+    {
+      "_error": "The read operation timed out",
+      "_idx": 104,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 105,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 106,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 107,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 108,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 109,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 110,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 111,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 112,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 113,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": false,
+      "issues": [
+        {
+          "claim_says": "He was swept away by the tsunami",
+          "source_says": "But my wife was swept away",
+          "problem": "misattribution"
+        }
+      ],
+      "_idx": 114,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 115,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 116,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 117,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 118,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": false,
+      "issues": [
+        {
+          "claim_says": "Jose Salvador Alvarenga, a Mexican fisherman",
+          "source_says": "The El Salvador native told CNN that his faith in God helped him survive.",
+          "problem": "misattribution"
+        }
+      ],
+      "_idx": 119,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 120,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 121,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 122,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 123,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 124,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": false,
+      "issues": [
+        {
+          "claim_says": "Louis Jordan, a 35-year-old sailor",
+          "source_says": "Louis Jordan says that he set off on his 35-foot sailboat",
+          "problem": "misattribution"
+        }
+      ],
+      "_idx": 125,
+      "_expected": "hallucinated"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 126,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 127,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": false,
+      "issues": [
+        {
+          "claim_says": "Jose Salvador Alvarenga, a Mexican fisherman",
+          "source_says": "The El Salvador native [Jose Salvador Alvarenga]",
+          "problem": "misattribution"
+        }
+      ],
+      "_idx": 128,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 129,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": false,
+      "issues": [
+        {
+          "claim_says": "He [Alvarenga] was found on a remote atoll in the Marshall Islands by a passing boat",
+          "source_says": "Alvarenga spotted and shouted to [two residents] after spending a night in the woods [on the Ebon Atoll]",
+          "problem": "misattribution"
+        }
+      ],
+      "_idx": 130,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 131,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": false,
+      "issues": [
+        {
+          "claim_says": "He [the person who used a rope to pull himself back on board] ... was unable to contact authorities.",
+          "source_says": "A distress call went out [for Ron Ingraham]... [Alvarenga's boat] lose its engine and use of its radio communication and GPS systems.",
+          "problem": "misattribution"
+        }
+      ],
+      "_idx": 132,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 133,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 134,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 135,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 136,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 137,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 138,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 139,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 140,
+      "_expected": "hallucinated"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 141,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 142,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 143,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 144,
+      "_expected": "grounded"
+    },
+    {
+      "_error": "The read operation timed out",
+      "_idx": 145,
+      "_expected": "hallucinated"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 146,
+      "_expected": "hallucinated"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 147,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 148,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 149,
+      "_expected": "grounded"
+    }
+  ]
+}

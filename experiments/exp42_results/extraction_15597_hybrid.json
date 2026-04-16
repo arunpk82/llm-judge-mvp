@@ -1,0 +1,1336 @@
+{
+  "event_hubs": [
+    {
+      "event_id": "EVT_1",
+      "action": "requiring",
+      "source_sentence": "S0",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "ENT_1",
+          "source": "S0"
+        },
+        {
+          "type": "target_of",
+          "target": "ENT_6",
+          "source": "S0"
+        },
+        {
+          "type": "for_entity",
+          "target": "ENT_5",
+          "source": "S0"
+        },
+        {
+          "type": "where",
+          "target": "ENT_2",
+          "source": "S0"
+        },
+        {
+          "type": "where",
+          "target": "ENT_3",
+          "source": "S0"
+        },
+        {
+          "type": "where",
+          "target": "ENT_4",
+          "source": "S0"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_2",
+      "action": "ban",
+      "source_sentence": "S1",
+      "edges": [
+        {
+          "type": "target_of",
+          "target": "ENT_7",
+          "source": "S1"
+        },
+        {
+          "type": "where",
+          "target": "ENT_3",
+          "source": "S1"
+        },
+        {
+          "type": "when",
+          "target": "recent",
+          "source": "S1"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_3",
+      "action": "asked",
+      "source_sentence": "S1",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "ENT_8",
+          "source": "S1"
+        },
+        {
+          "type": "target_of",
+          "target": "ENT_9",
+          "source": "S1"
+        },
+        {
+          "type": "target_of",
+          "target": "ENT_10",
+          "source": "S1"
+        },
+        {
+          "type": "target_of_mugshot",
+          "target": "ENT_5",
+          "source": "S1"
+        },
+        {
+          "type": "recipient_of_mugshot",
+          "target": "ENT_1",
+          "source": "S1"
+        },
+        {
+          "type": "where",
+          "target": "ENT_2",
+          "source": "S1"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_4",
+      "action": "give information",
+      "source_sentence": "S2",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "ENT_9",
+          "source": "S2"
+        },
+        {
+          "type": "target_of",
+          "target": "ENT_11",
+          "source": "S2"
+        },
+        {
+          "type": "target_of_information",
+          "target": "ENT_5",
+          "source": "S2"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_5",
+      "action": "believe",
+      "source_sentence": "S3",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "ENT_1",
+          "source": "S3"
+        },
+        {
+          "type": "target_of",
+          "target": "this",
+          "source": "S3"
+        },
+        {
+          "type": "why",
+          "target": "to solve ENT_12",
+          "source": "S3"
+        },
+        {
+          "type": "why",
+          "target": "to enforce ENT_13",
+          "source": "S3"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_6",
+      "action": "considered",
+      "source_sentence": "S4",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "ENT_14",
+          "source": "S4"
+        },
+        {
+          "type": "target_of",
+          "target": "ENT_5",
+          "source": "S4"
+        },
+        {
+          "type": "where",
+          "target": "ENT_3",
+          "source": "S4"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_7",
+      "action": "creating",
+      "source_sentence": "S5",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "ENT_1",
+          "source": "S5"
+        },
+        {
+          "type": "target_of",
+          "target": "ENT_15",
+          "source": "S5"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_8",
+      "action": "get information",
+      "source_sentence": "S6",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "ENT_1",
+          "source": "S6"
+        },
+        {
+          "type": "target_of",
+          "target": "ENT_11",
+          "source": "S6"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_9",
+      "action": "go and check",
+      "source_sentence": "S6",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "ENT_1",
+          "source": "S6"
+        },
+        {
+          "type": "target_of",
+          "target": "ENT_9",
+          "source": "S6"
+        },
+        {
+          "type": "target_of",
+          "target": "whether ENT_5 is there",
+          "source": "S6"
+        },
+        {
+          "type": "how",
+          "target": "quickly",
+          "source": "S6"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_10",
+      "action": "told",
+      "source_sentence": "S6",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "ENT_16",
+          "source": "S6"
+        },
+        {
+          "type": "target_of",
+          "target": "ENT_17",
+          "source": "S6"
+        },
+        {
+          "type": "content",
+          "target": "We are creating a database. If we get an information of a cow slaughter, we can quickly go to the resident's place and check whether it is there or not",
+          "source": "S6"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_11",
+      "action": "believe",
+      "source_sentence": "S7",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "ENT_16",
+          "source": "S7"
+        },
+        {
+          "type": "target_of",
+          "target": "this will be very effective",
+          "source": "S7"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_12",
+      "action": "complied",
+      "source_sentence": "S7",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "ENT_18",
+          "source": "S7"
+        },
+        {
+          "type": "target_of",
+          "target": "ENT_19",
+          "source": "S7"
+        },
+        {
+          "type": "when",
+          "target": "So far",
+          "source": "S7"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_13",
+      "action": "lining up",
+      "source_sentence": "S7",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "ENT_18",
+          "source": "S7"
+        },
+        {
+          "type": "where",
+          "target": "ENT_20",
+          "source": "S7"
+        },
+        {
+          "type": "why",
+          "target": "to get their ENT_5 photographed",
+          "source": "S7"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_14",
+      "action": "cow slaughter",
+      "source_sentence": "S8",
+      "edges": [
+        {
+          "type": "where",
+          "target": "ENT_2",
+          "source": "S8"
+        },
+        {
+          "type": "when",
+          "target": "recent",
+          "source": "S8"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_15",
+      "action": "charged",
+      "source_sentence": "S8",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "ENT_8",
+          "source": "S8"
+        },
+        {
+          "type": "target_of",
+          "target": "ENT_21",
+          "source": "S8"
+        },
+        {
+          "type": "why",
+          "target": "for killing ENT_5 and selling its ENT_22",
+          "source": "S8"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_16",
+      "action": "includes",
+      "source_sentence": "S9",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "ENT_23",
+          "source": "S9"
+        },
+        {
+          "type": "target_of",
+          "target": "bans on the killing of ENT_24 and ENT_25",
+          "source": "S9"
+        },
+        {
+          "type": "category",
+          "target": "ENT_26",
+          "source": "S9"
+        },
+        {
+          "type": "when",
+          "target": "now",
+          "source": "S9"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_17",
+      "action": "land in prison",
+      "source_sentence": "S10",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "ENT_13",
+          "source": "S10"
+        },
+        {
+          "type": "target_of",
+          "target": "you",
+          "source": "S10"
+        },
+        {
+          "type": "why",
+          "target": "consumption or sale of ENT_7",
+          "source": "S10"
+        },
+        {
+          "type": "duration",
+          "target": "five years",
+          "source": "S10"
+        },
+        {
+          "type": "where",
+          "target": "ENT_27",
+          "source": "S10"
+        },
+        {
+          "type": "when",
+          "target": "now",
+          "source": "S10"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_18",
+      "action": "permissible",
+      "source_sentence": "S11",
+      "edges": [
+        {
+          "type": "target_of",
+          "target": "slaughter of ENT_28",
+          "source": "S11"
+        },
+        {
+          "type": "when",
+          "target": "still",
+          "source": "S11"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_19",
+      "action": "reacted",
+      "source_sentence": "S12",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "ENT_29",
+          "source": "S12"
+        },
+        {
+          "type": "target_of",
+          "target": "ENT_19",
+          "source": "S12"
+        },
+        {
+          "type": "where",
+          "target": "ENT_4",
+          "source": "S12"
+        },
+        {
+          "type": "how",
+          "target": "strongly",
+          "source": "S12"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_20",
+      "action": "called",
+      "source_sentence": "S12",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "ENT_29",
+          "source": "S12"
+        },
+        {
+          "type": "target_of",
+          "target": "ENT_30",
+          "source": "S12"
+        },
+        {
+          "type": "duration",
+          "target": "month-long",
+          "source": "S12"
+        },
+        {
+          "type": "when",
+          "target": "Wednesday",
+          "source": "S12"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_21",
+      "action": "refused",
+      "source_sentence": "S13",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "ENT_29",
+          "source": "S13"
+        },
+        {
+          "type": "target_of",
+          "target": "to slaughter ENT_28",
+          "source": "S13"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_22",
+      "action": "deprive",
+      "source_sentence": "S13",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "ENT_29",
+          "source": "S13"
+        },
+        {
+          "type": "target_of",
+          "target": "ENT_3",
+          "source": "S13"
+        },
+        {
+          "type": "target_of_deprivation",
+          "target": "ENT_31",
+          "source": "S13"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_23",
+      "action": "vowed",
+      "source_sentence": "S14",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "ENT_29",
+          "source": "S14"
+        },
+        {
+          "type": "target_of",
+          "target": "to file a case",
+          "source": "S14"
+        },
+        {
+          "type": "where",
+          "target": "ENT_32",
+          "source": "S14"
+        },
+        {
+          "type": "when",
+          "target": "now",
+          "source": "S14"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_24",
+      "action": "weren't delighted",
+      "source_sentence": "S15",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "ENT_33",
+          "source": "S15"
+        },
+        {
+          "type": "target_of",
+          "target": "EXPLICITLY_UNKNOWN",
+          "source": "S15"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_25",
+      "action": "arguing",
+      "source_sentence": "S15",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "ENT_33",
+          "source": "S15"
+        },
+        {
+          "type": "target_of",
+          "target": "ENT_34 doesn't have a right to interfere in an ENT_35 personal preference",
+          "source": "S15"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_26",
+      "action": "tighten laws",
+      "source_sentence": "S16",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "ENT_3",
+          "source": "S16"
+        },
+        {
+          "type": "target_of",
+          "target": "ENT_13",
+          "source": "S16"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_27",
+      "action": "implemented",
+      "source_sentence": "S17",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "ENT_36",
+          "source": "S17"
+        },
+        {
+          "type": "target_of",
+          "target": "maximum punishment of 10 years in ENT_27",
+          "source": "S17"
+        },
+        {
+          "type": "value",
+          "target": "10 years",
+          "source": "S17"
+        },
+        {
+          "type": "why",
+          "target": "for cow slaughter",
+          "source": "S17"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_28",
+      "action": "promised",
+      "source_sentence": "S18",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "ENT_37",
+          "source": "S18"
+        },
+        {
+          "type": "target_of",
+          "target": "he would do all to devise a ENT_39 against cow slaughter",
+          "source": "S18"
+        }
+      ]
+    }
+  ],
+  "entities": [
+    {
+      "name": "Police",
+      "aliases": [
+        "Police officials",
+        "we"
+      ],
+      "attributes": {
+        "location": "Malegaon"
+      },
+      "participates_in": [
+        "EVT_1",
+        "EVT_3",
+        "EVT_5",
+        "EVT_7",
+        "EVT_8",
+        "EVT_9",
+        "EVT_15"
+      ],
+      "source_sentences": [
+        "S0",
+        "S1",
+        "S3",
+        "S5",
+        "S6",
+        "S7",
+        "S8"
+      ]
+    },
+    {
+      "name": "Malegaon",
+      "aliases": [],
+      "attributes": {
+        "type": "city",
+        "location": "Maharashtra, India"
+      },
+      "participates_in": [
+        "EVT_1",
+        "EVT_3",
+        "EVT_13",
+        "EVT_14"
+      ],
+      "source_sentences": [
+        "S0",
+        "S1",
+        "S6",
+        "S7",
+        "S8"
+      ]
+    },
+    {
+      "name": "Maharashtra",
+      "aliases": [],
+      "attributes": {
+        "type": "state",
+        "location": "western India"
+      },
+      "participates_in": [
+        "EVT_1",
+        "EVT_2",
+        "EVT_6",
+        "EVT_16",
+        "EVT_22",
+        "EVT_23",
+        "EVT_26"
+      ],
+      "source_sentences": [
+        "S0",
+        "S1",
+        "S4",
+        "S9",
+        "S13",
+        "S14",
+        "S16"
+      ]
+    },
+    {
+      "name": "India",
+      "aliases": [],
+      "attributes": {
+        "type": "country"
+      },
+      "participates_in": [
+        "EVT_1",
+        "EVT_19",
+        "EVT_27",
+        "EVT_28"
+      ],
+      "source_sentences": [
+        "S0",
+        "S12",
+        "S17",
+        "S18"
+      ]
+    },
+    {
+      "name": "Cattle",
+      "aliases": [
+        "residents",
+        "animal",
+        "cow",
+        "livestock"
+      ],
+      "attributes": {
+        "unique_features": "coloring, age, length of its tail, other distinctive characteristics",
+        "status": "considered holy and revered"
+      },
+      "participates_in": [
+        "EVT_1",
+        "EVT_3",
+        "EVT_4",
+        "EVT_6",
+        "EVT_9",
+        "EVT_13",
+        "EVT_14",
+        "EVT_15",
+        "EVT_26",
+        "EVT_28"
+      ],
+      "source_sentences": [
+        "S0",
+        "S1",
+        "S2",
+        "S4",
+        "S6",
+        "S7",
+        "S8",
+        "S16",
+        "S18"
+      ]
+    },
+    {
+      "name": "Identity cards",
+      "aliases": [],
+      "attributes": {},
+      "participates_in": [
+        "EVT_1"
+      ],
+      "source_sentences": [
+        "S0"
+      ]
+    },
+    {
+      "name": "Beef",
+      "aliases": [],
+      "attributes": {},
+      "participates_in": [
+        "EVT_2",
+        "EVT_17"
+      ],
+      "source_sentences": [
+        "S1",
+        "S10"
+      ]
+    },
+    {
+      "name": "Authorities",
+      "aliases": [],
+      "attributes": {
+        "location": "Malegaon"
+      },
+      "participates_in": [
+        "EVT_3",
+        "EVT_15",
+        "EVT_17"
+      ],
+      "source_sentences": [
+        "S1",
+        "S8",
+        "S10"
+      ]
+    },
+    {
+      "name": "Residents",
+      "aliases": [],
+      "attributes": {},
+      "participates_in": [
+        "EVT_3",
+        "EVT_4",
+        "EVT_9"
+      ],
+      "source_sentences": [
+        "S1",
+        "S2",
+        "S6"
+      ]
+    },
+    {
+      "name": "Mugshot",
+      "aliases": [
+        "photograph"
+      ],
+      "attributes": {},
+      "participates_in": [
+        "EVT_3",
+        "EVT_4",
+        "EVT_13"
+      ],
+      "source_sentences": [
+        "S1",
+        "S2",
+        "S7"
+      ]
+    },
+    {
+      "name": "Information",
+      "aliases": [],
+      "attributes": {},
+      "participates_in": [
+        "EVT_4",
+        "EVT_8"
+      ],
+      "source_sentences": [
+        "S2",
+        "S6"
+      ]
+    },
+    {
+      "name": "Cow slaughter cases",
+      "aliases": [],
+      "attributes": {},
+      "participates_in": [
+        "EVT_5",
+        "EVT_8",
+        "EVT_14"
+      ],
+      "source_sentences": [
+        "S3",
+        "S6",
+        "S8"
+      ]
+    },
+    {
+      "name": "Law",
+      "aliases": [],
+      "attributes": {},
+      "participates_in": [
+        "EVT_5",
+        "EVT_16",
+        "EVT_17",
+        "EVT_26",
+        "EVT_28"
+      ],
+      "source_sentences": [
+        "S3",
+        "S9",
+        "S10",
+        "S16",
+        "S18"
+      ]
+    },
+    {
+      "name": "Hindu population",
+      "aliases": [],
+      "attributes": {
+        "type": "majority",
+        "location": "Maharashtra"
+      },
+      "participates_in": [
+        "EVT_6"
+      ],
+      "source_sentences": [
+        "S4"
+      ]
+    },
+    {
+      "name": "Database",
+      "aliases": [],
+      "attributes": {},
+      "participates_in": [
+        "EVT_7"
+      ],
+      "source_sentences": [
+        "S5"
+      ]
+    },
+    {
+      "name": "Mahesh Sawai",
+      "aliases": [],
+      "attributes": {
+        "role": "Deputy Superintendent",
+        "affiliation": "Malegaon Police"
+      },
+      "participates_in": [
+        "EVT_10",
+        "EVT_11"
+      ],
+      "source_sentences": [
+        "S6",
+        "S7"
+      ]
+    },
+    {
+      "name": "CNN",
+      "aliases": [],
+      "attributes": {
+        "type": "organization"
+      },
+      "participates_in": [
+        "EVT_10"
+      ],
+      "source_sentences": [
+        "S6"
+      ]
+    },
+    {
+      "name": "Owners",
+      "aliases": [],
+      "attributes": {
+        "number": "over 100"
+      },
+      "participates_in": [
+        "EVT_12",
+        "EVT_13"
+      ],
+      "source_sentences": [
+        "S7"
+      ]
+    },
+    {
+      "name": "Police order",
+      "aliases": [
+        "ruling",
+        "decision"
+      ],
+      "attributes": {},
+      "participates_in": [
+        "EVT_12",
+        "EVT_14",
+        "EVT_19"
+      ],
+      "source_sentences": [
+        "S7",
+        "S8",
+        "S12"
+      ]
+    },
+    {
+      "name": "Police stations",
+      "aliases": [],
+      "attributes": {
+        "location": "Malegaon"
+      },
+      "participates_in": [
+        "EVT_13"
+      ],
+      "source_sentences": [
+        "S7"
+      ]
+    },
+    {
+      "name": "Two men",
+      "aliases": [],
+      "attributes": {
+        "number": "two"
+      },
+      "participates_in": [
+        "EVT_15"
+      ],
+      "source_sentences": [
+        "S8"
+      ]
+    },
+    {
+      "name": "Meat",
+      "aliases": [],
+      "attributes": {},
+      "participates_in": [
+        "EVT_15"
+      ],
+      "source_sentences": [
+        "S8"
+      ]
+    },
+    {
+      "name": "Maharashtra Animal Preservation Bill",
+      "aliases": [],
+      "attributes": {},
+      "participates_in": [
+        "EVT_16"
+      ],
+      "source_sentences": [
+        "S9"
+      ]
+    },
+    {
+      "name": "Bulls",
+      "aliases": [],
+      "attributes": {},
+      "participates_in": [
+        "EVT_16"
+      ],
+      "source_sentences": [
+        "S9"
+      ]
+    },
+    {
+      "name": "Bullocks",
+      "aliases": [],
+      "attributes": {},
+      "participates_in": [
+        "EVT_16"
+      ],
+      "source_sentences": [
+        "S9"
+      ]
+    },
+    {
+      "name": "Non-bailable offenses",
+      "aliases": [],
+      "attributes": {},
+      "participates_in": [
+        "EVT_16"
+      ],
+      "source_sentences": [
+        "S9"
+      ]
+    },
+    {
+      "name": "Prison",
+      "aliases": [],
+      "attributes": {},
+      "participates_in": [
+        "EVT_17",
+        "EVT_27"
+      ],
+      "source_sentences": [
+        "S10",
+        "S17"
+      ]
+    },
+    {
+      "name": "Buffaloes",
+      "aliases": [],
+      "attributes": {},
+      "participates_in": [
+        "EVT_18",
+        "EVT_21"
+      ],
+      "source_sentences": [
+        "S11",
+        "S13"
+      ]
+    },
+    {
+      "name": "Beef traders",
+      "aliases": [
+        "traders",
+        "They"
+      ],
+      "attributes": {
+        "location": "India"
+      },
+      "participates_in": [
+        "EVT_19",
+        "EVT_20",
+        "EVT_21",
+        "EVT_22",
+        "EVT_23"
+      ],
+      "source_sentences": [
+        "S12",
+        "S13",
+        "S14"
+      ]
+    },
+    {
+      "name": "Strike",
+      "aliases": [],
+      "attributes": {
+        "duration": "month-long"
+      },
+      "participates_in": [
+        "EVT_20"
+      ],
+      "source_sentences": [
+        "S12"
+      ]
+    },
+    {
+      "name": "Bovine meat",
+      "aliases": [],
+      "attributes": {},
+      "participates_in": [
+        "EVT_22"
+      ],
+      "source_sentences": [
+        "S13"
+      ]
+    },
+    {
+      "name": "High court",
+      "aliases": [],
+      "attributes": {
+        "location": "Maharashtra"
+      },
+      "participates_in": [
+        "EVT_23"
+      ],
+      "source_sentences": [
+        "S14"
+      ]
+    },
+    {
+      "name": "Red meat lovers",
+      "aliases": [],
+      "attributes": {},
+      "participates_in": [
+        "EVT_24",
+        "EVT_25"
+      ],
+      "source_sentences": [
+        "S15"
+      ]
+    },
+    {
+      "name": "Government",
+      "aliases": [],
+      "attributes": {},
+      "participates_in": [
+        "EVT_25"
+      ],
+      "source_sentences": [
+        "S15"
+      ]
+    },
+    {
+      "name": "Individual",
+      "aliases": [],
+      "attributes": {},
+      "participates_in": [
+        "EVT_25"
+      ],
+      "source_sentences": [
+        "S15"
+      ]
+    },
+    {
+      "name": "Haryana state",
+      "aliases": [],
+      "attributes": {
+        "type": "state",
+        "location": "India"
+      },
+      "participates_in": [
+        "EVT_27"
+      ],
+      "source_sentences": [
+        "S17"
+      ]
+    },
+    {
+      "name": "Rajnath Singh",
+      "aliases": [],
+      "attributes": {
+        "role": "Home Minister",
+        "affiliation": "India"
+      },
+      "participates_in": [
+        "EVT_28"
+      ],
+      "source_sentences": [
+        "S18"
+      ]
+    },
+    {
+      "name": "Country-wide law",
+      "aliases": [],
+      "attributes": {},
+      "participates_in": [
+        "EVT_28"
+      ],
+      "source_sentences": [
+        "S18"
+      ]
+    }
+  ],
+  "inter_event_edges": [
+    {
+      "from": "EVT_3",
+      "to": "EVT_2",
+      "type": "why",
+      "source": "S1"
+    },
+    {
+      "from": "EVT_5",
+      "to": "EVT_1",
+      "type": "why",
+      "source": "S3"
+    },
+    {
+      "from": "EVT_5",
+      "to": "EVT_3",
+      "type": "why",
+      "source": "S3"
+    },
+    {
+      "from": "EVT_5",
+      "to": "EVT_4",
+      "type": "why",
+      "source": "S3"
+    },
+    {
+      "from": "EVT_7",
+      "to": "EVT_8",
+      "type": "purpose_of",
+      "source": "S6"
+    },
+    {
+      "from": "EVT_7",
+      "to": "EVT_9",
+      "type": "purpose_of",
+      "source": "S6"
+    },
+    {
+      "from": "EVT_1",
+      "to": "EVT_14",
+      "type": "came_in_wake_of",
+      "source": "S8"
+    },
+    {
+      "from": "EVT_19",
+      "to": "EVT_16",
+      "type": "reacted_to",
+      "source": "S12"
+    },
+    {
+      "from": "EVT_19",
+      "to": "EVT_17",
+      "type": "reacted_to",
+      "source": "S12"
+    },
+    {
+      "from": "EVT_20",
+      "to": "EVT_19",
+      "type": "result_of",
+      "source": "S12"
+    },
+    {
+      "from": "EVT_21",
+      "to": "EVT_20",
+      "type": "part_of",
+      "source": "S13"
+    },
+    {
+      "from": "EVT_22",
+      "to": "EVT_21",
+      "type": "result_of",
+      "source": "S13"
+    },
+    {
+      "from": "EVT_23",
+      "to": "EVT_19",
+      "type": "result_of",
+      "source": "S14"
+    },
+    {
+      "from": "EVT_25",
+      "to": "EVT_24",
+      "type": "reason_for",
+      "source": "S15"
+    },
+    {
+      "from": "EVT_27",
+      "to": "EVT_26",
+      "type": "example_of",
+      "source": "S17"
+    }
+  ],
+  "explicit_unknowns": [
+    {
+      "about": "names of other Indian states that tightened laws on cow slaughter",
+      "unknown_slots": [
+        "name"
+      ],
+      "source": "S16"
+    },
+    {
+      "about": "what red meat lovers were not delighted about",
+      "unknown_slots": [
+        "target_of"
+      ],
+      "source": "S15"
+    }
+  ],
+  "_elapsed": 95.9
+}

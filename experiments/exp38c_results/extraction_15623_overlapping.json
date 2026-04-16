@@ -1,0 +1,118 @@
+{
+  "stories": [
+    {
+      "thread": "Stabbing Incident Details",
+      "story": "Chris Copeland, 31, from Orange, New Jersey, an Indiana Pacers player, was stabbed early Wednesday after leaving a trendy New York nightclub. His female companion, Katrine Saltara, was also slashed, along with another woman whose age is unclear, as WCBS reported 53 years old and WABC reported 23 years old. A 22-year-old Brooklyn man, whose name is unknown as charges are pending, approached Chris Copeland, 31, from Orange, New Jersey, and Katrine Saltara near the nightclub, leading to a dispute and the stabbings. Chris Copeland, 31, from Orange, New Jersey, suffered knife wounds to his left elbow and abdomen, and is in stable condition at a New York hospital. Katrine Saltara suffered cuts to her arm, breast, and buttock, while the other woman suffered a slash to her stomach.",
+      "key_facts": [
+        "Chris Copeland, 31, from Orange, New Jersey, an Indiana Pacers player, was stabbed early Wednesday.",
+        "Katrine Saltara and another woman were also slashed.",
+        "A 22-year-old Brooklyn man, name unknown, is the suspect.",
+        "Chris Copeland suffered knife wounds to his left elbow and abdomen and is in stable condition.",
+        "Katrine Saltara suffered cuts to her arm, breast, and buttock; the other woman suffered a slash to her stomach."
+      ],
+      "shared_context": [
+        "Chris Copeland, 31, from Orange, New Jersey, an Indiana Pacers player, was stabbed early Wednesday after leaving a trendy New York nightclub.",
+        "Katrine Saltara.",
+        "A 22-year-old Brooklyn man, whose name is unknown as charges are pending."
+      ],
+      "explicit_unknowns": [
+        "The age of the other woman is unclear (reported as 53 or 23 years old).",
+        "The suspect's name is unknown as charges are pending."
+      ]
+    },
+    {
+      "thread": "Stabbing Location and Club's Account",
+      "story": "Chris Copeland, 31, from Orange, New Jersey, an Indiana Pacers player, was stabbed early Wednesday after leaving a trendy New York nightclub. New York Police Department Det. Kelly Ort initially stated the incident occurred just before 4 a.m. at 1OAK, a club in New York's Chelsea neighborhood. However, 1OAK later stated the stabbing occurred in front of the Fulton Houses project, down the street from the club, and that their staff was unaware of the incident as it happened beyond their view. Chris Copeland, 31, from Orange, New Jersey, and his female companion, Katrine Saltara, were at 1OAK for about 10 minutes before leaving and walking towards Fulton Houses, where their car was parked. The suspect, a 22-year-old Brooklyn man whose name is unknown as charges are pending, never entered 1OAK and stabbed Chris Copeland, 31, from Orange, New Jersey, and Katrine Saltara in front of Fulton Houses.",
+      "key_facts": [
+        "Chris Copeland, 31, from Orange, New Jersey, an Indiana Pacers player, was stabbed early Wednesday.",
+        "Discrepancy in stabbing location: Det. Kelly Ort said 1OAK, club said Fulton Houses project.",
+        "1OAK staff was unaware of the incident as it happened beyond their view.",
+        "Chris Copeland and Katrine Saltara were at 1OAK for 10 minutes before leaving for Fulton Houses.",
+        "The suspect, a 22-year-old Brooklyn man, name unknown, stabbed them in front of Fulton Houses."
+      ],
+      "shared_context": [
+        "Chris Copeland, 31, from Orange, New Jersey, an Indiana Pacers player, was stabbed early Wednesday after leaving a trendy New York nightclub.",
+        "Katrine Saltara.",
+        "The suspect, a 22-year-old Brooklyn man whose name is unknown as charges are pending."
+      ],
+      "explicit_unknowns": [
+        "The suspect's name is unknown as charges are pending."
+      ]
+    },
+    {
+      "thread": "Aftermath and Suspect's Arrest",
+      "story": "The suspect, a 22-year-old Brooklyn man whose name is unknown as charges are pending, stabbed Chris Copeland, 31, from Orange, New Jersey, an Indiana Pacers player, and his female companion, Katrine Saltara, in front of the Fulton Houses project. Chris Copeland's driver detained the apparent perpetrator, and that individual is now in police custody; charges against the suspect are pending, and his name will be released once charges are filed. Chris Copeland, 31, from Orange, New Jersey, and Katrine Saltara tried to make their way back to 1OAK to seek help from the 20 or so security personnel on hand, leaving a \"bloody trail of handprints.\" Surveillance footage will not show the actual stabbing because it occurred too far away from 1OAK, which shut down immediately after the incident. A knife was recovered, and a male and two females were taken to area hospitals.",
+      "key_facts": [
+        "The suspect, a 22-year-old Brooklyn man, name unknown, stabbed Chris Copeland and Katrine Saltara.",
+        "Chris Copeland's driver detained the suspect, who is now in police custody.",
+        "Charges against the suspect are pending, and his name will be released once filed.",
+        "Chris Copeland and Katrine Saltara left a \"bloody trail\" returning to 1OAK for help.",
+        "Surveillance footage will not show the stabbing; 1OAK shut down; a knife was recovered; three people hospitalized."
+      ],
+      "shared_context": [
+        "The suspect, a 22-year-old Brooklyn man whose name is unknown as charges are pending.",
+        "Chris Copeland, 31, from Orange, New Jersey, an Indiana Pacers player.",
+        "Katrine Saltara."
+      ],
+      "explicit_unknowns": [
+        "The suspect's name is unknown as charges are pending."
+      ]
+    },
+    {
+      "thread": "Arrest of Atlanta Hawks Players",
+      "story": "Two Atlanta Hawks players, Pero Antic, 32, and Thabo Sefolosha, 30, were among those arrested early Wednesday, though police said they were not involved in the stabbing incident of Chris Copeland, 31, from Orange, New Jersey, an Indiana Pacers player. Pero Antic, 32, and Thabo Sefolosha, 30, were arrested on charges of obstructing governmental administration and disorderly conduct, with Thabo Sefolosha, 30, facing an additional charge of resisting arrest. Word of the stabbing of Chris Copeland, 31, from Orange, New Jersey, spread through 1OAK, reaching Pero Antic, 32, and Thabo Sefolosha, 30, who went outside to check on their friend. The two began pushing their way through a crowd that had gathered around the scene, leading to their arrests, and one of the Hawks players pushed a police officer. Pero Antic, 32, and Thabo Sefolosha, 30, will contest these charges and apologized to their families, teammates, and the Hawks' organization, with neither player in uniform for their upcoming game.",
+      "key_facts": [
+        "Pero Antic, 32, and Thabo Sefolosha, 30, Atlanta Hawks players, were arrested early Wednesday.",
+        "Police stated they were not involved in Chris Copeland's stabbing.",
+        "They face charges of obstructing governmental administration and disorderly conduct; Thabo Sefolosha also faces resisting arrest.",
+        "They went to check on Chris Copeland after hearing about the stabbing and were arrested after pushing through a crowd, with one pushing a police officer.",
+        "The players will contest charges, apologized, and will not play in uniform."
+      ],
+      "shared_context": [
+        "Pero Antic, 32, an Atlanta Hawks player.",
+        "Thabo Sefolosha, 30, an Atlanta Hawks player.",
+        "Chris Copeland, 31, from Orange, New Jersey, an Indiana Pacers player."
+      ],
+      "explicit_unknowns": []
+    },
+    {
+      "thread": "Hawks Players' Background and Team Statements",
+      "story": "Two Atlanta Hawks players, Pero Antic, 32, and Thabo Sefolosha, 30, were among those arrested early Wednesday, though police said they were not involved in the stabbing incident of Chris Copeland, 31, from Orange, New Jersey, an Indiana Pacers player. Pero Antic, 32, and Thabo Sefolosha, 30, had recently arrived in New York after playing in the Hawks' 96-69 win over the Phoenix Suns in Atlanta on Tuesday night, which ended around 10 p.m. Pero Antic, 32, played 12 minutes and Thabo Sefolosha, 30, played 20 minutes in that game, which marked a franchise-best 58 wins for the Atlanta Hawks, who clinched the No. 1 seed in the NBA's Eastern Conference. Garin Narain, Hawks spokesman, stated they are aware of the situation involving Pero Antic, 32, and Thabo Sefolosha, 30, and are gathering more information. Larry Bird, the Pacers' president of basketball operations, stated they are aware Chris Copeland, 31, from Orange, New Jersey, an Indiana Pacers player, was injured and are gathering more information.",
+      "key_facts": [
+        "Pero Antic, 32, and Thabo Sefolosha, 30, Atlanta Hawks players, were arrested early Wednesday.",
+        "They had recently played in the Hawks' 96-69 win over the Phoenix Suns on Tuesday night.",
+        "The Hawks' win marked a franchise-best 58 wins and clinched the No. 1 seed in the Eastern Conference.",
+        "Garin Narain, Hawks spokesman, is gathering more information on the situation.",
+        "Larry Bird, the Pacers' president of basketball operations, is gathering more information on Chris Copeland's injury."
+      ],
+      "shared_context": [
+        "Pero Antic, 32, an Atlanta Hawks player.",
+        "Thabo Sefolosha, 30, an Atlanta Hawks player.",
+        "Chris Copeland, 31, from Orange, New Jersey, an Indiana Pacers player."
+      ],
+      "explicit_unknowns": []
+    },
+    {
+      "thread": "Team and Agent Reactions",
+      "story": "Chris Copeland, 31, from Orange, New Jersey, an Indiana Pacers player, suffered a knife wound to his left elbow and abdomen and is in stable condition at a New York hospital. Larry Bird, the Pacers' president of basketball operations, stated they are aware Chris Copeland, 31, from Orange, New Jersey, was injured early Wednesday in New York City and are gathering more information, with their thoughts with Chris and those injured. John Spencer, Chris Copeland's agent, expressed concern for the safety of Chris Copeland, 31, from Orange, New Jersey, and Katrine Saltara, stating he has no details at this particular time. Chris Copeland's Pacers are slated to play the New York Knicks on Wednesday night, while the Atlanta Hawks, whose players Pero Antic, 32, and Thabo Sefolosha, 30, were arrested, are in New York for a Wednesday night game against the Brooklyn Nets. Garin Narain, Hawks spokesman, stated they are aware of the situation involving Pero Antic, 32, and Thabo Sefolosha, 30, and are gathering more information.",
+      "key_facts": [
+        "Chris Copeland, 31, from Orange, New Jersey, an Indiana Pacers player, is in stable condition after knife wounds.",
+        "Larry Bird, Pacers' president, is gathering information and expressed concern.",
+        "John Spencer, Chris Copeland's agent, is concerned for Chris Copeland and Katrine Saltara but has no details.",
+        "The Pacers are playing the New York Knicks, and the Hawks are playing the Brooklyn Nets on Wednesday night.",
+        "Garin Narain, Hawks spokesman, is gathering more information on the situation involving Pero Antic and Thabo Sefolosha."
+      ],
+      "shared_context": [
+        "Chris Copeland, 31, from Orange, New Jersey, an Indiana Pacers player.",
+        "Katrine Saltara.",
+        "Pero Antic, 32, an Atlanta Hawks player.",
+        "Thabo Sefolosha, 30, an Atlanta Hawks player."
+      ],
+      "explicit_unknowns": [
+        "John Spencer has no details at this particular time.",
+        "Larry Bird and Garin Narain are still gathering more information."
+      ]
+    }
+  ],
+  "_elapsed": 50.3
+}

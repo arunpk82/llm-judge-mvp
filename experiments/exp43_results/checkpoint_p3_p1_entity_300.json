@@ -1,0 +1,1963 @@
+{
+  "phase": "p1_entity_300",
+  "results": [
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 0,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 1,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 2,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 3,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 4,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 5,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 6,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": false,
+      "issues": [
+        {
+          "claim_says": "Witnesses described the terrible conditions at the camp, with overcrowding, lack of basic necessities, and a deadly typhus outbreak.",
+          "source_says": "Days at the camp were filled with terror and dread, witnesses said. The sisters stayed in a section of the overcrowded camp with no lighting, little water and no latrine... according to the researchers.",
+          "problem": "misattribution"
+        }
+      ],
+      "_idx": 7,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 8,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 9,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 10,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 11,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 12,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 13,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 14,
+      "_expected": "hallucinated"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 15,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 16,
+      "_expected": "hallucinated"
+    },
+    {
+      "entity_binding_correct": false,
+      "issues": [
+        {
+          "claim_says": "Anne Frank died... two weeks after her supposed death on March 31, 1945",
+          "source_says": "Just two weeks after her supposed death on March 31, 1945, the Bergen-Belsen concentration camp where she had been imprisoned was liberated",
+          "problem": "misattribution"
+        }
+      ],
+      "_idx": 17,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 18,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 19,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 20,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 21,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 22,
+      "_expected": "hallucinated"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 23,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 24,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": false,
+      "issues": [
+        {
+          "claim_says": "witnesses described the conditions as brutal, with little food, water, or sanitation",
+          "source_says": "Days at the camp were filled with terror and dread, witnesses said. The sisters stayed in a section of the overcrowded camp with no lighting, little water and no latrine... according to the researchers.",
+          "problem": "misattribution"
+        }
+      ],
+      "_idx": 25,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 26,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 27,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 28,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 29,
+      "_expected": "hallucinated"
+    },
+    {
+      "entity_binding_correct": false,
+      "issues": [
+        {
+          "claim_says": "Witnesses described... overcrowding",
+          "source_says": "The sisters stayed in a section of the overcrowded camp... according to the researchers",
+          "problem": "misattribution"
+        },
+        {
+          "claim_says": "Witnesses described... poor hygiene",
+          "source_says": "The sisters stayed in a section of the overcrowded camp with no lighting, little water and no latrine... according to the researchers",
+          "problem": "misattribution"
+        },
+        {
+          "claim_says": "Witnesses described... the spread of diseases like typhus",
+          "source_says": "A deadly typhus outbreak caused thousands to die each day",
+          "problem": "misattribution"
+        }
+      ],
+      "_idx": 30,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 31,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 32,
+      "_expected": "hallucinated"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 33,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 34,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 35,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 36,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 37,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 38,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 39,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 40,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 41,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 42,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 43,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 44,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 45,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 46,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 47,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 48,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 49,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 50,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 51,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 52,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 53,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 54,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 55,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 56,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": false,
+      "issues": [
+        {
+          "claim_says": "His [Andrew Getty] net worth was estimated to be $2.1 billion.",
+          "source_says": "Gordon Getty, 81, has a net worth of $2.1 billion",
+          "problem": "misattribution"
+        }
+      ],
+      "_idx": 57,
+      "_expected": "hallucinated"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 58,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 59,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 60,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 61,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 62,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 63,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 64,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 65,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 66,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 67,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 68,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 69,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 70,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 71,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 72,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 73,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 74,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 75,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": false,
+      "issues": [
+        {
+          "claim_says": "Iran... was ultimately awarded the tournament to the United Arab Emirates",
+          "source_says": "the tournament was awarded to the United Arab Emirates",
+          "problem": "misattribution"
+        }
+      ],
+      "_idx": 76,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 77,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": false,
+      "issues": [
+        {
+          "claim_says": "The ban on women attending matches has been widely criticized by human rights organizations",
+          "source_says": "The Iranian government has come under pressure from international sports officials over the restrictions",
+          "problem": "misattribution"
+        }
+      ],
+      "_idx": 78,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 79,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 80,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 81,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 82,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 83,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 84,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 85,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 86,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 87,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 88,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 89,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 90,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 91,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 92,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 93,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 94,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": false,
+      "issues": [
+        {
+          "claim_says": "Ron Ingraham... surviving on what he could catch from the sea",
+          "source_says": "Ron Ingraham was picked up... 'weak, hungry and dehydrated'. Other survivors such as Louis Jordan, Jose Salvador Alvarenga, and Adrian Vasquez are described as eating fish or sea turtles.",
+          "problem": "misattribution"
+        }
+      ],
+      "_idx": 95,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 96,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 97,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 98,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 99,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 100,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 101,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 102,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 103,
+      "_expected": "grounded"
+    },
+    {
+      "_error": "The read operation timed out",
+      "_idx": 104,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 105,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 106,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 107,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 108,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 109,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 110,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 111,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 112,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 113,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": false,
+      "issues": [
+        {
+          "claim_says": "He was swept away by the tsunami",
+          "source_says": "But my wife was swept away",
+          "problem": "misattribution"
+        }
+      ],
+      "_idx": 114,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 115,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 116,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 117,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 118,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": false,
+      "issues": [
+        {
+          "claim_says": "Jose Salvador Alvarenga, a Mexican fisherman",
+          "source_says": "The El Salvador native told CNN that his faith in God helped him survive.",
+          "problem": "misattribution"
+        }
+      ],
+      "_idx": 119,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 120,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 121,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 122,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 123,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 124,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": false,
+      "issues": [
+        {
+          "claim_says": "Louis Jordan, a 35-year-old sailor",
+          "source_says": "Louis Jordan says that he set off on his 35-foot sailboat",
+          "problem": "misattribution"
+        }
+      ],
+      "_idx": 125,
+      "_expected": "hallucinated"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 126,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 127,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": false,
+      "issues": [
+        {
+          "claim_says": "Jose Salvador Alvarenga, a Mexican fisherman",
+          "source_says": "The El Salvador native [Jose Salvador Alvarenga]",
+          "problem": "misattribution"
+        }
+      ],
+      "_idx": 128,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 129,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": false,
+      "issues": [
+        {
+          "claim_says": "He [Alvarenga] was found on a remote atoll in the Marshall Islands by a passing boat",
+          "source_says": "Alvarenga spotted and shouted to [two residents] after spending a night in the woods [on the Ebon Atoll]",
+          "problem": "misattribution"
+        }
+      ],
+      "_idx": 130,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 131,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": false,
+      "issues": [
+        {
+          "claim_says": "He [the person who used a rope to pull himself back on board] ... was unable to contact authorities.",
+          "source_says": "A distress call went out [for Ron Ingraham]... [Alvarenga's boat] lose its engine and use of its radio communication and GPS systems.",
+          "problem": "misattribution"
+        }
+      ],
+      "_idx": 132,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 133,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 134,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 135,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 136,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 137,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 138,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 139,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 140,
+      "_expected": "hallucinated"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 141,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 142,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 143,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 144,
+      "_expected": "grounded"
+    },
+    {
+      "_error": "The read operation timed out",
+      "_idx": 145,
+      "_expected": "hallucinated"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 146,
+      "_expected": "hallucinated"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 147,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 148,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 149,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 150,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 151,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 152,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 153,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 154,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 155,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 156,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 157,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 158,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 159,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 160,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 161,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 162,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 163,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 164,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 165,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 166,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 167,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 168,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": false,
+      "issues": [
+        {
+          "claim_says": "Three women, including Keonna Thomas of Philadelphia, were charged with attempting to join ISIS this week.",
+          "source_says": "The FBI charged a Philadelphia woman [Keonna Thomas]... with trying to travel overseas to fight for ISIS... Noelle Velentzas... and... Asia Siddiqui... were arrested in New York and accused of planning to build an explosive device for attacks in the United States",
+          "problem": "misattribution"
+        }
+      ],
+      "_idx": 169,
+      "_expected": "hallucinated"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 170,
+      "_expected": "hallucinated"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 171,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 172,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": false,
+      "issues": [
+        {
+          "claim_says": "total number of US citizens charged with supporting terrorism to over 30",
+          "source_says": "Justice Department's National Security Division has prosecuted or is prosecuting more than 30 cases of people attempting to travel abroad to join or provide support to terrorist groups",
+          "problem": "misattribution"
+        }
+      ],
+      "_idx": 173,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 174,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 175,
+      "_expected": "hallucinated"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 176,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 177,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 178,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 179,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 180,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 181,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 182,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 183,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 184,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 185,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 186,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 187,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 188,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 189,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 190,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 191,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 192,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": false,
+      "issues": [
+        {
+          "claim_says": "beef traders and red meat lovers ... have filed a case in the state's high court",
+          "source_says": "The traders have now vowed to file a case in the state's high court.",
+          "problem": "misattribution"
+        }
+      ],
+      "_idx": 193,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 194,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 195,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 196,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 197,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 198,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 199,
+      "_expected": "hallucinated"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 200,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 201,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 202,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 203,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 204,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 205,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 206,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 207,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 208,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 209,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 210,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 211,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 212,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 213,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 214,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 215,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 216,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 217,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 218,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 219,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 220,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 221,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": false,
+      "issues": [
+        {
+          "claim_says": "An FBI agent and a task force officer were injured",
+          "source_says": "two agents were injured",
+          "problem": "misattribution"
+        }
+      ],
+      "_idx": 222,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 223,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 224,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 225,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": false,
+      "issues": [
+        {
+          "claim_says": "FBI agents and task force officers injured two suspects",
+          "source_says": "two agents were injured in a crash and the suspect was shot before being captured",
+          "problem": "misattribution"
+        }
+      ],
+      "_idx": 226,
+      "_expected": "hallucinated"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 227,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": false,
+      "issues": [
+        {
+          "claim_says": "Two FBI agents... their injuries are not life-threatening.",
+          "source_says": "Charleston was shot and wounded by FBI agents and task force officers, but his injuries are not life threatening",
+          "problem": "misattribution"
+        }
+      ],
+      "_idx": 228,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 229,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": false,
+      "issues": [
+        {
+          "claim_says": "FBI agents and task force officers injured two people",
+          "source_says": "two agents were injured in a crash [caused by the suspect's vehicle]... Charleston was shot and wounded by FBI agents and task force officers",
+          "problem": "misattribution"
+        }
+      ],
+      "_idx": 230,
+      "_expected": "hallucinated"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 231,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 232,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 233,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 234,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 235,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": false,
+      "issues": [
+        {
+          "claim_says": "Two agents... their injuries are not life-threatening.",
+          "source_says": "Charleston was shot and wounded by FBI agents and task force officers, but his injuries are not life threatening",
+          "problem": "misattribution"
+        }
+      ],
+      "_idx": 236,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 237,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 238,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 239,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 240,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 241,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 242,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 243,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 244,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 245,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 246,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 247,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 248,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 249,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 250,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 251,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 252,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 253,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 254,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 255,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 256,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 257,
+      "_expected": "hallucinated"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 258,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 259,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 260,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 261,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 262,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 263,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 264,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 265,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 266,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 267,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 268,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 269,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": false,
+      "issues": [
+        {
+          "claim_says": "The company... advises individuals and institutions to check their freezers for the recalled items and throw them away.",
+          "source_says": "The CDC advises that individuals and institutions should check their freezers for the recalled products and throw them away.",
+          "problem": "misattribution"
+        }
+      ],
+      "_idx": 270,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 271,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 272,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 273,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 274,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 275,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": false,
+      "issues": [
+        {
+          "claim_says": "five people in Kansas have died from listeriosis",
+          "source_says": "Five people were infected and three died in the past year in Kansas",
+          "problem": "misattribution"
+        }
+      ],
+      "_idx": 276,
+      "_expected": "hallucinated"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 277,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 278,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 279,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 280,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 281,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 282,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 283,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 284,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 285,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 286,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 287,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 288,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": false,
+      "issues": [
+        {
+          "claim_says": "Both women were in Hong Kong as domestic workers",
+          "source_says": "Ningsih was visiting Hong Kong as a tourist",
+          "problem": "misattribution"
+        }
+      ],
+      "_idx": 289,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 290,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 291,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 292,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 293,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 294,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 295,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 296,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 297,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 298,
+      "_expected": "grounded"
+    },
+    {
+      "entity_binding_correct": true,
+      "issues": [],
+      "_idx": 299,
+      "_expected": "grounded"
+    }
+  ]
+}

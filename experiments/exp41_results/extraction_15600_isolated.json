@@ -1,0 +1,72 @@
+{
+  "stories": [
+    {
+      "thread": "Crime Discovery",
+      "story": "On Saturday, November 1, police responded to a call from Rurik Jutting at his upmarket apartment in the J Residence, Wan Chai. They found 29-year-old Seneng Mujiasih on the blood-splattered floor and 25-year-old Sumarti Ningsih hidden in a suitcase on the balcony. Ningsih is alleged to have been killed on October 27. Police detained Jutting at the scene and seized a knife.",
+      "key_facts": [
+        "November 1",
+        "J Residence, Wan Chai",
+        "Seneng Mujiasih",
+        "Sumarti Ningsih",
+        "October 27",
+        "knife seized"
+      ],
+      "explicit_unknowns": []
+    },
+    {
+      "thread": "Sumarti Ningsih",
+      "story": "Sumarti Ningsih, a 25-year-old from Cilacap, Central Java, was the mother of a five-year-old girl. She worked as a domestic helper in Hong Kong between 2011 and 2013 and was visiting as a tourist before her death. Her cousin Jumiati described her as an ordinary woman working to support her poor family. Her father, Ahmad Khaliman, called for the perpetrator to be executed.",
+      "key_facts": [
+        "25 years old",
+        "Cilacap, Central Java",
+        "mother of a five-year-old girl",
+        "domestic helper in Hong Kong 2011-2013",
+        "visiting as a tourist",
+        "father Ahmad Khaliman"
+      ],
+      "explicit_unknowns": []
+    },
+    {
+      "thread": "Seneng Mujiasih",
+      "story": "Seneng Mujiasih, also known as Jesse Lorena, was a 29-year-old from the city of Muna in Sulawesi province, southeast Indonesia. She had worked as a domestic worker in Hong Kong but had overstayed her visa. Few other details are known about her life or why she stayed in Hong Kong.",
+      "key_facts": [
+        "29 years old",
+        "Muna, Sulawesi province",
+        "Jesse Lorena",
+        "overstayed visa"
+      ],
+      "explicit_unknowns": [
+        "details about her life",
+        "why she stayed in Hong Kong"
+      ]
+    },
+    {
+      "thread": "Rurik Jutting's Background",
+      "story": "Rurik Jutting is a 29-year-old Briton who studied history and law at the University of Cambridge from 2004 to 2008. He worked in capital markets for Barclays and later at Bank of America Merrill Lynch in London for three years and in Hong Kong since July 2013. It is unclear when he left his job at Bank of America Merrill Lynch.",
+      "key_facts": [
+        "29-year-old Briton",
+        "University of Cambridge 2004-2008",
+        "Barclays",
+        "Bank of America Merrill Lynch London (3 years)",
+        "Bank of America Merrill Lynch Hong Kong (since July 2013)"
+      ],
+      "explicit_unknowns": [
+        "when he left his job at Bank of America Merrill Lynch"
+      ]
+    },
+    {
+      "thread": "Legal Process and Aftermath",
+      "story": "Rurik Jutting was charged with two counts of murder and found psychologically fit to enter a plea. A court hearing was adjourned until May to allow for the analysis of over 200 pieces of forensic and DNA evidence. In November, the victims' bodies were repatriated to Indonesia. Around 200 people held a vigil for the women in Hong Kong's Victoria Park.",
+      "key_facts": [
+        "two counts of murder",
+        "psychologically fit to plea",
+        "adjourned until May",
+        "200+ pieces of forensic and DNA evidence",
+        "repatriated to Indonesia in November",
+        "200 people vigil in Victoria Park"
+      ],
+      "explicit_unknowns": []
+    }
+  ],
+  "_elapsed": 87.7
+}

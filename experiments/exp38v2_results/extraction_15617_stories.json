@@ -1,0 +1,55 @@
+{
+  "stories": [
+    {
+      "thread": "B.B. King's Recent Hospitalization and Recovery",
+      "story": "Blues legend B.B. King was recently hospitalized for dehydration, which was caused by his Type II diabetes. His daughter, Claudette King, told the Los Angeles Times that he \"is much better.\" King released a statement Tuesday saying, \"I'm feeling much better and am leaving the hospital today.\" Later that day, Claudette King's publicist, Angela Moore, confirmed he was back home resting and enjoying time with his grandchildren. It is not known where King was hospitalized or if more information on his condition was immediately available.",
+      "key_facts": [
+        "B.B. King hospitalized for dehydration",
+        "Dehydration caused by Type II diabetes",
+        "Claudette King stated he is 'much better'",
+        "King left hospital Tuesday",
+        "Angela Moore confirmed he was home resting with grandchildren"
+      ],
+      "explicit_unknowns": [
+        "Where King was hospitalized",
+        "More information on King's condition immediately available"
+      ]
+    },
+    {
+      "thread": "B.B. King's Name Origin and Career Milestones",
+      "story": "B.B. King's stage name, B.B., is an abbreviation for Blues Boy. This name originated from his time as a Memphis disc jockey, where he was known as the Beale Street Blues Boy. King was inducted into the Rock and Roll Hall of Fame in 1987. He has received 30 Grammy nominations throughout his career.",
+      "key_facts": [
+        "B.B. is short for Blues Boy",
+        "Name used as Memphis disc jockey, Beale Street Blues Boy",
+        "Inducted into Rock and Roll Hall of Fame in 1987",
+        "Has 30 Grammy nominations"
+      ],
+      "explicit_unknowns": []
+    },
+    {
+      "thread": "B.B. King's Lucille Guitars and Hit Songs",
+      "story": "B.B. King, 89, famously named each of his various Gibson guitars 'Lucille.' In the 1980s, Gibson officially designated the model King used most as a custom-made signature guitar, exclusively manufactured for him and named Lucille. Among his notable hits are 'The Thrill Is Gone,' which earned him his first Grammy in 1970, and 'When Love Comes to Town,' a collaboration with U2. Another hit is 'There Must be a Better World Somewhere.'",
+      "key_facts": [
+        "B.B. King, 89, named guitars Lucille",
+        "Gibson created custom-made signature Lucille model in 1980s",
+        "Hits include 'The Thrill Is Gone' (first Grammy 1970)",
+        "Hits include 'There Must be a Better World Somewhere'",
+        "Hits include 'When Love Comes to Town' (collaboration with U2)"
+      ],
+      "explicit_unknowns": []
+    },
+    {
+      "thread": "B.B. King's Previous Health Incident",
+      "story": "Last year, B.B. King suffered from dehydration and exhaustion after a show in Chicago. This health issue forced him to cancel the remainder of his tour. The exact date of this incident within 'last year' is not specified.",
+      "key_facts": [
+        "Last year, B.B. King suffered dehydration and exhaustion",
+        "Incident occurred after a show in Chicago",
+        "Forced cancellation of tour remainder"
+      ],
+      "explicit_unknowns": [
+        "Exact date of the incident within 'last year'"
+      ]
+    }
+  ],
+  "_elapsed": 17.0
+}

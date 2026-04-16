@@ -1,0 +1,2500 @@
+{
+  "phase": "p3_semantic_300",
+  "results": [
+    {
+      "semantic_match": true,
+      "shifts": [],
+      "_idx": 0,
+      "_expected": "grounded"
+    },
+    {
+      "semantic_match": true,
+      "shifts": [],
+      "_idx": 1,
+      "_expected": "grounded"
+    },
+    {
+      "semantic_match": false,
+      "shifts": [
+        {
+          "claim_phrase": "International Tracing Service",
+          "source_phrase": "International Training Service",
+          "shift_type": "other"
+        },
+        {
+          "claim_phrase": "suggests",
+          "source_phrase": "concluded that Anne and Margot probably",
+          "shift_type": "intensity"
+        }
+      ],
+      "_idx": 2,
+      "_expected": "grounded"
+    },
+    {
+      "semantic_match": false,
+      "shifts": [
+        {
+          "claim_phrase": "it is thought that both had symptoms",
+          "source_phrase": "witnesses at the camp said the sisters both had symptoms",
+          "shift_type": "other"
+        }
+      ],
+      "_idx": 3,
+      "_expected": "grounded"
+    },
+    {
+      "semantic_match": true,
+      "shifts": [],
+      "_idx": 4,
+      "_expected": "grounded"
+    },
+    {
+      "semantic_match": true,
+      "shifts": [],
+      "_idx": 5,
+      "_expected": "grounded"
+    },
+    {
+      "semantic_match": true,
+      "shifts": [],
+      "_idx": 6,
+      "_expected": "grounded"
+    },
+    {
+      "semantic_match": true,
+      "shifts": [],
+      "_idx": 7,
+      "_expected": "grounded"
+    },
+    {
+      "semantic_match": true,
+      "shifts": [],
+      "_idx": 8,
+      "_expected": "grounded"
+    },
+    {
+      "semantic_match": true,
+      "shifts": [],
+      "_idx": 9,
+      "_expected": "grounded"
+    },
+    {
+      "semantic_match": false,
+      "shifts": [
+        {
+          "claim_phrase": "beloved and influential book",
+          "source_phrase": "one of the world's most popular books",
+          "shift_type": "connotation"
+        }
+      ],
+      "_idx": 10,
+      "_expected": "grounded"
+    },
+    {
+      "semantic_match": true,
+      "shifts": [],
+      "_idx": 11,
+      "_expected": "grounded"
+    },
+    {
+      "semantic_match": false,
+      "shifts": [
+        {
+          "claim_phrase": "examined",
+          "source_phrase": "re-examined",
+          "shift_type": "other"
+        }
+      ],
+      "_idx": 12,
+      "_expected": "grounded"
+    },
+    {
+      "semantic_match": false,
+      "shifts": [
+        {
+          "claim_phrase": "food",
+          "source_phrase": "no more than a skeleton",
+          "shift_type": "other"
+        }
+      ],
+      "_idx": 13,
+      "_expected": "grounded"
+    },
+    {
+      "semantic_match": false,
+      "shifts": [
+        {
+          "claim_phrase": "died before February 7, 2022",
+          "source_phrase": "symptoms before February 7",
+          "shift_type": "other"
+        }
+      ],
+      "_idx": 14,
+      "_expected": "hallucinated"
+    },
+    {
+      "semantic_match": false,
+      "shifts": [
+        {
+          "claim_phrase": "witness accounts suggest",
+          "source_phrase": "witnesses at the camp said",
+          "shift_type": "causation"
+        },
+        {
+          "claim_phrase": "before then",
+          "source_phrase": "before February 7",
+          "shift_type": "other"
+        }
+      ],
+      "_idx": 15,
+      "_expected": "grounded"
+    },
+    {
+      "semantic_match": true,
+      "shifts": [],
+      "_idx": 16,
+      "_expected": "hallucinated"
+    },
+    {
+      "semantic_match": false,
+      "shifts": [
+        {
+          "claim_phrase": "died of typhus in a Nazi concentration camp at age 15, two weeks after her supposed death on March 31, 1945",
+          "source_phrase": "Just two weeks after her supposed death on March 31, 1945, the Bergen-Belsen concentration camp where she had been imprisoned was liberated",
+          "shift_type": "other"
+        }
+      ],
+      "_idx": 17,
+      "_expected": "grounded"
+    },
+    {
+      "semantic_match": false,
+      "shifts": [
+        {
+          "claim_phrase": "previous estimates",
+          "source_phrase": "date of death which had previously been determined",
+          "shift_type": "intensity"
+        }
+      ],
+      "_idx": 18,
+      "_expected": "grounded"
+    },
+    {
+      "semantic_match": true,
+      "shifts": [],
+      "_idx": 19,
+      "_expected": "grounded"
+    },
+    {
+      "semantic_match": true,
+      "shifts": [],
+      "_idx": 20,
+      "_expected": "grounded"
+    },
+    {
+      "semantic_match": true,
+      "shifts": [],
+      "_idx": 21,
+      "_expected": "grounded"
+    },
+    {
+      "semantic_match": false,
+      "shifts": [
+        {
+          "claim_phrase": "powerful symbol of hope and resilience",
+          "source_phrase": "one of the world's most popular books",
+          "shift_type": "connotation"
+        }
+      ],
+      "_idx": 22,
+      "_expected": "hallucinated"
+    },
+    {
+      "semantic_match": true,
+      "shifts": [],
+      "_idx": 23,
+      "_expected": "grounded"
+    },
+    {
+      "semantic_match": true,
+      "shifts": [],
+      "_idx": 24,
+      "_expected": "grounded"
+    },
+    {
+      "semantic_match": false,
+      "shifts": [
+        {
+          "claim_phrase": "brutal",
+          "source_phrase": "filled with terror and dread",
+          "shift_type": "emotion"
+        },
+        {
+          "claim_phrase": "little food",
+          "source_phrase": "no lighting, little water and no latrine",
+          "shift_type": "other"
+        }
+      ],
+      "_idx": 25,
+      "_expected": "grounded"
+    },
+    {
+      "semantic_match": false,
+      "shifts": [
+        {
+          "claim_phrase": "it is believed that Margot died before Anne",
+          "source_phrase": "Margot died before Anne",
+          "shift_type": "other"
+        },
+        {
+          "claim_phrase": "who remained hopeful until the end",
+          "source_phrase": "'Anne never gave up hope,' said Blitz",
+          "shift_type": "other"
+        }
+      ],
+      "_idx": 26,
+      "_expected": "grounded"
+    },
+    {
+      "semantic_match": false,
+      "shifts": [
+        {
+          "claim_phrase": "suggests",
+          "source_phrase": "shows",
+          "shift_type": "intensity"
+        }
+      ],
+      "_idx": 27,
+      "_expected": "grounded"
+    },
+    {
+      "semantic_match": false,
+      "shifts": [
+        {
+          "claim_phrase": "February or early March 1945",
+          "source_phrase": "probably did not survive to March 1945",
+          "shift_type": "other"
+        }
+      ],
+      "_idx": 28,
+      "_expected": "grounded"
+    },
+    {
+      "semantic_match": false,
+      "shifts": [
+        {
+          "claim_phrase": "concluding that the sisters did not survive past February 7",
+          "source_phrase": "witnesses at the camp said the sisters both had symptoms before February 7",
+          "shift_type": "other"
+        }
+      ],
+      "_idx": 29,
+      "_expected": "hallucinated"
+    },
+    {
+      "semantic_match": true,
+      "shifts": [],
+      "_idx": 30,
+      "_expected": "grounded"
+    },
+    {
+      "semantic_match": true,
+      "shifts": [],
+      "_idx": 31,
+      "_expected": "grounded"
+    },
+    {
+      "semantic_match": false,
+      "shifts": [
+        {
+          "claim_phrase": "powerful symbol of her resilience",
+          "source_phrase": "one of the world's most popular books",
+          "shift_type": "connotation"
+        },
+        {
+          "claim_phrase": "reminder of the horrors of the Holocaust",
+          "source_phrase": "Days at the camp were filled with terror and dread",
+          "shift_type": "other"
+        }
+      ],
+      "_idx": 32,
+      "_expected": "hallucinated"
+    },
+    {
+      "semantic_match": true,
+      "shifts": [],
+      "_idx": 33,
+      "_expected": "grounded"
+    },
+    {
+      "semantic_match": true,
+      "shifts": [],
+      "_idx": 34,
+      "_expected": "grounded"
+    },
+    {
+      "semantic_match": true,
+      "shifts": [],
+      "_idx": 35,
+      "_expected": "grounded"
+    },
+    {
+      "semantic_match": true,
+      "shifts": [],
+      "_idx": 36,
+      "_expected": "grounded"
+    },
+    {
+      "semantic_match": true,
+      "shifts": [],
+      "_idx": 37,
+      "_expected": "grounded"
+    },
+    {
+      "semantic_match": false,
+      "shifts": [
+        {
+          "claim_phrase": "has died of natural causes",
+          "source_phrase": "appears to have died of natural causes",
+          "shift_type": "causation"
+        }
+      ],
+      "_idx": 38,
+      "_expected": "grounded"
+    },
+    {
+      "semantic_match": false,
+      "shifts": [
+        {
+          "claim_phrase": "suggests no foul play was involved",
+          "source_phrase": "is there was no foul play involved",
+          "shift_type": "intensity"
+        }
+      ],
+      "_idx": 39,
+      "_expected": "grounded"
+    },
+    {
+      "semantic_match": true,
+      "shifts": [],
+      "_idx": 40,
+      "_expected": "grounded"
+    },
+    {
+      "semantic_match": true,
+      "shifts": [],
+      "_idx": 41,
+      "_expected": "grounded"
+    },
+    {
+      "semantic_match": true,
+      "shifts": [],
+      "_idx": 42,
+      "_expected": "grounded"
+    },
+    {
+      "semantic_match": true,
+      "shifts": [],
+      "_idx": 43,
+      "_expected": "grounded"
+    },
+    {
+      "semantic_match": true,
+      "shifts": [],
+      "_idx": 44,
+      "_expected": "grounded"
+    },
+    {
+      "semantic_match": true,
+      "shifts": [],
+      "_idx": 45,
+      "_expected": "grounded"
+    },
+    {
+      "semantic_match": false,
+      "shifts": [
+        {
+          "claim_phrase": "There was no foul play involved in his death",
+          "source_phrase": "The coroner's preliminary assessment is there was no foul play involved in the death of Getty",
+          "shift_type": "causation"
+        }
+      ],
+      "_idx": 46,
+      "_expected": "grounded"
+    },
+    {
+      "semantic_match": true,
+      "shifts": [],
+      "_idx": 47,
+      "_expected": "grounded"
+    },
+    {
+      "semantic_match": true,
+      "shifts": [],
+      "_idx": 48,
+      "_expected": "grounded"
+    },
+    {
+      "semantic_match": true,
+      "shifts": [],
+      "_idx": 49,
+      "_expected": "grounded"
+    },
+    {
+      "semantic_match": true,
+      "shifts": [],
+      "_idx": 50,
+      "_expected": "grounded"
+    },
+    {
+      "semantic_match": true,
+      "shifts": [],
+      "_idx": 51,
+      "_expected": "grounded"
+    },
+    {
+      "semantic_match": true,
+      "shifts": [],
+      "_idx": 52,
+      "_expected": "grounded"
+    },
+    {
+      "semantic_match": false,
+      "shifts": [
+        {
+          "claim_phrase": "was recently granted a restraining order",
+          "source_phrase": "had recently filed to get a restraining order",
+          "shift_type": "other"
+        }
+      ],
+      "_idx": 53,
+      "_expected": "grounded"
+    },
+    {
+      "semantic_match": false,
+      "shifts": [
+        {
+          "claim_phrase": "died of natural causes",
+          "source_phrase": "appears to have died of natural causes",
+          "shift_type": "causation"
+        }
+      ],
+      "_idx": 54,
+      "_expected": "grounded"
+    },
+    {
+      "semantic_match": true,
+      "shifts": [],
+      "_idx": 55,
+      "_expected": "grounded"
+    },
+    {
+      "semantic_match": true,
+      "shifts": [],
+      "_idx": 56,
+      "_expected": "grounded"
+    },
+    {
+      "semantic_match": false,
+      "shifts": [
+        {
+          "claim_phrase": "His net worth",
+          "source_phrase": "Gordon Getty, 81, has a net worth",
+          "shift_type": "other"
+        }
+      ],
+      "_idx": 57,
+      "_expected": "hallucinated"
+    },
+    {
+      "semantic_match": true,
+      "shifts": [],
+      "_idx": 58,
+      "_expected": "grounded"
+    },
+    {
+      "semantic_match": true,
+      "shifts": [],
+      "_idx": 59,
+      "_expected": "grounded"
+    },
+    {
+      "semantic_match": true,
+      "shifts": [],
+      "_idx": 60,
+      "_expected": "grounded"
+    },
+    {
+      "semantic_match": true,
+      "shifts": [],
+      "_idx": 61,
+      "_expected": "grounded"
+    },
+    {
+      "semantic_match": false,
+      "shifts": [
+        {
+          "claim_phrase": "lift its ban on women attending sports events",
+          "source_phrase": "the ban will be lifted for some events",
+          "shift_type": "other"
+        }
+      ],
+      "_idx": 62,
+      "_expected": "grounded"
+    },
+    {
+      "semantic_match": true,
+      "shifts": [],
+      "_idx": 63,
+      "_expected": "grounded"
+    },
+    {
+      "semantic_match": true,
+      "shifts": [],
+      "_idx": 64,
+      "_expected": "grounded"
+    },
+    {
+      "semantic_match": true,
+      "shifts": [],
+      "_idx": 65,
+      "_expected": "grounded"
+    },
+    {
+      "semantic_match": true,
+      "shifts": [],
+      "_idx": 66,
+      "_expected": "grounded"
+    },
+    {
+      "semantic_match": false,
+      "shifts": [
+        {
+          "claim_phrase": "The ban on women attending sports events",
+          "source_phrase": "the ban on women attending men's sports events",
+          "shift_type": "other"
+        }
+      ],
+      "_idx": 67,
+      "_expected": "grounded"
+    },
+    {
+      "semantic_match": true,
+      "shifts": [],
+      "_idx": 68,
+      "_expected": "grounded"
+    },
+    {
+      "semantic_match": true,
+      "shifts": [],
+      "_idx": 69,
+      "_expected": "grounded"
+    },
+    {
+      "semantic_match": true,
+      "shifts": [],
+      "_idx": 70,
+      "_expected": "grounded"
+    },
+    {
+      "semantic_match": true,
+      "shifts": [],
+      "_idx": 71,
+      "_expected": "grounded"
+    },
+    {
+      "semantic_match": true,
+      "shifts": [],
+      "_idx": 72,
+      "_expected": "grounded"
+    },
+    {
+      "semantic_match": false,
+      "shifts": [
+        {
+          "claim_phrase": "has only been lifted briefly",
+          "source_phrase": "briefly permitted to attend volleyball matches",
+          "shift_type": "other"
+        }
+      ],
+      "_idx": 73,
+      "_expected": "grounded"
+    },
+    {
+      "semantic_match": false,
+      "shifts": [
+        {
+          "claim_phrase": "Women will only be allowed to attend indoor sports events",
+          "source_phrase": "Ahmadi said the restrictions would be lifted for indoor sports events",
+          "shift_type": "other"
+        }
+      ],
+      "_idx": 74,
+      "_expected": "grounded"
+    },
+    {
+      "semantic_match": false,
+      "shifts": [
+        {
+          "claim_phrase": "The lifting of the ban comes under pressure from international sports officials",
+          "source_phrase": "The Iranian government has come under pressure from international sports officials over the restrictions",
+          "shift_type": "causation"
+        }
+      ],
+      "_idx": 75,
+      "_expected": "grounded"
+    },
+    {
+      "semantic_match": false,
+      "shifts": [
+        {
+          "claim_phrase": "was ultimately awarded the tournament to the United Arab Emirates",
+          "source_phrase": "the tournament was awarded to the United Arab Emirates",
+          "shift_type": "other"
+        }
+      ],
+      "_idx": 76,
+      "_expected": "grounded"
+    },
+    {
+      "semantic_match": true,
+      "shifts": [],
+      "_idx": 77,
+      "_expected": "grounded"
+    },
+    {
+      "semantic_match": false,
+      "shifts": [
+        {
+          "claim_phrase": "human rights organizations",
+          "source_phrase": "N/A",
+          "shift_type": "other"
+        },
+        {
+          "claim_phrase": "international leaders",
+          "source_phrase": "international sports officials",
+          "shift_type": "other"
+        },
+        {
+          "claim_phrase": "widely criticized",
+          "source_phrase": "come under pressure",
+          "shift_type": "intensity"
+        }
+      ],
+      "_idx": 78,
+      "_expected": "grounded"
+    },
+    {
+      "semantic_match": false,
+      "shifts": [
+        {
+          "claim_phrase": "In an effort to improve Iran's chances of hosting future international sports events",
+          "source_phrase": "The ban on women attending matches was widely seen as a major impediment to Iran's chances of securing the event",
+          "shift_type": "causation"
+        },
+        {
+          "claim_phrase": "lift the ban on women attending men's sports events",
+          "source_phrase": "the ban will be lifted for some events",
+          "shift_type": "other"
+        }
+      ],
+      "_idx": 79,
+      "_expected": "grounded"
+    },
+    {
+      "semantic_match": true,
+      "shifts": [],
+      "_idx": 80,
+      "_expected": "grounded"
+    },
+    {
+      "semantic_match": true,
+      "shifts": [],
+      "_idx": 81,
+      "_expected": "grounded"
+    },
+    {
+      "semantic_match": true,
+      "shifts": [],
+      "_idx": 82,
+      "_expected": "grounded"
+    },
+    {
+      "semantic_match": true,
+      "shifts": [],
+      "_idx": 83,
+      "_expected": "grounded"
+    },
+    {
+      "semantic_match": true,
+      "shifts": [],
+      "_idx": 84,
+      "_expected": "grounded"
+    },
+    {
+      "semantic_match": false,
+      "shifts": [
+        {
+          "claim_phrase": "may be exempt from the ban",
+          "source_phrase": "restrictions would be lifted",
+          "shift_type": "other"
+        }
+      ],
+      "_idx": 85,
+      "_expected": "grounded"
+    },
+    {
+      "semantic_match": false,
+      "shifts": [
+        {
+          "claim_phrase": "human rights activists",
+          "source_phrase": "activists",
+          "shift_type": "other"
+        }
+      ],
+      "_idx": 86,
+      "_expected": "grounded"
+    },
+    {
+      "semantic_match": false,
+      "shifts": [
+        {
+          "claim_phrase": "starting with indoor sports",
+          "source_phrase": "restrictions would be lifted for indoor sports events",
+          "shift_type": "other"
+        }
+      ],
+      "_idx": 87,
+      "_expected": "grounded"
+    },
+    {
+      "semantic_match": true,
+      "shifts": [],
+      "_idx": 88,
+      "_expected": "grounded"
+    },
+    {
+      "semantic_match": true,
+      "shifts": [],
+      "_idx": 89,
+      "_expected": "grounded"
+    },
+    {
+      "semantic_match": true,
+      "shifts": [],
+      "_idx": 90,
+      "_expected": "grounded"
+    },
+    {
+      "semantic_match": false,
+      "shifts": [
+        {
+          "claim_phrase": "usually incredible tales of human endurance",
+          "source_phrase": "Much rarer are cases in which individuals become lost at sea long enough that they run out of whatever food and drinking water they'd brought aboard",
+          "shift_type": "other"
+        }
+      ],
+      "_idx": 91,
+      "_expected": "grounded"
+    },
+    {
+      "semantic_match": true,
+      "shifts": [],
+      "_idx": 92,
+      "_expected": "grounded"
+    },
+    {
+      "semantic_match": true,
+      "shifts": [],
+      "_idx": 93,
+      "_expected": "grounded"
+    },
+    {
+      "semantic_match": false,
+      "shifts": [
+        {
+          "claim_phrase": "survived a year",
+          "source_phrase": "survived over a year",
+          "shift_type": "intensity"
+        },
+        {
+          "claim_phrase": "eating raw birds",
+          "source_phrase": "refused to eat raw birds",
+          "shift_type": "other"
+        }
+      ],
+      "_idx": 94,
+      "_expected": "grounded"
+    },
+    {
+      "semantic_match": false,
+      "shifts": [
+        {
+          "claim_phrase": "surviving on what he could catch from the sea",
+          "source_phrase": "picked up about 64 miles (103 kilometers) south of Honolulu \"weak, hungry and dehydrated\"",
+          "shift_type": "other"
+        }
+      ],
+      "_idx": 95,
+      "_expected": "grounded"
+    },
+    {
+      "semantic_match": true,
+      "shifts": [],
+      "_idx": 96,
+      "_expected": "grounded"
+    },
+    {
+      "semantic_match": true,
+      "shifts": [],
+      "_idx": 97,
+      "_expected": "grounded"
+    },
+    {
+      "semantic_match": true,
+      "shifts": [],
+      "_idx": 98,
+      "_expected": "grounded"
+    },
+    {
+      "semantic_match": true,
+      "shifts": [],
+      "_idx": 99,
+      "_expected": "grounded"
+    },
+    {
+      "semantic_match": true,
+      "shifts": [],
+      "_idx": 100,
+      "_expected": "grounded"
+    },
+    {
+      "semantic_match": true,
+      "shifts": [],
+      "_idx": 101,
+      "_expected": "grounded"
+    },
+    {
+      "semantic_match": true,
+      "shifts": [],
+      "_idx": 102,
+      "_expected": "grounded"
+    },
+    {
+      "semantic_match": true,
+      "shifts": [],
+      "_idx": 103,
+      "_expected": "grounded"
+    },
+    {
+      "semantic_match": false,
+      "shifts": [
+        {
+          "claim_phrase": "stranded for several weeks",
+          "source_phrase": "set off... in late January... spotted Jordan... on Thursday",
+          "shift_type": "other"
+        }
+      ],
+      "_idx": 104,
+      "_expected": "grounded"
+    },
+    {
+      "semantic_match": true,
+      "shifts": [],
+      "_idx": 105,
+      "_expected": "grounded"
+    },
+    {
+      "semantic_match": true,
+      "shifts": [],
+      "_idx": 106,
+      "_expected": "grounded"
+    },
+    {
+      "semantic_match": true,
+      "shifts": [],
+      "_idx": 107,
+      "_expected": "grounded"
+    },
+    {
+      "semantic_match": true,
+      "shifts": [],
+      "_idx": 108,
+      "_expected": "grounded"
+    },
+    {
+      "semantic_match": true,
+      "shifts": [],
+      "_idx": 109,
+      "_expected": "grounded"
+    },
+    {
+      "semantic_match": true,
+      "shifts": [],
+      "_idx": 110,
+      "_expected": "grounded"
+    },
+    {
+      "semantic_match": true,
+      "shifts": [],
+      "_idx": 111,
+      "_expected": "grounded"
+    },
+    {
+      "semantic_match": false,
+      "shifts": [
+        {
+          "claim_phrase": "rescued by fishermen",
+          "source_phrase": "fishermen spotted the tiny vessel... The Ecuadorian navy came in and picked up the teenage survivor",
+          "shift_type": "other"
+        }
+      ],
+      "_idx": 112,
+      "_expected": "grounded"
+    },
+    {
+      "semantic_match": true,
+      "shifts": [],
+      "_idx": 113,
+      "_expected": "grounded"
+    },
+    {
+      "semantic_match": true,
+      "shifts": [],
+      "_idx": 114,
+      "_expected": "grounded"
+    },
+    {
+      "semantic_match": false,
+      "shifts": [
+        {
+          "claim_phrase": "rescued by a Japanese Maritime Self-Defense Force destroyer",
+          "source_phrase": "spotted by crew aboard a Japanese Maritime Self-Defense Force destroyer and picked up in a smaller rescue boat",
+          "shift_type": "other"
+        }
+      ],
+      "_idx": 115,
+      "_expected": "grounded"
+    },
+    {
+      "semantic_match": true,
+      "shifts": [],
+      "_idx": 116,
+      "_expected": "grounded"
+    },
+    {
+      "semantic_match": true,
+      "shifts": [],
+      "_idx": 117,
+      "_expected": "grounded"
+    },
+    {
+      "semantic_match": false,
+      "shifts": [
+        {
+          "claim_phrase": "numerous stories",
+          "source_phrase": "Much rarer are cases",
+          "shift_type": "intensity"
+        }
+      ],
+      "_idx": 118,
+      "_expected": "grounded"
+    },
+    {
+      "semantic_match": false,
+      "shifts": [
+        {
+          "claim_phrase": "Mexican fisherman",
+          "source_phrase": "The El Salvador native",
+          "shift_type": "other"
+        }
+      ],
+      "_idx": 119,
+      "_expected": "grounded"
+    },
+    {
+      "semantic_match": true,
+      "shifts": [],
+      "_idx": 120,
+      "_expected": "grounded"
+    },
+    {
+      "semantic_match": false,
+      "shifts": [
+        {
+          "claim_phrase": "incredible human spirit",
+          "source_phrase": "ingenuity, resourcefulness and luck",
+          "shift_type": "connotation"
+        },
+        {
+          "claim_phrase": "determination to survive",
+          "source_phrase": "will and ability to survive",
+          "shift_type": "intensity"
+        },
+        {
+          "claim_phrase": "against all odds",
+          "source_phrase": "much higher number [of deaths] than those that end in rescues",
+          "shift_type": "intensity"
+        }
+      ],
+      "_idx": 121,
+      "_expected": "grounded"
+    },
+    {
+      "semantic_match": true,
+      "shifts": [],
+      "_idx": 122,
+      "_expected": "grounded"
+    },
+    {
+      "semantic_match": true,
+      "shifts": [],
+      "_idx": 123,
+      "_expected": "grounded"
+    },
+    {
+      "semantic_match": false,
+      "shifts": [
+        {
+          "claim_phrase": "testaments to the resilience and determination of the human spirit",
+          "source_phrase": "must rely on ingenuity, resourcefulness and luck",
+          "shift_type": "causation"
+        }
+      ],
+      "_idx": 124,
+      "_expected": "grounded"
+    },
+    {
+      "semantic_match": false,
+      "shifts": [
+        {
+          "claim_phrase": "35-year-old sailor",
+          "source_phrase": "35-foot sailboat",
+          "shift_type": "other"
+        },
+        {
+          "claim_phrase": "stranded at sea for five days",
+          "source_phrase": "set off... in late January... spotted... on Thursday",
+          "shift_type": "other"
+        }
+      ],
+      "_idx": 125,
+      "_expected": "hallucinated"
+    },
+    {
+      "semantic_match": true,
+      "shifts": [],
+      "_idx": 126,
+      "_expected": "grounded"
+    },
+    {
+      "semantic_match": true,
+      "shifts": [],
+      "_idx": 127,
+      "_expected": "grounded"
+    },
+    {
+      "semantic_match": false,
+      "shifts": [
+        {
+          "claim_phrase": "Mexican fisherman",
+          "source_phrase": "El Salvador native",
+          "shift_type": "other"
+        }
+      ],
+      "_idx": 128,
+      "_expected": "grounded"
+    },
+    {
+      "semantic_match": false,
+      "shifts": [
+        {
+          "claim_phrase": "eating raw birds",
+          "source_phrase": "his partner... died because he refused to eat raw birds",
+          "shift_type": "other"
+        },
+        {
+          "claim_phrase": "using his fishing net to catch sea turtles",
+          "source_phrase": "He ate sea turtles",
+          "shift_type": "other"
+        }
+      ],
+      "_idx": 129,
+      "_expected": "grounded"
+    },
+    {
+      "semantic_match": false,
+      "shifts": [
+        {
+          "claim_phrase": "by a passing boat",
+          "source_phrase": "two of whom Alvarenga spotted and shouted to",
+          "shift_type": "other"
+        }
+      ],
+      "_idx": 130,
+      "_expected": "grounded"
+    },
+    {
+      "semantic_match": true,
+      "shifts": [],
+      "_idx": 131,
+      "_expected": "grounded"
+    },
+    {
+      "semantic_match": false,
+      "shifts": [
+        {
+          "claim_phrase": "unable to contact authorities",
+          "source_phrase": "A distress call went out",
+          "shift_type": "other"
+        }
+      ],
+      "_idx": 132,
+      "_expected": "grounded"
+    },
+    {
+      "semantic_match": false,
+      "shifts": [
+        {
+          "claim_phrase": "picked up by a Coast Guard vessel",
+          "source_phrase": "picked up",
+          "shift_type": "other"
+        }
+      ],
+      "_idx": 133,
+      "_expected": "grounded"
+    },
+    {
+      "semantic_match": true,
+      "shifts": [],
+      "_idx": 134,
+      "_expected": "grounded"
+    },
+    {
+      "semantic_match": true,
+      "shifts": [],
+      "_idx": 135,
+      "_expected": "grounded"
+    },
+    {
+      "semantic_match": true,
+      "shifts": [],
+      "_idx": 136,
+      "_expected": "grounded"
+    },
+    {
+      "semantic_match": true,
+      "shifts": [],
+      "_idx": 137,
+      "_expected": "grounded"
+    },
+    {
+      "semantic_match": true,
+      "shifts": [],
+      "_idx": 138,
+      "_expected": "grounded"
+    },
+    {
+      "semantic_match": true,
+      "shifts": [],
+      "_idx": 139,
+      "_expected": "grounded"
+    },
+    {
+      "semantic_match": false,
+      "shifts": [
+        {
+          "claim_phrase": "adrift for 20 days",
+          "source_phrase": "set off on his 35-foot sailboat from South Carolina in late January... spotted Jordan about 200 miles off the North Carolina coast on Thursday",
+          "shift_type": "other"
+        }
+      ],
+      "_idx": 140,
+      "_expected": "hallucinated"
+    },
+    {
+      "semantic_match": true,
+      "shifts": [],
+      "_idx": 141,
+      "_expected": "grounded"
+    },
+    {
+      "semantic_match": true,
+      "shifts": [],
+      "_idx": 142,
+      "_expected": "grounded"
+    },
+    {
+      "semantic_match": true,
+      "shifts": [],
+      "_idx": 143,
+      "_expected": "grounded"
+    },
+    {
+      "semantic_match": true,
+      "shifts": [],
+      "_idx": 144,
+      "_expected": "grounded"
+    },
+    {
+      "semantic_match": false,
+      "shifts": [
+        {
+          "claim_phrase": "66 days",
+          "source_phrase": "late January... Thursday",
+          "shift_type": "other"
+        },
+        {
+          "claim_phrase": "using a makeshift mast and sail to catch fish and collect rainwater",
+          "source_phrase": "used laundry to trap and scoop up fish... collecting fresh water in a bucket... rigged a makeshift mast and sail",
+          "shift_type": "causation"
+        }
+      ],
+      "_idx": 145,
+      "_expected": "hallucinated"
+    },
+    {
+      "semantic_match": false,
+      "shifts": [
+        {
+          "claim_phrase": "438 days",
+          "source_phrase": "13 or 14 months",
+          "shift_type": "other"
+        }
+      ],
+      "_idx": 146,
+      "_expected": "hallucinated"
+    },
+    {
+      "semantic_match": false,
+      "shifts": [
+        {
+          "claim_phrase": "eating raw birds",
+          "source_phrase": "his partner... died because he refused to eat raw birds",
+          "shift_type": "other"
+        }
+      ],
+      "_idx": 147,
+      "_expected": "grounded"
+    },
+    {
+      "semantic_match": true,
+      "shifts": [],
+      "_idx": 148,
+      "_expected": "grounded"
+    },
+    {
+      "semantic_match": true,
+      "shifts": [],
+      "_idx": 149,
+      "_expected": "grounded"
+    },
+    {
+      "semantic_match": false,
+      "shifts": [
+        {
+          "claim_phrase": "testament to the human spirit",
+          "source_phrase": "rely on ingenuity, resourcefulness and luck",
+          "shift_type": "connotation"
+        }
+      ],
+      "_idx": 150,
+      "_expected": "grounded"
+    },
+    {
+      "semantic_match": true,
+      "shifts": [],
+      "_idx": 151,
+      "_expected": "grounded"
+    },
+    {
+      "semantic_match": true,
+      "shifts": [],
+      "_idx": 152,
+      "_expected": "grounded"
+    },
+    {
+      "semantic_match": false,
+      "shifts": [
+        {
+          "claim_phrase": "following the advice given in an ISIS manual for recruits",
+          "source_phrase": "An ISIS manual advises recruits to buy round-trip tickets to vacation spots such as Spain... On March 26, Thomas purchased a ticket to Barcelona",
+          "shift_type": "causation"
+        }
+      ],
+      "_idx": 153,
+      "_expected": "grounded"
+    },
+    {
+      "semantic_match": true,
+      "shifts": [],
+      "_idx": 154,
+      "_expected": "grounded"
+    },
+    {
+      "semantic_match": true,
+      "shifts": [],
+      "_idx": 155,
+      "_expected": "grounded"
+    },
+    {
+      "semantic_match": true,
+      "shifts": [],
+      "_idx": 156,
+      "_expected": "grounded"
+    },
+    {
+      "semantic_match": true,
+      "shifts": [],
+      "_idx": 157,
+      "_expected": "grounded"
+    },
+    {
+      "semantic_match": true,
+      "shifts": [],
+      "_idx": 158,
+      "_expected": "grounded"
+    },
+    {
+      "semantic_match": false,
+      "shifts": [
+        {
+          "claim_phrase": "prosecuted",
+          "source_phrase": "prosecuted or is prosecuting",
+          "shift_type": "other"
+        },
+        {
+          "claim_phrase": "related to terrorism",
+          "source_phrase": "of people attempting to travel abroad to join or provide support to terrorist groups",
+          "shift_type": "other"
+        }
+      ],
+      "_idx": 159,
+      "_expected": "grounded"
+    },
+    {
+      "semantic_match": true,
+      "shifts": [],
+      "_idx": 160,
+      "_expected": "grounded"
+    },
+    {
+      "semantic_match": true,
+      "shifts": [],
+      "_idx": 161,
+      "_expected": "grounded"
+    },
+    {
+      "semantic_match": true,
+      "shifts": [],
+      "_idx": 162,
+      "_expected": "grounded"
+    },
+    {
+      "semantic_match": true,
+      "shifts": [],
+      "_idx": 163,
+      "_expected": "grounded"
+    },
+    {
+      "semantic_match": false,
+      "shifts": [
+        {
+          "claim_phrase": "potential use of social media and the internet",
+          "source_phrase": "effective use of social media, the Internet",
+          "shift_type": "other"
+        }
+      ],
+      "_idx": 164,
+      "_expected": "grounded"
+    },
+    {
+      "semantic_match": true,
+      "shifts": [],
+      "_idx": 165,
+      "_expected": "grounded"
+    },
+    {
+      "semantic_match": true,
+      "shifts": [],
+      "_idx": 166,
+      "_expected": "grounded"
+    },
+    {
+      "semantic_match": true,
+      "shifts": [],
+      "_idx": 167,
+      "_expected": "grounded"
+    },
+    {
+      "semantic_match": true,
+      "shifts": [],
+      "_idx": 168,
+      "_expected": "grounded"
+    },
+    {
+      "semantic_match": false,
+      "shifts": [
+        {
+          "claim_phrase": "Three women... were charged with attempting to join ISIS",
+          "source_phrase": "She's one of three women arrested this week on terror charges... Noelle Velentzas... and... Asia Siddiqui... were arrested in New York and accused of planning to build an explosive device for attacks in the United States",
+          "shift_type": "other"
+        }
+      ],
+      "_idx": 169,
+      "_expected": "hallucinated"
+    },
+    {
+      "semantic_match": false,
+      "shifts": [
+        {
+          "claim_phrase": "arrested before her trip",
+          "source_phrase": "It's not clear when or where she was arrested",
+          "shift_type": "other"
+        }
+      ],
+      "_idx": 170,
+      "_expected": "hallucinated"
+    },
+    {
+      "semantic_match": true,
+      "shifts": [],
+      "_idx": 171,
+      "_expected": "grounded"
+    },
+    {
+      "semantic_match": true,
+      "shifts": [],
+      "_idx": 172,
+      "_expected": "grounded"
+    },
+    {
+      "semantic_match": false,
+      "shifts": [
+        {
+          "claim_phrase": "US citizens",
+          "source_phrase": "people",
+          "shift_type": "other"
+        },
+        {
+          "claim_phrase": "involving ISIS",
+          "source_phrase": "allegedly involve support to ISIS",
+          "shift_type": "other"
+        }
+      ],
+      "_idx": 173,
+      "_expected": "grounded"
+    },
+    {
+      "semantic_match": false,
+      "shifts": [
+        {
+          "claim_phrase": "travel to Syria",
+          "source_phrase": "travel overseas",
+          "shift_type": "other"
+        },
+        {
+          "claim_phrase": "join ISIS",
+          "source_phrase": "fight for ISIS",
+          "shift_type": "connotation"
+        }
+      ],
+      "_idx": 174,
+      "_expected": "grounded"
+    },
+    {
+      "semantic_match": false,
+      "shifts": [
+        {
+          "claim_phrase": "arrested on March 26",
+          "source_phrase": "On March 26, Thomas purchased a ticket to Barcelona... It's not clear when or where she was arrested.",
+          "shift_type": "other"
+        }
+      ],
+      "_idx": 175,
+      "_expected": "hallucinated"
+    },
+    {
+      "semantic_match": false,
+      "shifts": [
+        {
+          "claim_phrase": "for planning to build an explosive device for attacks in the US",
+          "source_phrase": "accused of planning to build an explosive device for attacks in the United States",
+          "shift_type": "other"
+        }
+      ],
+      "_idx": 176,
+      "_expected": "grounded"
+    },
+    {
+      "semantic_match": false,
+      "shifts": [
+        {
+          "claim_phrase": "prosecuted 30 cases",
+          "source_phrase": "prosecuted or is prosecuting more than 30 cases",
+          "shift_type": "other"
+        },
+        {
+          "claim_phrase": "18 involving ISIS",
+          "source_phrase": "18 allegedly involve support to ISIS",
+          "shift_type": "other"
+        }
+      ],
+      "_idx": 177,
+      "_expected": "grounded"
+    },
+    {
+      "semantic_match": false,
+      "shifts": [
+        {
+          "claim_phrase": "decentralized, diffuse, and complicated",
+          "source_phrase": "more decentralized, more diffuse, more complicated",
+          "shift_type": "intensity"
+        }
+      ],
+      "_idx": 178,
+      "_expected": "grounded"
+    },
+    {
+      "semantic_match": true,
+      "shifts": [],
+      "_idx": 179,
+      "_expected": "grounded"
+    },
+    {
+      "semantic_match": true,
+      "shifts": [],
+      "_idx": 180,
+      "_expected": "grounded"
+    },
+    {
+      "semantic_match": true,
+      "shifts": [],
+      "_idx": 181,
+      "_expected": "grounded"
+    },
+    {
+      "semantic_match": true,
+      "shifts": [],
+      "_idx": 182,
+      "_expected": "grounded"
+    },
+    {
+      "semantic_match": true,
+      "shifts": [],
+      "_idx": 183,
+      "_expected": "grounded"
+    },
+    {
+      "semantic_match": true,
+      "shifts": [],
+      "_idx": 184,
+      "_expected": "grounded"
+    },
+    {
+      "semantic_match": true,
+      "shifts": [],
+      "_idx": 185,
+      "_expected": "grounded"
+    },
+    {
+      "semantic_match": true,
+      "shifts": [],
+      "_idx": 186,
+      "_expected": "grounded"
+    },
+    {
+      "semantic_match": false,
+      "shifts": [
+        {
+          "claim_phrase": "a five-year prison sentence for the consumption or sale of beef",
+          "source_phrase": "the consumption or sale of beef could now land you in prison for five years",
+          "shift_type": "other"
+        }
+      ],
+      "_idx": 187,
+      "_expected": "grounded"
+    },
+    {
+      "semantic_match": false,
+      "shifts": [
+        {
+          "claim_phrase": "plan to file a case",
+          "source_phrase": "vowed to file a case",
+          "shift_type": "intensity"
+        }
+      ],
+      "_idx": 188,
+      "_expected": "grounded"
+    },
+    {
+      "semantic_match": true,
+      "shifts": [],
+      "_idx": 189,
+      "_expected": "grounded"
+    },
+    {
+      "semantic_match": false,
+      "shifts": [
+        {
+          "claim_phrase": "cows",
+          "source_phrase": "Cattle",
+          "shift_type": "other"
+        },
+        {
+          "claim_phrase": "due to",
+          "source_phrase": "Following",
+          "shift_type": "causation"
+        }
+      ],
+      "_idx": 190,
+      "_expected": "grounded"
+    },
+    {
+      "semantic_match": true,
+      "shifts": [],
+      "_idx": 191,
+      "_expected": "grounded"
+    },
+    {
+      "semantic_match": false,
+      "shifts": [
+        {
+          "claim_phrase": "praised by some",
+          "source_phrase": "Police officials believe this is the only way to solve cow slaughter cases and enforce the law",
+          "shift_type": "connotation"
+        }
+      ],
+      "_idx": 192,
+      "_expected": "grounded"
+    },
+    {
+      "semantic_match": false,
+      "shifts": [
+        {
+          "claim_phrase": "have filed a case",
+          "source_phrase": "vowed to file a case",
+          "shift_type": "other"
+        },
+        {
+          "claim_phrase": "beef traders and red meat lovers... have filed",
+          "source_phrase": "They [traders] have now vowed to file",
+          "shift_type": "other"
+        }
+      ],
+      "_idx": 193,
+      "_expected": "grounded"
+    },
+    {
+      "semantic_match": true,
+      "shifts": [],
+      "_idx": 194,
+      "_expected": "grounded"
+    },
+    {
+      "semantic_match": true,
+      "shifts": [],
+      "_idx": 195,
+      "_expected": "grounded"
+    },
+    {
+      "semantic_match": true,
+      "shifts": [],
+      "_idx": 196,
+      "_expected": "grounded"
+    },
+    {
+      "semantic_match": false,
+      "shifts": [
+        {
+          "claim_phrase": "will help them solve",
+          "source_phrase": "is the only way to solve",
+          "shift_type": "intensity"
+        }
+      ],
+      "_idx": 197,
+      "_expected": "grounded"
+    },
+    {
+      "semantic_match": true,
+      "shifts": [],
+      "_idx": 198,
+      "_expected": "grounded"
+    },
+    {
+      "semantic_match": false,
+      "shifts": [
+        {
+          "claim_phrase": "calling it an invasion of privacy",
+          "source_phrase": "arguing the government doesn't have a right to interfere in an individual's personal preference",
+          "shift_type": "other"
+        }
+      ],
+      "_idx": 199,
+      "_expected": "hallucinated"
+    },
+    {
+      "semantic_match": true,
+      "shifts": [],
+      "_idx": 200,
+      "_expected": "grounded"
+    },
+    {
+      "semantic_match": true,
+      "shifts": [],
+      "_idx": 201,
+      "_expected": "grounded"
+    },
+    {
+      "semantic_match": true,
+      "shifts": [],
+      "_idx": 202,
+      "_expected": "grounded"
+    },
+    {
+      "semantic_match": true,
+      "shifts": [],
+      "_idx": 203,
+      "_expected": "grounded"
+    },
+    {
+      "semantic_match": true,
+      "shifts": [],
+      "_idx": 204,
+      "_expected": "grounded"
+    },
+    {
+      "semantic_match": true,
+      "shifts": [],
+      "_idx": 205,
+      "_expected": "grounded"
+    },
+    {
+      "semantic_match": true,
+      "shifts": [],
+      "_idx": 206,
+      "_expected": "grounded"
+    },
+    {
+      "semantic_match": true,
+      "shifts": [],
+      "_idx": 207,
+      "_expected": "grounded"
+    },
+    {
+      "semantic_match": true,
+      "shifts": [],
+      "_idx": 208,
+      "_expected": "grounded"
+    },
+    {
+      "semantic_match": true,
+      "shifts": [],
+      "_idx": 209,
+      "_expected": "grounded"
+    },
+    {
+      "semantic_match": true,
+      "shifts": [],
+      "_idx": 210,
+      "_expected": "grounded"
+    },
+    {
+      "semantic_match": true,
+      "shifts": [],
+      "_idx": 211,
+      "_expected": "grounded"
+    },
+    {
+      "semantic_match": true,
+      "shifts": [],
+      "_idx": 212,
+      "_expected": "grounded"
+    },
+    {
+      "semantic_match": true,
+      "shifts": [],
+      "_idx": 213,
+      "_expected": "grounded"
+    },
+    {
+      "semantic_match": true,
+      "shifts": [],
+      "_idx": 214,
+      "_expected": "grounded"
+    },
+    {
+      "semantic_match": true,
+      "shifts": [],
+      "_idx": 215,
+      "_expected": "grounded"
+    },
+    {
+      "semantic_match": true,
+      "shifts": [],
+      "_idx": 216,
+      "_expected": "grounded"
+    },
+    {
+      "semantic_match": true,
+      "shifts": [],
+      "_idx": 217,
+      "_expected": "grounded"
+    },
+    {
+      "semantic_match": true,
+      "shifts": [],
+      "_idx": 218,
+      "_expected": "grounded"
+    },
+    {
+      "semantic_match": true,
+      "shifts": [],
+      "_idx": 219,
+      "_expected": "grounded"
+    },
+    {
+      "semantic_match": true,
+      "shifts": [],
+      "_idx": 220,
+      "_expected": "grounded"
+    },
+    {
+      "semantic_match": true,
+      "shifts": [],
+      "_idx": 221,
+      "_expected": "grounded"
+    },
+    {
+      "semantic_match": false,
+      "shifts": [
+        {
+          "claim_phrase": "An FBI agent and a task force officer were injured",
+          "source_phrase": "two agents were injured",
+          "shift_type": "other"
+        }
+      ],
+      "_idx": 222,
+      "_expected": "grounded"
+    },
+    {
+      "semantic_match": false,
+      "shifts": [
+        {
+          "claim_phrase": "believed to be responsible for",
+          "source_phrase": "suspected of involvement in",
+          "shift_type": "intensity"
+        }
+      ],
+      "_idx": 223,
+      "_expected": "grounded"
+    },
+    {
+      "semantic_match": false,
+      "shifts": [
+        {
+          "claim_phrase": "high-speed pursuit",
+          "source_phrase": "traveled about 75 yards",
+          "shift_type": "intensity"
+        }
+      ],
+      "_idx": 224,
+      "_expected": "grounded"
+    },
+    {
+      "semantic_match": true,
+      "shifts": [],
+      "_idx": 225,
+      "_expected": "grounded"
+    },
+    {
+      "semantic_match": false,
+      "shifts": [
+        {
+          "claim_phrase": "injured two suspects",
+          "source_phrase": "two agents were injured in a crash and the suspect was shot",
+          "shift_type": "other"
+        },
+        {
+          "claim_phrase": "high-speed chase",
+          "source_phrase": "FBI chasing an armed robbery suspect",
+          "shift_type": "intensity"
+        }
+      ],
+      "_idx": 226,
+      "_expected": "hallucinated"
+    },
+    {
+      "semantic_match": true,
+      "shifts": [],
+      "_idx": 227,
+      "_expected": "grounded"
+    },
+    {
+      "semantic_match": false,
+      "shifts": [
+        {
+          "claim_phrase": "their injuries are not life-threatening",
+          "source_phrase": "they are fine",
+          "shift_type": "intensity"
+        }
+      ],
+      "_idx": 228,
+      "_expected": "grounded"
+    },
+    {
+      "semantic_match": false,
+      "shifts": [
+        {
+          "claim_phrase": "the FBI is investigating the incident as a conclusion to an intense and lengthy investigation",
+          "source_phrase": "He said it was the 'conclusion of an intensive and lengthy investigation.'",
+          "shift_type": "other"
+        }
+      ],
+      "_idx": 229,
+      "_expected": "grounded"
+    },
+    {
+      "semantic_match": false,
+      "shifts": [
+        {
+          "claim_phrase": "injured two people",
+          "source_phrase": "two agents were injured in a crash and the suspect was shot",
+          "shift_type": "causation"
+        }
+      ],
+      "_idx": 230,
+      "_expected": "hallucinated"
+    },
+    {
+      "semantic_match": false,
+      "shifts": [
+        {
+          "claim_phrase": "is accused of committing",
+          "source_phrase": "is suspected of involvement in",
+          "shift_type": "other"
+        }
+      ],
+      "_idx": 231,
+      "_expected": "grounded"
+    },
+    {
+      "semantic_match": true,
+      "shifts": [],
+      "_idx": 232,
+      "_expected": "grounded"
+    },
+    {
+      "semantic_match": false,
+      "shifts": [
+        {
+          "claim_phrase": "injured in the pursuit",
+          "source_phrase": "injured in a crash",
+          "shift_type": "other"
+        }
+      ],
+      "_idx": 233,
+      "_expected": "grounded"
+    },
+    {
+      "semantic_match": true,
+      "shifts": [],
+      "_idx": 234,
+      "_expected": "grounded"
+    },
+    {
+      "semantic_match": false,
+      "shifts": [
+        {
+          "claim_phrase": "high-speed chase",
+          "source_phrase": "traveled about 75 yards",
+          "shift_type": "intensity"
+        }
+      ],
+      "_idx": 235,
+      "_expected": "grounded"
+    },
+    {
+      "semantic_match": false,
+      "shifts": [
+        {
+          "claim_phrase": "their injuries are not life-threatening",
+          "source_phrase": "they are fine",
+          "shift_type": "other"
+        }
+      ],
+      "_idx": 236,
+      "_expected": "grounded"
+    },
+    {
+      "semantic_match": true,
+      "shifts": [],
+      "_idx": 237,
+      "_expected": "grounded"
+    },
+    {
+      "semantic_match": false,
+      "shifts": [
+        {
+          "claim_phrase": "investigating Charleston for months",
+          "source_phrase": "lengthy investigation",
+          "shift_type": "other"
+        }
+      ],
+      "_idx": 238,
+      "_expected": "grounded"
+    },
+    {
+      "semantic_match": true,
+      "shifts": [],
+      "_idx": 239,
+      "_expected": "grounded"
+    },
+    {
+      "semantic_match": true,
+      "shifts": [],
+      "_idx": 240,
+      "_expected": "grounded"
+    },
+    {
+      "semantic_match": true,
+      "shifts": [],
+      "_idx": 241,
+      "_expected": "grounded"
+    },
+    {
+      "semantic_match": true,
+      "shifts": [],
+      "_idx": 242,
+      "_expected": "grounded"
+    },
+    {
+      "semantic_match": true,
+      "shifts": [],
+      "_idx": 243,
+      "_expected": "grounded"
+    },
+    {
+      "semantic_match": true,
+      "shifts": [],
+      "_idx": 244,
+      "_expected": "grounded"
+    },
+    {
+      "semantic_match": true,
+      "shifts": [],
+      "_idx": 245,
+      "_expected": "grounded"
+    },
+    {
+      "semantic_match": true,
+      "shifts": [],
+      "_idx": 246,
+      "_expected": "grounded"
+    },
+    {
+      "semantic_match": false,
+      "shifts": [
+        {
+          "claim_phrase": "specifically 3-ounce servings of ice cream with coding dates marked with the letters O, P, Q, R, S, or T",
+          "source_phrase": "3-ounce servings of Blue Bell ice cream from this plant that went to institutions in containers marked with the letters O, P, Q, R, S or T behind the coding date",
+          "shift_type": "other"
+        }
+      ],
+      "_idx": 247,
+      "_expected": "grounded"
+    },
+    {
+      "semantic_match": true,
+      "shifts": [],
+      "_idx": 248,
+      "_expected": "grounded"
+    },
+    {
+      "semantic_match": true,
+      "shifts": [],
+      "_idx": 249,
+      "_expected": "grounded"
+    },
+    {
+      "semantic_match": false,
+      "shifts": [
+        {
+          "claim_phrase": "due to",
+          "source_phrase": "in light of",
+          "shift_type": "causation"
+        }
+      ],
+      "_idx": 250,
+      "_expected": "grounded"
+    },
+    {
+      "semantic_match": false,
+      "shifts": [
+        {
+          "claim_phrase": "matched",
+          "source_phrase": "appeared to match each other genetically",
+          "shift_type": "intensity"
+        }
+      ],
+      "_idx": 251,
+      "_expected": "grounded"
+    },
+    {
+      "semantic_match": true,
+      "shifts": [],
+      "_idx": 252,
+      "_expected": "grounded"
+    },
+    {
+      "semantic_match": true,
+      "shifts": [],
+      "_idx": 253,
+      "_expected": "grounded"
+    },
+    {
+      "semantic_match": true,
+      "shifts": [],
+      "_idx": 254,
+      "_expected": "grounded"
+    },
+    {
+      "semantic_match": true,
+      "shifts": [],
+      "_idx": 255,
+      "_expected": "grounded"
+    },
+    {
+      "semantic_match": true,
+      "shifts": [],
+      "_idx": 256,
+      "_expected": "grounded"
+    },
+    {
+      "semantic_match": false,
+      "shifts": [
+        {
+          "claim_phrase": "No Blue Bell Ice Cream Is Linked to Infections in Patients",
+          "source_phrase": "None of this means the ice cream is the source of either spate of the infections. \"Investigation to determine whether these illnesses are related to exposure to Blue Bell products is ongoing,\" the CDC said.",
+          "shift_type": "causation"
+        }
+      ],
+      "_idx": 257,
+      "_expected": "hallucinated"
+    },
+    {
+      "semantic_match": true,
+      "shifts": [],
+      "_idx": 258,
+      "_expected": "grounded"
+    },
+    {
+      "semantic_match": true,
+      "shifts": [],
+      "_idx": 259,
+      "_expected": "grounded"
+    },
+    {
+      "semantic_match": true,
+      "shifts": [],
+      "_idx": 260,
+      "_expected": "grounded"
+    },
+    {
+      "semantic_match": true,
+      "shifts": [],
+      "_idx": 261,
+      "_expected": "grounded"
+    },
+    {
+      "semantic_match": true,
+      "shifts": [],
+      "_idx": 262,
+      "_expected": "grounded"
+    },
+    {
+      "semantic_match": true,
+      "shifts": [],
+      "_idx": 263,
+      "_expected": "grounded"
+    },
+    {
+      "semantic_match": true,
+      "shifts": [],
+      "_idx": 264,
+      "_expected": "grounded"
+    },
+    {
+      "semantic_match": true,
+      "shifts": [],
+      "_idx": 265,
+      "_expected": "grounded"
+    },
+    {
+      "semantic_match": true,
+      "shifts": [],
+      "_idx": 266,
+      "_expected": "grounded"
+    },
+    {
+      "semantic_match": true,
+      "shifts": [],
+      "_idx": 267,
+      "_expected": "grounded"
+    },
+    {
+      "semantic_match": true,
+      "shifts": [],
+      "_idx": 268,
+      "_expected": "grounded"
+    },
+    {
+      "semantic_match": true,
+      "shifts": [],
+      "_idx": 269,
+      "_expected": "grounded"
+    },
+    {
+      "semantic_match": false,
+      "shifts": [
+        {
+          "claim_phrase": "The company... advises",
+          "source_phrase": "The CDC advises",
+          "shift_type": "other"
+        }
+      ],
+      "_idx": 270,
+      "_expected": "grounded"
+    },
+    {
+      "semantic_match": true,
+      "shifts": [],
+      "_idx": 271,
+      "_expected": "grounded"
+    },
+    {
+      "semantic_match": true,
+      "shifts": [],
+      "_idx": 272,
+      "_expected": "grounded"
+    },
+    {
+      "semantic_match": false,
+      "shifts": [
+        {
+          "claim_phrase": "advised",
+          "source_phrase": "warned",
+          "shift_type": "intensity"
+        }
+      ],
+      "_idx": 273,
+      "_expected": "grounded"
+    },
+    {
+      "semantic_match": false,
+      "shifts": [
+        {
+          "claim_phrase": "certain coding dates",
+          "source_phrase": "letters O, P, Q, R, S or T behind the coding date",
+          "shift_type": "other"
+        }
+      ],
+      "_idx": 274,
+      "_expected": "grounded"
+    },
+    {
+      "semantic_match": false,
+      "shifts": [
+        {
+          "claim_phrase": "due to listeria contamination",
+          "source_phrase": "in light of a listeria outbreak",
+          "shift_type": "causation"
+        },
+        {
+          "claim_phrase": "the company is cooperating with investigations",
+          "source_phrase": "n/a",
+          "shift_type": "other"
+        }
+      ],
+      "_idx": 275,
+      "_expected": "grounded"
+    },
+    {
+      "semantic_match": false,
+      "shifts": [
+        {
+          "claim_phrase": "five people in Kansas have died",
+          "source_phrase": "Five people were infected and three died",
+          "shift_type": "other"
+        },
+        {
+          "claim_phrase": "after consuming Blue Bell products",
+          "source_phrase": "might be linked to Blue Bell Creameries products",
+          "shift_type": "causation"
+        }
+      ],
+      "_idx": 276,
+      "_expected": "hallucinated"
+    },
+    {
+      "semantic_match": true,
+      "shifts": [],
+      "_idx": 277,
+      "_expected": "grounded"
+    },
+    {
+      "semantic_match": true,
+      "shifts": [],
+      "_idx": 278,
+      "_expected": "grounded"
+    },
+    {
+      "semantic_match": true,
+      "shifts": [],
+      "_idx": 279,
+      "_expected": "grounded"
+    },
+    {
+      "semantic_match": true,
+      "shifts": [],
+      "_idx": 280,
+      "_expected": "grounded"
+    },
+    {
+      "semantic_match": false,
+      "shifts": [
+        {
+          "claim_phrase": "found a link between the contaminated ice cream and a listeria outbreak at a Kansas hospital",
+          "source_phrase": "But they did not appear identical to listeria samples taken from patients infected in the Kansas outbreak",
+          "shift_type": "other"
+        }
+      ],
+      "_idx": 281,
+      "_expected": "grounded"
+    },
+    {
+      "semantic_match": true,
+      "shifts": [],
+      "_idx": 282,
+      "_expected": "grounded"
+    },
+    {
+      "semantic_match": true,
+      "shifts": [],
+      "_idx": 283,
+      "_expected": "grounded"
+    },
+    {
+      "semantic_match": true,
+      "shifts": [],
+      "_idx": 284,
+      "_expected": "grounded"
+    },
+    {
+      "_error": "The read operation timed out",
+      "_idx": 285,
+      "_expected": "grounded"
+    },
+    {
+      "semantic_match": true,
+      "shifts": [],
+      "_idx": 286,
+      "_expected": "grounded"
+    },
+    {
+      "semantic_match": true,
+      "shifts": [],
+      "_idx": 287,
+      "_expected": "grounded"
+    },
+    {
+      "semantic_match": true,
+      "shifts": [],
+      "_idx": 288,
+      "_expected": "grounded"
+    },
+    {
+      "semantic_match": false,
+      "shifts": [
+        {
+          "claim_phrase": "Both women were in Hong Kong as domestic workers",
+          "source_phrase": "Ningsih was visiting Hong Kong as a tourist",
+          "shift_type": "other"
+        }
+      ],
+      "_idx": 289,
+      "_expected": "grounded"
+    },
+    {
+      "semantic_match": true,
+      "shifts": [],
+      "_idx": 290,
+      "_expected": "grounded"
+    },
+    {
+      "semantic_match": true,
+      "shifts": [],
+      "_idx": 291,
+      "_expected": "grounded"
+    },
+    {
+      "semantic_match": true,
+      "shifts": [],
+      "_idx": 292,
+      "_expected": "grounded"
+    },
+    {
+      "semantic_match": false,
+      "shifts": [
+        {
+          "claim_phrase": "November 2014",
+          "source_phrase": "last November",
+          "shift_type": "other"
+        },
+        {
+          "claim_phrase": "gruesome crime",
+          "source_phrase": "alleged crime",
+          "shift_type": "connotation"
+        }
+      ],
+      "_idx": 293,
+      "_expected": "grounded"
+    },
+    {
+      "semantic_match": true,
+      "shifts": [],
+      "_idx": 294,
+      "_expected": "grounded"
+    },
+    {
+      "semantic_match": true,
+      "shifts": [],
+      "_idx": 295,
+      "_expected": "grounded"
+    },
+    {
+      "semantic_match": true,
+      "shifts": [],
+      "_idx": 296,
+      "_expected": "grounded"
+    },
+    {
+      "semantic_match": true,
+      "shifts": [],
+      "_idx": 297,
+      "_expected": "grounded"
+    },
+    {
+      "semantic_match": true,
+      "shifts": [],
+      "_idx": 298,
+      "_expected": "grounded"
+    },
+    {
+      "semantic_match": true,
+      "shifts": [],
+      "_idx": 299,
+      "_expected": "grounded"
+    }
+  ]
+}

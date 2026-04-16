@@ -1,0 +1,59 @@
+{
+  "stories": [
+    {
+      "thread": "History of Sports Ban in Iran",
+      "story": "Since Iran's Islamic Revolution in 1979, women have been barred from attending most sports events involving men, as Iranian authorities deemed mixed crowds watching games together un-Islamic. During the ensuing decades, the crowds at soccer games, Iran's most popular sport, have been all male. Iranian women were briefly permitted to attend volleyball matches under the moderate President Mohammad Khatami, but the ban was reinstated in 2005 after the more hard-line Mahmoud Ahmadinejad came to power.",
+      "key_facts": [
+        "Women barred from men's sports events in Iran since the Islamic Revolution in 1979",
+        "Iranian authorities deemed mixed crowds un-Islamic",
+        "Ban reinstated in 2005 under President Mahmoud Ahmadinejad after brief lifting under President Mohammad Khatami"
+      ],
+      "explicit_unknowns": [
+        "It is not stated which specific sports events women were barred from attending besides soccer and volleyball."
+      ]
+    },
+    {
+      "thread": "Upcoming Changes to Iran's Sports Ban",
+      "story": "The situation appears set to improve in Iran in the coming months, as a top Iranian sports official said the ban on women attending men's sports events will be lifted for some events. Deputy Sports Minister Abdolhamid Ahmadi said Saturday, according to state-run media, that a plan to allow \"women and families\" to enter sports stadiums will come into effect in the next year. According to the state-run Press TV, Deputy Sports Minister Abdolhamid Ahmadi specified that the restrictions would be lifted for indoor sports events. However, Deputy Sports Minister Abdolhamid Ahmadi also stated that the rules won't change for all matches because some sports are mainly related to men and \"families are not interested in attending\" them, Press TV cited him as saying.",
+      "key_facts": [
+        "Ban on women attending men's sports events in Iran to be lifted for some events in the coming months",
+        "Deputy Sports Minister Abdolhamid Ahmadi announced a plan for \"women and families\" to enter stadiums in the next year",
+        "Restrictions will be lifted for indoor sports events",
+        "Rules won't change for all matches as some are mainly for men and families are not interested"
+      ],
+      "explicit_unknowns": [
+        "It isn't clear exactly which games women will be able to attend beyond indoor sports events.",
+        "It is not stated which specific sports events are mainly related to men and families are not interested in attending."
+      ]
+    },
+    {
+      "thread": "International Pressure on Iran's Sports Ban",
+      "story": "The Iranian government has come under pressure from international sports officials over the restrictions on women attending men's sports events. FIFA President Sepp Blatter called on Iran last month to end its \"intolerable\" ban on women attending soccer matches, saying the situation \"cannot continue.\" Iran had been in the running to host the 2019 edition of soccer's Asian Cup, but the tournament was awarded to the United Arab Emirates. The ban on women attending matches was widely seen as a major impediment to Iran's chances of securing the 2019 Asian Cup event.",
+      "key_facts": [
+        "Iranian government under pressure from international sports officials",
+        "FIFA President Sepp Blatter called for an end to the ban on women attending soccer matches last month",
+        "Iran lost its bid to host the 2019 Asian Cup to the United Arab Emirates",
+        "The ban was seen as a major impediment to Iran's Asian Cup bid"
+      ],
+      "explicit_unknowns": [
+        "It is not stated which specific international sports officials, besides FIFA President Sepp Blatter, pressured the Iranian government."
+      ]
+    },
+    {
+      "thread": "Activism and Individual Cases Related to the Ban",
+      "story": "The ban on women attending men's sports events came under the spotlight at the Asian Cup in Australia earlier this year, when thousands of female Iranian fans watched their soccer team without restriction. During the match against Iraq, activists called for the ban to end and unfurled a banner showing the face of Ghoncheh Ghavami, a British-Iranian woman detained in Iran last year while trying to watch a volleyball match. Iranian officials have denied that Ghoncheh Ghavami was arrested for attending the volleyball game, saying she was taken into custody for \"anti-Iran activities.\" The news agency Reuters reported that Ghoncheh Ghavami was recently pardoned by the Court of Appeal.",
+      "key_facts": [
+        "Ban highlighted at Asian Cup in Australia earlier this year",
+        "Activists called for the ban to end during a match against Iraq",
+        "Ghoncheh Ghavami, a British-Iranian woman, was detained last year for trying to watch a volleyball match",
+        "Iranian officials denied Ghoncheh Ghavami was arrested for the game, citing 'anti-Iran activities'",
+        "Reuters reported Ghoncheh Ghavami was recently pardoned by the Court of Appeal"
+      ],
+      "explicit_unknowns": [
+        "It is not stated who the activists were who unfurled the banner.",
+        "It is not stated what specific 'anti-Iran activities' Ghoncheh Ghavami was accused of."
+      ]
+    }
+  ],
+  "_elapsed": 20.7
+}

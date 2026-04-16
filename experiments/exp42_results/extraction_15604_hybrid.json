@@ -1,0 +1,1993 @@
+{
+  "event_hubs": [
+    {
+      "event_id": "EVT_1",
+      "action": "elected",
+      "source_sentence": "S0",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "Speaker",
+          "source": "S0"
+        },
+        {
+          "type": "target_of",
+          "target": "Kentucky State Senate",
+          "source": "S0"
+        },
+        {
+          "type": "when",
+          "target": "1967",
+          "source": "S0"
+        },
+        {
+          "type": "where",
+          "target": "Kentucky",
+          "source": "S0"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_2",
+      "action": "became",
+      "source_sentence": "S0",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "Speaker",
+          "source": "S0"
+        },
+        {
+          "type": "target_of",
+          "target": "first woman and the first person of color",
+          "source": "S0"
+        },
+        {
+          "type": "where",
+          "target": "Kentucky State Senate",
+          "source": "S0"
+        },
+        {
+          "type": "when",
+          "target": "1967 (implied)",
+          "source": "S0"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_3",
+      "action": "attempting to launch",
+      "source_sentence": "S1",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "Rand Paul",
+          "source": "S1"
+        },
+        {
+          "type": "target_of",
+          "target": "Presidential Campaign (Rand Paul's)",
+          "source": "S1"
+        },
+        {
+          "type": "when",
+          "target": "Five decades later (from 1967)",
+          "source": "S1"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_4",
+      "action": "questioning",
+      "source_sentence": "S1",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "Rand Paul",
+          "source": "S1"
+        },
+        {
+          "type": "target_of",
+          "target": "Civil Rights Legislation",
+          "source": "S1"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_5",
+      "action": "declared",
+      "source_sentence": "S2",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "Rand Paul",
+          "source": "S2"
+        },
+        {
+          "type": "target_of",
+          "target": "running for president of the United States",
+          "source": "S2"
+        },
+        {
+          "type": "when",
+          "target": "today",
+          "source": "S2"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_6",
+      "action": "running",
+      "source_sentence": "S2",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "Rand Paul",
+          "source": "S2"
+        },
+        {
+          "type": "target_of",
+          "target": "President of the United States",
+          "source": "S2"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_7",
+      "action": "told",
+      "source_sentence": "S3",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "Rand Paul's Campaign Team",
+          "source": "S3"
+        },
+        {
+          "type": "target_of",
+          "target": "Reporters",
+          "source": "S3"
+        },
+        {
+          "type": "when",
+          "target": "last week",
+          "source": "S3"
+        },
+        {
+          "type": "how",
+          "target": "that his campaign announcement message would be about \"expanding the Republican Party\"",
+          "source": "S3"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_8",
+      "action": "expanding",
+      "source_sentence": "S3",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "Rand Paul",
+          "source": "S3"
+        },
+        {
+          "type": "target_of",
+          "target": "Republican Party",
+          "source": "S3"
+        },
+        {
+          "type": "why",
+          "target": "a message of inclusion",
+          "source": "S3"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_9",
+      "action": "listening",
+      "source_sentence": "S4",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "Speaker",
+          "source": "S4"
+        },
+        {
+          "type": "when",
+          "target": "today",
+          "source": "S4"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_10",
+      "action": "hoping to include",
+      "source_sentence": "S4",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "Rand Paul",
+          "source": "S4"
+        },
+        {
+          "type": "target_of",
+          "target": "Speaker",
+          "source": "S4"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_11",
+      "action": "heard",
+      "source_sentence": "S4",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "Speaker",
+          "source": "S4"
+        },
+        {
+          "type": "target_of",
+          "target": "nothing more than hype",
+          "source": "S4"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_12",
+      "action": "not buying",
+      "source_sentence": "S5",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "Speaker",
+          "source": "S5"
+        },
+        {
+          "type": "target_of",
+          "target": "it (the message of inclusion/hype)",
+          "source": "S5"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_13",
+      "action": "coming",
+      "source_sentence": "S7",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "Rand Paul",
+          "source": "S7"
+        },
+        {
+          "type": "target_of",
+          "target": "U.S. Senate",
+          "source": "S7"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_14",
+      "action": "tried to sell",
+      "source_sentence": "S7",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "Rand Paul",
+          "source": "S7"
+        },
+        {
+          "type": "target_of",
+          "target": "himself as a different type of Republican",
+          "source": "S7"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_15",
+      "action": "tried to brand",
+      "source_sentence": "S8",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "Rand Paul",
+          "source": "S8"
+        },
+        {
+          "type": "target_of",
+          "target": "himself as the GOP's minority outreach candidate",
+          "source": "S8"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_16",
+      "action": "don't back up",
+      "source_sentence": "S9",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "Rand Paul",
+          "source": "S9"
+        },
+        {
+          "type": "agent_of",
+          "target": "Republican Party",
+          "source": "S9"
+        },
+        {
+          "type": "target_of",
+          "target": "their words with their policies",
+          "source": "S9"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_17",
+      "action": "started considering",
+      "source_sentence": "S10",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "Republican Party",
+          "source": "S10"
+        },
+        {
+          "type": "target_of",
+          "target": "the fact that black voters are an important piece of the electoral puzzle",
+          "source": "S10"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_18",
+      "action": "appeal",
+      "source_sentence": "S11",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "Republican Party",
+          "source": "S11"
+        },
+        {
+          "type": "target_of",
+          "target": "Black Voters",
+          "source": "S11"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_19",
+      "action": "have commitment",
+      "source_sentence": "S11",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "Republican Party",
+          "source": "S11"
+        },
+        {
+          "type": "target_of",
+          "target": "issues facing minority communities",
+          "source": "S11"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_20",
+      "action": "makes clear",
+      "source_sentence": "S13",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "A quick survey of Sen. Paul's positions",
+          "source": "S13"
+        },
+        {
+          "type": "target_of",
+          "target": "Rand Paul does not have a real commitment to the issues facing minority communities",
+          "source": "S13"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_21",
+      "action": "kicked off",
+      "source_sentence": "S14",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "Rand Paul",
+          "source": "S14"
+        },
+        {
+          "type": "target_of",
+          "target": "his announcement speech",
+          "source": "S14"
+        },
+        {
+          "type": "where",
+          "target": "Louisville",
+          "source": "S14"
+        },
+        {
+          "type": "how",
+          "target": "by declaring 'I have a message...'",
+          "source": "S14"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_22",
+      "action": "declaring",
+      "source_sentence": "S14",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "Rand Paul",
+          "source": "S14"
+        },
+        {
+          "type": "target_of",
+          "target": "I have a message that is loud and clear: We have come to take our country back.",
+          "source": "S14"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_23",
+      "action": "take back",
+      "source_sentence": "S14",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "Rand Paul",
+          "source": "S14"
+        },
+        {
+          "type": "target_of",
+          "target": "American People",
+          "source": "S14"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_24",
+      "action": "debating",
+      "source_sentence": "S14",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "we (implied historical actors)",
+          "source": "S14"
+        },
+        {
+          "type": "target_of",
+          "target": "Civil Rights Legislation",
+          "source": "S14"
+        },
+        {
+          "type": "when",
+          "target": "a time when we were debating the Civil Rights Act",
+          "source": "S14"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_25",
+      "action": "done (debated)",
+      "source_sentence": "S14",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "Rand Paul",
+          "source": "S14"
+        },
+        {
+          "type": "target_of",
+          "target": "Civil Rights Legislation",
+          "source": "S14"
+        },
+        {
+          "type": "when",
+          "target": "since landing on the national stage",
+          "source": "S14"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_26",
+      "action": "was no",
+      "source_sentence": "S14",
+      "edges": [
+        {
+          "type": "target_of",
+          "target": "Department of Education",
+          "source": "S14"
+        },
+        {
+          "type": "when",
+          "target": "a time when there was no Department of Education",
+          "source": "S14"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_27",
+      "action": "thinks / should be done away with",
+      "source_sentence": "S14",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "Rand Paul",
+          "source": "S14"
+        },
+        {
+          "type": "target_of",
+          "target": "Department of Education",
+          "source": "S14"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_28",
+      "action": "didn't have",
+      "source_sentence": "S14",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "Women",
+          "source": "S14"
+        },
+        {
+          "type": "target_of",
+          "target": "choices",
+          "source": "S14"
+        },
+        {
+          "type": "when",
+          "target": "a time when women didn't have choices",
+          "source": "S14"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_29",
+      "action": "seeks to limit",
+      "source_sentence": "S14",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "Rand Paul",
+          "source": "S14"
+        },
+        {
+          "type": "target_of",
+          "target": "choices (for women)",
+          "source": "S14"
+        },
+        {
+          "type": "where",
+          "target": "Washington",
+          "source": "S14"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_30",
+      "action": "weren't protected",
+      "source_sentence": "S14",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "DREAMers",
+          "source": "S14"
+        },
+        {
+          "type": "target_of",
+          "target": "deportation",
+          "source": "S14"
+        },
+        {
+          "type": "when",
+          "target": "a time when DREAMers weren't protected from deportation",
+          "source": "S14"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_31",
+      "action": "opposes",
+      "source_sentence": "S14",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "Rand Paul",
+          "source": "S14"
+        },
+        {
+          "type": "target_of",
+          "target": "protections (for DREAMers from deportation)",
+          "source": "S14"
+        },
+        {
+          "type": "when",
+          "target": "currently",
+          "source": "S14"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_32",
+      "action": "speaking",
+      "source_sentence": "S15",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "Rand Paul",
+          "source": "S15"
+        },
+        {
+          "type": "where",
+          "target": "Historically Black Colleges and Universities (HBCUs)",
+          "source": "S15"
+        },
+        {
+          "type": "how",
+          "target": "inept",
+          "source": "S15"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_33",
+      "action": "come across",
+      "source_sentence": "S15",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "Rand Paul",
+          "source": "S15"
+        },
+        {
+          "type": "how",
+          "target": "as condescending and lacking basic cultural competency",
+          "source": "S15"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_34",
+      "action": "questioned",
+      "source_sentence": "S16",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "Rand Paul",
+          "source": "S16"
+        },
+        {
+          "type": "target_of",
+          "target": "Civil Rights Legislation",
+          "source": "S16"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_35",
+      "action": "claimed",
+      "source_sentence": "S16",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "Rand Paul",
+          "source": "S16"
+        },
+        {
+          "type": "target_of",
+          "target": "private business owners have a right to discriminate",
+          "source": "S16"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_36",
+      "action": "asked",
+      "source_sentence": "S17",
+      "edges": [
+        {
+          "type": "target_of",
+          "target": "Rand Paul",
+          "source": "S17"
+        },
+        {
+          "type": "why",
+          "target": "about the need for a more robust Voting Rights Act",
+          "source": "S17"
+        },
+        {
+          "type": "when",
+          "target": "following the Supreme Court's dismantling of the law",
+          "source": "S17"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_37",
+      "action": "dismantling",
+      "source_sentence": "S17",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "Supreme Court",
+          "source": "S17"
+        },
+        {
+          "type": "target_of",
+          "target": "Voting Rights Act",
+          "source": "S17"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_38",
+      "action": "remarked",
+      "source_sentence": "S17",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "Rand Paul",
+          "source": "S17"
+        },
+        {
+          "type": "how",
+          "target": "dismissively",
+          "source": "S17"
+        },
+        {
+          "type": "target_of",
+          "target": "'We have an African-American President.'",
+          "source": "S17"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_39",
+      "action": "stood",
+      "source_sentence": "S17",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "President Obama",
+          "source": "S17"
+        },
+        {
+          "type": "agent_of",
+          "target": "John Lewis",
+          "source": "S17"
+        },
+        {
+          "type": "agent_of",
+          "target": "Veterans of the Civil Rights Movement",
+          "source": "S17"
+        },
+        {
+          "type": "where",
+          "target": "in front of the Edmund Pettus Bridge",
+          "source": "S17"
+        },
+        {
+          "type": "when",
+          "target": "last month",
+          "source": "S17"
+        },
+        {
+          "type": "why",
+          "target": "to mark the 50th anniversary of Bloody Sunday",
+          "source": "S17"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_40",
+      "action": "mark",
+      "source_sentence": "S17",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "President Obama",
+          "source": "S17"
+        },
+        {
+          "type": "agent_of",
+          "target": "John Lewis",
+          "source": "S17"
+        },
+        {
+          "type": "agent_of",
+          "target": "Veterans of the Civil Rights Movement",
+          "source": "S17"
+        },
+        {
+          "type": "target_of",
+          "target": "50th anniversary of Bloody Sunday",
+          "source": "S17"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_41",
+      "action": "inspired",
+      "source_sentence": "S17",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "President Obama",
+          "source": "S17"
+        },
+        {
+          "type": "target_of",
+          "target": "Speaker",
+          "source": "S17"
+        },
+        {
+          "type": "how",
+          "target": "by saying: 'With effort, we can roll back poverty...'",
+          "source": "S17"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_42",
+      "action": "roll back",
+      "source_sentence": "S17",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "we (implied collective effort)",
+          "source": "S17"
+        },
+        {
+          "type": "target_of",
+          "target": "poverty and the roadblocks to opportunity",
+          "source": "S17"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_43",
+      "action": "protect",
+      "source_sentence": "S19",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "we (implied collective effort)",
+          "source": "S19"
+        },
+        {
+          "type": "target_of",
+          "target": "The Right to Vote",
+          "source": "S19"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_44",
+      "action": "marched",
+      "source_sentence": "S19",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "so many (implied civil rights activists)",
+          "source": "S19"
+        },
+        {
+          "type": "where",
+          "target": "Edmund Pettus Bridge",
+          "source": "S19"
+        },
+        {
+          "type": "why",
+          "target": "for which (the right to vote)",
+          "source": "S19"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_45",
+      "action": "solve",
+      "source_sentence": "S19",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "America",
+          "source": "S19"
+        },
+        {
+          "type": "target_of",
+          "target": "more problems",
+          "source": "S19"
+        },
+        {
+          "type": "how",
+          "target": "with more democracy",
+          "source": "S19"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_46",
+      "action": "demonstrated",
+      "source_sentence": "S20",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "Rand Paul",
+          "source": "S20"
+        },
+        {
+          "type": "target_of",
+          "target": "he disagree with that basic principle (more democracy)",
+          "source": "S20"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_47",
+      "action": "tried to fashion",
+      "source_sentence": "S21",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "Rand Paul",
+          "source": "S21"
+        },
+        {
+          "type": "target_of",
+          "target": "himself as the one member of his party courageous enough to try to broaden Republican appeal",
+          "source": "S21"
+        },
+        {
+          "type": "where",
+          "target": "Louisville",
+          "source": "S21"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_48",
+      "action": "broaden",
+      "source_sentence": "S21",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "Rand Paul",
+          "source": "S21"
+        },
+        {
+          "type": "target_of",
+          "target": "Republican Party",
+          "source": "S21"
+        },
+        {
+          "type": "why",
+          "target": "to Black Voters",
+          "source": "S21"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_49",
+      "action": "ignore",
+      "source_sentence": "S21",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "Republican Party",
+          "source": "S21"
+        },
+        {
+          "type": "target_of",
+          "target": "Black Voters",
+          "source": "S21"
+        },
+        {
+          "type": "when",
+          "target": "year after year",
+          "source": "S21"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_50",
+      "action": "makes clear",
+      "source_sentence": "S22",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "Rand Paul's record",
+          "source": "S22"
+        },
+        {
+          "type": "target_of",
+          "target": "his views are outdated, outside of the mainstream, and disqualifying",
+          "source": "S22"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_51",
+      "action": "wants to lead",
+      "source_sentence": "S22",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "Rand Paul",
+          "source": "S22"
+        },
+        {
+          "type": "target_of",
+          "target": "American People",
+          "source": "S22"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_52",
+      "action": "deserve",
+      "source_sentence": "S23",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "American People",
+          "source": "S23"
+        },
+        {
+          "type": "target_of",
+          "target": "a leader",
+          "source": "S23"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_53",
+      "action": "won't disrespect",
+      "source_sentence": "S23",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "a leader",
+          "source": "S23"
+        },
+        {
+          "type": "target_of",
+          "target": "American People",
+          "source": "S23"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_54",
+      "action": "won't pander",
+      "source_sentence": "S23",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "a leader",
+          "source": "S23"
+        },
+        {
+          "type": "target_of",
+          "target": "American People",
+          "source": "S23"
+        },
+        {
+          "type": "when",
+          "target": "when it's convenient",
+          "source": "S23"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_55",
+      "action": "won't work to dismantle",
+      "source_sentence": "S23",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "a leader",
+          "source": "S23"
+        },
+        {
+          "type": "target_of",
+          "target": "progress",
+          "source": "S23"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_56",
+      "action": "made",
+      "source_sentence": "S23",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "we (implied American society)",
+          "source": "S23"
+        },
+        {
+          "type": "target_of",
+          "target": "progress",
+          "source": "S23"
+        },
+        {
+          "type": "when",
+          "target": "over the last five decades",
+          "source": "S23"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_57",
+      "action": "heard",
+      "source_sentence": "S24",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "Speaker",
+          "source": "S24"
+        },
+        {
+          "type": "when",
+          "target": "today",
+          "source": "S24"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_58",
+      "action": "didn't change",
+      "source_sentence": "S24",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "What I heard today",
+          "source": "S24"
+        },
+        {
+          "type": "target_of",
+          "target": "the facts about Rand Paul's record",
+          "source": "S24"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_59",
+      "action": "deserve",
+      "source_sentence": "S25",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "American People",
+          "source": "S25"
+        },
+        {
+          "type": "target_of",
+          "target": "better than Rand Paul",
+          "source": "S25"
+        }
+      ]
+    }
+  ],
+  "entities": [
+    {
+      "name": "Speaker",
+      "aliases": [
+        "I",
+        "those of us"
+      ],
+      "attributes": {
+        "role": "Kentucky State Senator (former)",
+        "gender": "woman",
+        "ethnicity": "person of color"
+      },
+      "participates_in": [
+        "EVT_1",
+        "EVT_2",
+        "EVT_9",
+        "EVT_10",
+        "EVT_11",
+        "EVT_12",
+        "EVT_41",
+        "EVT_57"
+      ],
+      "source_sentences": [
+        "S0",
+        "S1",
+        "S4",
+        "S5",
+        "S17",
+        "S24"
+      ]
+    },
+    {
+      "name": "Kentucky State Senate",
+      "aliases": [],
+      "attributes": {
+        "type": "legislative body",
+        "location": "Kentucky"
+      },
+      "participates_in": [
+        "EVT_1",
+        "EVT_2"
+      ],
+      "source_sentences": [
+        "S0"
+      ]
+    },
+    {
+      "name": "Rand Paul",
+      "aliases": [
+        "a politician from my own state",
+        "Paul",
+        "He",
+        "he",
+        "a man who wants to lead our country"
+      ],
+      "attributes": {
+        "role": "U.S. Senator",
+        "location": "Kentucky (state of origin)",
+        "political_affiliation": "Republican"
+      },
+      "participates_in": [
+        "EVT_3",
+        "EVT_4",
+        "EVT_5",
+        "EVT_6",
+        "EVT_8",
+        "EVT_10",
+        "EVT_13",
+        "EVT_14",
+        "EVT_15",
+        "EVT_16",
+        "EVT_20",
+        "EVT_21",
+        "EVT_22",
+        "EVT_23",
+        "EVT_25",
+        "EVT_27",
+        "EVT_29",
+        "EVT_31",
+        "EVT_32",
+        "EVT_33",
+        "EVT_34",
+        "EVT_35",
+        "EVT_36",
+        "EVT_38",
+        "EVT_46",
+        "EVT_47",
+        "EVT_48",
+        "EVT_51",
+        "EVT_59"
+      ],
+      "source_sentences": [
+        "S1",
+        "S2",
+        "S3",
+        "S4",
+        "S7",
+        "S8",
+        "S9",
+        "S10",
+        "S13",
+        "S14",
+        "S15",
+        "S16",
+        "S17",
+        "S20",
+        "S21",
+        "S22",
+        "S25"
+      ]
+    },
+    {
+      "name": "Presidential Campaign (Rand Paul's)",
+      "aliases": [],
+      "attributes": {
+        "type": "political campaign"
+      },
+      "participates_in": [
+        "EVT_3",
+        "EVT_7"
+      ],
+      "source_sentences": [
+        "S1",
+        "S3"
+      ]
+    },
+    {
+      "name": "Civil Rights Legislation",
+      "aliases": [
+        "landmark voting rights and civil rights legislation",
+        "Civil Rights Act"
+      ],
+      "attributes": {
+        "type": "legislation"
+      },
+      "participates_in": [
+        "EVT_4",
+        "EVT_24",
+        "EVT_25",
+        "EVT_34"
+      ],
+      "source_sentences": [
+        "S1",
+        "S14",
+        "S16"
+      ]
+    },
+    {
+      "name": "President of the United States",
+      "aliases": [],
+      "attributes": {
+        "type": "office"
+      },
+      "participates_in": [
+        "EVT_6"
+      ],
+      "source_sentences": [
+        "S2"
+      ]
+    },
+    {
+      "name": "Rand Paul's Campaign Team",
+      "aliases": [],
+      "attributes": {
+        "type": "political staff"
+      },
+      "participates_in": [
+        "EVT_7"
+      ],
+      "source_sentences": [
+        "S3"
+      ]
+    },
+    {
+      "name": "Reporters",
+      "aliases": [],
+      "attributes": {
+        "type": "profession"
+      },
+      "participates_in": [
+        "EVT_7"
+      ],
+      "source_sentences": [
+        "S3"
+      ]
+    },
+    {
+      "name": "Republican Party",
+      "aliases": [
+        "GOP",
+        "Republicans",
+        "his party"
+      ],
+      "attributes": {
+        "type": "political party"
+      },
+      "participates_in": [
+        "EVT_8",
+        "EVT_16",
+        "EVT_17",
+        "EVT_18",
+        "EVT_19",
+        "EVT_47",
+        "EVT_48",
+        "EVT_49"
+      ],
+      "source_sentences": [
+        "S3",
+        "S8",
+        "S9",
+        "S10",
+        "S11",
+        "S21"
+      ]
+    },
+    {
+      "name": "U.S. Senate",
+      "aliases": [],
+      "attributes": {
+        "type": "legislative body",
+        "location": "United States"
+      },
+      "participates_in": [
+        "EVT_13"
+      ],
+      "source_sentences": [
+        "S7"
+      ]
+    },
+    {
+      "name": "Black Voters",
+      "aliases": [
+        "the community",
+        "minority communities",
+        "constituencies"
+      ],
+      "attributes": {
+        "type": "voters",
+        "demographic": "minority"
+      },
+      "participates_in": [
+        "EVT_17",
+        "EVT_18",
+        "EVT_19",
+        "EVT_48",
+        "EVT_49"
+      ],
+      "source_sentences": [
+        "S10",
+        "S11",
+        "S21"
+      ]
+    },
+    {
+      "name": "A quick survey of Sen. Paul's positions",
+      "aliases": [],
+      "attributes": {
+        "type": "assessment"
+      },
+      "participates_in": [
+        "EVT_20"
+      ],
+      "source_sentences": [
+        "S12",
+        "S13"
+      ]
+    },
+    {
+      "name": "Louisville",
+      "aliases": [],
+      "attributes": {
+        "type": "city",
+        "location": "Kentucky"
+      },
+      "participates_in": [
+        "EVT_21",
+        "EVT_47"
+      ],
+      "source_sentences": [
+        "S14",
+        "S21"
+      ]
+    },
+    {
+      "name": "we (implied historical actors)",
+      "aliases": [],
+      "attributes": {
+        "type": "group"
+      },
+      "participates_in": [
+        "EVT_24"
+      ],
+      "source_sentences": [
+        "S14"
+      ]
+    },
+    {
+      "name": "Department of Education",
+      "aliases": [],
+      "attributes": {
+        "type": "government department",
+        "location": "United States"
+      },
+      "participates_in": [
+        "EVT_26",
+        "EVT_27"
+      ],
+      "source_sentences": [
+        "S14"
+      ]
+    },
+    {
+      "name": "Women",
+      "aliases": [],
+      "attributes": {
+        "demographic": "gender group"
+      },
+      "participates_in": [
+        "EVT_28"
+      ],
+      "source_sentences": [
+        "S14"
+      ]
+    },
+    {
+      "name": "Washington",
+      "aliases": [],
+      "attributes": {
+        "type": "city",
+        "location": "Washington D.C. (implied)"
+      },
+      "participates_in": [
+        "EVT_29"
+      ],
+      "source_sentences": [
+        "S14"
+      ]
+    },
+    {
+      "name": "DREAMers",
+      "aliases": [],
+      "attributes": {
+        "type": "immigrant group"
+      },
+      "participates_in": [
+        "EVT_30"
+      ],
+      "source_sentences": [
+        "S14"
+      ]
+    },
+    {
+      "name": "Historically Black Colleges and Universities (HBCUs)",
+      "aliases": [],
+      "attributes": {
+        "type": "educational institutions"
+      },
+      "participates_in": [
+        "EVT_32"
+      ],
+      "source_sentences": [
+        "S15"
+      ]
+    },
+    {
+      "name": "Private Business Owners",
+      "aliases": [],
+      "attributes": {
+        "type": "profession/group"
+      },
+      "participates_in": [
+        "EVT_35"
+      ],
+      "source_sentences": [
+        "S16"
+      ]
+    },
+    {
+      "name": "Voting Rights Act",
+      "aliases": [
+        "the law"
+      ],
+      "attributes": {
+        "type": "legislation"
+      },
+      "participates_in": [
+        "EVT_36",
+        "EVT_37"
+      ],
+      "source_sentences": [
+        "S17"
+      ]
+    },
+    {
+      "name": "Supreme Court",
+      "aliases": [],
+      "attributes": {
+        "type": "judicial body",
+        "location": "United States"
+      },
+      "participates_in": [
+        "EVT_37"
+      ],
+      "source_sentences": [
+        "S17"
+      ]
+    },
+    {
+      "name": "President Obama",
+      "aliases": [
+        "African-American President",
+        "he"
+      ],
+      "attributes": {
+        "role": "President of the United States"
+      },
+      "participates_in": [
+        "EVT_38",
+        "EVT_39",
+        "EVT_41"
+      ],
+      "source_sentences": [
+        "S17"
+      ]
+    },
+    {
+      "name": "John Lewis",
+      "aliases": [],
+      "attributes": {
+        "role": "veteran of the civil rights movement"
+      },
+      "participates_in": [
+        "EVT_39"
+      ],
+      "source_sentences": [
+        "S17"
+      ]
+    },
+    {
+      "name": "Veterans of the Civil Rights Movement",
+      "aliases": [],
+      "attributes": {
+        "type": "activist group"
+      },
+      "participates_in": [
+        "EVT_39",
+        "EVT_40"
+      ],
+      "source_sentences": [
+        "S17"
+      ]
+    },
+    {
+      "name": "Edmund Pettus Bridge",
+      "aliases": [],
+      "attributes": {
+        "type": "bridge",
+        "location": "Selma, Alabama (implied)"
+      },
+      "participates_in": [
+        "EVT_39",
+        "EVT_44"
+      ],
+      "source_sentences": [
+        "S17",
+        "S19"
+      ]
+    },
+    {
+      "name": "Bloody Sunday",
+      "aliases": [],
+      "attributes": {
+        "type": "historical event",
+        "date": "50th anniversary last month (from S17)"
+      },
+      "participates_in": [
+        "EVT_40"
+      ],
+      "source_sentences": [
+        "S17"
+      ]
+    },
+    {
+      "name": "we (implied collective effort)",
+      "aliases": [],
+      "attributes": {
+        "type": "group"
+      },
+      "participates_in": [
+        "EVT_42",
+        "EVT_43"
+      ],
+      "source_sentences": [
+        "S17",
+        "S19"
+      ]
+    },
+    {
+      "name": "The Right to Vote",
+      "aliases": [
+        "the foundation stone of our democracy"
+      ],
+      "attributes": {
+        "type": "fundamental right"
+      },
+      "participates_in": [
+        "EVT_43",
+        "EVT_44"
+      ],
+      "source_sentences": [
+        "S19"
+      ]
+    },
+    {
+      "name": "so many (implied civil rights activists)",
+      "aliases": [],
+      "attributes": {
+        "type": "group"
+      },
+      "participates_in": [
+        "EVT_44"
+      ],
+      "source_sentences": [
+        "S19"
+      ]
+    },
+    {
+      "name": "America",
+      "aliases": [],
+      "attributes": {
+        "type": "country"
+      },
+      "participates_in": [
+        "EVT_45"
+      ],
+      "source_sentences": [
+        "S19"
+      ]
+    },
+    {
+      "name": "Rand Paul's record",
+      "aliases": [],
+      "attributes": {
+        "type": "political record"
+      },
+      "participates_in": [
+        "EVT_50",
+        "EVT_58"
+      ],
+      "source_sentences": [
+        "S22",
+        "S24"
+      ]
+    },
+    {
+      "name": "American People",
+      "aliases": [
+        "The American people",
+        "our country"
+      ],
+      "attributes": {
+        "type": "citizenry"
+      },
+      "participates_in": [
+        "EVT_23",
+        "EVT_51",
+        "EVT_52",
+        "EVT_53",
+        "EVT_54",
+        "EVT_59"
+      ],
+      "source_sentences": [
+        "S14",
+        "S22",
+        "S23",
+        "S25"
+      ]
+    },
+    {
+      "name": "a leader",
+      "aliases": [],
+      "attributes": {
+        "type": "political role"
+      },
+      "participates_in": [
+        "EVT_52",
+        "EVT_53",
+        "EVT_54",
+        "EVT_55"
+      ],
+      "source_sentences": [
+        "S23"
+      ]
+    },
+    {
+      "name": "we (implied American society)",
+      "aliases": [],
+      "attributes": {
+        "type": "society"
+      },
+      "participates_in": [
+        "EVT_56"
+      ],
+      "source_sentences": [
+        "S23"
+      ]
+    },
+    {
+      "name": "What I heard today",
+      "aliases": [],
+      "attributes": {
+        "type": "information"
+      },
+      "participates_in": [
+        "EVT_58"
+      ],
+      "source_sentences": [
+        "S24"
+      ]
+    }
+  ],
+  "inter_event_edges": [
+    {
+      "from": "EVT_1",
+      "to": "EVT_2",
+      "type": "result_of",
+      "source": "S0"
+    },
+    {
+      "from": "EVT_5",
+      "to": "EVT_6",
+      "type": "describes",
+      "source": "S2"
+    },
+    {
+      "from": "EVT_7",
+      "to": "EVT_8",
+      "type": "describes_message_of",
+      "source": "S3"
+    },
+    {
+      "from": "EVT_9",
+      "to": "EVT_11",
+      "type": "result_of",
+      "source": "S4"
+    },
+    {
+      "from": "EVT_13",
+      "to": "EVT_14",
+      "type": "enables",
+      "source": "S7"
+    },
+    {
+      "from": "EVT_14",
+      "to": "EVT_15",
+      "type": "elaboration",
+      "source": "S8"
+    },
+    {
+      "from": "EVT_19",
+      "to": "EVT_18",
+      "type": "enables",
+      "source": "S11"
+    },
+    {
+      "from": "EVT_20",
+      "to": "EVT_19",
+      "type": "confirms_lack_of",
+      "source": "S13"
+    },
+    {
+      "from": "EVT_21",
+      "to": "EVT_22",
+      "type": "includes",
+      "source": "S14"
+    },
+    {
+      "from": "EVT_22",
+      "to": "EVT_23",
+      "type": "describes_goal",
+      "source": "S14"
+    },
+    {
+      "from": "EVT_25",
+      "to": "EVT_24",
+      "type": "instance_of",
+      "source": "S14"
+    },
+    {
+      "from": "EVT_27",
+      "to": "EVT_26",
+      "type": "describes_desired_state",
+      "source": "S14"
+    },
+    {
+      "from": "EVT_29",
+      "to": "EVT_28",
+      "type": "describes_desired_state",
+      "source": "S14"
+    },
+    {
+      "from": "EVT_31",
+      "to": "EVT_30",
+      "type": "describes_desired_state",
+      "source": "S14"
+    },
+    {
+      "from": "EVT_32",
+      "to": "EVT_33",
+      "type": "result_of",
+      "source": "S15"
+    },
+    {
+      "from": "EVT_37",
+      "to": "EVT_36",
+      "type": "precedes",
+      "source": "S17"
+    },
+    {
+      "from": "EVT_36",
+      "to": "EVT_38",
+      "type": "precedes",
+      "source": "S17"
+    },
+    {
+      "from": "EVT_39",
+      "to": "EVT_40",
+      "type": "purpose_of",
+      "source": "S17"
+    },
+    {
+      "from": "EVT_39",
+      "to": "EVT_41",
+      "type": "result_of",
+      "source": "S17"
+    },
+    {
+      "from": "EVT_41",
+      "to": "EVT_42",
+      "type": "describes_message_of",
+      "source": "S17"
+    },
+    {
+      "from": "EVT_41",
+      "to": "EVT_43",
+      "type": "describes_message_of",
+      "source": "S19"
+    },
+    {
+      "from": "EVT_44",
+      "to": "EVT_43",
+      "type": "purpose_of",
+      "source": "S19"
+    },
+    {
+      "from": "EVT_46",
+      "to": "EVT_45",
+      "type": "disagrees_with",
+      "source": "S20"
+    },
+    {
+      "from": "EVT_47",
+      "to": "EVT_48",
+      "type": "purpose_of",
+      "source": "S21"
+    },
+    {
+      "from": "EVT_49",
+      "to": "EVT_48",
+      "type": "context_for",
+      "source": "S21"
+    },
+    {
+      "from": "EVT_50",
+      "to": "EVT_51",
+      "type": "contradicts",
+      "source": "S22"
+    },
+    {
+      "from": "EVT_52",
+      "to": "EVT_53",
+      "type": "describes_attribute_of",
+      "source": "S23"
+    },
+    {
+      "from": "EVT_52",
+      "to": "EVT_54",
+      "type": "describes_attribute_of",
+      "source": "S23"
+    },
+    {
+      "from": "EVT_52",
+      "to": "EVT_55",
+      "type": "describes_attribute_of",
+      "source": "S23"
+    },
+    {
+      "from": "EVT_56",
+      "to": "EVT_55",
+      "type": "target_of",
+      "source": "S23"
+    },
+    {
+      "from": "EVT_57",
+      "to": "EVT_58",
+      "type": "result_of",
+      "source": "S24"
+    }
+  ],
+  "explicit_unknowns": [],
+  "_elapsed": 122.2
+}

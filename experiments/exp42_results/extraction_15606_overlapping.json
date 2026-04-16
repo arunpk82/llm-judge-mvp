@@ -1,0 +1,77 @@
+{
+  "stories": [
+    {
+      "thread": "Manuela Arbelaez's On-Air Gaffe",
+      "story": "On Thursday's edition of the popular game show \"The Price Is Right\", model Manuela Arbelaez accidentally revealed the correct answer to a guessing game for a new Hyundai Sonata. This wasn't supposed to happen, and host Drew Carey, host of \"The Price Is Right\", couldn't stop laughing, exulting \"Congratulations! Manuela just gave you a car!\" Manuela Arbelaez, model on \"The Price Is Right\", was mortified, attempting to hide behind the display. Later, Manuela Arbelaez, model on \"The Price Is Right\", tweeted that everything turned out OK.",
+      "key_facts": [
+        "On Thursday, model Manuela Arbelaez on \"The Price Is Right\" accidentally revealed the correct answer for a new Hyundai Sonata.",
+        "Host Drew Carey of \"The Price Is Right\" laughed and exclaimed, \"Congratulations! Manuela just gave you a car!\"",
+        "Manuela Arbelaez was mortified and tried to hide.",
+        "Manuela Arbelaez later tweeted that everything turned out OK."
+      ],
+      "explicit_unknowns": [
+        "What was the specific guessing game Manuela Arbelaez was involved in?",
+        "Who was the contestant who received the car?",
+        "What was the exact value of the new Hyundai Sonata?"
+      ]
+    },
+    {
+      "thread": "The Hyundai Sonata Prize Reveal",
+      "story": "On Thursday's edition of the popular game show \"The Price Is Right\", a brand-new car, specifically a new Hyundai Sonata, was the prize for a guessing game. Host Drew Carey, host of \"The Price Is Right\", couldn't stop laughing when model Manuela Arbelaez, model on \"The Price Is Right\", accidentally revealed the correct answer. Drew Carey, host of \"The Price Is Right\", exulted, \"Congratulations! Manuela just gave you a car!\" This incident was not supposed to happen on \"The Price Is Right\", and Manuela Arbelaez, model on \"The Price Is Right\", was mortified.",
+      "key_facts": [
+        "A new Hyundai Sonata was the prize on \"The Price Is Right\" on Thursday.",
+        "Model Manuela Arbelaez accidentally revealed the correct answer for the car.",
+        "Host Drew Carey of \"The Price Is Right\" laughed and said, \"Manuela just gave you a car!\"",
+        "Manuela Arbelaez was mortified by the accidental reveal."
+      ],
+      "explicit_unknowns": [
+        "What was the specific guessing game for the Hyundai Sonata?",
+        "Who was the contestant who won the new Hyundai Sonata?"
+      ]
+    },
+    {
+      "thread": "Manuela Arbelaez's Personal Account",
+      "story": "On Thursday's edition of the popular game show \"The Price Is Right\", model Manuela Arbelaez accidentally revealed the correct answer to a guessing game for a new Hyundai Sonata. This wasn't supposed to happen, and Manuela Arbelaez, model on \"The Price Is Right\", was mortified, attempting to hide behind the display. Host Drew Carey, host of \"The Price Is Right\", couldn't stop laughing and exulted, \"Congratulations! Manuela just gave you a car!\" But everything turned out OK, Manuela Arbelaez, model on \"The Price Is Right\", tweeted later.",
+      "key_facts": [
+        "Model Manuela Arbelaez on \"The Price Is Right\" accidentally revealed a prize answer on Thursday.",
+        "Manuela Arbelaez was mortified and tried to hide behind the display.",
+        "Host Drew Carey of \"The Price Is Right\" laughed at the incident.",
+        "Manuela Arbelaez later confirmed via tweet that everything turned out OK."
+      ],
+      "explicit_unknowns": [
+        "What was the specific guessing game Manuela Arbelaez was involved in?",
+        "Who was the contestant who received the car?"
+      ]
+    },
+    {
+      "thread": "Highlights of 'The Price Is Right' Week",
+      "story": "It was a busy week for the popular game show \"The Price Is Right\". On Wednesday, Bob Barker, 91, former host of \"The Price Is Right\", showed up to run his old show. Then, on Thursday's edition of \"The Price Is Right\", model Manuela Arbelaez, model on \"The Price Is Right\", accidentally revealed the correct answer for a new Hyundai Sonata. Host Drew Carey, host of \"The Price Is Right\", couldn't stop laughing at the incident, and Manuela Arbelaez, model on \"The Price Is Right\", later tweeted that everything turned out OK.",
+      "key_facts": [
+        "It was a busy week for \"The Price Is Right\".",
+        "On Wednesday, Bob Barker, 91, former host of \"The Price Is Right\", returned to run his old show.",
+        "On Thursday, model Manuela Arbelaez on \"The Price Is Right\" accidentally revealed the answer for a new Hyundai Sonata.",
+        "Host Drew Carey of \"The Price Is Right\" laughed at Manuela Arbelaez's mistake.",
+        "Manuela Arbelaez later tweeted that the situation turned out OK."
+      ],
+      "explicit_unknowns": [
+        "What specific segments did Bob Barker run during his return?",
+        "What was the specific guessing game Manuela Arbelaez was involved in?",
+        "Who was the contestant who received the car?"
+      ]
+    },
+    {
+      "thread": "Bob Barker's Guest Appearance",
+      "story": "It was a busy week for the popular game show \"The Price Is Right\". On Wednesday, Bob Barker, 91, former host of \"The Price Is Right\", showed up to run his old show. This happened during a week when model Manuela Arbelaez, model on \"The Price Is Right\", also made news on Thursday's edition of \"The Price Is Right\" by accidentally revealing the correct answer for a new Hyundai Sonata.",
+      "key_facts": [
+        "It was a busy week for \"The Price Is Right\".",
+        "On Wednesday, Bob Barker, 91, former host of \"The Price Is Right\", returned to run his old show.",
+        "Model Manuela Arbelaez on \"The Price Is Right\" also had an incident on Thursday, revealing a prize answer."
+      ],
+      "explicit_unknowns": [
+        "What specific segments did Bob Barker run during his return?",
+        "Who was the contestant who received the car from Manuela Arbelaez's reveal?"
+      ]
+    }
+  ],
+  "_elapsed": 29.3
+}

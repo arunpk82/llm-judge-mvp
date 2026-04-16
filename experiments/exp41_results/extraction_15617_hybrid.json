@@ -1,0 +1,351 @@
+{
+  "event_hubs": [
+    {
+      "event_id": "EVT_1",
+      "action": "hospitalized",
+      "source_sentence": "S1",
+      "edges": [
+        {
+          "type": "patient",
+          "target": "B.B. King",
+          "source": "S1"
+        },
+        {
+          "type": "cause",
+          "target": "dehydration",
+          "source": "S1"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_2",
+      "action": "caused dehydration",
+      "source_sentence": "S2",
+      "edges": [
+        {
+          "type": "cause",
+          "target": "Type II diabetes",
+          "source": "S2"
+        },
+        {
+          "type": "affected_entity",
+          "target": "B.B. King",
+          "source": "S2"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_3",
+      "action": "released statement",
+      "source_sentence": "S3",
+      "edges": [
+        {
+          "type": "agent",
+          "target": "B.B. King",
+          "source": "S3"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_4",
+      "action": "leaving hospital",
+      "source_sentence": "S4",
+      "edges": [
+        {
+          "type": "agent",
+          "target": "B.B. King",
+          "source": "S4"
+        },
+        {
+          "type": "time",
+          "target": "Tuesday",
+          "source": "S4"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_5",
+      "action": "returning home to rest",
+      "source_sentence": "S5",
+      "edges": [
+        {
+          "type": "agent",
+          "target": "B.B. King",
+          "source": "S5"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_6",
+      "action": "inducted into Rock and Roll Hall of Fame",
+      "source_sentence": "S10",
+      "edges": [
+        {
+          "type": "agent",
+          "target": "B.B. King",
+          "source": "S10"
+        },
+        {
+          "type": "organization",
+          "target": "Rock and Roll Hall of Fame",
+          "source": "S10"
+        },
+        {
+          "type": "time",
+          "target": "1987",
+          "source": "S10"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_7",
+      "action": "won first Grammy",
+      "source_sentence": "S13",
+      "edges": [
+        {
+          "type": "agent",
+          "target": "B.B. King",
+          "source": "S13"
+        },
+        {
+          "type": "work",
+          "target": "The Thrill Is Gone",
+          "source": "S13"
+        },
+        {
+          "type": "time",
+          "target": "1970",
+          "source": "S13"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_8",
+      "action": "suffered dehydration and exhaustion",
+      "source_sentence": "S14",
+      "edges": [
+        {
+          "type": "agent",
+          "target": "B.B. King",
+          "source": "S14"
+        },
+        {
+          "type": "place",
+          "target": "Chicago",
+          "source": "S14"
+        },
+        {
+          "type": "time",
+          "target": "Last year",
+          "source": "S14"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_9",
+      "action": "cancel remainder of tour",
+      "source_sentence": "S14",
+      "edges": [
+        {
+          "type": "agent",
+          "target": "B.B. King",
+          "source": "S14"
+        },
+        {
+          "type": "time",
+          "target": "Last year",
+          "source": "S14"
+        }
+      ]
+    }
+  ],
+  "entities": [
+    {
+      "name": "B.B. King",
+      "aliases": [
+        "Blues Boy",
+        "Beale Street Blues Boy",
+        "the legendary guitarist and vocalist",
+        "King of the Blues",
+        "the bluesman"
+      ],
+      "attributes": {
+        "age": "89",
+        "grammy_nominations": "30"
+      },
+      "participates_in": [
+        "EVT_1",
+        "EVT_2",
+        "EVT_3",
+        "EVT_4",
+        "EVT_5",
+        "EVT_6",
+        "EVT_7",
+        "EVT_8",
+        "EVT_9"
+      ],
+      "source_sentences": [
+        "S0",
+        "S1",
+        "S2",
+        "S3",
+        "S4",
+        "S8",
+        "S9",
+        "S10",
+        "S11",
+        "S13",
+        "S14"
+      ]
+    },
+    {
+      "name": "Claudette King",
+      "aliases": [],
+      "attributes": {
+        "relationship": "daughter of B.B. King"
+      },
+      "participates_in": [],
+      "source_sentences": [
+        "S2",
+        "S5"
+      ]
+    },
+    {
+      "name": "Angela Moore",
+      "aliases": [],
+      "attributes": {
+        "role": "publicist for Claudette King"
+      },
+      "participates_in": [],
+      "source_sentences": [
+        "S5",
+        "S6",
+        "S7"
+      ]
+    },
+    {
+      "name": "Los Angeles Times",
+      "aliases": [],
+      "attributes": {
+        "type": "publication"
+      },
+      "participates_in": [],
+      "source_sentences": [
+        "S2"
+      ]
+    },
+    {
+      "name": "Rock and Roll Hall of Fame",
+      "aliases": [],
+      "attributes": {
+        "type": "organization"
+      },
+      "participates_in": [
+        "EVT_6"
+      ],
+      "source_sentences": [
+        "S10"
+      ]
+    },
+    {
+      "name": "Gibson",
+      "aliases": [],
+      "attributes": {
+        "type": "guitar manufacturer"
+      },
+      "participates_in": [],
+      "source_sentences": [
+        "S11",
+        "S12",
+        "S13"
+      ]
+    },
+    {
+      "name": "Lucille",
+      "aliases": [],
+      "attributes": {
+        "type": "custom-made signature model guitar"
+      },
+      "participates_in": [],
+      "source_sentences": [
+        "S11",
+        "S13"
+      ]
+    },
+    {
+      "name": "U2",
+      "aliases": [],
+      "attributes": {
+        "type": "musical group"
+      },
+      "participates_in": [],
+      "source_sentences": [
+        "S13"
+      ]
+    },
+    {
+      "name": "Greg Botelho",
+      "aliases": [],
+      "attributes": {
+        "affiliation": "CNN"
+      },
+      "participates_in": [],
+      "source_sentences": [
+        "S15"
+      ]
+    },
+    {
+      "name": "Sonya Hamasaki",
+      "aliases": [],
+      "attributes": {
+        "affiliation": "CNN"
+      },
+      "participates_in": [],
+      "source_sentences": [
+        "S15"
+      ]
+    },
+    {
+      "name": "CNN",
+      "aliases": [],
+      "attributes": {
+        "type": "organization"
+      },
+      "participates_in": [],
+      "source_sentences": [
+        "S15"
+      ]
+    }
+  ],
+  "inter_event_edges": [
+    {
+      "from": "EVT_1",
+      "to": "EVT_4",
+      "type": "followed_by",
+      "source": "S4"
+    },
+    {
+      "from": "EVT_4",
+      "to": "EVT_5",
+      "type": "followed_by",
+      "source": "S5"
+    },
+    {
+      "from": "EVT_8",
+      "to": "EVT_9",
+      "type": "caused",
+      "source": "S14"
+    }
+  ],
+  "explicit_unknowns": [
+    {
+      "about": "B.B. King",
+      "unknown_slots": [
+        "condition",
+        "hospitalization location"
+      ],
+      "source": "S7"
+    }
+  ],
+  "_elapsed": 110.6
+}

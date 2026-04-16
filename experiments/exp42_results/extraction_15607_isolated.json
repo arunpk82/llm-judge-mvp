@@ -1,0 +1,60 @@
+{
+  "stories": [
+    {
+      "thread": "Arrest of British Citizens at Turkey-Syria Border",
+      "story": "Nine British citizens were arrested in Turkey on Wednesday, suspected of trying to cross illegally into Syria, according to the Turkish military. The group, arrested at the Turkey-Syria border, included four children, three men, and two women. All nine individuals possessed British passports. A Turkish official stated the oldest child was 10 or 11, and the youngest was born in 2013. The Turkish military did not state why the group allegedly was trying to get into Syria.",
+      "key_facts": [
+        "Nine British citizens arrested in Turkey on Wednesday",
+        "Suspected of trying to cross illegally into Syria",
+        "Arrested at the Turkey-Syria border",
+        "Group included four children, three men, and two women",
+        "Oldest child was 10 or 11, youngest born in 2013",
+        "All nine had British passports",
+        "Information from Turkish military and an anonymous Turkish official"
+      ],
+      "explicit_unknowns": [
+        "The Turkish military did not state why the group allegedly was trying to get into Syria.",
+        "The exact age of the oldest child is not specified, only '10 or 11'.",
+        "The specific birthdate of the youngest child is not specified, only 'born in 2013'."
+      ]
+    },
+    {
+      "thread": "Context of the Syrian Conflict",
+      "story": "Syria has been torn by a roughly four-year war between Syrian government forces and Islamist extremist groups and other rebels. Among the war's combatants is ISIS, which has taken over parts of Syria and Iraq. ISIS claims these territories are its Islamic caliphate and is known to have been recruiting Westerners. The source does not state any direct connection between the arrested British citizens and ISIS or any other combatant group.",
+      "key_facts": [
+        "Syria has a roughly four-year war",
+        "Combatants include Syrian government forces, Islamist extremist groups, and other rebels",
+        "ISIS is among the war's combatants",
+        "ISIS has taken over parts of Syria and Iraq for its claimed Islamic caliphate",
+        "ISIS is known to have been recruiting Westerners"
+      ],
+      "explicit_unknowns": [
+        "The source does not state any direct connection between the arrested group and ISIS or any other combatant."
+      ]
+    },
+    {
+      "thread": "Official Responses and Related UK Charges",
+      "story": "The British Foreign Office stated on Wednesday that it is aware of reports of the arrests of British citizens in Turkey. It is seeking information about the incident from Turkish authorities. Separately, UK police charged a man with terror offenses after a trip to Turkey. The source does not explicitly state if this man is one of the nine British citizens arrested, nor if his charges are directly related to that specific incident.",
+      "key_facts": [
+        "British Foreign Office aware of arrest reports on Wednesday",
+        "British Foreign Office seeking information from Turkish authorities",
+        "UK police charged a man with terror offenses after a Turkey trip"
+      ],
+      "explicit_unknowns": [
+        "The source does not explicitly state if the man charged by UK police is one of the nine British citizens arrested in Turkey.",
+        "The source does not explicitly state if the UK police charge is directly related to the incident of the nine British citizens arrested in Turkey."
+      ]
+    },
+    {
+      "thread": "Reporting Credits",
+      "story": "CNN's Gul Tuysuz reported from Istanbul, and Elaine Ly reported from London for this story. CNN's Jason Hanna also contributed to this report.",
+      "key_facts": [
+        "CNN's Gul Tuysuz reported from Istanbul",
+        "Elaine Ly reported from London",
+        "CNN's Jason Hanna contributed to the report"
+      ],
+      "explicit_unknowns": []
+    }
+  ],
+  "_elapsed": 16.7
+}

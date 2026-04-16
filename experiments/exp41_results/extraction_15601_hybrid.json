@@ -1,0 +1,268 @@
+{
+  "event_hubs": [
+    {
+      "event_id": "EVT_1",
+      "action": "outside review of editorial process",
+      "source_sentence": "S0",
+      "edges": [
+        {
+          "type": "conducted_by",
+          "target": "Columbia Journalism School professors",
+          "source": "S0"
+        },
+        {
+          "type": "reviewed_entity",
+          "target": "Rolling Stone",
+          "source": "S0"
+        },
+        {
+          "type": "finding",
+          "target": "institutional failure",
+          "source": "S0"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_2",
+      "action": "publication of article about purported gang rape",
+      "source_sentence": "S0",
+      "edges": [
+        {
+          "type": "publisher",
+          "target": "Rolling Stone",
+          "source": "S0"
+        },
+        {
+          "type": "location_of_incident",
+          "target": "University of Virginia",
+          "source": "S0"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_3",
+      "action": "apology for story and fallout",
+      "source_sentence": "S1",
+      "edges": [
+        {
+          "type": "actor",
+          "target": "Will Dana",
+          "source": "S1"
+        },
+        {
+          "type": "recipient",
+          "target": "Phi Kappa Psi",
+          "source": "S1"
+        },
+        {
+          "type": "recipient",
+          "target": "University of Virginia",
+          "source": "S1"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_4",
+      "action": "pursuit of all available legal action",
+      "source_sentence": "S1",
+      "edges": [
+        {
+          "type": "actor",
+          "target": "Phi Kappa Psi",
+          "source": "S1"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_5",
+      "action": "definition of elements of libel",
+      "source_sentence": "S3, S4",
+      "edges": [
+        {
+          "type": "decided_by",
+          "target": "Virginia Supreme Court",
+          "source": "S3"
+        },
+        {
+          "type": "case_context",
+          "target": "Jordan v. Kollman",
+          "source": "S3"
+        }
+      ]
+    }
+  ],
+  "entities": [
+    {
+      "name": "Columbia Journalism School professors",
+      "aliases": [],
+      "attributes": {},
+      "participates_in": [
+        "EVT_1"
+      ],
+      "source_sentences": [
+        "S0"
+      ]
+    },
+    {
+      "name": "Rolling Stone",
+      "aliases": [
+        "the magazine",
+        "the publication"
+      ],
+      "attributes": {
+        "type": "publication"
+      },
+      "participates_in": [
+        "EVT_1",
+        "EVT_2"
+      ],
+      "source_sentences": [
+        "S0",
+        "S1",
+        "S8",
+        "S30"
+      ]
+    },
+    {
+      "name": "University of Virginia",
+      "aliases": [
+        "UVA"
+      ],
+      "attributes": {
+        "type": "public university",
+        "legal_status": "governmental entity"
+      },
+      "participates_in": [
+        "EVT_2",
+        "EVT_3"
+      ],
+      "source_sentences": [
+        "S0",
+        "S1",
+        "S2",
+        "S16",
+        "S17",
+        "S36"
+      ]
+    },
+    {
+      "name": "Phi Kappa Psi",
+      "aliases": [],
+      "attributes": {
+        "type": "fraternity",
+        "category": "group"
+      },
+      "participates_in": [
+        "EVT_3",
+        "EVT_4"
+      ],
+      "source_sentences": [
+        "S1",
+        "S2",
+        "S20",
+        "S29",
+        "S30"
+      ]
+    },
+    {
+      "name": "Will Dana",
+      "aliases": [],
+      "attributes": {
+        "role": "managing editor of Rolling Stone"
+      },
+      "participates_in": [
+        "EVT_3"
+      ],
+      "source_sentences": [
+        "S1"
+      ]
+    },
+    {
+      "name": "Brian Stelter",
+      "aliases": [],
+      "attributes": {},
+      "participates_in": [],
+      "source_sentences": [
+        "S1"
+      ]
+    },
+    {
+      "name": "Virginia Supreme Court",
+      "aliases": [],
+      "attributes": {},
+      "participates_in": [
+        "EVT_5"
+      ],
+      "source_sentences": [
+        "S3"
+      ]
+    },
+    {
+      "name": "Jordan v. Kollman",
+      "aliases": [],
+      "attributes": {
+        "type": "legal case"
+      },
+      "participates_in": [
+        "EVT_5"
+      ],
+      "source_sentences": [
+        "S3"
+      ]
+    },
+    {
+      "name": "First Amendment to the United States Constitution",
+      "aliases": [],
+      "attributes": {},
+      "participates_in": [],
+      "source_sentences": [
+        "S5"
+      ]
+    },
+    {
+      "name": "Virginia Constitution",
+      "aliases": [],
+      "attributes": {},
+      "participates_in": [],
+      "source_sentences": [
+        "S5"
+      ]
+    },
+    {
+      "name": "1980 Philadelphia Phillies infielders",
+      "aliases": [],
+      "attributes": {
+        "type": "small group"
+      },
+      "participates_in": [],
+      "source_sentences": [
+        "S28"
+      ]
+    }
+  ],
+  "explicit_unknowns": [
+    {
+      "about": "EVT_1 (Outside Review)",
+      "unknown_slots": [
+        "date",
+        "location"
+      ],
+      "source": "S0"
+    },
+    {
+      "about": "EVT_2 (Publication of Article)",
+      "unknown_slots": [
+        "date"
+      ],
+      "source": "S0"
+    },
+    {
+      "about": "EVT_3 (Apology)",
+      "unknown_slots": [
+        "date"
+      ],
+      "source": "S1"
+    }
+  ],
+  "_elapsed": 97.8
+}

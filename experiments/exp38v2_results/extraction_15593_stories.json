@@ -1,0 +1,53 @@
+{
+  "stories": [
+    {
+      "thread": "Andrew Getty's Death Investigation",
+      "story": "Andrew Getty, 47, an heir to billions of oil money, appears to have died of natural causes, according to a Los Angeles Police Department spokesman. The coroner's preliminary assessment found no foul play involved in the death of Getty, grandson of oil tycoon J. Paul Getty, said Detective Meghan Aguilar. Andrew Getty's parents, Ann and Gordon Getty, released a statement confirming their son's death and asking for privacy. Andrew Getty had \"several health issues,\" and an autopsy will be conducted, with no criminal investigation underway. Investigators do not know whether Getty was taking the recovered medication, which was found in his home, or what his medical history was.",
+      "key_facts": [
+        "Andrew Getty, 47, died",
+        "Appears to have died of natural causes",
+        "Coroner's preliminary assessment: no foul play",
+        "Detective Meghan Aguilar confirmed assessment",
+        "Andrew Getty's parents, Ann and Gordon Getty, confirmed death and asked for privacy",
+        "Andrew Getty had \"several health issues\"",
+        "Autopsy will be conducted",
+        "No criminal investigation underway",
+        "Medication recovered from Getty's home",
+        "Getty found on his side near a bathroom"
+      ],
+      "explicit_unknowns": [
+        "Whether Getty was taking the recovered medication",
+        "What his medical history was"
+      ]
+    },
+    {
+      "thread": "Andrew Getty's Recent Health and Legal Disclosures",
+      "story": "Court records show Andrew Getty had recently filed to get a restraining order against an ex-girlfriend, with a hearing scheduled for next week. In his request, Getty stated he had been diagnosed with a serious medical condition in 2013. He wrote that a rise in his blood pressure placed him \"in grave risk of substantial and irreparable injury or death.\" His doctors had advised that heated arguments could cause his blood pressure to rise dangerously. Andrew Getty had three brothers and three half-sisters.",
+      "key_facts": [
+        "Andrew Getty filed for restraining order against an ex-girlfriend",
+        "Hearing scheduled for next week",
+        "Diagnosed with a serious medical condition in 2013",
+        "Stated high blood pressure placed him in grave risk of injury or death",
+        "Doctors advised heated arguments could cause blood pressure to rise dangerously",
+        "Andrew Getty had three brothers and three half-sisters"
+      ],
+      "explicit_unknowns": []
+    },
+    {
+      "thread": "The Getty Family Fortune and Legacy",
+      "story": "The Getty family fortune originated from oil baron J. Paul Getty, who was thought to be the richest man in the world at the time of his death in 1976. His son, Gordon Getty, 81, is one of three living sons of J. Paul Getty and has a net worth of $2.1 billion, according to Forbes. Gordon Getty spearheaded the controversial sale of Getty to Texaco for $10 billion in 1984. Forbes estimated the Gettys' net worth to be about $5 billion. Two other sons of J. Paul Getty died in 1958 and 1973.",
+      "key_facts": [
+        "J. Paul Getty was an oil baron",
+        "J. Paul Getty was thought to be the richest man in the world at his death in 1976",
+        "Gordon Getty, 81, is one of three living sons of J. Paul Getty",
+        "Gordon Getty has a net worth of $2.1 billion (Forbes)",
+        "Gordon Getty spearheaded the sale of Getty to Texaco for $10 billion in 1984",
+        "Forbes estimated the Gettys' net worth to be about $5 billion",
+        "One other son of J. Paul Getty died in 1958",
+        "Another son of J. Paul Getty died in 1973"
+      ],
+      "explicit_unknowns": []
+    }
+  ],
+  "_elapsed": 17.2
+}

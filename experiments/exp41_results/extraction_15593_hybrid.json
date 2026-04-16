@@ -1,0 +1,315 @@
+{
+  "event_hubs": [
+    {
+      "event_id": "EVT_1",
+      "action": "Death of Andrew Getty",
+      "source_sentence": "S0",
+      "edges": [
+        {
+          "type": "person_deceased",
+          "target": "Andrew Getty",
+          "source": "S0"
+        },
+        {
+          "type": "cause",
+          "target": "natural causes",
+          "source": "S0"
+        },
+        {
+          "type": "location",
+          "target": "Andrew Getty's home",
+          "source": "S6"
+        },
+        {
+          "type": "specific_location",
+          "target": "near a bathroom",
+          "source": "S6"
+        },
+        {
+          "type": "time",
+          "target": "2015",
+          "source": "S20"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_2",
+      "action": "Autopsy",
+      "source_sentence": "S3",
+      "edges": [
+        {
+          "type": "subject",
+          "target": "Andrew Getty",
+          "source": "S3"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_3",
+      "action": "Death of J. Paul Getty",
+      "source_sentence": "S10",
+      "edges": [
+        {
+          "type": "person_deceased",
+          "target": "J. Paul Getty",
+          "source": "S10"
+        },
+        {
+          "type": "time",
+          "target": "1976",
+          "source": "S10"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_4",
+      "action": "Death of son of J. Paul Getty",
+      "source_sentence": "S12",
+      "edges": [
+        {
+          "type": "time",
+          "target": "1958",
+          "source": "S12"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_5",
+      "action": "Death of son of J. Paul Getty",
+      "source_sentence": "S12",
+      "edges": [
+        {
+          "type": "time",
+          "target": "1973",
+          "source": "S12"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_6",
+      "action": "Sale of Getty to Texaco",
+      "source_sentence": "S13",
+      "edges": [
+        {
+          "type": "agent",
+          "target": "Gordon Getty",
+          "source": "S13"
+        },
+        {
+          "type": "buyer",
+          "target": "Texaco",
+          "source": "S13"
+        },
+        {
+          "type": "value",
+          "target": "$10 billion",
+          "source": "S13"
+        },
+        {
+          "type": "time",
+          "target": "1984",
+          "source": "S13"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_7",
+      "action": "Filing for restraining order",
+      "source_sentence": "S15",
+      "edges": [
+        {
+          "type": "petitioner",
+          "target": "Andrew Getty",
+          "source": "S15"
+        },
+        {
+          "type": "respondent",
+          "target": "ex-girlfriend",
+          "source": "S15"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_8",
+      "action": "Hearing for restraining order",
+      "source_sentence": "S16",
+      "edges": [
+        {
+          "type": "time",
+          "target": "next week",
+          "source": "S16"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_9",
+      "action": "Medical diagnosis",
+      "source_sentence": "S17",
+      "edges": [
+        {
+          "type": "subject",
+          "target": "Andrew Getty",
+          "source": "S17"
+        },
+        {
+          "type": "time",
+          "target": "2013",
+          "source": "S17"
+        },
+        {
+          "type": "condition",
+          "target": "serious medical condition",
+          "source": "S17"
+        }
+      ]
+    }
+  ],
+  "entities": [
+    {
+      "name": "Andrew Getty",
+      "aliases": [],
+      "attributes": {
+        "age": "47",
+        "family_relations": "grandson of J. Paul Getty, son of Ann and Gordon Getty, had three brothers and three half-sisters",
+        "health_status": "several health issues"
+      },
+      "participates_in": [
+        "EVT_1",
+        "EVT_2",
+        "EVT_7",
+        "EVT_9"
+      ],
+      "source_sentences": [
+        "S0",
+        "S1",
+        "S3",
+        "S6",
+        "S7",
+        "S15",
+        "S17",
+        "S18",
+        "S19"
+      ]
+    },
+    {
+      "name": "J. Paul Getty",
+      "aliases": [],
+      "attributes": {
+        "role": "oil tycoon/baron",
+        "status": "thought to be the richest man in the world at the time of his death"
+      },
+      "participates_in": [
+        "EVT_3"
+      ],
+      "source_sentences": [
+        "S1",
+        "S9",
+        "S10"
+      ]
+    },
+    {
+      "name": "Gordon Getty",
+      "aliases": [],
+      "attributes": {
+        "age": "81",
+        "net_worth": "$2.1 billion",
+        "family_relations": "son of J. Paul Getty, father of Andrew Getty"
+      },
+      "participates_in": [
+        "EVT_6"
+      ],
+      "source_sentences": [
+        "S7",
+        "S9",
+        "S11",
+        "S13"
+      ]
+    },
+    {
+      "name": "Ann Getty",
+      "aliases": [],
+      "attributes": {
+        "family_relations": "parent of Andrew Getty"
+      },
+      "participates_in": [],
+      "source_sentences": [
+        "S7"
+      ]
+    },
+    {
+      "name": "Meghan Aguilar",
+      "aliases": [],
+      "attributes": {
+        "role": "Detective"
+      },
+      "participates_in": [],
+      "source_sentences": [
+        "S2",
+        "S3"
+      ]
+    },
+    {
+      "name": "Ed Winter",
+      "aliases": [],
+      "attributes": {
+        "role": "assistant chief in the Los Angeles County coroner's office"
+      },
+      "participates_in": [],
+      "source_sentences": [
+        "S5"
+      ]
+    },
+    {
+      "name": "Texaco",
+      "aliases": [],
+      "attributes": {},
+      "participates_in": [
+        "EVT_6"
+      ],
+      "source_sentences": [
+        "S13"
+      ]
+    },
+    {
+      "name": "Forbes",
+      "aliases": [],
+      "attributes": {},
+      "participates_in": [],
+      "source_sentences": [
+        "S11",
+        "S14"
+      ]
+    },
+    {
+      "name": "KTLA",
+      "aliases": [
+        "CNN affiliate"
+      ],
+      "attributes": {},
+      "participates_in": [],
+      "source_sentences": [
+        "S5",
+        "S6"
+      ]
+    }
+  ],
+  "inter_event_edges": [
+    {
+      "from": "EVT_7",
+      "to": "EVT_8",
+      "type": "leads_to",
+      "source": "S16"
+    }
+  ],
+  "explicit_unknowns": [
+    {
+      "about": "Andrew Getty",
+      "unknown_slots": [
+        "whether he was taking recovered medication",
+        "medical history"
+      ],
+      "source": "S5"
+    }
+  ],
+  "_elapsed": 106.4
+}

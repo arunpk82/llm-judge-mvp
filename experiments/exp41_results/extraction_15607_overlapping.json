@@ -1,0 +1,44 @@
+{
+  "stories": [
+    {
+      "thread": "Arrest of British Citizens",
+      "story": "The Turkish military said on its website nine British citizens were arrested in Turkey on Wednesday, suspected of trying to cross illegally into Syria. A Turkish official told CNN on condition of anonymity that the group of nine British citizens included four children, the oldest being 10 or 11 and the youngest born in 2013. The Turkish military said the nine British citizens were arrested at the Turkey-Syria border. The Turkish official said the group consisted of three men, two women, and four children, all of whom had British passports. The British Foreign Office said Wednesday it is aware of the arrests of the nine British citizens and is seeking information from Turkish authorities.",
+      "key_facts": [
+        "Nine British citizens arrested Wednesday in Turkey",
+        "Arrested at the Turkey-Syria border",
+        "Group included 3 men, 2 women, and 4 children",
+        "Children's ages: oldest 10 or 11, youngest born 2013",
+        "All nine had British passports",
+        "British Foreign Office seeking information from Turkish authorities"
+      ],
+      "explicit_unknowns": [
+        "Why the group was trying to get into Syria"
+      ]
+    },
+    {
+      "thread": "Syrian Conflict and Terror Charges",
+      "story": "The Turkish military did not say why the nine British citizens were trying to enter Syria. Syria has been torn by a roughly four-year war between Syrian government forces and Islamist extremist groups and other rebels. ISIS is among the combatants, claiming an Islamic caliphate in Syria and Iraq and recruiting Westerners. UK police charged a man with terror offenses after a Turkey trip. The British Foreign Office is seeking information from Turkish authorities regarding the nine British citizens.",
+      "key_facts": [
+        "Reason for the nine British citizens' attempt to enter Syria not stated",
+        "Syria has a roughly four-year war between government forces, Islamist extremist groups, and rebels",
+        "ISIS claims an Islamic caliphate in Syria and Iraq and recruits Westerners",
+        "UK police charged a man with terror offenses after a Turkey trip",
+        "British Foreign Office seeking information from Turkish authorities"
+      ],
+      "explicit_unknowns": [
+        "Why the nine British citizens were trying to get into Syria"
+      ]
+    },
+    {
+      "thread": "Reporting Credits",
+      "story": "The British Foreign Office is seeking information from Turkish authorities about the nine British citizens. CNN's Gul Tuysuz reported from Istanbul and Elaine Ly reported from London. CNN's Jason Hanna contributed to the report.",
+      "key_facts": [
+        "British Foreign Office seeking information from Turkish authorities about the nine British citizens",
+        "Reported by CNN's Gul Tuysuz and Elaine Ly",
+        "Contributed by CNN's Jason Hanna"
+      ],
+      "explicit_unknowns": []
+    }
+  ],
+  "_elapsed": 150.9
+}

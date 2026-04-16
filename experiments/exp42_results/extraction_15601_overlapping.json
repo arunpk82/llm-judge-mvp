@@ -1,0 +1,147 @@
+{
+  "stories": [
+    {
+      "thread": "Rolling Stone Article Controversy",
+      "story": "An outside review by Columbia Journalism School professors concluded that \"an institutional failure at Rolling Stone resulted in a deeply flawed article about a purported gang rape at the University of Virginia.\" The Columbia team found this failure encompassed reporting, editing, editorial supervision, and fact-checking. This was hardly a ringing endorsement of the editorial process at Rolling Stone.",
+      "key_facts": [
+        "institutional failure at Rolling Stone",
+        "deeply flawed article about a purported gang rape at the University of Virginia",
+        "failure encompassed reporting, editing, editorial supervision and fact-checking"
+      ],
+      "explicit_unknowns": [
+        "who conducted the purported gang rape",
+        "specific date of the article's publication"
+      ]
+    },
+    {
+      "thread": "Rolling Stone Article Controversy",
+      "story": "Will Dana, Rolling Stone's managing editor, issued an apology, stating, \"We would like to apologize to our readers and to all of those who were damaged by our story and the ensuing fallout.\" This apology included members of the Phi Kappa Psi fraternity and University of Virginia (UVA) administrators and students. Following this, Brian Stelter reported that the Phi Kappa Psi fraternity intended to \"pursue all available legal action.\"",
+      "key_facts": [
+        "Will Dana, Rolling Stone's managing editor, apologized",
+        "apology to readers, those damaged, Phi Kappa Psi fraternity, UVA administrators and students",
+        "Phi Kappa Psi fraternity to 'pursue all available legal action'"
+      ],
+      "explicit_unknowns": [
+        "specific date of the apology",
+        "specific damages suffered by individuals"
+      ]
+    },
+    {
+      "thread": "Defamation Law Principles",
+      "story": "The Virginia Supreme Court, in Jordan v. Kollman, established the elements of libel as \"(1) publication of (2) an actionable statement with (3) the requisite intent.\" For a statement to be \"actionable,\" it must be both false and defamatory. The law of defamation must be balanced against the freedom of speech protected under the First Amendment to the United States Constitution and the Virginia Constitution.",
+      "key_facts": [
+        "Virginia Supreme Court in Jordan v. Kollman defined libel elements",
+        "elements of libel are (1) publication of (2) an actionable statement with (3) the requisite intent",
+        "'Actionable' means the statement must be both false and defamatory",
+        "defamation law balanced against freedom of speech (First Amendment to the United States Constitution, Virginia Constitution)"
+      ],
+      "explicit_unknowns": [
+        "date of Jordan v. Kollman case"
+      ]
+    },
+    {
+      "thread": "Defamation Law Principles",
+      "story": "True statements cannot be defamatory, nor can pure statements of opinion, as they theoretically cannot be either true or false. However, the Rolling Stone article certainly purported to be fact, and it apparently is not exactly what the law considers \"true.\" The individual members of the Phi Kappa Psi fraternity will likely be considered private individuals, and not public figures, who have a harder time proving defamation.",
+      "key_facts": [
+        "True statements cannot be defamatory",
+        "pure statements of opinion cannot be defamatory",
+        "Rolling Stone article purported to be fact but is not 'true'",
+        "individual members of the Phi Kappa Psi fraternity likely considered private individuals, not public figures"
+      ],
+      "explicit_unknowns": [
+        "specific individuals considered private individuals"
+      ]
+    },
+    {
+      "thread": "Defamation Law Principles",
+      "story": "A private person suing for defamation must establish that the defendant has published a false factual statement that is about the person and harms their reputation. This private plaintiff also must show that the defendant knew the statement was false, or believed it was true but lacked a reasonable basis, or acted negligently in checking the facts. The Columbia report, which detailed institutional failures at Rolling Stone, may go a long way toward establishing at least a modicum of the required intent.",
+      "key_facts": [
+        "private person suing for defamation must establish false factual statement, about the person, harms reputation",
+        "private plaintiff must show defendant knew statement was false, or lacked reasonable basis, or acted negligently",
+        "Columbia report may help establish 'modicum of the required intent'"
+      ],
+      "explicit_unknowns": [
+        "specific legal standard for 'modicum of intent'"
+      ]
+    },
+    {
+      "thread": "Who Can Sue for Defamation",
+      "story": "There are strict rules about who can be a plaintiff in a defamation action, and the identity of the aspiring plaintiff matters. The University of Virginia (UVA) is a public university and therefore a governmental entity. The Supreme Court has been clear that the government cannot sue for defamation, meaning there is no such cause of action in American jurisprudence for UVA.",
+      "key_facts": [
+        "strict rules about who can be a plaintiff in a defamation action",
+        "University of Virginia (UVA) is a public university and a governmental entity",
+        "Supreme Court has been clear that the government cannot sue for defamation",
+        "no such cause of action in American jurisprudence for UVA"
+      ],
+      "explicit_unknowns": [
+        "specific Supreme Court case establishing government cannot sue"
+      ]
+    },
+    {
+      "thread": "Who Can Sue for Defamation",
+      "story": "A fraternity, such as the Phi Kappa Psi fraternity, is not an individual but a group. A plaintiff in a defamation case must show that the statements were \"of or concerning\" the plaintiff. When statements are about a group without naming an individual, it is hard to prove the statement concerns an individual, and groups generally cannot sue. Defamatory statements about a group are therefore not actionable by the group's individual members, for the most part.",
+      "key_facts": [
+        "fraternity is a group, not an individual",
+        "plaintiff must show statements were 'of or concerning' the plaintiff",
+        "groups generally cannot sue for defamation",
+        "defamatory statements about a group are not actionable by individual members, for the most part"
+      ],
+      "explicit_unknowns": [
+        "specific legal precedent for groups generally not suing"
+      ]
+    },
+    {
+      "thread": "Who Can Sue for Defamation",
+      "story": "Like all rules, there are exceptions to groups generally not being able to sue for defamation. If the defamatory language is about \"a comparatively small group of persons and the defamatory part is easily imputed against all members of the small group, an individual member may sue.\" The Phi Kappa Psi fraternity would likely argue that this \"small group\" exception fits it perfectly. Even if individual members were not identified by name, the defamatory story has been imputed directly to individual members, who have suffered by their association with the group.",
+      "key_facts": [
+        "exception for 'comparatively small group of persons'",
+        "defamatory part easily imputed against all members of the small group, an individual member may sue",
+        "Phi Kappa Psi fraternity would argue the 'small group' exception fits",
+        "defamatory story imputed directly to individual members of Phi Kappa Psi fraternity"
+      ],
+      "explicit_unknowns": [
+        "exact number constituting a 'comparatively small group'"
+      ]
+    },
+    {
+      "thread": "Who Can Sue for Defamation",
+      "story": "On the other hand, Rolling Stone's lawyers would likely argue that the Phi Kappa Psi fraternity is so large and fluid, with membership changing somewhat every year, that the \"small group\" exception does not apply. They would contend that even though the fraternity's reputation is tarnished, its members have suffered no individualized injury. As for the other fraternities on campus not implicated in the story, that's likely a group that moves from the small category to large.",
+      "key_facts": [
+        "Rolling Stone's lawyers would argue Phi Kappa Psi fraternity is too large and fluid",
+        "membership changes somewhat every year",
+        "members have suffered no individualized injury",
+        "other fraternities on campus not implicated in the story are likely a large group"
+      ],
+      "explicit_unknowns": [
+        "specific number of members in Phi Kappa Psi fraternity"
+      ]
+    },
+    {
+      "thread": "Challenges of Defamation Suits",
+      "story": "Lawyers will tell you that a libel suit is often threatened but rarely filed, primarily because a plaintiff usually has to show some kind of financial harm. For example, if your Aunt Edna calls you a loser on Twitter, you would need an expert to explain to a jury how that financially damaged you. Many people who threaten defamation suits lack the money or reputation to damage in the first place.",
+      "key_facts": [
+        "libel suits are rarely actually filed",
+        "plaintiff usually has to show some kind of financial harm",
+        "example of Aunt Edna calling someone a loser on Twitter requiring an expert for financial damage",
+        "many who threaten defamation suits lack money or reputation to damage"
+      ],
+      "explicit_unknowns": [
+        "specific percentage of libel suits that are filed vs. threatened"
+      ]
+    },
+    {
+      "thread": "Challenges of Defamation Suits",
+      "story": "The University of Virginia (UVA) situation is not a run-of-the-mill defamation case. While UVA itself won't be able to sue, if the members of the Phi Kappa Psi fraternity can get past some of the preliminary hurdles of a defamation claim, and they can make a tangible case for damages, then this could be one of those rare successful defamation cases. This would require overcoming arguments from Rolling Stone's lawyers regarding group size and individualized injury.",
+      "key_facts": [
+        "UVA situation is not a run-of-the-mill defamation case",
+        "University of Virginia (UVA) won't be able to sue",
+        "if Phi Kappa Psi fraternity members overcome hurdles and show tangible damages, it could be a rare successful defamation case",
+        "requires overcoming arguments from Rolling Stone's lawyers"
+      ],
+      "explicit_unknowns": [
+        "specific amount of damages sought by fraternity members"
+      ]
+    }
+  ],
+  "_elapsed": 31.8
+}

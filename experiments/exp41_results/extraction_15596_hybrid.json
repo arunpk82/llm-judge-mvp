@@ -1,0 +1,356 @@
+{
+  "event_hubs": [
+    {
+      "event_id": "EVT_1",
+      "action": "charged",
+      "source_sentence": "S0",
+      "edges": [
+        {
+          "type": "agent",
+          "target": "FBI",
+          "source": "S0"
+        },
+        {
+          "type": "target",
+          "target": "Keonna Thomas",
+          "source": "S0"
+        },
+        {
+          "type": "time",
+          "target": "Thursday",
+          "source": "S0"
+        },
+        {
+          "type": "charge",
+          "target": "trying to travel overseas to fight for ISIS",
+          "source": "S0"
+        },
+        {
+          "type": "charge",
+          "target": "knowingly attempting to provide material support and resources to a designated foreign terrorist organization",
+          "source": "S9"
+        },
+        {
+          "type": "potential_sentence",
+          "target": "15 years in prison",
+          "source": "S10"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_2",
+      "action": "purchased electronic visa",
+      "source_sentence": "S4",
+      "edges": [
+        {
+          "type": "agent",
+          "target": "Keonna Thomas",
+          "source": "S4"
+        },
+        {
+          "type": "destination",
+          "target": "Turkey",
+          "source": "S4"
+        },
+        {
+          "type": "time",
+          "target": "March 23",
+          "source": "S4"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_3",
+      "action": "purchased ticket",
+      "source_sentence": "S7",
+      "edges": [
+        {
+          "type": "agent",
+          "target": "Keonna Thomas",
+          "source": "S7"
+        },
+        {
+          "type": "destination",
+          "target": "Barcelona",
+          "source": "S7"
+        },
+        {
+          "type": "purchase_date",
+          "target": "March 26",
+          "source": "S7"
+        },
+        {
+          "type": "departure_date",
+          "target": "March 29",
+          "source": "S7"
+        },
+        {
+          "type": "return_date",
+          "target": "April 15",
+          "source": "S7"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_4",
+      "action": "arrested",
+      "source_sentence": "S11",
+      "edges": [
+        {
+          "type": "target",
+          "target": "Noelle Velentzas",
+          "source": "S11"
+        },
+        {
+          "type": "target",
+          "target": "Asia Siddiqui",
+          "source": "S11"
+        },
+        {
+          "type": "place",
+          "target": "New York",
+          "source": "S11"
+        },
+        {
+          "type": "time",
+          "target": "Thursday",
+          "source": "S11"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_5",
+      "action": "planning to build an explosive device",
+      "source_sentence": "S11",
+      "edges": [
+        {
+          "type": "agent",
+          "target": "Noelle Velentzas",
+          "source": "S11"
+        },
+        {
+          "type": "agent",
+          "target": "Asia Siddiqui",
+          "source": "S11"
+        },
+        {
+          "type": "target_location",
+          "target": "United States",
+          "source": "S11"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_6",
+      "action": "told reporters",
+      "source_sentence": "S14",
+      "edges": [
+        {
+          "type": "agent",
+          "target": "Jeh Johnson",
+          "source": "S14"
+        },
+        {
+          "type": "time",
+          "target": "Thursday",
+          "source": "S14"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_7",
+      "action": "prosecuted",
+      "source_sentence": "S12",
+      "edges": [
+        {
+          "type": "agent",
+          "target": "Justice Department's National Security Division",
+          "source": "S12"
+        },
+        {
+          "type": "time",
+          "target": "past 18 months",
+          "source": "S12"
+        },
+        {
+          "type": "count",
+          "target": "more than 30 cases",
+          "source": "S12"
+        }
+      ]
+    }
+  ],
+  "entities": [
+    {
+      "name": "Keonna Thomas",
+      "aliases": [
+        "Young Lioness",
+        "Fatayat Al Khilafah"
+      ],
+      "attributes": {
+        "age": 30,
+        "location": "Philadelphia"
+      },
+      "participates_in": [
+        "EVT_1",
+        "EVT_2",
+        "EVT_3"
+      ],
+      "source_sentences": [
+        "S0",
+        "S3",
+        "S4",
+        "S7",
+        "S9"
+      ]
+    },
+    {
+      "name": "Noelle Velentzas",
+      "aliases": [],
+      "attributes": {
+        "age": 28,
+        "location": "New York"
+      },
+      "participates_in": [
+        "EVT_4",
+        "EVT_5"
+      ],
+      "source_sentences": [
+        "S11"
+      ]
+    },
+    {
+      "name": "Asia Siddiqui",
+      "aliases": [],
+      "attributes": {
+        "age": 31,
+        "location": "New York"
+      },
+      "participates_in": [
+        "EVT_4",
+        "EVT_5"
+      ],
+      "source_sentences": [
+        "S11"
+      ]
+    },
+    {
+      "name": "Jeh Johnson",
+      "aliases": [],
+      "attributes": {
+        "role": "Homeland Security Secretary"
+      },
+      "participates_in": [
+        "EVT_6"
+      ],
+      "source_sentences": [
+        "S14"
+      ]
+    },
+    {
+      "name": "FBI",
+      "aliases": [],
+      "attributes": {},
+      "participates_in": [
+        "EVT_1"
+      ],
+      "source_sentences": [
+        "S0",
+        "S3",
+        "S4",
+        "S6"
+      ]
+    },
+    {
+      "name": "ISIS",
+      "aliases": [],
+      "attributes": {},
+      "participates_in": [
+        "EVT_1"
+      ],
+      "source_sentences": [
+        "S0",
+        "S5",
+        "S6",
+        "S13"
+      ]
+    },
+    {
+      "name": "Turkey",
+      "aliases": [],
+      "attributes": {},
+      "participates_in": [
+        "EVT_2"
+      ],
+      "source_sentences": [
+        "S4",
+        "S5"
+      ]
+    },
+    {
+      "name": "Barcelona",
+      "aliases": [],
+      "attributes": {},
+      "participates_in": [
+        "EVT_3"
+      ],
+      "source_sentences": [
+        "S7"
+      ]
+    },
+    {
+      "name": "United States",
+      "aliases": [],
+      "attributes": {},
+      "participates_in": [
+        "EVT_5"
+      ],
+      "source_sentences": [
+        "S7",
+        "S11"
+      ]
+    },
+    {
+      "name": "Justice Department's National Security Division",
+      "aliases": [],
+      "attributes": {},
+      "participates_in": [
+        "EVT_7"
+      ],
+      "source_sentences": [
+        "S12"
+      ]
+    }
+  ],
+  "inter_event_edges": [
+    {
+      "from": "EVT_1",
+      "to": "EVT_2",
+      "type": "evidence",
+      "source": "S4"
+    },
+    {
+      "from": "EVT_1",
+      "to": "EVT_3",
+      "type": "evidence",
+      "source": "S7"
+    },
+    {
+      "from": "EVT_4",
+      "to": "EVT_5",
+      "type": "reason_for_arrest",
+      "source": "S11"
+    }
+  ],
+  "explicit_unknowns": [
+    {
+      "about": "arrest of Keonna Thomas",
+      "unknown_slots": [
+        "when",
+        "where"
+      ],
+      "source": "S8"
+    }
+  ],
+  "_elapsed": 131.9
+}

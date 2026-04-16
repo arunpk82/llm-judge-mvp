@@ -1,0 +1,78 @@
+{
+  "stories": [
+    {
+      "thread": "Anne Frank's Death and New Research",
+      "story": "Seventy years ago, Anne Frank, a 15-year-old Jewish diarist, died of typhus in a Nazi concentration camp. Her supposed death date was March 31, 1945, just two weeks before the Bergen-Belsen concentration camp, where she had been imprisoned, was liberated. However, new research released by the Anne Frank House shows that Anne Frank, the Jewish diarist, and her older sister, Margot Frank, died at least a month earlier than previously thought. This conclusion contradicts the date of death previously determined by Dutch authorities.",
+      "key_facts": [
+        "Anne Frank, a 15-year-old Jewish diarist, died of typhus in a Nazi concentration camp seventy years ago.",
+        "Her supposed death date was March 31, 1945.",
+        "The Bergen-Belsen concentration camp was liberated two weeks after March 31, 1945.",
+        "New research by the Anne Frank House indicates Anne Frank and her older sister, Margot Frank, died at least a month earlier than previously thought.",
+        "This new research contradicts Dutch authorities' previous determination of death date."
+      ],
+      "explicit_unknowns": [
+        "The exact dates of death for Anne Frank and Margot Frank remain unclear."
+      ]
+    },
+    {
+      "thread": "Methodology and Findings of New Research",
+      "story": "Researchers re-examined archives of the Red Cross, the International Training Service, and the Bergen-Belsen Memorial, along with testimonies of survivors, to determine the true death dates of Anne Frank, the Jewish diarist, and her older sister, Margot Frank. They concluded that Anne Frank and Margot Frank probably did not survive to March 1945. Witnesses at the Bergen-Belsen concentration camp said Anne Frank and Margot Frank both had symptoms of typhus before February 7. Authors Erika Prins and Gertjan Broek noted that most deaths caused by typhus occur around twelve days after the first symptoms appear.",
+      "key_facts": [
+        "Researchers re-examined archives and survivor testimonies.",
+        "They concluded Anne Frank and Margot Frank probably did not survive to March 1945.",
+        "Witnesses at Bergen-Belsen concentration camp reported symptoms in Anne Frank and Margot Frank before February 7.",
+        "Most typhus deaths occur around twelve days after first symptoms, according to authors Erika Prins and Gertjan Broek."
+      ],
+      "explicit_unknowns": [
+        "The exact dates of death for Anne Frank and Margot Frank remain unclear."
+      ]
+    },
+    {
+      "thread": "Arrest and Imprisonment",
+      "story": "In 1944, Anne Frank, the Jewish diarist, and seven others hiding in the Amsterdam secret annex were arrested and sent to the Auschwitz-Birkenau concentration camp. That same year, Anne Frank and her older sister, Margot Frank, were separated from their mother. Anne Frank, the Jewish diarist, and Margot Frank, her older sister, were then sent away to work as slave labor at the Bergen-Belsen concentration camp in Germany.",
+      "key_facts": [
+        "In 1944, Anne Frank and seven others were arrested from the Amsterdam secret annex.",
+        "They were sent to the Auschwitz-Birkenau concentration camp.",
+        "In 1944, Anne Frank and her older sister, Margot Frank, were separated from their mother.",
+        "Anne Frank and Margot Frank were sent to the Bergen-Belsen concentration camp as slave labor."
+      ],
+      "explicit_unknowns": []
+    },
+    {
+      "thread": "Conditions at Bergen-Belsen",
+      "story": "Days at the Bergen-Belsen concentration camp were filled with terror and dread, according to witnesses. Anne Frank, the Jewish diarist, and her older sister, Margot Frank, stayed in a section of the overcrowded camp with no lighting, little water, and no latrine. They slept on lice-ridden straw, and violent storms shredded their tents. Anne Frank, the Jewish diarist, and Margot Frank, her older sister, endured long hours at roll call. Nannette Blitz, Anne Frank's classmate, recalled seeing Anne Frank in December 1944, describing her as a skeleton, wrapped in a blanket, unable to wear her clothes due to lice.",
+      "key_facts": [
+        "Days at the Bergen-Belsen concentration camp were filled with terror and dread.",
+        "Anne Frank and Margot Frank stayed in an overcrowded section with poor conditions.",
+        "They slept on lice-ridden straw and endured storms and long hours at roll call.",
+        "Nannette Blitz, Anne Frank's classmate, saw Anne Frank in December 1944, noting her emaciated state and lice infestation."
+      ],
+      "explicit_unknowns": []
+    },
+    {
+      "thread": "The Typhus Outbreak",
+      "story": "As the Russians advanced further, the Bergen-Belsen concentration camp became even more crowded, bringing more disease. A deadly typhus outbreak caused thousands to die each day. Typhus is an infectious disease caused by lice that breaks out in places with poor hygiene, causing high fever, chills, and skin eruptions. Museum researchers wrote that Anne Frank, the Jewish diarist, was exposed to the main carrier of epidemic typhus for an extended period due to lice infesting her bedstraw and clothes. Margot Frank, Anne Frank's older sister, died before Anne Frank.",
+      "key_facts": [
+        "The Bergen-Belsen concentration camp became more crowded with advancing Russians, leading to more disease.",
+        "A deadly typhus outbreak caused thousands of deaths daily.",
+        "Typhus is an infectious disease caused by lice, prevalent in poor hygiene, causing high fever, chills, and skin eruptions.",
+        "Anne Frank was exposed to typhus carriers due to lice in her environment.",
+        "Margot Frank, Anne Frank's older sister, died before Anne Frank."
+      ],
+      "explicit_unknowns": [
+        "The exact dates of death for Anne Frank and Margot Frank remain unclear."
+      ]
+    },
+    {
+      "thread": "Anne Frank's Hope and Legacy",
+      "story": "Despite the horrific conditions, Anne Frank, the 15-year-old Jewish diarist, never gave up hope. Her friend, Nannette Blitz, said Anne Frank was absolutely convinced she would survive. Anne Frank's diary endures as one of the world's most popular books.",
+      "key_facts": [
+        "Anne Frank, the 15-year-old Jewish diarist, never gave up hope.",
+        "Nannette Blitz, Anne Frank's friend, stated Anne Frank was convinced she would survive.",
+        "Anne Frank's diary is one of the world's most popular books."
+      ],
+      "explicit_unknowns": []
+    }
+  ],
+  "_elapsed": 19.1
+}

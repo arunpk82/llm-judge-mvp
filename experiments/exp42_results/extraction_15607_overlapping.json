@@ -1,0 +1,52 @@
+{
+  "stories": [
+    {
+      "thread": "Initial Arrest and Group Composition",
+      "story": "Nine British citizens were arrested in Turkey on Wednesday, suspected of trying to cross illegally into Syria, the Turkish military said on its website. The nine British citizens were arrested at the Turkey-Syria border. A Turkish official told CNN that the group of nine British citizens included four children, three men, and two women. All nine British citizens had British passports. The British Foreign Office said Wednesday it is aware of reports of the arrests of the nine British citizens and is seeking information from Turkish authorities.",
+      "key_facts": [
+        "Nine British citizens arrested in Turkey on Wednesday",
+        "Suspected of trying to cross illegally into Syria",
+        "Arrested at the Turkey-Syria border",
+        "Group included four children, three men, and two women",
+        "All nine British citizens had British passports",
+        "British Foreign Office aware and seeking information from Turkish authorities"
+      ],
+      "explicit_unknowns": [
+        "Why the group of nine British citizens was allegedly trying to get into Syria"
+      ]
+    },
+    {
+      "thread": "Group Demographics and Syrian War Background",
+      "story": "A Turkish official told CNN that the group of nine British citizens arrested in Turkey included four children, three men, and two women. Among the four children, the oldest was 10 or 11, with the youngest born in 2013. All nine British citizens had British passports. The Turkish military did not state why the group of nine British citizens allegedly was trying to get into Syria, which has been torn by a roughly four-year war. ISIS, a combatant in Syria's war, has taken over parts of Syria and Iraq and is known to recruit Westerners.",
+      "key_facts": [
+        "Nine British citizens arrested in Turkey",
+        "Group included four children, three men, and two women",
+        "Oldest child 10 or 11, youngest born in 2013",
+        "All nine British citizens had British passports",
+        "Syria has a roughly four-year war",
+        "ISIS is a combatant in Syria's war, has taken over parts of Syria and Iraq, and recruits Westerners"
+      ],
+      "explicit_unknowns": [
+        "Why the group of nine British citizens was allegedly trying to get into Syria"
+      ]
+    },
+    {
+      "thread": "Official Reactions and UK Police Action",
+      "story": "Nine British citizens were arrested in Turkey on Wednesday, suspected of trying to cross illegally into Syria. The British Foreign Office said Wednesday that it is aware of reports of the arrests of the nine British citizens and is seeking information about the incident from Turkish authorities. Separately, UK police charged a man with terror offenses after a Turkey trip. The source does not state if the man charged by UK police is one of the nine British citizens arrested in Turkey. CNN's Gul Tuysuz reported from Istanbul, Elaine Ly reported from London, and Jason Hanna contributed to this report.",
+      "key_facts": [
+        "Nine British citizens arrested in Turkey on Wednesday",
+        "Suspected of trying to cross illegally into Syria",
+        "British Foreign Office aware and seeking information from Turkish authorities",
+        "UK police charged a man with terror offenses after a Turkey trip",
+        "CNN's Gul Tuysuz reported from Istanbul",
+        "CNN's Elaine Ly reported from London",
+        "CNN's Jason Hanna contributed to the report"
+      ],
+      "explicit_unknowns": [
+        "Why the group of nine British citizens was allegedly trying to get into Syria",
+        "Whether the man charged by UK police is one of the nine British citizens arrested in Turkey"
+      ]
+    }
+  ],
+  "_elapsed": 21.2
+}

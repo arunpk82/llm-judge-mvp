@@ -1,0 +1,1564 @@
+{
+  "event_hubs": [
+    {
+      "event_id": "EVT_1",
+      "action": "answered",
+      "source_sentence": "S0",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "Hong Kong police",
+          "source": "S0"
+        },
+        {
+          "type": "target_of",
+          "target": "a call",
+          "source": "S0"
+        },
+        {
+          "type": "when",
+          "target": "early hours of a Saturday morning last November",
+          "source": "S0"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_2",
+      "action": "encountered",
+      "source_sentence": "S0",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "Hong Kong police",
+          "source": "S0"
+        },
+        {
+          "type": "target_of",
+          "target": "a grisly scene and an alleged crime",
+          "source": "S0"
+        },
+        {
+          "type": "when",
+          "target": "early hours of a Saturday morning last November",
+          "source": "S0"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_3",
+      "action": "shocked",
+      "source_sentence": "S0",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "EVT_2",
+          "source": "S0"
+        },
+        {
+          "type": "target_of",
+          "target": "Hong Kong",
+          "source": "S0"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_4",
+      "action": "lying",
+      "source_sentence": "S1",
+      "edges": [
+        {
+          "type": "target_of",
+          "target": "Seneng Mujiasih",
+          "source": "S1"
+        },
+        {
+          "type": "how",
+          "target": "with cuts to her neck and buttocks",
+          "source": "S1"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_5",
+      "action": "stuffed",
+      "source_sentence": "S2",
+      "edges": [
+        {
+          "type": "target_of",
+          "target": "Sumarti Ningsih",
+          "source": "S2"
+        },
+        {
+          "type": "where",
+          "target": "inside a suitcase on the balcony",
+          "source": "S2"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_6",
+      "action": "charged",
+      "source_sentence": "S3",
+      "edges": [
+        {
+          "type": "target_of",
+          "target": "Rurik Jutting",
+          "source": "S3"
+        },
+        {
+          "type": "why",
+          "target": "two counts of murder",
+          "source": "S3"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_7",
+      "action": "adjourned",
+      "source_sentence": "S4",
+      "edges": [
+        {
+          "type": "target_of",
+          "target": "a court hearing",
+          "source": "S4"
+        },
+        {
+          "type": "when",
+          "target": "On Thursday",
+          "source": "S4"
+        },
+        {
+          "type": "when",
+          "target": "until May",
+          "source": "S4"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_8",
+      "action": "determine",
+      "source_sentence": "S4",
+      "edges": [
+        {
+          "type": "target_of",
+          "target": "whether there was enough evidence to proceed to trial",
+          "source": "S4"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_9",
+      "action": "lived",
+      "source_sentence": "S6",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "Rurik Jutting",
+          "source": "S6"
+        },
+        {
+          "type": "where",
+          "target": "the murder scene",
+          "source": "S6"
+        },
+        {
+          "type": "how",
+          "target": "allegedly",
+          "source": "S6"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_10",
+      "action": "called",
+      "source_sentence": "S7",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "Rurik Jutting",
+          "source": "S7"
+        },
+        {
+          "type": "target_of",
+          "target": "Hong Kong police",
+          "source": "S7"
+        },
+        {
+          "type": "when",
+          "target": "In the early hours of Saturday morning, November 1",
+          "source": "S7"
+        },
+        {
+          "type": "where",
+          "target": "the murder scene",
+          "source": "S7"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_11",
+      "action": "found",
+      "source_sentence": "S8",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "Hong Kong police",
+          "source": "S8"
+        },
+        {
+          "type": "target_of",
+          "target": "Seneng Mujiasih",
+          "source": "S8"
+        },
+        {
+          "type": "where",
+          "target": "the murder scene",
+          "source": "S8"
+        },
+        {
+          "type": "how",
+          "target": "lying on the blood-splattered floor",
+          "source": "S8"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_12",
+      "action": "uncovered",
+      "source_sentence": "S9",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "Hong Kong police",
+          "source": "S9"
+        },
+        {
+          "type": "target_of",
+          "target": "Sumarti Ningsih",
+          "source": "S9"
+        },
+        {
+          "type": "where",
+          "target": "hidden in a suitcase on the balcony",
+          "source": "S9"
+        },
+        {
+          "type": "how",
+          "target": "During a search of the apartment",
+          "source": "S9"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_13",
+      "action": "killed",
+      "source_sentence": "S10",
+      "edges": [
+        {
+          "type": "target_of",
+          "target": "Sumarti Ningsih",
+          "source": "S10"
+        },
+        {
+          "type": "when",
+          "target": "on October 27",
+          "source": "S10"
+        },
+        {
+          "type": "how",
+          "target": "alleged",
+          "source": "S10"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_14",
+      "action": "described",
+      "source_sentence": "S12",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "Jumiati",
+          "source": "S12"
+        },
+        {
+          "type": "target_of",
+          "target": "Sumarti Ningsih",
+          "source": "S12"
+        },
+        {
+          "type": "how",
+          "target": "as 'just an ordinary woman from Indonesia' who, like many others, was 'forced to work abroad to feed her poor family and make her dream comes (sic) true.'",
+          "source": "S12"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_15",
+      "action": "forced to work abroad",
+      "source_sentence": "S12",
+      "edges": [
+        {
+          "type": "target_of",
+          "target": "Sumarti Ningsih",
+          "source": "S12"
+        },
+        {
+          "type": "why",
+          "target": "to feed her poor family and make her dream comes (sic) true",
+          "source": "S12"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_16",
+      "action": "wanted to work as professional",
+      "source_sentence": "S12",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "Sumarti Ningsih",
+          "source": "S12"
+        },
+        {
+          "type": "why",
+          "target": "so she can earn money and dignity for her family",
+          "source": "S12"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_17",
+      "action": "wrote",
+      "source_sentence": "S12",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "Jumiati",
+          "source": "S12"
+        },
+        {
+          "type": "target_of",
+          "target": "statement",
+          "source": "S12"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_18",
+      "action": "visiting",
+      "source_sentence": "S13",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "Sumarti Ningsih",
+          "source": "S13"
+        },
+        {
+          "type": "where",
+          "target": "Hong Kong",
+          "source": "S13"
+        },
+        {
+          "type": "how",
+          "target": "as a tourist",
+          "source": "S13"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_19",
+      "action": "fly back",
+      "source_sentence": "S13",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "Sumarti Ningsih",
+          "source": "S13"
+        },
+        {
+          "type": "where",
+          "target": "Jakarta",
+          "source": "S13"
+        },
+        {
+          "type": "when",
+          "target": "the day after her body was found",
+          "source": "S13"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_20",
+      "action": "told",
+      "source_sentence": "S14",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "Ahmad Khaliman",
+          "source": "S14"
+        },
+        {
+          "type": "target_of",
+          "target": "Agence France-Presse",
+          "source": "S14"
+        },
+        {
+          "type": "when",
+          "target": "Last year",
+          "source": "S14"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_21",
+      "action": "worked",
+      "source_sentence": "S14",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "Sumarti Ningsih",
+          "source": "S14"
+        },
+        {
+          "type": "where",
+          "target": "Hong Kong",
+          "source": "S14"
+        },
+        {
+          "type": "how",
+          "target": "as a domestic helper",
+          "source": "S14"
+        },
+        {
+          "type": "when",
+          "target": "between 2011 and 2013",
+          "source": "S14"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_22",
+      "action": "returned",
+      "source_sentence": "S15",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "Sumarti Ningsih",
+          "source": "S15"
+        },
+        {
+          "type": "when",
+          "target": "since",
+          "source": "S15"
+        },
+        {
+          "type": "how",
+          "target": "on two occasions",
+          "source": "S15"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_23",
+      "action": "said",
+      "source_sentence": "S16",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "Ahmad Khaliman",
+          "source": "S16"
+        },
+        {
+          "type": "target_of",
+          "target": "the family had been shocked by her murder",
+          "source": "S16"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_24",
+      "action": "shocked",
+      "source_sentence": "S16",
+      "edges": [
+        {
+          "type": "target_of",
+          "target": "Sumarti Ningsih's family",
+          "source": "S16"
+        },
+        {
+          "type": "why",
+          "target": "EVT_13",
+          "source": "S16"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_25",
+      "action": "called for",
+      "source_sentence": "S16",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "Ahmad Khaliman",
+          "source": "S16"
+        },
+        {
+          "type": "target_of",
+          "target": "Rurik Jutting",
+          "source": "S16"
+        },
+        {
+          "type": "how",
+          "target": "to be executed",
+          "source": "S16"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_26",
+      "action": "told",
+      "source_sentence": "S18",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "Ahmad Khaliman",
+          "source": "S18"
+        },
+        {
+          "type": "target_of",
+          "target": "CNN affiliate Trans7",
+          "source": "S18"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_27",
+      "action": "worked",
+      "source_sentence": "S19",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "Seneng Mujiasih",
+          "source": "S19"
+        },
+        {
+          "type": "where",
+          "target": "Hong Kong",
+          "source": "S19"
+        },
+        {
+          "type": "how",
+          "target": "as a domestic worker",
+          "source": "S19"
+        },
+        {
+          "type": "when",
+          "target": "more recently",
+          "source": "S19"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_28",
+      "action": "overstayed",
+      "source_sentence": "S19",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "Seneng Mujiasih",
+          "source": "S19"
+        },
+        {
+          "type": "target_of",
+          "target": "her visa",
+          "source": "S19"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_29",
+      "action": "spread",
+      "source_sentence": "S22",
+      "edges": [
+        {
+          "type": "target_of",
+          "target": "news of their death",
+          "source": "S22"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_30",
+      "action": "held a vigil",
+      "source_sentence": "S22",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "fellow domestic workers",
+          "source": "S22"
+        },
+        {
+          "type": "where",
+          "target": "Victoria Park",
+          "source": "S22"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_31",
+      "action": "gathered",
+      "source_sentence": "S23",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "Around 200 people",
+          "source": "S23"
+        },
+        {
+          "type": "why",
+          "target": "to sing and pray, and lay flowers besides photos of the two women",
+          "source": "S23"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_32",
+      "action": "repatriated",
+      "source_sentence": "S24",
+      "edges": [
+        {
+          "type": "target_of",
+          "target": "the victims' bodies",
+          "source": "S24"
+        },
+        {
+          "type": "where",
+          "target": "Indonesia",
+          "source": "S24"
+        },
+        {
+          "type": "when",
+          "target": "in November",
+          "source": "S24"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_33",
+      "action": "buried",
+      "source_sentence": "S24",
+      "edges": [
+        {
+          "type": "target_of",
+          "target": "the victims' bodies",
+          "source": "S24"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_34",
+      "action": "lived",
+      "source_sentence": "S25",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "Rurik Jutting",
+          "source": "S25"
+        },
+        {
+          "type": "where",
+          "target": "J Residence",
+          "source": "S25"
+        },
+        {
+          "type": "when",
+          "target": "Before being taken into custody",
+          "source": "S25"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_35",
+      "action": "taken into custody",
+      "source_sentence": "S25",
+      "edges": [
+        {
+          "type": "target_of",
+          "target": "Rurik Jutting",
+          "source": "S25"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_36",
+      "action": "detained",
+      "source_sentence": "S26",
+      "edges": [
+        {
+          "type": "target_of",
+          "target": "Rurik Jutting",
+          "source": "S26"
+        },
+        {
+          "type": "where",
+          "target": "the murder scene",
+          "source": "S26"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_37",
+      "action": "found",
+      "source_sentence": "S26",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "Hong Kong police",
+          "source": "S26"
+        },
+        {
+          "type": "target_of",
+          "target": "the bodies of two women",
+          "source": "S26"
+        },
+        {
+          "type": "where",
+          "target": "the murder scene",
+          "source": "S26"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_38",
+      "action": "seized",
+      "source_sentence": "S26",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "Hong Kong police",
+          "source": "S26"
+        },
+        {
+          "type": "target_of",
+          "target": "a knife",
+          "source": "S26"
+        },
+        {
+          "type": "where",
+          "target": "the murder scene",
+          "source": "S26"
+        },
+        {
+          "type": "how",
+          "target": "during a search of the premises",
+          "source": "S26"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_39",
+      "action": "worked",
+      "source_sentence": "S27",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "Rurik Jutting",
+          "source": "S27"
+        },
+        {
+          "type": "where",
+          "target": "Bank of America Merrill Lynch",
+          "source": "S27"
+        },
+        {
+          "type": "how",
+          "target": "as a trader",
+          "source": "S27"
+        },
+        {
+          "type": "when",
+          "target": "in the past",
+          "source": "S27"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_40",
+      "action": "employed",
+      "source_sentence": "S28",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "Rurik Jutting",
+          "source": "S28"
+        },
+        {
+          "type": "where",
+          "target": "structured equity finance and trading division (Hong Kong)",
+          "source": "S28"
+        },
+        {
+          "type": "when",
+          "target": "since July 2013",
+          "source": "S28"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_41",
+      "action": "worked",
+      "source_sentence": "S29",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "Rurik Jutting",
+          "source": "S29"
+        },
+        {
+          "type": "where",
+          "target": "structured equity finance and trading division (London)",
+          "source": "S29"
+        },
+        {
+          "type": "when",
+          "target": "for three years",
+          "source": "S29"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_42",
+      "action": "worked",
+      "source_sentence": "S30",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "Rurik Jutting",
+          "source": "S30"
+        },
+        {
+          "type": "where",
+          "target": "in capital markets",
+          "source": "S30"
+        },
+        {
+          "type": "target_of",
+          "target": "Barclays",
+          "source": "S30"
+        },
+        {
+          "type": "when",
+          "target": "previously",
+          "source": "S30"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_43",
+      "action": "studied",
+      "source_sentence": "S30",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "Rurik Jutting",
+          "source": "S30"
+        },
+        {
+          "type": "target_of",
+          "target": "history and law",
+          "source": "S30"
+        },
+        {
+          "type": "where",
+          "target": "University of Cambridge",
+          "source": "S30"
+        },
+        {
+          "type": "when",
+          "target": "between 2004 and 2008",
+          "source": "S30"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_44",
+      "action": "conducted",
+      "source_sentence": "S31",
+      "edges": [
+        {
+          "type": "target_of",
+          "target": "tests",
+          "source": "S31"
+        },
+        {
+          "type": "why",
+          "target": "to determined if Jutting was psychologically fit to enter a plea",
+          "source": "S31"
+        },
+        {
+          "type": "how",
+          "target": "As part of the trial process",
+          "source": "S31"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_45",
+      "action": "was psychologically fit",
+      "source_sentence": "S31",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "Rurik Jutting",
+          "source": "S31"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_46",
+      "action": "adjourned",
+      "source_sentence": "S33",
+      "edges": [
+        {
+          "type": "target_of",
+          "target": "The case",
+          "source": "S33"
+        },
+        {
+          "type": "why",
+          "target": "to allow for more than 200 pieces of forensic and DNA evidence to be analyzed",
+          "source": "S33"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_47",
+      "action": "analyzed",
+      "source_sentence": "S33",
+      "edges": [
+        {
+          "type": "target_of",
+          "target": "forensic and DNA evidence",
+          "source": "S33"
+        }
+      ]
+    }
+  ],
+  "entities": [
+    {
+      "name": "Hong Kong police",
+      "aliases": [
+        "they",
+        "officers",
+        "police"
+      ],
+      "attributes": {},
+      "participates_in": [
+        "EVT_1",
+        "EVT_2",
+        "EVT_10",
+        "EVT_11",
+        "EVT_12",
+        "EVT_37",
+        "EVT_38"
+      ],
+      "source_sentences": [
+        "S0",
+        "S7",
+        "S8",
+        "S9",
+        "S26"
+      ]
+    },
+    {
+      "name": "Hong Kong",
+      "aliases": [
+        "the city"
+      ],
+      "attributes": {},
+      "participates_in": [
+        "EVT_3",
+        "EVT_18",
+        "EVT_21",
+        "EVT_27",
+        "EVT_28",
+        "EVT_30",
+        "EVT_40"
+      ],
+      "source_sentences": [
+        "S0",
+        "S13",
+        "S14",
+        "S19",
+        "S22",
+        "S28"
+      ]
+    },
+    {
+      "name": "Seneng Mujiasih",
+      "aliases": [
+        "One woman",
+        "a woman",
+        "Jesse Lorena",
+        "Mujiasih"
+      ],
+      "attributes": {
+        "age": "29-year-old",
+        "condition": "lying on the blood-splattered floor",
+        "origin": "the city of Muna in Sulawesi province, in southeast Indonesia"
+      },
+      "participates_in": [
+        "EVT_4",
+        "EVT_11",
+        "EVT_27",
+        "EVT_28"
+      ],
+      "source_sentences": [
+        "S1",
+        "S8",
+        "S19",
+        "S20"
+      ]
+    },
+    {
+      "name": "Sumarti Ningsih",
+      "aliases": [
+        "Another woman",
+        "Another body",
+        "Ningsih",
+        "his daughter",
+        "She",
+        "her"
+      ],
+      "attributes": {
+        "age": "25-year-old",
+        "condition": "stuffed inside a suitcase on the balcony",
+        "origin": "Cilacap, in Central Java",
+        "family_role": "mother of a five-year-old girl"
+      },
+      "participates_in": [
+        "EVT_5",
+        "EVT_12",
+        "EVT_13",
+        "EVT_15",
+        "EVT_16",
+        "EVT_18",
+        "EVT_19",
+        "EVT_21",
+        "EVT_22"
+      ],
+      "source_sentences": [
+        "S2",
+        "S9",
+        "S10",
+        "S11",
+        "S12",
+        "S13",
+        "S14",
+        "S15"
+      ]
+    },
+    {
+      "name": "Rurik Jutting",
+      "aliases": [
+        "Jutting",
+        "He",
+        "perpetrator"
+      ],
+      "attributes": {
+        "occupation": "former banker",
+        "age": "29-year-old",
+        "nationality": "Briton"
+      },
+      "participates_in": [
+        "EVT_6",
+        "EVT_9",
+        "EVT_10",
+        "EVT_25",
+        "EVT_34",
+        "EVT_35",
+        "EVT_36",
+        "EVT_39",
+        "EVT_40",
+        "EVT_41",
+        "EVT_42",
+        "EVT_43",
+        "EVT_45"
+      ],
+      "source_sentences": [
+        "S3",
+        "S6",
+        "S7",
+        "S16",
+        "S25",
+        "S26",
+        "S27",
+        "S28",
+        "S29",
+        "S30",
+        "S31",
+        "S32"
+      ]
+    },
+    {
+      "name": "Wan Chai",
+      "aliases": [],
+      "attributes": {
+        "description": "an inner-city suburb that's home to an eclectic mix of late-night bars, residential tower blocks and local markets selling groceries and assorted cheap goods"
+      },
+      "participates_in": [],
+      "source_sentences": [
+        "S6",
+        "S25"
+      ]
+    },
+    {
+      "name": "the murder scene",
+      "aliases": [
+        "an upmarket apartment",
+        "the apartment",
+        "There",
+        "the scene",
+        "the premises"
+      ],
+      "attributes": {
+        "type": "upmarket apartment",
+        "location": "in the middle of Wan Chai"
+      },
+      "participates_in": [],
+      "source_sentences": [
+        "S6",
+        "S7",
+        "S8",
+        "S9",
+        "S26"
+      ]
+    },
+    {
+      "name": "five-year-old girl",
+      "aliases": [],
+      "attributes": {
+        "age": "five-year-old",
+        "relationship_to_Sumarti_Ningsih": "daughter"
+      },
+      "participates_in": [],
+      "source_sentences": [
+        "S11"
+      ]
+    },
+    {
+      "name": "Cilacap",
+      "aliases": [],
+      "attributes": {
+        "location": "in Central Java"
+      },
+      "participates_in": [],
+      "source_sentences": [
+        "S11"
+      ]
+    },
+    {
+      "name": "Central Java",
+      "aliases": [],
+      "attributes": {},
+      "participates_in": [],
+      "source_sentences": [
+        "S11"
+      ]
+    },
+    {
+      "name": "Jumiati",
+      "aliases": [],
+      "attributes": {
+        "relationship_to_Sumarti_Ningsih": "cousin"
+      },
+      "participates_in": [
+        "EVT_14",
+        "EVT_17"
+      ],
+      "source_sentences": [
+        "S12"
+      ]
+    },
+    {
+      "name": "Sumarti Ningsih's family",
+      "aliases": [
+        "her poor family",
+        "the family"
+      ],
+      "attributes": {
+        "condition": "poor"
+      },
+      "participates_in": [
+        "EVT_24"
+      ],
+      "source_sentences": [
+        "S12",
+        "S16"
+      ]
+    },
+    {
+      "name": "Jakarta",
+      "aliases": [],
+      "attributes": {},
+      "participates_in": [],
+      "source_sentences": [
+        "S13"
+      ]
+    },
+    {
+      "name": "Asian Migrant Coordinating Body",
+      "aliases": [],
+      "attributes": {},
+      "participates_in": [],
+      "source_sentences": [
+        "S13",
+        "S19"
+      ]
+    },
+    {
+      "name": "Ahmad Khaliman",
+      "aliases": [
+        "He",
+        "his grieving father"
+      ],
+      "attributes": {
+        "relationship_to_Sumarti_Ningsih": "father",
+        "state": "grieving"
+      },
+      "participates_in": [
+        "EVT_20",
+        "EVT_23",
+        "EVT_25",
+        "EVT_26"
+      ],
+      "source_sentences": [
+        "S14",
+        "S15",
+        "S16",
+        "S18"
+      ]
+    },
+    {
+      "name": "Agence France-Presse",
+      "aliases": [],
+      "attributes": {},
+      "participates_in": [
+        "EVT_20"
+      ],
+      "source_sentences": [
+        "S14"
+      ]
+    },
+    {
+      "name": "CNN affiliate Trans7",
+      "aliases": [],
+      "attributes": {},
+      "participates_in": [
+        "EVT_26"
+      ],
+      "source_sentences": [
+        "S18"
+      ]
+    },
+    {
+      "name": "Muna",
+      "aliases": [],
+      "attributes": {
+        "location": "in Sulawesi province, in southeast Indonesia"
+      },
+      "participates_in": [],
+      "source_sentences": [
+        "S20"
+      ]
+    },
+    {
+      "name": "Sulawesi province",
+      "aliases": [],
+      "attributes": {
+        "location": "in southeast Indonesia"
+      },
+      "participates_in": [],
+      "source_sentences": [
+        "S20"
+      ]
+    },
+    {
+      "name": "Indonesia",
+      "aliases": [],
+      "attributes": {},
+      "participates_in": [],
+      "source_sentences": [
+        "S20",
+        "S24"
+      ]
+    },
+    {
+      "name": "fellow domestic workers",
+      "aliases": [],
+      "attributes": {},
+      "participates_in": [
+        "EVT_30"
+      ],
+      "source_sentences": [
+        "S22"
+      ]
+    },
+    {
+      "name": "Victoria Park",
+      "aliases": [],
+      "attributes": {
+        "location": "in Hong Kong"
+      },
+      "participates_in": [],
+      "source_sentences": [
+        "S22"
+      ]
+    },
+    {
+      "name": "Around 200 people",
+      "aliases": [],
+      "attributes": {},
+      "participates_in": [
+        "EVT_31"
+      ],
+      "source_sentences": [
+        "S23"
+      ]
+    },
+    {
+      "name": "the victims' bodies",
+      "aliases": [],
+      "attributes": {},
+      "participates_in": [
+        "EVT_32",
+        "EVT_33",
+        "EVT_37"
+      ],
+      "source_sentences": [
+        "S24",
+        "S26"
+      ]
+    },
+    {
+      "name": "J Residence",
+      "aliases": [],
+      "attributes": {
+        "type": "upmarket",
+        "location": "in Wan Chai"
+      },
+      "participates_in": [],
+      "source_sentences": [
+        "S25"
+      ]
+    },
+    {
+      "name": "a knife",
+      "aliases": [],
+      "attributes": {},
+      "participates_in": [
+        "EVT_38"
+      ],
+      "source_sentences": [
+        "S26"
+      ]
+    },
+    {
+      "name": "Bank of America Merrill Lynch",
+      "aliases": [
+        "BoA",
+        "the bank"
+      ],
+      "attributes": {},
+      "participates_in": [
+        "EVT_39",
+        "EVT_40",
+        "EVT_41"
+      ],
+      "source_sentences": [
+        "S27",
+        "S28",
+        "S29"
+      ]
+    },
+    {
+      "name": "structured equity finance and trading division (Hong Kong)",
+      "aliases": [
+        "the bank's structured equity finance and trading division"
+      ],
+      "attributes": {
+        "location": "in Hong Kong",
+        "part_of": "Bank of America Merrill Lynch"
+      },
+      "participates_in": [],
+      "source_sentences": [
+        "S28"
+      ]
+    },
+    {
+      "name": "structured equity finance and trading division (London)",
+      "aliases": [
+        "the same unit"
+      ],
+      "attributes": {
+        "location": "in London",
+        "part_of": "Bank of America Merrill Lynch"
+      },
+      "participates_in": [],
+      "source_sentences": [
+        "S29"
+      ]
+    },
+    {
+      "name": "London",
+      "aliases": [],
+      "attributes": {},
+      "participates_in": [],
+      "source_sentences": [
+        "S29"
+      ]
+    },
+    {
+      "name": "Barclays",
+      "aliases": [
+        "the British bank Barclays"
+      ],
+      "attributes": {
+        "nationality": "British bank"
+      },
+      "participates_in": [
+        "EVT_42"
+      ],
+      "source_sentences": [
+        "S30"
+      ]
+    },
+    {
+      "name": "University of Cambridge",
+      "aliases": [
+        "the prestigious University of Cambridge"
+      ],
+      "attributes": {
+        "description": "prestigious"
+      },
+      "participates_in": [
+        "EVT_43"
+      ],
+      "source_sentences": [
+        "S30"
+      ]
+    },
+    {
+      "name": "forensic and DNA evidence",
+      "aliases": [],
+      "attributes": {
+        "quantity": "more than 200 pieces"
+      },
+      "participates_in": [
+        "EVT_47"
+      ],
+      "source_sentences": [
+        "S33"
+      ]
+    }
+  ],
+  "inter_event_edges": [
+    {
+      "from": "EVT_1",
+      "to": "EVT_2",
+      "type": "causes",
+      "source": "S0"
+    },
+    {
+      "from": "EVT_2",
+      "to": "EVT_3",
+      "type": "causes",
+      "source": "S0"
+    },
+    {
+      "from": "EVT_8",
+      "to": "EVT_7",
+      "type": "purpose_of",
+      "source": "S4"
+    },
+    {
+      "from": "EVT_10",
+      "to": "EVT_11",
+      "type": "causes",
+      "source": "S7"
+    },
+    {
+      "from": "EVT_10",
+      "to": "EVT_12",
+      "type": "causes",
+      "source": "S9"
+    },
+    {
+      "from": "EVT_13",
+      "to": "EVT_12",
+      "type": "precedes",
+      "source": "S10"
+    },
+    {
+      "from": "EVT_13",
+      "to": "EVT_24",
+      "type": "causes",
+      "source": "S16"
+    },
+    {
+      "from": "EVT_29",
+      "to": "EVT_30",
+      "type": "precedes",
+      "source": "S22"
+    },
+    {
+      "from": "EVT_32",
+      "to": "EVT_33",
+      "type": "precedes",
+      "source": "S24"
+    },
+    {
+      "from": "EVT_35",
+      "to": "EVT_34",
+      "type": "precedes",
+      "source": "S25"
+    },
+    {
+      "from": "EVT_44",
+      "to": "EVT_45",
+      "type": "purpose_of",
+      "source": "S31"
+    },
+    {
+      "from": "EVT_47",
+      "to": "EVT_46",
+      "type": "purpose_of",
+      "source": "S33"
+    }
+  ],
+  "explicit_unknowns": [
+    {
+      "about": "details about Seneng Mujiasih's life",
+      "unknown_slots": [
+        "details"
+      ],
+      "source": "S21"
+    },
+    {
+      "about": "why Seneng Mujiasih stayed on in Hong Kong",
+      "unknown_slots": [
+        "reason"
+      ],
+      "source": "S21"
+    },
+    {
+      "about": "when Rurik Jutting left his job as a trader at the Bank of America Merrill Lynch",
+      "unknown_slots": [
+        "when_left_job"
+      ],
+      "source": "S27"
+    }
+  ],
+  "_elapsed": 90.6
+}

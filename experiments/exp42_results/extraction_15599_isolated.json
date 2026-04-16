@@ -1,0 +1,82 @@
+{
+  "stories": [
+    {
+      "thread": "Blue Bell's Broken Arrow Plant Shutdown and Contamination",
+      "story": "Blue Bell ice cream has temporarily shut down its Broken Arrow, Oklahoma, manufacturing plant. This action followed the discovery of listeria contamination in a serving of ice cream originating from that plant. The company is shutting down the facility \"out of an abundance of caution\" to search for a possible cause of contamination. A cup contaminated with Listeria monocytogenes, produced at the Broken Arrow plant in April 2014, was recovered from a hospital. Additionally, listeria bacteria was found in samples of the same product recovered from the plant.",
+      "key_facts": [
+        "Blue Bell temporarily shut down Broken Arrow, Oklahoma, plant",
+        "Listeria contamination found in ice cream from the plant",
+        "Shutdown is \"out of an abundance of caution\" to find cause",
+        "Contaminated cup produced in April 2014 at Broken Arrow plant",
+        "Listeria found in additional samples from the plant"
+      ],
+      "explicit_unknowns": [
+        "The possible cause of contamination is not stated."
+      ]
+    },
+    {
+      "thread": "CDC Warnings and Recommendations for Blue Bell Products",
+      "story": "Public health officials warned consumers Friday not to eat any Blue Bell-branded products made at the company's Broken Arrow, Oklahoma, plant. This warning includes 3-ounce servings of Blue Bell ice cream from this plant that went to institutions in containers marked with the letters O, P, Q, R, S or T behind the coding date. The Centers for Disease Control and Prevention (CDC) warning does not affect other Blue Bell ice cream, including other 3-ounce servings, not made at the Broken Arrow plant. The CDC advises that individuals and institutions should check their freezers for the recalled products and throw them away.",
+      "key_facts": [
+        "Public health officials warned against products from Broken Arrow plant",
+        "Warning includes specific 3-ounce servings for institutions",
+        "CDC warning does not affect other Blue Bell ice cream not from Broken Arrow",
+        "CDC advises checking freezers for recalled products and discarding them"
+      ],
+      "explicit_unknowns": []
+    },
+    {
+      "thread": "Kansas Listeria Outbreak and Blue Bell Link",
+      "story": "Five people were infected and three died in the past year in Kansas from listeria that might be linked to Blue Bell Creameries products, according to the CDC. All five individuals were hospitalized at the same hospital before developing listeriosis. At least four of them had consumed milkshakes made with Blue Bell ice cream before developing the infection. Blue Bell has taken action for the third time in light of this listeria outbreak at a Kansas hospital that served the company's ice cream.",
+      "key_facts": [
+        "Five people infected, three died in Kansas from listeria",
+        "Listeria might be linked to Blue Bell Creameries products",
+        "All five hospitalized at the same hospital",
+        "At least four consumed Blue Bell milkshakes",
+        "Blue Bell took action for the third time due to this outbreak"
+      ],
+      "explicit_unknowns": [
+        "It is not stated if the ice cream is the source of the infections.",
+        "The investigation to determine whether these illnesses are related to exposure to Blue Bell products is ongoing."
+      ]
+    },
+    {
+      "thread": "Genetic Matching of Listeria Samples",
+      "story": "The CDC stated that listeria bacteria in a hospital sample and a factory sample from the Broken Arrow plant appeared to match each other genetically. However, these samples did not appear identical to listeria samples taken from patients infected in the Kansas outbreak. In a separate outbreak in Texas, the CDC found that listeria samples taken from patients who came down with listeriosis between 2010 and 2014 matched listeria in recovered samples. These recovered samples were from a hospital that served 3-ounce Blue Bell cups.",
+      "key_facts": [
+        "Hospital and factory listeria samples from Broken Arrow genetically matched",
+        "These samples did not match listeria from Kansas outbreak patients",
+        "Listeria from Texas patients (2010-2014) matched recovered samples",
+        "Recovered samples from Texas hospital served 3-ounce Blue Bell cups"
+      ],
+      "explicit_unknowns": [
+        "It is not stated if the ice cream is the source of either spate of the infections."
+      ]
+    },
+    {
+      "thread": "Blue Bell's Broader Recalls and Company Statements",
+      "story": "Blue Bell has recalled other products in addition to those from the Broken Arrow plant. In early March, Blue Bell recalled a group of products made at a plant in Texas, later adding 3-ounce cup servings to the recall. This marks the first product recall in the 108-year history of Blue Bell Creameries. Blue Bell CEO and president, Paul Kruse, stated, \"We are devastated and know that Blue Bell has to be and can be better than this.\" The company clarified that this recall does not include Blue Bell ice cream half gallons, pints, quarts, 3 gallons, or other 3 oz. cups.",
+      "key_facts": [
+        "Blue Bell recalled other products beyond Broken Arrow plant",
+        "Recalled products from a Texas plant in early March, including 3-ounce cups",
+        "First product recall in Blue Bell's 108-year history",
+        "CEO Paul Kruse expressed devastation and commitment to improvement",
+        "Recall does not include half gallons, pints, quarts, 3 gallons, or other 3 oz. cups"
+      ],
+      "explicit_unknowns": []
+    },
+    {
+      "thread": "General Information on Listeriosis",
+      "story": "Listeriosis is a serious infection caused by eating food contaminated with listeria, primarily affecting the elderly, pregnant women, newborns, and people with weakened immune systems. Symptoms include fever and muscle aches, sometimes associated with diarrhea or other gastrointestinal symptoms. In the United States, an estimated 1,600 people become seriously ill each year, and approximately 16% of these illnesses result in death. Cervical infections in pregnant women may result in stillbirth or spontaneous abortion during the second or third trimesters.",
+      "key_facts": [
+        "Listeriosis is a serious infection from listeria-contaminated food",
+        "Primarily affects elderly, pregnant women, newborns, and immunocompromised",
+        "Symptoms include fever, muscle aches, sometimes gastrointestinal issues",
+        "Estimated 1,600 serious illnesses annually in U.S., 16% result in death",
+        "Cervical infections in pregnant women may cause stillbirth or spontaneous abortion"
+      ],
+      "explicit_unknowns": []
+    }
+  ],
+  "_elapsed": 40.0
+}

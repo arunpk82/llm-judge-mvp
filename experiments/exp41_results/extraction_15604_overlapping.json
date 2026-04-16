@@ -1,0 +1,73 @@
+{
+  "stories": [
+    {
+      "thread": "Rand Paul's Campaign",
+      "story": "The author, who was elected to the Kentucky State Senate in 1967 as the first woman and person of color, finds it unfathomable that Rand Paul is launching a presidential campaign. Rand Paul's campaign team claimed his message is about \"expanding the Republican Party\" and inclusion. However, the author views this as hype because Rand Paul questions landmark voting rights and civil rights legislation. Rand Paul has declared he is running for president of the United States.",
+      "key_facts": [
+        "Author elected to Kentucky State Senate in 1967 as first woman and person of color",
+        "Rand Paul is running for president of the United States",
+        "Rand Paul's campaign team claims a message of inclusion and expanding the Republican Party",
+        "Rand Paul questions landmark voting rights and civil rights legislation"
+      ],
+      "explicit_unknowns": [
+        "not stated"
+      ]
+    },
+    {
+      "thread": "Rand Paul's Branding",
+      "story": "Rand Paul has tried to brand himself as the GOP's minority outreach candidate and a different type of Republican. The author argues that Rand Paul and the GOP do not back up their words with policies. According to the author, Republicans cannot appeal to the community without a real commitment to issues facing minority communities. A survey of Sen. Rand Paul's positions makes clear that he lacks this commitment.",
+      "key_facts": [
+        "Rand Paul brands himself as the GOP's minority outreach candidate",
+        "Rand Paul and the GOP do not back words with policies",
+        "Republicans need a real commitment to minority community issues to appeal to them",
+        "Sen. Rand Paul's positions show he lacks this commitment"
+      ],
+      "explicit_unknowns": [
+        "not stated"
+      ]
+    },
+    {
+      "thread": "Rand Paul's Policy Record",
+      "story": "In Louisville, Sen. Rand Paul declared, \"I have a message that is loud and clear: We have come to take our country back.\" The author claims Sen. Rand Paul would take the country back to a time of debating the Civil Rights Act and removing the Department of Education. Sen. Rand Paul also seeks to limit women's choices and opposes protections for DREAMers from deportation. Additionally, Sen. Rand Paul has claimed that private business owners have a right to discriminate.",
+      "key_facts": [
+        "Sen. Rand Paul's Louisville speech included the phrase 'take our country back'",
+        "Sen. Rand Paul has questioned the Civil Rights Act",
+        "Sen. Rand Paul believes the Department of Education should be done away with",
+        "Sen. Rand Paul seeks to limit women's choices",
+        "Sen. Rand Paul opposes protections for DREAMers from deportation",
+        "Sen. Rand Paul claimed private business owners have a right to discriminate"
+      ],
+      "explicit_unknowns": [
+        "not stated"
+      ]
+    },
+    {
+      "thread": "Rand Paul and Civil Rights",
+      "story": "Sen. Rand Paul has appeared condescending and lacked basic cultural competency at historically black colleges and universities. Regarding the Voting Rights Act, Sen. Rand Paul dismissively remarked, \"We have an African-American President.\" In contrast, President Obama marked the 50th anniversary of Bloody Sunday at the Edmund Pettus Bridge. President Obama stated that with effort, poverty and roadblocks to opportunity can be rolled back to protect the right to vote.",
+      "key_facts": [
+        "Sen. Rand Paul was condescending at historically black colleges and universities",
+        "Sen. Rand Paul remarked 'We have an African-American President' regarding the Voting Rights Act",
+        "President Obama marked the 50th anniversary of Bloody Sunday at the Edmund Pettus Bridge",
+        "President Obama advocated for rolling back poverty and protecting the right to vote"
+      ],
+      "explicit_unknowns": [
+        "not stated"
+      ]
+    },
+    {
+      "thread": "Rand Paul's Disqualification",
+      "story": "President Obama stated that America solves more problems with more democracy, a principle that Rand Paul has demonstrated he disagrees with. In Louisville, Rand Paul tried to appear as the courageous member of his party broadening Republican appeal. The author asserts that Rand Paul's record is outdated, outside the mainstream, and disqualifying for a leader. The author concludes that the American people deserve better than Rand Paul.",
+      "key_facts": [
+        "President Obama believes more democracy solves more problems",
+        "Rand Paul disagrees with the principle of more democracy",
+        "Rand Paul tried to broaden Republican appeal in Louisville",
+        "Rand Paul's record is outdated, outside the mainstream, and disqualifying",
+        "The author believes the American people deserve better than Rand Paul"
+      ],
+      "explicit_unknowns": [
+        "not stated"
+      ]
+    }
+  ],
+  "_elapsed": 99.8
+}

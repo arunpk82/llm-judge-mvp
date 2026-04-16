@@ -1,0 +1,57 @@
+{
+  "stories": [
+    {
+      "thread": "Cattle Identification in Malegaon",
+      "story": "Police in Malegaon, Maharashtra, are requiring identity cards for cattle to solve cow slaughter cases. Residents must submit a 'mugshot' and details on unique features, such as coloring, age, and tail length. Deputy Superintendent Mahesh Sawai explained that this database helps police verify if a cow is present. Over 100 owners have already complied with the order.",
+      "key_facts": [
+        "Malegaon police requiring cattle IDs",
+        "Mugshots and unique features (coloring, age, tail length) required",
+        "Mahesh Sawai's database goal",
+        "Over 100 owners complied"
+      ],
+      "explicit_unknowns": [
+        "The specific date the order was issued"
+      ]
+    },
+    {
+      "thread": "Maharashtra Animal Preservation Bill",
+      "story": "The Maharashtra Animal Preservation Bill bans the killing of bulls and bullocks as non-bailable offenses, while buffalo slaughter remains permissible. Consumption or sale of beef can lead to five years in prison. These laws reflect the reverence for cows by the state's majority Hindu population. The ruling follows a case in Malegaon where two men were charged with killing a cow and selling its meat.",
+      "key_facts": [
+        "Maharashtra Animal Preservation Bill",
+        "Bulls and bullocks killing is non-bailable",
+        "Beef sale or consumption penalty is five years in prison",
+        "Buffalo slaughter is permissible",
+        "Two men charged in Malegaon for killing a cow and selling meat"
+      ],
+      "explicit_unknowns": [
+        "The specific date of the Malegaon case"
+      ]
+    },
+    {
+      "thread": "Opposition to Beef Ban",
+      "story": "Beef traders held a month-long strike that ended Wednesday, during which they refused to slaughter even buffaloes. These traders have now vowed to file a case in the state's high court. Meanwhile, red meat lovers argued that the government lacks the right to interfere in personal preferences.",
+      "key_facts": [
+        "Month-long strike ended Wednesday",
+        "Traders refused buffalo slaughter",
+        "Traders filing high court case",
+        "Red meat lovers' opposition based on personal preference"
+      ],
+      "explicit_unknowns": [
+        "The specific calendar date of the Wednesday the strike ended"
+      ]
+    },
+    {
+      "thread": "National Cow Slaughter Laws",
+      "story": "Several Indian states are tightening laws on cow slaughter, including Haryana, which has a maximum punishment of 10 years in prison. This is the toughest penalty in the country. India's Home Minister, Rajnath Singh, has promised to devise a country-wide law against cow slaughter.",
+      "key_facts": [
+        "Haryana's maximum punishment of 10 years in prison",
+        "Haryana has the toughest penalty in the country",
+        "Home Minister Rajnath Singh's promise for a country-wide law"
+      ],
+      "explicit_unknowns": [
+        "The timeline for the implementation of the country-wide law"
+      ]
+    }
+  ],
+  "_elapsed": 64.4
+}

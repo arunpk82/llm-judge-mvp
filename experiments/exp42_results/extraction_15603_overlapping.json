@@ -1,0 +1,70 @@
+{
+  "stories": [
+    {
+      "thread": "Initial Explosion and Casualties",
+      "story": "Six people were hurt after an explosion at a controversial chemical plant in China's southeastern Fujian province sparked a huge fire. The plant, located in Zhangzhou city, produces paraxylene (PX), a reportedly carcinogenic chemical. The blast occurred at an oil storage facility Monday night after an oil leak. Five out of six people were injured by broken glass and have been sent to the hospital for treatment. Provincial authorities told state media about the incident, though local media has not reported any toxic chemical spill.",
+      "key_facts": [
+        "Six people were hurt after an explosion at a controversial chemical plant in China's southeastern Fujian province.",
+        "The explosion sparked a huge fire.",
+        "The plant is located in Zhangzhou city and produces paraxylene (PX).",
+        "Paraxylene (PX) is a reportedly carcinogenic chemical.",
+        "The blast occurred at an oil storage facility Monday night after an oil leak.",
+        "Five out of six people were injured by broken glass and sent to the hospital.",
+        "Provincial authorities reported the incident to state media.",
+        "Local media has not reported any toxic chemical spill."
+      ],
+      "explicit_unknowns": [
+        "The specific cause of the oil leak is not stated.",
+        "The exact nature of the injuries for the sixth person is not stated."
+      ]
+    },
+    {
+      "thread": "Emergency Response and Public Reaction",
+      "story": "Six people were hurt after an explosion at a controversial chemical plant in China's southeastern Fujian province sparked a huge fire. More than 600 firefighters were sent to battle the blaze at the controversial chemical plant in China's southeastern Fujian province, and the fire is now under control. The Zhangzhou fire department wrote on their official microblogging account Tuesday morning that the fire is under control. Residents living close to the controversial chemical plant in China's southeastern Fujian province had heard the explosion and took to Weibo to post photos of the fire. One user wrote that he heard a loud blast and felt slight tremors from the explosion at the controversial chemical plant in China's southeastern Fujian province.",
+      "key_facts": [
+        "Six people were hurt after an explosion at a controversial chemical plant in China's southeastern Fujian province.",
+        "More than 600 firefighters were sent to battle the blaze at the controversial chemical plant.",
+        "The fire is now under control.",
+        "The Zhangzhou fire department reported the fire status on their microblogging account Tuesday morning.",
+        "Residents living close to the controversial chemical plant heard the explosion.",
+        "Residents posted photos of the fire on Weibo.",
+        "One user reported hearing a loud blast and feeling slight tremors."
+      ],
+      "explicit_unknowns": [
+        "The specific location of the residents is not stated."
+      ]
+    },
+    {
+      "thread": "Plant's Product and Past Incidents",
+      "story": "The controversial chemical plant in China's southeastern Fujian province, located in Zhangzhou city, produces paraxylene (PX), a reportedly carcinogenic chemical used in the production of polyester films and fabrics. The controversial chemical plant in China's southeastern Fujian province was hit by another explosion in July 2013. Although there were no reports of casualties or toxic leaks at the time of the July 2013 explosion at the controversial chemical plant in China's southeastern Fujian province, six people were hurt in the recent explosion.",
+      "key_facts": [
+        "The controversial chemical plant in China's southeastern Fujian province, located in Zhangzhou city, produces paraxylene (PX).",
+        "Paraxylene (PX) is a reportedly carcinogenic chemical used in polyester films and fabrics.",
+        "The controversial chemical plant was hit by another explosion in July 2013.",
+        "There were no reports of casualties or toxic leaks from the July 2013 explosion.",
+        "Six people were hurt in the recent explosion at the controversial chemical plant."
+      ],
+      "explicit_unknowns": [
+        "The cause of the July 2013 explosion is not stated."
+      ]
+    },
+    {
+      "thread": "Plant's Controversial History and Relocation",
+      "story": "The construction of PX plants, like the controversial chemical plant in China's southeastern Fujian province, has sparked protests, which have occasionally turned violent, in several cities in recent years, despite demonstrations being illegal in China. The controversial chemical plant in China's southeastern Fujian province, also known as the Zhangzhou plant, was originally slated for Xiamen, a densely populated city in the southeast of the country. However, the Zhangzhou plant provoked an angry backlash in 2007 due to pollution concerns. This prompted the local government to relocate the Zhangzhou plant to its current, more remote location.",
+      "key_facts": [
+        "The construction of PX plants, including the controversial chemical plant in China's southeastern Fujian province, has sparked protests in several cities.",
+        "These protests have occasionally turned violent.",
+        "Demonstrations are illegal in China.",
+        "The controversial chemical plant in China's southeastern Fujian province (Zhangzhou plant) was originally slated for Xiamen.",
+        "Xiamen is a densely populated city in the southeast of the country.",
+        "The Zhangzhou plant provoked an angry backlash in 2007 due to pollution concerns.",
+        "The local government relocated the Zhangzhou plant to its current, more remote location."
+      ],
+      "explicit_unknowns": [
+        "The specific cities where protests occurred are not stated.",
+        "The exact 'more remote location' of the plant is not specified."
+      ]
+    }
+  ],
+  "_elapsed": 25.4
+}

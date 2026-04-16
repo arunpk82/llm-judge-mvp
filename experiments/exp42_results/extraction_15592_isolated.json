@@ -1,0 +1,56 @@
+{
+  "stories": [
+    {
+      "thread": "The Revised Death Date",
+      "story": "Seventy years ago, Anne Frank died of typhus at age 15 in a Nazi concentration camp. Her supposed death date was March 31, 1945, just two weeks before the Bergen-Belsen camp was liberated. However, new research from the Anne Frank House indicates Anne and her sister Margot died at least a month earlier than previously thought. Researchers re-examined archives and survivor testimonies, concluding they probably did not survive to March 1945, contradicting Dutch authorities. The exact dates of death for Anne and Margot remain unclear, but Margot died before Anne.",
+      "key_facts": [
+        "Anne Frank died of typhus at age 15, seventy years ago.",
+        "Her supposed death date was March 31, 1945, two weeks before Bergen-Belsen's liberation.",
+        "New research by the Anne Frank House suggests Anne and Margot died at least a month earlier than previously thought.",
+        "Researchers re-examined Red Cross, International Training Service, Bergen-Belsen Memorial archives, and survivor testimonies.",
+        "They concluded Anne and Margot probably did not survive to March 1945, contradicting Dutch authorities.",
+        "Margot died before Anne."
+      ],
+      "explicit_unknowns": [
+        "The exact dates of death for Anne and Margot remain unclear."
+      ]
+    },
+    {
+      "thread": "Anne Frank's Imprisonment and Camp Conditions",
+      "story": "In 1944, Anne Frank and seven others hiding in the Amsterdam secret annex were arrested and sent to the Auschwitz-Birkenau concentration camp. That same year, Anne and Margot were separated from their mother and sent to Bergen-Belsen for slave labor. Witnesses described days at the camp as filled with terror and dread, with the sisters staying in an overcrowded section lacking lighting, water, and a latrine. They slept on lice-ridden straw, and violent storms shredded their tents. Her classmate, Nannette Blitz, recalled seeing Anne in December 1944 as 'no more than a skeleton,' wrapped in a blanket because she couldn't wear her lice-crawling clothes.",
+      "key_facts": [
+        "In 1944, Anne Frank and seven others were arrested in Amsterdam and sent to Auschwitz-Birkenau.",
+        "Anne and Margot were separated from their mother and sent to Bergen-Belsen for slave labor that same year.",
+        "Witnesses said days at the camp were filled with terror and dread.",
+        "The sisters stayed in an overcrowded section with no lighting, little water, and no latrine.",
+        "They slept on lice-ridden straw, and violent storms shredded the tents.",
+        "Nannette Blitz saw Anne in December 1944, describing her as a skeleton wrapped in a blanket due to lice."
+      ],
+      "explicit_unknowns": []
+    },
+    {
+      "thread": "Typhus Outbreak and Anne's Death",
+      "story": "As the Russians advanced, the Bergen-Belsen concentration camp became more crowded, leading to increased disease. A deadly typhus outbreak caused thousands to die each day. Typhus is an infectious disease caused by lice, breaking out in places with poor hygiene, and causes high fever, chills, and skin eruptions. Museum researchers stated Anne was exposed to the main carrier of epidemic typhus for an extended period due to lice infesting her bedstraw and clothes. Witnesses at the camp said both sisters had symptoms before February 7, making it unlikely they survived until March, and most typhus deaths occur around twelve days after the first symptoms appear, according to authors Erika Prins and Gertjan Broek.",
+      "key_facts": [
+        "Bergen-Belsen became more crowded due to Russian advancement, bringing more disease.",
+        "A deadly typhus outbreak caused thousands to die each day.",
+        "Typhus is an infectious disease caused by lice, breaking out in places with poor hygiene, and causes high fever, chills, and skin eruptions.",
+        "Museum researchers stated Anne was exposed to the main carrier of epidemic typhus for an extended period due to lice in her bedstraw and clothes.",
+        "Witnesses at the camp said both sisters had symptoms before February 7, making it unlikely they survived until March.",
+        "Most typhus deaths occur around twelve days after the first symptoms appear, according to authors Erika Prins and Gertjan Broek."
+      ],
+      "explicit_unknowns": []
+    },
+    {
+      "thread": "Anne Frank's Hope and Legacy",
+      "story": "Anne Frank's final entry marked the end of her diary, which endures as one of the world's most popular books. Her classmate, Nannette Blitz, recalled that Anne 'never gave up hope' and was 'absolutely convinced she would survive.'",
+      "key_facts": [
+        "Anne Frank's final entry was made.",
+        "Her diary endures as one of the world's most popular books.",
+        "Her classmate, Nannette Blitz, stated Anne 'never gave up hope' and was 'absolutely convinced she would survive.'"
+      ],
+      "explicit_unknowns": []
+    }
+  ],
+  "_elapsed": 21.3
+}

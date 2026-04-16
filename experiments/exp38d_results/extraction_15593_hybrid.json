@@ -1,0 +1,873 @@
+{
+  "event_hubs": [
+    {
+      "event_id": "EVT_1",
+      "action": "died",
+      "source_sentence": "S0",
+      "edges": [
+        {
+          "type": "target_of",
+          "target": "Andrew Getty",
+          "source": "S0"
+        },
+        {
+          "type": "how",
+          "target": "natural causes",
+          "source": "S0"
+        },
+        {
+          "type": "enriched_by",
+          "target": "Los Angeles Police Department spokesman",
+          "source": "S0"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_2",
+      "action": "assessment",
+      "source_sentence": "S1",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "coroner",
+          "source": "S1"
+        },
+        {
+          "type": "target_of",
+          "target": "EVT_1",
+          "source": "S1"
+        },
+        {
+          "type": "enriched_by",
+          "target": "no foul play involved",
+          "source": "S1"
+        },
+        {
+          "type": "enriched_by",
+          "target": "Detective Meghan Aguilar",
+          "source": "S2"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_3",
+      "action": "had",
+      "source_sentence": "S3",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "Andrew Getty",
+          "source": "S3"
+        },
+        {
+          "type": "target_of",
+          "target": "several health issues",
+          "source": "S3"
+        },
+        {
+          "type": "enriched_by",
+          "target": "Detective Meghan Aguilar",
+          "source": "S3"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_4",
+      "action": "will be conducted",
+      "source_sentence": "S3",
+      "edges": [
+        {
+          "type": "target_of",
+          "target": "autopsy",
+          "source": "S3"
+        },
+        {
+          "type": "enriched_by",
+          "target": "Detective Meghan Aguilar",
+          "source": "S3"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_5",
+      "action": "recovered",
+      "source_sentence": "S5",
+      "edges": [
+        {
+          "type": "target_of",
+          "target": "medication",
+          "source": "S5"
+        },
+        {
+          "type": "where",
+          "target": "Getty's home",
+          "source": "S5"
+        },
+        {
+          "type": "enriched_by",
+          "target": "Ed Winter",
+          "source": "S5"
+        },
+        {
+          "type": "enriched_by",
+          "target": "CNN affiliate KTLA",
+          "source": "S5"
+        },
+        {
+          "type": "when",
+          "target": "Tuesday night",
+          "source": "S5"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_6",
+      "action": "found",
+      "source_sentence": "S6",
+      "edges": [
+        {
+          "type": "target_of",
+          "target": "Andrew Getty",
+          "source": "S6"
+        },
+        {
+          "type": "where",
+          "target": "on his side near a bathroom in his home",
+          "source": "S6"
+        },
+        {
+          "type": "enriched_by",
+          "target": "CNN affiliate KTLA",
+          "source": "S6"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_7",
+      "action": "released",
+      "source_sentence": "S7",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "Ann Getty",
+          "source": "S7"
+        },
+        {
+          "type": "agent_of",
+          "target": "Gordon Getty",
+          "source": "S7"
+        },
+        {
+          "type": "target_of",
+          "target": "statement",
+          "source": "S7"
+        },
+        {
+          "type": "enriched_by",
+          "target": "asking for privacy",
+          "source": "S7"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_8",
+      "action": "is not underway",
+      "source_sentence": "S4",
+      "edges": [
+        {
+          "type": "target_of",
+          "target": "criminal investigation",
+          "source": "S4"
+        },
+        {
+          "type": "enriched_by",
+          "target": "Detective Meghan Aguilar",
+          "source": "S4"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_9",
+      "action": "death",
+      "source_sentence": "S10",
+      "edges": [
+        {
+          "type": "target_of",
+          "target": "J. Paul Getty",
+          "source": "S10"
+        },
+        {
+          "type": "when",
+          "target": "1976",
+          "source": "S10"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_10",
+      "action": "filed",
+      "source_sentence": "S15",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "Andrew Getty",
+          "source": "S15"
+        },
+        {
+          "type": "target_of",
+          "target": "restraining order",
+          "source": "S15"
+        },
+        {
+          "type": "against",
+          "target": "Andrew Getty's ex-girlfriend",
+          "source": "S15"
+        },
+        {
+          "type": "evidence_for",
+          "target": "Court records",
+          "source": "S15"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_11",
+      "action": "scheduled",
+      "source_sentence": "S16",
+      "edges": [
+        {
+          "type": "target_of",
+          "target": "hearing",
+          "source": "S16"
+        },
+        {
+          "type": "when",
+          "target": "next week",
+          "source": "S16"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_12",
+      "action": "diagnosed",
+      "source_sentence": "S17",
+      "edges": [
+        {
+          "type": "target_of",
+          "target": "Andrew Getty",
+          "source": "S17"
+        },
+        {
+          "type": "target_of",
+          "target": "serious medical condition",
+          "source": "S17"
+        },
+        {
+          "type": "when",
+          "target": "2013",
+          "source": "S17"
+        },
+        {
+          "type": "enriched_by",
+          "target": "Andrew Getty's request (for restraining order)",
+          "source": "S17"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_13",
+      "action": "places in grave risk",
+      "source_sentence": "S18",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "rise in Andrew Getty's blood pressure",
+          "source": "S18"
+        },
+        {
+          "type": "target_of",
+          "target": "Andrew Getty",
+          "source": "S18"
+        },
+        {
+          "type": "outcome",
+          "target": "substantial and irreparable injury or death",
+          "source": "S18"
+        },
+        {
+          "type": "enriched_by",
+          "target": "Andrew Getty's petition",
+          "source": "S18"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_14",
+      "action": "advised",
+      "source_sentence": "S19",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "Andrew Getty's doctors",
+          "source": "S19"
+        },
+        {
+          "type": "target_of",
+          "target": "Andrew Getty",
+          "source": "S19"
+        },
+        {
+          "type": "content",
+          "target": "heated arguments can cause blood pressure to rise dangerously",
+          "source": "S19"
+        },
+        {
+          "type": "enriched_by",
+          "target": "Andrew Getty's petition",
+          "source": "S19"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_15",
+      "action": "died",
+      "source_sentence": "S12",
+      "edges": [
+        {
+          "type": "target_of",
+          "target": "J. Paul Getty's son 1",
+          "source": "S12"
+        },
+        {
+          "type": "when",
+          "target": "1958",
+          "source": "S12"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_16",
+      "action": "died",
+      "source_sentence": "S12",
+      "edges": [
+        {
+          "type": "target_of",
+          "target": "J. Paul Getty's son 2",
+          "source": "S12"
+        },
+        {
+          "type": "when",
+          "target": "1973",
+          "source": "S12"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_17",
+      "action": "spearheaded sale",
+      "source_sentence": "S13",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "Gordon Getty",
+          "source": "S13"
+        },
+        {
+          "type": "target_of",
+          "target": "Getty (company/assets)",
+          "source": "S13"
+        },
+        {
+          "type": "recipient",
+          "target": "Texaco",
+          "source": "S13"
+        },
+        {
+          "type": "value",
+          "target": "$10 billion",
+          "source": "S13"
+        },
+        {
+          "type": "when",
+          "target": "1984",
+          "source": "S13"
+        },
+        {
+          "type": "attribute",
+          "target": "controversial",
+          "source": "S13"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_18",
+      "action": "estimated",
+      "source_sentence": "S14",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "Forbes",
+          "source": "S14"
+        },
+        {
+          "type": "target_of",
+          "target": "Getty family's net worth",
+          "source": "S14"
+        },
+        {
+          "type": "value",
+          "target": "about $5 billion",
+          "source": "S14"
+        },
+        {
+          "type": "context",
+          "target": "list of richest American families",
+          "source": "S14"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_19",
+      "action": "contributed",
+      "source_sentence": "S21",
+      "edges": [
+        {
+          "type": "agent_of",
+          "target": "Doug Criss",
+          "source": "S21"
+        },
+        {
+          "type": "agent_of",
+          "target": "Janet DiGiacomo",
+          "source": "S21"
+        },
+        {
+          "type": "agent_of",
+          "target": "Mark Mooney",
+          "source": "S21"
+        },
+        {
+          "type": "agent_of",
+          "target": "Mike Love",
+          "source": "S21"
+        },
+        {
+          "type": "agent_of",
+          "target": "Julie In",
+          "source": "S21"
+        },
+        {
+          "type": "agent_of",
+          "target": "Cheri Mossburg",
+          "source": "S21"
+        },
+        {
+          "type": "target_of",
+          "target": "this report",
+          "source": "S21"
+        }
+      ]
+    }
+  ],
+  "entities": [
+    {
+      "name": "Andrew Getty",
+      "aliases": [
+        "Getty",
+        "he"
+      ],
+      "attributes": {
+        "role": "heir to billions of oil money",
+        "relationship_to_J. Paul Getty": "grandson",
+        "age": "47",
+        "health_status": "had several health issues",
+        "location_found": "on his side near a bathroom in his home",
+        "diagnosis": "serious medical condition in 2013",
+        "medical_risk": "rise in blood pressure places him in grave risk of substantial and irreparable injury or death",
+        "family_members": "three brothers and three half-sisters"
+      },
+      "participates_in": [
+        "EVT_1",
+        "EVT_3",
+        "EVT_6",
+        "EVT_10",
+        "EVT_12",
+        "EVT_13",
+        "EVT_14"
+      ],
+      "source_sentences": [
+        "S0",
+        "S1",
+        "S3",
+        "S5",
+        "S6",
+        "S7",
+        "S15",
+        "S17",
+        "S18",
+        "S19"
+      ]
+    },
+    {
+      "name": "Los Angeles Police Department spokesman",
+      "aliases": [],
+      "attributes": {},
+      "participates_in": [
+        "EVT_1"
+      ],
+      "source_sentences": [
+        "S0"
+      ]
+    },
+    {
+      "name": "coroner",
+      "aliases": [],
+      "attributes": {},
+      "participates_in": [
+        "EVT_2"
+      ],
+      "source_sentences": [
+        "S1"
+      ]
+    },
+    {
+      "name": "J. Paul Getty",
+      "aliases": [],
+      "attributes": {
+        "occupation": "oil tycoon",
+        "reputation": "thought to be the richest man in the world at the time of his death"
+      },
+      "participates_in": [
+        "EVT_9"
+      ],
+      "source_sentences": [
+        "S1",
+        "S9",
+        "S10"
+      ]
+    },
+    {
+      "name": "Detective Meghan Aguilar",
+      "aliases": [
+        "Aguilar",
+        "he"
+      ],
+      "attributes": {},
+      "participates_in": [
+        "EVT_2",
+        "EVT_3",
+        "EVT_4",
+        "EVT_8"
+      ],
+      "source_sentences": [
+        "S2",
+        "S3",
+        "S4"
+      ]
+    },
+    {
+      "name": "Ed Winter",
+      "aliases": [],
+      "attributes": {
+        "title": "assistant chief in the Los Angeles County coroner's office"
+      },
+      "participates_in": [
+        "EVT_5"
+      ],
+      "source_sentences": [
+        "S5"
+      ]
+    },
+    {
+      "name": "CNN affiliate KTLA",
+      "aliases": [
+        "KTLA"
+      ],
+      "attributes": {},
+      "participates_in": [
+        "EVT_5",
+        "EVT_6"
+      ],
+      "source_sentences": [
+        "S5",
+        "S6"
+      ]
+    },
+    {
+      "name": "Ann Getty",
+      "aliases": [],
+      "attributes": {
+        "relationship_to_Andrew Getty": "parent"
+      },
+      "participates_in": [
+        "EVT_7"
+      ],
+      "source_sentences": [
+        "S7"
+      ]
+    },
+    {
+      "name": "Gordon Getty",
+      "aliases": [],
+      "attributes": {
+        "relationship_to_Andrew Getty": "parent",
+        "relationship_to_J. Paul Getty": "one of three living sons",
+        "age": "81",
+        "net_worth": "$2.1 billion"
+      },
+      "participates_in": [
+        "EVT_7",
+        "EVT_17"
+      ],
+      "source_sentences": [
+        "S7",
+        "S9",
+        "S11",
+        "S13"
+      ]
+    },
+    {
+      "name": "Texaco",
+      "aliases": [],
+      "attributes": {},
+      "participates_in": [
+        "EVT_17"
+      ],
+      "source_sentences": [
+        "S13"
+      ]
+    },
+    {
+      "name": "Forbes",
+      "aliases": [],
+      "attributes": {},
+      "participates_in": [
+        "EVT_18"
+      ],
+      "source_sentences": [
+        "S11",
+        "S14"
+      ]
+    },
+    {
+      "name": "Getty family",
+      "aliases": [
+        "the Gettys"
+      ],
+      "attributes": {
+        "net_worth": "about $5 billion"
+      },
+      "participates_in": [
+        "EVT_18"
+      ],
+      "source_sentences": [
+        "S8",
+        "S14"
+      ]
+    },
+    {
+      "name": "Andrew Getty's ex-girlfriend",
+      "aliases": [
+        "ex-girlfriend"
+      ],
+      "attributes": {},
+      "participates_in": [
+        "EVT_10"
+      ],
+      "source_sentences": [
+        "S15"
+      ]
+    },
+    {
+      "name": "Andrew Getty's doctors",
+      "aliases": [
+        "My doctors"
+      ],
+      "attributes": {},
+      "participates_in": [
+        "EVT_14"
+      ],
+      "source_sentences": [
+        "S19"
+      ]
+    },
+    {
+      "name": "Doug Criss",
+      "aliases": [],
+      "attributes": {},
+      "participates_in": [
+        "EVT_19"
+      ],
+      "source_sentences": [
+        "S21"
+      ]
+    },
+    {
+      "name": "Janet DiGiacomo",
+      "aliases": [],
+      "attributes": {},
+      "participates_in": [
+        "EVT_19"
+      ],
+      "source_sentences": [
+        "S21"
+      ]
+    },
+    {
+      "name": "Mark Mooney",
+      "aliases": [],
+      "attributes": {},
+      "participates_in": [
+        "EVT_19"
+      ],
+      "source_sentences": [
+        "S21"
+      ]
+    },
+    {
+      "name": "Mike Love",
+      "aliases": [],
+      "attributes": {},
+      "participates_in": [
+        "EVT_19"
+      ],
+      "source_sentences": [
+        "S21"
+      ]
+    },
+    {
+      "name": "Julie In",
+      "aliases": [],
+      "attributes": {},
+      "participates_in": [
+        "EVT_19"
+      ],
+      "source_sentences": [
+        "S21"
+      ]
+    },
+    {
+      "name": "Cheri Mossburg",
+      "aliases": [],
+      "attributes": {},
+      "participates_in": [
+        "EVT_19"
+      ],
+      "source_sentences": [
+        "S21"
+      ]
+    },
+    {
+      "name": "J. Paul Getty's son 1",
+      "aliases": [
+        "One other son"
+      ],
+      "attributes": {
+        "relationship_to_J. Paul Getty": "son"
+      },
+      "participates_in": [
+        "EVT_15"
+      ],
+      "source_sentences": [
+        "S12"
+      ]
+    },
+    {
+      "name": "J. Paul Getty's son 2",
+      "aliases": [
+        "another son"
+      ],
+      "attributes": {
+        "relationship_to_J. Paul Getty": "son"
+      },
+      "participates_in": [
+        "EVT_16"
+      ],
+      "source_sentences": [
+        "S12"
+      ]
+    },
+    {
+      "name": "Getty (company/assets)",
+      "aliases": [
+        "Getty"
+      ],
+      "attributes": {
+        "status": "sold to Texaco for $10 billion in 1984"
+      },
+      "participates_in": [
+        "EVT_17"
+      ],
+      "source_sentences": [
+        "S13"
+      ]
+    }
+  ],
+  "inter_event_edges": [
+    {
+      "from": "EVT_2",
+      "to": "EVT_1",
+      "type": "evidence_for",
+      "source": "S1"
+    },
+    {
+      "from": "EVT_7",
+      "to": "EVT_1",
+      "type": "confirms",
+      "source": "S7"
+    },
+    {
+      "from": "EVT_10",
+      "to": "EVT_11",
+      "type": "leads_to",
+      "source": "S16"
+    },
+    {
+      "from": "EVT_12",
+      "to": "EVT_13",
+      "type": "explains",
+      "source": "S17"
+    },
+    {
+      "from": "EVT_14",
+      "to": "EVT_13",
+      "type": "explains",
+      "source": "S19"
+    },
+    {
+      "from": "EVT_12",
+      "to": "EVT_3",
+      "type": "evidence_for",
+      "source": "S17"
+    },
+    {
+      "from": "EVT_13",
+      "to": "EVT_3",
+      "type": "evidence_for",
+      "source": "S18"
+    },
+    {
+      "from": "EVT_14",
+      "to": "EVT_3",
+      "type": "evidence_for",
+      "source": "S19"
+    }
+  ],
+  "explicit_unknowns": [
+    {
+      "about": "medication recovered from Getty's home",
+      "unknown_slots": [
+        "whether Getty was taking it"
+      ],
+      "source": "S5"
+    },
+    {
+      "about": "Getty's medical history",
+      "unknown_slots": [
+        "what his medical history was"
+      ],
+      "source": "S5"
+    }
+  ],
+  "_elapsed": 83.5
+}

@@ -1,0 +1,285 @@
+{
+  "events": [
+    {
+      "event_id": "EVT_1",
+      "source_sentence": "S0",
+      "description": "FBI charged Philadelphia woman",
+      "slots": {
+        "WHO_actor": {
+          "value": "FBI",
+          "source": "S0"
+        },
+        "WHO_target": {
+          "value": "a Philadelphia woman",
+          "source": "S0"
+        },
+        "WHAT": {
+          "value": "charged",
+          "source": "S0"
+        },
+        "WHEN": {
+          "value": "Thursday",
+          "source": "S0"
+        },
+        "WHERE": "NOT_STATED",
+        "WHERE_TO": "NOT_STATED",
+        "WHERE_FROM": "NOT_STATED",
+        "WHY": {
+          "value": "trying to travel overseas to fight for ISIS",
+          "source": "S0"
+        },
+        "HOW": "NOT_STATED",
+        "RESULT": "NOT_STATED",
+        "STATUS": {
+          "value": "attempting (travel not completed)",
+          "source": "S0"
+        }
+      }
+    },
+    {
+      "event_id": "EVT_2",
+      "source_sentence": "S1",
+      "description": "Three women arrested",
+      "slots": {
+        "WHO_actor": "NOT_STATED",
+        "WHO_target": {
+          "value": "three women",
+          "source": "S1"
+        },
+        "WHAT": {
+          "value": "arrested",
+          "source": "S1"
+        },
+        "WHEN": {
+          "value": "this week",
+          "source": "S1"
+        },
+        "WHERE": "NOT_STATED",
+        "WHERE_TO": "NOT_STATED",
+        "WHERE_FROM": "NOT_STATED",
+        "WHY": {
+          "value": "on terror charges",
+          "source": "S1"
+        },
+        "HOW": "NOT_STATED",
+        "RESULT": "NOT_STATED",
+        "STATUS": {
+          "value": "completed",
+          "source": "S1"
+        }
+      }
+    },
+    {
+      "event_id": "EVT_3",
+      "source_sentence": "S6",
+      "description": "Thomas purchased an electronic visa",
+      "slots": {
+        "WHO_actor": {
+          "value": "Thomas",
+          "source": "S6"
+        },
+        "WHO_target": "NOT_STATED",
+        "WHAT": {
+          "value": "purchased an electronic visa",
+          "source": "S6"
+        },
+        "WHEN": {
+          "value": "March 23",
+          "source": "S6"
+        },
+        "WHERE": "NOT_STATED",
+        "WHERE_TO": {
+          "value": "Turkey",
+          "source": "S6"
+        },
+        "WHERE_FROM": "NOT_STATED",
+        "WHY": "NOT_STATED",
+        "HOW": "NOT_STATED",
+        "RESULT": "NOT_STATED",
+        "STATUS": {
+          "value": "completed",
+          "source": "S6"
+        }
+      }
+    },
+    {
+      "event_id": "EVT_4",
+      "source_sentence": "S9",
+      "description": "Thomas purchased a ticket to Barcelona",
+      "slots": {
+        "WHO_actor": {
+          "value": "Thomas",
+          "source": "S9"
+        },
+        "WHO_target": "NOT_STATED",
+        "WHAT": {
+          "value": "purchased a ticket",
+          "source": "S9"
+        },
+        "WHEN": {
+          "value": "March 26",
+          "source": "S9"
+        },
+        "WHERE": "NOT_STATED",
+        "WHERE_TO": {
+          "value": "Barcelona",
+          "source": "S9"
+        },
+        "WHERE_FROM": "NOT_STATED",
+        "WHY": "NOT_STATED",
+        "HOW": "NOT_STATED",
+        "RESULT": "NOT_STATED",
+        "STATUS": {
+          "value": "completed",
+          "source": "S9"
+        }
+      }
+    },
+    {
+      "event_id": "EVT_5",
+      "source_sentence": "S13",
+      "description": "Noelle Velentzas and Asia Siddiqui arrested",
+      "slots": {
+        "WHO_actor": "NOT_STATED",
+        "WHO_target": {
+          "value": "Noelle Velentzas, 28, and Asia Siddiqui, 31",
+          "source": "S13"
+        },
+        "WHAT": {
+          "value": "arrested and accused",
+          "source": "S13"
+        },
+        "WHEN": {
+          "value": "Thursday",
+          "source": "S13"
+        },
+        "WHERE": {
+          "value": "New York",
+          "source": "S13"
+        },
+        "WHERE_TO": "NOT_STATED",
+        "WHERE_FROM": "NOT_STATED",
+        "WHY": {
+          "value": "planning to build an explosive device for attacks in the United States",
+          "source": "S13"
+        },
+        "HOW": "NOT_STATED",
+        "RESULT": "NOT_STATED",
+        "STATUS": {
+          "value": "completed (arrest); attempting (planning to build device)",
+          "source": "S13"
+        }
+      }
+    }
+  ],
+  "enrichments": [
+    {
+      "source_sentence": "S1",
+      "enriches": "EVT_1.WHO_target",
+      "new_info": "She is one of three women arrested this week on terror charges."
+    },
+    {
+      "source_sentence": "S2",
+      "enriches": "EVT_2.WHO_target",
+      "new_info": "Two of the three women arrested were New York women."
+    },
+    {
+      "source_sentence": "S3",
+      "enriches": "EVT_1.WHO_target",
+      "new_info": "Name: Keonna Thomas, Age: 30, Aliases: Young Lioness, Fatayat Al Khilafah. FBI complaint cites social media messages as evidence for the charges."
+    },
+    {
+      "source_sentence": "S11",
+      "enriches": "EVT_1.WHAT",
+      "new_info": "Specific charge: knowingly attempting to provide material support and resources to a designated foreign terrorist organization."
+    },
+    {
+      "source_sentence": "S12",
+      "enriches": "EVT_1",
+      "new_info": "Potential sentence: 15 years in prison."
+    },
+    {
+      "source_sentence": "S13",
+      "enriches": "EVT_2.WHO_target",
+      "new_info": "The two New York women are Noelle Velentzas (28) and Asia Siddiqui (31)."
+    },
+    {
+      "source_sentence": "S15",
+      "enriches": "S14 (statistic)",
+      "new_info": "18 of those cases allegedly involve support to ISIS."
+    }
+  ],
+  "entity_resolutions": [
+    {
+      "from": "a Philadelphia woman",
+      "to": "Keonna Thomas",
+      "resolved_at": "S3"
+    },
+    {
+      "from": "She",
+      "to": "Keonna Thomas",
+      "resolved_at": "S1"
+    },
+    {
+      "from": "Thomas",
+      "to": "Keonna Thomas",
+      "resolved_at": "S6"
+    },
+    {
+      "from": "Thomas",
+      "to": "Keonna Thomas",
+      "resolved_at": "S9"
+    },
+    {
+      "from": "She",
+      "to": "Keonna Thomas",
+      "resolved_at": "S11"
+    },
+    {
+      "from": "She",
+      "to": "Keonna Thomas",
+      "resolved_at": "S12"
+    },
+    {
+      "from": "Two New York women",
+      "to": "Noelle Velentzas and Asia Siddiqui",
+      "resolved_at": "S13"
+    }
+  ],
+  "explicit_unknowns": [
+    {
+      "slot": "arrest_time",
+      "description": "when she was arrested",
+      "source": "S10"
+    },
+    {
+      "slot": "arrest_location",
+      "description": "where she was arrested",
+      "source": "S10"
+    }
+  ],
+  "sentence_coverage": {
+    "covered": [
+      "S0",
+      "S1",
+      "S2",
+      "S3",
+      "S4",
+      "S5",
+      "S6",
+      "S7",
+      "S8",
+      "S9",
+      "S10",
+      "S11",
+      "S12",
+      "S13",
+      "S14",
+      "S15",
+      "S16",
+      "S17"
+    ],
+    "uncovered": []
+  },
+  "_elapsed_seconds": 39.6
+}

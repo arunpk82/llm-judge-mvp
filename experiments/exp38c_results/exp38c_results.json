@@ -1,0 +1,690 @@
+{
+  "test_cases": [
+    {
+      "id": "ragtruth_10",
+      "source_id": "15593",
+      "source_len": 2113,
+      "sentence": "His net worth was estimated to be $2.1 billion.",
+      "ground_truth": "hallucinated",
+      "hall_type": "Evident Conflict"
+    },
+    {
+      "id": "ragtruth_24",
+      "source_id": "15596",
+      "source_len": 2086,
+      "sentence": "The FBI has charged a Philadelphia woman, Keonna Thomas, with trying to travel overseas to fight for ISIS.",
+      "ground_truth": "grounded",
+      "hall_type": "clean"
+    },
+    {
+      "id": "ragtruth_26",
+      "source_id": "15596",
+      "source_len": 2086,
+      "sentence": "The FBI charged a Philadelphia woman named Keonna Thomas, also known as \u201cYoung Lioness\u201d and \u201cFatayat Al Khilafah,\u201d with attempting to travel overseas to fight for ISIS.",
+      "ground_truth": "grounded",
+      "hall_type": "clean"
+    },
+    {
+      "id": "ragtruth_28",
+      "source_id": "15596",
+      "source_len": 2086,
+      "sentence": "Three women, including Keonna Thomas of Philadelphia, were charged with attempting to join ISIS this week.",
+      "ground_truth": "hallucinated",
+      "hall_type": "Evident Conflict"
+    },
+    {
+      "id": "ragtruth_28",
+      "source_id": "15596",
+      "source_len": 2086,
+      "sentence": "Thomas purchased a ticket to Barcelona but was arrested before her trip.",
+      "ground_truth": "hallucinated",
+      "hall_type": "Evident Conflict"
+    },
+    {
+      "id": "ragtruth_29",
+      "source_id": "15596",
+      "source_len": 2086,
+      "sentence": "She was arrested on March 26 and could face 15 years in prison.",
+      "ground_truth": "hallucinated",
+      "hall_type": "Evident Conflict"
+    },
+    {
+      "id": "ragtruth_44",
+      "source_id": "15599",
+      "source_len": 3900,
+      "sentence": "Blue Bell Ice Cream Recalls Products Amid Listeria Outbreak; No Blue Bell Ice Cream Is Linked to Infections in Patients\n\nBlue Bell Creameries has temporarily shut down its manufacturing plant in Broken Arrow, Oklahoma, after discovering listeria contamination in a serving of ice cream.",
+      "ground_truth": "hallucinated",
+      "hall_type": "Evident Conflict"
+    },
+    {
+      "id": "ragtruth_86",
+      "source_id": "15607",
+      "source_len": 1222,
+      "sentence": "The group consisted of five men and four women, all of whom held British passports.",
+      "ground_truth": "hallucinated",
+      "hall_type": "Evident Conflict"
+    },
+    {
+      "id": "ragtruth_141",
+      "source_id": "15616",
+      "source_len": 2379,
+      "sentence": "West pleaded guilty to battery and was sentenced to probation and anger management classes.",
+      "ground_truth": "hallucinated",
+      "hall_type": "Evident Conflict"
+    },
+    {
+      "id": "ragtruth_146",
+      "source_id": "15617",
+      "source_len": 1678,
+      "sentence": "The cause of his dehydration was attributed to his busy schedule and not drinking enough water.",
+      "ground_truth": "hallucinated",
+      "hall_type": "Evident Conflict"
+    },
+    {
+      "id": "ragtruth_180",
+      "source_id": "15623",
+      "source_len": 6227,
+      "sentence": "Indiana Pacers forward, Chris Copeland, and his wife were stabbed outside the Manhattan nightclub 1OAK last night.",
+      "ground_truth": "hallucinated",
+      "hall_type": "Evident Conflict"
+    }
+  ],
+  "per_format": {
+    "raw": [
+      {
+        "verdict": "HALLUCINATED",
+        "confidence": 1.0,
+        "reasoning": "The claim states that 'His net worth was estimated to be $2.1 billion.' The 'His' in the claim refers to Andrew Getty, who is the primary subject of the article. However, the source explicitly states in S11: 'Gordon Getty, 81, has a net worth of $2.1 billion, according to Forbes.' The source attributes the $2.1 billion net worth to Gordon Getty, not Andrew Getty. The source does not provide Andrew Getty's individual net worth, only the family's net worth (S14) and Gordon Getty's individual net worth (S11). Therefore, the claim misattributes the net worth to the wrong person.",
+        "specific_issues": [
+          {
+            "claim_part": "His net worth was estimated to be $2.1 billion.",
+            "source_says": "Gordon Getty, 81, has a net worth of $2.1 billion, according to Forbes. (S11)",
+            "issue_type": "misattribution"
+          }
+        ],
+        "_elapsed": 6.1,
+        "_test_id": "ragtruth_10",
+        "_expected": "hallucinated",
+        "_hall_type": "Evident Conflict",
+        "_correct": true
+      },
+      {
+        "verdict": "GROUNDED",
+        "confidence": 1.0,
+        "reasoning": "The claim states that 'The FBI has charged a Philadelphia woman, Keonna Thomas, with trying to travel overseas to fight for ISIS.'\n\n1.  'The FBI has charged': Source S0 states, 'The FBI charged a Philadelphia woman on Thursday with trying to travel overseas to fight for ISIS.'\n2.  'a Philadelphia woman': Source S0 confirms, 'The FBI charged a Philadelphia woman...'\n3.  'Keonna Thomas': Source S3 explicitly names her, '...sent by Keonna Thomas, 30...'\n4.  'with trying to travel overseas': Source S0 states 'with trying to travel overseas'. Source S4 mentions 'Thomas purchased an electronic visa to Turkey'. Source S7 states 'Thomas purchased a ticket to Barcelona, with a March 29 departure'.\n5.  'to fight for ISIS': Source S0 directly states 'to fight for ISIS'. Source S4 includes quotes from her messages like 'we all would be rushing to join our brothers in the front lines pray ALLAH accept us as shuhada [martyrs]' and 'When you're a mujahid [violent jihadi fighter] your death becomes a wedding,' which indicate an intent to fight for such an organization. Source S5 notes 'Turkey is known as the easiest place from which to enter Syria and join ISIS.'\n\nAll factual assertions in the claim are directly supported by the source representation.",
+        "specific_issues": [],
+        "_elapsed": 6.0,
+        "_test_id": "ragtruth_24",
+        "_expected": "grounded",
+        "_hall_type": "clean",
+        "_correct": true
+      },
+      {
+        "verdict": "GROUNDED",
+        "confidence": 1.0,
+        "reasoning": "The claim states that 'The FBI charged a Philadelphia woman named Keonna Thomas, also known as \u201cYoung Lioness\u201d and \u201cFatayat Al Khilafah,\u201d with attempting to travel overseas to fight for ISIS.' This is directly supported by multiple sentences in the source:\n- S0 states: 'The FBI charged a Philadelphia woman on Thursday with trying to travel overseas to fight for ISIS.'\n- S3 identifies this woman: 'An FBI complaint cites numerous social media messages dating back to August 2013 that were sent by Keonna Thomas, 30, also known as \"Young Lioness\" and \"Fatayat Al Khilafah.\nAll factual assertions in the claim are explicitly present and correctly attributed in the source.",
+        "specific_issues": [],
+        "_elapsed": 4.2,
+        "_test_id": "ragtruth_26",
+        "_expected": "grounded",
+        "_hall_type": "clean",
+        "_correct": true
+      },
+      {
+        "verdict": "HALLUCINATED",
+        "confidence": 1.0,
+        "reasoning": "The claim states that 'Three women, including Keonna Thomas of Philadelphia, were charged with attempting to join ISIS this week.' While the source confirms that Keonna Thomas was charged with trying to travel overseas to fight for ISIS (S0, S9), it explicitly states that the other two women, Noelle Velentzas and Asia Siddiqui, were 'accused of planning to build an explosive device for attacks in the United States' (S11). The claim incorrectly generalizes the charge of 'attempting to join ISIS' to all three women, when it only applies to Keonna Thomas. The charges for the other two women were different.",
+        "specific_issues": [
+          {
+            "claim_part": "Three women...were charged with attempting to join ISIS this week.",
+            "source_says": "Keonna Thomas was charged with trying to travel overseas to fight for ISIS (S0, S9). Noelle Velentzas and Asia Siddiqui were 'accused of planning to build an explosive device for attacks in the United States' (S11).",
+            "issue_type": "contradiction"
+          }
+        ],
+        "_elapsed": 7.2,
+        "_test_id": "ragtruth_28",
+        "_expected": "hallucinated",
+        "_hall_type": "Evident Conflict",
+        "_correct": true
+      },
+      {
+        "verdict": "HALLUCINATED",
+        "confidence": 1.0,
+        "reasoning": "The claim states that 'Thomas purchased a ticket to Barcelona', which is supported by S7: 'On March 26, Thomas purchased a ticket to Barcelona, with a March 29 departure and an April 15 return to the United States'. However, the claim then asserts 'but was arrested before her trip'. The source explicitly states in S8: 'It's not clear when or where she was arrested.' Since the source states that the timing of her arrest is unclear, and the claim provides a specific timing (before her trip), this constitutes a hallucination by providing information not supported by the source and filling a stated unknown.",
+        "specific_issues": [
+          {
+            "claim_part": "was arrested before her trip",
+            "source_says": "It's not clear when or where she was arrested.",
+            "issue_type": "gap_filling"
+          }
+        ],
+        "_elapsed": 4.1,
+        "_test_id": "ragtruth_28",
+        "_expected": "hallucinated",
+        "_hall_type": "Evident Conflict",
+        "_correct": true
+      },
+      {
+        "verdict": "HALLUCINATED",
+        "confidence": 1.0,
+        "reasoning": "The claim states that 'She was arrested on March 26'. However, the source explicitly states in S8: 'It's not clear when or where she was arrested.' Providing a specific date for an event that the source states is unclear constitutes a hallucination. The second part of the claim, 'could face 15 years in prison,' is supported by S10 which says: 'She could be sentenced to 15 years in prison.' However, since one part of the claim is hallucinated, the entire claim is deemed HALLUCINATED.",
+        "specific_issues": [
+          {
+            "claim_part": "She was arrested on March 26",
+            "source_says": "It's not clear when or where she was arrested. (S8)",
+            "issue_type": "gap_filling"
+          }
+        ],
+        "_elapsed": 4.4,
+        "_test_id": "ragtruth_29",
+        "_expected": "hallucinated",
+        "_hall_type": "Evident Conflict",
+        "_correct": true
+      },
+      {
+        "verdict": "HALLUCINATED",
+        "confidence": 1.0,
+        "reasoning": "The claim contains three main assertions. The first assertion, \"Blue Bell Ice Cream Recalls Products Amid Listeria Outbreak,\" is supported by the source (S4, S15, S16, S24). The third assertion, \"Blue Bell Creameries has temporarily shut down its manufacturing plant in Broken Arrow, Oklahoma, after discovering listeria contamination in a serving of ice cream,\" is also supported by the source (S0, S1, S5). However, the second assertion, \"No Blue Bell Ice Cream Is Linked to Infections in Patients,\" directly contradicts information provided in the source. S12 explicitly states that in a separate Texas outbreak, listeria samples from patients matched listeria found in recovered Blue Bell samples. Furthermore, S17 mentions that listeria in Kansas \"might be linked to Blue Bell Creameries products,\" indicating a potential link, not an absence of one. S14 also states that investigations are ongoing to determine if illnesses are related to Blue Bell products, which contradicts a definitive 'no link'.",
+        "specific_issues": [
+          {
+            "claim_part": "No Blue Bell Ice Cream Is Linked to Infections in Patients",
+            "source_says": "S12: 'In a separate outbreak in Texas, the CDC did find that listeria samples taken from patients who came down with listeriosis between 2010 and 2014 in a hospital that served 3-ounce Blue Bell cups matched the listeria in recovered samples.' S17: 'Five people were infected and three died in the past year in Kansas from listeria that might be linked to Blue Bell Creameries products, according to the CDC.'",
+            "issue_type": "contradiction"
+          }
+        ],
+        "_elapsed": 20.7,
+        "_test_id": "ragtruth_44",
+        "_expected": "hallucinated",
+        "_hall_type": "Evident Conflict",
+        "_correct": true
+      },
+      {
+        "verdict": "HALLUCINATED",
+        "confidence": 1.0,
+        "reasoning": "The claim states that 'The group consisted of five men and four women'. However, the source (S1 and S5) explicitly states that 'The group included four children' (S1) and 'Accompanying the children were three men and two women' (S5). This means the group consisted of 3 men, 2 women, and 4 children, totaling 9 people. The claim's assertion of 'five men and four women' contradicts the source's description of the group's composition by misrepresenting the number of men and women and omitting the children. The second part of the claim, 'all of whom held British passports,' is supported by S5 ('all nine had British passports'). However, since a factual assertion in the claim contradicts the source, the overall verdict is HALLUCINATED.",
+        "specific_issues": [
+          {
+            "claim_part": "The group consisted of five men and four women",
+            "source_says": "The group included four children (S1) and accompanying the children were three men and two women (S5).",
+            "issue_type": "contradiction"
+          }
+        ],
+        "_elapsed": 4.7,
+        "_test_id": "ragtruth_86",
+        "_expected": "hallucinated",
+        "_hall_type": "Evident Conflict",
+        "_correct": true
+      },
+      {
+        "verdict": "HALLUCINATED",
+        "confidence": 1.0,
+        "reasoning": "The claim states that 'West pleaded guilty to battery'. However, the source (S2) explicitly states, 'West pleaded no contest last year to a misdemeanor count of battery over the scuffle.' Pleading 'no contest' is distinct from pleading 'guilty'. Therefore, this part of the claim contradicts the source. The second part of the claim, 'and was sentenced to probation and anger management classes,' is supported by S3, which states, 'A judge sentenced him to two years' probation, as well as anger management sessions and community service.' However, because one factual assertion contradicts the source, the entire claim is deemed HALLUCINATED.",
+        "specific_issues": [
+          {
+            "claim_part": "West pleaded guilty to battery",
+            "source_says": "West pleaded no contest last year to a misdemeanor count of battery over the scuffle.",
+            "issue_type": "contradiction"
+          }
+        ],
+        "_elapsed": 4.0,
+        "_test_id": "ragtruth_141",
+        "_expected": "hallucinated",
+        "_hall_type": "Evident Conflict",
+        "_correct": true
+      },
+      {
+        "verdict": "HALLUCINATED",
+        "confidence": 1.0,
+        "reasoning": "The claim states that the cause of B.B. King's dehydration was attributed to his busy schedule and not drinking enough water. However, the source explicitly states in S2: 'King's dehydration was caused by his Type II diabetes'. This is a direct contradiction of the information provided in the source.",
+        "specific_issues": [
+          {
+            "claim_part": "his busy schedule and not drinking enough water",
+            "source_says": "King's dehydration was caused by his Type II diabetes",
+            "issue_type": "contradiction"
+          }
+        ],
+        "_elapsed": 3.3,
+        "_test_id": "ragtruth_146",
+        "_expected": "hallucinated",
+        "_hall_type": "Evident Conflict",
+        "_correct": true
+      },
+      {
+        "verdict": "HALLUCINATED",
+        "confidence": 1.0,
+        "reasoning": "The claim contains several factual inaccuracies and fabrications when compared to the source. First, the source identifies Katrine Saltara as Chris Copeland's 'female companion' (S8, S28) but never states she is his wife. Second, while the incident was initially reported to be at 1OAK, the source clarifies that the stabbing occurred 'in front of the Fulton Houses project down the street' (S4, S10), 'beyond their view in a different location' (S5), and 'too far away from the club' (S13), not directly outside 1OAK. Third, the incident happened 'early Wednesday' (S0, S25) or 'just before 4 a.m.' (S3), which is Wednesday morning, not 'last night' (implying Tuesday night).",
+        "specific_issues": [
+          {
+            "claim_part": "his wife",
+            "source_says": "The source refers to Katrine Saltara as a 'female companion' (S8, S28) but does not state she is Chris Copeland's wife.",
+            "issue_type": "fabrication"
+          },
+          {
+            "claim_part": "outside the Manhattan nightclub 1OAK",
+            "source_says": "The source states the stabbing occurred 'in front of the Fulton Houses project down the street' (S4, S10), 'beyond their view in a different location' (S5), and 'too far away from the club' (S13), not directly outside 1OAK.",
+            "issue_type": "contradiction"
+          },
+          {
+            "claim_part": "last night",
+            "source_says": "The incident occurred 'early Wednesday' (S0, S25) or 'just before 4 a.m.' (S3), which is Wednesday morning, not 'last night'.",
+            "issue_type": "contradiction"
+          }
+        ],
+        "_elapsed": 8.1,
+        "_test_id": "ragtruth_180",
+        "_expected": "hallucinated",
+        "_hall_type": "Evident Conflict",
+        "_correct": true
+      }
+    ],
+    "isolated": [
+      {
+        "verdict": "HALLUCINATED",
+        "confidence": 1.0,
+        "reasoning": "The claim states that 'His' (referring to Andrew Getty, the primary subject of the preceding text) net worth was estimated to be $2.1 billion. However, the source explicitly states that 'Gordon Getty, 81, is one of three living sons of J. Paul Getty and has a net worth of $2.1 billion, according to Forbes.' The source does not provide Andrew Getty's individual net worth. Therefore, the claim misattributes the $2.1 billion net worth to Andrew Getty instead of Gordon Getty.",
+        "specific_issues": [
+          {
+            "claim_part": "His net worth was estimated to be $2.1 billion.",
+            "source_says": "Gordon Getty... has a net worth of $2.1 billion, according to Forbes. The source does not state Andrew Getty's net worth.",
+            "issue_type": "misattribution"
+          }
+        ],
+        "_elapsed": 4.9,
+        "_test_id": "ragtruth_10",
+        "_expected": "hallucinated",
+        "_hall_type": "Evident Conflict",
+        "_correct": true
+      },
+      {
+        "verdict": "GROUNDED",
+        "confidence": 1.0,
+        "reasoning": "The claim states that 'The FBI has charged a Philadelphia woman, Keonna Thomas, with trying to travel overseas to fight for ISIS.' The source representation, specifically the section '[Keonna Thomas's Arrest and Charges]', explicitly states: 'The FBI charged Keonna Thomas, a 30-year-old Philadelphia woman, on Thursday with trying to travel overseas to fight for ISIS.' Every factual assertion in the claim is directly supported by the source.",
+        "specific_issues": [],
+        "_elapsed": 3.0,
+        "_test_id": "ragtruth_24",
+        "_expected": "grounded",
+        "_hall_type": "clean",
+        "_correct": true
+      },
+      {
+        "verdict": "GROUNDED",
+        "confidence": 1.0,
+        "reasoning": "The claim states that 'The FBI charged a Philadelphia woman named Keonna Thomas, also known as \u201cYoung Lioness\u201d and \u201cFatayat Al Khilafah,\u201d with attempting to travel overseas to fight for ISIS.' The source representation, specifically the section '[Keonna Thomas's Arrest and Charges]', explicitly states: 'The FBI charged Keonna Thomas, a 30-year-old Philadelphia woman, on Thursday with trying to travel overseas to fight for ISIS. An FBI complaint cites numerous social media messages dating back to August 2013 from Thomas, also known as \"Young Lioness\" and \"Fatayat Al Khilafah.\"'. Every factual assertion in the claim is directly supported by the source.",
+        "specific_issues": [],
+        "_elapsed": 4.1,
+        "_test_id": "ragtruth_26",
+        "_expected": "grounded",
+        "_hall_type": "clean",
+        "_correct": true
+      },
+      {
+        "verdict": "HALLUCINATED",
+        "confidence": 1.0,
+        "reasoning": "The claim states that 'Three women, including Keonna Thomas of Philadelphia, were charged with attempting to join ISIS this week.' While the source confirms that three women were arrested this week on terror charges and Keonna Thomas was indeed charged with attempting to travel overseas to fight for ISIS, the charges for the other two women, Noelle Velentzas and Asia Siddiqui, were different. The source states that Velentzas and Siddiqui were 'accused them of planning to build an explosive device for attacks in the United States,' not attempting to join ISIS. Therefore, the claim incorrectly attributes the charge of 'attempting to join ISIS' to all three women.",
+        "specific_issues": [
+          {
+            "claim_part": "Three women... were charged with attempting to join ISIS",
+            "source_says": "Keonna Thomas was charged with trying to travel overseas to fight for ISIS. Noelle Velentzas and Asia Siddiqui were accused of planning to build an explosive device for attacks in the United States.",
+            "issue_type": "contradiction"
+          }
+        ],
+        "_elapsed": 5.8,
+        "_test_id": "ragtruth_28",
+        "_expected": "hallucinated",
+        "_hall_type": "Evident Conflict",
+        "_correct": true
+      },
+      {
+        "verdict": "HALLUCINATED",
+        "confidence": 1.0,
+        "reasoning": "The claim states that 'Thomas purchased a ticket to Barcelona', which is supported by the source: 'She purchased an electronic visa to Turkey on March 23 and a ticket to Barcelona on March 26'. However, the claim then states 'but was arrested before her trip'. The source explicitly states regarding Keonna Thomas's arrest: 'It is not clear when or where she was arrested.' By asserting that she 'was arrested before her trip', the claim provides specific timing information about her arrest that the source explicitly states is unknown, violating Rule 3.",
+        "specific_issues": [
+          {
+            "claim_part": "was arrested before her trip",
+            "source_says": "It is not clear when or where she was arrested.",
+            "issue_type": "gap_filling"
+          }
+        ],
+        "_elapsed": 4.8,
+        "_test_id": "ragtruth_28",
+        "_expected": "hallucinated",
+        "_hall_type": "Evident Conflict",
+        "_correct": true
+      },
+      {
+        "verdict": "HALLUCINATED",
+        "confidence": 1.0,
+        "reasoning": "The claim states that 'She was arrested on March 26'. However, the source representation for 'Keonna Thomas's Arrest and Charges' explicitly states: 'It is not clear when or where she was arrested.' Providing a specific date for an event that the source states is unclear constitutes a hallucination according to Rule 3. The second part of the claim, 'could face 15 years in prison,' is supported by the source which states: 'Thomas was charged with knowingly attempting to provide material support and resources to a designated foreign terrorist organization and could face 15 years in prison.' However, since one part of the claim is hallucinated, the entire claim is deemed HALLUCINATED.",
+        "specific_issues": [
+          {
+            "claim_part": "She was arrested on March 26",
+            "source_says": "It is not clear when or where she was arrested.",
+            "issue_type": "gap_filling"
+          }
+        ],
+        "_elapsed": 4.4,
+        "_test_id": "ragtruth_29",
+        "_expected": "hallucinated",
+        "_hall_type": "Evident Conflict",
+        "_correct": true
+      },
+      {
+        "verdict": "HALLUCINATED",
+        "confidence": 0.9,
+        "reasoning": "The claim consists of three main assertions. The first assertion, 'Blue Bell Ice Cream Recalls Products Amid Listeria Outbreak,' is grounded in the source, which states, 'Blue Bell Creameries has initiated product recalls... due to the Kansas listeria outbreak.' The third assertion, 'Blue Bell Creameries has temporarily shut down its manufacturing plant in Broken Arrow, Oklahoma, after discovering listeria contamination in a serving of ice cream,' is also grounded, as the source states, 'Blue Bell ice cream has temporarily shut down its Broken Arrow, Oklahoma, manufacturing plant due to the discovery of listeria contamination. ... Listeria monocytogenes was found in a cup of ice cream from a Kansas hospital, produced at the Broken Arrow plant.'\n\nHowever, the second assertion, 'No Blue Bell Ice Cream Is Linked to Infections in Patients,' is a hallucination. For the Kansas outbreak, the source states that 'listeria samples from the factory and a recovered hospital cup did not appear identical to samples from patients in the Kansas outbreak' and that 'it is not yet clear if the ice cream is the source of these infections.' For the Texas outbreak, the source explicitly states that 'The CDC found a genetic match between listeria samples from patients and recovered samples in a separate Texas outbreak,' although it adds that 'this does not mean the ice cream is the source of the infections' and that 'An investigation is ongoing.' The claim's definitive statement 'No Blue Bell Ice Cream Is Linked to Infections in Patients' contradicts the source's information about the genetic match in Texas and the ongoing, unclear nature of the investigations in both outbreaks. The source does not provide a definitive 'no link' conclusion; rather, it indicates uncertainty or an ongoing investigation, and even a genetic link in one instance. This constitutes a hallucination by providing a specific, definitive value for something the source states is unclear or under investigation, and by contradicting the finding of a genetic match.",
+        "specific_issues": [
+          {
+            "claim_part": "No Blue Bell Ice Cream Is Linked to Infections in Patients",
+            "source_says": "For Kansas: 'listeria samples from the factory and a recovered hospital cup did not appear identical to samples from patients in the Kansas outbreak.' and 'it is not yet clear if the ice cream is the source of these infections.' For Texas: 'The CDC found a genetic match between listeria samples from patients and recovered samples in a separate Texas outbreak.' and 'this does not mean the ice cream is the source of the infections. An investigation is ongoing to determine if these illnesses are related to exposure to Blue Bell products.'",
+            "issue_type": "contradiction/gap_filling"
+          }
+        ],
+        "_elapsed": 14.7,
+        "_test_id": "ragtruth_44",
+        "_expected": "hallucinated",
+        "_hall_type": "Evident Conflict",
+        "_correct": true
+      },
+      {
+        "verdict": "HALLUCINATED",
+        "confidence": 1.0,
+        "reasoning": "The claim states that 'The group consisted of five men and four women'. However, the source explicitly states: 'The group of nine British citizens arrested in Turkey included four children, three men, and two women.' This is a direct contradiction regarding the composition of the group. While the part about holding British passports is grounded, the contradiction in the group's composition makes the entire claim HALLUCINATED.",
+        "specific_issues": [
+          {
+            "claim_part": "The group consisted of five men and four women",
+            "source_says": "The group of nine British citizens arrested in Turkey included four children, three men, and two women.",
+            "issue_type": "contradiction"
+          }
+        ],
+        "_elapsed": 4.5,
+        "_test_id": "ragtruth_86",
+        "_expected": "hallucinated",
+        "_hall_type": "Evident Conflict",
+        "_correct": true
+      },
+      {
+        "verdict": "HALLUCINATED",
+        "confidence": 1.0,
+        "reasoning": "The claim states that 'West pleaded guilty to battery'. However, the source representation, specifically the section '[Legal Consequences for the Daniel Ramos Incident]', states: 'West pleaded no contest last year to a misdemeanor count of battery over the scuffle.' A 'guilty' plea is an admission of guilt, while a 'no contest' plea (nolo contendere) means the defendant accepts conviction without admitting guilt. This is a direct contradiction. The rest of the claim, 'and was sentenced to probation and anger management classes,' is supported by the source which states he was sentenced to 'two years' probation, anger management sessions, and community service.' However, the initial contradiction makes the entire claim HALLUCINATED.",
+        "specific_issues": [
+          {
+            "claim_part": "West pleaded guilty to battery",
+            "source_says": "West pleaded no contest last year to a misdemeanor count of battery over the scuffle.",
+            "issue_type": "contradiction"
+          }
+        ],
+        "_elapsed": 4.0,
+        "_test_id": "ragtruth_141",
+        "_expected": "hallucinated",
+        "_hall_type": "Evident Conflict",
+        "_correct": true
+      },
+      {
+        "verdict": "HALLUCINATED",
+        "confidence": 1.0,
+        "reasoning": "The claim states that the cause of B.B. King's dehydration was attributed to his busy schedule and not drinking enough water. However, the source explicitly states in the section '[B.B. King's Recent Hospitalization and Recovery]' that he was hospitalized for dehydration 'which was caused by his Type II diabetes.' This directly contradicts the claim regarding the cause of his dehydration.",
+        "specific_issues": [
+          {
+            "claim_part": "The cause of his dehydration was attributed to his busy schedule and not drinking enough water.",
+            "source_says": "Blues legend B.B. King was recently hospitalized for dehydration, which was caused by his Type II diabetes.",
+            "issue_type": "contradiction"
+          }
+        ],
+        "_elapsed": 5.3,
+        "_test_id": "ragtruth_146",
+        "_expected": "hallucinated",
+        "_hall_type": "Evident Conflict",
+        "_correct": true
+      },
+      {
+        "verdict": "HALLUCINATED",
+        "confidence": 1.0,
+        "reasoning": "The claim contains multiple factual assertions that contradict or fabricate information not present in the source. First, the source identifies Katrine Saltara as a 'female companion' of Chris Copeland, not his 'wife'. Second, the source explicitly states that the stabbing occurred 'in front of the Fulton Houses project, not at the 1OAK club', directly contradicting the claim that it happened 'outside the Manhattan nightclub 1OAK'. The source also does not specify 'Manhattan'. Third, while Chris Copeland was 'stabbed', Katrine Saltara was 'slashed' and suffered 'cuts', not explicitly 'stabbed' in the same manner as Copeland. Finally, the incident occurred 'early Wednesday', not 'last night' (implying Tuesday night), which is a minor inaccuracy but still deviates from the source's precise timing.",
+        "specific_issues": [
+          {
+            "claim_part": "his wife",
+            "source_says": "He was with female companion Katrine Saltara",
+            "issue_type": "fabrication"
+          },
+          {
+            "claim_part": "outside the Manhattan nightclub 1OAK",
+            "source_says": "The stabbing occurred in front of the Fulton Houses project, not at the 1OAK club",
+            "issue_type": "contradiction"
+          },
+          {
+            "claim_part": "were stabbed",
+            "source_says": "the suspect stabbed Copeland in the abdomen and left elbow, slashed Saltara",
+            "issue_type": "inaccuracy"
+          },
+          {
+            "claim_part": "last night",
+            "source_says": "stabbed early Wednesday",
+            "issue_type": "inaccuracy"
+          }
+        ],
+        "_elapsed": 9.9,
+        "_test_id": "ragtruth_180",
+        "_expected": "hallucinated",
+        "_hall_type": "Evident Conflict",
+        "_correct": true
+      }
+    ],
+    "overlapping": [
+      {
+        "verdict": "HALLUCINATED",
+        "confidence": 1.0,
+        "reasoning": "The claim states 'His net worth was estimated to be $2.1 billion.' Given the context of the source, 'His' most logically refers to Andrew Getty, who is the primary subject of the source documents. However, the source explicitly states that 'Gordon Getty, 81, has a net worth of $2.1 billion, according to Forbes.' The source does not provide a specific net worth for Andrew Getty, only mentioning that he was 'one of the heirs to billions of oil money'. Therefore, attributing the $2.1 billion net worth to Andrew Getty is a misattribution and fabrication of information not supported by the source.",
+        "specific_issues": [
+          {
+            "claim_part": "His net worth was estimated to be $2.1 billion.",
+            "source_says": "Gordon Getty, 81, has a net worth of $2.1 billion, according to Forbes.",
+            "issue_type": "misattribution"
+          }
+        ],
+        "_elapsed": 6.7,
+        "_test_id": "ragtruth_10",
+        "_expected": "hallucinated",
+        "_hall_type": "Evident Conflict",
+        "_correct": true
+      },
+      {
+        "verdict": "GROUNDED",
+        "confidence": 1.0,
+        "reasoning": "The claim states that 'The FBI has charged a Philadelphia woman, Keonna Thomas, with trying to travel overseas to fight for ISIS.' This information is directly supported by multiple sections of the source. For instance, [Keonna Thomas Arrest and Charges] explicitly states: 'The FBI charged Keonna Thomas, 30, a Philadelphia woman, on Thursday with trying to travel overseas to fight for ISIS.' The same information is reiterated in [Keonna Thomas Travel Plans and Social Media]. Every factual assertion in the claim is present and consistent with the source.",
+        "specific_issues": [],
+        "_elapsed": 3.5,
+        "_test_id": "ragtruth_24",
+        "_expected": "grounded",
+        "_hall_type": "clean",
+        "_correct": true
+      },
+      {
+        "verdict": "GROUNDED",
+        "confidence": 1.0,
+        "reasoning": "The claim states that 'The FBI charged a Philadelphia woman named Keonna Thomas, also known as \u201cYoung Lioness\u201d and \u201cFatayat Al Khilafah,\u201d with attempting to travel overseas to fight for ISIS.'\n\n1.  'The FBI charged a Philadelphia woman named Keonna Thomas': The source [Keonna Thomas Arrest and Charges] explicitly states, 'The FBI charged Keonna Thomas, 30, a Philadelphia woman, on Thursday with trying to travel overseas to fight for ISIS.' This is directly supported.\n2.  'also known as \u201cYoung Lioness\u201d and \u201cFatayat Al Khilafah,\u201d': The source [Keonna Thomas Travel Plans and Social Media] states, 'An FBI complaint cites numerous social media messages dating back to August 2013 sent by Keonna Thomas, 30, also known as \"Young Lioness\" and \"Fatayat Al Khilafah.\"' This is directly supported.\n3.  'with attempting to travel overseas to fight for ISIS.': The source [Keonna Thomas Arrest and Charges] explicitly states, 'The FBI charged Keonna Thomas, 30, a Philadelphia woman, on Thursday with trying to travel overseas to fight for ISIS.' This is directly supported.\n\nAll factual assertions in the claim are directly supported by the provided source representation.",
+        "specific_issues": [],
+        "_elapsed": 4.4,
+        "_test_id": "ragtruth_26",
+        "_expected": "grounded",
+        "_hall_type": "clean",
+        "_correct": true
+      },
+      {
+        "verdict": "HALLUCINATED",
+        "confidence": 1.0,
+        "reasoning": "The claim states that 'Three women, including Keonna Thomas of Philadelphia, were charged with attempting to join ISIS this week.' While it is true that three women were arrested on terror charges this week, and Keonna Thomas was indeed charged with attempting to join ISIS, the source explicitly states that the other two women, Noelle Velentzas and Asia Siddiqui, were 'accused of planning to build an explosive device for attacks in the United States.' Therefore, the claim incorrectly generalizes the charge of 'attempting to join ISIS' to all three women, when only Keonna Thomas was charged with that specific offense.",
+        "specific_issues": [
+          {
+            "claim_part": "Three women... were charged with attempting to join ISIS this week.",
+            "source_says": "Keonna Thomas was charged with trying to travel overseas to fight for ISIS. Noelle Velentzas and Asia Siddiqui were accused of planning to build an explosive device for attacks in the United States.",
+            "issue_type": "contradiction"
+          }
+        ],
+        "_elapsed": 6.2,
+        "_test_id": "ragtruth_28",
+        "_expected": "hallucinated",
+        "_hall_type": "Evident Conflict",
+        "_correct": true
+      },
+      {
+        "verdict": "HALLUCINATED",
+        "confidence": 1.0,
+        "reasoning": "The claim consists of two parts: 'Thomas purchased a ticket to Barcelona' and 'was arrested before her trip.'\n\n1.  **'Thomas purchased a ticket to Barcelona'**: The source [Keonna Thomas Travel Plans and Social Media] explicitly states, 'On March 26, Keonna Thomas, 30, purchased a ticket to Barcelona, with a March 29 departure and an April 15 return to the United States.' This part of the claim is GROUNDED.\n\n2.  **'but was arrested before her trip.'**: The source [Keonna Thomas Travel Plans and Social Media] indicates her trip departure was March 29. The source [Keonna Thomas Arrest and Charges] states, 'The FBI charged Keonna Thomas, 30, a Philadelphia woman, on Thursday...' However, the source also explicitly states under 'NOT STATED': 'It is not clear when or where Keonna Thomas, 30, was arrested.' The claim makes a definitive assertion about the timing of her *arrest* ('before her trip'). According to Rule 3, 'If the source EXPLICITLY says something is unknown/unclear, and the claim provides a specific value for it, that is HALLUCINATION.' Since the source explicitly states that the *when* of her *arrest* is 'not clear,' the claim's assertion about the timing of her arrest is a hallucination, as it provides specific information for something the source explicitly states is unknown. While she was *charged* on Thursday, the source differentiates this from the *arrest* timing by explicitly marking the latter as unclear.",
+        "specific_issues": [
+          {
+            "claim_part": "was arrested before her trip",
+            "source_says": "NOT STATED: It is not clear when or where Keonna Thomas, 30, was arrested.",
+            "issue_type": "gap_filling"
+          }
+        ],
+        "_elapsed": 19.4,
+        "_test_id": "ragtruth_28",
+        "_expected": "hallucinated",
+        "_hall_type": "Evident Conflict",
+        "_correct": true
+      },
+      {
+        "verdict": "HALLUCINATED",
+        "confidence": 1.0,
+        "reasoning": "The claim states that Keonna Thomas was arrested on March 26. However, the source explicitly states in the 'Keonna Thomas Arrest and Charges' section: 'It is not clear when or where Keonna Thomas, 30, was arrested.' and 'NOT STATED: It is not clear when or where Keonna Thomas, 30, was arrested.' Providing a specific date for an event that the source states is unclear constitutes a hallucination (gap_filling). The second part of the claim, 'could face 15 years in prison,' is supported by the source ('She could be sentenced to 15 years in prison.'). However, because one factual assertion in the claim is fabricated/contradicts the source, the entire claim is deemed HALLUCINATED.",
+        "specific_issues": [
+          {
+            "claim_part": "She was arrested on March 26",
+            "source_says": "It is not clear when or where Keonna Thomas, 30, was arrested.",
+            "issue_type": "gap_filling"
+          }
+        ],
+        "_elapsed": 4.9,
+        "_test_id": "ragtruth_29",
+        "_expected": "hallucinated",
+        "_hall_type": "Evident Conflict",
+        "_correct": true
+      },
+      {
+        "verdict": "HALLUCINATED",
+        "confidence": 0.9,
+        "reasoning": "The claim states, 'No Blue Bell Ice Cream Is Linked to Infections in Patients'. This directly contradicts information in the source. The source explicitly states, 'According to the Centers for Disease Control and Prevention (CDC), five people were infected and three died in the past year in Kansas from listeria that might be linked to Blue Bell Creameries products.' It also mentions, 'In a separate listeria outbreak in Texas, the Centers for Disease Control and Prevention (CDC) found that listeria samples taken from patients who came down with listeriosis between 2010 and 2014 in a hospital that served 3-ounce Blue Bell cups matched the listeria in recovered samples,' implying a link. While the source also notes that it's not definitively confirmed that the ice cream is the source and investigations are ongoing, the claim's definitive statement of 'No Blue Bell Ice Cream Is Linked' is a strong negative assertion that is not supported and contradicts the possibility and matching samples mentioned in the source. Other parts of the claim, such as product recalls and the shutdown of the Broken Arrow plant due to listeria discovery, are grounded in the source.",
+        "specific_issues": [
+          {
+            "claim_part": "No Blue Bell Ice Cream Is Linked to Infections in Patients",
+            "source_says": "According to the Centers for Disease Control and Prevention (CDC), five people were infected and three died in the past year in Kansas from listeria that might be linked to Blue Bell Creameries products. ... In a separate listeria outbreak in Texas, the Centers for Disease Control and Prevention (CDC) found that listeria samples taken from patients who came down with listeriosis between 2010 and 2014 in a hospital that served 3-ounce Blue Bell cups matched the listeria in recovered samples.",
+            "issue_type": "contradiction"
+          }
+        ],
+        "_elapsed": 9.7,
+        "_test_id": "ragtruth_44",
+        "_expected": "hallucinated",
+        "_hall_type": "Evident Conflict",
+        "_correct": true
+      },
+      {
+        "verdict": "HALLUCINATED",
+        "confidence": 1.0,
+        "reasoning": "The claim states that the group consisted of 'five men and four women'. However, the source explicitly states: 'Accompanying the four children were three men and two women'. This means the group consisted of three men, two women, and four children, not five men and four women. This is a direct contradiction regarding the composition of the group. The part about 'all of whom held British passports' is grounded in the source, but the first part is a clear hallucination.",
+        "specific_issues": [
+          {
+            "claim_part": "The group consisted of five men and four women",
+            "source_says": "Accompanying the four children were three men and two women",
+            "issue_type": "contradiction"
+          }
+        ],
+        "_elapsed": 3.9,
+        "_test_id": "ragtruth_86",
+        "_expected": "hallucinated",
+        "_hall_type": "Evident Conflict",
+        "_correct": true
+      },
+      {
+        "verdict": "HALLUCINATED",
+        "confidence": 1.0,
+        "reasoning": "The claim states that Kanye West 'pleaded guilty to battery'. However, the source [Kanye West Criminal Charges] explicitly states that 'Kanye West... pleaded no contest last year to a misdemeanor count of battery'. Pleading 'guilty' and pleading 'no contest' are distinct legal pleas. Therefore, this part of the claim contradicts the source. The other parts of the claim, regarding the sentence of probation and anger management classes, are supported by the source [Kanye West Criminal Charges].",
+        "specific_issues": [
+          {
+            "claim_part": "West pleaded guilty to battery",
+            "source_says": "Kanye West... pleaded no contest last year to a misdemeanor count of battery",
+            "issue_type": "contradiction"
+          }
+        ],
+        "_elapsed": 4.0,
+        "_test_id": "ragtruth_141",
+        "_expected": "hallucinated",
+        "_hall_type": "Evident Conflict",
+        "_correct": true
+      },
+      {
+        "verdict": "HALLUCINATED",
+        "confidence": 1.0,
+        "reasoning": "The claim states that the cause of B.B. King's dehydration was attributed to his busy schedule and not drinking enough water. However, the source explicitly states in multiple sections (e.g., '[B.B. King's Recent Health Scare]' and '[Updates on B.B. King's Condition]') that 'King's dehydration was caused by his Type II diabetes'. This is a direct contradiction regarding the cause of his dehydration.",
+        "specific_issues": [
+          {
+            "claim_part": "The cause of his dehydration was attributed to his busy schedule and not drinking enough water.",
+            "source_says": "King's dehydration was caused by his Type II diabetes",
+            "issue_type": "contradiction"
+          }
+        ],
+        "_elapsed": 3.5,
+        "_test_id": "ragtruth_146",
+        "_expected": "hallucinated",
+        "_hall_type": "Evident Conflict",
+        "_correct": true
+      },
+      {
+        "verdict": "HALLUCINATED",
+        "confidence": 1.0,
+        "reasoning": "The claim contains multiple factual assertions that contradict or fabricate information not present in the source. \n1. The claim states Chris Copeland's 'wife' was stabbed. The source consistently refers to Katrine Saltara as his 'female companion' and does not mention her being his wife.\n2. The claim states both Chris Copeland and his companion 'were stabbed'. While Chris Copeland was stabbed, the source states Katrine Saltara was 'slashed' and suffered 'cuts', which is a distinct type of injury from being stabbed.\n3. The claim states the incident occurred 'outside the Manhattan nightclub 1OAK'. The source explicitly clarifies that '1OAK later stated the stabbing occurred in front of the Fulton Houses project, down the street from the club', directly contradicting the location stated in the claim.",
+        "specific_issues": [
+          {
+            "claim_part": "his wife",
+            "source_says": "His female companion, Katrine Saltara",
+            "issue_type": "fabrication"
+          },
+          {
+            "claim_part": "were stabbed",
+            "source_says": "Chris Copeland... was stabbed... Katrine Saltara, was also slashed, along with another woman... Katrine Saltara suffered cuts to her arm, breast, and buttock",
+            "issue_type": "misrepresentation"
+          },
+          {
+            "claim_part": "outside the Manhattan nightclub 1OAK",
+            "source_says": "1OAK later stated the stabbing occurred in front of the Fulton Houses project, down the street from the club",
+            "issue_type": "contradiction"
+          }
+        ],
+        "_elapsed": 10.9,
+        "_test_id": "ragtruth_180",
+        "_expected": "hallucinated",
+        "_hall_type": "Evident Conflict",
+        "_correct": true
+      }
+    ]
+  },
+  "compiled_lengths": {
+    "15593": {
+      "isolated": 1903,
+      "overlapping": 3316
+    },
+    "15596": {
+      "isolated": 1774,
+      "overlapping": 2889
+    },
+    "15599": {
+      "isolated": 4097,
+      "overlapping": 5775
+    },
+    "15607": {
+      "isolated": 1447,
+      "overlapping": 3974
+    },
+    "15616": {
+      "isolated": 3354,
+      "overlapping": 3831
+    },
+    "15617": {
+      "isolated": 1839,
+      "overlapping": 3732
+    },
+    "15623": {
+      "isolated": 3970,
+      "overlapping": 6229
+    }
+  }
+}

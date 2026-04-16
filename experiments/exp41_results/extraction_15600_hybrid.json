@@ -1,0 +1,383 @@
+{
+  "event_hubs": [
+    {
+      "event_id": "EVT_1",
+      "action": "Police response and discovery of bodies",
+      "source_sentence": "S0, S7, S8, S9, S26",
+      "edges": [
+        {
+          "type": "participant",
+          "target": "Hong Kong police",
+          "source": "S0"
+        },
+        {
+          "type": "participant",
+          "target": "Rurik Jutting",
+          "source": "S7"
+        },
+        {
+          "type": "victim_found",
+          "target": "Seneng Mujiasih",
+          "source": "S8"
+        },
+        {
+          "type": "victim_found",
+          "target": "Sumarti Ningsih",
+          "source": "S9"
+        },
+        {
+          "type": "location",
+          "target": "J Residence",
+          "source": "S25"
+        },
+        {
+          "type": "time",
+          "target": "Saturday morning, November 1",
+          "source": "S7"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_2",
+      "action": "Alleged murder of Sumarti Ningsih",
+      "source_sentence": "S10",
+      "edges": [
+        {
+          "type": "victim",
+          "target": "Sumarti Ningsih",
+          "source": "S10"
+        },
+        {
+          "type": "alleged_perpetrator",
+          "target": "Rurik Jutting",
+          "source": "S3"
+        },
+        {
+          "type": "time",
+          "target": "October 27",
+          "source": "S10"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_3",
+      "action": "Alleged murder of Seneng Mujiasih",
+      "source_sentence": "S0, S1, S8",
+      "edges": [
+        {
+          "type": "victim",
+          "target": "Seneng Mujiasih",
+          "source": "S8"
+        },
+        {
+          "type": "alleged_perpetrator",
+          "target": "Rurik Jutting",
+          "source": "S3"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_4",
+      "action": "Charging of Rurik Jutting",
+      "source_sentence": "S3",
+      "edges": [
+        {
+          "type": "defendant",
+          "target": "Rurik Jutting",
+          "source": "S3"
+        },
+        {
+          "type": "charge",
+          "target": "two counts of murder",
+          "source": "S3"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_5",
+      "action": "Court hearing adjournment",
+      "source_sentence": "S4",
+      "edges": [
+        {
+          "type": "time",
+          "target": "Thursday",
+          "source": "S4"
+        },
+        {
+          "type": "adjourned_until",
+          "target": "May",
+          "source": "S4"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_6",
+      "action": "Vigil for victims",
+      "source_sentence": "S22, S23",
+      "edges": [
+        {
+          "type": "location",
+          "target": "Victoria Park",
+          "source": "S22"
+        },
+        {
+          "type": "participant",
+          "target": "fellow domestic workers",
+          "source": "S22"
+        },
+        {
+          "type": "participant_count",
+          "target": "Around 200 people",
+          "source": "S23"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_7",
+      "action": "Repatriation and burial",
+      "source_sentence": "S24",
+      "edges": [
+        {
+          "type": "victim",
+          "target": "Seneng Mujiasih",
+          "source": "S24"
+        },
+        {
+          "type": "victim",
+          "target": "Sumarti Ningsih",
+          "source": "S24"
+        },
+        {
+          "type": "location",
+          "target": "Indonesia",
+          "source": "S24"
+        },
+        {
+          "type": "time",
+          "target": "November",
+          "source": "S24"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_8",
+      "action": "Detention of Rurik Jutting",
+      "source_sentence": "S26",
+      "edges": [
+        {
+          "type": "detainee",
+          "target": "Rurik Jutting",
+          "source": "S26"
+        },
+        {
+          "type": "location",
+          "target": "J Residence",
+          "source": "S26"
+        },
+        {
+          "type": "evidence_seized",
+          "target": "knife",
+          "source": "S26"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_9",
+      "action": "Psychological fitness test",
+      "source_sentence": "S31, S32",
+      "edges": [
+        {
+          "type": "subject",
+          "target": "Rurik Jutting",
+          "source": "S31"
+        },
+        {
+          "type": "result",
+          "target": "fit to enter a plea",
+          "source": "S32"
+        }
+      ]
+    },
+    {
+      "event_id": "EVT_10",
+      "action": "Case adjournment for evidence analysis",
+      "source_sentence": "S33",
+      "edges": [
+        {
+          "type": "evidence_type",
+          "target": "forensic and DNA evidence",
+          "source": "S33"
+        },
+        {
+          "type": "evidence_count",
+          "target": "more than 200 pieces",
+          "source": "S33"
+        }
+      ]
+    }
+  ],
+  "entities": [
+    {
+      "name": "Rurik Jutting",
+      "aliases": [],
+      "attributes": {
+        "age": "29",
+        "nationality": "Briton",
+        "former_occupation": "banker",
+        "education": "studied history and law at University of Cambridge (2004-2008)",
+        "employment_history": [
+          "Bank of America Merrill Lynch structured equity finance and trading division in Hong Kong since July 2013",
+          "Bank of America Merrill Lynch in London for three years prior to July 2013",
+          "capital markets for Barclays"
+        ],
+        "residence": "J Residence, Wan Chai"
+      },
+      "participates_in": [
+        "EVT_1",
+        "EVT_2",
+        "EVT_3",
+        "EVT_4",
+        "EVT_8",
+        "EVT_9"
+      ],
+      "source_sentences": [
+        "S3",
+        "S6",
+        "S7",
+        "S25",
+        "S26",
+        "S27",
+        "S28",
+        "S29",
+        "S30",
+        "S31"
+      ]
+    },
+    {
+      "name": "Seneng Mujiasih",
+      "aliases": [
+        "Jesse Lorena"
+      ],
+      "attributes": {
+        "age": "29",
+        "origin": "Muna, Sulawesi province, southeast Indonesia",
+        "occupation": "domestic worker in Hong Kong",
+        "visa_status": "overstayed"
+      },
+      "participates_in": [
+        "EVT_1",
+        "EVT_3",
+        "EVT_7"
+      ],
+      "source_sentences": [
+        "S8",
+        "S19",
+        "S20"
+      ]
+    },
+    {
+      "name": "Sumarti Ningsih",
+      "aliases": [],
+      "attributes": {
+        "age": "25",
+        "origin": "Cilacap, Central Java, Indonesia",
+        "family": "mother of a five-year-old girl",
+        "employment_history": "domestic helper in Hong Kong between 2011 and 2013",
+        "status_at_death": "tourist visiting Hong Kong"
+      },
+      "participates_in": [
+        "EVT_1",
+        "EVT_2",
+        "EVT_7"
+      ],
+      "source_sentences": [
+        "S10",
+        "S11",
+        "S13",
+        "S14"
+      ]
+    },
+    {
+      "name": "Jumiati",
+      "aliases": [],
+      "attributes": {
+        "relationship": "cousin of Sumarti Ningsih"
+      },
+      "participates_in": [],
+      "source_sentences": [
+        "S12"
+      ]
+    },
+    {
+      "name": "Ahmad Khaliman",
+      "aliases": [],
+      "attributes": {
+        "relationship": "father of Sumarti Ningsih"
+      },
+      "participates_in": [],
+      "source_sentences": [
+        "S14"
+      ]
+    },
+    {
+      "name": "Asian Migrant Coordinating Body",
+      "aliases": [],
+      "attributes": {
+        "type": "organization"
+      },
+      "participates_in": [],
+      "source_sentences": [
+        "S13",
+        "S19"
+      ]
+    },
+    {
+      "name": "J Residence",
+      "aliases": [],
+      "attributes": {
+        "type": "upmarket apartment",
+        "location": "Wan Chai"
+      },
+      "participates_in": [
+        "EVT_1",
+        "EVT_8"
+      ],
+      "source_sentences": [
+        "S6",
+        "S25",
+        "S26"
+      ]
+    },
+    {
+      "name": "Victoria Park",
+      "aliases": [],
+      "attributes": {
+        "location": "Hong Kong"
+      },
+      "participates_in": [
+        "EVT_6"
+      ],
+      "source_sentences": [
+        "S22"
+      ]
+    }
+  ],
+  "explicit_unknowns": [
+    {
+      "about": "Rurik Jutting",
+      "unknown_slots": [
+        "date of leaving job at Bank of America Merrill Lynch"
+      ],
+      "source": "S27"
+    },
+    {
+      "about": "Seneng Mujiasih",
+      "unknown_slots": [
+        "details about her life",
+        "reason for staying in Hong Kong"
+      ],
+      "source": "S21"
+    }
+  ],
+  "_elapsed": 130.5
+}
