@@ -15,6 +15,7 @@ from typing import Any, Literal, cast
 
 from llm_judge.benchmarks import BenchmarkAdapter, BenchmarkCase, GroundTruth
 from llm_judge.calibration.hallucination import check_hallucination
+from llm_judge.calibration.pipeline_config import PipelineConfig, get_pipeline_config
 
 logger = logging.getLogger(__name__)
 
@@ -84,6 +85,7 @@ def _evaluate_case_all_properties(
     skip_embeddings: bool = False,
     with_llm: bool = False,
     gate2_routing: str = "none",
+    config: PipelineConfig | None = None,
 ) -> dict[str, Any]:
     """Run ALL property checks on a single case."""
     response_text = case.request.candidate_answer
@@ -113,6 +115,7 @@ def _evaluate_case_all_properties(
             max_ungrounded_claims=2,
             skip_embeddings=skip_embeddings,
             gate2_routing=gate2_routing,
+            config=config,
         )
         # Decision from two-gate architecture
         g1 = hallucination_result.gate1_decision
@@ -627,8 +630,13 @@ def run_benchmark(
     skip_embeddings: bool = False,
     with_llm: bool = False,
     gate2_routing: str = "none",
+    config: PipelineConfig | None = None,
 ) -> BenchmarkRunResult:
     """Run benchmark evaluation across all 28 properties."""
+    # Resolve pipeline config once for the entire run
+    if config is None:
+        config = get_pipeline_config()
+
     meta = adapter.metadata()
     gt_properties = properties or meta.supported_properties
 
@@ -656,6 +664,7 @@ def run_benchmark(
                 skip_embeddings=skip_embeddings,
                 with_llm=with_llm,
                 gate2_routing=gate2_routing,
+                config=config,
             )
 
             # Cache for diagnostics (limit to 200 to save memory)

@@ -1,0 +1,61 @@
+# Hallucination Pipeline Configuration — ADR-0026
+# ============================================================
+# Single source of truth for pipeline behavioral switches.
+# Validated at startup by PipelineConfig schema (pipeline_config.py).
+# Config hash captured in every run's manifest.json.
+#
+# LAYER ARCHITECTURE (ADR-0002):
+#   L1: Rules      — substring match, B-flags. Free, microseconds.
+#   L2: Patterns   — 5-graph knowledge graph ensemble. $0.01/source, cached.
+#   L3: Classifiers — MiniCheck + DeBERTa (current) or fact-counting (Wave C).
+#   L4: LLM-as-Judge — Gemini per-sentence. Deferred (ADR-0007).
+#
+# CHANGING FLAGS:
+#   1. Edit this file
+#   2. Restart the service (read-once semantics, no hot reload)
+#   3. The manifest captures the new config hash automatically
+#
+# See also: ADR-0027 (L3 method), ADR-0028 (CI dark canaries)
+# ============================================================
+
+# --- Layer enables ---
+# Each layer can be independently enabled/disabled.
+# Sentences flow L1 → L2 → L3 → L4 (enabled layers only).
+# Grounded sentences skip remaining layers; flagged cascade with evidence.
+layers:
+  l1_enabled: true
+  l2_enabled: true    # Requires fact tables (registration-time extraction, ADR-0025)
+  l3_enabled: true
+  l4_enabled: false   # Not yet validated at sentence level (ADR-0007)
+
+# --- L3 method selection (ADR-0027) ---
+# "minicheck_deberta" — current production: MiniCheck primary + DeBERTa fallback
+# "fact_counting"     — Exp 43 validated: 76% auto-clear at 100% precision
+#                        (Wave C will port this from experiments/ to src/)
+l3_method: minicheck_deberta
+
+# --- Numeric thresholds ---
+thresholds:
+  grounding_ratio: 0.80       # Gate 1: below this = fail/ambiguous
+  min_sentence_sim: 0.30      # Gate 1: any sentence below this = flag
+  similarity: 0.60            # Embedding similarity threshold
+  max_ungrounded_claims: 2    # Property 1.2 threshold
+  minicheck: 0.50             # MiniCheck binary threshold
+  nli_entailment: 0.70        # DeBERTa entailment threshold
+  fact_counting_clear: 0.80   # Exp 43: ratio >= this = auto-clear (100% precision)
+
+# --- Graph cache (L2 knowledge graph ensemble) ---
+graph_cache:
+  enabled: true
+  ttl_hours: 168              # 7 days
+  directory: ".cache/hallucination_graphs"
+  pre_seed_path: ""           # Set to exp31_multipass_fact_tables.json path for pre-seeding
+
+# --- Sentence splitter (ADR-0014) ---
+# "spacy" — handles abbreviations correctly (primary)
+# "regex" — legacy fallback (breaks on "J. Paul Getty")
+sentence_splitter: spacy
+
+# --- Evidence trail ---
+# Attach per-sentence evidence to every verdict (EPIC 7.23 funnel report)
+evidence_trail: true

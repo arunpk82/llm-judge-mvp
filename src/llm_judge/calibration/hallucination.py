@@ -29,7 +29,10 @@ import os
 import re
 from dataclasses import dataclass, field
 from difflib import SequenceMatcher
-from typing import Any
+from typing import TYPE_CHECKING, Any
+
+if TYPE_CHECKING:
+    from llm_judge.calibration.pipeline_config import PipelineConfig
 
 logger = logging.getLogger(__name__)
 
@@ -528,6 +531,8 @@ def check_hallucination(
     l2_enabled: bool = True,
     l3_enabled: bool = True,
     l4_enabled: bool = True,
+    # Pipeline config (ADR-0026) — overrides individual kwargs when provided
+    config: PipelineConfig | None = None,
 ) -> HallucinationResult:
     """
     Check a single response for hallucination risk.
@@ -554,7 +559,21 @@ def check_hallucination(
         l4_enabled: Enable L4 LLM-as-Judge layer (default True).
         gate2_routing: Legacy parameter. "none" disables L3+L4. "pass"/"all" enables.
         layered: Legacy parameter. False = L1 only.
+        config: PipelineConfig from ADR-0026. When provided, overrides layer
+            enables and threshold kwargs. Kwargs still win for values not
+            covered by PipelineConfig (fact_tables, knowledge_graphs, etc.).
     """
+    # Resolve config → layer enables (config wins when provided).
+    # Thresholds are NOT overridden by config — they come from the caller
+    # (property registry in IntegratedJudge, explicit values in BenchmarkRunner).
+    # This separation keeps PipelineConfig = "which layers run" and
+    # PropertyRegistry/kwargs = "what thresholds apply."
+    if config is not None:
+        l1_enabled = config.layers.l1_enabled
+        l2_enabled = config.layers.l2_enabled
+        l3_enabled = config.layers.l3_enabled
+        l4_enabled = config.layers.l4_enabled
+
     source_doc = source_context if source_context else context
 
     resp_sents = _split_sentences(response)
