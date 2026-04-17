@@ -5,7 +5,8 @@
 
 .PHONY: help install lint typecheck test baseline-validate pr-gate diff baseline-dry-run baseline-promote \
         registry-list registry-show registry-trend eval preflight clean git-start git-ship git-merge validate \
-        docker-build docker-deploy docker-status docker-validate docker-down docker-reset
+        docker-build docker-deploy docker-status docker-validate docker-down docker-reset \
+        preseed benchmark funnel calibrate
 
 # Defaults (override like: make SUITE=golden RUBRIC=chat_quality ...)
 SUITE ?= math_basic
@@ -54,6 +55,12 @@ help:
 	@echo "  make docker-validate       Run Gate 1 validation inside container"
 	@echo "  make docker-down           Stop container (keep data)"
 	@echo "  make docker-reset          Stop container and delete data volume"
+	@echo ""
+	@echo "RAGTruth-50 targets:"
+	@echo "  make preseed               Seed graph cache from Exp 31 fact tables"
+	@echo "  make benchmark             Run RAGTruth-50 benchmark"
+	@echo "  make funnel                Print funnel from last benchmark run"
+	@echo "  make calibrate             Full run: preseed + benchmark + funnel"
 
 install:
 	poetry install --no-interaction --no-root
@@ -345,3 +352,22 @@ docker-down:
 docker-reset:
 	docker-compose down -v
 	@echo "Container stopped. Data volume deleted."
+
+# ----------------------------------------
+# RAGTruth-50 Operator Targets (Wave E+F)
+# ----------------------------------------
+
+preseed:
+	@echo "Pre-seeding graph cache from Exp 31..."
+	poetry run python tools/run_ragtruth50.py preseed
+
+benchmark:
+	@echo "Running RAGTruth-50 benchmark..."
+	poetry run python tools/run_ragtruth50.py benchmark
+
+funnel:
+	@echo "Printing funnel from last benchmark run..."
+	poetry run python tools/run_ragtruth50.py funnel
+
+calibrate: preseed benchmark funnel
+	@echo "Full calibration run complete."
