@@ -447,18 +447,18 @@ class TestLayeredPipeline:
         assert result.layer_stats.get("L1", 0) >= 1
 
     def test_gate1_fail_stops_pipeline(self) -> None:
-        """When Gate 1 fails with gate2_routing='none', no deeper analysis runs."""
+        """When gate2_routing='none', pipeline stops after L1+L2 (MiniLM is informational)."""
         from llm_judge.calibration.hallucination import check_hallucination
 
         result = check_hallucination(
             response="Quantum gravitational waves disrupted the spacetime fabric of the multiverse causing interdimensional cascading failures.",
             context="What is the weather like today?",
             case_id="test_gate1_fail",
-            gate2_routing="none",  # Gate 1 is final verdict
+            gate2_routing="none",  # L1+L2 only, no L3+L4
         )
+        # MiniLM still runs but is informational — records minilm_flag
         assert result.gate1_decision in ("fail", "ambiguous")
-        assert result.risk_score > 0.0
-        assert result.layer_stats.get("L3_gate1_fail", 0) == 1
+        assert result.layer_stats.get("minilm_flag", 0) == 1
 
     def test_layered_flow_with_mocked_l2_l3_l4(self) -> None:
         """Full pipeline with mocked L2/L3/L4 — tests the flow logic."""
