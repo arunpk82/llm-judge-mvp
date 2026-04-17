@@ -142,7 +142,7 @@ class HallucinationResult:
     gate1_decision: str = ""
     gate2_decision: str = ""
     flags: list[str] = field(default_factory=list)
-    layer_stats: dict[str, int] = field(default_factory=dict)
+    layer_stats: dict[str, int | float] = field(default_factory=dict)
     sentence_results: list[SentenceLayerResult] = field(default_factory=list)
 
 
@@ -582,11 +582,10 @@ def check_hallucination(
     citation_count = _count_unverifiable_citations(response, context)
     flags: list[str] = []
     sentence_results: list[SentenceLayerResult] = []
-    layer_stats = {
+    layer_stats: dict[str, int | float] = {
         "L1": 0,
         "L2": 0,
         "L2_flagged": 0,
-        "L3_gate1_fail": 0,
         "L3_minicheck": 0,
         "L3_deberta": 0,
         "L4_supported": 0,
@@ -708,12 +707,14 @@ def check_hallucination(
         except Exception as e:
             logger.warning(f"L2 ensemble error: {str(e)[:80]}")
 
-    # -- L3: Gate 1 MiniLM whole-response (was L1) --
+    # -- MiniLM whole-response similarity (INFORMATIONAL ONLY) --
+    # Records grounding_ratio and min_sentence_sim for funnel/diagnostics.
+    # Never gates the pipeline — all sentences always proceed to L3+L4.
     gate1_decision = "pass"
     grounding = 1.0
     min_sim = 1.0
 
-    if l3_enabled:
+    if not skip_embeddings:
         gate1_decision, grounding, min_sim = _l3_minilm_gate_check(
             response,
             context,
@@ -728,33 +729,15 @@ def check_hallucination(
             flags.append(f"low_grounding:{grounding:.2f}")
         if min_sim < min_sentence_threshold:
             flags.append(f"low_min_sentence_sim:{min_sim:.3f}")
+        layer_stats["minilm_flag"] = 1
 
-        layer_stats["L3_gate1_fail"] = 1
+    # Always record MiniLM metrics for funnel visibility
+    layer_stats["minilm_grounding_ratio"] = round(grounding, 4)
+    layer_stats["minilm_min_sentence_sim"] = round(min_sim, 4)
 
-        # When gate2_routing is "none", Gate 1 is the final verdict.
-        # When gate2_routing is "pass"/"all", continue to L2+ for verification.
-        # Gate 1 fail/ambiguous becomes a signal, not a stopper.
-        if gate2_routing == "none":
-            risk = (
-                max(0, (grounding_threshold - grounding) / grounding_threshold) * 0.5
-                + 0.3
-            )
-            return HallucinationResult(
-                case_id=case_id,
-                risk_score=round(min(1.0, risk), 4),
-                grounding_ratio=round(grounding, 4),
-                min_sentence_sim=round(min_sim, 4),
-                ungrounded_claims=ungrounded_count,
-                unverifiable_citations=citation_count,
-                gate1_decision=gate1_decision,
-                flags=flags,
-                layer_stats=layer_stats,
-                sentence_results=sentence_results,
-            )
-        # else: fall through to L2+ analysis
-
-    # -- Gate 1 PASS: per-sentence analysis for L0-unmatched sentences --
-
+    # -- Per-sentence analysis (L3 + L4) --
+    # gate2_routing="none" means caller only wants L1+L2 (no classifiers/LLM).
+    # This is a routing decision, independent of MiniLM.
     if not layered or gate2_routing == "none":
         risk = 0.0
         if ungrounded_count > max_ungrounded_claims:
@@ -789,12 +772,14 @@ def check_hallucination(
     has_unsupported = False
 
     if l3_enabled and l3_method == "fact_counting":
-        # ---- L3 FACT-COUNTING PATH (ADR-0027) ----
-        # Exp 43: 76% auto-clear at 100% grounding precision, 0 FN.
-        # Ratio = supported/total. >= threshold → GROUNDED (auto-clear).
-        # < threshold → escalate to L4 or flag.
+        # ---- L3: MINICHECK → GEMMA FACT-COUNTING (ADR-0027) ----
+        # Two-phase L3:
+        #   L3a: MiniCheck (local, free, 78% coverage per Exp 17b)
+        #   L3b: Gemma fact-counting (API, for what MiniCheck doesn't clear)
+        # Exp 43: combined gives 76% auto-clear at 100% precision.
         from llm_judge.calibration.fact_counting import check_fact_counting
 
+        layer_stats["L3_minicheck"] = 0
         layer_stats["L3_fact_counting_clear"] = 0
         layer_stats["L3_fact_counting_flag"] = 0
         layer_stats["L3_fact_counting_error"] = 0
@@ -803,13 +788,29 @@ def check_hallucination(
             if i in resolved:
                 continue
 
+            # L3a: MiniCheck first (local, no API cost)
+            try:
+                if _l3_minicheck(sent, source_doc):
+                    resolved.add(i)
+                    layer_stats["L3_minicheck"] += 1
+                    sentence_results.append(
+                        SentenceLayerResult(
+                            sentence_idx=i,
+                            sentence=sent[:120],
+                            resolved_by="L3_minicheck",
+                        )
+                    )
+                    continue
+            except Exception as e:
+                logger.debug(f"l3a_minicheck.error: {str(e)[:60]}")
+
+            # L3b: Gemma fact-counting (API, for sentences MiniCheck didn't clear)
             fc_result = check_fact_counting(
                 sent, source_doc, threshold=fc_clear_threshold,
             )
 
             if fc_result.error:
                 layer_stats["L3_fact_counting_error"] += 1
-                # Error → sentence remains unresolved, falls through to L4
                 sentence_results.append(
                     SentenceLayerResult(
                         sentence_idx=i,
@@ -819,7 +820,6 @@ def check_hallucination(
                     )
                 )
             elif fc_result.auto_clear:
-                # Ratio >= threshold → GROUNDED (100% precision, Exp 43)
                 resolved.add(i)
                 layer_stats["L3_fact_counting_clear"] += 1
                 sentence_results.append(
@@ -832,7 +832,6 @@ def check_hallucination(
                 )
                 continue
             else:
-                # Ratio < threshold → flag, escalate to L4
                 layer_stats["L3_fact_counting_flag"] += 1
                 detail_parts = []
                 if fc_result.contradicted > 0:

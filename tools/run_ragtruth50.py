@@ -182,45 +182,118 @@ def cmd_funnel(args: argparse.Namespace) -> bool:
     with open(results_path) as f:
         data = json.load(f)
 
-    # Extract hallucination layer stats from response_level_results
     response_results = data.get("response_level_results", [])
     if not response_results:
         print("No response-level results found. Run benchmark with gate2_routing=pass.")
         return False
 
     # Aggregate layer stats across all responses
-    agg_stats: dict[str, int] = {}
+    agg: dict[str, float] = {}
     total_sentences = 0
+    total_responses = len(response_results)
     for rr in response_results:
         hal = rr.get("hallucination", {})
         ls = hal.get("layer_stats", {})
         for k, v in ls.items():
-            if isinstance(v, int):
-                agg_stats[k] = agg_stats.get(k, 0) + v
-        # Count sentences from sentence_results
+            if isinstance(v, (int, float)):
+                agg[k] = agg.get(k, 0) + v
         sr = hal.get("sentence_results", [])
         total_sentences += len(sr) if sr else 0
 
-    print("\n" + "=" * 62)
-    print("  RAGTRUTH-50 LAYER STATS (AGGREGATED)")
-    print("=" * 62)
-    print(f"\n  Total responses:  {len(response_results)}")
-    print(f"  Total sentences:  {total_sentences}")
+    # Compute cascade counts
+    l1 = int(agg.get("L1", 0))
+    l2 = int(agg.get("L2", 0))
+    l2_flagged = int(agg.get("L2_flagged", 0))
+    l2_cache_hit = int(agg.get("L2_cache_hit", 0))
+    l2_cache_miss = int(agg.get("L2_cache_miss", 0))
+    l3_mc = int(agg.get("L3_minicheck", 0))
+    l3_fc_clear = int(agg.get("L3_fact_counting_clear", 0))
+    l3_fc_flag = int(agg.get("L3_fact_counting_flag", 0))
+    l3_fc_error = int(agg.get("L3_fact_counting_error", 0))
+    l4_sup = int(agg.get("L4_supported", 0))
+    l4_unsup = int(agg.get("L4_unsupported", 0))
+    minilm_flag = int(agg.get("minilm_flag", 0))
+
+    # MiniLM averages
+    avg_grounding = agg.get("minilm_grounding_ratio", 0) / max(total_responses, 1)
+    avg_min_sim = agg.get("minilm_min_sentence_sim", 0) / max(total_responses, 1)
+
+    after_l1 = total_sentences - l1
+    after_l2 = after_l1 - l2  # l2_flagged NOT subtracted (they cascade)
+    after_l3 = after_l2 - l3_mc - l3_fc_clear
+    total_cleared = l1 + l2 + l3_mc + l3_fc_clear + l4_sup
+    total_flagged = l4_unsup
+
+    w = 62
     print()
+    print("=" * w)
+    print("  HALLUCINATION DETECTION — CASCADE FUNNEL")
+    print("=" * w)
 
-    for layer in ["L1", "L2", "L2_cache_hit", "L2_cache_miss", "L2_flagged",
-                   "L3_minicheck", "L3_deberta", "L3_fc_auto_clear", "L3_fc_flagged",
-                   "L4_supported", "L4_unsupported"]:
-        if layer in agg_stats:
-            print(f"  {layer:25s} {agg_stats[layer]:>5d}")
+    print(f"\n  Responses: {total_responses}    Sentences: {total_sentences}")
+    print(f"  {'─' * (w - 4)}")
 
-    # Fire rates for property 1.1 (correctness / hallucination)
+    # L1
+    pct_l1 = l1 * 100 / max(total_sentences, 1)
+    print("\n  L1 — Rules (substring + Jaccard)")
+    print(f"    Cleared:  {l1:>4d} / {total_sentences}  ({pct_l1:.1f}%)")
+    print(f"    → {after_l1} sentences to L2")
+
+    # L2
+    pct_l2 = l2 * 100 / max(total_sentences, 1)
+    print("\n  L2 — Knowledge Graph Ensemble")
+    print(f"    Cache:    {l2_cache_hit} hit / {l2_cache_miss} miss")
+    print(f"    Cleared:  {l2:>4d} / {after_l1}  ({pct_l2:.1f}% of total)")
+    print(f"    Flagged:  {l2_flagged:>4d}  (cascade to L3 with evidence)")
+    print(f"    → {after_l2} sentences to L3")
+
+    # MiniLM (informational)
+    print("\n  ┄┄ MiniLM (informational, not gating) ┄┄")
+    print(f"    Avg grounding ratio:  {avg_grounding:.3f}")
+    print(f"    Avg min sentence sim: {avg_min_sim:.3f}")
+    print(f"    Responses flagged:    {minilm_flag} / {total_responses}")
+
+    # L3
+    pct_mc = l3_mc * 100 / max(total_sentences, 1)
+    pct_fc = l3_fc_clear * 100 / max(total_sentences, 1)
+    print("\n  L3a — MiniCheck (local, free)")
+    print(f"    Cleared:  {l3_mc:>4d} / {after_l2}  ({pct_mc:.1f}% of total)")
+    print("\n  L3b — Gemma Fact-Counting (API)")
+    print(f"    Cleared:  {l3_fc_clear:>4d}  ({pct_fc:.1f}% of total)")
+    print(f"    Flagged:  {l3_fc_flag:>4d}  (cascade to L4)")
+    if l3_fc_error:
+        print(f"    Errors:   {l3_fc_error:>4d}")
+    print(f"    → {after_l3} sentences to L4")
+
+    # L4
+    print("\n  L4 — Gemini Per-Sentence LLM")
+    print(f"    Supported:    {l4_sup:>4d}")
+    print(f"    Unsupported:  {l4_unsup:>4d}")
+
+    # Summary
+    print(f"\n  {'─' * (w - 4)}")
+    pct_cleared = total_cleared * 100 / max(total_sentences, 1)
+    print(f"  TOTAL CLEARED:    {total_cleared:>4d} / {total_sentences}  ({pct_cleared:.1f}%)")
+    print(f"  TOTAL FLAGGED:    {total_flagged:>4d} / {total_sentences}")
+    unresolved = total_sentences - total_cleared - total_flagged
+    if unresolved > 0:
+        print(f"  UNRESOLVED:       {unresolved:>4d} / {total_sentences}")
+
+    # L1+L2 combined (deterministic)
+    det = l1 + l2
+    pct_det = det * 100 / max(total_sentences, 1)
+    print(f"\n  Deterministic (L1+L2): {det} ({pct_det:.1f}%)")
+    print(f"  Classifier (L3):      {l3_mc + l3_fc_clear}")
+    print(f"  LLM (L4):             {l4_sup + l4_unsup}")
+
+    # Fire rates
     fire_rates = data.get("fire_rates", {})
     if "1.1" in fire_rates:
         fr = fire_rates["1.1"]
         print(f"\n  Property 1.1 fire rate: {fr.get('fail', 0)}/{fr.get('total', 0)}")
 
     print(f"\n  Full results: {results_path}")
+    print("=" * w)
     return True
 
 

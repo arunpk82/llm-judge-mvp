@@ -22,7 +22,7 @@ Five-status taxonomy:
   INFERRED     — reasonable inference from context
 
 Design decisions:
-  - Model is configurable via FACT_COUNTING_MODEL env var (default: gemini-2.5-flash)
+  - Model is configurable via FACT_COUNTING_MODEL env var (default: gemma-4-31b-it)
   - Uses the same Gemini API pattern as _l4_gemini_check in hallucination.py
   - Robust JSON parser handles markdown fences, thinking tokens, partial JSON
   - Falls back gracefully: API error → ratio=0.0, sentence escalates to L4
@@ -157,7 +157,7 @@ def _call_llm(prompt: str, *, model: str | None = None) -> str:
     """Call Gemini/Gemma API with retry logic.
 
     Uses GEMINI_API_KEY env var. Model defaults to FACT_COUNTING_MODEL
-    env var, then to "gemini-2.5-flash".
+    env var, then to "gemma-4-31b-it" (validated in Exp 43).
 
     Returns raw response text. Raises on exhausted retries.
     """
@@ -168,7 +168,7 @@ def _call_llm(prompt: str, *, model: str | None = None) -> str:
         raise RuntimeError("GEMINI_API_KEY not set")
 
     if model is None:
-        model = os.environ.get("FACT_COUNTING_MODEL", "gemini-2.5-flash")
+        model = os.environ.get("FACT_COUNTING_MODEL", "gemma-4-31b-it")
 
     url = (
         f"https://generativelanguage.googleapis.com/v1beta/models/"
@@ -248,7 +248,7 @@ def check_fact_counting(
         FactCountResult with ratio, auto_clear flag, and per-fact evidence.
     """
     resolved_model = model or os.environ.get(
-        "FACT_COUNTING_MODEL", "gemini-2.5-flash"
+        "FACT_COUNTING_MODEL", "gemma-4-31b-it"
     )
     start_ms = int(time.time() * 1000)
 
