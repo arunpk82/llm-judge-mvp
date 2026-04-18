@@ -101,6 +101,79 @@ def cmd_preseed(args: argparse.Namespace) -> bool:
 
 
 # =====================================================================
+# Prerequisite Check — L2 Graph Cache
+# =====================================================================
+
+
+def _check_and_provision_l2(
+    benchmark_path: str,
+    args: argparse.Namespace,
+) -> bool | None:
+    """Check L2 cache coverage and auto-provision missing sources.
+
+    Returns:
+        True if ready (all sources cached).
+        None if provisioning succeeded (continue to benchmark).
+        False if provisioning failed (abort).
+    """
+    import os
+
+    from llm_judge.calibration.kg_extraction import (
+        check_benchmark_prerequisites,
+        provision_missing_sources,
+    )
+
+    print("\n  ── Prerequisite Check: L2 Graph Cache ──")
+    prereq = check_benchmark_prerequisites(benchmark_path)
+
+    if prereq["ready"]:
+        print(
+            f"  ✓ All {prereq['total_sources']} sources cached — L2 ready"
+        )
+        return True
+
+    print(
+        f"  ✗ {len(prereq['missing'])}/{prereq['total_sources']} sources "
+        f"missing: {prereq['missing']}"
+    )
+
+    if not os.environ.get("GEMINI_API_KEY"):
+        print("  ✗ GEMINI_API_KEY not set — cannot extract. L2 will be skipped.")
+        return True  # Continue without L2
+
+    if getattr(args, "skip_provision", False):
+        print("  Skipping provisioning (--skip-provision). L2 will have gaps.")
+        return True
+
+    # Auto-provision missing sources
+    print("  Auto-provisioning missing sources...")
+    result = provision_missing_sources(prereq["missing_texts"])
+
+    if result["sources_failed"] > 0:
+        print(f"  ⚠ {result['sources_failed']} sources failed extraction")
+        for err in result["errors"]:
+            print(f"    {err}")
+
+    if result["sources_extracted"] > 0:
+        print(
+            f"  ✓ {result['sources_extracted']} sources extracted "
+            f"({result['api_calls']} API calls)"
+        )
+
+    # Re-check
+    recheck = check_benchmark_prerequisites(benchmark_path)
+    if recheck["ready"]:
+        print(f"  ✓ All {recheck['total_sources']} sources now cached — L2 ready")
+    else:
+        print(
+            f"  ⚠ Still missing {len(recheck['missing'])} sources — "
+            f"L2 will have partial coverage"
+        )
+
+    return None  # Continue to benchmark
+
+
+# =====================================================================
 # Benchmark
 # =====================================================================
 
@@ -120,10 +193,26 @@ def cmd_benchmark(args: argparse.Namespace) -> bool:
     config = get_pipeline_config()
 
     adapter = RAGTruthAdapter()
+
+    # Lock to the fixed RAGTruth-50 benchmark set
+    benchmark_path = Path("datasets/benchmarks/ragtruth/ragtruth_50_benchmark.json")
+    if benchmark_path.exists():
+        adapter.set_benchmark_filter(benchmark_path)
+        print("  Benchmark: RAGTruth-50 (fixed 50 responses)")
+    else:
+        print("  WARNING: No benchmark definition found — loading ALL test cases")
+
+    # ── Prerequisite Check: L2 Graph Cache ──
+    if benchmark_path.exists() and config.layers.l2_enabled:
+        prereq = _check_and_provision_l2(str(benchmark_path), args)
+        if prereq is False:
+            return False
+
     print("Running RAGTruth-50 benchmark...")
     print(f"  Config: l3_method={config.l3_method}")
     print(f"  Max cases: {max_cases or 'all'}")
     print(f"  gate2_routing: {args.gate2_routing}")
+    print(f"  with_llm: {args.with_llm}")
 
     start = time.time()
     result = run_benchmark(
@@ -131,6 +220,7 @@ def cmd_benchmark(args: argparse.Namespace) -> bool:
         split="test",
         max_cases=max_cases,
         gate2_routing=args.gate2_routing,
+        with_llm=args.with_llm,
         config=config,
     )
     elapsed = time.time() - start
@@ -286,15 +376,102 @@ def cmd_funnel(args: argparse.Namespace) -> bool:
     print(f"  Classifier (L3):      {l3_mc + l3_fc_clear}")
     print(f"  LLM (L4):             {l4_sup + l4_unsup}")
 
-    # Fire rates
+    # ---- 28-Metric Status Report ----
     fire_rates = data.get("fire_rates", {})
-    if "1.1" in fire_rates:
-        fr = fire_rates["1.1"]
-        print(f"\n  Property 1.1 fire rate: {fr.get('fail', 0)}/{fr.get('total', 0)}")
+
+    print(f"\n{'=' * w}")
+    print("  28-METRIC PROPERTY EVALUATION REPORT")
+    print(f"{'=' * w}")
+
+    for cat_name, props in PROPERTY_CATALOG_GROUPED.items():
+        print(f"\n  {cat_name}")
+        print(f"  {'─' * (w - 4)}")
+        print(f"  {'ID':<6} {'Property':<28} {'Status':<14} {'Fire Rate'}")
+        print(f"  {'─' * (w - 4)}")
+
+        for pid, prop_name, impl_status in props:
+            fr = fire_rates.get(pid, {})
+            total = fr.get("total", 0)
+            fail = fr.get("fail", 0)
+
+            if total > 0:
+                rate_str = f"{fail}/{total} ({fail * 100 / total:.0f}%)"
+            elif impl_status == "Stub":
+                rate_str = "—"
+            else:
+                rate_str = "0/0"
+
+            print(f"  {pid:<6} {prop_name:<28} {impl_status:<14} {rate_str}")
+
+    # Summary counts
+    cats = {"Implemented": 0, "Partial": 0, "Stub": 0}
+    for props in PROPERTY_CATALOG_GROUPED.values():
+        for _, _, status in props:
+            cats[status] = cats.get(status, 0) + 1
+
+    print(f"\n  {'─' * (w - 4)}")
+    print(f"  Implemented: {cats['Implemented']}   Partial: {cats['Partial']}   Stub: {cats['Stub']}   Total: 28")
 
     print(f"\n  Full results: {results_path}")
     print("=" * w)
     return True
+
+
+# =====================================================================
+# Property catalog — all 28 metrics
+# =====================================================================
+
+PROPERTY_CATALOG = [
+    "1.1", "1.2", "1.3", "1.4", "1.5",
+    "2.1", "2.2", "2.3", "2.4", "2.5", "2.6", "2.7",
+    "3.1", "3.2", "3.3",
+    "4.1", "4.2",
+    "5.1", "5.2", "5.3", "5.4", "5.5", "5.6", "5.7",
+    "6.1", "6.2", "6.3", "6.4",
+]
+
+PROPERTY_CATALOG_GROUPED: dict[str, list[tuple[str, str, str]]] = {
+    "Cat 1 — Faithfulness": [
+        ("1.1", "Hallucination Detection", "Implemented"),
+        ("1.2", "Ungrounded Claims", "Implemented"),
+        ("1.3", "Unverifiable Citations", "Implemented"),
+        ("1.4", "Attribution Accuracy", "Implemented"),
+        ("1.5", "Fabrication Detection", "Implemented"),
+    ],
+    "Cat 2 — Semantic Quality": [
+        ("2.1", "Relevance", "Implemented"),
+        ("2.2", "Clarity", "Implemented"),
+        ("2.3", "Correctness", "Implemented"),
+        ("2.4", "Tone", "Implemented"),
+        ("2.5", "Completeness", "Implemented"),
+        ("2.6", "Coherence", "Implemented"),
+        ("2.7", "Depth & Nuance", "Implemented"),
+    ],
+    "Cat 3 — Safety": [
+        ("3.1", "Toxicity", "Implemented"),
+        ("3.2", "Instruction Boundary", "Implemented"),
+        ("3.3", "PII Leakage", "Implemented"),
+    ],
+    "Cat 4 — Task Fidelity": [
+        ("4.1", "Instruction Following", "Implemented"),
+        ("4.2", "Format & Structure", "Implemented"),
+    ],
+    "Cat 5 — Robustness": [
+        ("5.1", "Position Bias", "Implemented"),
+        ("5.2", "Length Bias", "Implemented"),
+        ("5.3", "Self-Preference Bias", "Stub"),
+        ("5.4", "Consistency", "Implemented"),
+        ("5.5", "Discrimination", "Partial"),
+        ("5.6", "Calibration", "Partial"),
+        ("5.7", "Adversarial Robustness", "Stub"),
+    ],
+    "Cat 6 — Performance": [
+        ("6.1", "Latency", "Implemented"),
+        ("6.2", "Cost Estimation", "Implemented"),
+        ("6.3", "Explainability", "Implemented"),
+        ("6.4", "Reasoning Fidelity", "Implemented"),
+    ],
+}
 
 
 # =====================================================================
@@ -327,6 +504,18 @@ def main() -> None:
         "--gate2-routing", default="pass",
         help="Gate 2 routing: none, pass, all (default: pass)",
     )
+    p_bench.add_argument(
+        "--with-llm", action="store_true", default=True,
+        help="Enable LLM scoring for Cat 2 + Cat 6.3/6.4 (default: on)",
+    )
+    p_bench.add_argument(
+        "--no-llm", dest="with_llm", action="store_false",
+        help="Disable LLM scoring (Cat 1/3/4/5/6.1/6.2 only)",
+    )
+    p_bench.add_argument(
+        "--skip-provision", action="store_true", default=False,
+        help="Skip L2 cache auto-provisioning (run with gaps)",
+    )
 
     # funnel
     sub.add_parser("funnel", help="Print funnel from last benchmark run")
@@ -339,6 +528,18 @@ def main() -> None:
     p_all.add_argument(
         "--gate2-routing", default="pass",
         help="Gate 2 routing: none, pass, all (default: pass)",
+    )
+    p_all.add_argument(
+        "--with-llm", action="store_true", default=True,
+        help="Enable LLM scoring for Cat 2 + Cat 6.3/6.4 (default: on)",
+    )
+    p_all.add_argument(
+        "--no-llm", dest="with_llm", action="store_false",
+        help="Disable LLM scoring (Cat 1/3/4/5/6.1/6.2 only)",
+    )
+    p_all.add_argument(
+        "--skip-provision", action="store_true", default=False,
+        help="Skip L2 cache auto-provisioning (run with gaps)",
     )
 
     args = parser.parse_args()

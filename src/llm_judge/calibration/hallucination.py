@@ -414,7 +414,9 @@ def _load_spacy():
 
 # --- L4: Gemini per-sentence reasoning ---
 
-_PER_SENTENCE_PROMPT = """You are checking whether a SINGLE sentence from a summary is supported by the source document.
+_PER_SENTENCE_PROMPT = """You are a STRICT fact-checker. Your job is to find errors, not confirm correctness.
+
+Verify whether this SINGLE sentence from a summary is fully supported by the source document.
 
 SOURCE DOCUMENT:
 {source}
@@ -422,18 +424,35 @@ SOURCE DOCUMENT:
 SENTENCE TO CHECK:
 {sentence}
 
-Is this sentence fully supported by the source document? Consider:
-- Are all specific facts (names, dates, numbers, locations) accurate?
-- Does the source actually state or directly imply this?
-- If the sentence adds details not in the source, it is NOT supported.
+STEP 1 — Extract every factual claim from the sentence:
+List each distinct claim (names, dates, numbers, locations, relationships, actions, attributes).
 
-Answer with exactly one word: SUPPORTED or UNSUPPORTED"""
+STEP 2 — Verify each claim against the source:
+For each claim, either quote the supporting passage from the source, or write "NOT FOUND IN SOURCE".
+
+STEP 3 — Check for these hallucination patterns:
+- FABRICATED DETAILS: Facts, numbers, or names not in the source
+- ENTITY CONFLATION: Attributes of one entity wrongly applied to another
+- EXAGGERATION: Stronger language than source supports ("all" vs "some", "confirmed" vs "alleged")
+- INVENTED CAUSATION: Cause-effect not stated in source
+- TEMPORAL ERRORS: Wrong dates, sequence, or timeframes
+- SUBTLE ADDITIONS: Extra details, adjectives, or context absent from source
+
+RULE: If ANY claim lacks source support or is contradicted, the sentence is UNSUPPORTED.
+
+After your analysis, write your final answer on its own line:
+VERDICT: SUPPORTED
+or
+VERDICT: UNSUPPORTED"""
 
 
 def _l4_gemini_check(sentence: str, source_doc: str, case_id: str = "") -> str:
     """
-    L4: Gemini per-sentence reasoning.
-    Confirmed: F1=0.900 on L4 sentences (Experiment 13).
+    L4: Gemini per-sentence reasoning with chain-of-thought.
+
+    Uses structured decomposition: extract claims → verify each →
+    check hallucination patterns → verdict.
+
     Returns: "supported", "unsupported", or "error"
     """
     import httpx
@@ -441,35 +460,51 @@ def _l4_gemini_check(sentence: str, source_doc: str, case_id: str = "") -> str:
     api_key = os.environ.get("GEMINI_API_KEY")
     if not api_key:
         logger.warning(
-            "l4_gemini.no_api_key: GEMINI_API_KEY not set, defaulting to supported"
+            "l4_gemini.no_api_key: GEMINI_API_KEY not set, defaulting to unsupported"
         )
-        return "supported"
+        return "unsupported"
 
     model = os.environ.get("GEMINI_MODEL", "gemini-2.5-flash")
-    url = f"https://generativelanguage.googleapis.com/v1beta/models/{model}:generateContent?key={api_key}"
+    url = (
+        f"https://generativelanguage.googleapis.com/v1beta/models/"
+        f"{model}:generateContent?key={api_key}"
+    )
 
-    prompt = _PER_SENTENCE_PROMPT.format(source=source_doc[:4000], sentence=sentence)
+    prompt = _PER_SENTENCE_PROMPT.format(source=source_doc[:8000], sentence=sentence)
     payload = {
         "contents": [{"role": "user", "parts": [{"text": prompt}]}],
-        "generationConfig": {"temperature": 0.0, "topP": 1.0},
+        "generationConfig": {
+            "temperature": 0.0,
+            "topP": 1.0,
+            "maxOutputTokens": 1024,
+        },
     }
 
     try:
-        with httpx.Client(timeout=30.0) as client:
+        with httpx.Client(timeout=60.0) as client:
             resp = client.post(
-                url, json=payload, headers={"Content-Type": "application/json"}
+                url, json=payload, headers={"Content-Type": "application/json"},
             )
             resp.raise_for_status()
             data = resp.json()
-            raw = data["candidates"][0]["content"]["parts"][-1]["text"].strip().upper()
+            raw = data["candidates"][0]["content"]["parts"][-1]["text"].strip()
 
-            if "UNSUPPORTED" in raw:
+            # Extract verdict from structured response
+            raw_upper = raw.upper()
+            if "VERDICT: UNSUPPORTED" in raw_upper:
                 return "unsupported"
-            elif "SUPPORTED" in raw:
+            elif "VERDICT: SUPPORTED" in raw_upper:
+                return "supported"
+            # Fallback: check last line
+            last_line = raw_upper.strip().split("\n")[-1]
+            if "UNSUPPORTED" in last_line:
+                return "unsupported"
+            elif "SUPPORTED" in last_line:
                 return "supported"
             else:
-                logger.warning(f"l4_gemini.unclear for {case_id}: {raw[:50]}")
-                return "supported"
+                # Conservative default: unclear → unsupported
+                logger.warning(f"l4_gemini.unclear for {case_id}: {raw[-80:]}")
+                return "unsupported"
 
     except Exception as e:
         logger.warning(f"l4_gemini.error for {case_id}: {str(e)[:80]}")

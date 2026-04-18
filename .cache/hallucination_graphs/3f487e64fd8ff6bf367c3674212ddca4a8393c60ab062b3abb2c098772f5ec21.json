@@ -1,0 +1,1127 @@
+{
+  "passes": {
+    "P1_entities": {
+      "entities": [
+        {
+          "name": "Iran's Islamic Revolution",
+          "type": "OTHER",
+          "aliases": [
+            "revolution",
+            "the revolution"
+          ],
+          "attributes": {
+            "year": 1979
+          }
+        },
+        {
+          "name": "Iran",
+          "type": "PLACE",
+          "aliases": [
+            "Iran's"
+          ],
+          "attributes": {}
+        },
+        {
+          "name": "women",
+          "type": "OTHER",
+          "aliases": [],
+          "attributes": {}
+        },
+        {
+          "name": "men",
+          "type": "OTHER",
+          "aliases": [],
+          "attributes": {}
+        },
+        {
+          "name": "sports events",
+          "type": "OTHER",
+          "aliases": [
+            "most sports events involving men",
+            "some events",
+            "indoor sports events",
+            "all matches",
+            "some sports"
+          ],
+          "attributes": {}
+        },
+        {
+          "name": "top Iranian sports official",
+          "type": "PERSON",
+          "aliases": [],
+          "attributes": {}
+        },
+        {
+          "name": "A plan",
+          "type": "OTHER",
+          "aliases": [],
+          "attributes": {
+            "purpose": "to allow women and families to enter sports stadiums"
+          }
+        },
+        {
+          "name": "women and families",
+          "type": "OTHER",
+          "aliases": [],
+          "attributes": {}
+        },
+        {
+          "name": "sports stadiums",
+          "type": "PLACE",
+          "aliases": [],
+          "attributes": {}
+        },
+        {
+          "name": "Abdolhamid Ahmadi",
+          "type": "PERSON",
+          "aliases": [
+            "Ahmadi"
+          ],
+          "attributes": {
+            "title": "Deputy Sports Minister"
+          }
+        },
+        {
+          "name": "state-run media",
+          "type": "ORG",
+          "aliases": [],
+          "attributes": {}
+        },
+        {
+          "name": "Press TV",
+          "type": "ORG",
+          "aliases": [],
+          "attributes": {
+            "description": "state-run"
+          }
+        },
+        {
+          "name": "the ban",
+          "type": "OTHER",
+          "aliases": [
+            "the restrictions",
+            "restrictions"
+          ],
+          "attributes": {
+            "target": "women attending men's sports events"
+          }
+        },
+        {
+          "name": "Iranian authorities",
+          "type": "ORG",
+          "aliases": [],
+          "attributes": {}
+        },
+        {
+          "name": "mixed crowds",
+          "type": "OTHER",
+          "aliases": [],
+          "attributes": {}
+        },
+        {
+          "name": "soccer games",
+          "type": "OTHER",
+          "aliases": [],
+          "attributes": {}
+        },
+        {
+          "name": "Iran's most popular sport",
+          "type": "OTHER",
+          "aliases": [],
+          "attributes": {
+            "refers_to": "soccer"
+          }
+        },
+        {
+          "name": "the ensuing decades",
+          "type": "OTHER",
+          "aliases": [],
+          "attributes": {}
+        },
+        {
+          "name": "Iranian women",
+          "type": "OTHER",
+          "aliases": [],
+          "attributes": {}
+        },
+        {
+          "name": "volleyball matches",
+          "type": "OTHER",
+          "aliases": [],
+          "attributes": {}
+        },
+        {
+          "name": "Mohammad Khatami",
+          "type": "PERSON",
+          "aliases": [],
+          "attributes": {
+            "title": "President",
+            "political_stance": "moderate"
+          }
+        },
+        {
+          "name": "Mahmoud Ahmadinejad",
+          "type": "PERSON",
+          "aliases": [],
+          "attributes": {
+            "political_stance": "hard-line",
+            "came_to_power": 2005
+          }
+        },
+        {
+          "name": "The Iranian government",
+          "type": "ORG",
+          "aliases": [],
+          "attributes": {}
+        },
+        {
+          "name": "international sports officials",
+          "type": "ORG",
+          "aliases": [],
+          "attributes": {}
+        },
+        {
+          "name": "Sepp Blatter",
+          "type": "PERSON",
+          "aliases": [
+            "Blatter"
+          ],
+          "attributes": {
+            "title": "President",
+            "organization": "FIFA"
+          }
+        },
+        {
+          "name": "FIFA",
+          "type": "ORG",
+          "aliases": [],
+          "attributes": {}
+        },
+        {
+          "name": "last month",
+          "type": "OTHER",
+          "aliases": [],
+          "attributes": {}
+        },
+        {
+          "name": "the situation",
+          "type": "OTHER",
+          "aliases": [],
+          "attributes": {}
+        },
+        {
+          "name": "2019 edition of soccer's Asian Cup",
+          "type": "OTHER",
+          "aliases": [
+            "the tournament",
+            "the event"
+          ],
+          "attributes": {
+            "year": 2019,
+            "sport": "soccer"
+          }
+        },
+        {
+          "name": "United Arab Emirates",
+          "type": "PLACE",
+          "aliases": [],
+          "attributes": {}
+        },
+        {
+          "name": "major impediment",
+          "type": "OTHER",
+          "aliases": [],
+          "attributes": {}
+        },
+        {
+          "name": "the spotlight",
+          "type": "OTHER",
+          "aliases": [],
+          "attributes": {}
+        },
+        {
+          "name": "Asian Cup",
+          "type": "OTHER",
+          "aliases": [],
+          "attributes": {
+            "location": "Australia",
+            "time": "earlier this year"
+          }
+        },
+        {
+          "name": "Australia",
+          "type": "PLACE",
+          "aliases": [],
+          "attributes": {}
+        },
+        {
+          "name": "thousands of female Iranian fans",
+          "type": "OTHER",
+          "aliases": [],
+          "attributes": {}
+        },
+        {
+          "name": "their soccer team",
+          "type": "ORG",
+          "aliases": [],
+          "attributes": {
+            "nationality": "Iranian"
+          }
+        },
+        {
+          "name": "restriction",
+          "type": "OTHER",
+          "aliases": [],
+          "attributes": {}
+        },
+        {
+          "name": "the match against Iraq",
+          "type": "OTHER",
+          "aliases": [],
+          "attributes": {
+            "opponent": "Iraq"
+          }
+        },
+        {
+          "name": "Iraq",
+          "type": "PLACE",
+          "aliases": [],
+          "attributes": {}
+        },
+        {
+          "name": "activists",
+          "type": "OTHER",
+          "aliases": [],
+          "attributes": {}
+        },
+        {
+          "name": "a banner",
+          "type": "OTHER",
+          "aliases": [],
+          "attributes": {
+            "content": "showing the face of Ghoncheh Ghavami"
+          }
+        },
+        {
+          "name": "Ghoncheh Ghavami",
+          "type": "PERSON",
+          "aliases": [
+            "Ghavami"
+          ],
+          "attributes": {
+            "nationality": "British-Iranian",
+            "status": "detained in Iran last year"
+          }
+        },
+        {
+          "name": "British-Iranian woman",
+          "type": "OTHER",
+          "aliases": [],
+          "attributes": {
+            "refers_to": "Ghoncheh Ghavami"
+          }
+        },
+        {
+          "name": "Iranian officials",
+          "type": "ORG",
+          "aliases": [],
+          "attributes": {}
+        },
+        {
+          "name": "anti-Iran activities",
+          "type": "OTHER",
+          "aliases": [],
+          "attributes": {}
+        },
+        {
+          "name": "Reuters",
+          "type": "ORG",
+          "aliases": [
+            "news agency Reuters"
+          ],
+          "attributes": {
+            "type": "news agency"
+          }
+        },
+        {
+          "name": "Court of Appeal",
+          "type": "ORG",
+          "aliases": [],
+          "attributes": {}
+        },
+        {
+          "name": "Annie Ramos",
+          "type": "PERSON",
+          "aliases": [],
+          "attributes": {
+            "organization": "CNN"
+          }
+        },
+        {
+          "name": "CNN",
+          "type": "ORG",
+          "aliases": [],
+          "attributes": {}
+        },
+        {
+          "name": "this report",
+          "type": "OTHER",
+          "aliases": [],
+          "attributes": {}
+        }
+      ]
+    },
+    "P2_events": {
+      "events": [
+        {
+          "who": "Iran",
+          "action": "had",
+          "target": "Islamic Revolution",
+          "where": null,
+          "when": "1979",
+          "result": null,
+          "sequence": 1
+        },
+        {
+          "who": "Iranian authorities",
+          "action": "imposed",
+          "target": "the ban on women attending men's sports events",
+          "where": null,
+          "when": "after the revolution",
+          "result": null,
+          "sequence": 2
+        },
+        {
+          "who": "Iranian authorities",
+          "action": "deemed",
+          "target": "that mixed crowds watching games together was un-Islamic",
+          "where": null,
+          "when": null,
+          "result": null,
+          "sequence": 3
+        },
+        {
+          "who": "Iranian authorities (implied)",
+          "action": "barred",
+          "target": "women from attending most sports events involving men",
+          "where": null,
+          "when": "Since 1979",
+          "result": null,
+          "sequence": 4
+        },
+        {
+          "who": "crowds",
+          "action": "have been",
+          "target": "all male",
+          "where": "at soccer games",
+          "when": "During the ensuing decades (after 1979)",
+          "result": null,
+          "sequence": 5
+        },
+        {
+          "who": "Mohammad Khatami's administration (implied)",
+          "action": "permitted",
+          "target": "Iranian women to attend volleyball matches",
+          "where": null,
+          "when": "under the moderate President Mohammad Khatami",
+          "result": null,
+          "sequence": 6
+        },
+        {
+          "who": "Mahmoud Ahmadinejad",
+          "action": "came to power",
+          "target": null,
+          "where": null,
+          "when": "before or in 2005",
+          "result": null,
+          "sequence": 7
+        },
+        {
+          "who": "Mahmoud Ahmadinejad's administration (implied)",
+          "action": "reinstated",
+          "target": "the ban",
+          "where": null,
+          "when": "in 2005",
+          "result": null,
+          "sequence": 8
+        },
+        {
+          "who": "Iran",
+          "action": "had been in the running to host",
+          "target": "the 2019 edition of soccer's Asian Cup",
+          "where": null,
+          "when": "prior to the award decision",
+          "result": null,
+          "sequence": 9
+        },
+        {
+          "who": "relevant sports body (implied)",
+          "action": "awarded",
+          "target": "the tournament (2019 Asian Cup)",
+          "where": "to the United Arab Emirates",
+          "when": "prior to the report",
+          "result": null,
+          "sequence": 10
+        },
+        {
+          "who": "many people (implied)",
+          "action": "saw",
+          "target": "the ban on women attending matches as a major impediment to Iran's chances of securing the event",
+          "where": null,
+          "when": null,
+          "result": null,
+          "sequence": 11
+        },
+        {
+          "who": "international sports officials",
+          "action": "put pressure on",
+          "target": "The Iranian government",
+          "where": null,
+          "when": null,
+          "result": null,
+          "sequence": 12
+        },
+        {
+          "who": "FIFA President Sepp Blatter",
+          "action": "called on",
+          "target": "Iran to end its \"intolerable\" ban on women attending soccer matches",
+          "where": null,
+          "when": "last month",
+          "result": null,
+          "sequence": 13
+        },
+        {
+          "who": "FIFA President Sepp Blatter",
+          "action": "said",
+          "target": "the situation \"cannot continue\"",
+          "where": null,
+          "when": "last month",
+          "result": null,
+          "sequence": 14
+        },
+        {
+          "who": "ban",
+          "action": "came under the spotlight",
+          "target": null,
+          "where": "at the Asian Cup in Australia",
+          "when": "earlier this year",
+          "result": null,
+          "sequence": 15
+        },
+        {
+          "who": "thousands of female Iranian fans",
+          "action": "watched",
+          "target": "their soccer team",
+          "where": "at the Asian Cup in Australia",
+          "when": "earlier this year",
+          "result": "without restriction",
+          "sequence": 16
+        },
+        {
+          "who": "activists",
+          "action": "called for",
+          "target": "the ban to end",
+          "where": "During the match against Iraq",
+          "when": "earlier this year",
+          "result": null,
+          "sequence": 17
+        },
+        {
+          "who": "activists",
+          "action": "unfurled",
+          "target": "a banner showing the face of Ghoncheh Ghavami",
+          "where": "During the match against Iraq",
+          "when": "earlier this year",
+          "result": null,
+          "sequence": 18
+        },
+        {
+          "who": "banner",
+          "action": "showed",
+          "target": "the face of Ghoncheh Ghavami",
+          "where": null,
+          "when": null,
+          "result": null,
+          "sequence": 19
+        },
+        {
+          "who": "Iranian authorities (implied)",
+          "action": "detained",
+          "target": "Ghoncheh Ghavami",
+          "where": "in Iran",
+          "when": "last year",
+          "result": null,
+          "sequence": 20
+        },
+        {
+          "who": "Ghoncheh Ghavami",
+          "action": "trying to watch",
+          "target": "a volleyball match",
+          "where": null,
+          "when": "last year",
+          "result": null,
+          "sequence": 21
+        },
+        {
+          "who": "Iranian officials",
+          "action": "denied",
+          "target": "that Ghavami was arrested for attending the volleyball game",
+          "where": null,
+          "when": null,
+          "result": null,
+          "sequence": 22
+        },
+        {
+          "who": "Iranian officials",
+          "action": "said",
+          "target": "she was taken into custody for \"anti-Iran activities\"",
+          "where": null,
+          "when": null,
+          "result": null,
+          "sequence": 23
+        },
+        {
+          "who": "The Court of Appeal",
+          "action": "pardoned",
+          "target": "Ghoncheh Ghavami",
+          "where": null,
+          "when": "recently",
+          "result": null,
+          "sequence": 24
+        },
+        {
+          "who": "The news agency Reuters",
+          "action": "reported",
+          "target": "that she was recently pardoned by the Court of Appeal",
+          "where": null,
+          "when": "recently",
+          "result": null,
+          "sequence": 25
+        },
+        {
+          "who": "a top Iranian sports official",
+          "action": "said",
+          "target": "that the ban will be lifted for some events",
+          "where": null,
+          "when": "before Saturday",
+          "result": null,
+          "sequence": 26
+        },
+        {
+          "who": "situation",
+          "action": "appears set to improve",
+          "target": null,
+          "where": null,
+          "when": "in the coming months",
+          "result": null,
+          "sequence": 27
+        },
+        {
+          "who": "Deputy Sports Minister Abdolhamid Ahmadi",
+          "action": "said",
+          "target": "A plan to allow \"women and families\" to enter sports stadiums will come into effect in the next year",
+          "where": null,
+          "when": "Saturday",
+          "result": null,
+          "sequence": 28
+        },
+        {
+          "who": "state-run media",
+          "action": "reported",
+          "target": "Abdolhamid Ahmadi's statement",
+          "where": null,
+          "when": "Saturday",
+          "result": null,
+          "sequence": 29
+        },
+        {
+          "who": "plan",
+          "action": "will come into effect",
+          "target": "to allow \"women and families\" to enter sports stadiums",
+          "where": null,
+          "when": "in the next year",
+          "result": null,
+          "sequence": 30
+        },
+        {
+          "who": "Iranian authorities (implied)",
+          "action": "will lift",
+          "target": "the ban for some events",
+          "where": null,
+          "when": "in the coming months",
+          "result": null,
+          "sequence": 31
+        },
+        {
+          "who": "situation",
+          "action": "isn't clear",
+          "target": "exactly which games women will be able to attend",
+          "where": null,
+          "when": null,
+          "result": null,
+          "sequence": 32
+        },
+        {
+          "who": "women",
+          "action": "will be able to attend",
+          "target": "(some) games",
+          "where": null,
+          "when": null,
+          "result": null,
+          "sequence": 33
+        },
+        {
+          "who": "state-run Press TV",
+          "action": "reported",
+          "target": "Ahmadi's statement",
+          "where": null,
+          "when": null,
+          "result": null,
+          "sequence": 34
+        },
+        {
+          "who": "Ahmadi",
+          "action": "said",
+          "target": "the restrictions would be lifted for indoor sports events",
+          "where": null,
+          "when": null,
+          "result": null,
+          "sequence": 35
+        },
+        {
+          "who": "rules",
+          "action": "won't change",
+          "target": "for all matches",
+          "where": null,
+          "when": null,
+          "result": null,
+          "sequence": 36
+        },
+        {
+          "who": "some sports",
+          "action": "are related",
+          "target": "to men",
+          "where": null,
+          "when": null,
+          "result": null,
+          "sequence": 37
+        },
+        {
+          "who": "families",
+          "action": "are not interested in attending",
+          "target": "them (some sports)",
+          "where": null,
+          "when": null,
+          "result": null,
+          "sequence": 38
+        },
+        {
+          "who": "Press TV",
+          "action": "cited",
+          "target": "him (Ahmadi) as saying (the previous statements)",
+          "where": null,
+          "when": null,
+          "result": null,
+          "sequence": 39
+        },
+        {
+          "who": "CNN's Annie Ramos",
+          "action": "contributed",
+          "target": "to this report",
+          "where": null,
+          "when": null,
+          "result": null,
+          "sequence": 40
+        }
+      ]
+    },
+    "P3_relationships": {
+      "relationships": [
+        {
+          "entity1": "Iran",
+          "entity2": "Islamic Revolution",
+          "relationship": "has",
+          "NOT_relationships": [
+            "caused",
+            "prevented",
+            "ended"
+          ]
+        },
+        {
+          "entity1": "women",
+          "entity2": "sports events involving men",
+          "relationship": "barred from attending",
+          "NOT_relationships": [
+            "allowed to attend",
+            "encouraged to attend",
+            "organized"
+          ]
+        },
+        {
+          "entity1": "Abdolhamid Ahmadi",
+          "entity2": "Deputy Sports Minister",
+          "relationship": "is",
+          "NOT_relationships": [
+            "works for",
+            "created",
+            "replaced"
+          ]
+        },
+        {
+          "entity1": "Abdolhamid Ahmadi",
+          "entity2": "state-run media",
+          "relationship": "said according to",
+          "NOT_relationships": [
+            "works for",
+            "owns",
+            "quoted"
+          ]
+        },
+        {
+          "entity1": "Ahmadi",
+          "entity2": "Press TV",
+          "relationship": "said according to",
+          "NOT_relationships": [
+            "works for",
+            "owns",
+            "quoted"
+          ]
+        },
+        {
+          "entity1": "Iranian authorities",
+          "entity2": "ban on women attending men's sports events",
+          "relationship": "imposed",
+          "NOT_relationships": [
+            "lifted",
+            "supported",
+            "created"
+          ]
+        },
+        {
+          "entity1": "soccer",
+          "entity2": "Iran",
+          "relationship": "most popular sport of",
+          "NOT_relationships": [
+            "least popular sport of",
+            "banned in",
+            "invented in"
+          ]
+        },
+        {
+          "entity1": "Iranian women",
+          "entity2": "volleyball matches",
+          "relationship": "briefly permitted to attend",
+          "NOT_relationships": [
+            "barred from attending",
+            "organized",
+            "played in"
+          ]
+        },
+        {
+          "entity1": "Mohammad Khatami",
+          "entity2": "President",
+          "relationship": "is",
+          "NOT_relationships": [
+            "former president",
+            "minister",
+            "citizen"
+          ]
+        },
+        {
+          "entity1": "Mohammad Khatami",
+          "entity2": "moderate",
+          "relationship": "is",
+          "NOT_relationships": [
+            "hard-line",
+            "conservative",
+            "liberal"
+          ]
+        },
+        {
+          "entity1": "Mahmoud Ahmadinejad",
+          "entity2": "hard-line",
+          "relationship": "is",
+          "NOT_relationships": [
+            "moderate",
+            "liberal",
+            "conservative"
+          ]
+        },
+        {
+          "entity1": "Mahmoud Ahmadinejad",
+          "entity2": "power",
+          "relationship": "came to",
+          "NOT_relationships": [
+            "lost",
+            "resigned from",
+            "supported"
+          ]
+        },
+        {
+          "entity1": "Iranian government",
+          "entity2": "international sports officials",
+          "relationship": "came under pressure from",
+          "NOT_relationships": [
+            "pressured",
+            "supported",
+            "collaborated with"
+          ]
+        },
+        {
+          "entity1": "Sepp Blatter",
+          "entity2": "FIFA President",
+          "relationship": "is",
+          "NOT_relationships": [
+            "former president",
+            "member",
+            "employee"
+          ]
+        },
+        {
+          "entity1": "Sepp Blatter",
+          "entity2": "Iran",
+          "relationship": "called on to end ban",
+          "NOT_relationships": [
+            "supported",
+            "visited",
+            "criticized"
+          ]
+        },
+        {
+          "entity1": "Iran",
+          "entity2": "soccer's Asian Cup",
+          "relationship": "in the running to host",
+          "NOT_relationships": [
+            "hosted",
+            "won",
+            "organized"
+          ]
+        },
+        {
+          "entity1": "soccer's Asian Cup",
+          "entity2": "United Arab Emirates",
+          "relationship": "awarded to",
+          "NOT_relationships": [
+            "hosted by",
+            "won by",
+            "organized by"
+          ]
+        },
+        {
+          "entity1": "ban on women attending matches",
+          "entity2": "Iran's chances of securing the event",
+          "relationship": "major impediment to",
+          "NOT_relationships": [
+            "helped",
+            "supported",
+            "caused"
+          ]
+        },
+        {
+          "entity1": "Asian Cup",
+          "entity2": "Australia",
+          "relationship": "in",
+          "NOT_relationships": [
+            "hosted by",
+            "won by",
+            "organized by"
+          ]
+        },
+        {
+          "entity1": "Ghoncheh Ghavami",
+          "entity2": "British-Iranian woman",
+          "relationship": "is",
+          "NOT_relationships": [
+            "man",
+            "official",
+            "activist"
+          ]
+        },
+        {
+          "entity1": "Ghoncheh Ghavami",
+          "entity2": "Iran",
+          "relationship": "detained in",
+          "NOT_relationships": [
+            "visited",
+            "lives in",
+            "works in"
+          ]
+        },
+        {
+          "entity1": "Iranian officials",
+          "entity2": "Ghavami",
+          "relationship": "denied arrest for attending volleyball game",
+          "NOT_relationships": [
+            "confirmed arrest for attending volleyball game",
+            "arrested",
+            "supported"
+          ]
+        },
+        {
+          "entity1": "Reuters",
+          "entity2": "Ghavami",
+          "relationship": "reported pardoned",
+          "NOT_relationships": [
+            "pardoned",
+            "arrested",
+            "sentenced"
+          ]
+        },
+        {
+          "entity1": "Ghoncheh Ghavami",
+          "entity2": "Court of Appeal",
+          "relationship": "pardoned by",
+          "NOT_relationships": [
+            "arrested by",
+            "sentenced by",
+            "works for"
+          ]
+        },
+        {
+          "entity1": "Annie Ramos",
+          "entity2": "CNN",
+          "relationship": "contributed to report for",
+          "NOT_relationships": [
+            "works for",
+            "owns",
+            "founded"
+          ]
+        },
+        {
+          "entity1": "women and families",
+          "entity2": "sports stadiums",
+          "relationship": "plan to allow to enter",
+          "NOT_relationships": [
+            "barred from entering",
+            "prohibited from entering",
+            "built"
+          ]
+        },
+        {
+          "entity1": "crowds at soccer games",
+          "entity2": "all male",
+          "relationship": "have been",
+          "NOT_relationships": [
+            "mixed",
+            "female",
+            "diverse"
+          ]
+        },
+        {
+          "entity1": "some sports",
+          "entity2": "men",
+          "relationship": "mainly related to",
+          "NOT_relationships": [
+            "mainly related to women",
+            "not related to",
+            "banned for"
+          ]
+        },
+        {
+          "entity1": "families",
+          "entity2": "attending some sports",
+          "relationship": "not interested in",
+          "NOT_relationships": [
+            "interested in",
+            "required to do",
+            "banned from"
+          ]
+        },
+        {
+          "entity1": "ban",
+          "entity2": "reinstated",
+          "relationship": "was",
+          "NOT_relationships": [
+            "lifted",
+            "created",
+            "ended"
+          ]
+        },
+        {
+          "entity1": "Ghoncheh Ghavami",
+          "entity2": "volleyball match",
+          "relationship": "trying to watch",
+          "NOT_relationships": [
+            "playing in",
+            "organizing",
+            "avoiding"
+          ]
+        },
+        {
+          "entity1": "Ghoncheh Ghavami",
+          "entity2": "anti-Iran activities",
+          "relationship": "taken into custody for",
+          "NOT_relationships": [
+            "rewarded for",
+            "participated in",
+            "denied"
+          ]
+        }
+      ]
+    },
+    "P4_numbers": {
+      "numerical_facts": [
+        {
+          "entity": "female Iranian fans",
+          "number": "thousands",
+          "unit": "fans",
+          "describes": "quantity",
+          "context": "The ban came under the spotlight at the Asian Cup in Australia earlier this year, when thousands of female Iranian fans watched their soccer team without restriction."
+        }
+      ],
+      "temporal_facts": [
+        {
+          "entity": "Iran's Islamic Revolution",
+          "number": 1979,
+          "unit": "year",
+          "describes": "start year",
+          "context": "Since Iran's Islamic Revolution in 1979, women have been barred from attending most sports events involving men."
+        },
+        {
+          "entity": "ban reinstatement",
+          "number": 2005,
+          "unit": "year",
+          "describes": "year of reinstatement",
+          "context": "Iranian women were briefly permitted to attend volleyball matches under the moderate President Mohammad Khatami, but the ban was reinstated in 2005 after the more hard-line Mahmoud Ahmadinejad came to power."
+        },
+        {
+          "entity": "soccer's Asian Cup",
+          "number": 2019,
+          "unit": "year",
+          "describes": "edition year",
+          "context": "Iran had been in the running to host the 2019 edition of soccer's Asian Cup, but the tournament was awarded to the United Arab Emirates."
+        }
+      ]
+    },
+    "P5_negations": {
+      "explicit_negations": [
+        "women have been barred from attending most sports events involving men",
+        "The rules won't change for all matches",
+        "families are not interested in attending",
+        "was un-Islamic",
+        "the crowds at soccer games... have been all male",
+        "intolerable",
+        "cannot continue",
+        "watched their soccer team without restriction",
+        "Iranian officials have denied that Ghavami was arrested for attending the volleyball game"
+      ],
+      "absent_information": [
+        "it isn't clear exactly which games women will be able to attend"
+      ],
+      "boundaries": [
+        "most sports events",
+        "appears set to improve",
+        "for some events",
+        "won't change for all matches",
+        "some sports are mainly related to men",
+        "briefly permitted"
+      ],
+      "corrections": [
+        "Iranian officials have denied that Ghavami was arrested for attending the volleyball game, saying she was taken into custody for 'anti-Iran activities.'"
+      ]
+    },
+    "P6_verify": {
+      "missed_facts": []
+    }
+  }
+}

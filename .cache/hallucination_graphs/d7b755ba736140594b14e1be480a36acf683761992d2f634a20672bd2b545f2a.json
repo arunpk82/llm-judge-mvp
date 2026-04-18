@@ -1,0 +1,1265 @@
+{
+  "passes": {
+    "P1_entities": {},
+    "P2_events": {},
+    "P3_relationships": {
+      "relationships": [
+        {
+          "entity1": "Robert Redford",
+          "entity2": "\"All Is Lost\"",
+          "relationship": "role in",
+          "NOT_relationships": [
+            "actor in",
+            "starred in",
+            "appeared in"
+          ]
+        },
+        {
+          "entity1": "Ang Lee",
+          "entity2": "\"Life of Pi\"",
+          "relationship": "'s",
+          "NOT_relationships": [
+            "directed",
+            "created",
+            "filmmaker of"
+          ]
+        },
+        {
+          "entity1": "Louis Jordan",
+          "entity2": "35-foot sailboat",
+          "relationship": "his",
+          "NOT_relationships": [
+            "owns",
+            "sailed",
+            "captained"
+          ]
+        },
+        {
+          "entity1": "crew members",
+          "entity2": "Houston Express",
+          "relationship": "on",
+          "NOT_relationships": [
+            "work on",
+            "belong to",
+            "operate"
+          ]
+        },
+        {
+          "entity1": "Louis Jordan",
+          "entity2": "his father",
+          "relationship": "his father",
+          "NOT_relationships": [
+            "father of",
+            "son of",
+            "parent of"
+          ]
+        },
+        {
+          "entity1": "Jose Salvador Alvarenga",
+          "entity2": "his journey",
+          "relationship": "his",
+          "NOT_relationships": [
+            "undertook",
+            "started",
+            "embarked on"
+          ]
+        },
+        {
+          "entity1": "Jose Salvador Alvarenga",
+          "entity2": "his fishing companion",
+          "relationship": "his fishing companion",
+          "NOT_relationships": [
+            "friend",
+            "partner",
+            "fellow fisherman"
+          ]
+        },
+        {
+          "entity1": "Alvarenga",
+          "entity2": "his partner",
+          "relationship": "his partner",
+          "NOT_relationships": [
+            "friend",
+            "companion",
+            "fellow survivor"
+          ]
+        },
+        {
+          "entity1": "Ezequiel Cordova",
+          "entity2": "boat's owner",
+          "relationship": "according to the boat's owner",
+          "NOT_relationships": [
+            "owned by",
+            "reported by",
+            "source for"
+          ]
+        },
+        {
+          "entity1": "Jose Salvador Alvarenga",
+          "entity2": "CNN",
+          "relationship": "told",
+          "NOT_relationships": [
+            "interviewed by",
+            "spoke to",
+            "reported to"
+          ]
+        },
+        {
+          "entity1": "Ron Ingraham",
+          "entity2": "his son",
+          "relationship": "his son",
+          "NOT_relationships": [
+            "father of",
+            "parent of",
+            "child of"
+          ]
+        },
+        {
+          "entity1": "Zakary",
+          "entity2": "CNN",
+          "relationship": "told",
+          "NOT_relationships": [
+            "interviewed by",
+            "spoke to",
+            "reported to"
+          ]
+        },
+        {
+          "entity1": "his son",
+          "entity2": "Rambo",
+          "relationship": "comparing him to",
+          "NOT_relationships": [
+            "like",
+            "similar to",
+            "compared with"
+          ]
+        },
+        {
+          "entity1": "Ron Ingraham",
+          "entity2": "CNN affiliate KHNL/KGMB",
+          "relationship": "told",
+          "NOT_relationships": [
+            "interviewed by",
+            "spoke to",
+            "reported to"
+          ]
+        },
+        {
+          "entity1": "Zakary Ingraham",
+          "entity2": "Coast Guard official",
+          "relationship": "told him",
+          "NOT_relationships": [
+            "spoke to",
+            "informed by",
+            "heard from"
+          ]
+        },
+        {
+          "entity1": "Adrian Vasquez",
+          "entity2": "two friends",
+          "relationship": "friends",
+          "NOT_relationships": [
+            "companions",
+            "acquaintances",
+            "asked"
+          ]
+        },
+        {
+          "entity1": "Adrian Vasquez",
+          "entity2": "Vasquez's mother",
+          "relationship": "Vasquez's mother",
+          "NOT_relationships": [
+            "son of",
+            "child of",
+            "parent of"
+          ]
+        },
+        {
+          "entity1": "Adrian Vasquez",
+          "entity2": "his two companions",
+          "relationship": "his two companions",
+          "NOT_relationships": [
+            "friends",
+            "partners",
+            "fellow travelers"
+          ]
+        },
+        {
+          "entity1": "Adrian Vasquez",
+          "entity2": "the Fifty Cents",
+          "relationship": "his boat",
+          "NOT_relationships": [
+            "owned",
+            "sailed",
+            "captained"
+          ]
+        },
+        {
+          "entity1": "Ecuadorian Rear. Adm. Freddy Garcia Calle",
+          "entity2": "Vasquez",
+          "relationship": "saying",
+          "NOT_relationships": [
+            "reported on",
+            "commented on",
+            "official on"
+          ]
+        },
+        {
+          "entity1": "Adrian Vasquez",
+          "entity2": "his mother",
+          "relationship": "his mother",
+          "NOT_relationships": [
+            "son of",
+            "child of",
+            "parent of"
+          ]
+        },
+        {
+          "entity1": "Hiromitsu Shinkawa",
+          "entity2": "his wife",
+          "relationship": "his wife",
+          "NOT_relationships": [
+            "husband of",
+            "spouse of",
+            "partner of"
+          ]
+        },
+        {
+          "entity1": "Hiromitsu Shinkawa",
+          "entity2": "Kyodo News Agency",
+          "relationship": "according to",
+          "NOT_relationships": [
+            "reported by",
+            "source for",
+            "quoted by"
+          ]
+        },
+        {
+          "entity1": "Shinkawa",
+          "entity2": "his rescuers",
+          "relationship": "told",
+          "NOT_relationships": [
+            "spoke to",
+            "informed",
+            "reported to"
+          ]
+        },
+        {
+          "entity1": "Majuro",
+          "entity2": "Marshall Islands",
+          "relationship": "capital of",
+          "NOT_relationships": [
+            "city in",
+            "part of",
+            "located in"
+          ]
+        }
+      ]
+    },
+    "P4_numbers": {
+      "numerical_facts": [
+        {
+          "entity": "sailboat",
+          "number": 35,
+          "unit": "foot",
+          "describes": "length",
+          "context": "Louis Jordan says that he set off on his 35-foot sailboat from South Carolina in late January."
+        },
+        {
+          "entity": "sailboat",
+          "number": 2,
+          "unit": "times",
+          "describes": "capsized",
+          "context": "His sailboat would capsize two more times before crew members on a German-flagged container ship, the Houston Express, spotted Jordan about 200 miles off the North Carolina coast on Thursday."
+        },
+        {
+          "entity": "Jordan",
+          "number": 200,
+          "unit": "miles",
+          "describes": "distance from coast",
+          "context": "His sailboat would capsize two more times before crew members on a German-flagged container ship, the Houston Express, spotted Jordan about 200 miles off the North Carolina coast on Thursday."
+        },
+        {
+          "entity": "trip",
+          "number": 1,
+          "unit": "day",
+          "describes": "duration",
+          "context": "What was supposed to be a one-day trip, he says, turned into an arduous odyssey across the Pacific Ocean, one that saw him lose his fishing companion and tested his will and ability to survive."
+        },
+        {
+          "entity": "boat",
+          "number": 3,
+          "unit": "people",
+          "describes": "length",
+          "context": "Then a storm hit causing their boat, which was about three people long and one wide, to lose its engine and use of its radio communication and GPS systems."
+        },
+        {
+          "entity": "boat",
+          "number": 1,
+          "unit": "people",
+          "describes": "width",
+          "context": "Then a storm hit causing their boat, which was about three people long and one wide, to lose its engine and use of its radio communication and GPS systems."
+        },
+        {
+          "entity": "Alvarenga's journey",
+          "number": 4,
+          "unit": "weeks",
+          "describes": "duration",
+          "context": "Four weeks in, Alvarenga said his partner -- 23-year-old Ezequiel Cordova, according to the boat's owner -- died because he refused to eat raw birds."
+        },
+        {
+          "entity": "Ezequiel Cordova",
+          "number": 23,
+          "unit": "year-old",
+          "describes": "age",
+          "context": "Four weeks in, Alvarenga said his partner -- 23-year-old Ezequiel Cordova, according to the boat's owner -- died because he refused to eat raw birds."
+        },
+        {
+          "entity": "Alvarenga's time adrift",
+          "number": 13,
+          "unit": "months",
+          "describes": "duration",
+          "context": "Then, after 13 or 14 months adrift, he and his small, heavily damaged boat arrived on the Ebon Atoll, about a 22-hour boat ride from the Marshall Islands capital of Majuro."
+        },
+        {
+          "entity": "Alvarenga's time adrift",
+          "number": 14,
+          "unit": "months",
+          "describes": "duration",
+          "context": "Then, after 13 or 14 months adrift, he and his small, heavily damaged boat arrived on the Ebon Atoll, about a 22-hour boat ride from the Marshall Islands capital of Majuro."
+        },
+        {
+          "entity": "boat ride",
+          "number": 22,
+          "unit": "hour",
+          "describes": "duration",
+          "context": "Then, after 13 or 14 months adrift, he and his small, heavily damaged boat arrived on the Ebon Atoll, about a 22-hour boat ride from the Marshall Islands capital of Majuro."
+        },
+        {
+          "entity": "Ebon Atoll",
+          "number": 1,
+          "unit": "phone line",
+          "describes": "quantity",
+          "context": "The atoll has one phone line, no Internet service and a few residents, two of whom Alvarenga spotted and shouted to after spending a night in the woods."
+        },
+        {
+          "entity": "residents",
+          "number": 2,
+          "unit": "residents",
+          "describes": "quantity spotted by Alvarenga",
+          "context": "The atoll has one phone line, no Internet service and a few residents, two of whom Alvarenga spotted and shouted to after spending a night in the woods."
+        },
+        {
+          "entity": "Ron Ingraham",
+          "number": 12,
+          "unit": "days",
+          "describes": "duration at sea",
+          "context": "Son vindicated as father rescued after 12 days at sea."
+        },
+        {
+          "entity": "sailboat",
+          "number": 25,
+          "unit": "foot",
+          "describes": "length",
+          "context": "After bad weather hit, Ron Ingraham told CNN affiliate KHNL/KGMB that his 25-foot sailboat went \"backwards all night long.\""
+        },
+        {
+          "entity": "Ron Ingraham",
+          "number": 67,
+          "unit": "year-old",
+          "describes": "age",
+          "context": "The 67-year-old used a rope to pull himself back in."
+        },
+        {
+          "entity": "search",
+          "number": 12000,
+          "unit": "square miles",
+          "describes": "area covered",
+          "context": "A distress call went out, prompting a search that would cover 12,000 square miles."
+        },
+        {
+          "entity": "Ron Ingraham",
+          "number": 12,
+          "unit": "days",
+          "describes": "duration after distress call",
+          "context": "Twelve days after that first distress call, Ron Ingraham was picked up about 64 miles (103 kilometers) south of Honolulu \"weak, hungry and dehydrated\" and -- most importantly -- alive."
+        },
+        {
+          "entity": "Ron Ingraham",
+          "number": 64,
+          "unit": "miles",
+          "describes": "distance from Honolulu",
+          "context": "Twelve days after that first distress call, Ron Ingraham was picked up about 64 miles (103 kilometers) south of Honolulu \"weak, hungry and dehydrated\" and -- most importantly -- alive."
+        },
+        {
+          "entity": "Ron Ingraham",
+          "number": 103,
+          "unit": "kilometers",
+          "describes": "distance from Honolulu",
+          "context": "Twelve days after that first distress call, Ron Ingraham was picked up about 64 miles (103 kilometers) south of Honolulu \"weak, hungry and dehydrated\" and -- most importantly -- alive."
+        },
+        {
+          "entity": "friends",
+          "number": 2,
+          "unit": "friends",
+          "describes": "quantity",
+          "context": "In February 2012, two friends asked 18-year-old Adrian Vasquez whether he wanted to tag along on an overnight fishing expedition."
+        },
+        {
+          "entity": "Adrian Vasquez",
+          "number": 18,
+          "unit": "year-old",
+          "describes": "age",
+          "context": "In February 2012, two friends asked 18-year-old Adrian Vasquez whether he wanted to tag along on an overnight fishing expedition."
+        },
+        {
+          "entity": "people on boat",
+          "number": 3,
+          "unit": "people",
+          "describes": "quantity",
+          "context": "He said yes, and the three set off from the Panama town of San Carlos on a small boat, Vasquez's mother, Nilsa de la Cruz, recalled."
+        },
+        {
+          "entity": "people on boat",
+          "number": 3,
+          "unit": "people",
+          "describes": "quantity",
+          "context": "The three caught plenty of fish."
+        },
+        {
+          "entity": "boat name",
+          "number": 50,
+          "unit": "cents",
+          "describes": "value (as part of name)",
+          "context": "Vazquez ate raw fish and drank rainwater as currents swept his boat, the Fifty Cents, further and further from the coast and into the Pacific Ocean."
+        },
+        {
+          "entity": "companions",
+          "number": 2,
+          "unit": "companions",
+          "describes": "quantity",
+          "context": "Somewhere along the way, his two companions died."
+        },
+        {
+          "entity": "Vasquez's journey",
+          "number": 26,
+          "unit": "days",
+          "describes": "duration",
+          "context": "Some 26 days after and nearly 600 miles away from where the journey began, fishermen spotted the tiny vessel north of the Galapagos Islands."
+        },
+        {
+          "entity": "Vasquez's journey",
+          "number": 600,
+          "unit": "miles",
+          "describes": "distance from origin",
+          "context": "Some 26 days after and nearly 600 miles away from where the journey began, fishermen spotted the tiny vessel north of the Galapagos Islands."
+        },
+        {
+          "entity": "Vasquez",
+          "number": 20,
+          "unit": "pounds",
+          "describes": "weight lost",
+          "context": "The Ecuadorian navy came in and picked up the teenage survivor, who'd lost 20 pounds and showed \"severe signs of dehydration and lack of nutrition,\" according to Calle."
+        },
+        {
+          "entity": "Hiromitsu Shinkawa",
+          "number": 60,
+          "unit": "year-old",
+          "describes": "age",
+          "context": "60-year-old man waves red flag to alert rescuers."
+        },
+        {
+          "entity": "earthquake",
+          "number": 9.0,
+          "unit": "magnitude",
+          "describes": "strength",
+          "context": "He was at home on March 11, 2011, when a massive 9.0 magnitude earthquake struck 231 miles northeast of Tokyo."
+        },
+        {
+          "entity": "earthquake",
+          "number": 231,
+          "unit": "miles",
+          "describes": "distance from Tokyo",
+          "context": "He was at home on March 11, 2011, when a massive 9.0 magnitude earthquake struck 231 miles northeast of Tokyo."
+        },
+        {
+          "entity": "tsunami waves",
+          "number": 30,
+          "unit": "foot",
+          "describes": "height",
+          "context": "A devastating tsunami followed, its 30-foot waves ravaging cities and towns and damaging several nuclear reactors."
+        },
+        {
+          "entity": "people",
+          "number": 16000,
+          "unit": "people",
+          "describes": "dead",
+          "context": "By the time it had run the course, nearly 16,000 people were dead."
+        },
+        {
+          "entity": "Shinkawa",
+          "number": 60,
+          "unit": "year-old",
+          "describes": "age",
+          "context": "\"I was saved by holding onto the roof,\" the 60-year-old said, according to Kyodo News Agency. \"But my wife was swept away.'\""
+        },
+        {
+          "entity": "Shinkawa",
+          "number": 2,
+          "unit": "days",
+          "describes": "duration after quake",
+          "context": "More than two days later, video showed Shinkawa barely visible amid heaps of splintered wood, shattered homes and other debris floating more than nine miles (15 kilometers) out to sea."
+        },
+        {
+          "entity": "debris",
+          "number": 9,
+          "unit": "miles",
+          "describes": "distance out to sea",
+          "context": "More than two days later, video showed Shinkawa barely visible amid heaps of splintered wood, shattered homes and other debris floating more than nine miles (15 kilometers) out to sea."
+        },
+        {
+          "entity": "debris",
+          "number": 15,
+          "unit": "kilometers",
+          "describes": "distance out to sea",
+          "context": "More than two days later, video showed Shinkawa barely visible amid heaps of splintered wood, shattered homes and other debris floating more than nine miles (15 kilometers) out to sea."
+        }
+      ],
+      "temporal_facts": [
+        {
+          "entity": "Louis Jordan's departure",
+          "number": "January",
+          "unit": "month",
+          "describes": "late",
+          "context": "Louis Jordan says that he set off on his 35-foot sailboat from South Carolina in late January."
+        },
+        {
+          "entity": "Jordan spotted",
+          "number": "Thursday",
+          "unit": "day of week",
+          "describes": "specific day",
+          "context": "His sailboat would capsize two more times before crew members on a German-flagged container ship, the Houston Express, spotted Jordan about 200 miles off the North Carolina coast on Thursday."
+        },
+        {
+          "entity": "Jose Salvador Alvarenga's journey",
+          "number": "2012",
+          "unit": "year",
+          "describes": "late",
+          "context": "Jose Salvador Alvarenga says his journey began in Paredon Viejo, a port on Mexico's Pacific coast, in late 2012."
+        },
+        {
+          "entity": "Alvarenga's departure",
+          "number": "December",
+          "unit": "month",
+          "describes": "specific month",
+          "context": "The exact date is up for debate -- he says he set off in December, locals say it was November."
+        },
+        {
+          "entity": "Alvarenga's departure",
+          "number": "November",
+          "unit": "month",
+          "describes": "specific month",
+          "context": "The exact date is up for debate -- he says he set off in December, locals say it was November."
+        },
+        {
+          "entity": "Alvarenga's interaction with humans",
+          "number": "January 2013",
+          "unit": "month and year",
+          "describes": "specific date",
+          "context": "Until January 2013."
+        },
+        {
+          "entity": "search called off",
+          "number": "December 1",
+          "unit": "date",
+          "describes": "specific date",
+          "context": "When a Coast Guard official told him the search was being called off December 1, Zakary Ingraham responded, \"I don't feel like he's dead. I don't feel it.\""
+        },
+        {
+          "entity": "Adrian Vasquez's expedition",
+          "number": "February 2012",
+          "unit": "month and year",
+          "describes": "specific date",
+          "context": "In February 2012, two friends asked 18-year-old Adrian Vasquez whether he wanted to tag along on an overnight fishing expedition."
+        },
+        {
+          "entity": "earthquake",
+          "number": "March 11, 2011",
+          "unit": "date",
+          "describes": "specific date",
+          "context": "He was at home on March 11, 2011, when a massive 9.0 magnitude earthquake struck 231 miles northeast of Tokyo."
+        }
+      ]
+    },
+    "P5_negations": {
+      "explicit_negations": [
+        "not just in Hollywood",
+        "We're not talking about people who float aimlessly or run aground after running out of gas or being let down by faltering winds only to be picked up a few hours later by the U.S. Coast Guard.",
+        "they can't bank on technology or the proximity of a nearby city, town or boat",
+        "no one else can prove or refute their accounts",
+        "what's not in doubt is that, after he left, he disappeared.",
+        "to lose its engine and use of its radio communication and GPS systems",
+        "he refused to eat raw birds.",
+        "when there wasn't any available",
+        "no Internet service",
+        "Ron Ingraham isn't one of those people.",
+        "his boat couldn't be rescued so easily",
+        "I don't feel like he's dead. I don't feel it.",
+        "without warning",
+        "with no tools and scant navigational experience",
+        "the trio didn't know what to do",
+        "one doesn't have to be in the ocean for weeks to have his or her life imperiled.",
+        "people don't have to set off by boat to have the sea challenge them to the end.",
+        "look no further than Hiromitsu Shinkawa.",
+        "His home was one of the tens of thousands destroyed",
+        "Shinkawa wasn't one of them."
+      ],
+      "absent_information": [
+        "It's hard to say how many of these types of stories end sadly, with a sailor dying at sea",
+        "no one else can prove or refute their accounts.",
+        "The exact date is up for debate",
+        "It's not clear exactly how"
+      ],
+      "boundaries": [
+        "But, in real life",
+        "if not months",
+        "Much rarer are cases in which",
+        "if any",
+        "except that it is a much higher number than those that end in rescues.",
+        "given what rescue agencies have reported and assuming you believe what any sole survivor says, a big qualifier since typically no one else can prove or refute their accounts.",
+        "Until January 2013.",
+        "when there wasn't any available",
+        "only after getting assurances his damaged boat would come with him.",
+        "with no tools and scant navigational experience",
+        "after spending a night in the woods"
+      ],
+      "corrections": [
+        "not just in Hollywood.",
+        "We're not talking about people who float aimlessly or run aground after running out of gas or being let down by faltering winds only to be picked up a few hours later by the U.S. Coast Guard.",
+        "but instead must rely on ingenuity, resourcefulness and luck.",
+        "The thing is: Ron Ingraham isn't one of those people.",
+        "He was right.",
+        "Sometimes one doesn't have to be in the ocean for weeks to have his or her life imperiled. Sometimes people don't have to set off by boat to have the sea challenge them to the end."
+      ]
+    },
+    "P6_verify": {
+      "missed_facts": [
+        {
+          "fact": "U.S. Coast Guard",
+          "category": "Entities",
+          "source_text": "only to be picked up a few hours later by the U.S. Coast Guard."
+        },
+        {
+          "fact": "The number of stories ending sadly (sailor dying at sea) is much higher than those ending in rescues.",
+          "category": "Numbers",
+          "source_text": "It's hard to say how many of these types of stories end sadly, with a sailor dying at sea, except that it is a much higher number than those that end in rescues."
+        },
+        {
+          "fact": "rescue agencies",
+          "category": "Entities",
+          "source_text": "given what rescue agencies have reported"
+        },
+        {
+          "fact": "Louis Jordan",
+          "category": "Entities",
+          "source_text": "Louis Jordan says that he set off on his 35-foot sailboat from South Carolina in late January."
+        },
+        {
+          "fact": "Louis Jordan set off on his sailboat",
+          "category": "Events",
+          "source_text": "Louis Jordan says that he set off on his 35-foot sailboat from South Carolina in late January."
+        },
+        {
+          "fact": "South Carolina",
+          "category": "Entities",
+          "source_text": "Louis Jordan says that he set off on his 35-foot sailboat from South Carolina in late January."
+        },
+        {
+          "fact": "Gulf Stream",
+          "category": "Entities",
+          "source_text": "He headed into the Gulf Stream looking for a good spot to catch fish."
+        },
+        {
+          "fact": "Louis Jordan headed into the Gulf Stream",
+          "category": "Events",
+          "source_text": "He headed into the Gulf Stream looking for a good spot to catch fish."
+        },
+        {
+          "fact": "Louis Jordan was looking for a good spot to catch fish",
+          "category": "Events",
+          "source_text": "He headed into the Gulf Stream looking for a good spot to catch fish."
+        },
+        {
+          "fact": "Louis Jordan's boat and life turned upside down",
+          "category": "Events",
+          "source_text": "And then everything -- his boat, his life -- turned upside down."
+        },
+        {
+          "fact": "Louis Jordan's boat capsized",
+          "category": "Events",
+          "source_text": "Not only did his boat capsize, but its mast broke, Jordan said."
+        },
+        {
+          "fact": "Louis Jordan's boat's mast broke",
+          "category": "Events",
+          "source_text": "but its mast broke, Jordan said."
+        },
+        {
+          "fact": "Louis Jordan's shoulder broke",
+          "category": "Events",
+          "source_text": "And so, too, did his shoulder."
+        },
+        {
+          "fact": "Louis Jordan rationed water",
+          "category": "Events",
+          "source_text": "He bought time by rationing water"
+        },
+        {
+          "fact": "Louis Jordan collected fresh water in a bucket",
+          "category": "Events",
+          "source_text": "then collecting fresh water in a bucket."
+        },
+        {
+          "fact": "Louis Jordan used laundry to trap and scoop up fish",
+          "category": "Events",
+          "source_text": "Jordan says he used laundry to trap and scoop up fish."
+        },
+        {
+          "fact": "Louis Jordan rigged a makeshift mast and sail",
+          "category": "Events",
+          "source_text": "And he rigged a makeshift mast and sail."
+        },
+        {
+          "fact": "German-flagged container ship",
+          "category": "Entities",
+          "source_text": "German-flagged container ship"
+        },
+        {
+          "fact": "Houston Express",
+          "category": "Entities",
+          "source_text": "the Houston Express"
+        },
+        {
+          "fact": "Crew members on the Houston Express spotted Jordan",
+          "category": "Events",
+          "source_text": "crew members on a German-flagged container ship, the Houston Express, spotted Jordan"
+        },
+        {
+          "fact": "North Carolina coast",
+          "category": "Entities",
+          "source_text": "200 miles off the North Carolina coast"
+        },
+        {
+          "fact": "Louis Jordan's father greeted him with a hug",
+          "category": "Events",
+          "source_text": "his father greeted him with a hug"
+        },
+        {
+          "fact": "Jose Salvador Alvarenga",
+          "category": "Entities",
+          "source_text": "Jose Salvador Alvarenga says his journey began in Paredon Viejo, a port on Mexico's Pacific coast, in late 2012."
+        },
+        {
+          "fact": "Jose Salvador Alvarenga's journey began",
+          "category": "Events",
+          "source_text": "Jose Salvador Alvarenga says his journey began in Paredon Viejo, a port on Mexico's Pacific coast, in late 2012."
+        },
+        {
+          "fact": "Paredon Viejo",
+          "category": "Entities",
+          "source_text": "Paredon Viejo"
+        },
+        {
+          "fact": "Mexico's Pacific coast",
+          "category": "Entities",
+          "source_text": "Mexico's Pacific coast"
+        },
+        {
+          "fact": "Jose Salvador Alvarenga disappeared",
+          "category": "Events",
+          "source_text": "after he left, he disappeared."
+        },
+        {
+          "fact": "Alvarenga interacted with humans once again",
+          "category": "Events",
+          "source_text": "Alvarenga interacted with humans once again"
+        },
+        {
+          "fact": "Alvarenga was thousands of miles away from his starting point",
+          "category": "Numbers",
+          "source_text": "thousands of miles away"
+        },
+        {
+          "fact": "remote atoll",
+          "category": "Entities",
+          "source_text": "on a remote atoll in the Marshall Islands."
+        },
+        {
+          "fact": "Marshall Islands",
+          "category": "Entities",
+          "source_text": "in the Marshall Islands."
+        },
+        {
+          "fact": "Pacific Ocean",
+          "category": "Entities",
+          "source_text": "across the Pacific Ocean"
+        },
+        {
+          "fact": "Alvarenga lost his fishing companion",
+          "category": "Events",
+          "source_text": "lose his fishing companion"
+        },
+        {
+          "fact": "Alvarenga's will and ability to survive were tested",
+          "category": "Events",
+          "source_text": "tested his will and ability to survive."
+        },
+        {
+          "fact": "Winds blew Alvarenga and his companion off course",
+          "category": "Events",
+          "source_text": "winds blew the pair off course."
+        },
+        {
+          "fact": "A storm hit Alvarenga's boat",
+          "category": "Events",
+          "source_text": "Then a storm hit"
+        },
+        {
+          "fact": "Ezequiel Cordova",
+          "category": "Entities",
+          "source_text": "23-year-old Ezequiel Cordova"
+        },
+        {
+          "fact": "Alvarenga's partner, Ezequiel Cordova, died",
+          "category": "Events",
+          "source_text": "Alvarenga said his partner -- 23-year-old Ezequiel Cordova, according to the boat's owner -- died"
+        },
+        {
+          "fact": "Alvarenga drank rainwater",
+          "category": "Events",
+          "source_text": "Alvarenga says he drank rainwater"
+        },
+        {
+          "fact": "Alvarenga drank his own urine when rainwater wasn't available",
+          "category": "Events",
+          "source_text": "when there wasn't any available, his own urine."
+        },
+        {
+          "fact": "Alvarenga ate sea turtles",
+          "category": "Events",
+          "source_text": "He ate sea turtles."
+        },
+        {
+          "fact": "Alvarenga's boat was small and heavily damaged",
+          "category": "Entities",
+          "source_text": "he and his small, heavily damaged boat"
+        },
+        {
+          "fact": "Alvarenga arrived on the Ebon Atoll",
+          "category": "Events",
+          "source_text": "arrived on the Ebon Atoll"
+        },
+        {
+          "fact": "Ebon Atoll",
+          "category": "Entities",
+          "source_text": "Ebon Atoll"
+        },
+        {
+          "fact": "Majuro",
+          "category": "Entities",
+          "source_text": "Majuro"
+        },
+        {
+          "fact": "Alvarenga spotted and shouted to two residents",
+          "category": "Events",
+          "source_text": "two of whom Alvarenga spotted and shouted to"
+        },
+        {
+          "fact": "Alvarenga spent a night in the woods",
+          "category": "Events",
+          "source_text": "after spending a night in the woods."
+        },
+        {
+          "fact": "Alvarenga is an El Salvador native",
+          "category": "Entities",
+          "source_text": "The El Salvador native"
+        },
+        {
+          "fact": "Alvarenga's faith in God helped him survive",
+          "category": "Events",
+          "source_text": "his faith in God helped him survive."
+        },
+        {
+          "fact": "Hawaii",
+          "category": "Entities",
+          "source_text": "And if you live in Hawaii"
+        },
+        {
+          "fact": "Ron Ingraham is a fisherman",
+          "category": "Relationships",
+          "source_text": "He's a fisherman."
+        },
+        {
+          "fact": "The sea is Ron Ingraham's life and livelihood",
+          "category": "Relationships",
+          "source_text": "The sea is both his life and livelihood"
+        },
+        {
+          "fact": "Zakary",
+          "category": "Entities",
+          "source_text": "his son, Zakary"
+        },
+        {
+          "fact": "Ron Ingraham set off solo around last Thanksgiving",
+          "category": "Events",
+          "source_text": "setting off around last Thanksgiving solo"
+        },
+        {
+          "fact": "Molokai (Hawaiian island)",
+          "category": "Entities",
+          "source_text": "from the Hawaiian island of Molokai."
+        },
+        {
+          "fact": "Bad weather hit Ron Ingraham",
+          "category": "Events",
+          "source_text": "After bad weather hit"
+        },
+        {
+          "fact": "Ron Ingraham's sailboat went \"backwards all night long\"",
+          "category": "Events",
+          "source_text": "his 25-foot sailboat went \"backwards all night long.\""
+        },
+        {
+          "fact": "A huge wave struck Ron Ingraham's boat",
+          "category": "Events",
+          "source_text": "a huge wave struck"
+        },
+        {
+          "fact": "A huge wave pushed Ron Ingraham's mast and him into the water",
+          "category": "Events",
+          "source_text": "pushing his mast into the water and him as well."
+        },
+        {
+          "fact": "Ron Ingraham used a rope to pull himself back into his boat",
+          "category": "Events",
+          "source_text": "The 67-year-old used a rope to pull himself back in."
+        },
+        {
+          "fact": "Ron Ingraham was left at the mercy of the current",
+          "category": "Events",
+          "source_text": "leaving him at the mercy of the current."
+        },
+        {
+          "fact": "A distress call went out for Ron Ingraham",
+          "category": "Events",
+          "source_text": "A distress call went out"
+        },
+        {
+          "fact": "Coast Guard official",
+          "category": "Entities",
+          "source_text": "When a Coast Guard official told him"
+        },
+        {
+          "fact": "A Coast Guard official told Zakary Ingraham the search was being called off",
+          "category": "Events",
+          "source_text": "When a Coast Guard official told him the search was being called off December 1"
+        },
+        {
+          "fact": "Zakary Ingraham responded to the Coast Guard official",
+          "category": "Events",
+          "source_text": "Zakary Ingraham responded"
+        },
+        {
+          "fact": "Ron Ingraham was picked up",
+          "category": "Events",
+          "source_text": "Ron Ingraham was picked up"
+        },
+        {
+          "fact": "Honolulu",
+          "category": "Entities",
+          "source_text": "south of Honolulu"
+        },
+        {
+          "fact": "Ron Ingraham was weak, hungry, and dehydrated when rescued",
+          "category": "Entities",
+          "source_text": "weak, hungry and dehydrated"
+        },
+        {
+          "fact": "Ron Ingraham is a veteran fisherman",
+          "category": "Entities",
+          "source_text": "The veteran fisherman"
+        },
+        {
+          "fact": "Ron Ingraham headed back to shore",
+          "category": "Events",
+          "source_text": "headed back to shore"
+        },
+        {
+          "fact": "Adrian Vasquez",
+          "category": "Entities",
+          "source_text": "18-year-old Adrian Vasquez"
+        },
+        {
+          "fact": "Two friends asked Adrian Vasquez to join an expedition",
+          "category": "Events",
+          "source_text": "two friends asked 18-year-old Adrian Vasquez whether he wanted to tag along on an overnight fishing expedition."
+        },
+        {
+          "fact": "Adrian Vasquez went on an overnight fishing expedition",
+          "category": "Events",
+          "source_text": "on an overnight fishing expedition."
+        },
+        {
+          "fact": "Adrian Vasquez agreed to the expedition",
+          "category": "Events",
+          "source_text": "He said yes"
+        },
+        {
+          "fact": "Adrian Vasquez and his two friends set off",
+          "category": "Events",
+          "source_text": "the three set off"
+        },
+        {
+          "fact": "San Carlos (Panama town)",
+          "category": "Entities",
+          "source_text": "from the Panama town of San Carlos"
+        },
+        {
+          "fact": "Adrian Vasquez and friends set off on a small boat",
+          "category": "Entities",
+          "source_text": "on a small boat"
+        },
+        {
+          "fact": "Nilsa de la Cruz",
+          "category": "Entities",
+          "source_text": "Vasquez's mother, Nilsa de la Cruz"
+        },
+        {
+          "fact": "Nilsa de la Cruz recalled the events",
+          "category": "Events",
+          "source_text": "Nilsa de la Cruz, recalled."
+        },
+        {
+          "fact": "The three friends caught plenty of fish",
+          "category": "Events",
+          "source_text": "The three caught plenty of fish."
+        },
+        {
+          "fact": "The boat's engine died",
+          "category": "Events",
+          "source_text": "their boat's engine died"
+        },
+        {
+          "fact": "Vasquez ate raw fish",
+          "category": "Events",
+          "source_text": "Vazquez ate raw fish"
+        },
+        {
+          "fact": "Vasquez drank rainwater",
+          "category": "Events",
+          "source_text": "drank rainwater"
+        },
+        {
+          "fact": "Currents swept Vasquez's boat",
+          "category": "Events",
+          "source_text": "currents swept his boat"
+        },
+        {
+          "fact": "The boat was named \"the Fifty Cents\"",
+          "category": "Entities",
+          "source_text": "his boat, the Fifty Cents"
+        },
+        {
+          "fact": "Vasquez's two companions died",
+          "category": "Events",
+          "source_text": "his two companions died."
+        },
+        {
+          "fact": "Ecuadorian Rear. Adm. Freddy Garcia Calle",
+          "category": "Entities",
+          "source_text": "Ecuadorian Rear. Adm. Freddy Garcia Calle"
+        },
+        {
+          "fact": "Vasquez threw his companions' bodies into the sea",
+          "category": "Events",
+          "source_text": "Vasquez threw their bodies into the sea"
+        },
+        {
+          "fact": "Vasquez threw bodies into the sea because they had become badly decomposed",
+          "category": "Relationships",
+          "source_text": "because they had become badly decomposed."
+        },
+        {
+          "fact": "Bodies became badly decomposed",
+          "category": "Events",
+          "source_text": "because they had become badly decomposed."
+        },
+        {
+          "fact": "Fishermen spotted Vasquez's tiny vessel",
+          "category": "Events",
+          "source_text": "fishermen spotted the tiny vessel"
+        },
+        {
+          "fact": "Vasquez's boat was a tiny vessel",
+          "category": "Entities",
+          "source_text": "the tiny vessel"
+        },
+        {
+          "fact": "Galapagos Islands",
+          "category": "Entities",
+          "source_text": "north of the Galapagos Islands."
+        },
+        {
+          "fact": "Ecuadorian navy",
+          "category": "Entities",
+          "source_text": "The Ecuadorian navy"
+        },
+        {
+          "fact": "The Ecuadorian navy picked up Adrian Vasquez",
+          "category": "Events",
+          "source_text": "The Ecuadorian navy came in and picked up the teenage survivor"
+        },
+        {
+          "fact": "Adrian Vasquez was a teenage survivor",
+          "category": "Entities",
+          "source_text": "the teenage survivor"
+        },
+        {
+          "fact": "Adrian Vasquez showed severe signs of dehydration and lack of nutrition",
+          "category": "Events",
+          "source_text": "showed \"severe signs of dehydration and lack of nutrition,\""
+        },
+        {
+          "fact": "Adrian Vasquez returned home to loved ones",
+          "category": "Events",
+          "source_text": "He returned home to loved ones eager to embrace him"
+        },
+        {
+          "fact": "Hiromitsu Shinkawa",
+          "category": "Entities",
+          "source_text": "For proof, look no further than Hiromitsu Shinkawa."
+        },
+        {
+          "fact": "Hiromitsu Shinkawa was at home",
+          "category": "Events",
+          "source_text": "He was at home on March 11, 2011"
+        },
+        {
+          "fact": "A massive 9.0 magnitude earthquake struck",
+          "category": "Events",
+          "source_text": "a massive 9.0 magnitude earthquake struck"
+        },
+        {
+          "fact": "Tokyo",
+          "category": "Entities",
+          "source_text": "northeast of Tokyo."
+        },
+        {
+          "fact": "A devastating tsunami followed the earthquake",
+          "category": "Events",
+          "source_text": "A devastating tsunami followed"
+        },
+        {
+          "fact": "Tsunami waves ravaged cities and towns and damaged several nuclear reactors",
+          "category": "Events",
+          "source_text": "its 30-foot waves ravaging cities and towns and damaging several nuclear reactors."
+        },
+        {
+          "fact": "cities and towns",
+          "category": "Entities",
+          "source_text": "ravaging cities and towns"
+        },
+        {
+          "fact": "nuclear reactors",
+          "category": "Entities",
+          "source_text": "damaging several nuclear reactors."
+        },
+        {
+          "fact": "Hiromitsu Shinkawa and his wife went to collect belongings",
+          "category": "Events",
+          "source_text": "he and his wife had gone to collect some belongings"
+        },
+        {
+          "fact": "The tsunami slammed Minamisoma",
+          "category": "Events",
+          "source_text": "the tsunami slammed their hometown of Minamisoma."
+        },
+        {
+          "fact": "Minamisoma",
+          "category": "Entities",
+          "source_text": "their hometown of Minamisoma."
+        },
+        {
+          "fact": "Hiromitsu Shinkawa's home was destroyed",
+          "category": "Events",
+          "source_text": "His home was one of the tens of thousands destroyed by the the huge, powerful tsunami wave."
+        },
+        {
+          "fact": "Tens of thousands of homes were destroyed by the tsunami",
+          "category": "Numbers",
+          "source_text": "His home was one of the tens of thousands destroyed by the the huge, powerful tsunami wave."
+        },
+        {
+          "fact": "Hiromitsu Shinkawa was saved by holding onto the roof",
+          "category": "Events",
+          "source_text": "I was saved by holding onto the roof,"
+        },
+        {
+          "fact": "Kyodo News Agency",
+          "category": "Entities",
+          "source_text": "according to Kyodo News Agency."
+        },
+        {
+          "fact": "Hiromitsu Shinkawa's wife was swept away",
+          "category": "Events",
+          "source_text": "But my wife was swept away.'"
+        },
+        {
+          "fact": "Video showed Shinkawa amid debris",
+          "category": "Events",
+          "source_text": "video showed Shinkawa barely visible amid heaps of splintered wood, shattered homes and other debris"
+        },
+        {
+          "fact": "Shinkawa was amid heaps of splintered wood, shattered homes, and other debris",
+          "category": "Entities",
+          "source_text": "amid heaps of splintered wood, shattered homes and other debris"
+        },
+        {
+          "fact": "Hiromitsu Shinkawa was waving a self-made red flag",
+          "category": "Events",
+          "source_text": "He was waving a self-made red flag."
+        },
+        {
+          "fact": "Hiromitsu Shinkawa was spotted by crew",
+          "category": "Events",
+          "source_text": "After being spotted by crew aboard a Japanese Maritime Self-Defense Force destroyer"
+        },
+        {
+          "fact": "Japanese Maritime Self-Defense Force destroyer",
+          "category": "Entities",
+          "source_text": "Japanese Maritime Self-Defense Force destroyer"
+        },
+        {
+          "fact": "Hiromitsu Shinkawa was picked up in a smaller rescue boat",
+          "category": "Events",
+          "source_text": "picked up in a smaller rescue boat"
+        },
+        {
+          "fact": "Hiromitsu Shinkawa took a drink offered to him",
+          "category": "Events",
+          "source_text": "he took a drink offered to him"
+        },
+        {
+          "fact": "Hiromitsu Shinkawa burst into tears",
+          "category": "Events",
+          "source_text": "and burst into tears"
+        },
+        {
+          "fact": "Kyodo News Agency reported on Shinkawa's rescue",
+          "category": "Relationships",
+          "source_text": "Kyodo reported."
+        }
+      ]
+    }
+  }
+}

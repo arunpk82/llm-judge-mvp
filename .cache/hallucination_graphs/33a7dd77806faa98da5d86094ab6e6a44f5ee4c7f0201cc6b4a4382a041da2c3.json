@@ -1,0 +1,2032 @@
+{
+  "passes": {
+    "P1_entities": {
+      "entities": [
+        {
+          "name": "Blue Bell Creameries",
+          "type": "ORG",
+          "aliases": [
+            "Blue Bell",
+            "company",
+            "It"
+          ],
+          "attributes": {
+            "history": "108-year history"
+          }
+        },
+        {
+          "name": "manufacturing plants",
+          "type": "PLACE",
+          "aliases": [
+            "plant",
+            "facility"
+          ],
+          "attributes": {
+            "owner": "Blue Bell Creameries",
+            "status": "temporarily shut down"
+          }
+        },
+        {
+          "name": "listeria contamination",
+          "type": "OTHER",
+          "aliases": [
+            "contamination"
+          ],
+          "attributes": {
+            "cause": "listeria"
+          }
+        },
+        {
+          "name": "serving of ice cream",
+          "type": "PRODUCT",
+          "aliases": [],
+          "attributes": {
+            "origin": "manufacturing plants",
+            "condition": "listeria contamination"
+          }
+        },
+        {
+          "name": "Public health officials",
+          "type": "PERSON",
+          "aliases": [],
+          "attributes": {
+            "role": "warned consumers"
+          }
+        },
+        {
+          "name": "consumers",
+          "type": "PERSON",
+          "aliases": [],
+          "attributes": {}
+        },
+        {
+          "name": "Blue Bell-branded products",
+          "type": "PRODUCT",
+          "aliases": [
+            "other products",
+            "Blue Bell products",
+            "Blue Bell Creameries products",
+            "recalled products"
+          ],
+          "attributes": {
+            "brand": "Blue Bell",
+            "origin": "Broken Arrow, Oklahoma, plant"
+          }
+        },
+        {
+          "name": "Broken Arrow, Oklahoma, plant",
+          "type": "PLACE",
+          "aliases": [
+            "plant",
+            "Broken Arrow facility",
+            "Broken Arrow plant"
+          ],
+          "attributes": {
+            "location": "Broken Arrow, Oklahoma",
+            "owner": "Blue Bell Creameries",
+            "status": "shutting down",
+            "production_date_of_contaminated_cup": "April 2014"
+          }
+        },
+        {
+          "name": "Broken Arrow",
+          "type": "PLACE",
+          "aliases": [],
+          "attributes": {
+            "type": "city",
+            "state": "Oklahoma"
+          }
+        },
+        {
+          "name": "Oklahoma",
+          "type": "PLACE",
+          "aliases": [],
+          "attributes": {
+            "type": "state"
+          }
+        },
+        {
+          "name": "3-ounce servings of Blue Bell ice cream",
+          "type": "PRODUCT",
+          "aliases": [
+            "3-ounce servings",
+            "3-ounce cup servings"
+          ],
+          "attributes": {
+            "brand": "Blue Bell",
+            "size": "3-ounce",
+            "packaging": "containers marked with O, P, Q, R, S or T",
+            "destination": "institutions"
+          }
+        },
+        {
+          "name": "institutions",
+          "type": "ORG",
+          "aliases": [],
+          "attributes": {
+            "description": "received 3-ounce servings of Blue Bell ice cream"
+          }
+        },
+        {
+          "name": "containers marked with the letters O, P, Q, R, S or T",
+          "type": "PRODUCT",
+          "aliases": [],
+          "attributes": {
+            "type": "packaging",
+            "marking": "O, P, Q, R, S or T"
+          }
+        },
+        {
+          "name": "coding date",
+          "type": "OTHER",
+          "aliases": [],
+          "attributes": {}
+        },
+        {
+          "name": "Centers for Disease Control and Prevention",
+          "type": "ORG",
+          "aliases": [
+            "CDC"
+          ],
+          "attributes": {}
+        },
+        {
+          "name": "Blue Bell ice cream",
+          "type": "PRODUCT",
+          "aliases": [
+            "ice cream"
+          ],
+          "attributes": {
+            "brand": "Blue Bell"
+          }
+        },
+        {
+          "name": "listeria outbreak",
+          "type": "OTHER",
+          "aliases": [
+            "Kansas outbreak",
+            "Kansas listeria outbreak",
+            "outbreak"
+          ],
+          "attributes": {
+            "location": "Kansas",
+            "cause": "listeria"
+          }
+        },
+        {
+          "name": "Kansas hospital",
+          "type": "ORG",
+          "aliases": [
+            "hospital"
+          ],
+          "attributes": {
+            "location": "Kansas",
+            "served": "company's ice cream"
+          }
+        },
+        {
+          "name": "Kansas",
+          "type": "PLACE",
+          "aliases": [],
+          "attributes": {
+            "type": "state"
+          }
+        },
+        {
+          "name": "Listeria monocytogenes",
+          "type": "OTHER",
+          "aliases": [
+            "bacteria",
+            "listeria bacteria",
+            "listeria"
+          ],
+          "attributes": {
+            "type": "bacteria"
+          }
+        },
+        {
+          "name": "cup of ice cream",
+          "type": "PRODUCT",
+          "aliases": [
+            "cup",
+            "product"
+          ],
+          "attributes": {
+            "condition": "listeria monocytogenes found",
+            "origin": "Broken Arrow plant",
+            "production_date": "April 2014"
+          }
+        },
+        {
+          "name": "April 2014",
+          "type": "OTHER",
+          "aliases": [],
+          "attributes": {
+            "type": "date"
+          }
+        },
+        {
+          "name": "samples of the same product",
+          "type": "PRODUCT",
+          "aliases": [],
+          "attributes": {
+            "origin": "plant",
+            "condition": "listeria bacteria found"
+          }
+        },
+        {
+          "name": "hospital sample",
+          "type": "OTHER",
+          "aliases": [],
+          "attributes": {
+            "type": "bacteria sample",
+            "origin": "Kansas hospital",
+            "genetically_matched": "factory sample"
+          }
+        },
+        {
+          "name": "factory sample",
+          "type": "OTHER",
+          "aliases": [],
+          "attributes": {
+            "type": "bacteria sample",
+            "origin": "Broken Arrow plant",
+            "genetically_matched": "hospital sample"
+          }
+        },
+        {
+          "name": "listeria samples",
+          "type": "OTHER",
+          "aliases": [
+            "recovered samples"
+          ],
+          "attributes": {
+            "type": "bacteria sample"
+          }
+        },
+        {
+          "name": "patients",
+          "type": "PERSON",
+          "aliases": [],
+          "attributes": {
+            "condition": "infected in the Kansas outbreak",
+            "condition_2": "came down with listeriosis"
+          }
+        },
+        {
+          "name": "Texas",
+          "type": "PLACE",
+          "aliases": [],
+          "attributes": {
+            "type": "state"
+          }
+        },
+        {
+          "name": "listeriosis",
+          "type": "OTHER",
+          "aliases": [
+            "infection"
+          ],
+          "attributes": {
+            "type": "disease",
+            "cause": "eating food contaminated with listeria",
+            "symptoms": "fever, muscle aches, diarrhea, gastrointestinal symptoms",
+            "affects": "elderly, pregnant women, newborns, people with weakened immune systems"
+          }
+        },
+        {
+          "name": "2010",
+          "type": "OTHER",
+          "aliases": [],
+          "attributes": {
+            "type": "year"
+          }
+        },
+        {
+          "name": "2014",
+          "type": "OTHER",
+          "aliases": [],
+          "attributes": {
+            "type": "year"
+          }
+        },
+        {
+          "name": "hospital (Texas)",
+          "type": "ORG",
+          "aliases": [
+            "hospital"
+          ],
+          "attributes": {
+            "location": "Texas",
+            "served": "3-ounce Blue Bell cups"
+          }
+        },
+        {
+          "name": "3-ounce Blue Bell cups",
+          "type": "PRODUCT",
+          "aliases": [],
+          "attributes": {
+            "brand": "Blue Bell",
+            "size": "3-ounce",
+            "served_at": "hospital in Texas"
+          }
+        },
+        {
+          "name": "infections",
+          "type": "OTHER",
+          "aliases": [],
+          "attributes": {
+            "type": "general condition"
+          }
+        },
+        {
+          "name": "Investigation",
+          "type": "OTHER",
+          "aliases": [],
+          "attributes": {
+            "status": "ongoing",
+            "purpose": "determine whether illnesses are related to exposure to Blue Bell products"
+          }
+        },
+        {
+          "name": "illnesses",
+          "type": "OTHER",
+          "aliases": [],
+          "attributes": {
+            "type": "general condition",
+            "related_to": "listeriosis"
+          }
+        },
+        {
+          "name": "early March",
+          "type": "OTHER",
+          "aliases": [],
+          "attributes": {
+            "type": "date"
+          }
+        },
+        {
+          "name": "plant in Texas",
+          "type": "PLACE",
+          "aliases": [],
+          "attributes": {
+            "location": "Texas",
+            "owner": "Blue Bell Creameries",
+            "products_recalled": "group of products"
+          }
+        },
+        {
+          "name": "group of products",
+          "type": "PRODUCT",
+          "aliases": [],
+          "attributes": {
+            "brand": "Blue Bell",
+            "origin": "plant in Texas",
+            "status": "recalled"
+          }
+        },
+        {
+          "name": "recall",
+          "type": "OTHER",
+          "aliases": [
+            "product recall"
+          ],
+          "attributes": {
+            "status": "ongoing",
+            "first_in_history": "108-year history of Blue Bell Creameries"
+          }
+        },
+        {
+          "name": "Five people",
+          "type": "PERSON",
+          "aliases": [
+            "five of them"
+          ],
+          "attributes": {
+            "count": 5,
+            "status": "infected",
+            "location": "Kansas",
+            "timeframe": "past year",
+            "condition": "hospitalized",
+            "consumed": "milkshakes made with Blue Bell ice cream"
+          }
+        },
+        {
+          "name": "three",
+          "type": "PERSON",
+          "aliases": [],
+          "attributes": {
+            "count": 3,
+            "status": "died",
+            "timeframe": "past year",
+            "related_to": "Five people"
+          }
+        },
+        {
+          "name": "past year",
+          "type": "OTHER",
+          "aliases": [],
+          "attributes": {
+            "type": "timeframe"
+          }
+        },
+        {
+          "name": "four of them",
+          "type": "PERSON",
+          "aliases": [],
+          "attributes": {
+            "count": 4,
+            "consumed": "milkshakes made with Blue Bell ice cream",
+            "condition": "developed infection",
+            "related_to": "Five people"
+          }
+        },
+        {
+          "name": "milkshakes",
+          "type": "PRODUCT",
+          "aliases": [],
+          "attributes": {
+            "ingredients": "made with Blue Bell ice cream"
+          }
+        },
+        {
+          "name": "Paul Kruse",
+          "type": "PERSON",
+          "aliases": [],
+          "attributes": {
+            "role": "Blue Bell CEO and president"
+          }
+        },
+        {
+          "name": "statement",
+          "type": "OTHER",
+          "aliases": [],
+          "attributes": {
+            "source": "Paul Kruse",
+            "source_2": "Blue Bell website"
+          }
+        },
+        {
+          "name": "those who have been affected",
+          "type": "PERSON",
+          "aliases": [],
+          "attributes": {
+            "condition": "affected by the listeria outbreak"
+          }
+        },
+        {
+          "name": "individuals",
+          "type": "PERSON",
+          "aliases": [],
+          "attributes": {
+            "role": "advised to check freezers"
+          }
+        },
+        {
+          "name": "freezers",
+          "type": "OTHER",
+          "aliases": [],
+          "attributes": {
+            "purpose": "store recalled products"
+          }
+        },
+        {
+          "name": "website",
+          "type": "OTHER",
+          "aliases": [],
+          "attributes": {
+            "owner": "Blue Bell"
+          }
+        },
+        {
+          "name": "Blue Bell ice cream half gallons",
+          "type": "PRODUCT",
+          "aliases": [],
+          "attributes": {
+            "brand": "Blue Bell",
+            "size": "half gallon",
+            "status": "not included in recall"
+          }
+        },
+        {
+          "name": "pints",
+          "type": "PRODUCT",
+          "aliases": [],
+          "attributes": {
+            "brand": "Blue Bell",
+            "size": "pint",
+            "status": "not included in recall"
+          }
+        },
+        {
+          "name": "quarts",
+          "type": "PRODUCT",
+          "aliases": [],
+          "attributes": {
+            "brand": "Blue Bell",
+            "size": "quart",
+            "status": "not included in recall"
+          }
+        },
+        {
+          "name": "3 gallons",
+          "type": "PRODUCT",
+          "aliases": [],
+          "attributes": {
+            "brand": "Blue Bell",
+            "size": "3 gallon",
+            "status": "not included in recall"
+          }
+        },
+        {
+          "name": "other 3 oz. cups",
+          "type": "PRODUCT",
+          "aliases": [],
+          "attributes": {
+            "brand": "Blue Bell",
+            "size": "3 oz.",
+            "status": "not included in recall"
+          }
+        },
+        {
+          "name": "food",
+          "type": "PRODUCT",
+          "aliases": [],
+          "attributes": {
+            "condition": "contaminated with listeria"
+          }
+        },
+        {
+          "name": "the elderly",
+          "type": "PERSON",
+          "aliases": [],
+          "attributes": {
+            "demographic": "primarily affected by listeriosis"
+          }
+        },
+        {
+          "name": "pregnant women",
+          "type": "PERSON",
+          "aliases": [],
+          "attributes": {
+            "demographic": "primarily affected by listeriosis",
+            "risk": "cervical infections, stillbirth, spontaneous abortion"
+          }
+        },
+        {
+          "name": "newborns",
+          "type": "PERSON",
+          "aliases": [],
+          "attributes": {
+            "demographic": "primarily affected by listeriosis"
+          }
+        },
+        {
+          "name": "people with weakened immune systems",
+          "type": "PERSON",
+          "aliases": [],
+          "attributes": {
+            "demographic": "primarily affected by listeriosis"
+          }
+        },
+        {
+          "name": "fever",
+          "type": "OTHER",
+          "aliases": [],
+          "attributes": {
+            "type": "symptom of listeria infection"
+          }
+        },
+        {
+          "name": "muscle aches",
+          "type": "OTHER",
+          "aliases": [],
+          "attributes": {
+            "type": "symptom of listeria infection"
+          }
+        },
+        {
+          "name": "diarrhea",
+          "type": "OTHER",
+          "aliases": [],
+          "attributes": {
+            "type": "symptom of listeria infection"
+          }
+        },
+        {
+          "name": "gastrointestinal symptoms",
+          "type": "OTHER",
+          "aliases": [],
+          "attributes": {
+            "type": "symptom category of listeria infection"
+          }
+        },
+        {
+          "name": "United States",
+          "type": "PLACE",
+          "aliases": [],
+          "attributes": {
+            "type": "country"
+          }
+        },
+        {
+          "name": "1,600 people",
+          "type": "PERSON",
+          "aliases": [],
+          "attributes": {
+            "count": 1600,
+            "status": "become seriously ill each year",
+            "location": "United States"
+          }
+        },
+        {
+          "name": "death",
+          "type": "OTHER",
+          "aliases": [],
+          "attributes": {
+            "outcome": "approximately 16% of illnesses"
+          }
+        },
+        {
+          "name": "Cervical infections",
+          "type": "OTHER",
+          "aliases": [],
+          "attributes": {
+            "cause": "listeriosis in pregnant women",
+            "outcome": "stillbirth or spontaneous abortion"
+          }
+        },
+        {
+          "name": "stillbirth",
+          "type": "OTHER",
+          "aliases": [],
+          "attributes": {
+            "outcome": "from cervical infections caused by listeriosis"
+          }
+        },
+        {
+          "name": "spontaneous abortion",
+          "type": "OTHER",
+          "aliases": [],
+          "attributes": {
+            "outcome": "from cervical infections caused by listeriosis"
+          }
+        },
+        {
+          "name": "second or third trimesters",
+          "type": "OTHER",
+          "aliases": [],
+          "attributes": {
+            "type": "timeframe during pregnancy"
+          }
+        },
+        {
+          "name": "CNN",
+          "type": "ORG",
+          "aliases": [],
+          "attributes": {}
+        },
+        {
+          "name": "Debra Goldschmidt",
+          "type": "PERSON",
+          "aliases": [],
+          "attributes": {
+            "role": "contributor to this report",
+            "organization": "CNN"
+          }
+        },
+        {
+          "name": "Amanda Watts",
+          "type": "PERSON",
+          "aliases": [],
+          "attributes": {
+            "role": "contributor to this report",
+            "organization": "CNN"
+          }
+        },
+        {
+          "name": "Jacque Wilson",
+          "type": "PERSON",
+          "aliases": [],
+          "attributes": {
+            "role": "contributor to this report",
+            "organization": "CNN"
+          }
+        },
+        {
+          "name": "report",
+          "type": "OTHER",
+          "aliases": [],
+          "attributes": {
+            "contributors": "CNN's Debra Goldschmidt, Amanda Watts and Jacque Wilson"
+          }
+        }
+      ]
+    },
+    "P2_events": {
+      "events": [
+        {
+          "who": "Blue Bell ice cream",
+          "action": "has temporarily shut down",
+          "target": "one of its manufacturing plants",
+          "where": "N/A",
+          "when": "N/A",
+          "result": "over the discovery of listeria contamination",
+          "sequence": 1
+        },
+        {
+          "who": "N/A",
+          "action": "was discovered",
+          "target": "listeria contamination",
+          "where": "in a serving of ice cream",
+          "when": "N/A",
+          "result": "N/A",
+          "sequence": 2
+        },
+        {
+          "who": "a serving of ice cream",
+          "action": "originating",
+          "target": "N/A",
+          "where": "from that plant",
+          "when": "N/A",
+          "result": "N/A",
+          "sequence": 3
+        },
+        {
+          "who": "Public health officials",
+          "action": "warned",
+          "target": "consumers",
+          "where": "N/A",
+          "when": "Friday",
+          "result": "not to eat any Blue Bell-branded products",
+          "sequence": 4
+        },
+        {
+          "who": "the company",
+          "action": "made",
+          "target": "Blue Bell-branded products",
+          "where": "at the company's Broken Arrow, Oklahoma, plant",
+          "when": "N/A",
+          "result": "N/A",
+          "sequence": 5
+        },
+        {
+          "who": "That",
+          "action": "includes",
+          "target": "3-ounce servings of Blue Bell ice cream",
+          "where": "N/A",
+          "when": "N/A",
+          "result": "N/A",
+          "sequence": 6
+        },
+        {
+          "who": "3-ounce servings of Blue Bell ice cream",
+          "action": "went",
+          "target": "to institutions",
+          "where": "N/A",
+          "when": "N/A",
+          "result": "N/A",
+          "sequence": 7
+        },
+        {
+          "who": "N/A",
+          "action": "marked",
+          "target": "containers",
+          "where": "N/A",
+          "when": "N/A",
+          "result": "with the letters O, P, Q, R, S or T behind the coding date",
+          "sequence": 8
+        },
+        {
+          "who": "The warning by the Centers for Disease Control and Prevention",
+          "action": "does not affect",
+          "target": "other Blue Bell ice cream",
+          "where": "N/A",
+          "when": "N/A",
+          "result": "N/A",
+          "sequence": 9
+        },
+        {
+          "who": "N/A",
+          "action": "not made",
+          "target": "other 3-ounce servings",
+          "where": "at the plant",
+          "when": "N/A",
+          "result": "N/A",
+          "sequence": 10
+        },
+        {
+          "who": "Blue Bell",
+          "action": "has recalled",
+          "target": "other products",
+          "where": "N/A",
+          "when": "N/A",
+          "result": "N/A",
+          "sequence": 11
+        },
+        {
+          "who": "The company",
+          "action": "is shutting down",
+          "target": "the Broken Arrow facility",
+          "where": "N/A",
+          "when": "N/A",
+          "result": "out of an abundance of caution",
+          "sequence": 12
+        },
+        {
+          "who": "The company",
+          "action": "search",
+          "target": "for a possible cause of contamination",
+          "where": "N/A",
+          "when": "N/A",
+          "result": "N/A",
+          "sequence": 13
+        },
+        {
+          "who": "Blue Bell",
+          "action": "has taken action",
+          "target": "N/A",
+          "where": "N/A",
+          "when": "N/A",
+          "result": "in light of a listeria outbreak",
+          "sequence": 14
+        },
+        {
+          "who": "a listeria outbreak",
+          "action": "occurred",
+          "target": "N/A",
+          "where": "at a Kansas hospital",
+          "when": "N/A",
+          "result": "N/A",
+          "sequence": 15
+        },
+        {
+          "who": "a Kansas hospital",
+          "action": "served",
+          "target": "the company's ice cream",
+          "where": "N/A",
+          "when": "N/A",
+          "result": "N/A",
+          "sequence": 16
+        },
+        {
+          "who": "N/A",
+          "action": "was recently found",
+          "target": "Listeria monocytogenes",
+          "where": "in a cup of ice cream",
+          "when": "recently",
+          "result": "N/A",
+          "sequence": 17
+        },
+        {
+          "who": "N/A",
+          "action": "recovered",
+          "target": "a cup of ice cream",
+          "where": "from the hospital",
+          "when": "N/A",
+          "result": "N/A",
+          "sequence": 18
+        },
+        {
+          "who": "the bacteria",
+          "action": "contaminated",
+          "target": "The cup",
+          "where": "N/A",
+          "when": "N/A",
+          "result": "N/A",
+          "sequence": 19
+        },
+        {
+          "who": "N/A",
+          "action": "was produced",
+          "target": "The cup",
+          "where": "at the Broken Arrow plant",
+          "when": "April 2014",
+          "result": "N/A",
+          "sequence": 20
+        },
+        {
+          "who": "Blue Bell",
+          "action": "said",
+          "target": "The cup contaminated with the bacteria was produced at the Broken Arrow plant in April 2014",
+          "where": "N/A",
+          "when": "N/A",
+          "result": "N/A",
+          "sequence": 21
+        },
+        {
+          "who": "N/A",
+          "action": "was found",
+          "target": "listeria bacteria",
+          "where": "in additional samples of the same product",
+          "when": "N/A",
+          "result": "N/A",
+          "sequence": 22
+        },
+        {
+          "who": "N/A",
+          "action": "were recovered",
+          "target": "additional samples of the same product",
+          "where": "from the plant",
+          "when": "N/A",
+          "result": "N/A",
+          "sequence": 23
+        },
+        {
+          "who": "The bacteria in the hospital sample and the factory sample",
+          "action": "appeared to match",
+          "target": "each other",
+          "where": "N/A",
+          "when": "N/A",
+          "result": "genetically",
+          "sequence": 24
+        },
+        {
+          "who": "the CDC",
+          "action": "said",
+          "target": "The bacteria in the hospital sample and the factory sample appeared to match each other genetically",
+          "where": "N/A",
+          "when": "N/A",
+          "result": "N/A",
+          "sequence": 25
+        },
+        {
+          "who": "they",
+          "action": "did not appear identical",
+          "target": "listeria samples",
+          "where": "N/A",
+          "when": "N/A",
+          "result": "N/A",
+          "sequence": 26
+        },
+        {
+          "who": "N/A",
+          "action": "taken",
+          "target": "listeria samples",
+          "where": "from patients",
+          "when": "N/A",
+          "result": "N/A",
+          "sequence": 27
+        },
+        {
+          "who": "listeria",
+          "action": "infected",
+          "target": "patients",
+          "where": "in the Kansas outbreak",
+          "when": "N/A",
+          "result": "N/A",
+          "sequence": 28
+        },
+        {
+          "who": "a separate outbreak",
+          "action": "occurred",
+          "target": "N/A",
+          "where": "in Texas",
+          "when": "N/A",
+          "result": "N/A",
+          "sequence": 29
+        },
+        {
+          "who": "the CDC",
+          "action": "did find",
+          "target": "that listeria samples matched the listeria in recovered samples",
+          "where": "N/A",
+          "when": "N/A",
+          "result": "N/A",
+          "sequence": 30
+        },
+        {
+          "who": "N/A",
+          "action": "taken",
+          "target": "listeria samples",
+          "where": "from patients",
+          "when": "N/A",
+          "result": "N/A",
+          "sequence": 31
+        },
+        {
+          "who": "patients",
+          "action": "came down with",
+          "target": "listeriosis",
+          "where": "N/A",
+          "when": "between 2010 and 2014",
+          "result": "N/A",
+          "sequence": 32
+        },
+        {
+          "who": "a hospital",
+          "action": "served",
+          "target": "3-ounce Blue Bell cups",
+          "where": "N/A",
+          "when": "N/A",
+          "result": "N/A",
+          "sequence": 33
+        },
+        {
+          "who": "listeria samples",
+          "action": "matched",
+          "target": "the listeria in recovered samples",
+          "where": "N/A",
+          "when": "N/A",
+          "result": "N/A",
+          "sequence": 34
+        },
+        {
+          "who": "None of this",
+          "action": "means",
+          "target": "the ice cream is the source of either spate of the infections",
+          "where": "N/A",
+          "when": "N/A",
+          "result": "N/A",
+          "sequence": 35
+        },
+        {
+          "who": "Investigation",
+          "action": "is ongoing",
+          "target": "N/A",
+          "where": "N/A",
+          "when": "N/A",
+          "result": "to determine whether these illnesses are related to exposure to Blue Bell products",
+          "sequence": 36
+        },
+        {
+          "who": "N/A",
+          "action": "are related",
+          "target": "these illnesses",
+          "where": "N/A",
+          "when": "N/A",
+          "result": "to exposure to Blue Bell products",
+          "sequence": 37
+        },
+        {
+          "who": "the CDC",
+          "action": "said",
+          "target": "Investigation to determine whether these illnesses are related to exposure to Blue Bell products is ongoing",
+          "where": "N/A",
+          "when": "N/A",
+          "result": "N/A",
+          "sequence": 38
+        },
+        {
+          "who": "Blue Bell",
+          "action": "recalled",
+          "target": "a group of products",
+          "where": "N/A",
+          "when": "early March",
+          "result": "in light of the Kansas listeria outbreak",
+          "sequence": 39
+        },
+        {
+          "who": "N/A",
+          "action": "made",
+          "target": "a group of products",
+          "where": "at a plant in Texas",
+          "when": "N/A",
+          "result": "N/A",
+          "sequence": 40
+        },
+        {
+          "who": "It",
+          "action": "later added",
+          "target": "3-ounce cup servings",
+          "where": "to the recall",
+          "when": "N/A",
+          "result": "N/A",
+          "sequence": 41
+        },
+        {
+          "who": "listeria",
+          "action": "infected",
+          "target": "Five people",
+          "where": "in Kansas",
+          "when": "in the past year",
+          "result": "N/A",
+          "sequence": 42
+        },
+        {
+          "who": "three",
+          "action": "died",
+          "target": "N/A",
+          "where": "in Kansas",
+          "when": "in the past year",
+          "result": "from listeria",
+          "sequence": 43
+        },
+        {
+          "who": "N/A",
+          "action": "might be linked",
+          "target": "listeria",
+          "where": "N/A",
+          "when": "N/A",
+          "result": "to Blue Bell Creameries products",
+          "sequence": 44
+        },
+        {
+          "who": "N/A",
+          "action": "were hospitalized",
+          "target": "All five of them",
+          "where": "at the same hospital",
+          "when": "before developing listeriosis",
+          "result": "N/A",
+          "sequence": 45
+        },
+        {
+          "who": "All five of them",
+          "action": "developing",
+          "target": "listeriosis",
+          "where": "N/A",
+          "when": "N/A",
+          "result": "N/A",
+          "sequence": 46
+        },
+        {
+          "who": "the CDC",
+          "action": "said",
+          "target": "All five of them were hospitalized at the same hospital before developing listeriosis",
+          "where": "N/A",
+          "when": "N/A",
+          "result": "N/A",
+          "sequence": 47
+        },
+        {
+          "who": "At least four of them",
+          "action": "had consumed",
+          "target": "milkshakes",
+          "where": "N/A",
+          "when": "before developing the infection",
+          "result": "N/A",
+          "sequence": 48
+        },
+        {
+          "who": "N/A",
+          "action": "made",
+          "target": "milkshakes",
+          "where": "N/A",
+          "when": "N/A",
+          "result": "with Blue Bell ice cream",
+          "sequence": 49
+        },
+        {
+          "who": "At least four of them",
+          "action": "developing",
+          "target": "the infection",
+          "where": "N/A",
+          "when": "N/A",
+          "result": "N/A",
+          "sequence": 50
+        },
+        {
+          "who": "We",
+          "action": "are devastated",
+          "target": "N/A",
+          "where": "N/A",
+          "when": "N/A",
+          "result": "N/A",
+          "sequence": 51
+        },
+        {
+          "who": "We",
+          "action": "know",
+          "target": "that Blue Bell has to be and can be better than this",
+          "where": "N/A",
+          "when": "N/A",
+          "result": "N/A",
+          "sequence": 52
+        },
+        {
+          "who": "Blue Bell",
+          "action": "has to be and can be better",
+          "target": "than this",
+          "where": "N/A",
+          "when": "N/A",
+          "result": "N/A",
+          "sequence": 53
+        },
+        {
+          "who": "Paul Kruse, Blue Bell CEO and president",
+          "action": "said",
+          "target": "N/A",
+          "where": "in a statement",
+          "when": "N/A",
+          "result": "N/A",
+          "sequence": 54
+        },
+        {
+          "who": "Quality and safety",
+          "action": "have always been",
+          "target": "our top priorities",
+          "where": "N/A",
+          "when": "N/A",
+          "result": "N/A",
+          "sequence": 55
+        },
+        {
+          "who": "We",
+          "action": "are deeply saddened",
+          "target": "N/A",
+          "where": "N/A",
+          "when": "N/A",
+          "result": "N/A",
+          "sequence": 56
+        },
+        {
+          "who": "We",
+          "action": "are concerned",
+          "target": "for all those who have been affected",
+          "where": "N/A",
+          "when": "N/A",
+          "result": "N/A",
+          "sequence": 57
+        },
+        {
+          "who": "N/A",
+          "action": "have been affected",
+          "target": "all those",
+          "where": "N/A",
+          "when": "N/A",
+          "result": "N/A",
+          "sequence": 58
+        },
+        {
+          "who": "The CDC",
+          "action": "advises",
+          "target": "that individuals and institutions should check their freezers for the recalled products and throw them away",
+          "where": "N/A",
+          "when": "N/A",
+          "result": "N/A",
+          "sequence": 59
+        },
+        {
+          "who": "individuals and institutions",
+          "action": "should check",
+          "target": "their freezers",
+          "where": "N/A",
+          "when": "N/A",
+          "result": "for the recalled products",
+          "sequence": 60
+        },
+        {
+          "who": "individuals and institutions",
+          "action": "throw",
+          "target": "them",
+          "where": "away",
+          "when": "N/A",
+          "result": "N/A",
+          "sequence": 61
+        },
+        {
+          "who": "Blue Bell",
+          "action": "were recalled",
+          "target": "the products",
+          "where": "N/A",
+          "when": "N/A",
+          "result": "N/A",
+          "sequence": 62
+        },
+        {
+          "who": "Blue Bell",
+          "action": "said",
+          "target": "this recall in no way includes Blue Bell ice cream half gallons, pints, quarts, 3 gallons or other 3 oz. cups.",
+          "where": "on its website",
+          "when": "N/A",
+          "result": "N/A",
+          "sequence": 63
+        },
+        {
+          "who": "this recall",
+          "action": "in no way includes",
+          "target": "Blue Bell ice cream half gallons, pints, quarts, 3 gallons or other 3 oz. cups",
+          "where": "N/A",
+          "when": "N/A",
+          "result": "N/A",
+          "sequence": 64
+        },
+        {
+          "who": "This",
+          "action": "has been",
+          "target": "the first product recall",
+          "where": "in the 108-year history of Blue Bell Creameries",
+          "when": "N/A",
+          "result": "N/A",
+          "sequence": 65
+        },
+        {
+          "who": "the company",
+          "action": "said",
+          "target": "This has been the first product recall in the 108-year history of Blue Bell Creameries",
+          "where": "N/A",
+          "when": "N/A",
+          "result": "N/A",
+          "sequence": 66
+        },
+        {
+          "who": "Listeriosis",
+          "action": "is",
+          "target": "a serious infection",
+          "where": "N/A",
+          "when": "N/A",
+          "result": "N/A",
+          "sequence": 67
+        },
+        {
+          "who": "eating food contaminated with listeria",
+          "action": "caused",
+          "target": "a serious infection",
+          "where": "N/A",
+          "when": "N/A",
+          "result": "N/A",
+          "sequence": 68
+        },
+        {
+          "who": "listeria",
+          "action": "contaminated",
+          "target": "food",
+          "where": "N/A",
+          "when": "N/A",
+          "result": "N/A",
+          "sequence": 69
+        },
+        {
+          "who": "Listeriosis",
+          "action": "primarily affects",
+          "target": "the elderly, pregnant women, newborns and people with weakened immune systems",
+          "where": "N/A",
+          "when": "N/A",
+          "result": "N/A",
+          "sequence": 70
+        },
+        {
+          "who": "Symptoms of a listeria infection",
+          "action": "are",
+          "target": "fever and muscle aches",
+          "where": "N/A",
+          "when": "N/A",
+          "result": "N/A",
+          "sequence": 71
+        },
+        {
+          "who": "N/A",
+          "action": "associated",
+          "target": "fever and muscle aches",
+          "where": "N/A",
+          "when": "N/A",
+          "result": "with diarrhea or other gastrointestinal symptoms",
+          "sequence": 72
+        },
+        {
+          "who": "an estimated 1,600 people",
+          "action": "become seriously ill",
+          "target": "N/A",
+          "where": "In the United States",
+          "when": "each year",
+          "result": "N/A",
+          "sequence": 73
+        },
+        {
+          "who": "approximately 16% of these illnesses",
+          "action": "result in",
+          "target": "death",
+          "where": "N/A",
+          "when": "N/A",
+          "result": "N/A",
+          "sequence": 74
+        },
+        {
+          "who": "listeriosis",
+          "action": "caused",
+          "target": "Cervical infections",
+          "where": "in pregnant women",
+          "when": "N/A",
+          "result": "N/A",
+          "sequence": 75
+        },
+        {
+          "who": "Cervical infections",
+          "action": "may result in",
+          "target": "stillbirth or spontaneous abortion",
+          "where": "N/A",
+          "when": "during the second or third trimesters",
+          "result": "N/A",
+          "sequence": 76
+        },
+        {
+          "who": "CNN's Debra Goldschmidt, Amanda Watts and Jacque Wilson",
+          "action": "contributed",
+          "target": "to this report",
+          "where": "N/A",
+          "when": "N/A",
+          "result": "N/A",
+          "sequence": 77
+        }
+      ]
+    },
+    "P3_relationships": {
+      "relationships": [
+        {
+          "entity1": "Blue Bell",
+          "entity2": "manufacturing plants",
+          "relationship": "operates",
+          "NOT_relationships": []
+        },
+        {
+          "entity1": "Blue Bell",
+          "entity2": "Broken Arrow, Oklahoma, plant",
+          "relationship": "shut_down",
+          "NOT_relationships": []
+        },
+        {
+          "entity1": "listeria contamination",
+          "entity2": "serving of ice cream",
+          "relationship": "found_in",
+          "NOT_relationships": []
+        },
+        {
+          "entity1": "Public health officials",
+          "entity2": "consumers",
+          "relationship": "warned",
+          "NOT_relationships": []
+        },
+        {
+          "entity1": "Blue Bell-branded products",
+          "entity2": "Broken Arrow, Oklahoma, plant",
+          "relationship": "manufactured_at",
+          "NOT_relationships": []
+        },
+        {
+          "entity1": "3-ounce servings of Blue Bell ice cream",
+          "entity2": "Broken Arrow, Oklahoma, plant",
+          "relationship": "originated_from",
+          "NOT_relationships": []
+        },
+        {
+          "entity1": "Centers for Disease Control and Prevention (CDC)",
+          "entity2": "warning",
+          "relationship": "issued",
+          "NOT_relationships": []
+        },
+        {
+          "entity1": "Blue Bell",
+          "entity2": "other products",
+          "relationship": "recalled",
+          "NOT_relationships": []
+        },
+        {
+          "entity1": "listeria outbreak",
+          "entity2": "Kansas hospital",
+          "relationship": "occurred_at",
+          "NOT_relationships": []
+        },
+        {
+          "entity1": "Kansas hospital",
+          "entity2": "Blue Bell ice cream",
+          "relationship": "served",
+          "NOT_relationships": []
+        },
+        {
+          "entity1": "Listeria monocytogenes",
+          "entity2": "cup of ice cream",
+          "relationship": "found_in",
+          "NOT_relationships": []
+        },
+        {
+          "entity1": "cup of ice cream",
+          "entity2": "Kansas hospital",
+          "relationship": "recovered_from",
+          "NOT_relationships": []
+        },
+        {
+          "entity1": "cup contaminated with the bacteria",
+          "entity2": "Broken Arrow, Oklahoma, plant",
+          "relationship": "produced_at",
+          "NOT_relationships": []
+        },
+        {
+          "entity1": "listeria bacteria",
+          "entity2": "additional samples of the same product",
+          "relationship": "found_in",
+          "NOT_relationships": []
+        },
+        {
+          "entity1": "additional samples of the same product",
+          "entity2": "Broken Arrow, Oklahoma, plant",
+          "relationship": "recovered_from",
+          "NOT_relationships": []
+        },
+        {
+          "entity1": "bacteria in the hospital sample",
+          "entity2": "bacteria in the factory sample",
+          "relationship": "genetically_matched",
+          "NOT_relationships": []
+        },
+        {
+          "entity1": "bacteria in the hospital sample and the factory sample",
+          "entity2": "listeria samples taken from patients infected in the Kansas outbreak",
+          "relationship": "not_genetically_identical_to",
+          "NOT_relationships": [
+            "genetically_identical_to"
+          ]
+        },
+        {
+          "entity1": "listeria samples taken from patients who came down with listeriosis",
+          "entity2": "listeria in recovered samples",
+          "relationship": "matched",
+          "NOT_relationships": []
+        },
+        {
+          "entity1": "hospital in Texas",
+          "entity2": "3-ounce Blue Bell cups",
+          "relationship": "served",
+          "NOT_relationships": []
+        },
+        {
+          "entity1": "listeriosis",
+          "entity2": "patients who came down with listeriosis",
+          "relationship": "affected",
+          "NOT_relationships": []
+        },
+        {
+          "entity1": "Centers for Disease Control and Prevention (CDC)",
+          "entity2": "investigation",
+          "relationship": "conducting",
+          "NOT_relationships": []
+        },
+        {
+          "entity1": "Blue Bell",
+          "entity2": "group of products made at a plant in Texas",
+          "relationship": "recalled",
+          "NOT_relationships": []
+        },
+        {
+          "entity1": "group of products",
+          "entity2": "plant in Texas",
+          "relationship": "manufactured_at",
+          "NOT_relationships": []
+        },
+        {
+          "entity1": "Blue Bell",
+          "entity2": "3-ounce cup servings",
+          "relationship": "added_to_recall",
+          "NOT_relationships": []
+        },
+        {
+          "entity1": "listeria",
+          "entity2": "Five people in Kansas",
+          "relationship": "infected",
+          "NOT_relationships": []
+        },
+        {
+          "entity1": "Five people in Kansas",
+          "entity2": "listeria",
+          "relationship": "died_from",
+          "NOT_relationships": []
+        },
+        {
+          "entity1": "listeria",
+          "entity2": "Blue Bell Creameries products",
+          "relationship": "potentially_linked_to",
+          "NOT_relationships": [
+            "linked_to"
+          ]
+        },
+        {
+          "entity1": "Five people in Kansas",
+          "entity2": "Kansas hospital",
+          "relationship": "hospitalized_at",
+          "NOT_relationships": []
+        },
+        {
+          "entity1": "Five people in Kansas",
+          "entity2": "listeriosis",
+          "relationship": "developed",
+          "NOT_relationships": []
+        },
+        {
+          "entity1": "At least four of the five people in Kansas",
+          "entity2": "milkshakes made with Blue Bell ice cream",
+          "relationship": "consumed",
+          "NOT_relationships": []
+        },
+        {
+          "entity1": "milkshakes",
+          "entity2": "Blue Bell ice cream",
+          "relationship": "made_with",
+          "NOT_relationships": []
+        },
+        {
+          "entity1": "Paul Kruse",
+          "entity2": "Blue Bell",
+          "relationship": "CEO_and_president",
+          "NOT_relationships": [
+            "CEO",
+            "president",
+            "employee"
+          ]
+        },
+        {
+          "entity1": "Centers for Disease Control and Prevention (CDC)",
+          "entity2": "individuals and institutions",
+          "relationship": "advises",
+          "NOT_relationships": []
+        },
+        {
+          "entity1": "Blue Bell",
+          "entity2": "Blue Bell ice cream half gallons, pints, quarts, 3 gallons or other 3 oz. cups",
+          "relationship": "stated_not_included_in_recall",
+          "NOT_relationships": [
+            "recalled"
+          ]
+        },
+        {
+          "entity1": "Blue Bell Creameries",
+          "entity2": "product recall",
+          "relationship": "experienced_first",
+          "NOT_relationships": []
+        },
+        {
+          "entity1": "Listeriosis",
+          "entity2": "listeria",
+          "relationship": "caused_by",
+          "NOT_relationships": []
+        },
+        {
+          "entity1": "food",
+          "entity2": "listeria",
+          "relationship": "contaminated_with",
+          "NOT_relationships": []
+        },
+        {
+          "entity1": "Listeriosis",
+          "entity2": "elderly",
+          "relationship": "primarily_affects",
+          "NOT_relationships": []
+        },
+        {
+          "entity1": "Listeriosis",
+          "entity2": "pregnant women",
+          "relationship": "primarily_affects",
+          "NOT_relationships": []
+        },
+        {
+          "entity1": "Listeriosis",
+          "entity2": "newborns",
+          "relationship": "primarily_affects",
+          "NOT_relationships": []
+        },
+        {
+          "entity1": "Listeriosis",
+          "entity2": "people with weakened immune systems",
+          "relationship": "primarily_affects",
+          "NOT_relationships": []
+        },
+        {
+          "entity1": "Debra Goldschmidt",
+          "entity2": "CNN",
+          "relationship": "contributor",
+          "NOT_relationships": [
+            "employee",
+            "reporter"
+          ]
+        },
+        {
+          "entity1": "Amanda Watts",
+          "entity2": "CNN",
+          "relationship": "contributor",
+          "NOT_relationships": [
+            "employee",
+            "reporter"
+          ]
+        },
+        {
+          "entity1": "Jacque Wilson",
+          "entity2": "CNN",
+          "relationship": "contributor",
+          "NOT_relationships": [
+            "employee",
+            "reporter"
+          ]
+        },
+        {
+          "entity1": "Debra Goldschmidt",
+          "entity2": "this report",
+          "relationship": "contributed_to",
+          "NOT_relationships": []
+        },
+        {
+          "entity1": "Amanda Watts",
+          "entity2": "this report",
+          "relationship": "contributed_to",
+          "NOT_relationships": []
+        },
+        {
+          "entity1": "Jacque Wilson",
+          "entity2": "this report",
+          "relationship": "contributed_to",
+          "NOT_relationships": []
+        }
+      ]
+    },
+    "P4_numbers": {
+      "numerical_facts": [
+        {
+          "entity": "manufacturing plants",
+          "number": 1,
+          "unit": "plant",
+          "describes": "count",
+          "context": "Blue Bell ice cream has temporarily shut down one of its manufacturing plants over the discovery of listeria contamination in a serving of ice cream originating from that plant."
+        },
+        {
+          "entity": "servings",
+          "number": 3,
+          "unit": "ounce",
+          "describes": "weight/size",
+          "context": "That includes 3-ounce servings of Blue Bell ice cream from this plant that went to institutions in containers marked with the letters O, P, Q, R, S or T behind the coding date."
+        },
+        {
+          "entity": "servings",
+          "number": 3,
+          "unit": "ounce",
+          "describes": "weight/size",
+          "context": "The warning by the Centers for Disease Control and Prevention does not affect other Blue Bell ice cream, including other 3-ounce servings, not made at the plant."
+        },
+        {
+          "entity": "time",
+          "number": "third",
+          "unit": "ordinal",
+          "describes": "order",
+          "context": "It is the third time Blue Bell has taken action in light of a listeria outbreak at a Kansas hospital that served the company's ice cream."
+        },
+        {
+          "entity": "cups",
+          "number": 3,
+          "unit": "ounce",
+          "describes": "weight/size",
+          "context": "In a separate outbreak in Texas, the CDC did find that listeria samples taken from patients who came down with listeriosis between 2010 and 2014 in a hospital that served 3-ounce Blue Bell cups matched the listeria in recovered samples."
+        },
+        {
+          "entity": "cup servings",
+          "number": 3,
+          "unit": "ounce",
+          "describes": "weight/size",
+          "context": "It later added 3-ounce cup servings to the recall."
+        },
+        {
+          "entity": "people",
+          "number": 5,
+          "unit": "people",
+          "describes": "count",
+          "context": "Five people were infected and three died in the past year in Kansas from listeria that might be linked to Blue Bell Creameries products, according to the CDC."
+        },
+        {
+          "entity": "people",
+          "number": 3,
+          "unit": "people",
+          "describes": "count",
+          "context": "Five people were infected and three died in the past year in Kansas from listeria that might be linked to Blue Bell Creameries products, according to the CDC."
+        },
+        {
+          "entity": "people",
+          "number": 5,
+          "unit": "people",
+          "describes": "count",
+          "context": "All five of them were hospitalized at the same hospital before developing listeriosis, the CDC said."
+        },
+        {
+          "entity": "people",
+          "number": 4,
+          "unit": "people",
+          "describes": "count",
+          "context": "At least four of them had consumed milkshakes made with Blue Bell ice cream before developing the infection."
+        },
+        {
+          "entity": "gallons",
+          "number": 3,
+          "unit": "gallons",
+          "describes": "volume",
+          "context": "In a statement on its website, Blue Bell said \"this recall in no way includes Blue Bell ice cream half gallons, pints, quarts, 3 gallons or other 3 oz. cups.\""
+        },
+        {
+          "entity": "cups",
+          "number": 3,
+          "unit": "oz.",
+          "describes": "volume",
+          "context": "In a statement on its website, Blue Bell said \"this recall in no way includes Blue Bell ice cream half gallons, pints, quarts, 3 gallons or other 3 oz. cups.\""
+        },
+        {
+          "entity": "product recall",
+          "number": "first",
+          "unit": "ordinal",
+          "describes": "order",
+          "context": "This has been the first product recall in the 108-year history of Blue Bell Creameries, the company said."
+        },
+        {
+          "entity": "history",
+          "number": 108,
+          "unit": "year",
+          "describes": "duration",
+          "context": "This has been the first product recall in the 108-year history of Blue Bell Creameries, the company said."
+        },
+        {
+          "entity": "people",
+          "number": 1600,
+          "unit": "people",
+          "describes": "count",
+          "context": "In the United States, an estimated 1,600 people become seriously ill each year, and approximately 16% of these illnesses result in death."
+        },
+        {
+          "entity": "illnesses",
+          "number": 16,
+          "unit": "%",
+          "describes": "percentage",
+          "context": "In the United States, an estimated 1,600 people become seriously ill each year, and approximately 16% of these illnesses result in death."
+        },
+        {
+          "entity": "trimesters",
+          "number": "second",
+          "unit": "ordinal",
+          "describes": "order",
+          "context": "Cervical infections caused by listeriosis in pregnant women may result in stillbirth or spontaneous abortion during the second or third trimesters."
+        },
+        {
+          "entity": "trimesters",
+          "number": "third",
+          "unit": "ordinal",
+          "describes": "order",
+          "context": "Cervical infections caused by listeriosis in pregnant women may result in stillbirth or spontaneous abortion during the second or third trimesters."
+        }
+      ],
+      "temporal_facts": [
+        {
+          "exact_date": "Friday",
+          "context": "Public health officials warned consumers Friday not to eat any Blue Bell-branded products made at the company's Broken Arrow, Oklahoma, plant."
+        },
+        {
+          "exact_date": "April 2014",
+          "context": "The cup contaminated with the bacteria was produced at the Broken Arrow plant in April 2014, Blue Bell said."
+        },
+        {
+          "exact_date": "2010",
+          "context": "In a separate outbreak in Texas, the CDC did find that listeria samples taken from patients who came down with listeriosis between 2010 and 2014 in a hospital that served 3-ounce Blue Bell cups matched the listeria in recovered samples."
+        },
+        {
+          "exact_date": "2014",
+          "context": "In a separate outbreak in Texas, the CDC did find that listeria samples taken from patients who came down with listeriosis between 2010 and 2014 in a hospital that served 3-ounce Blue Bell cups matched the listeria in recovered samples."
+        },
+        {
+          "exact_date": "early March",
+          "context": "In early March, in light of the Kansas listeria outbreak, Blue Bell recalled a group of products made at a plant in Texas."
+        },
+        {
+          "exact_date": "past year",
+          "context": "Five people were infected and three died in the past year in Kansas from listeria that might be linked to Blue Bell Creameries products, according to the CDC."
+        },
+        {
+          "exact_date": "each year",
+          "context": "In the United States, an estimated 1,600 people become seriously ill each year, and approximately 16% of these illnesses result in death."
+        }
+      ]
+    },
+    "P5_negations": {
+      "explicit_negations": [
+        {
+          "statement": "The warning by the Centers for Disease Control and Prevention does not affect other Blue Bell ice cream.",
+          "context": "The warning by the Centers for Disease Control and Prevention does not affect other Blue Bell ice cream, including other 3-ounce servings, not made at the plant."
+        },
+        {
+          "statement": "Other 3-ounce servings were not made at the plant.",
+          "context": "The warning by the Centers for Disease Control and Prevention does not affect other Blue Bell ice cream, including other 3-ounce servings, not made at the plant."
+        },
+        {
+          "statement": "The bacteria in the hospital and factory sample did not appear identical to listeria samples taken from patients infected in the Kansas outbreak.",
+          "context": "The bacteria in the hospital sample and the factory sample appeared to match each other genetically, the CDC said. But they did not appear identical to listeria samples taken from patients infected in the Kansas outbreak."
+        },
+        {
+          "statement": "None of this means the ice cream is the source of either spate of the infections.",
+          "context": "None of this means the ice cream is the source of either spate of the infections."
+        },
+        {
+          "statement": "This recall in no way includes Blue Bell ice cream half gallons, pints, quarts, 3 gallons or other 3 oz. cups.",
+          "context": "In a statement on its website, Blue Bell said \"this recall in no way includes Blue Bell ice cream half gallons, pints, quarts, 3 gallons or other 3 oz. cups.\""
+        }
+      ],
+      "absent_information": [
+        {
+          "what": "A definitive conclusion on whether the illnesses are related to exposure to Blue Bell products.",
+          "why_notable": "The article details listeria outbreaks and recalls linked to Blue Bell products, making the definitive causal link a crucial piece of information for understanding the full scope of the situation, which is explicitly stated as 'ongoing'."
+        }
+      ],
+      "boundaries": [
+        {
+          "fact": "Blue Bell ice cream has shut down one of its manufacturing plants.",
+          "boundary": "temporarily"
+        },
+        {
+          "fact": "Blue Bell ice cream has shut down manufacturing plants.",
+          "boundary": "one of its"
+        },
+        {
+          "fact": "Public health officials warned consumers not to eat Blue Bell-branded products.",
+          "boundary": "any made at the company's Broken Arrow, Oklahoma, plant"
+        },
+        {
+          "fact": "The warning includes 3-ounce servings of Blue Bell ice cream from the Broken Arrow plant.",
+          "boundary": "only those that went to institutions in containers marked with the letters O, P, Q, R, S or T behind the coding date"
+        },
+        {
+          "fact": "The warning does not affect Blue Bell ice cream.",
+          "boundary": "other (not made at the Broken Arrow plant)"
+        },
+        {
+          "fact": "Blue Bell has recalled products.",
+          "boundary": "other (beyond those initially warned about)"
+        },
+        {
+          "fact": "Blue Bell has taken action in light of a listeria outbreak.",
+          "boundary": "third time"
+        },
+        {
+          "fact": "There was an outbreak in Texas.",
+          "boundary": "separate"
+        },
+        {
+          "fact": "People were hospitalized at the same hospital.",
+          "boundary": "All five"
+        },
+        {
+          "fact": "People had consumed milkshakes made with Blue Bell ice cream.",
+          "boundary": "At least four of them"
+        },
+        {
+          "fact": "This recall includes Blue Bell ice cream products.",
+          "boundary": "in no way includes half gallons, pints, quarts, 3 gallons or other 3 oz. cups"
+        },
+        {
+          "fact": "This has been a product recall in the history of Blue Bell Creameries.",
+          "boundary": "the first in the 108-year history"
+        },
+        {
+          "fact": "Listeriosis affects certain groups.",
+          "boundary": "primarily affects the elderly, pregnant women, newborns and people with weakened immune systems"
+        },
+        {
+          "fact": "An estimated 1,600 people become seriously ill.",
+          "boundary": "each year"
+        },
+        {
+          "fact": "16% of these illnesses result in death.",
+          "boundary": "approximately"
+        },
+        {
+          "fact": "Cervical infections may result in stillbirth or spontaneous abortion.",
+          "boundary": "during the second or third trimesters"
+        }
+      ],
+      "corrections": [
+        {
+          "wrong": "One might assume all Blue Bell ice cream is affected by the warning.",
+          "right": "The warning only affects products made at the Broken Arrow, Oklahoma, plant; other Blue Bell ice cream, including other 3-ounce servings not made at that plant, is not affected."
+        },
+        {
+          "wrong": "One might assume the listeria samples from the factory/hospital matched those from patients infected in the Kansas outbreak.",
+          "right": "The bacteria in the hospital sample and the factory sample did not appear identical to listeria samples taken from patients infected in the Kansas outbreak."
+        },
+        {
+          "wrong": "One might assume the ice cream is definitively the source of either spate of the infections.",
+          "right": "The document explicitly states, 'None of this means the ice cream is the source of either spate of the infections,' indicating the investigation is ongoing."
+        },
+        {
+          "wrong": "One might assume the recall includes all Blue Bell products, or at least common sizes like half gallons, pints, quarts, or other 3 oz. cups.",
+          "right": "Blue Bell explicitly stated that 'this recall in no way includes Blue Bell ice cream half gallons, pints, quarts, 3 gallons or other 3 oz. cups.'"
+        }
+      ]
+    },
+    "P6_verify": {
+      "missed_facts": [
+        {
+          "fact": "Listeria monocytogenes was recently found in a cup of ice cream.",
+          "category": "negations",
+          "source_text": "Listeria monocytogenes was recently found in a cup of ice cream recovered from the hospital."
+        },
+        {
+          "fact": "Listeria might be linked to Blue Bell Creameries products.",
+          "category": "negations",
+          "source_text": "Five people were infected and three died in the past year in Kansas from listeria that might be linked to Blue Bell Creameries products, according to the CDC."
+        },
+        {
+          "fact": "At least four people had consumed milkshakes made with Blue Bell ice cream.",
+          "category": "negations",
+          "source_text": "At least four of them had consumed milkshakes made with Blue Bell ice cream before developing the infection."
+        },
+        {
+          "fact": "An estimated 1,600 people become seriously ill each year in the United States.",
+          "category": "negations",
+          "source_text": "In the United States, an estimated 1,600 people become seriously ill each year, and approximately 16% of these illnesses result in death."
+        },
+        {
+          "fact": "Approximately 16% of these illnesses result in death.",
+          "category": "negations",
+          "source_text": "In the United States, an estimated 1,600 people become seriously ill each year, and approximately 16% of these illnesses result in death."
+        }
+      ]
+    }
+  }
+}

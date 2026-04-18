@@ -1,0 +1,1637 @@
+{
+  "completed_case_ids": [
+    "ragtruth_0",
+    "ragtruth_1",
+    "ragtruth_10",
+    "ragtruth_11",
+    "ragtruth_12",
+    "ragtruth_13",
+    "ragtruth_14",
+    "ragtruth_15",
+    "ragtruth_16",
+    "ragtruth_17",
+    "ragtruth_18",
+    "ragtruth_19",
+    "ragtruth_2",
+    "ragtruth_3",
+    "ragtruth_4",
+    "ragtruth_5",
+    "ragtruth_6",
+    "ragtruth_7",
+    "ragtruth_8",
+    "ragtruth_9"
+  ],
+  "response_level_results": [
+    {
+      "case_id": "ragtruth_0",
+      "predicted": "pass",
+      "expected": "pass",
+      "match": true,
+      "model": "gpt-4-0613",
+      "task_type": "Summary",
+      "hallucination": {
+        "layer_stats": {
+          "L1": 0,
+          "L2": 0,
+          "L2_flagged": 0,
+          "L3_minicheck": 4,
+          "L3_deberta": 0,
+          "L4_supported": 0,
+          "L4_unsupported": 0,
+          "L2_cache_miss": 1,
+          "minilm_grounding_ratio": 1.0,
+          "minilm_min_sentence_sim": 0.6847,
+          "L3_fact_counting_clear": 0,
+          "L3_fact_counting_flag": 0,
+          "L3_fact_counting_error": 0
+        },
+        "sentence_results": [
+          {
+            "sentence_idx": 0,
+            "sentence": "The Anne Frank House has revealed that Anne Frank and her older sister, Margot, likely died at least a month earlier tha",
+            "resolved_by": "L3_minicheck",
+            "detail": ""
+          },
+          {
+            "sentence_idx": 1,
+            "sentence": "The sisters, who were imprisoned in Nazi concentration camps during the Holocaust, were thought to have died in March 19",
+            "resolved_by": "L3_minicheck",
+            "detail": ""
+          },
+          {
+            "sentence_idx": 2,
+            "sentence": "However, new research examining archives from the Red Cross, the International Tracing Service, the Bergen-Belsen Memori",
+            "resolved_by": "L3_minicheck",
+            "detail": ""
+          },
+          {
+            "sentence_idx": 3,
+            "sentence": "The exact dates of their deaths remain unclear, but it is thought that both had symptoms of typhus, the disease they suc",
+            "resolved_by": "L3_minicheck",
+            "detail": ""
+          }
+        ],
+        "risk_score": 0.0,
+        "flags": []
+      }
+    },
+    {
+      "case_id": "ragtruth_1",
+      "predicted": "pass",
+      "expected": "pass",
+      "match": true,
+      "model": "gpt-3.5-turbo-0613",
+      "task_type": "Summary",
+      "hallucination": {
+        "layer_stats": {
+          "L1": 1,
+          "L2": 0,
+          "L2_flagged": 0,
+          "L3_minicheck": 5,
+          "L3_deberta": 0,
+          "L4_supported": 1,
+          "L4_unsupported": 0,
+          "L2_cache_miss": 1,
+          "minilm_flag": 1,
+          "minilm_grounding_ratio": 0.7143,
+          "minilm_min_sentence_sim": 0.5568,
+          "L3_fact_counting_clear": 0,
+          "L3_fact_counting_flag": 1,
+          "L3_fact_counting_error": 0
+        },
+        "sentence_results": [
+          {
+            "sentence_idx": 0,
+            "sentence": "New research released by the Anne Frank House reveals that Anne Frank and her older sister, Margot, died at least a mont",
+            "resolved_by": "L1",
+            "detail": "exact_match"
+          },
+          {
+            "sentence_idx": 1,
+            "sentence": "The research involved re-examining archives and survivor testimonies, contradicting the previous date of death determine",
+            "resolved_by": "L3_minicheck",
+            "detail": ""
+          },
+          {
+            "sentence_idx": 2,
+            "sentence": "In 1944, the sisters were arrested and sent to Auschwitz-Birkenau, and later separated and sent to the Bergen-Belsen cam",
+            "resolved_by": "L3_minicheck",
+            "detail": ""
+          },
+          {
+            "sentence_idx": 3,
+            "sentence": "Witnesses described the terrible conditions at the camp, with overcrowding, lack of basic necessities, and a deadly typh",
+            "resolved_by": "L3_minicheck",
+            "detail": ""
+          },
+          {
+            "sentence_idx": 4,
+            "sentence": "The researchers concluded that it is unlikely the sisters survived until March, as witnesses reported symptoms before Fe",
+            "resolved_by": "L3_minicheck",
+            "detail": ""
+          },
+          {
+            "sentence_idx": 5,
+            "sentence": "The exact dates of their deaths remain unclear.",
+            "resolved_by": "L3_minicheck",
+            "detail": ""
+          },
+          {
+            "sentence_idx": 6,
+            "sentence": "Despite the hardships she faced, Anne Frank's diary continues to be a beloved and influential book.",
+            "resolved_by": "L3_fc_flagged",
+            "detail": "ratio=0.667"
+          },
+          {
+            "sentence_idx": 6,
+            "sentence": "Despite the hardships she faced, Anne Frank's diary continues to be a beloved and influential book.",
+            "resolved_by": "L4_supported",
+            "detail": ""
+          }
+        ],
+        "risk_score": 0.0,
+        "flags": [
+          "low_grounding:0.71",
+          "l3_fc_flagged:Despite the hardships she faced, Anne Frank's diary continue"
+        ]
+      }
+    },
+    {
+      "case_id": "ragtruth_2",
+      "predicted": "pass",
+      "expected": "fail",
+      "match": false,
+      "model": "mistral-7B-instruct",
+      "task_type": "Summary",
+      "hallucination": {
+        "layer_stats": {
+          "L1": 1,
+          "L2": 0,
+          "L2_flagged": 0,
+          "L3_minicheck": 4,
+          "L3_deberta": 0,
+          "L4_supported": 1,
+          "L4_unsupported": 0,
+          "L2_cache_miss": 1,
+          "minilm_flag": 1,
+          "minilm_grounding_ratio": 0.6667,
+          "minilm_min_sentence_sim": 0.5836,
+          "L3_fact_counting_clear": 0,
+          "L3_fact_counting_flag": 1,
+          "L3_fact_counting_error": 0
+        },
+        "sentence_results": [
+          {
+            "sentence_idx": 1,
+            "sentence": "The researchers examined archives of the Red Cross, the International Training Service, and the Bergen-Belsen Memorial, ",
+            "resolved_by": "L1",
+            "detail": "exact_match"
+          },
+          {
+            "sentence_idx": 0,
+            "sentence": "New research conducted by the Anne Frank House has revealed that Anne Frank and her sister Margot likely died in the Ber",
+            "resolved_by": "L3_minicheck",
+            "detail": ""
+          },
+          {
+            "sentence_idx": 2,
+            "sentence": "Anne and Margot were separated from their mother and sent to work as slave labor in the camp, where they lived in overcr",
+            "resolved_by": "L3_minicheck",
+            "detail": ""
+          },
+          {
+            "sentence_idx": 3,
+            "sentence": "The sisters contracted typhus, which was rampant in the camp, and are believed to have died before February 7, 2022.",
+            "resolved_by": "L3_fc_flagged",
+            "detail": "contradicted=2,ratio=0.250"
+          },
+          {
+            "sentence_idx": 4,
+            "sentence": "The exact dates of their deaths remain unclear, but witness accounts suggest that they had symptoms of the disease befor",
+            "resolved_by": "L3_minicheck",
+            "detail": ""
+          },
+          {
+            "sentence_idx": 5,
+            "sentence": "The discovery has led to a reevaluation of the events surrounding Anne Frank's death and has prompted the Anne Frank Hou",
+            "resolved_by": "L3_minicheck",
+            "detail": ""
+          },
+          {
+            "sentence_idx": 3,
+            "sentence": "The sisters contracted typhus, which was rampant in the camp, and are believed to have died before February 7, 2022.",
+            "resolved_by": "L4_supported",
+            "detail": ""
+          }
+        ],
+        "risk_score": 0.0,
+        "flags": [
+          "low_grounding:0.67",
+          "l3_fc_flagged:The sisters contracted typhus, which was rampant in the camp"
+        ]
+      }
+    },
+    {
+      "case_id": "ragtruth_3",
+      "predicted": "pass",
+      "expected": "fail",
+      "match": false,
+      "model": "llama-2-7b-chat",
+      "task_type": "Summary",
+      "hallucination": {
+        "layer_stats": {
+          "L1": 0,
+          "L2": 0,
+          "L2_flagged": 0,
+          "L3_minicheck": 5,
+          "L3_deberta": 0,
+          "L4_supported": 1,
+          "L4_unsupported": 0,
+          "L2_cache_miss": 1,
+          "minilm_grounding_ratio": 0.8333,
+          "minilm_min_sentence_sim": 0.5102,
+          "L3_fact_counting_clear": 0,
+          "L3_fact_counting_flag": 1,
+          "L3_fact_counting_error": 0
+        },
+        "sentence_results": [
+          {
+            "sentence_idx": 0,
+            "sentence": "Here is a summary of the article in 115 words or less:\n\nAnne Frank died of typhus in a Nazi concentration camp at age 15",
+            "resolved_by": "L3_minicheck",
+            "detail": ""
+          },
+          {
+            "sentence_idx": 1,
+            "sentence": "New research suggests that she and her sister Margot likely died at least a month earlier, contradicting previous estima",
+            "resolved_by": "L3_minicheck",
+            "detail": ""
+          },
+          {
+            "sentence_idx": 2,
+            "sentence": "The sisters were sent to the Bergen-Belsen camp in Germany after being arrested in Amsterdam in 1944.",
+            "resolved_by": "L3_minicheck",
+            "detail": ""
+          },
+          {
+            "sentence_idx": 3,
+            "sentence": "They endured harsh conditions, including lack of lighting, water, and sanitation, and were exposed to typhus due to poor",
+            "resolved_by": "L3_minicheck",
+            "detail": ""
+          },
+          {
+            "sentence_idx": 4,
+            "sentence": "Witnesses reported that Anne and Margot exhibited symptoms before February 7, leading researchers to conclude that they ",
+            "resolved_by": "L3_minicheck",
+            "detail": ""
+          },
+          {
+            "sentence_idx": 5,
+            "sentence": "Despite this, Anne's diary remains a powerful symbol of hope and resilience.",
+            "resolved_by": "L3_fc_flagged",
+            "detail": "ratio=0.333"
+          },
+          {
+            "sentence_idx": 5,
+            "sentence": "Despite this, Anne's diary remains a powerful symbol of hope and resilience.",
+            "resolved_by": "L4_supported",
+            "detail": ""
+          }
+        ],
+        "risk_score": 0.0,
+        "flags": [
+          "l3_fc_flagged:Despite this, Anne's diary remains a powerful symbol of hope"
+        ]
+      }
+    },
+    {
+      "case_id": "ragtruth_4",
+      "predicted": "pass",
+      "expected": "pass",
+      "match": true,
+      "model": "llama-2-13b-chat",
+      "task_type": "Summary",
+      "hallucination": {
+        "layer_stats": {
+          "L1": 1,
+          "L2": 0,
+          "L2_flagged": 0,
+          "L3_minicheck": 3,
+          "L3_deberta": 0,
+          "L4_supported": 0,
+          "L4_unsupported": 0,
+          "L2_cache_miss": 1,
+          "minilm_grounding_ratio": 1.0,
+          "minilm_min_sentence_sim": 0.6557,
+          "L3_fact_counting_clear": 0,
+          "L3_fact_counting_flag": 0,
+          "L3_fact_counting_error": 0
+        },
+        "sentence_results": [
+          {
+            "sentence_idx": 0,
+            "sentence": "Seventy years ago, Anne Frank died of typhus in a Nazi concentration camp at the age of 15.",
+            "resolved_by": "L1",
+            "detail": "exact_match"
+          },
+          {
+            "sentence_idx": 1,
+            "sentence": "New research suggests she and her sister Margot died earlier than previously thought, likely in February 1945 due to typ",
+            "resolved_by": "L3_minicheck",
+            "detail": ""
+          },
+          {
+            "sentence_idx": 2,
+            "sentence": "The sisters were sent to the Bergen-Belsen concentration camp after being separated from their mother, and witnesses des",
+            "resolved_by": "L3_minicheck",
+            "detail": ""
+          },
+          {
+            "sentence_idx": 3,
+            "sentence": "The exact dates of death remain unknown, but it is believed that Margot died before Anne, who remained hopeful until the",
+            "resolved_by": "L3_minicheck",
+            "detail": ""
+          }
+        ],
+        "risk_score": 0.0,
+        "flags": []
+      }
+    },
+    {
+      "case_id": "ragtruth_5",
+      "predicted": "fail",
+      "expected": "fail",
+      "match": true,
+      "model": "llama-2-70b-chat",
+      "task_type": "Summary",
+      "hallucination": {
+        "layer_stats": {
+          "L1": 0,
+          "L2": 0,
+          "L2_flagged": 0,
+          "L3_minicheck": 6,
+          "L3_deberta": 0,
+          "L4_supported": 0,
+          "L4_unsupported": 0,
+          "L2_cache_miss": 1,
+          "minilm_grounding_ratio": 0.8333,
+          "minilm_min_sentence_sim": 0.5658,
+          "L3_fact_counting_clear": 0,
+          "L3_fact_counting_flag": 0,
+          "L3_fact_counting_error": 0
+        },
+        "sentence_results": [
+          {
+            "sentence_idx": 0,
+            "sentence": "New research suggests that Anne Frank and her sister Margot died at least a month earlier than previously thought.",
+            "resolved_by": "L3_minicheck",
+            "detail": ""
+          },
+          {
+            "sentence_idx": 1,
+            "sentence": "According to the Anne Frank House, the sisters likely died in February or early March 1945, rather than the previously b",
+            "resolved_by": "L3_minicheck",
+            "detail": ""
+          },
+          {
+            "sentence_idx": 2,
+            "sentence": "The researchers re-examined archives and testimonies of survivors, concluding that the sisters did not survive past Febr",
+            "resolved_by": "L3_minicheck",
+            "detail": ""
+          },
+          {
+            "sentence_idx": 3,
+            "sentence": "Witnesses described the harsh conditions in the camp, including overcrowding, poor hygiene, and the spread of diseases l",
+            "resolved_by": "L3_minicheck",
+            "detail": ""
+          },
+          {
+            "sentence_idx": 4,
+            "sentence": "Despite the dire circumstances, Anne remained hopeful and convinced she would survive.",
+            "resolved_by": "L3_minicheck",
+            "detail": ""
+          },
+          {
+            "sentence_idx": 5,
+            "sentence": "Her diary remains a powerful symbol of her resilience and a reminder of the horrors of the Holocaust.",
+            "resolved_by": "L3_minicheck",
+            "detail": ""
+          }
+        ],
+        "risk_score": 0.0,
+        "flags": []
+      }
+    },
+    {
+      "case_id": "ragtruth_6",
+      "predicted": "pass",
+      "expected": "pass",
+      "match": true,
+      "model": "gpt-4-0613",
+      "task_type": "Summary",
+      "hallucination": {
+        "layer_stats": {
+          "L1": 0,
+          "L2": 0,
+          "L2_flagged": 0,
+          "L3_minicheck": 5,
+          "L3_deberta": 0,
+          "L4_supported": 0,
+          "L4_unsupported": 0,
+          "L2_cache_miss": 1,
+          "minilm_grounding_ratio": 1.0,
+          "minilm_min_sentence_sim": 0.7276,
+          "L3_fact_counting_clear": 0,
+          "L3_fact_counting_flag": 0,
+          "L3_fact_counting_error": 0
+        },
+        "sentence_results": [
+          {
+            "sentence_idx": 0,
+            "sentence": "Andrew Getty, oil tycoon J. Paul Getty's grandson, has died at the age of 47.",
+            "resolved_by": "L3_minicheck",
+            "detail": ""
+          },
+          {
+            "sentence_idx": 1,
+            "sentence": "The Los Angeles Police Department said Getty's death appears to have been from natural causes, and there was no foul pla",
+            "resolved_by": "L3_minicheck",
+            "detail": ""
+          },
+          {
+            "sentence_idx": 2,
+            "sentence": "A spokesman said Getty had several health issues and an autopsy will be conducted.",
+            "resolved_by": "L3_minicheck",
+            "detail": ""
+          },
+          {
+            "sentence_idx": 3,
+            "sentence": "There is currently no criminal investigation underway.",
+            "resolved_by": "L3_minicheck",
+            "detail": ""
+          },
+          {
+            "sentence_idx": 4,
+            "sentence": "The Getty family fortune is estimated to be about $5 billion.",
+            "resolved_by": "L3_minicheck",
+            "detail": ""
+          }
+        ],
+        "risk_score": 0.0,
+        "flags": []
+      }
+    },
+    {
+      "case_id": "ragtruth_7",
+      "predicted": "fail",
+      "expected": "pass",
+      "match": false,
+      "model": "gpt-3.5-turbo-0613",
+      "task_type": "Summary",
+      "hallucination": {
+        "layer_stats": {
+          "L1": 1,
+          "L2": 0,
+          "L2_flagged": 0,
+          "L3_minicheck": 5,
+          "L3_deberta": 0,
+          "L4_supported": 0,
+          "L4_unsupported": 0,
+          "L2_cache_miss": 1,
+          "minilm_grounding_ratio": 0.8571,
+          "minilm_min_sentence_sim": 0.5837,
+          "L3_fact_counting_clear": 1,
+          "L3_fact_counting_flag": 0,
+          "L3_fact_counting_error": 0
+        },
+        "sentence_results": [
+          {
+            "sentence_idx": 4,
+            "sentence": "Getty's parents released a statement confirming their son's death and asking for privacy.",
+            "resolved_by": "L1",
+            "detail": "exact_match"
+          },
+          {
+            "sentence_idx": 0,
+            "sentence": "Andrew Getty, one of the heirs to billions of oil money, has died of natural causes, according to the Los Angeles Police",
+            "resolved_by": "L3_minicheck",
+            "detail": ""
+          },
+          {
+            "sentence_idx": 1,
+            "sentence": "The coroner's preliminary assessment suggests no foul play was involved.",
+            "resolved_by": "L3_minicheck",
+            "detail": ""
+          },
+          {
+            "sentence_idx": 2,
+            "sentence": "Getty, 47, had multiple health issues and an autopsy will be conducted.",
+            "resolved_by": "L3_minicheck",
+            "detail": ""
+          },
+          {
+            "sentence_idx": 3,
+            "sentence": "No criminal investigation is underway.",
+            "resolved_by": "L3_minicheck",
+            "detail": ""
+          },
+          {
+            "sentence_idx": 5,
+            "sentence": "Andrew Getty was one of the grandchildren of oil tycoon J. Paul Getty, and the Getty family fortune is estimated to be a",
+            "resolved_by": "L3_fact_counting",
+            "detail": "ratio=1.000,sup=2/2"
+          },
+          {
+            "sentence_idx": 6,
+            "sentence": "Getty had recently filed for a restraining order against an ex-girlfriend and cited his serious medical condition as a r",
+            "resolved_by": "L3_minicheck",
+            "detail": ""
+          }
+        ],
+        "risk_score": 0.0,
+        "flags": []
+      }
+    },
+    {
+      "case_id": "ragtruth_8",
+      "predicted": "fail",
+      "expected": "pass",
+      "match": false,
+      "model": "mistral-7B-instruct",
+      "task_type": "Summary",
+      "hallucination": {
+        "layer_stats": {
+          "L1": 1,
+          "L2": 0,
+          "L2_flagged": 0,
+          "L3_minicheck": 4,
+          "L3_deberta": 0,
+          "L4_supported": 0,
+          "L4_unsupported": 0,
+          "L2_cache_miss": 1,
+          "minilm_flag": 1,
+          "minilm_grounding_ratio": 0.6,
+          "minilm_min_sentence_sim": 0.5451,
+          "L3_fact_counting_clear": 0,
+          "L3_fact_counting_flag": 0,
+          "L3_fact_counting_error": 0
+        },
+        "sentence_results": [
+          {
+            "sentence_idx": 4,
+            "sentence": "He had three brothers and three half-sisters.",
+            "resolved_by": "L1",
+            "detail": "exact_match"
+          },
+          {
+            "sentence_idx": 0,
+            "sentence": "Andrew Getty, one of the heirs to billions of oil money, appears to have died of natural causes.",
+            "resolved_by": "L3_minicheck",
+            "detail": ""
+          },
+          {
+            "sentence_idx": 1,
+            "sentence": "There was no foul play involved in his death, and an autopsy is scheduled.",
+            "resolved_by": "L3_minicheck",
+            "detail": ""
+          },
+          {
+            "sentence_idx": 2,
+            "sentence": "He had several health issues and some medication was found at his home.",
+            "resolved_by": "L3_minicheck",
+            "detail": ""
+          },
+          {
+            "sentence_idx": 3,
+            "sentence": "Andrew Getty was 47 years old and had recently filed for a restraining order against an ex-girlfriend.",
+            "resolved_by": "L3_minicheck",
+            "detail": ""
+          }
+        ],
+        "risk_score": 0.0,
+        "flags": [
+          "low_grounding:0.60"
+        ]
+      }
+    },
+    {
+      "case_id": "ragtruth_9",
+      "predicted": "pass",
+      "expected": "pass",
+      "match": true,
+      "model": "llama-2-7b-chat",
+      "task_type": "Summary",
+      "hallucination": {
+        "layer_stats": {
+          "L1": 1,
+          "L2": 0,
+          "L2_flagged": 0,
+          "L3_minicheck": 2,
+          "L3_deberta": 0,
+          "L4_supported": 1,
+          "L4_unsupported": 0,
+          "L2_cache_miss": 1,
+          "minilm_flag": 1,
+          "minilm_grounding_ratio": 0.75,
+          "minilm_min_sentence_sim": 0.4345,
+          "L3_fact_counting_clear": 0,
+          "L3_fact_counting_flag": 1,
+          "L3_fact_counting_error": 0
+        },
+        "sentence_results": [
+          {
+            "sentence_idx": 2,
+            "sentence": "An autopsy will be conducted.",
+            "resolved_by": "L1",
+            "detail": "exact_match"
+          },
+          {
+            "sentence_idx": 0,
+            "sentence": "Andrew Getty, a billionaire heir to the Getty oil fortune, has died at 47.",
+            "resolved_by": "L3_minicheck",
+            "detail": ""
+          },
+          {
+            "sentence_idx": 1,
+            "sentence": "The cause of death is believed to be natural, with no signs of foul play.",
+            "resolved_by": "L3_minicheck",
+            "detail": ""
+          },
+          {
+            "sentence_idx": 3,
+            "sentence": "Getty had several health issues and was recently granted a restraining order against an ex-girlfriend due to concerns ov",
+            "resolved_by": "L3_fc_flagged",
+            "detail": "contradicted=1,ratio=0.667"
+          },
+          {
+            "sentence_idx": 3,
+            "sentence": "Getty had several health issues and was recently granted a restraining order against an ex-girlfriend due to concerns ov",
+            "resolved_by": "L4_supported",
+            "detail": ""
+          }
+        ],
+        "risk_score": 0.0,
+        "flags": [
+          "low_grounding:0.75",
+          "l3_fc_flagged:Getty had several health issues and was recently granted a r"
+        ]
+      }
+    },
+    {
+      "case_id": "ragtruth_10",
+      "predicted": "fail",
+      "expected": "fail",
+      "match": true,
+      "model": "llama-2-13b-chat",
+      "task_type": "Summary",
+      "hallucination": {
+        "layer_stats": {
+          "L1": 0,
+          "L2": 0,
+          "L2_flagged": 0,
+          "L3_minicheck": 4,
+          "L3_deberta": 0,
+          "L4_supported": 0,
+          "L4_unsupported": 0,
+          "L2_cache_miss": 1,
+          "minilm_flag": 1,
+          "minilm_grounding_ratio": 0.75,
+          "minilm_min_sentence_sim": 0.5316,
+          "L3_fact_counting_clear": 0,
+          "L3_fact_counting_flag": 0,
+          "L3_fact_counting_error": 0
+        },
+        "sentence_results": [
+          {
+            "sentence_idx": 0,
+            "sentence": "Andrew Getty, an heir to the Getty oil fortune, died of natural causes, the LA Police Department says.",
+            "resolved_by": "L3_minicheck",
+            "detail": ""
+          },
+          {
+            "sentence_idx": 1,
+            "sentence": "He was found dead at home with some medication present, but no foul play is suspected.",
+            "resolved_by": "L3_minicheck",
+            "detail": ""
+          },
+          {
+            "sentence_idx": 2,
+            "sentence": "Getty had filed for a restraining order against an ex-girlfriend, citing health concerns.",
+            "resolved_by": "L3_minicheck",
+            "detail": ""
+          },
+          {
+            "sentence_idx": 3,
+            "sentence": "His net worth was estimated to be $2.1 billion.",
+            "resolved_by": "L3_minicheck",
+            "detail": ""
+          }
+        ],
+        "risk_score": 0.0,
+        "flags": [
+          "low_grounding:0.75"
+        ]
+      }
+    },
+    {
+      "case_id": "ragtruth_11",
+      "predicted": "pass",
+      "expected": "pass",
+      "match": true,
+      "model": "llama-2-70b-chat",
+      "task_type": "Summary",
+      "hallucination": {
+        "layer_stats": {
+          "L1": 0,
+          "L2": 0,
+          "L2_flagged": 0,
+          "L3_minicheck": 4,
+          "L3_deberta": 0,
+          "L4_supported": 0,
+          "L4_unsupported": 0,
+          "L2_cache_miss": 1,
+          "minilm_grounding_ratio": 1.0,
+          "minilm_min_sentence_sim": 0.7061,
+          "L3_fact_counting_clear": 0,
+          "L3_fact_counting_flag": 0,
+          "L3_fact_counting_error": 0
+        },
+        "sentence_results": [
+          {
+            "sentence_idx": 0,
+            "sentence": "Andrew Getty, an heir to the Getty oil fortune, has died at the age of 47.",
+            "resolved_by": "L3_minicheck",
+            "detail": ""
+          },
+          {
+            "sentence_idx": 1,
+            "sentence": "The Los Angeles Police Department has stated that there is no criminal investigation into his death, which is believed t",
+            "resolved_by": "L3_minicheck",
+            "detail": ""
+          },
+          {
+            "sentence_idx": 2,
+            "sentence": "Getty had several health issues and medication was found at his home, although it is unclear whether he was taking it or",
+            "resolved_by": "L3_minicheck",
+            "detail": ""
+          },
+          {
+            "sentence_idx": 3,
+            "sentence": "His parents, Ann and Gordon Getty, have requested privacy.",
+            "resolved_by": "L3_minicheck",
+            "detail": ""
+          }
+        ],
+        "risk_score": 0.0,
+        "flags": []
+      }
+    },
+    {
+      "case_id": "ragtruth_12",
+      "predicted": "pass",
+      "expected": "pass",
+      "match": true,
+      "model": "gpt-4-0613",
+      "task_type": "Summary",
+      "hallucination": {
+        "layer_stats": {
+          "L1": 0,
+          "L2": 0,
+          "L2_flagged": 0,
+          "L3_minicheck": 5,
+          "L3_deberta": 0,
+          "L4_supported": 0,
+          "L4_unsupported": 0,
+          "L2_cache_miss": 1,
+          "minilm_grounding_ratio": 1.0,
+          "minilm_min_sentence_sim": 0.7564,
+          "L3_fact_counting_clear": 0,
+          "L3_fact_counting_flag": 0,
+          "L3_fact_counting_error": 0
+        },
+        "sentence_results": [
+          {
+            "sentence_idx": 0,
+            "sentence": "Iran is set to lift its ban on women attending sports events.",
+            "resolved_by": "L3_minicheck",
+            "detail": ""
+          },
+          {
+            "sentence_idx": 1,
+            "sentence": "Deputy Sports Minister Abdolhamid Ahmadi has said that a plan to allow \"women and families\" to enter sports stadiums wil",
+            "resolved_by": "L3_minicheck",
+            "detail": ""
+          },
+          {
+            "sentence_idx": 2,
+            "sentence": "It remains unclear which games women will be permitted to attend.",
+            "resolved_by": "L3_minicheck",
+            "detail": ""
+          },
+          {
+            "sentence_idx": 3,
+            "sentence": "Following the Islamic Revolution in 1979, Iranian authorities banned women from attending men's sports events, deeming m",
+            "resolved_by": "L3_minicheck",
+            "detail": ""
+          },
+          {
+            "sentence_idx": 4,
+            "sentence": "The ban was briefly lifted for volleyball matches under the moderate President Mohammad Khatami, but was reinstated in 2",
+            "resolved_by": "L3_minicheck",
+            "detail": ""
+          }
+        ],
+        "risk_score": 0.0,
+        "flags": []
+      }
+    },
+    {
+      "case_id": "ragtruth_13",
+      "predicted": "fail",
+      "expected": "pass",
+      "match": false,
+      "model": "gpt-3.5-turbo-0613",
+      "task_type": "Summary",
+      "hallucination": {
+        "layer_stats": {
+          "L1": 0,
+          "L2": 0,
+          "L2_flagged": 0,
+          "L3_minicheck": 5,
+          "L3_deberta": 0,
+          "L4_supported": 0,
+          "L4_unsupported": 0,
+          "L2_cache_miss": 1,
+          "minilm_grounding_ratio": 1.0,
+          "minilm_min_sentence_sim": 0.6646,
+          "L3_fact_counting_clear": 0,
+          "L3_fact_counting_flag": 0,
+          "L3_fact_counting_error": 0
+        },
+        "sentence_results": [
+          {
+            "sentence_idx": 0,
+            "sentence": "The ban on women attending sports events in Iran is set to be lifted for some indoor events, according to a top Iranian ",
+            "resolved_by": "L3_minicheck",
+            "detail": ""
+          },
+          {
+            "sentence_idx": 1,
+            "sentence": "Deputy Sports Minister Abdolhamid Ahmadi announced the plan, which will come into effect in the next year, stating that ",
+            "resolved_by": "L3_minicheck",
+            "detail": ""
+          },
+          {
+            "sentence_idx": 2,
+            "sentence": "However, it is unclear which specific games women will be able to attend.",
+            "resolved_by": "L3_minicheck",
+            "detail": ""
+          },
+          {
+            "sentence_idx": 3,
+            "sentence": "The ban on women attending men's sports events was imposed after the Islamic Revolution in 1979.",
+            "resolved_by": "L3_minicheck",
+            "detail": ""
+          },
+          {
+            "sentence_idx": 4,
+            "sentence": "The restrictions have faced criticism from international sports officials, including FIFA President Sepp Blatter.",
+            "resolved_by": "L3_minicheck",
+            "detail": ""
+          }
+        ],
+        "risk_score": 0.0,
+        "flags": []
+      }
+    },
+    {
+      "case_id": "ragtruth_14",
+      "predicted": "pass",
+      "expected": "pass",
+      "match": true,
+      "model": "mistral-7B-instruct",
+      "task_type": "Summary",
+      "hallucination": {
+        "layer_stats": {
+          "L1": 1,
+          "L2": 0,
+          "L2_flagged": 0,
+          "L3_minicheck": 5,
+          "L3_deberta": 0,
+          "L4_supported": 1,
+          "L4_unsupported": 0,
+          "L2_cache_miss": 1,
+          "minilm_grounding_ratio": 0.8571,
+          "minilm_min_sentence_sim": 0.5663,
+          "L3_fact_counting_clear": 0,
+          "L3_fact_counting_flag": 1,
+          "L3_fact_counting_error": 0
+        },
+        "sentence_results": [
+          {
+            "sentence_idx": 5,
+            "sentence": "The ban on women attending matches was widely seen as a major impediment to Iran's chances of securing the event.",
+            "resolved_by": "L1",
+            "detail": "exact_match"
+          },
+          {
+            "sentence_idx": 0,
+            "sentence": "Iran is planning to lift its ban on women attending sports stadiums for some events.",
+            "resolved_by": "L3_minicheck",
+            "detail": ""
+          },
+          {
+            "sentence_idx": 1,
+            "sentence": "The ban has been in place since the Islamic Revolution in 1979 and has only been lifted briefly during the rule of moder",
+            "resolved_by": "L3_minicheck",
+            "detail": ""
+          },
+          {
+            "sentence_idx": 2,
+            "sentence": "Women will only be allowed to attend indoor sports events, and the restrictions won't change for all matches.",
+            "resolved_by": "L3_minicheck",
+            "detail": ""
+          },
+          {
+            "sentence_idx": 3,
+            "sentence": "The lifting of the ban comes under pressure from international sports officials, including FIFA President Sepp Blatter, ",
+            "resolved_by": "L3_minicheck",
+            "detail": ""
+          },
+          {
+            "sentence_idx": 4,
+            "sentence": "Iran was in the running to host the 2019 Asian Cup, but was ultimately awarded the tournament to the United Arab Emirate",
+            "resolved_by": "L3_minicheck",
+            "detail": ""
+          },
+          {
+            "sentence_idx": 6,
+            "sentence": "The ban on women attending matches has been widely criticized by human rights organizations and international leaders.",
+            "resolved_by": "L3_fc_flagged",
+            "detail": "not_found=1,ratio=0.667"
+          },
+          {
+            "sentence_idx": 6,
+            "sentence": "The ban on women attending matches has been widely criticized by human rights organizations and international leaders.",
+            "resolved_by": "L4_supported",
+            "detail": ""
+          }
+        ],
+        "risk_score": 0.0,
+        "flags": [
+          "l3_fc_flagged:The ban on women attending matches has been widely criticize"
+        ]
+      }
+    },
+    {
+      "case_id": "ragtruth_15",
+      "predicted": "pass",
+      "expected": "pass",
+      "match": true,
+      "model": "llama-2-7b-chat",
+      "task_type": "Summary",
+      "hallucination": {
+        "layer_stats": {
+          "L1": 0,
+          "L2": 0,
+          "L2_flagged": 0,
+          "L3_minicheck": 4,
+          "L3_deberta": 0,
+          "L4_supported": 0,
+          "L4_unsupported": 0,
+          "L2_cache_miss": 1,
+          "minilm_grounding_ratio": 1.0,
+          "minilm_min_sentence_sim": 0.6207,
+          "L3_fact_counting_clear": 0,
+          "L3_fact_counting_flag": 0,
+          "L3_fact_counting_error": 0
+        },
+        "sentence_results": [
+          {
+            "sentence_idx": 0,
+            "sentence": "In an effort to improve Iran's chances of hosting future international sports events, the country's deputy sports minist",
+            "resolved_by": "L3_minicheck",
+            "detail": ""
+          },
+          {
+            "sentence_idx": 1,
+            "sentence": "However, it is unclear which specific games women will be allowed to attend.",
+            "resolved_by": "L3_minicheck",
+            "detail": ""
+          },
+          {
+            "sentence_idx": 2,
+            "sentence": "The ban was implemented after the 1979 Islamic Revolution due to concerns about mixed crowds being un-Islamic.",
+            "resolved_by": "L3_minicheck",
+            "detail": ""
+          },
+          {
+            "sentence_idx": 3,
+            "sentence": "International sports officials have criticized the ban, and Iran faced pressure to end it during their bid to host the 2",
+            "resolved_by": "L3_minicheck",
+            "detail": ""
+          }
+        ],
+        "risk_score": 0.0,
+        "flags": []
+      }
+    },
+    {
+      "case_id": "ragtruth_16",
+      "predicted": "pass",
+      "expected": "pass",
+      "match": true,
+      "model": "llama-2-13b-chat",
+      "task_type": "Summary",
+      "hallucination": {
+        "layer_stats": {
+          "L1": 0,
+          "L2": 0,
+          "L2_flagged": 0,
+          "L3_minicheck": 3,
+          "L3_deberta": 0,
+          "L4_supported": 1,
+          "L4_unsupported": 0,
+          "L2_cache_miss": 1,
+          "minilm_grounding_ratio": 1.0,
+          "minilm_min_sentence_sim": 0.6034,
+          "L3_fact_counting_clear": 0,
+          "L3_fact_counting_flag": 1,
+          "L3_fact_counting_error": 0
+        },
+        "sentence_results": [
+          {
+            "sentence_idx": 0,
+            "sentence": "Iran may lift its decades-old ban on women attending men's sports events.",
+            "resolved_by": "L3_minicheck",
+            "detail": ""
+          },
+          {
+            "sentence_idx": 1,
+            "sentence": "Deputy Sports Minister Abdolhamid Ahmadi announced a plan to allow \"women and families\" to enter sports stadiums within ",
+            "resolved_by": "L3_minicheck",
+            "detail": ""
+          },
+          {
+            "sentence_idx": 2,
+            "sentence": "The exact games that will be included are unclear, but indoor sports events may be exempt from the ban.",
+            "resolved_by": "L3_minicheck",
+            "detail": ""
+          },
+          {
+            "sentence_idx": 3,
+            "sentence": "The move comes under pressure from international sports officials and human rights activists.",
+            "resolved_by": "L3_fc_flagged",
+            "detail": "ratio=0.500"
+          },
+          {
+            "sentence_idx": 3,
+            "sentence": "The move comes under pressure from international sports officials and human rights activists.",
+            "resolved_by": "L4_supported",
+            "detail": ""
+          }
+        ],
+        "risk_score": 0.0,
+        "flags": [
+          "l3_fc_flagged:The move comes under pressure from international sports offi"
+        ]
+      }
+    },
+    {
+      "case_id": "ragtruth_17",
+      "predicted": "fail",
+      "expected": "pass",
+      "match": false,
+      "model": "llama-2-70b-chat",
+      "task_type": "Summary",
+      "hallucination": {
+        "layer_stats": {
+          "L1": 0,
+          "L2": 0,
+          "L2_flagged": 0,
+          "L3_minicheck": 3,
+          "L3_deberta": 0,
+          "L4_supported": 1,
+          "L4_unsupported": 0,
+          "L2_cache_miss": 1,
+          "minilm_flag": 1,
+          "minilm_grounding_ratio": 0.75,
+          "minilm_min_sentence_sim": 0.5933,
+          "L3_fact_counting_clear": 0,
+          "L3_fact_counting_flag": 1,
+          "L3_fact_counting_error": 0
+        },
+        "sentence_results": [
+          {
+            "sentence_idx": 0,
+            "sentence": "Iran is planning to lift its ban on women attending men's sports events, starting with indoor sports, according to Deput",
+            "resolved_by": "L3_minicheck",
+            "detail": ""
+          },
+          {
+            "sentence_idx": 1,
+            "sentence": "The ban has been in place since the 1979 Islamic Revolution, with few exceptions.",
+            "resolved_by": "L3_fc_flagged",
+            "detail": "ratio=0.500"
+          },
+          {
+            "sentence_idx": 2,
+            "sentence": "International sports officials, including FIFA President Sepp Blatter, have pressured Iran to end the ban, which was see",
+            "resolved_by": "L3_minicheck",
+            "detail": ""
+          },
+          {
+            "sentence_idx": 3,
+            "sentence": "The issue gained attention during the recent Asian Cup in Australia, where Iranian women watched their team play without",
+            "resolved_by": "L3_minicheck",
+            "detail": ""
+          },
+          {
+            "sentence_idx": 1,
+            "sentence": "The ban has been in place since the 1979 Islamic Revolution, with few exceptions.",
+            "resolved_by": "L4_supported",
+            "detail": ""
+          }
+        ],
+        "risk_score": 0.0,
+        "flags": [
+          "low_grounding:0.75",
+          "l3_fc_flagged:The ban has been in place since the 1979 Islamic Revolution,"
+        ]
+      }
+    },
+    {
+      "case_id": "ragtruth_18",
+      "predicted": "pass",
+      "expected": "pass",
+      "match": true,
+      "model": "gpt-4-0613",
+      "task_type": "Summary",
+      "hallucination": {
+        "layer_stats": {
+          "L1": 0,
+          "L2": 0,
+          "L2_flagged": 0,
+          "L3_minicheck": 4,
+          "L3_deberta": 0,
+          "L4_supported": 4,
+          "L4_unsupported": 0,
+          "L2_cache_miss": 1,
+          "minilm_flag": 1,
+          "minilm_grounding_ratio": 0.7778,
+          "minilm_min_sentence_sim": 0.4983,
+          "L3_fact_counting_clear": 1,
+          "L3_fact_counting_flag": 4,
+          "L3_fact_counting_error": 0
+        },
+        "sentence_results": [
+          {
+            "sentence_idx": 0,
+            "sentence": "Survival stories at sea are not just for Hollywood, they happen in real life too, and they are usually incredible tales ",
+            "resolved_by": "L3_minicheck",
+            "detail": ""
+          },
+          {
+            "sentence_idx": 1,
+            "sentence": "For example, Louis Jordan set off on his 35-foot sailboat from South Carolina in late January, and was found 200 miles o",
+            "resolved_by": "L3_minicheck",
+            "detail": ""
+          },
+          {
+            "sentence_idx": 2,
+            "sentence": "He survived by rationing water and using laundry to trap and scoop up fish.",
+            "resolved_by": "L3_minicheck",
+            "detail": ""
+          },
+          {
+            "sentence_idx": 3,
+            "sentence": "Jose Salvador Alvarenga claims he survived a year adrift in the Pacific Ocean by eating raw birds, sea turtles and drink",
+            "resolved_by": "L3_minicheck",
+            "detail": ""
+          },
+          {
+            "sentence_idx": 4,
+            "sentence": "Ron Ingraham, a fisherman from Hawaii, survived 12 days at sea after his 25-foot sailboat was hit by a storm, surviving ",
+            "resolved_by": "L3_fc_flagged",
+            "detail": "not_found=1,ratio=0.600"
+          },
+          {
+            "sentence_idx": 5,
+            "sentence": "Adrian Vasquez, 18, was adrift for 26 days, after the engine of his small boat died.",
+            "resolved_by": "L3_fc_flagged",
+            "detail": "not_found=1,ratio=0.667"
+          },
+          {
+            "sentence_idx": 6,
+            "sentence": "He survived by eating raw fish and drinking rainwater.",
+            "resolved_by": "L3_fact_counting",
+            "detail": "ratio=1.000,sup=3/3"
+          },
+          {
+            "sentence_idx": 7,
+            "sentence": "Hiromitsu Shinkawa survived the 2011 tsunami in Japan by clinging to the roof of his house, which was swept nine miles o",
+            "resolved_by": "L3_fc_flagged",
+            "detail": "not_found=4,ratio=0.000"
+          },
+          {
+            "sentence_idx": 8,
+            "sentence": "He was eventually spotted waving a self-made red flag.",
+            "resolved_by": "L3_fc_flagged",
+            "detail": "not_found=3,ratio=0.250"
+          },
+          {
+            "sentence_idx": 4,
+            "sentence": "Ron Ingraham, a fisherman from Hawaii, survived 12 days at sea after his 25-foot sailboat was hit by a storm, surviving ",
+            "resolved_by": "L4_supported",
+            "detail": ""
+          },
+          {
+            "sentence_idx": 5,
+            "sentence": "Adrian Vasquez, 18, was adrift for 26 days, after the engine of his small boat died.",
+            "resolved_by": "L4_supported",
+            "detail": ""
+          },
+          {
+            "sentence_idx": 7,
+            "sentence": "Hiromitsu Shinkawa survived the 2011 tsunami in Japan by clinging to the roof of his house, which was swept nine miles o",
+            "resolved_by": "L4_supported",
+            "detail": ""
+          },
+          {
+            "sentence_idx": 8,
+            "sentence": "He was eventually spotted waving a self-made red flag.",
+            "resolved_by": "L4_supported",
+            "detail": ""
+          }
+        ],
+        "risk_score": 0.0,
+        "flags": [
+          "low_grounding:0.78",
+          "l3_fc_flagged:Ron Ingraham, a fisherman from Hawaii, survived 12 days at s",
+          "l3_fc_flagged:Adrian Vasquez, 18, was adrift for 26 days, after the engine",
+          "l3_fc_flagged:Hiromitsu Shinkawa survived the 2011 tsunami in Japan by cli",
+          "l3_fc_flagged:He was eventually spotted waving a self-made red flag."
+        ]
+      }
+    },
+    {
+      "case_id": "ragtruth_19",
+      "predicted": "pass",
+      "expected": "pass",
+      "match": true,
+      "model": "gpt-3.5-turbo-0613",
+      "task_type": "Summary",
+      "hallucination": {
+        "layer_stats": {
+          "L1": 0,
+          "L2": 0,
+          "L2_flagged": 0,
+          "L3_minicheck": 11,
+          "L3_deberta": 0,
+          "L4_supported": 6,
+          "L4_unsupported": 0,
+          "L2_cache_miss": 1,
+          "minilm_flag": 1,
+          "minilm_grounding_ratio": 0.5556,
+          "minilm_min_sentence_sim": 0.4654,
+          "L3_fact_counting_clear": 1,
+          "L3_fact_counting_flag": 6,
+          "L3_fact_counting_error": 0
+        },
+        "sentence_results": [
+          {
+            "sentence_idx": 0,
+            "sentence": "The news article discusses several incredible stories of individuals who were stranded at sea for extended periods of ti",
+            "resolved_by": "L3_minicheck",
+            "detail": ""
+          },
+          {
+            "sentence_idx": 1,
+            "sentence": "These stories resemble the plot of movies like \"All Is Lost\" and \"Life of Pi,\" but they are real-life accounts of surviv",
+            "resolved_by": "L3_minicheck",
+            "detail": ""
+          },
+          {
+            "sentence_idx": 2,
+            "sentence": "One of the stories is about Louis Jordan, who set off on his sailboat in late January from South Carolina.",
+            "resolved_by": "L3_minicheck",
+            "detail": ""
+          },
+          {
+            "sentence_idx": 3,
+            "sentence": "His boat capsized, and he suffered injuries, but he managed to survive by rationing water and catching fish.",
+            "resolved_by": "L3_minicheck",
+            "detail": ""
+          },
+          {
+            "sentence_idx": 4,
+            "sentence": "After being stranded for several weeks, he was rescued by crew members on a German-flagged container ship.",
+            "resolved_by": "L3_minicheck",
+            "detail": ""
+          },
+          {
+            "sentence_idx": 5,
+            "sentence": "Another story is about Jose Salvador Alvarenga, who disappeared after setting off from Mexico's Pacific coast in late 20",
+            "resolved_by": "L3_minicheck",
+            "detail": ""
+          },
+          {
+            "sentence_idx": 6,
+            "sentence": "He survived over a year adrift in the Pacific Ocean, drinking rainwater and eating sea turtles.",
+            "resolved_by": "L3_minicheck",
+            "detail": ""
+          },
+          {
+            "sentence_idx": 7,
+            "sentence": "He eventually arrived at a remote atoll in the Marshall Islands and was rescued.",
+            "resolved_by": "L3_minicheck",
+            "detail": ""
+          },
+          {
+            "sentence_idx": 8,
+            "sentence": "The article also mentions Ron Ingraham, a fisherman from Hawaii, who was stranded at sea for 12 days after his sailboat ",
+            "resolved_by": "L3_fact_counting",
+            "detail": "ratio=1.000,sup=5/5"
+          },
+          {
+            "sentence_idx": 9,
+            "sentence": "He was eventually found weak and dehydrated but alive.",
+            "resolved_by": "L3_minicheck",
+            "detail": ""
+          },
+          {
+            "sentence_idx": 10,
+            "sentence": "Additionally, the article discusses Adrian Vasquez, who was stranded at sea for 26 days after his boat's engine died.",
+            "resolved_by": "L3_fc_flagged",
+            "detail": "not_found=1,ratio=0.750"
+          },
+          {
+            "sentence_idx": 11,
+            "sentence": "His two companions died during the ordeal, and he survived by eating raw fish and drinking rainwater.",
+            "resolved_by": "L3_fc_flagged",
+            "detail": "not_found=1,ratio=0.667"
+          },
+          {
+            "sentence_idx": 12,
+            "sentence": "He was rescued by fishermen near the Galapagos Islands.",
+            "resolved_by": "L3_fc_flagged",
+            "detail": "contradicted=2,ratio=0.333"
+          },
+          {
+            "sentence_idx": 13,
+            "sentence": "Lastly, the article mentions Hiromitsu Shinkawa, who survived the devastating tsunami that struck Japan in 2011.",
+            "resolved_by": "L3_fc_flagged",
+            "detail": "not_found=3,ratio=0.000"
+          },
+          {
+            "sentence_idx": 14,
+            "sentence": "He was swept away by the tsunami but managed to hold onto the roof of a floating house.",
+            "resolved_by": "L3_fc_flagged",
+            "detail": "not_found=2,ratio=0.000"
+          },
+          {
+            "sentence_idx": 15,
+            "sentence": "He was eventually rescued by a Japanese Maritime Self-Defense Force destroyer.",
+            "resolved_by": "L3_fc_flagged",
+            "detail": "not_found=1,ratio=0.000"
+          },
+          {
+            "sentence_idx": 16,
+            "sentence": "These stories highlight the incredible resilience and resourcefulness of individuals who find themselves in life-threate",
+            "resolved_by": "L3_minicheck",
+            "detail": ""
+          },
+          {
+            "sentence_idx": 17,
+            "sentence": "Despite the challenges and hardships they face, these survivors manage to overcome adversity and make it back to land.",
+            "resolved_by": "L3_minicheck",
+            "detail": ""
+          },
+          {
+            "sentence_idx": 10,
+            "sentence": "Additionally, the article discusses Adrian Vasquez, who was stranded at sea for 26 days after his boat's engine died.",
+            "resolved_by": "L4_supported",
+            "detail": ""
+          },
+          {
+            "sentence_idx": 11,
+            "sentence": "His two companions died during the ordeal, and he survived by eating raw fish and drinking rainwater.",
+            "resolved_by": "L4_supported",
+            "detail": ""
+          },
+          {
+            "sentence_idx": 12,
+            "sentence": "He was rescued by fishermen near the Galapagos Islands.",
+            "resolved_by": "L4_supported",
+            "detail": ""
+          },
+          {
+            "sentence_idx": 13,
+            "sentence": "Lastly, the article mentions Hiromitsu Shinkawa, who survived the devastating tsunami that struck Japan in 2011.",
+            "resolved_by": "L4_supported",
+            "detail": ""
+          },
+          {
+            "sentence_idx": 14,
+            "sentence": "He was swept away by the tsunami but managed to hold onto the roof of a floating house.",
+            "resolved_by": "L4_supported",
+            "detail": ""
+          },
+          {
+            "sentence_idx": 15,
+            "sentence": "He was eventually rescued by a Japanese Maritime Self-Defense Force destroyer.",
+            "resolved_by": "L4_supported",
+            "detail": ""
+          }
+        ],
+        "risk_score": 0.0,
+        "flags": [
+          "low_grounding:0.56",
+          "l3_fc_flagged:Additionally, the article discusses Adrian Vasquez, who was ",
+          "l3_fc_flagged:His two companions died during the ordeal, and he survived b",
+          "l3_fc_flagged:He was rescued by fishermen near the Galapagos Islands.",
+          "l3_fc_flagged:Lastly, the article mentions Hiromitsu Shinkawa, who survive",
+          "l3_fc_flagged:He was swept away by the tsunami but managed to hold onto th",
+          "l3_fc_flagged:He was eventually rescued by a Japanese Maritime Self-Defens"
+        ]
+      }
+    }
+  ],
+  "fire_rates": {
+    "1.1": {
+      "fail": 2,
+      "pass": 18,
+      "total": 20
+    },
+    "1.2": {
+      "fail": 0,
+      "pass": 20,
+      "total": 20
+    },
+    "1.3": {
+      "fail": 4,
+      "pass": 16,
+      "total": 20
+    },
+    "1.4": {
+      "fail": 0,
+      "pass": 20,
+      "total": 20
+    },
+    "1.5": {
+      "fail": 0,
+      "pass": 20,
+      "total": 20
+    },
+    "2.1": {
+      "fail": 0,
+      "pass": 20,
+      "total": 20
+    },
+    "2.2": {
+      "fail": 0,
+      "pass": 20,
+      "total": 20
+    },
+    "2.3": {
+      "fail": 3,
+      "pass": 17,
+      "total": 20
+    },
+    "2.4": {
+      "fail": 0,
+      "pass": 20,
+      "total": 20
+    },
+    "2.5": {
+      "fail": 1,
+      "pass": 19,
+      "total": 20
+    },
+    "2.6": {
+      "fail": 0,
+      "pass": 20,
+      "total": 20
+    },
+    "2.7": {
+      "fail": 2,
+      "pass": 18,
+      "total": 20
+    },
+    "3.1": {
+      "fail": 0,
+      "pass": 20,
+      "total": 20
+    },
+    "3.2": {
+      "fail": 3,
+      "pass": 17,
+      "total": 20
+    },
+    "3.3": {
+      "fail": 0,
+      "pass": 20,
+      "total": 20
+    },
+    "4.1": {
+      "fail": 0,
+      "pass": 20,
+      "total": 20
+    },
+    "4.2": {
+      "fail": 0,
+      "pass": 20,
+      "total": 20
+    },
+    "5.1": {
+      "fail": 0,
+      "pass": 0,
+      "total": 0
+    },
+    "5.2": {
+      "fail": 0,
+      "pass": 0,
+      "total": 0
+    },
+    "5.3": {
+      "fail": 0,
+      "pass": 0,
+      "total": 0
+    },
+    "5.4": {
+      "fail": 0,
+      "pass": 0,
+      "total": 0
+    },
+    "5.5": {
+      "fail": 0,
+      "pass": 0,
+      "total": 0
+    },
+    "5.6": {
+      "fail": 0,
+      "pass": 0,
+      "total": 0
+    },
+    "5.7": {
+      "fail": 0,
+      "pass": 0,
+      "total": 0
+    },
+    "6.1": {
+      "fail": 0,
+      "pass": 0,
+      "total": 0
+    },
+    "6.2": {
+      "fail": 0,
+      "pass": 0,
+      "total": 0
+    },
+    "6.3": {
+      "fail": 0,
+      "pass": 20,
+      "total": 20
+    },
+    "6.4": {
+      "fail": 1,
+      "pass": 19,
+      "total": 20
+    }
+  },
+  "errors": [],
+  "executed": [
+    "1.1",
+    "1.2",
+    "1.3",
+    "1.4",
+    "1.5",
+    "2.1",
+    "2.2",
+    "2.3",
+    "2.4",
+    "2.5",
+    "2.6",
+    "2.7",
+    "3.1",
+    "3.2",
+    "3.3",
+    "4.1",
+    "4.2",
+    "6.3",
+    "6.4",
+    "hallucination"
+  ],
+  "skipped": {
+    "5.1": "computed_post_run",
+    "5.2": "computed_post_run",
+    "5.3": "computed_post_run",
+    "5.4": "computed_post_run",
+    "5.5": "computed_post_run",
+    "5.6": "computed_post_run",
+    "5.7": "computed_post_run",
+    "6.1": "computed_post_run",
+    "6.2": "computed_post_run"
+  },
+  "count": 20
+}

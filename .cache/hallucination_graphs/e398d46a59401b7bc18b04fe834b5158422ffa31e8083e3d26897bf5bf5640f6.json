@@ -1,0 +1,1321 @@
+{
+  "passes": {
+    "P1_entities": {
+      "entities": [
+        {
+          "name": "Atlanta",
+          "type": "PLACE",
+          "aliases": [],
+          "attributes": {}
+        },
+        {
+          "name": "CNN",
+          "type": "ORG",
+          "aliases": [],
+          "attributes": {}
+        },
+        {
+          "name": "TV",
+          "type": "OTHER",
+          "aliases": [],
+          "attributes": {}
+        },
+        {
+          "name": "FBI",
+          "type": "ORG",
+          "aliases": [],
+          "attributes": {}
+        },
+        {
+          "name": "Kevone Charleston",
+          "type": "PERSON",
+          "aliases": [
+            "armed robbery suspect",
+            "suspect",
+            "The perp"
+          ],
+          "attributes": {
+            "age": "36-year-old",
+            "residence": "Austell, Georgia"
+          }
+        },
+        {
+          "name": "two agents",
+          "type": "PERSON",
+          "aliases": [],
+          "attributes": {
+            "status": "injured",
+            "organization": "FBI"
+          }
+        },
+        {
+          "name": "FBI agents",
+          "type": "PERSON",
+          "aliases": [
+            "agents"
+          ],
+          "attributes": {
+            "organization": "FBI"
+          }
+        },
+        {
+          "name": "task force officers",
+          "type": "PERSON",
+          "aliases": [
+            "officers"
+          ],
+          "attributes": {}
+        },
+        {
+          "name": "Austell",
+          "type": "PLACE",
+          "aliases": [],
+          "attributes": {}
+        },
+        {
+          "name": "Georgia",
+          "type": "PLACE",
+          "aliases": [],
+          "attributes": {}
+        },
+        {
+          "name": "CVS pharmacy",
+          "type": "ORG",
+          "aliases": [
+            "CVS"
+          ],
+          "attributes": {}
+        },
+        {
+          "name": "Forsyth County",
+          "type": "PLACE",
+          "aliases": [],
+          "attributes": {}
+        },
+        {
+          "name": "November 2013",
+          "type": "OTHER",
+          "aliases": [],
+          "attributes": {
+            "type": "date"
+          }
+        },
+        {
+          "name": "FBI officials",
+          "type": "PERSON",
+          "aliases": [],
+          "attributes": {
+            "organization": "FBI"
+          }
+        },
+        {
+          "name": "Stephen Emmett",
+          "type": "PERSON",
+          "aliases": [],
+          "attributes": {
+            "title": "FBI Special Agent",
+            "organization": "FBI"
+          }
+        },
+        {
+          "name": "multiple agents and officers",
+          "type": "PERSON",
+          "aliases": [],
+          "attributes": {}
+        },
+        {
+          "name": "MO",
+          "type": "OTHER",
+          "aliases": [],
+          "attributes": {
+            "full_form": "modus operandi"
+          }
+        },
+        {
+          "name": "his vehicle",
+          "type": "OTHER",
+          "aliases": [
+            "suspect's vehicle"
+          ],
+          "attributes": {
+            "owner": "Kevone Charleston"
+          }
+        },
+        {
+          "name": "75 yards",
+          "type": "OTHER",
+          "aliases": [],
+          "attributes": {
+            "type": "distance"
+          }
+        },
+        {
+          "name": "FBI vehicles",
+          "type": "OTHER",
+          "aliases": [
+            "several FBI vehicles"
+          ],
+          "attributes": {
+            "owner": "FBI"
+          }
+        },
+        {
+          "name": "One government vehicle",
+          "type": "OTHER",
+          "aliases": [
+            "the first government vehicle",
+            "the Taurus"
+          ],
+          "attributes": {
+            "damage": "heavy damage to its front and side",
+            "owner": "government"
+          }
+        },
+        {
+          "name": "another government SUV",
+          "type": "OTHER",
+          "aliases": [
+            "the second",
+            "the SUV"
+          ],
+          "attributes": {
+            "position": "ended up on its side",
+            "owner": "government"
+          }
+        },
+        {
+          "name": "Twelve FBI agents",
+          "type": "PERSON",
+          "aliases": [],
+          "attributes": {
+            "count": 12,
+            "organization": "FBI"
+          }
+        },
+        {
+          "name": "six government vehicles",
+          "type": "OTHER",
+          "aliases": [],
+          "attributes": {
+            "count": 6,
+            "owner": "government"
+          }
+        },
+        {
+          "name": "8 feet",
+          "type": "OTHER",
+          "aliases": [],
+          "attributes": {
+            "type": "distance"
+          }
+        },
+        {
+          "name": "area hospital",
+          "type": "ORG",
+          "aliases": [],
+          "attributes": {}
+        },
+        {
+          "name": "Robin Regan",
+          "type": "PERSON",
+          "aliases": [],
+          "attributes": {
+            "title": "Forsyth County Sheriff's Deputy"
+          }
+        },
+        {
+          "name": "32 commercial robberies",
+          "type": "OTHER",
+          "aliases": [
+            "32 previous robberies"
+          ],
+          "attributes": {
+            "type": "crime",
+            "count": 32
+          }
+        },
+        {
+          "name": "violent crimes and major offender squad",
+          "type": "ORG",
+          "aliases": [],
+          "attributes": {
+            "organization": "FBI"
+          }
+        },
+        {
+          "name": "Vivian Kuo",
+          "type": "PERSON",
+          "aliases": [],
+          "attributes": {
+            "organization": "CNN"
+          }
+        },
+        {
+          "name": "Ryan Scallan",
+          "type": "PERSON",
+          "aliases": [],
+          "attributes": {
+            "organization": "CNN"
+          }
+        },
+        {
+          "name": "bullets",
+          "type": "OTHER",
+          "aliases": [],
+          "attributes": {}
+        },
+        {
+          "name": "banged-up cars",
+          "type": "OTHER",
+          "aliases": [],
+          "attributes": {}
+        },
+        {
+          "name": "crash",
+          "type": "OTHER",
+          "aliases": [],
+          "attributes": {}
+        },
+        {
+          "name": "Saturday",
+          "type": "OTHER",
+          "aliases": [],
+          "attributes": {
+            "type": "day of week"
+          }
+        },
+        {
+          "name": "7 o'clock Saturday morning",
+          "type": "OTHER",
+          "aliases": [],
+          "attributes": {
+            "type": "time"
+          }
+        },
+        {
+          "name": "median",
+          "type": "PLACE",
+          "aliases": [],
+          "attributes": {}
+        }
+      ]
+    },
+    "P2_events": {
+      "events": [
+        {
+          "who": "FBI officials",
+          "action": "suspect",
+          "target": "Charleston of involvement in 32 commercial robberies",
+          "where": null,
+          "when": "dating to November 2013",
+          "result": null,
+          "sequence": 1
+        },
+        {
+          "who": "the FBI's violent crimes and major offender squad",
+          "action": "had underway",
+          "target": "an intensive investigation",
+          "where": null,
+          "when": null,
+          "result": null,
+          "sequence": 2
+        },
+        {
+          "who": "His MO",
+          "action": "involved",
+          "target": "armed confrontations",
+          "where": null,
+          "when": null,
+          "result": null,
+          "sequence": 3
+        },
+        {
+          "who": "FBI agents and task force officers",
+          "action": "were following",
+          "target": "36-year-old Kevone Charleston of Austell, Georgia",
+          "where": null,
+          "when": "early Saturday",
+          "result": null,
+          "sequence": 4
+        },
+        {
+          "who": "multiple agents and officers",
+          "action": "were following",
+          "target": "him (Kevone Charleston)",
+          "where": null,
+          "when": null,
+          "result": null,
+          "sequence": 5
+        },
+        {
+          "who": "Twelve FBI agents and six government vehicles",
+          "action": "followed",
+          "target": "Charleston",
+          "where": null,
+          "when": null,
+          "result": null,
+          "sequence": 6
+        },
+        {
+          "who": "he (Kevone Charleston)",
+          "action": "pulled into",
+          "target": "a CVS pharmacy",
+          "where": "Forsyth County, Georgia",
+          "when": "early Saturday",
+          "result": null,
+          "sequence": 7
+        },
+        {
+          "who": "Charleston",
+          "action": "parked",
+          "target": "his vehicle",
+          "where": "nearby",
+          "when": null,
+          "result": null,
+          "sequence": 8
+        },
+        {
+          "who": "Charleston",
+          "action": "popped",
+          "target": "the hood",
+          "where": null,
+          "when": null,
+          "result": "as if there were something wrong",
+          "sequence": 9
+        },
+        {
+          "who": "something",
+          "action": "were wrong",
+          "target": null,
+          "where": null,
+          "when": null,
+          "result": null,
+          "sequence": 10
+        },
+        {
+          "who": "he (Charleston)",
+          "action": "walked to",
+          "target": "the CVS",
+          "where": null,
+          "when": null,
+          "result": null,
+          "sequence": 11
+        },
+        {
+          "who": "he (Charleston)",
+          "action": "preparing to enter",
+          "target": "CVS",
+          "where": null,
+          "when": null,
+          "result": null,
+          "sequence": 12
+        },
+        {
+          "who": "multiple agents and officers",
+          "action": "saw",
+          "target": "he was about to rob another CVS",
+          "where": null,
+          "when": null,
+          "result": null,
+          "sequence": 13
+        },
+        {
+          "who": "he (Charleston)",
+          "action": "was about to rob",
+          "target": "another CVS",
+          "where": null,
+          "when": null,
+          "result": null,
+          "sequence": 14
+        },
+        {
+          "who": "they (multiple agents and officers)",
+          "action": "moved in",
+          "target": null,
+          "where": null,
+          "when": null,
+          "result": null,
+          "sequence": 15
+        },
+        {
+          "who": "agents",
+          "action": "confronted",
+          "target": "him (Charleston)",
+          "where": null,
+          "when": null,
+          "result": null,
+          "sequence": 16
+        },
+        {
+          "who": "Charleston",
+          "action": "ran",
+          "target": null,
+          "where": null,
+          "when": null,
+          "result": null,
+          "sequence": 17
+        },
+        {
+          "who": "Charleston",
+          "action": "got in",
+          "target": "his car",
+          "where": null,
+          "when": null,
+          "result": null,
+          "sequence": 18
+        },
+        {
+          "who": "Charleston",
+          "action": "was trying to flee",
+          "target": null,
+          "where": null,
+          "when": null,
+          "result": null,
+          "sequence": 19
+        },
+        {
+          "who": "Charleston",
+          "action": "traveled",
+          "target": "about 75 yards",
+          "where": null,
+          "when": null,
+          "result": null,
+          "sequence": 20
+        },
+        {
+          "who": "agents",
+          "action": "opened fire",
+          "target": null,
+          "where": null,
+          "when": null,
+          "result": null,
+          "sequence": 21
+        },
+        {
+          "who": "He (Charleston)",
+          "action": "collided with",
+          "target": "the first government vehicle, the Taurus",
+          "where": null,
+          "when": null,
+          "result": null,
+          "sequence": 22
+        },
+        {
+          "who": "He (Charleston)",
+          "action": "collided with",
+          "target": "the second (government vehicle)",
+          "where": null,
+          "when": null,
+          "result": null,
+          "sequence": 23
+        },
+        {
+          "who": "the suspect's vehicle",
+          "action": "rammed",
+          "target": "several FBI vehicles",
+          "where": null,
+          "when": null,
+          "result": null,
+          "sequence": 24
+        },
+        {
+          "who": "the suspect's vehicle",
+          "action": "hit",
+          "target": "several FBI vehicles",
+          "where": null,
+          "when": null,
+          "result": null,
+          "sequence": 25
+        },
+        {
+          "who": "One government vehicle",
+          "action": "sustained",
+          "target": "heavy damage to its front and side",
+          "where": null,
+          "when": null,
+          "result": null,
+          "sequence": 26
+        },
+        {
+          "who": "another government SUV",
+          "action": "ended up",
+          "target": "on its side",
+          "where": null,
+          "when": null,
+          "result": null,
+          "sequence": 27
+        },
+        {
+          "who": "the SUV",
+          "action": "ended on",
+          "target": "its side",
+          "where": null,
+          "when": null,
+          "result": null,
+          "sequence": 28
+        },
+        {
+          "who": "bullets",
+          "action": "were flying",
+          "target": null,
+          "where": null,
+          "when": null,
+          "result": null,
+          "sequence": 29
+        },
+        {
+          "who": "the suspect's vehicle",
+          "action": "banged up",
+          "target": "cars",
+          "where": null,
+          "when": null,
+          "result": null,
+          "sequence": 30
+        },
+        {
+          "who": "the FBI",
+          "action": "chasing",
+          "target": "an armed robbery suspect",
+          "where": null,
+          "when": null,
+          "result": null,
+          "sequence": 31
+        },
+        {
+          "who": "the two agents",
+          "action": "sustained",
+          "target": "their injuries",
+          "where": null,
+          "when": null,
+          "result": null,
+          "sequence": 32
+        },
+        {
+          "who": "agents",
+          "action": "stopped",
+          "target": "The perp (Charleston)",
+          "where": "8 feet away in the median",
+          "when": null,
+          "result": null,
+          "sequence": 33
+        },
+        {
+          "who": "he (The perp)",
+          "action": "received",
+          "target": "his gunshot wounds",
+          "where": "in the median",
+          "when": null,
+          "result": null,
+          "sequence": 34
+        },
+        {
+          "who": "FBI agents and task force officers",
+          "action": "shot",
+          "target": "Charleston",
+          "where": null,
+          "when": null,
+          "result": null,
+          "sequence": 35
+        },
+        {
+          "who": "FBI agents and task force officers",
+          "action": "wounded",
+          "target": "Charleston",
+          "where": null,
+          "when": null,
+          "result": null,
+          "sequence": 36
+        },
+        {
+          "who": "FBI agents and task force officers",
+          "action": "captured",
+          "target": "the suspect",
+          "where": null,
+          "when": null,
+          "result": null,
+          "sequence": 37
+        },
+        {
+          "who": "FBI agents and task force officers",
+          "action": "shot",
+          "target": "the suspect",
+          "where": null,
+          "when": null,
+          "result": null,
+          "sequence": 38
+        },
+        {
+          "who": "N/A (implied by crash with suspect's vehicle)",
+          "action": "injured",
+          "target": "two agents",
+          "where": "in a crash",
+          "when": null,
+          "result": null,
+          "sequence": 39
+        },
+        {
+          "who": "N/A (medical personnel)",
+          "action": "treated",
+          "target": "The two agents",
+          "where": "at an area hospital",
+          "when": null,
+          "result": null,
+          "sequence": 40
+        },
+        {
+          "who": "N/A (medical personnel)",
+          "action": "released",
+          "target": "The two agents",
+          "where": null,
+          "when": null,
+          "result": null,
+          "sequence": 41
+        },
+        {
+          "who": "his injuries",
+          "action": "are not life threatening",
+          "target": null,
+          "where": null,
+          "when": null,
+          "result": null,
+          "sequence": 42
+        },
+        {
+          "who": "FBI agents and task force officers",
+          "action": "put in custody",
+          "target": "the suspect",
+          "where": null,
+          "when": null,
+          "result": null,
+          "sequence": 43
+        },
+        {
+          "who": "The incident",
+          "action": "happened",
+          "target": null,
+          "where": null,
+          "when": "around 7 o'clock Saturday morning",
+          "result": null,
+          "sequence": 44
+        },
+        {
+          "who": "the event/capture",
+          "action": "was the conclusion",
+          "target": null,
+          "where": null,
+          "when": null,
+          "result": "of an intensive and lengthy investigation",
+          "sequence": 45
+        },
+        {
+          "who": "FBI Special Agent Stephen Emmett",
+          "action": "said",
+          "target": "\"The incident all happened around 7 o'clock Saturday morning\"",
+          "where": null,
+          "when": null,
+          "result": null,
+          "sequence": 46
+        },
+        {
+          "who": "Emmett",
+          "action": "said",
+          "target": "\"There were multiple agents and officers that were following him based on his prior MO, and when they saw he was about to rob another CVS, they moved in.\"",
+          "where": null,
+          "when": null,
+          "result": null,
+          "sequence": 47
+        },
+        {
+          "who": "Authorities",
+          "action": "say",
+          "target": "Charleston parked his vehicle nearby and then popped the hood as if there were something wrong.",
+          "where": null,
+          "when": null,
+          "result": null,
+          "sequence": 48
+        },
+        {
+          "who": "Emmett",
+          "action": "said",
+          "target": "\"There were several FBI vehicles that were rammed or were hit by the suspect's vehicle when he was trying to flee. One government vehicle sustained heavy damage to its front and side, and another government SUV ended up on its side. That's how the two agents sustained their injuries\"",
+          "where": null,
+          "when": null,
+          "result": null,
+          "sequence": 49
+        },
+        {
+          "who": "Emmett",
+          "action": "said",
+          "target": "Charleston \"was trying to get away, our agents were trying to stop him. He collided with the first government vehicle, the Taurus, then the second, and the SUV ended on its side.\"",
+          "where": null,
+          "when": null,
+          "result": null,
+          "sequence": 50
+        },
+        {
+          "who": "Emmett",
+          "action": "said",
+          "target": "\"The perp was stopped 8 feet away in the median, and that's where he received his gunshot wounds.\"",
+          "where": null,
+          "when": null,
+          "result": null,
+          "sequence": 51
+        },
+        {
+          "who": "Emmett",
+          "action": "says",
+          "target": "\"they are fine.\"",
+          "where": null,
+          "when": null,
+          "result": null,
+          "sequence": 52
+        },
+        {
+          "who": "they (the two agents)",
+          "action": "are fine",
+          "target": null,
+          "where": null,
+          "when": null,
+          "result": null,
+          "sequence": 53
+        },
+        {
+          "who": "he (Emmett)",
+          "action": "declined to give",
+          "target": "details of the 32 previous robberies",
+          "where": null,
+          "when": null,
+          "result": null,
+          "sequence": 54
+        },
+        {
+          "who": "Emmett",
+          "action": "said",
+          "target": "it was an intensive investigation that was already underway as a priority for the FBI's violent crimes and major offender squad.",
+          "where": null,
+          "when": null,
+          "result": null,
+          "sequence": 55
+        },
+        {
+          "who": "He (Emmett)",
+          "action": "added",
+          "target": "\"His MO involved armed confrontations, so our officers went into this fully prepared for an armed confrontation based on his past history.\"",
+          "where": null,
+          "when": null,
+          "result": null,
+          "sequence": 56
+        },
+        {
+          "who": "our officers",
+          "action": "went into",
+          "target": "this (situation)",
+          "where": null,
+          "when": null,
+          "result": "fully prepared for an armed confrontation",
+          "sequence": 57
+        },
+        {
+          "who": "Emmett",
+          "action": "says",
+          "target": "he's relieved that the FBI's officers and agents are OK and that the suspect is in custody.",
+          "where": null,
+          "when": null,
+          "result": null,
+          "sequence": 58
+        },
+        {
+          "who": "he (Emmett)",
+          "action": "is relieved",
+          "target": null,
+          "where": null,
+          "when": null,
+          "result": null,
+          "sequence": 59
+        },
+        {
+          "who": "the FBI's officers and agents",
+          "action": "are OK",
+          "target": null,
+          "where": null,
+          "when": null,
+          "result": null,
+          "sequence": 60
+        },
+        {
+          "who": "He (Emmett)",
+          "action": "said",
+          "target": "it was the \"conclusion of an intensive and lengthy investigation.\"",
+          "where": null,
+          "when": null,
+          "result": null,
+          "sequence": 61
+        },
+        {
+          "who": "CNN's Vivian Kuo and Ryan Scallan",
+          "action": "contributed to",
+          "target": "this report",
+          "where": null,
+          "when": null,
+          "result": null,
+          "sequence": 62
+        }
+      ]
+    },
+    "P3_relationships": {
+      "relationships": [
+        {
+          "entity1": "FBI",
+          "entity2": "Kevone Charleston",
+          "relationship": "chasing",
+          "NOT_relationships": [
+            "arresting",
+            "capturing",
+            "following"
+          ]
+        },
+        {
+          "entity1": "two agents",
+          "entity2": "a crash",
+          "relationship": "injured in",
+          "NOT_relationships": [
+            "caused by",
+            "responsible for"
+          ]
+        },
+        {
+          "entity1": "FBI agents and task force officers",
+          "entity2": "Kevone Charleston",
+          "relationship": "following",
+          "NOT_relationships": [
+            "arresting",
+            "confronting"
+          ]
+        },
+        {
+          "entity1": "Kevone Charleston",
+          "entity2": "Austell, Georgia",
+          "relationship": "of",
+          "NOT_relationships": [
+            "born in",
+            "works in"
+          ]
+        },
+        {
+          "entity1": "Kevone Charleston",
+          "entity2": "32 commercial robberies",
+          "relationship": "suspected of involvement in",
+          "NOT_relationships": [
+            "committed",
+            "charged with"
+          ]
+        },
+        {
+          "entity1": "FBI Special Agent Stephen Emmett",
+          "entity2": "FBI",
+          "relationship": "is an agent of",
+          "NOT_relationships": [
+            "leads",
+            "owns"
+          ]
+        },
+        {
+          "entity1": "multiple agents and officers",
+          "entity2": "Kevone Charleston",
+          "relationship": "following",
+          "NOT_relationships": [
+            "arresting",
+            "confronting"
+          ]
+        },
+        {
+          "entity1": "Kevone Charleston",
+          "entity2": "Kevone Charleston's vehicle",
+          "relationship": "parked",
+          "NOT_relationships": [
+            "stole",
+            "owned"
+          ]
+        },
+        {
+          "entity1": "Kevone Charleston",
+          "entity2": "the CVS",
+          "relationship": "walked to",
+          "NOT_relationships": [
+            "robbed",
+            "worked at"
+          ]
+        },
+        {
+          "entity1": "agents",
+          "entity2": "Kevone Charleston",
+          "relationship": "confronted",
+          "NOT_relationships": [
+            "shot",
+            "arrested"
+          ]
+        },
+        {
+          "entity1": "Kevone Charleston",
+          "entity2": "Kevone Charleston's car",
+          "relationship": "got in",
+          "NOT_relationships": [
+            "stole",
+            "drove"
+          ]
+        },
+        {
+          "entity1": "several FBI vehicles",
+          "entity2": "Kevone Charleston's vehicle",
+          "relationship": "were rammed by",
+          "NOT_relationships": [
+            "rammed",
+            "collided with"
+          ]
+        },
+        {
+          "entity1": "several FBI vehicles",
+          "entity2": "Kevone Charleston's vehicle",
+          "relationship": "were hit by",
+          "NOT_relationships": [
+            "hit",
+            "collided with"
+          ]
+        },
+        {
+          "entity1": "One government vehicle",
+          "entity2": "heavy damage",
+          "relationship": "sustained",
+          "NOT_relationships": [
+            "caused",
+            "repaired"
+          ]
+        },
+        {
+          "entity1": "two agents",
+          "entity2": "their injuries",
+          "relationship": "sustained",
+          "NOT_relationships": [
+            "caused",
+            "treated"
+          ]
+        },
+        {
+          "entity1": "Twelve FBI agents",
+          "entity2": "Kevone Charleston",
+          "relationship": "followed",
+          "NOT_relationships": [
+            "arrested",
+            "shot"
+          ]
+        },
+        {
+          "entity1": "six government vehicles",
+          "entity2": "Kevone Charleston",
+          "relationship": "followed",
+          "NOT_relationships": [
+            "transported",
+            "blocked"
+          ]
+        },
+        {
+          "entity1": "Kevone Charleston",
+          "entity2": "the first government vehicle, the Taurus",
+          "relationship": "collided with",
+          "NOT_relationships": [
+            "rammed",
+            "hit"
+          ]
+        },
+        {
+          "entity1": "Kevone Charleston",
+          "entity2": "the second government vehicle",
+          "relationship": "collided with",
+          "NOT_relationships": [
+            "rammed",
+            "hit"
+          ]
+        },
+        {
+          "entity1": "Kevone Charleston",
+          "entity2": "Kevone Charleston's gunshot wounds",
+          "relationship": "received",
+          "NOT_relationships": [
+            "inflicted",
+            "caused"
+          ]
+        },
+        {
+          "entity1": "two agents",
+          "entity2": "an area hospital",
+          "relationship": "treated at",
+          "NOT_relationships": [
+            "worked at",
+            "admitted to"
+          ]
+        },
+        {
+          "entity1": "Kevone Charleston",
+          "entity2": "FBI agents and task force officers",
+          "relationship": "was shot by",
+          "NOT_relationships": [
+            "shot",
+            "injured"
+          ]
+        },
+        {
+          "entity1": "Kevone Charleston",
+          "entity2": "FBI agents and task force officers",
+          "relationship": "was wounded by",
+          "NOT_relationships": [
+            "wounded",
+            "shot"
+          ]
+        },
+        {
+          "entity1": "Robin Regan",
+          "entity2": "Forsyth County Sheriff's Deputy",
+          "relationship": "is a",
+          "NOT_relationships": [
+            "leads",
+            "employs"
+          ]
+        },
+        {
+          "entity1": "an intensive investigation",
+          "entity2": "the FBI's violent crimes and major offender squad",
+          "relationship": "a priority for",
+          "NOT_relationships": [
+            "conducted by",
+            "owned by"
+          ]
+        },
+        {
+          "entity1": "Kevone Charleston's MO",
+          "entity2": "armed confrontations",
+          "relationship": "involved",
+          "NOT_relationships": [
+            "caused",
+            "prevented"
+          ]
+        },
+        {
+          "entity1": "our officers",
+          "entity2": "an armed confrontation",
+          "relationship": "prepared for",
+          "NOT_relationships": [
+            "caused",
+            "avoided"
+          ]
+        },
+        {
+          "entity1": "Vivian Kuo",
+          "entity2": "this report",
+          "relationship": "contributed to",
+          "NOT_relationships": [
+            "wrote",
+            "edited"
+          ]
+        },
+        {
+          "entity1": "Ryan Scallan",
+          "entity2": "this report",
+          "relationship": "contributed to",
+          "NOT_relationships": [
+            "wrote",
+            "edited"
+          ]
+        },
+        {
+          "entity1": "Vivian Kuo",
+          "entity2": "CNN",
+          "relationship": "of",
+          "NOT_relationships": [
+            "owns",
+            "works for"
+          ]
+        },
+        {
+          "entity1": "Ryan Scallan",
+          "entity2": "CNN",
+          "relationship": "of",
+          "NOT_relationships": [
+            "owns",
+            "works for"
+          ]
+        }
+      ]
+    },
+    "P4_numbers": {
+      "numerical_facts": [
+        {
+          "entity": "agents",
+          "number": "two",
+          "unit": "agents",
+          "describes": "number of injured",
+          "context": "In the end, two agents were injured in a crash and the suspect was shot before being captured."
+        },
+        {
+          "entity": "Kevone Charleston",
+          "number": "36",
+          "unit": "years old",
+          "describes": "age",
+          "context": "FBI agents and task force officers were following 36-year-old Kevone Charleston of Austell, Georgia, as he pulled into a CVS pharmacy in Forsyth County, Georgia, early Saturday."
+        },
+        {
+          "entity": "commercial robberies",
+          "number": "32",
+          "unit": "robberies",
+          "describes": "number of",
+          "context": "Charleston is suspected of involvement in 32 commercial robberies dating to November 2013, according to FBI officials."
+        },
+        {
+          "entity": "distance traveled",
+          "number": "75",
+          "unit": "yards",
+          "describes": "distance",
+          "context": "When agents confronted him, Charleston ran, got in his car and traveled about 75 yards as agents opened fire."
+        },
+        {
+          "entity": "government vehicle",
+          "number": "One",
+          "unit": "vehicle",
+          "describes": "number of",
+          "context": "One government vehicle sustained heavy damage to its front and side, and another government SUV ended up on its side."
+        },
+        {
+          "entity": "government SUV",
+          "number": "another",
+          "unit": "SUV",
+          "describes": "number of",
+          "context": "One government vehicle sustained heavy damage to its front and side, and another government SUV ended up on its side."
+        },
+        {
+          "entity": "agents",
+          "number": "two",
+          "unit": "agents",
+          "describes": "number of injured",
+          "context": "That's how the two agents sustained their injuries,\" Emmett said."
+        },
+        {
+          "entity": "FBI agents",
+          "number": "Twelve",
+          "unit": "FBI agents",
+          "describes": "number of",
+          "context": "Twelve FBI agents and six government vehicles followed Charleston."
+        },
+        {
+          "entity": "government vehicles",
+          "number": "six",
+          "unit": "government vehicles",
+          "describes": "number of",
+          "context": "Twelve FBI agents and six government vehicles followed Charleston."
+        },
+        {
+          "entity": "government vehicle",
+          "number": "first",
+          "unit": "vehicle",
+          "describes": "order of collision",
+          "context": "He collided with the first government vehicle, the Taurus, then the second, and the SUV ended on its side."
+        },
+        {
+          "entity": "government vehicle",
+          "number": "second",
+          "unit": "vehicle",
+          "describes": "order of collision",
+          "context": "He collided with the first government vehicle, the Taurus, then the second, and the SUV ended on its side."
+        },
+        {
+          "entity": "perp",
+          "number": "8",
+          "unit": "feet",
+          "describes": "distance from stop point",
+          "context": "\"The perp was stopped 8 feet away in the median, and that's where he received his gunshot wounds.\""
+        },
+        {
+          "entity": "agents",
+          "number": "two",
+          "unit": "agents",
+          "describes": "number of",
+          "context": "The two agents were treated at an area hospital and released, according to Emmett, who says \"they are fine.\""
+        },
+        {
+          "entity": "previous robberies",
+          "number": "32",
+          "unit": "robberies",
+          "describes": "number of",
+          "context": "Although he declined to give details of the 32 previous robberies, Emmett said it was an intensive investigation that was already underway as a priority for the FBI's violent crimes and major offender squad."
+        }
+      ],
+      "temporal_facts": [
+        {
+          "entity": "incident",
+          "number": "Saturday",
+          "unit": "day of week",
+          "describes": "time of day",
+          "context": "FBI agents and task force officers were following 36-year-old Kevone Charleston of Austell, Georgia, as he pulled into a CVS pharmacy in Forsyth County, Georgia, early Saturday."
+        },
+        {
+          "entity": "robberies",
+          "number": "November 2013",
+          "unit": "date",
+          "describes": "start date",
+          "context": "Charleston is suspected of involvement in 32 commercial robberies dating to November 2013, according to FBI officials."
+        },
+        {
+          "entity": "incident",
+          "number": "7 o'clock",
+          "unit": "time",
+          "describes": "time of day",
+          "context": "\"The incident all happened around 7 o'clock Saturday morning,\" said FBI Special Agent Stephen Emmett."
+        },
+        {
+          "entity": "incident",
+          "number": "Saturday morning",
+          "unit": "day of week and time",
+          "describes": "time of day",
+          "context": "\"The incident all happened around 7 o'clock Saturday morning,\" said FBI Special Agent Stephen Emmett."
+        }
+      ]
+    },
+    "P5_negations": {
+      "explicit_negations": [
+        "his injuries are not life threatening"
+      ],
+      "absent_information": [
+        "details of the 32 previous robberies"
+      ],
+      "boundaries": [
+        "before being captured",
+        "suspected of involvement",
+        "dating to November 2013",
+        "according to FBI officials",
+        "around 7 o'clock Saturday morning",
+        "as if there were something wrong",
+        "about 75 yards",
+        "8 feet away",
+        "according to Emmett",
+        "according to Forsyth County Sheriff's Deputy Robin Regan",
+        "Although he declined to give details of the 32 previous robberies"
+      ],
+      "corrections": [
+        "The two agents were treated at an area hospital and released, according to Emmett, who says \"they are fine.\"",
+        "Charleston was shot and wounded by FBI agents and task force officers, but his injuries are not life threatening"
+      ]
+    },
+    "P6_verify": {
+      "missed_facts": [
+        {
+          "fact": "FBI agents were trying to stop Kevone Charleston.",
+          "category": "Events",
+          "source_text": "our agents were trying to stop him."
+        },
+        {
+          "fact": "Officers were prepared for an armed confrontation based on Kevone Charleston's past history.",
+          "category": "Events",
+          "source_text": "our officers went into this fully prepared for an armed confrontation based on his past history."
+        }
+      ]
+    }
+  }
+}
