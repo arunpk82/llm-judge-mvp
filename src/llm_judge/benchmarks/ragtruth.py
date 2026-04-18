@@ -39,6 +39,21 @@ class RAGTruthAdapter(BenchmarkAdapter):
     def __init__(self, data_dir: str | Path | None = None) -> None:
         self._data_dir = Path(data_dir) if data_dir else _DEFAULT_PATH
         self._source_cache: dict[str, dict[str, Any]] | None = None
+        self._benchmark_ids: set[str] | None = None
+
+    def set_benchmark_filter(self, benchmark_path: str | Path) -> None:
+        """Load a benchmark definition and restrict load_cases to those IDs.
+
+        Args:
+            benchmark_path: Path to benchmark JSON with ``response_ids`` list.
+        """
+        with open(benchmark_path, encoding="utf-8") as f:
+            bm = json.load(f)
+        self._benchmark_ids = set(bm["response_ids"])
+        logger.info(
+            "ragtruth.benchmark_filter_set",
+            extra={"count": len(self._benchmark_ids), "path": str(benchmark_path)},
+        )
 
     def metadata(self) -> BenchmarkMetadata:
         return BenchmarkMetadata(
@@ -181,8 +196,20 @@ class RAGTruthAdapter(BenchmarkAdapter):
         *,
         split: str = "test",
         max_cases: int | None = None,
+        response_ids: set[str] | None = None,
     ) -> Iterator[BenchmarkCase]:
-        """Yield RAGTruth cases in platform-native format."""
+        """Yield RAGTruth cases in platform-native format.
+
+        Args:
+            split: Dataset split to load (default: "test").
+            max_cases: Maximum number of cases to yield.
+            response_ids: If provided, only yield cases whose response ID
+                is in this set. Falls back to IDs set via
+                ``set_benchmark_filter()``. Used by RAGTruth-50
+                benchmark to fix the evaluation set.
+        """
+        # Use explicit arg, then instance filter, then None (all cases)
+        effective_ids = response_ids or self._benchmark_ids
         sources = self._load_sources()
         response_path = self._data_dir / "response.jsonl"
         if not response_path.exists():
@@ -195,8 +222,14 @@ class RAGTruthAdapter(BenchmarkAdapter):
             for line in f:
                 row = json.loads(line)
 
-                # Filter by split
-                if row.get("split", "") != split:
+                # Filter by split (skip when benchmark filter is active —
+                # the benchmark definition is the authoritative filter)
+                if effective_ids is None and row.get("split", "") != split:
+                    continue
+
+                # Filter by benchmark response IDs (fixed set)
+                row_id = str(row.get("id", ""))
+                if effective_ids is not None and row_id not in effective_ids:
                     continue
 
                 # Skip quality issues

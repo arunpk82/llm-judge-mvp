@@ -1,0 +1,1178 @@
+{
+  "passes": {
+    "P1_entities": {
+      "entities": [
+        {
+          "name": "Police",
+          "type": "ORG",
+          "aliases": [
+            "police"
+          ],
+          "attributes": {
+            "location": "Malegaon",
+            "country": "India"
+          }
+        },
+        {
+          "name": "Malegaon",
+          "type": "PLACE",
+          "aliases": [
+            "the city",
+            "city"
+          ],
+          "attributes": {
+            "type": "city",
+            "location": "Maharashtra",
+            "country": "India"
+          }
+        },
+        {
+          "name": "Maharashtra",
+          "type": "PLACE",
+          "aliases": [
+            "the western state",
+            "state"
+          ],
+          "attributes": {
+            "type": "state",
+            "location": "western India"
+          }
+        },
+        {
+          "name": "identity cards",
+          "type": "OTHER",
+          "aliases": [],
+          "attributes": {
+            "purpose": "for cattle"
+          }
+        },
+        {
+          "name": "Cattle",
+          "type": "OTHER",
+          "aliases": [
+            "cattle",
+            "animal",
+            "cow",
+            "Cows",
+            "livestock"
+          ],
+          "attributes": {
+            "type": "residents",
+            "group": "unusual"
+          }
+        },
+        {
+          "name": "state-wide ban",
+          "type": "OTHER",
+          "aliases": [],
+          "attributes": {
+            "scope": "state-wide",
+            "subject": "sale and consumption of beef"
+          }
+        },
+        {
+          "name": "beef",
+          "type": "PRODUCT",
+          "aliases": [],
+          "attributes": {
+            "status": "banned for sale and consumption",
+            "consequence for consumption/sale": "prison for five years"
+          }
+        },
+        {
+          "name": "authorities in the city",
+          "type": "ORG",
+          "aliases": [
+            "authorities"
+          ],
+          "attributes": {
+            "location": "Malegaon"
+          }
+        },
+        {
+          "name": "residents",
+          "type": "OTHER",
+          "aliases": [],
+          "attributes": {
+            "location": "Malegaon"
+          }
+        },
+        {
+          "name": "'mugshot'",
+          "type": "OTHER",
+          "aliases": [
+            "photograph"
+          ],
+          "attributes": {
+            "subject": "cattle"
+          }
+        },
+        {
+          "name": "'unique features'",
+          "type": "OTHER",
+          "aliases": [],
+          "attributes": {
+            "subject": "animal",
+            "examples": "coloring, age, length of tail, other distinctive characteristics"
+          }
+        },
+        {
+          "name": "coloring",
+          "type": "OTHER",
+          "aliases": [],
+          "attributes": {
+            "type": "unique feature of cow"
+          }
+        },
+        {
+          "name": "age",
+          "type": "OTHER",
+          "aliases": [],
+          "attributes": {
+            "type": "unique feature of cow"
+          }
+        },
+        {
+          "name": "tail",
+          "type": "OTHER",
+          "aliases": [],
+          "attributes": {
+            "type": "unique feature of cow",
+            "property": "length"
+          }
+        },
+        {
+          "name": "distinctive characteristics",
+          "type": "OTHER",
+          "aliases": [],
+          "attributes": {
+            "type": "unique feature of cow"
+          }
+        },
+        {
+          "name": "cow slaughter cases",
+          "type": "OTHER",
+          "aliases": [
+            "cow slaughter"
+          ],
+          "attributes": {}
+        },
+        {
+          "name": "the law",
+          "type": "OTHER",
+          "aliases": [],
+          "attributes": {}
+        },
+        {
+          "name": "majority Hindu population",
+          "type": "OTHER",
+          "aliases": [
+            "that state's majority Hindu population"
+          ],
+          "attributes": {
+            "location": "Maharashtra",
+            "religion": "Hindu",
+            "demographic": "majority"
+          }
+        },
+        {
+          "name": "database",
+          "type": "OTHER",
+          "aliases": [],
+          "attributes": {
+            "purpose": "track cattle, solve cow slaughter"
+          }
+        },
+        {
+          "name": "resident's place",
+          "type": "PLACE",
+          "aliases": [],
+          "attributes": {}
+        },
+        {
+          "name": "Mahesh Sawai",
+          "type": "PERSON",
+          "aliases": [],
+          "attributes": {
+            "title": "Deputy Superintendent",
+            "organization": "Malegaon Police"
+          }
+        },
+        {
+          "name": "Deputy Superintendent of Malegaon Police",
+          "type": "ORG",
+          "aliases": [],
+          "attributes": {
+            "member": "Mahesh Sawai"
+          }
+        },
+        {
+          "name": "Malegaon Police",
+          "type": "ORG",
+          "aliases": [
+            "Police officials"
+          ],
+          "attributes": {
+            "location": "Malegaon",
+            "member": "Mahesh Sawai"
+          }
+        },
+        {
+          "name": "CNN",
+          "type": "ORG",
+          "aliases": [],
+          "attributes": {
+            "type": "news organization"
+          }
+        },
+        {
+          "name": "owners",
+          "type": "OTHER",
+          "aliases": [],
+          "attributes": {
+            "count": "over 100",
+            "subject": "cattle/livestock"
+          }
+        },
+        {
+          "name": "police order",
+          "type": "OTHER",
+          "aliases": [],
+          "attributes": {
+            "source": "police"
+          }
+        },
+        {
+          "name": "police stations",
+          "type": "PLACE",
+          "aliases": [],
+          "attributes": {
+            "location": "Malegaon"
+          }
+        },
+        {
+          "name": "ruling",
+          "type": "OTHER",
+          "aliases": [],
+          "attributes": {
+            "context": "cow slaughter case"
+          }
+        },
+        {
+          "name": "case of cow slaughter",
+          "type": "OTHER",
+          "aliases": [],
+          "attributes": {
+            "location": "Malegaon",
+            "status": "recent"
+          }
+        },
+        {
+          "name": "two men",
+          "type": "PERSON",
+          "aliases": [],
+          "attributes": {
+            "status": "charged",
+            "actions": "killing animal, selling meat"
+          }
+        },
+        {
+          "name": "meat",
+          "type": "PRODUCT",
+          "aliases": [],
+          "attributes": {
+            "source": "animal"
+          }
+        },
+        {
+          "name": "The Maharashtra Animal Preservation Bill",
+          "type": "OTHER",
+          "aliases": [],
+          "attributes": {
+            "scope": "Maharashtra",
+            "purpose": "animal preservation",
+            "status": "now includes bans on killing bulls and bullocks"
+          }
+        },
+        {
+          "name": "bans",
+          "type": "OTHER",
+          "aliases": [],
+          "attributes": {
+            "subject": "killing of bulls and bullocks"
+          }
+        },
+        {
+          "name": "bulls",
+          "type": "OTHER",
+          "aliases": [],
+          "attributes": {
+            "status": "killing banned"
+          }
+        },
+        {
+          "name": "bullocks",
+          "type": "OTHER",
+          "aliases": [],
+          "attributes": {
+            "status": "killing banned"
+          }
+        },
+        {
+          "name": "non-bailable offenses",
+          "type": "OTHER",
+          "aliases": [],
+          "attributes": {
+            "list": "Maharashtra Animal Preservation Bill"
+          }
+        },
+        {
+          "name": "prison",
+          "type": "PLACE",
+          "aliases": [],
+          "attributes": {
+            "sentence for beef consumption/sale": "five years",
+            "sentence for cow slaughter in Haryana": "10 years"
+          }
+        },
+        {
+          "name": "slaughter of buffaloes",
+          "type": "OTHER",
+          "aliases": [],
+          "attributes": {
+            "status": "permissible"
+          }
+        },
+        {
+          "name": "buffaloes",
+          "type": "OTHER",
+          "aliases": [],
+          "attributes": {
+            "slaughter status": "permissible, but traders refused to slaughter"
+          }
+        },
+        {
+          "name": "beef traders",
+          "type": "PERSON",
+          "aliases": [
+            "traders"
+          ],
+          "attributes": {
+            "location": "India",
+            "reaction": "strongly reacted to decision",
+            "action": "called month-long strike",
+            "vowed action": "file case in state's high court"
+          }
+        },
+        {
+          "name": "decision",
+          "type": "OTHER",
+          "aliases": [],
+          "attributes": {
+            "context": "bans on beef, bulls, bullocks"
+          }
+        },
+        {
+          "name": "month-long strike",
+          "type": "OTHER",
+          "aliases": [],
+          "attributes": {
+            "duration": "month-long",
+            "status": "ended Wednesday"
+          }
+        },
+        {
+          "name": "Wednesday",
+          "type": "OTHER",
+          "aliases": [],
+          "attributes": {
+            "type": "day of week",
+            "event": "strike ended"
+          }
+        },
+        {
+          "name": "bovine meat",
+          "type": "PRODUCT",
+          "aliases": [],
+          "attributes": {
+            "source": "bovines"
+          }
+        },
+        {
+          "name": "state's high court",
+          "type": "ORG",
+          "aliases": [],
+          "attributes": {
+            "location": "Maharashtra"
+          }
+        },
+        {
+          "name": "Red meat lovers",
+          "type": "PERSON",
+          "aliases": [],
+          "attributes": {
+            "reaction": "not delighted",
+            "argument": "government interference in personal preference"
+          }
+        },
+        {
+          "name": "government",
+          "type": "ORG",
+          "aliases": [],
+          "attributes": {
+            "scope": "state/country"
+          }
+        },
+        {
+          "name": "individual's personal preference",
+          "type": "OTHER",
+          "aliases": [],
+          "attributes": {}
+        },
+        {
+          "name": "Indian state",
+          "type": "PLACE",
+          "aliases": [],
+          "attributes": {
+            "country": "India"
+          }
+        },
+        {
+          "name": "laws on cow slaughter",
+          "type": "OTHER",
+          "aliases": [],
+          "attributes": {
+            "status": "tightened"
+          }
+        },
+        {
+          "name": "Haryana state",
+          "type": "PLACE",
+          "aliases": [
+            "Haryana"
+          ],
+          "attributes": {
+            "type": "state",
+            "country": "India",
+            "action": "implemented maximum punishment"
+          }
+        },
+        {
+          "name": "maximum punishment of 10 years in prison",
+          "type": "OTHER",
+          "aliases": [
+            "the toughest penalty in the country"
+          ],
+          "attributes": {
+            "duration": "10 years",
+            "location": "prison",
+            "severity": "toughest penalty in the country"
+          }
+        },
+        {
+          "name": "Rajnath Singh",
+          "type": "PERSON",
+          "aliases": [],
+          "attributes": {
+            "title": "Home Minister",
+            "country": "India"
+          }
+        },
+        {
+          "name": "India's Home Minister",
+          "type": "ORG",
+          "aliases": [
+            "Home Minister"
+          ],
+          "attributes": {
+            "country": "India",
+            "member": "Rajnath Singh"
+          }
+        },
+        {
+          "name": "country-wide law against cow slaughter",
+          "type": "OTHER",
+          "aliases": [],
+          "attributes": {
+            "scope": "country-wide",
+            "subject": "cow slaughter"
+          }
+        },
+        {
+          "name": "India",
+          "type": "PLACE",
+          "aliases": [
+            "country"
+          ],
+          "attributes": {
+            "type": "country"
+          }
+        }
+      ]
+    },
+    "P2_events": {
+      "events": [
+        {
+          "who": "state authorities",
+          "action": "imposed",
+          "target": "ban on the sale and consumption of beef",
+          "where": "state-wide (Maharashtra)",
+          "when": "recent",
+          "result": "authorities in Malegaon asked residents to take mugshots",
+          "sequence": 1
+        },
+        {
+          "who": "(unknown perpetrators)",
+          "action": "committed",
+          "target": "cow slaughter",
+          "where": "Malegaon",
+          "when": "recent",
+          "result": "two men charged; ruling for ID cards came in its wake",
+          "sequence": 2
+        },
+        {
+          "who": "two men",
+          "action": "have been charged",
+          "target": "for killing the animal and selling its meat",
+          "where": "Malegaon",
+          "when": "recent",
+          "result": null,
+          "sequence": 3
+        },
+        {
+          "who": "The ruling (requiring ID cards)",
+          "action": "came",
+          "target": null,
+          "where": null,
+          "when": "in the wake of a recent case of cow slaughter in Malegaon",
+          "result": null,
+          "sequence": 4
+        },
+        {
+          "who": "Police in the Indian city of Malegaon, in the western state of Maharashtra",
+          "action": "are requiring",
+          "target": "identity cards for Cattle",
+          "where": "Indian city of Malegaon, in the western state of Maharashtra",
+          "when": "current",
+          "result": null,
+          "sequence": 5
+        },
+        {
+          "who": "authorities in the city",
+          "action": "have asked",
+          "target": "residents to take a 'mugshot' of their cattle and submit it to the police",
+          "where": "the city (Malegaon)",
+          "when": "following a recent state-wide ban",
+          "result": null,
+          "sequence": 6
+        },
+        {
+          "who": "residents",
+          "action": "have to give",
+          "target": "information about their animal's 'unique features,' such as the coloring and age of the cow, along with the length of its tail and other distinctive characteristics",
+          "where": null,
+          "when": "along with the photograph",
+          "result": null,
+          "sequence": 7
+        },
+        {
+          "who": "Police officials",
+          "action": "believe",
+          "target": "this (database creation) is the only way to solve cow slaughter cases and enforce the law",
+          "where": null,
+          "when": null,
+          "result": null,
+          "sequence": 8
+        },
+        {
+          "who": "Cows",
+          "action": "are considered holy and revered",
+          "target": "by that state's majority Hindu population",
+          "where": "that state (Maharashtra)",
+          "when": null,
+          "result": null,
+          "sequence": 9
+        },
+        {
+          "who": "We (Mahesh Sawai, Deputy Superintendent of Malegaon Police, and Malegaon Police)",
+          "action": "are creating",
+          "target": "a database",
+          "where": null,
+          "when": "current",
+          "result": null,
+          "sequence": 10
+        },
+        {
+          "who": "we (Mahesh Sawai and Malegaon Police)",
+          "action": "get",
+          "target": "an information of a cow slaughter",
+          "where": null,
+          "when": "conditional",
+          "result": null,
+          "sequence": 11
+        },
+        {
+          "who": "we (Mahesh Sawai and Malegaon Police)",
+          "action": "can quickly go",
+          "target": "to the resident's place",
+          "where": "resident's place",
+          "when": "conditional (if information of cow slaughter is received)",
+          "result": null,
+          "sequence": 12
+        },
+        {
+          "who": "we (Mahesh Sawai and Malegaon Police)",
+          "action": "check",
+          "target": "whether it (the cow) is there or not",
+          "where": "resident's place",
+          "when": "conditional (after going to resident's place)",
+          "result": null,
+          "sequence": 13
+        },
+        {
+          "who": "I (Mahesh Sawai)",
+          "action": "believe",
+          "target": "this (the database) will be very effective",
+          "where": null,
+          "when": null,
+          "result": null,
+          "sequence": 14
+        },
+        {
+          "who": "over 100 owners",
+          "action": "have complied",
+          "target": "with the police order",
+          "where": null,
+          "when": "so far",
+          "result": null,
+          "sequence": 15
+        },
+        {
+          "who": "more (owners)",
+          "action": "are lining up",
+          "target": null,
+          "where": "outside police stations across the city",
+          "when": "current",
+          "result": "to get their livestock photographed",
+          "sequence": 16
+        },
+        {
+          "who": "The Maharashtra Animal Preservation Bill",
+          "action": "now includes",
+          "target": "bans on the killing of bulls and bullocks in its list of non-bailable offenses",
+          "where": null,
+          "when": "now",
+          "result": null,
+          "sequence": 17
+        },
+        {
+          "who": "the consumption or sale of beef",
+          "action": "could now land",
+          "target": "you",
+          "where": "in prison",
+          "when": "now",
+          "result": "five years in prison",
+          "sequence": 18
+        },
+        {
+          "who": "The slaughter of buffaloes",
+          "action": "is still permissible",
+          "target": null,
+          "where": null,
+          "when": null,
+          "result": null,
+          "sequence": 19
+        },
+        {
+          "who": "beef traders in the country",
+          "action": "strongly reacted",
+          "target": "to the decision (the ban)",
+          "where": "the country",
+          "when": null,
+          "result": null,
+          "sequence": 20
+        },
+        {
+          "who": "beef traders in the country",
+          "action": "called",
+          "target": "a month-long strike",
+          "where": "the country",
+          "when": null,
+          "result": "strike ended Wednesday",
+          "sequence": 21
+        },
+        {
+          "who": "a month-long strike",
+          "action": "ended",
+          "target": null,
+          "where": null,
+          "when": "Wednesday",
+          "result": null,
+          "sequence": 22
+        },
+        {
+          "who": "The traders",
+          "action": "refused",
+          "target": "to even slaughter buffaloes",
+          "where": null,
+          "when": null,
+          "result": "deprive the state of all bovine meat",
+          "sequence": 23
+        },
+        {
+          "who": "The traders",
+          "action": "deprive",
+          "target": "the state of all bovine meat",
+          "where": "the state",
+          "when": null,
+          "result": null,
+          "sequence": 24
+        },
+        {
+          "who": "They (traders)",
+          "action": "have now vowed",
+          "target": "to file a case",
+          "where": "in the state's high court",
+          "when": "now",
+          "result": null,
+          "sequence": 25
+        },
+        {
+          "who": "Red meat lovers",
+          "action": "weren't too delighted",
+          "target": null,
+          "where": null,
+          "when": null,
+          "result": null,
+          "sequence": 26
+        },
+        {
+          "who": "Red meat lovers",
+          "action": "arguing",
+          "target": "the government doesn't have a right to interfere in an individual's personal preference",
+          "where": null,
+          "when": null,
+          "result": null,
+          "sequence": 27
+        },
+        {
+          "who": "Maharashtra",
+          "action": "is not the only Indian state to tighten its laws",
+          "target": "on cow slaughter",
+          "where": "India",
+          "when": null,
+          "result": null,
+          "sequence": 28
+        },
+        {
+          "who": "Haryana state",
+          "action": "has implemented",
+          "target": "a maximum punishment of 10 years in prison",
+          "where": "Haryana state",
+          "when": null,
+          "result": "the toughest penalty in the country",
+          "sequence": 29
+        },
+        {
+          "who": "Rajnath Singh, India's Home Minister",
+          "action": "has promised",
+          "target": "that he would do all to devise a country-wide law against cow slaughter",
+          "where": null,
+          "when": null,
+          "result": null,
+          "sequence": 30
+        },
+        {
+          "who": "he (Rajnath Singh)",
+          "action": "would do all",
+          "target": "to devise a country-wide law against cow slaughter",
+          "where": "country-wide",
+          "when": "future (promised)",
+          "result": null,
+          "sequence": 31
+        }
+      ]
+    },
+    "P3_relationships": {
+      "relationships": [
+        {
+          "entity1": "Police",
+          "entity2": "Malegaon",
+          "relationship": "in",
+          "NOT_relationships": [
+            "from",
+            "controls"
+          ]
+        },
+        {
+          "entity1": "Malegaon",
+          "entity2": "Maharashtra",
+          "relationship": "in",
+          "NOT_relationships": [
+            "from",
+            "controls"
+          ]
+        },
+        {
+          "entity1": "Maharashtra",
+          "entity2": "India",
+          "relationship": "state of",
+          "NOT_relationships": [
+            "part of",
+            "governs"
+          ]
+        },
+        {
+          "entity1": "Police",
+          "entity2": "Cattle",
+          "relationship": "requiring identity cards for",
+          "NOT_relationships": [
+            "owns",
+            "protects"
+          ]
+        },
+        {
+          "entity1": "authorities",
+          "entity2": "Malegaon",
+          "relationship": "in",
+          "NOT_relationships": [
+            "from",
+            "controls"
+          ]
+        },
+        {
+          "entity1": "authorities",
+          "entity2": "residents",
+          "relationship": "asked to take mugshot of cattle",
+          "NOT_relationships": [
+            "ordered",
+            "forced"
+          ]
+        },
+        {
+          "entity1": "residents",
+          "entity2": "cattle",
+          "relationship": "their",
+          "NOT_relationships": [
+            "own",
+            "possess"
+          ]
+        },
+        {
+          "entity1": "residents",
+          "entity2": "police",
+          "relationship": "submit mugshot to",
+          "NOT_relationships": [
+            "report to",
+            "work for"
+          ]
+        },
+        {
+          "entity1": "residents",
+          "entity2": "animal",
+          "relationship": "their",
+          "NOT_relationships": [
+            "own",
+            "possess"
+          ]
+        },
+        {
+          "entity1": "Police officials",
+          "entity2": "cow slaughter cases",
+          "relationship": "solve",
+          "NOT_relationships": [
+            "prevent",
+            "investigate"
+          ]
+        },
+        {
+          "entity1": "Police officials",
+          "entity2": "the law",
+          "relationship": "enforce",
+          "NOT_relationships": [
+            "create",
+            "follow"
+          ]
+        },
+        {
+          "entity1": "Cows",
+          "entity2": "majority Hindu population",
+          "relationship": "revered by",
+          "NOT_relationships": [
+            "worshipped by",
+            "owned by"
+          ]
+        },
+        {
+          "entity1": "Maharashtra",
+          "entity2": "majority Hindu population",
+          "relationship": "has",
+          "NOT_relationships": [
+            "is",
+            "controls"
+          ]
+        },
+        {
+          "entity1": "Mahesh Sawai",
+          "entity2": "Deputy Superintendent of Malegaon Police",
+          "relationship": "is",
+          "NOT_relationships": [
+            "works for",
+            "leads"
+          ]
+        },
+        {
+          "entity1": "Mahesh Sawai",
+          "entity2": "CNN",
+          "relationship": "told",
+          "NOT_relationships": [
+            "interviewed by",
+            "works for"
+          ]
+        },
+        {
+          "entity1": "owners",
+          "entity2": "police order",
+          "relationship": "complied with",
+          "NOT_relationships": [
+            "ignored",
+            "fought"
+          ]
+        },
+        {
+          "entity1": "owners",
+          "entity2": "livestock",
+          "relationship": "their",
+          "NOT_relationships": [
+            "own",
+            "possess"
+          ]
+        },
+        {
+          "entity1": "cow slaughter",
+          "entity2": "Malegaon",
+          "relationship": "in",
+          "NOT_relationships": [
+            "from",
+            "caused by"
+          ]
+        },
+        {
+          "entity1": "two men",
+          "entity2": "animal",
+          "relationship": "charged for killing",
+          "NOT_relationships": [
+            "killed",
+            "owned"
+          ]
+        },
+        {
+          "entity1": "two men",
+          "entity2": "meat",
+          "relationship": "charged for selling",
+          "NOT_relationships": [
+            "sold",
+            "produced"
+          ]
+        },
+        {
+          "entity1": "Maharashtra Animal Preservation Bill",
+          "entity2": "bans on the killing of bulls and bullocks",
+          "relationship": "includes",
+          "NOT_relationships": [
+            "created",
+            "enforces"
+          ]
+        },
+        {
+          "entity1": "beef traders",
+          "entity2": "India",
+          "relationship": "in",
+          "NOT_relationships": [
+            "from",
+            "control"
+          ]
+        },
+        {
+          "entity1": "beef traders",
+          "entity2": "the decision",
+          "relationship": "reacted to",
+          "NOT_relationships": [
+            "supported",
+            "ignored"
+          ]
+        },
+        {
+          "entity1": "beef traders",
+          "entity2": "strike",
+          "relationship": "called",
+          "NOT_relationships": [
+            "participated in",
+            "ended"
+          ]
+        },
+        {
+          "entity1": "traders",
+          "entity2": "buffaloes",
+          "relationship": "refused to slaughter",
+          "NOT_relationships": [
+            "slaughtered",
+            "owned"
+          ]
+        },
+        {
+          "entity1": "traders",
+          "entity2": "Maharashtra",
+          "relationship": "deprive of bovine meat",
+          "NOT_relationships": [
+            "supplied",
+            "supported"
+          ]
+        },
+        {
+          "entity1": "traders",
+          "entity2": "Maharashtra's high court",
+          "relationship": "vowed to file a case in",
+          "NOT_relationships": [
+            "work for",
+            "sued"
+          ]
+        },
+        {
+          "entity1": "Red meat lovers",
+          "entity2": "government",
+          "relationship": "argued against interference by",
+          "NOT_relationships": [
+            "supported",
+            "worked for"
+          ]
+        },
+        {
+          "entity1": "Maharashtra",
+          "entity2": "Indian state",
+          "relationship": "is an",
+          "NOT_relationships": [
+            "part of",
+            "controls"
+          ]
+        },
+        {
+          "entity1": "Haryana state",
+          "entity2": "maximum punishment of 10 years",
+          "relationship": "implemented",
+          "NOT_relationships": [
+            "proposed",
+            "suffered"
+          ]
+        },
+        {
+          "entity1": "Rajnath Singh",
+          "entity2": "India",
+          "relationship": "Home Minister of",
+          "NOT_relationships": [
+            "President of",
+            "citizen of"
+          ]
+        },
+        {
+          "entity1": "Rajnath Singh",
+          "entity2": "country-wide law against cow slaughter",
+          "relationship": "promised to devise",
+          "NOT_relationships": [
+            "created",
+            "enforced"
+          ]
+        }
+      ]
+    },
+    "P4_numbers": {
+      "numerical_facts": [
+        {
+          "entity": "way to solve cow slaughter cases",
+          "number": 1,
+          "unit": "way",
+          "describes": "quantity",
+          "context": "Police officials believe this is the only way to solve cow slaughter cases and enforce the law."
+        },
+        {
+          "entity": "owners",
+          "number": "over 100",
+          "unit": "owners",
+          "describes": "quantity",
+          "context": "\"I believe this will be very effective\" So far over 100 owners have complied with the police order and more are lining up outside police stations across the city to get their livestock photographed."
+        },
+        {
+          "entity": "men charged",
+          "number": "two",
+          "unit": "men",
+          "describes": "quantity",
+          "context": "The ruling came in the wake of a recent case of cow slaughter in Malegaon, where two men have been charged for killing the animal and and selling its meat."
+        },
+        {
+          "entity": "prison sentence for beef consumption/sale",
+          "number": "five",
+          "unit": "years",
+          "describes": "duration",
+          "context": "Even the consumption or sale of beef could now land you in prison for five years."
+        },
+        {
+          "entity": "strike duration",
+          "number": 1,
+          "unit": "month",
+          "describes": "duration",
+          "context": "However, beef traders in the country strongly reacted to the decision and called a month-long strike, which ended Wednesday."
+        },
+        {
+          "entity": "Indian state (Maharashtra)",
+          "number": 1,
+          "unit": "state",
+          "describes": "uniqueness (not the only one)",
+          "context": "Maharashtra is not the only Indian state to tighten its laws on cow slaughter."
+        },
+        {
+          "entity": "maximum punishment in Haryana",
+          "number": 10,
+          "unit": "years",
+          "describes": "duration",
+          "context": "Haryana state has implemented a maximum punishment of 10 years in prison, the toughest penalty in the country."
+        }
+      ],
+      "temporal_facts": [
+        {
+          "entity": "strike end",
+          "number": "Wednesday",
+          "unit": "day of week",
+          "describes": "end date",
+          "context": "However, beef traders in the country strongly reacted to the decision and called a month-long strike, which ended Wednesday."
+        }
+      ]
+    },
+    "P5_negations": {
+      "explicit_negations": [
+        "check whether it is there or not",
+        "non-bailable offenses",
+        "government doesn't have a right to interfere in an individual's personal preference",
+        "Maharashtra is not the only Indian state to tighten its laws on cow slaughter"
+      ],
+      "absent_information": [
+        "Specific arguments of the 'red meat lovers' beyond the general right to personal preference",
+        "The exact date 'Wednesday' when the month-long strike ended",
+        "The names of the two men charged for cow slaughter or the specific charges against them"
+      ],
+      "boundaries": [
+        "this is the only way to solve cow slaughter cases",
+        "The slaughter of buffaloes, however, is still permissible",
+        "The traders refused to even slaughter buffaloes and deprive the state of all bovine meat",
+        "Haryana state has implemented a maximum punishment of 10 years in prison",
+        "he would do all to devise a country-wide law against cow slaughter"
+      ],
+      "corrections": [
+        "The slaughter of buffaloes, however, is still permissible. (Corrects the potential assumption that all bovine slaughter is banned after bans on cows, bulls, and beef.)",
+        "Maharashtra is not the only Indian state to tighten its laws on cow slaughter. (Corrects the potential assumption that Maharashtra is unique in implementing such strict laws.)"
+      ]
+    },
+    "P6_verify": {
+      "missed_facts": []
+    }
+  }
+}

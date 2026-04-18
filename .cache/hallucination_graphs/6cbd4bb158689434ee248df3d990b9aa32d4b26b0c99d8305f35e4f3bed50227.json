@@ -1,0 +1,1262 @@
+{
+  "passes": {
+    "P1_entities": {
+      "entities": [
+        {
+          "name": "FBI",
+          "type": "ORG",
+          "aliases": [],
+          "attributes": {}
+        },
+        {
+          "name": "Keonna Thomas",
+          "type": "PERSON",
+          "aliases": [
+            "a Philadelphia woman",
+            "She",
+            "Thomas",
+            "Young Lioness",
+            "Fatayat Al Khilafah"
+          ],
+          "attributes": {
+            "age": 30,
+            "role": "Philadelphia woman",
+            "status": "charged with trying to travel overseas to fight for ISIS",
+            "potential_sentence": "15 years in prison"
+          }
+        },
+        {
+          "name": "ISIS",
+          "type": "ORG",
+          "aliases": [],
+          "attributes": {
+            "description": "designated foreign terrorist organization"
+          }
+        },
+        {
+          "name": "Thursday",
+          "type": "OTHER",
+          "aliases": [],
+          "attributes": {
+            "description": "day of arrests and statements"
+          }
+        },
+        {
+          "name": "three women",
+          "type": "PERSON",
+          "aliases": [],
+          "attributes": {
+            "description": "arrested this week on terror charges"
+          }
+        },
+        {
+          "name": "this week",
+          "type": "OTHER",
+          "aliases": [],
+          "attributes": {}
+        },
+        {
+          "name": "terror charges",
+          "type": "OTHER",
+          "aliases": [],
+          "attributes": {}
+        },
+        {
+          "name": "Two New York women",
+          "type": "PERSON",
+          "aliases": [],
+          "attributes": {
+            "description": "taken into custody"
+          }
+        },
+        {
+          "name": "An FBI complaint",
+          "type": "OTHER",
+          "aliases": [
+            "the complaint"
+          ],
+          "attributes": {}
+        },
+        {
+          "name": "numerous social media messages",
+          "type": "OTHER",
+          "aliases": [
+            "One Twitter message",
+            "Another"
+          ],
+          "attributes": {
+            "dating_back_to": "August 2013",
+            "sender": "Keonna Thomas"
+          }
+        },
+        {
+          "name": "August 2013",
+          "type": "OTHER",
+          "aliases": [],
+          "attributes": {}
+        },
+        {
+          "name": "Twitter",
+          "type": "ORG",
+          "aliases": [],
+          "attributes": {}
+        },
+        {
+          "name": "ALLAH",
+          "type": "OTHER",
+          "aliases": [],
+          "attributes": {
+            "type": "deity"
+          }
+        },
+        {
+          "name": "shuhada [martyrs]",
+          "type": "OTHER",
+          "aliases": [],
+          "attributes": {
+            "description": "term used in a Twitter message"
+          }
+        },
+        {
+          "name": "mujahid [violent jihadi fighter]",
+          "type": "OTHER",
+          "aliases": [],
+          "attributes": {
+            "description": "term used in a Twitter message"
+          }
+        },
+        {
+          "name": "an electronic visa",
+          "type": "PRODUCT",
+          "aliases": [],
+          "attributes": {
+            "destination": "Turkey",
+            "purchase_date": "March 23",
+            "purchased_by": "Keonna Thomas"
+          }
+        },
+        {
+          "name": "Turkey",
+          "type": "PLACE",
+          "aliases": [],
+          "attributes": {
+            "description": "easiest place from which to enter Syria and join ISIS"
+          }
+        },
+        {
+          "name": "March 23",
+          "type": "OTHER",
+          "aliases": [],
+          "attributes": {}
+        },
+        {
+          "name": "Syria",
+          "type": "PLACE",
+          "aliases": [],
+          "attributes": {}
+        },
+        {
+          "name": "An ISIS manual",
+          "type": "OTHER",
+          "aliases": [],
+          "attributes": {}
+        },
+        {
+          "name": "recruits",
+          "type": "PERSON",
+          "aliases": [],
+          "attributes": {
+            "role": "advised by ISIS manual"
+          }
+        },
+        {
+          "name": "round-trip tickets",
+          "type": "PRODUCT",
+          "aliases": [
+            "tickets"
+          ],
+          "attributes": {
+            "purpose": "to vacation spots"
+          }
+        },
+        {
+          "name": "vacation spots",
+          "type": "PLACE",
+          "aliases": [],
+          "attributes": {
+            "description": "suggested by ISIS manual for initial travel"
+          }
+        },
+        {
+          "name": "Spain",
+          "type": "PLACE",
+          "aliases": [],
+          "attributes": {}
+        },
+        {
+          "name": "March 26",
+          "type": "OTHER",
+          "aliases": [],
+          "attributes": {}
+        },
+        {
+          "name": "a ticket",
+          "type": "PRODUCT",
+          "aliases": [],
+          "attributes": {
+            "destination": "Barcelona",
+            "departure_date": "March 29",
+            "return_date": "April 15",
+            "return_to": "the United States",
+            "purchased_by": "Keonna Thomas"
+          }
+        },
+        {
+          "name": "Barcelona",
+          "type": "PLACE",
+          "aliases": [],
+          "attributes": {}
+        },
+        {
+          "name": "March 29",
+          "type": "OTHER",
+          "aliases": [],
+          "attributes": {}
+        },
+        {
+          "name": "April 15",
+          "type": "OTHER",
+          "aliases": [],
+          "attributes": {}
+        },
+        {
+          "name": "the United States",
+          "type": "PLACE",
+          "aliases": [],
+          "attributes": {}
+        },
+        {
+          "name": "material support and resources",
+          "type": "OTHER",
+          "aliases": [],
+          "attributes": {
+            "description": "type of support provided to a terrorist organization"
+          }
+        },
+        {
+          "name": "a designated foreign terrorist organization",
+          "type": "ORG",
+          "aliases": [],
+          "attributes": {
+            "description": "general term for organizations like ISIS"
+          }
+        },
+        {
+          "name": "15 years",
+          "type": "OTHER",
+          "aliases": [],
+          "attributes": {
+            "unit": "years",
+            "description": "potential prison sentence"
+          }
+        },
+        {
+          "name": "prison",
+          "type": "PLACE",
+          "aliases": [],
+          "attributes": {
+            "type": "general"
+          }
+        },
+        {
+          "name": "Noelle Velentzas",
+          "type": "PERSON",
+          "aliases": [],
+          "attributes": {
+            "age": 28,
+            "role": "New York woman",
+            "status": "arrested and accused of planning to build an explosive device for attacks in the United States"
+          }
+        },
+        {
+          "name": "Asia Siddiqui",
+          "type": "PERSON",
+          "aliases": [
+            "her former roommate"
+          ],
+          "attributes": {
+            "age": 31,
+            "role": "New York woman",
+            "status": "arrested and accused of planning to build an explosive device for attacks in the United States"
+          }
+        },
+        {
+          "name": "New York",
+          "type": "PLACE",
+          "aliases": [],
+          "attributes": {
+            "type": "city/state"
+          }
+        },
+        {
+          "name": "an explosive device",
+          "type": "PRODUCT",
+          "aliases": [],
+          "attributes": {
+            "purpose": "for attacks in the United States"
+          }
+        },
+        {
+          "name": "federal prosecutors",
+          "type": "ORG",
+          "aliases": [],
+          "attributes": {}
+        },
+        {
+          "name": "the past 18 months",
+          "type": "OTHER",
+          "aliases": [],
+          "attributes": {}
+        },
+        {
+          "name": "the Justice Department's National Security Division",
+          "type": "ORG",
+          "aliases": [],
+          "attributes": {}
+        },
+        {
+          "name": "Justice Department",
+          "type": "ORG",
+          "aliases": [],
+          "attributes": {}
+        },
+        {
+          "name": "National Security Division",
+          "type": "ORG",
+          "aliases": [],
+          "attributes": {}
+        },
+        {
+          "name": "30 cases",
+          "type": "OTHER",
+          "aliases": [
+            "those cases"
+          ],
+          "attributes": {
+            "description": "of people attempting to travel abroad to join or provide support to terrorist groups",
+            "timeframe": "in the past 18 months"
+          }
+        },
+        {
+          "name": "people",
+          "type": "PERSON",
+          "aliases": [],
+          "attributes": {
+            "description": "attempting to travel abroad to join or provide support to terrorist groups"
+          }
+        },
+        {
+          "name": "terrorist groups",
+          "type": "ORG",
+          "aliases": [],
+          "attributes": {}
+        },
+        {
+          "name": "18",
+          "type": "OTHER",
+          "aliases": [],
+          "attributes": {
+            "unit": "cases",
+            "description": "allegedly involve support to ISIS"
+          }
+        },
+        {
+          "name": "The terrorist threat",
+          "type": "OTHER",
+          "aliases": [
+            "It"
+          ],
+          "attributes": {
+            "condition": "more decentralized, more diffuse, more complicated"
+          }
+        },
+        {
+          "name": "Jeh Johnson",
+          "type": "PERSON",
+          "aliases": [],
+          "attributes": {
+            "title": "Homeland Security Secretary"
+          }
+        },
+        {
+          "name": "Homeland Security Secretary",
+          "type": "PERSON",
+          "aliases": [],
+          "attributes": {
+            "role": "Secretary of Homeland Security"
+          }
+        },
+        {
+          "name": "reporters",
+          "type": "PERSON",
+          "aliases": [],
+          "attributes": {}
+        },
+        {
+          "name": "lone wolf actor",
+          "type": "PERSON",
+          "aliases": [],
+          "attributes": {
+            "description": "potential type of actor involved in terrorist threat"
+          }
+        },
+        {
+          "name": "social media",
+          "type": "OTHER",
+          "aliases": [],
+          "attributes": {
+            "description": "effective use in terrorist threat"
+          }
+        },
+        {
+          "name": "the Internet",
+          "type": "OTHER",
+          "aliases": [],
+          "attributes": {
+            "description": "effective use in terrorist threat"
+          }
+        }
+      ]
+    },
+    "P2_events": {
+      "events": [
+        {
+          "who": "Keonna Thomas",
+          "action": "sent",
+          "target": "numerous social media messages",
+          "where": "N/A",
+          "when": "dating back to August 2013",
+          "result": "N/A",
+          "sequence": 1
+        },
+        {
+          "who": "One Twitter message",
+          "action": "said",
+          "target": "N/A",
+          "where": "N/A",
+          "when": "N/A",
+          "result": "\"If we truly knew the realities ... we all would be rushing to join our brothers in the front lines pray ALLAH accept us as shuhada [martyrs]\"",
+          "sequence": 2
+        },
+        {
+          "who": "\"we all\" (from the Twitter message)",
+          "action": "would be rushing",
+          "target": "N/A",
+          "where": "N/A",
+          "when": "N/A",
+          "result": "to join our brothers in the front lines",
+          "sequence": 3
+        },
+        {
+          "who": "ALLAH (from the Twitter message)",
+          "action": "accept",
+          "target": "us (from the Twitter message)",
+          "where": "N/A",
+          "when": "N/A",
+          "result": "as shuhada [martyrs]",
+          "sequence": 4
+        },
+        {
+          "who": "Another (Twitter message)",
+          "action": "said",
+          "target": "N/A",
+          "where": "N/A",
+          "when": "N/A",
+          "result": "\"When you're a mujahid [violent jihadi fighter] your death becomes a wedding\"",
+          "sequence": 5
+        },
+        {
+          "who": "your death (from the Twitter message)",
+          "action": "becomes",
+          "target": "a wedding",
+          "where": "N/A",
+          "when": "When you're a mujahid [violent jihadi fighter]",
+          "result": "N/A",
+          "sequence": 6
+        },
+        {
+          "who": "Keonna Thomas",
+          "action": "purchased",
+          "target": "an electronic visa",
+          "where": "to Turkey",
+          "when": "March 23",
+          "result": "N/A",
+          "sequence": 7
+        },
+        {
+          "who": "Keonna Thomas",
+          "action": "purchased",
+          "target": "a ticket",
+          "where": "to Barcelona",
+          "when": "March 26",
+          "result": "with a March 29 departure and an April 15 return to the United States",
+          "sequence": 8
+        },
+        {
+          "who": "The FBI",
+          "action": "charged",
+          "target": "a Philadelphia woman",
+          "where": "N/A",
+          "when": "Thursday",
+          "result": "with trying to travel overseas to fight for ISIS",
+          "sequence": 9
+        },
+        {
+          "who": "a Philadelphia woman (referring to Keonna Thomas)",
+          "action": "trying to travel",
+          "target": "N/A",
+          "where": "overseas",
+          "when": "N/A",
+          "result": "to fight for ISIS",
+          "sequence": 10
+        },
+        {
+          "who": "She (referring to Keonna Thomas)",
+          "action": "was arrested",
+          "target": "N/A",
+          "where": "N/A",
+          "when": "this week",
+          "result": "on terror charges",
+          "sequence": 11
+        },
+        {
+          "who": "She (referring to Keonna Thomas)",
+          "action": "was charged",
+          "target": "N/A",
+          "where": "N/A",
+          "when": "N/A",
+          "result": "with knowingly attempting to provide material support and resources to a designated foreign terrorist organization",
+          "sequence": 12
+        },
+        {
+          "who": "She (referring to Keonna Thomas)",
+          "action": "attempting to provide",
+          "target": "material support and resources",
+          "where": "N/A",
+          "when": "N/A",
+          "result": "to a designated foreign terrorist organization",
+          "sequence": 13
+        },
+        {
+          "who": "She (referring to Keonna Thomas)",
+          "action": "could be sentenced",
+          "target": "N/A",
+          "where": "in prison",
+          "when": "N/A",
+          "result": "to 15 years",
+          "sequence": 14
+        },
+        {
+          "who": "Noelle Velentzas, 28, and her former roommate, Asia Siddiqui, 31",
+          "action": "were arrested",
+          "target": "N/A",
+          "where": "in New York",
+          "when": "Thursday",
+          "result": "N/A",
+          "sequence": 15
+        },
+        {
+          "who": "Noelle Velentzas and Asia Siddiqui",
+          "action": "were accused",
+          "target": "N/A",
+          "where": "N/A",
+          "when": "N/A",
+          "result": "of planning to build an explosive device for attacks in the United States",
+          "sequence": 16
+        },
+        {
+          "who": "Noelle Velentzas and Asia Siddiqui",
+          "action": "planning to build",
+          "target": "an explosive device",
+          "where": "N/A",
+          "when": "N/A",
+          "result": "for attacks in the United States",
+          "sequence": 17
+        },
+        {
+          "who": "three women",
+          "action": "were arrested",
+          "target": "N/A",
+          "where": "N/A",
+          "when": "this week",
+          "result": "on terror charges",
+          "sequence": 18
+        },
+        {
+          "who": "Two New York women",
+          "action": "were taken",
+          "target": "N/A",
+          "where": "N/A",
+          "when": "N/A",
+          "result": "into custody",
+          "sequence": 19
+        },
+        {
+          "who": "the Justice Department's National Security Division",
+          "action": "has prosecuted or is prosecuting",
+          "target": "more than 30 cases of people",
+          "where": "N/A",
+          "when": "In the past 18 months",
+          "result": "attempting to travel abroad to join or provide support to terrorist groups",
+          "sequence": 20
+        },
+        {
+          "who": "people (in the cases)",
+          "action": "attempting to travel",
+          "target": "N/A",
+          "where": "abroad",
+          "when": "N/A",
+          "result": "to join or provide support to terrorist groups",
+          "sequence": 21
+        },
+        {
+          "who": "people (in the cases)",
+          "action": "join",
+          "target": "terrorist groups",
+          "where": "abroad",
+          "when": "N/A",
+          "result": "N/A",
+          "sequence": 22
+        },
+        {
+          "who": "people (in the cases)",
+          "action": "provide",
+          "target": "support",
+          "where": "abroad",
+          "when": "N/A",
+          "result": "to terrorist groups",
+          "sequence": 23
+        },
+        {
+          "who": "18 of those cases",
+          "action": "allegedly involve",
+          "target": "support",
+          "where": "N/A",
+          "when": "N/A",
+          "result": "to ISIS",
+          "sequence": 24
+        },
+        {
+          "who": "Homeland Security Secretary Jeh Johnson",
+          "action": "told",
+          "target": "reporters",
+          "where": "N/A",
+          "when": "Thursday",
+          "result": "N/A",
+          "sequence": 25
+        },
+        {
+          "who": "The terrorist threat (as described by Homeland Security Secretary Jeh Johnson)",
+          "action": "is",
+          "target": "N/A",
+          "where": "N/A",
+          "when": "N/A",
+          "result": "more decentralized, more diffuse, more complicated",
+          "sequence": 26
+        },
+        {
+          "who": "It (referring to the terrorist threat, as described by Homeland Security Secretary Jeh Johnson)",
+          "action": "involves",
+          "target": "the potential lone wolf actor",
+          "where": "N/A",
+          "when": "N/A",
+          "result": "N/A",
+          "sequence": 27
+        },
+        {
+          "who": "It (referring to the terrorist threat, as described by Homeland Security Secretary Jeh Johnson)",
+          "action": "involves",
+          "target": "the effective use of social media, the Internet",
+          "where": "N/A",
+          "when": "N/A",
+          "result": "N/A",
+          "sequence": 28
+        },
+        {
+          "who": "An FBI complaint",
+          "action": "cites",
+          "target": "numerous social media messages",
+          "where": "N/A",
+          "when": "N/A",
+          "result": "N/A",
+          "sequence": 29
+        },
+        {
+          "who": "The FBI",
+          "action": "said",
+          "target": "N/A",
+          "where": "N/A",
+          "when": "N/A",
+          "result": "Thomas purchased an electronic visa to Turkey on March 23",
+          "sequence": 30
+        },
+        {
+          "who": "Turkey",
+          "action": "is known",
+          "target": "N/A",
+          "where": "N/A",
+          "when": "N/A",
+          "result": "as the easiest place from which to enter Syria and join ISIS",
+          "sequence": 31
+        },
+        {
+          "who": "people (implied from context)",
+          "action": "enter",
+          "target": "Syria",
+          "where": "from Turkey",
+          "when": "N/A",
+          "result": "N/A",
+          "sequence": 32
+        },
+        {
+          "who": "people (implied from context)",
+          "action": "join",
+          "target": "ISIS",
+          "where": "N/A",
+          "when": "N/A",
+          "result": "N/A",
+          "sequence": 33
+        },
+        {
+          "who": "An ISIS manual",
+          "action": "advises",
+          "target": "recruits",
+          "where": "N/A",
+          "when": "N/A",
+          "result": "to buy round-trip tickets to vacation spots such as Spain and then purchase tickets for their real destination once they arrive overseas",
+          "sequence": 34
+        },
+        {
+          "who": "recruits (as advised by ISIS manual)",
+          "action": "buy",
+          "target": "round-trip tickets",
+          "where": "to vacation spots such as Spain",
+          "when": "N/A",
+          "result": "N/A",
+          "sequence": 35
+        },
+        {
+          "who": "recruits (as advised by ISIS manual)",
+          "action": "purchase",
+          "target": "tickets",
+          "where": "for their real destination",
+          "when": "once they arrive overseas",
+          "result": "N/A",
+          "sequence": 36
+        },
+        {
+          "who": "recruits (as advised by ISIS manual)",
+          "action": "arrive",
+          "target": "N/A",
+          "where": "overseas",
+          "when": "N/A",
+          "result": "N/A",
+          "sequence": 37
+        },
+        {
+          "who": "the FBI",
+          "action": "said",
+          "target": "N/A",
+          "where": "N/A",
+          "when": "N/A",
+          "result": "An ISIS manual advises recruits to buy round-trip tickets to vacation spots such as Spain and then purchase tickets for their real destination once they arrive overseas",
+          "sequence": 38
+        },
+        {
+          "who": "the complaint",
+          "action": "said",
+          "target": "N/A",
+          "where": "N/A",
+          "when": "N/A",
+          "result": "On March 26, Thomas purchased a ticket to Barcelona, with a March 29 departure and an April 15 return to the United States",
+          "sequence": 39
+        },
+        {
+          "who": "she (referring to Keonna Thomas)",
+          "action": "was arrested",
+          "target": "N/A",
+          "where": "N/A (not clear)",
+          "when": "N/A (not clear)",
+          "result": "N/A",
+          "sequence": 40
+        },
+        {
+          "who": "federal prosecutors",
+          "action": "said",
+          "target": "N/A",
+          "where": "N/A",
+          "when": "N/A",
+          "result": "On Thursday, Noelle Velentzas, 28, and her former roommate, Asia Siddiqui, 31, were arrested in New York and accused of planning to build an explosive device for attacks in the United States",
+          "sequence": 41
+        }
+      ]
+    },
+    "P3_relationships": {
+      "relationships": [
+        {
+          "entity1": "FBI",
+          "entity2": "Keonna Thomas",
+          "relationship": "charged",
+          "NOT_relationships": []
+        },
+        {
+          "entity1": "FBI",
+          "entity2": "Keonna Thomas",
+          "relationship": "filed complaint against",
+          "NOT_relationships": []
+        },
+        {
+          "entity1": "FBI",
+          "entity2": "Keonna Thomas",
+          "relationship": "arrested",
+          "NOT_relationships": []
+        },
+        {
+          "entity1": "Keonna Thomas",
+          "entity2": "Philadelphia",
+          "relationship": "resident of",
+          "NOT_relationships": []
+        },
+        {
+          "entity1": "Keonna Thomas",
+          "entity2": "ISIS",
+          "relationship": "trying to fight for",
+          "NOT_relationships": [
+            "member of",
+            "fighter",
+            "fought for"
+          ]
+        },
+        {
+          "entity1": "Keonna Thomas",
+          "entity2": "three women",
+          "relationship": "one of",
+          "NOT_relationships": []
+        },
+        {
+          "entity1": "three women",
+          "entity2": "terror charges",
+          "relationship": "arrested on",
+          "NOT_relationships": []
+        },
+        {
+          "entity1": "Noelle Velentzas",
+          "entity2": "New York",
+          "relationship": "resident of",
+          "NOT_relationships": []
+        },
+        {
+          "entity1": "Asia Siddiqui",
+          "entity2": "New York",
+          "relationship": "resident of",
+          "NOT_relationships": []
+        },
+        {
+          "entity1": "Noelle Velentzas",
+          "entity2": "three women",
+          "relationship": "one of",
+          "NOT_relationships": []
+        },
+        {
+          "entity1": "Asia Siddiqui",
+          "entity2": "three women",
+          "relationship": "one of",
+          "NOT_relationships": []
+        },
+        {
+          "entity1": "Keonna Thomas",
+          "entity2": "Young Lioness",
+          "relationship": "also known as",
+          "NOT_relationships": [
+            "alias of"
+          ]
+        },
+        {
+          "entity1": "Keonna Thomas",
+          "entity2": "Fatayat Al Khilafah",
+          "relationship": "also known as",
+          "NOT_relationships": [
+            "alias of"
+          ]
+        },
+        {
+          "entity1": "Keonna Thomas",
+          "entity2": "brothers",
+          "relationship": "refers to as",
+          "NOT_relationships": [
+            "family of"
+          ]
+        },
+        {
+          "entity1": "Keonna Thomas",
+          "entity2": "Allah",
+          "relationship": "prays to",
+          "NOT_relationships": []
+        },
+        {
+          "entity1": "Keonna Thomas",
+          "entity2": "shuhada [martyrs]",
+          "relationship": "wishes to be accepted as",
+          "NOT_relationships": [
+            "is a martyr"
+          ]
+        },
+        {
+          "entity1": "Keonna Thomas",
+          "entity2": "mujahid [violent jihadi fighter]",
+          "relationship": "refers to",
+          "NOT_relationships": [
+            "is a mujahid"
+          ]
+        },
+        {
+          "entity1": "Keonna Thomas",
+          "entity2": "Turkey",
+          "relationship": "purchased electronic visa to",
+          "NOT_relationships": []
+        },
+        {
+          "entity1": "Turkey",
+          "entity2": "Syria",
+          "relationship": "known as easiest place to enter",
+          "NOT_relationships": []
+        },
+        {
+          "entity1": "Turkey",
+          "entity2": "ISIS",
+          "relationship": "known as easiest place to join",
+          "NOT_relationships": []
+        },
+        {
+          "entity1": "ISIS",
+          "entity2": "recruits",
+          "relationship": "advises",
+          "NOT_relationships": []
+        },
+        {
+          "entity1": "recruits",
+          "entity2": "ISIS",
+          "relationship": "advised to join",
+          "NOT_relationships": []
+        },
+        {
+          "entity1": "Spain",
+          "entity2": "vacation spot",
+          "relationship": "type of",
+          "NOT_relationships": []
+        },
+        {
+          "entity1": "Keonna Thomas",
+          "entity2": "Barcelona",
+          "relationship": "purchased ticket to",
+          "NOT_relationships": []
+        },
+        {
+          "entity1": "Keonna Thomas",
+          "entity2": "United States",
+          "relationship": "planned return to",
+          "NOT_relationships": []
+        },
+        {
+          "entity1": "Keonna Thomas",
+          "entity2": "foreign terrorist organization",
+          "relationship": "charged with attempting to provide material support and resources to",
+          "NOT_relationships": [
+            "provided material support and resources to"
+          ]
+        },
+        {
+          "entity1": "Noelle Velentzas",
+          "entity2": "Asia Siddiqui",
+          "relationship": "former roommate",
+          "NOT_relationships": [
+            "roommate",
+            "friend",
+            "partner",
+            "wife",
+            "girlfriend"
+          ]
+        },
+        {
+          "entity1": "Noelle Velentzas",
+          "entity2": "New York",
+          "relationship": "arrested in",
+          "NOT_relationships": []
+        },
+        {
+          "entity1": "Asia Siddiqui",
+          "entity2": "New York",
+          "relationship": "arrested in",
+          "NOT_relationships": []
+        },
+        {
+          "entity1": "Noelle Velentzas",
+          "entity2": "federal prosecutors",
+          "relationship": "accused by",
+          "NOT_relationships": []
+        },
+        {
+          "entity1": "Asia Siddiqui",
+          "entity2": "federal prosecutors",
+          "relationship": "accused by",
+          "NOT_relationships": []
+        },
+        {
+          "entity1": "Noelle Velentzas",
+          "entity2": "United States",
+          "relationship": "accused of planning attacks in",
+          "NOT_relationships": [
+            "attacked"
+          ]
+        },
+        {
+          "entity1": "Asia Siddiqui",
+          "entity2": "United States",
+          "relationship": "accused of planning attacks in",
+          "NOT_relationships": [
+            "attacked"
+          ]
+        },
+        {
+          "entity1": "Justice Department's National Security Division",
+          "entity2": "terrorist groups",
+          "relationship": "prosecuting cases involving support to",
+          "NOT_relationships": []
+        },
+        {
+          "entity1": "Justice Department's National Security Division",
+          "entity2": "Justice Department",
+          "relationship": "part of",
+          "NOT_relationships": []
+        },
+        {
+          "entity1": "Justice Department's National Security Division",
+          "entity2": "ISIS",
+          "relationship": "prosecuting cases involving support to",
+          "NOT_relationships": []
+        },
+        {
+          "entity1": "Jeh Johnson",
+          "entity2": "Homeland Security Secretary",
+          "relationship": "title",
+          "NOT_relationships": [
+            "employer",
+            "employee"
+          ]
+        },
+        {
+          "entity1": "Jeh Johnson",
+          "entity2": "Homeland Security",
+          "relationship": "secretary of",
+          "NOT_relationships": [
+            "employee of"
+          ]
+        },
+        {
+          "entity1": "Jeh Johnson",
+          "entity2": "reporters",
+          "relationship": "told",
+          "NOT_relationships": []
+        },
+        {
+          "entity1": "Noelle Velentzas",
+          "entity2": "custody",
+          "relationship": "taken into",
+          "NOT_relationships": []
+        },
+        {
+          "entity1": "Asia Siddiqui",
+          "entity2": "custody",
+          "relationship": "taken into",
+          "NOT_relationships": []
+        }
+      ]
+    },
+    "P4_numbers": {
+      "numerical_facts": [
+        {
+          "entity": "Philadelphia woman",
+          "number": "one",
+          "unit": "ordinal",
+          "describes": "position among arrested women",
+          "context": "She's one of three women arrested this week on terror charges."
+        },
+        {
+          "entity": "women",
+          "number": 3,
+          "unit": "people",
+          "describes": "total number of women arrested this week on terror charges",
+          "context": "She's one of three women arrested this week on terror charges."
+        },
+        {
+          "entity": "New York women",
+          "number": 2,
+          "unit": "people",
+          "describes": "number of New York women taken into custody",
+          "context": "Two New York women were also taken into custody."
+        },
+        {
+          "entity": "Keonna Thomas",
+          "number": 30,
+          "unit": "age",
+          "describes": "age of Keonna Thomas",
+          "context": "An FBI complaint cites numerous social media messages dating back to August 2013 that were sent by Keonna Thomas, 30, also known as \"Young Lioness\" and \"Fatayat Al Khilafah.\""
+        },
+        {
+          "entity": "Twitter message",
+          "number": "One",
+          "unit": "count",
+          "describes": "number of Twitter messages cited",
+          "context": "One Twitter message said, \"If we truly knew the realities ... we all would be rushing to join our brothers in the front lines pray ALLAH accept us as shuhada [martyrs].\""
+        },
+        {
+          "entity": "prison sentence",
+          "number": 15,
+          "unit": "years",
+          "describes": "potential length of prison sentence",
+          "context": "She could be sentenced to 15 years in prison."
+        },
+        {
+          "entity": "Noelle Velentzas",
+          "number": 28,
+          "unit": "age",
+          "describes": "age of Noelle Velentzas",
+          "context": "On Thursday, Noelle Velentzas, 28, and her former roommate, Asia Siddiqui, 31, were arrested in New York and accused of planning to build an explosive device for attacks in the United States, federal prosecutors said."
+        },
+        {
+          "entity": "Asia Siddiqui",
+          "number": 31,
+          "unit": "age",
+          "describes": "age of Asia Siddiqui",
+          "context": "On Thursday, Noelle Velentzas, 28, and her former roommate, Asia Siddiqui, 31, were arrested in New York and accused of planning to build an explosive device for attacks in the United States, federal prosecutors said."
+        },
+        {
+          "entity": "past",
+          "number": 18,
+          "unit": "months",
+          "describes": "duration of time",
+          "context": "In the past 18 months, the Justice Department's National Security Division has prosecuted or is prosecuting more than 30 cases of people attempting to travel abroad to join or provide support to terrorist groups."
+        },
+        {
+          "entity": "cases",
+          "number": 30,
+          "unit": "cases",
+          "describes": "number of cases prosecuted or being prosecuted",
+          "context": "In the past 18 months, the Justice Department's National Security Division has prosecuted or is prosecuting more than 30 cases of people attempting to travel abroad to join or provide support to terrorist groups."
+        },
+        {
+          "entity": "cases",
+          "number": 18,
+          "unit": "cases",
+          "describes": "number of cases involving support to ISIS",
+          "context": "Of those cases, 18 allegedly involve support to ISIS."
+        }
+      ],
+      "temporal_facts": [
+        {
+          "entity": "FBI charge",
+          "number": "Thursday",
+          "unit": "day of the week",
+          "describes": "day of charging",
+          "context": "The FBI charged a Philadelphia woman on Thursday with trying to travel overseas to fight for ISIS."
+        },
+        {
+          "entity": "social media messages",
+          "number": "August 2013",
+          "unit": "date",
+          "describes": "start date of messages",
+          "context": "An FBI complaint cites numerous social media messages dating back to August 2013 that were sent by Keonna Thomas, 30, also known as \"Young Lioness\" and \"Fatayat Al Khilafah.\""
+        },
+        {
+          "entity": "Keonna Thomas",
+          "number": "March 23",
+          "unit": "date",
+          "describes": "date of visa purchase",
+          "context": "The FBI said Thomas purchased an electronic visa to Turkey on March 23."
+        },
+        {
+          "entity": "Thomas",
+          "number": "March 26",
+          "unit": "date",
+          "describes": "date of ticket purchase",
+          "context": "On March 26, Thomas purchased a ticket to Barcelona, with a March 29 departure and an April 15 return to the United States, the complaint said."
+        },
+        {
+          "entity": "ticket",
+          "number": "March 29",
+          "unit": "date",
+          "describes": "departure date",
+          "context": "On March 26, Thomas purchased a ticket to Barcelona, with a March 29 departure and an April 15 return to the United States, the complaint said."
+        },
+        {
+          "entity": "ticket",
+          "number": "April 15",
+          "unit": "date",
+          "describes": "return date",
+          "context": "On March 26, Thomas purchased a ticket to Barcelona, with a March 29 departure and an April 15 return to the United States, the complaint said."
+        },
+        {
+          "entity": "Noelle Velentzas and Asia Siddiqui",
+          "number": "Thursday",
+          "unit": "day of the week",
+          "describes": "day of arrest",
+          "context": "On Thursday, Noelle Velentzas, 28, and her former roommate, Asia Siddiqui, 31, were arrested in New York and accused of planning to build an explosive device for attacks in the United States, federal prosecutors said."
+        },
+        {
+          "entity": "Jeh Johnson",
+          "number": "Thursday",
+          "unit": "day of the week",
+          "describes": "day of statement",
+          "context": "\"The terrorist threat is more decentralized, more diffuse, more complicated,\" Homeland Security Secretary Jeh Johnson told reporters Thursday."
+        }
+      ]
+    },
+    "P5_negations": {
+      "explicit_negations": [],
+      "absent_information": [
+        {
+          "what": "when or where Keonna Thomas was arrested",
+          "why_notable": "This is a crucial detail in a criminal case, indicating a lack of complete information about a significant event."
+        }
+      ],
+      "boundaries": [
+        {
+          "fact": "She was arrested this week on terror charges.",
+          "boundary": "one of three women"
+        },
+        {
+          "fact": "She will be sentenced to 15 years in prison.",
+          "boundary": "could be sentenced"
+        },
+        {
+          "fact": "The Justice Department has prosecuted cases of people attempting to travel abroad.",
+          "boundary": "more than 30 cases"
+        },
+        {
+          "fact": "18 cases involve support to ISIS.",
+          "boundary": "allegedly"
+        }
+      ],
+      "corrections": []
+    },
+    "P6_verify": {
+      "missed_facts": [
+        {
+          "fact": "Noelle Velentzas and Asia Siddiqui were former roommates.",
+          "category": "relationships",
+          "source_text": "On Thursday, Noelle Velentzas, 28, and her former roommate, Asia Siddiqui, 31, were arrested in New York and accused of planning to build an explosive device for attacks in the United States, federal prosecutors said."
+        }
+      ]
+    }
+  }
+}

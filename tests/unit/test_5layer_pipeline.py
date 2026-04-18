@@ -377,7 +377,7 @@ class TestL4GeminiCheck:
 
         assert result == "unsupported"
 
-    def test_no_api_key_defaults_to_supported(self) -> None:
+    def test_no_api_key_defaults_to_unsupported(self) -> None:
         from llm_judge.calibration.hallucination import _l4_gemini_check
 
         with patch.dict("os.environ", {}, clear=True):
@@ -387,7 +387,7 @@ class TestL4GeminiCheck:
             os.environ.pop("GEMINI_API_KEY", None)
             result = _l4_gemini_check("Any sentence.", "Any source.")
 
-        assert result == "supported"
+        assert result == "unsupported"
 
     def test_api_error_returns_error(self) -> None:
         from llm_judge.calibration.hallucination import _l4_gemini_check

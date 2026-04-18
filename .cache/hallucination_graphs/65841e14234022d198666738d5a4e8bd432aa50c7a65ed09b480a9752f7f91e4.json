@@ -1,0 +1,1806 @@
+{
+  "passes": {
+    "P1_entities": {
+      "entities": [
+        {
+          "name": "Hong Kong police",
+          "type": "ORG",
+          "aliases": [
+            "police",
+            "officers"
+          ],
+          "attributes": {}
+        },
+        {
+          "name": "Saturday morning",
+          "type": "OTHER",
+          "aliases": [],
+          "attributes": {}
+        },
+        {
+          "name": "November",
+          "type": "OTHER",
+          "aliases": [],
+          "attributes": {}
+        },
+        {
+          "name": "the city",
+          "type": "PLACE",
+          "aliases": [
+            "Hong Kong"
+          ],
+          "attributes": {}
+        },
+        {
+          "name": "One woman",
+          "type": "PERSON",
+          "aliases": [
+            "a woman",
+            "Seneng Mujiasih",
+            "Mujiasih",
+            "Jesse Lorena",
+            "the victims",
+            "the two women"
+          ],
+          "attributes": {
+            "description": "lying on the floor with cuts to her neck and buttocks"
+          }
+        },
+        {
+          "name": "Another",
+          "type": "PERSON",
+          "aliases": [
+            "another body",
+            "Sumarti Ningsih",
+            "Ningsih",
+            "his daughter",
+            "the victims",
+            "the two women"
+          ],
+          "attributes": {
+            "description": "stuffed inside a suitcase on the balcony"
+          }
+        },
+        {
+          "name": "Rurik Jutting",
+          "type": "PERSON",
+          "aliases": [
+            "Jutting",
+            "the perpetrator",
+            "their alleged attacker",
+            "a man of the same name"
+          ],
+          "attributes": {
+            "occupation": "former banker",
+            "age": "29-year-old",
+            "nationality": "Briton",
+            "status": "charged with two counts of murder",
+            "residence_before_custody": "the upmarket J Residence in Wan Chai",
+            "occupation_recent": "trader at the Bank of America Merrill Lynch (past)",
+            "occupation_history": "employed at the bank's structured equity finance and trading division in Hong Kong since July 2013",
+            "occupation_previous": "worked in the same unit in London for three years",
+            "occupation_earlier": "worked in capital markets for the British bank Barclays",
+            "education": "studied history and law at the prestigious University of Cambridge, between 2004 and 2008",
+            "psychological_fitness": "psychologically fit to enter a plea"
+          }
+        },
+        {
+          "name": "Thursday",
+          "type": "OTHER",
+          "aliases": [],
+          "attributes": {}
+        },
+        {
+          "name": "a court hearing",
+          "type": "OTHER",
+          "aliases": [],
+          "attributes": {
+            "purpose": "to determine whether there was enough evidence to proceed to trial",
+            "status": "adjourned until May"
+          }
+        },
+        {
+          "name": "May",
+          "type": "OTHER",
+          "aliases": [],
+          "attributes": {}
+        },
+        {
+          "name": "the victims",
+          "type": "PERSON",
+          "aliases": [
+            "One woman",
+            "Another",
+            "a woman",
+            "another body",
+            "Seneng Mujiasih",
+            "Sumarti Ningsih",
+            "Ningsih",
+            "Mujiasih",
+            "Jesse Lorena",
+            "the two women"
+          ],
+          "attributes": {}
+        },
+        {
+          "name": "the murder scene",
+          "type": "PLACE",
+          "aliases": [
+            "an upmarket apartment in the middle of Wan Chai",
+            "the apartment",
+            "the scene",
+            "the premises"
+          ],
+          "attributes": {}
+        },
+        {
+          "name": "Wan Chai",
+          "type": "PLACE",
+          "aliases": [],
+          "attributes": {
+            "type": "inner-city suburb",
+            "description": "home to an eclectic mix of late-night bars, residential tower blocks and local markets selling groceries and assorted cheap goods"
+          }
+        },
+        {
+          "name": "late-night bars",
+          "type": "OTHER",
+          "aliases": [],
+          "attributes": {}
+        },
+        {
+          "name": "residential tower blocks",
+          "type": "OTHER",
+          "aliases": [],
+          "attributes": {}
+        },
+        {
+          "name": "local markets",
+          "type": "OTHER",
+          "aliases": [],
+          "attributes": {
+            "selling": "groceries and assorted cheap goods"
+          }
+        },
+        {
+          "name": "groceries",
+          "type": "OTHER",
+          "aliases": [],
+          "attributes": {}
+        },
+        {
+          "name": "assorted cheap goods",
+          "type": "OTHER",
+          "aliases": [],
+          "attributes": {}
+        },
+        {
+          "name": "Saturday morning, November 1",
+          "type": "OTHER",
+          "aliases": [],
+          "attributes": {}
+        },
+        {
+          "name": "Seneng Mujiasih",
+          "type": "PERSON",
+          "aliases": [
+            "One woman",
+            "a woman",
+            "Mujiasih",
+            "Jesse Lorena",
+            "the victims",
+            "the two women"
+          ],
+          "attributes": {
+            "age": "29-year-old",
+            "status": "victim",
+            "occupation": "domestic worker in Hong Kong",
+            "visa_status": "overstayed her visa",
+            "origin": "from the city of Muna in Sulawesi province, in southeast Indonesia"
+          }
+        },
+        {
+          "name": "Sumarti Ningsih",
+          "type": "PERSON",
+          "aliases": [
+            "Another",
+            "another body",
+            "Ningsih",
+            "his daughter",
+            "the victims",
+            "the two women"
+          ],
+          "attributes": {
+            "age": "25-year-old",
+            "status": "killed on October 27",
+            "origin": "from Cilacap, in Central Java",
+            "family_role": "mother of a five-year-old girl",
+            "travel_status": "visiting Hong Kong as a tourist",
+            "occupation_history": "worked in Hong Kong as a domestic helper between 2011 and 2013",
+            "travel_history": "returned on two occasions"
+          }
+        },
+        {
+          "name": "October 27",
+          "type": "OTHER",
+          "aliases": [],
+          "attributes": {}
+        },
+        {
+          "name": "Cilacap",
+          "type": "PLACE",
+          "aliases": [],
+          "attributes": {
+            "location": "in Central Java"
+          }
+        },
+        {
+          "name": "Central Java",
+          "type": "PLACE",
+          "aliases": [],
+          "attributes": {}
+        },
+        {
+          "name": "a five-year-old girl",
+          "type": "PERSON",
+          "aliases": [],
+          "attributes": {
+            "relationship": "daughter of Sumarti Ningsih"
+          }
+        },
+        {
+          "name": "Jumiati",
+          "type": "PERSON",
+          "aliases": [],
+          "attributes": {
+            "relationship": "cousin of Sumarti Ningsih",
+            "description_of_Ningsih": "'just an ordinary woman from Indonesia'"
+          }
+        },
+        {
+          "name": "Indonesia",
+          "type": "PLACE",
+          "aliases": [],
+          "attributes": {}
+        },
+        {
+          "name": "the Asian Migrant Coordinating Body",
+          "type": "ORG",
+          "aliases": [
+            "the Asian Migrant Co-ordinating Body"
+          ],
+          "attributes": {}
+        },
+        {
+          "name": "Hong Kong",
+          "type": "PLACE",
+          "aliases": [
+            "the city"
+          ],
+          "attributes": {}
+        },
+        {
+          "name": "Jakarta",
+          "type": "PLACE",
+          "aliases": [],
+          "attributes": {}
+        },
+        {
+          "name": "Last year",
+          "type": "OTHER",
+          "aliases": [],
+          "attributes": {}
+        },
+        {
+          "name": "Ahmad Khaliman",
+          "type": "PERSON",
+          "aliases": [
+            "her grieving father",
+            "Khaliman"
+          ],
+          "attributes": {
+            "relationship": "father of Sumarti Ningsih",
+            "stance": "called for the perpetrator to be executed"
+          }
+        },
+        {
+          "name": "Agence France-Presse",
+          "type": "ORG",
+          "aliases": [],
+          "attributes": {}
+        },
+        {
+          "name": "the family",
+          "type": "PERSON",
+          "aliases": [],
+          "attributes": {
+            "relationship": "family of Sumarti Ningsih",
+            "status": "shocked by her murder"
+          }
+        },
+        {
+          "name": "the perpetrator",
+          "type": "PERSON",
+          "aliases": [
+            "Rurik Jutting",
+            "Jutting",
+            "their alleged attacker"
+          ],
+          "attributes": {}
+        },
+        {
+          "name": "CNN affiliate Trans7",
+          "type": "ORG",
+          "aliases": [
+            "Trans7"
+          ],
+          "attributes": {
+            "affiliation": "CNN affiliate"
+          }
+        },
+        {
+          "name": "Jesse Lorena",
+          "type": "PERSON",
+          "aliases": [
+            "Seneng Mujiasih",
+            "Mujiasih",
+            "One woman",
+            "a woman",
+            "the victims",
+            "the two women"
+          ],
+          "attributes": {}
+        },
+        {
+          "name": "the city of Muna",
+          "type": "PLACE",
+          "aliases": [],
+          "attributes": {
+            "location": "in Sulawesi province, in southeast Indonesia"
+          }
+        },
+        {
+          "name": "Sulawesi province",
+          "type": "PLACE",
+          "aliases": [],
+          "attributes": {
+            "location": "in southeast Indonesia"
+          }
+        },
+        {
+          "name": "fellow domestic workers",
+          "type": "PERSON",
+          "aliases": [],
+          "attributes": {
+            "activity": "held a vigil in Hong Kong's Victoria Park"
+          }
+        },
+        {
+          "name": "Hong Kong's Victoria Park",
+          "type": "PLACE",
+          "aliases": [
+            "Victoria Park"
+          ],
+          "attributes": {
+            "location": "Hong Kong"
+          }
+        },
+        {
+          "name": "200 people",
+          "type": "PERSON",
+          "aliases": [],
+          "attributes": {
+            "activity": "gathered to sing and pray, and lay flowers besides photos of the two women"
+          }
+        },
+        {
+          "name": "the two women",
+          "type": "PERSON",
+          "aliases": [
+            "the victims",
+            "One woman",
+            "Another",
+            "a woman",
+            "another body",
+            "Seneng Mujiasih",
+            "Sumarti Ningsih",
+            "Ningsih",
+            "Mujiasih",
+            "Jesse Lorena"
+          ],
+          "attributes": {}
+        },
+        {
+          "name": "J Residence",
+          "type": "PLACE",
+          "aliases": [],
+          "attributes": {
+            "type": "upmarket",
+            "location": "in Wan Chai"
+          }
+        },
+        {
+          "name": "a knife",
+          "type": "THING",
+          "aliases": [],
+          "attributes": {
+            "status": "seized during a search of the premises"
+          }
+        },
+        {
+          "name": "Bank of America Merrill Lynch",
+          "type": "ORG",
+          "aliases": [
+            "the bank",
+            "BoA"
+          ],
+          "attributes": {}
+        },
+        {
+          "name": "BoA spokesman",
+          "type": "PERSON",
+          "aliases": [],
+          "attributes": {
+            "affiliation": "Bank of America Merrill Lynch"
+          }
+        },
+        {
+          "name": "LinkedIn",
+          "type": "PRODUCT",
+          "aliases": [],
+          "attributes": {
+            "type": "profile platform"
+          }
+        },
+        {
+          "name": "the bank's structured equity finance and trading division",
+          "type": "ORG",
+          "aliases": [
+            "the same unit"
+          ],
+          "attributes": {
+            "parent_org": "Bank of America Merrill Lynch",
+            "location": "Hong Kong"
+          }
+        },
+        {
+          "name": "London",
+          "type": "PLACE",
+          "aliases": [],
+          "attributes": {}
+        },
+        {
+          "name": "Barclays",
+          "type": "ORG",
+          "aliases": [
+            "the British bank Barclays"
+          ],
+          "attributes": {
+            "nationality": "British"
+          }
+        },
+        {
+          "name": "University of Cambridge",
+          "type": "ORG",
+          "aliases": [],
+          "attributes": {
+            "description": "prestigious",
+            "period_of_study": "between 2004 and 2008"
+          }
+        },
+        {
+          "name": "history and law",
+          "type": "OTHER",
+          "aliases": [],
+          "attributes": {}
+        },
+        {
+          "name": "200 pieces of forensic and DNA evidence",
+          "type": "OTHER",
+          "aliases": [],
+          "attributes": {
+            "status": "to be analyzed"
+          }
+        }
+      ]
+    },
+    "P2_events": {
+      "events": [
+        {
+          "who": "Jutting",
+          "action": "studied",
+          "target": "history and law",
+          "where": "at the prestigious University of Cambridge",
+          "when": "between 2004 and 2008",
+          "result": null,
+          "sequence": 1
+        },
+        {
+          "who": "Jutting",
+          "action": "worked",
+          "target": null,
+          "where": "in capital markets for the British bank Barclays",
+          "when": "previously",
+          "result": null,
+          "sequence": 2
+        },
+        {
+          "who": "he (Rurik Jutting)",
+          "action": "worked",
+          "target": null,
+          "where": "in the same unit in London",
+          "when": "for three years",
+          "result": null,
+          "sequence": 3
+        },
+        {
+          "who": "he (Rurik Jutting)",
+          "action": "had been employed",
+          "target": null,
+          "where": "at the bank's structured equity finance and trading division in Hong Kong",
+          "when": "since July 2013",
+          "result": null,
+          "sequence": 4
+        },
+        {
+          "who": "a man of the same name (Rurik Jutting)",
+          "action": "had worked",
+          "target": null,
+          "where": "at the Bank of America Merrill Lynch",
+          "when": "in the past",
+          "result": null,
+          "sequence": 5
+        },
+        {
+          "who": "Jutting",
+          "action": "left",
+          "target": "his job as a trader",
+          "where": "at the Bank of America Merrill Lynch",
+          "when": "unclear when",
+          "result": null,
+          "sequence": 6
+        },
+        {
+          "who": "Rurik Jutting",
+          "action": "lived",
+          "target": null,
+          "where": "in the upmarket J Residence in Wan Chai",
+          "when": "Before being taken into custody",
+          "result": null,
+          "sequence": 7
+        },
+        {
+          "who": "Sumarti Ningsih",
+          "action": "had worked",
+          "target": null,
+          "where": "in Hong Kong",
+          "when": "between 2011 and 2013",
+          "result": "as a domestic helper",
+          "sequence": 8
+        },
+        {
+          "who": "She (Sumarti Ningsih)",
+          "action": "returned",
+          "target": null,
+          "where": null,
+          "when": "since 2013",
+          "result": "on two occasions",
+          "sequence": 9
+        },
+        {
+          "who": "Sumarti Ningsih",
+          "action": "was forced",
+          "target": "to work abroad",
+          "where": "abroad",
+          "when": null,
+          "result": null,
+          "sequence": 10
+        },
+        {
+          "who": "Sumarti Ningsih",
+          "action": "worked",
+          "target": null,
+          "where": "abroad",
+          "when": null,
+          "result": "to feed her poor family",
+          "sequence": 11
+        },
+        {
+          "who": "Sumarti Ningsih",
+          "action": "worked",
+          "target": null,
+          "where": "abroad",
+          "when": null,
+          "result": "to make her dream comes (sic) true",
+          "sequence": 12
+        },
+        {
+          "who": "She (Sumarti Ningsih)",
+          "action": "wanted",
+          "target": "to work as professional",
+          "where": null,
+          "when": null,
+          "result": "so she can earn money and dignity for her family",
+          "sequence": 13
+        },
+        {
+          "who": "Ningsih",
+          "action": "was visiting",
+          "target": "Hong Kong",
+          "where": "Hong Kong",
+          "when": null,
+          "result": "as a tourist",
+          "sequence": 14
+        },
+        {
+          "who": "Seneng Mujiasih",
+          "action": "had worked",
+          "target": null,
+          "where": "in Hong Kong",
+          "when": "more recently",
+          "result": "as a domestic worker",
+          "sequence": 15
+        },
+        {
+          "who": "Seneng Mujiasih",
+          "action": "had overstayed",
+          "target": "her visa",
+          "where": null,
+          "when": "more recently",
+          "result": null,
+          "sequence": 16
+        },
+        {
+          "who": "she (Seneng Mujiasih)",
+          "action": "stayed on",
+          "target": null,
+          "where": "in Hong Kong",
+          "when": null,
+          "result": null,
+          "sequence": 17
+        },
+        {
+          "who": "Wan Chai",
+          "action": "is home",
+          "target": null,
+          "where": null,
+          "when": null,
+          "result": "to an eclectic mix of late-night bars, residential tower blocks and local markets",
+          "sequence": 18
+        },
+        {
+          "who": "local markets",
+          "action": "selling",
+          "target": "groceries and assorted cheap goods",
+          "where": "Wan Chai",
+          "when": null,
+          "result": null,
+          "sequence": 19
+        },
+        {
+          "who": "(Someone, implied Rurik Jutting)",
+          "action": "killed",
+          "target": "25-year-old Sumarti Ningsih",
+          "where": null,
+          "when": "October 27",
+          "result": null,
+          "sequence": 20
+        },
+        {
+          "who": "Another (woman, Sumarti Ningsih)",
+          "action": "was stuffed",
+          "target": null,
+          "where": "inside a suitcase on the balcony",
+          "when": null,
+          "result": null,
+          "sequence": 21
+        },
+        {
+          "who": "another body (Sumarti Ningsih)",
+          "action": "hidden",
+          "target": null,
+          "where": "in a suitcase on the balcony",
+          "when": null,
+          "result": null,
+          "sequence": 22
+        },
+        {
+          "who": "(Someone, implied Rurik Jutting)",
+          "action": "cut",
+          "target": "One woman (Seneng Mujiasih)",
+          "where": null,
+          "when": null,
+          "result": "cuts to her neck and buttocks",
+          "sequence": 23
+        },
+        {
+          "who": "One woman (Seneng Mujiasih)",
+          "action": "was lying",
+          "target": null,
+          "where": "on the floor",
+          "when": null,
+          "result": "with cuts to her neck and buttocks",
+          "sequence": 24
+        },
+        {
+          "who": "Jutting",
+          "action": "called",
+          "target": "them (police)",
+          "where": "to the apartment",
+          "when": "In the early hours of Saturday morning, November 1",
+          "result": null,
+          "sequence": 25
+        },
+        {
+          "who": "Hong Kong police",
+          "action": "answered",
+          "target": "a call",
+          "where": null,
+          "when": "in the early hours of a Saturday morning last November",
+          "result": null,
+          "sequence": 26
+        },
+        {
+          "who": "Hong Kong police",
+          "action": "encountered",
+          "target": "a grisly scene and an alleged crime",
+          "where": null,
+          "when": "in the early hours of a Saturday morning last November",
+          "result": null,
+          "sequence": 27
+        },
+        {
+          "who": "police",
+          "action": "found",
+          "target": "a woman (Seneng Mujiasih)",
+          "where": "on the blood-splattered floor",
+          "when": "In the early hours of Saturday morning, November 1",
+          "result": null,
+          "sequence": 28
+        },
+        {
+          "who": "Her body (Sumarti Ningsih's)",
+          "action": "was found",
+          "target": null,
+          "where": null,
+          "when": "November 1",
+          "result": null,
+          "sequence": 29
+        },
+        {
+          "who": "officers",
+          "action": "conducted",
+          "target": "a search",
+          "where": "of the apartment",
+          "when": "During a search of the apartment",
+          "result": null,
+          "sequence": 30
+        },
+        {
+          "who": "officers",
+          "action": "uncovered",
+          "target": "another body (Sumarti Ningsih)",
+          "where": "hidden in a suitcase on the balcony",
+          "when": "During a search of the apartment",
+          "result": null,
+          "sequence": 31
+        },
+        {
+          "who": "police",
+          "action": "found",
+          "target": "the bodies of two women",
+          "where": "at the scene",
+          "when": null,
+          "result": null,
+          "sequence": 32
+        },
+        {
+          "who": "police",
+          "action": "seized",
+          "target": "a knife",
+          "where": "at the scene",
+          "when": "during a search of the premises",
+          "result": null,
+          "sequence": 33
+        },
+        {
+          "who": "He (Rurik Jutting)",
+          "action": "was detained",
+          "target": null,
+          "where": "at the scene",
+          "when": null,
+          "result": null,
+          "sequence": 34
+        },
+        {
+          "who": "Rurik Jutting",
+          "action": "was taken into custody",
+          "target": null,
+          "where": null,
+          "when": null,
+          "result": null,
+          "sequence": 35
+        },
+        {
+          "who": "an alleged crime",
+          "action": "shocked",
+          "target": "the city",
+          "where": "Hong Kong",
+          "when": "last November",
+          "result": null,
+          "sequence": 36
+        },
+        {
+          "who": "Ningsih",
+          "action": "had been due to fly back",
+          "target": null,
+          "where": "to Jakarta",
+          "when": "the day after her body was found",
+          "result": null,
+          "sequence": 37
+        },
+        {
+          "who": "the woman found by police (Seneng Mujiasih)",
+          "action": "identified",
+          "target": "as 29-year-old Seneng Mujiasih",
+          "where": null,
+          "when": "later",
+          "result": null,
+          "sequence": 38
+        },
+        {
+          "who": "Rurik Jutting",
+          "action": "was charged",
+          "target": null,
+          "where": null,
+          "when": null,
+          "result": "with two counts of murder",
+          "sequence": 39
+        },
+        {
+          "who": "news of their death",
+          "action": "spread",
+          "target": null,
+          "where": null,
+          "when": null,
+          "result": null,
+          "sequence": 40
+        },
+        {
+          "who": "fellow domestic workers",
+          "action": "held",
+          "target": "a vigil",
+          "where": "in Hong Kong's Victoria Park",
+          "when": "After news of their death spread",
+          "result": null,
+          "sequence": 41
+        },
+        {
+          "who": "Around 200 people",
+          "action": "gathered",
+          "target": null,
+          "where": "Hong Kong's Victoria Park",
+          "when": null,
+          "result": "to sing and pray, and lay flowers",
+          "sequence": 42
+        },
+        {
+          "who": "Around 200 people",
+          "action": "sing",
+          "target": null,
+          "where": "Hong Kong's Victoria Park",
+          "when": null,
+          "result": null,
+          "sequence": 43
+        },
+        {
+          "who": "Around 200 people",
+          "action": "pray",
+          "target": null,
+          "where": "Hong Kong's Victoria Park",
+          "when": null,
+          "result": null,
+          "sequence": 44
+        },
+        {
+          "who": "Around 200 people",
+          "action": "lay",
+          "target": "flowers",
+          "where": "besides photos of the two women",
+          "when": null,
+          "result": null,
+          "sequence": 45
+        },
+        {
+          "who": "The victims' bodies",
+          "action": "were repatriated",
+          "target": null,
+          "where": "to Indonesia",
+          "when": "November",
+          "result": null,
+          "sequence": 46
+        },
+        {
+          "who": "The victims' bodies",
+          "action": "were buried",
+          "target": null,
+          "where": null,
+          "when": "after being repatriated to Indonesia in November",
+          "result": null,
+          "sequence": 47
+        },
+        {
+          "who": "a court hearing",
+          "action": "was to determine",
+          "target": "whether there was enough evidence to proceed to trial",
+          "where": null,
+          "when": "On Thursday",
+          "result": null,
+          "sequence": 48
+        },
+        {
+          "who": "a court hearing",
+          "action": "was adjourned",
+          "target": null,
+          "where": null,
+          "when": "On Thursday",
+          "result": "until May",
+          "sequence": 49
+        },
+        {
+          "who": "Ahmad Khaliman",
+          "action": "told",
+          "target": "Agence France-Presse",
+          "where": null,
+          "when": "Last year",
+          "result": null,
+          "sequence": 50
+        },
+        {
+          "who": "Khaliman",
+          "action": "said",
+          "target": "his daughter had worked in Hong Kong as a domestic helper between 2011 and 2013",
+          "where": null,
+          "when": "Last year",
+          "result": null,
+          "sequence": 51
+        },
+        {
+          "who": "Khaliman",
+          "action": "said",
+          "target": "She'd since returned on two occasions",
+          "where": null,
+          "when": "Last year",
+          "result": null,
+          "sequence": 52
+        },
+        {
+          "who": "He (Khaliman)",
+          "action": "said",
+          "target": "the family had been shocked by her murder",
+          "where": null,
+          "when": "Last year",
+          "result": null,
+          "sequence": 53
+        },
+        {
+          "who": "the family",
+          "action": "had been shocked",
+          "target": null,
+          "where": null,
+          "when": "Last year",
+          "result": "by her murder",
+          "sequence": 54
+        },
+        {
+          "who": "He (Khaliman)",
+          "action": "called",
+          "target": "for the perpetrator to be executed",
+          "where": null,
+          "when": "Last year",
+          "result": null,
+          "sequence": 55
+        },
+        {
+          "who": "I (Khaliman)",
+          "action": "cannot accept",
+          "target": "it",
+          "where": null,
+          "when": "Last year",
+          "result": null,
+          "sequence": 56
+        },
+        {
+          "who": "He (the perpetrator)",
+          "action": "has already taken",
+          "target": "my daughter's life",
+          "where": null,
+          "when": null,
+          "result": null,
+          "sequence": 57
+        },
+        {
+          "who": "he (the perpetrator)",
+          "action": "has to pay",
+          "target": null,
+          "where": null,
+          "when": null,
+          "result": "with his life",
+          "sequence": 58
+        },
+        {
+          "who": "he (Khaliman)",
+          "action": "told",
+          "target": "CNN affiliate Trans7",
+          "where": null,
+          "when": null,
+          "result": null,
+          "sequence": 59
+        },
+        {
+          "who": "Jumiati",
+          "action": "described",
+          "target": "her (Sumarti Ningsih)",
+          "where": null,
+          "when": null,
+          "result": "as \"just an ordinary woman from Indonesia\"",
+          "sequence": 60
+        },
+        {
+          "who": "Jumiati",
+          "action": "wrote",
+          "target": null,
+          "where": null,
+          "when": null,
+          "result": "a statement",
+          "sequence": 61
+        },
+        {
+          "who": "tests",
+          "action": "were conducted",
+          "target": null,
+          "where": null,
+          "when": null,
+          "result": "to determined if Jutting was psychologically fit to enter a plea",
+          "sequence": 62
+        },
+        {
+          "who": "tests",
+          "action": "were to determine",
+          "target": "if Jutting was psychologically fit to enter a plea",
+          "where": null,
+          "when": null,
+          "result": null,
+          "sequence": 63
+        },
+        {
+          "who": "Jutting",
+          "action": "was to enter",
+          "target": "a plea",
+          "where": null,
+          "when": null,
+          "result": null,
+          "sequence": 64
+        },
+        {
+          "who": "He (Jutting)",
+          "action": "was",
+          "target": "psychologically fit",
+          "where": null,
+          "when": null,
+          "result": null,
+          "sequence": 65
+        },
+        {
+          "who": "The case",
+          "action": "was adjourned",
+          "target": null,
+          "where": null,
+          "when": null,
+          "result": "to allow for more than 200 pieces of forensic and DNA evidence to be analyzed",
+          "sequence": 66
+        },
+        {
+          "who": "more than 200 pieces of forensic and DNA evidence",
+          "action": "to be analyzed",
+          "target": null,
+          "where": null,
+          "when": null,
+          "result": null,
+          "sequence": 67
+        },
+        {
+          "who": "few details",
+          "action": "are known",
+          "target": null,
+          "where": null,
+          "when": null,
+          "result": "about her life",
+          "sequence": 68
+        },
+        {
+          "who": "few details",
+          "action": "are known",
+          "target": null,
+          "where": null,
+          "when": null,
+          "result": "about why she stayed on in Hong Kong",
+          "sequence": 69
+        }
+      ]
+    },
+    "P3_relationships": {
+      "relationships": [
+        {
+          "entity1": "Hong Kong police",
+          "entity2": "call",
+          "relationship": "answered a call",
+          "NOT_relationships": []
+        },
+        {
+          "entity1": "Rurik Jutting",
+          "entity2": "former banker",
+          "relationship": "former banker",
+          "NOT_relationships": [
+            "banker"
+          ]
+        },
+        {
+          "entity1": "Rurik Jutting",
+          "entity2": "Briton",
+          "relationship": "Briton",
+          "NOT_relationships": []
+        },
+        {
+          "entity1": "Rurik Jutting",
+          "entity2": "two counts of murder",
+          "relationship": "charged with",
+          "NOT_relationships": [
+            "murderer"
+          ]
+        },
+        {
+          "entity1": "Jutting",
+          "entity2": "victims",
+          "relationship": "alleged attacker",
+          "NOT_relationships": [
+            "attacker"
+          ]
+        },
+        {
+          "entity1": "Jutting",
+          "entity2": "murder scene",
+          "relationship": "allegedly lived at",
+          "NOT_relationships": [
+            "lived at"
+          ]
+        },
+        {
+          "entity1": "murder scene",
+          "entity2": "upmarket apartment",
+          "relationship": "an upmarket apartment",
+          "NOT_relationships": [
+            "apartment"
+          ]
+        },
+        {
+          "entity1": "upmarket apartment",
+          "entity2": "Wan Chai",
+          "relationship": "in the middle of",
+          "NOT_relationships": [
+            "in Wan Chai"
+          ]
+        },
+        {
+          "entity1": "Wan Chai",
+          "entity2": "inner-city suburb",
+          "relationship": "an inner-city suburb",
+          "NOT_relationships": [
+            "suburb"
+          ]
+        },
+        {
+          "entity1": "Jutting",
+          "entity2": "police",
+          "relationship": "called them",
+          "NOT_relationships": []
+        },
+        {
+          "entity1": "Jutting",
+          "entity2": "apartment",
+          "relationship": "called them to",
+          "NOT_relationships": []
+        },
+        {
+          "entity1": "woman",
+          "entity2": "Seneng Mujiasih",
+          "relationship": "identified as",
+          "NOT_relationships": []
+        },
+        {
+          "entity1": "body",
+          "entity2": "suitcase",
+          "relationship": "hidden in",
+          "NOT_relationships": [
+            "in a suitcase"
+          ]
+        },
+        {
+          "entity1": "Sumarti Ningsih",
+          "entity2": "killed",
+          "relationship": "alleged was killed",
+          "NOT_relationships": [
+            "was killed"
+          ]
+        },
+        {
+          "entity1": "Sumarti Ningsih",
+          "entity2": "Cilacap",
+          "relationship": "was from",
+          "NOT_relationships": [
+            "from Cilacap"
+          ]
+        },
+        {
+          "entity1": "Cilacap",
+          "entity2": "Central Java",
+          "relationship": "in",
+          "NOT_relationships": [
+            "Central Java"
+          ]
+        },
+        {
+          "entity1": "Sumarti Ningsih",
+          "entity2": "five-year-old girl",
+          "relationship": "mother of",
+          "NOT_relationships": [
+            "mother"
+          ]
+        },
+        {
+          "entity1": "Sumarti Ningsih",
+          "entity2": "Jumiati",
+          "relationship": "cousin",
+          "NOT_relationships": []
+        },
+        {
+          "entity1": "Sumarti Ningsih",
+          "entity2": "Indonesia",
+          "relationship": "from",
+          "NOT_relationships": [
+            "Indonesian"
+          ]
+        },
+        {
+          "entity1": "Sumarti Ningsih",
+          "entity2": "poor family",
+          "relationship": "feed her",
+          "NOT_relationships": [
+            "supported her family"
+          ]
+        },
+        {
+          "entity1": "Ningsih",
+          "entity2": "Hong Kong",
+          "relationship": "visiting",
+          "NOT_relationships": [
+            "lived in Hong Kong"
+          ]
+        },
+        {
+          "entity1": "Ningsih",
+          "entity2": "tourist",
+          "relationship": "as a",
+          "NOT_relationships": [
+            "tourist"
+          ]
+        },
+        {
+          "entity1": "Ningsih",
+          "entity2": "Jakarta",
+          "relationship": "due to fly back to",
+          "NOT_relationships": [
+            "flying to Jakarta"
+          ]
+        },
+        {
+          "entity1": "Sumarti Ningsih",
+          "entity2": "Ahmad Khaliman",
+          "relationship": "grieving father",
+          "NOT_relationships": [
+            "father"
+          ]
+        },
+        {
+          "entity1": "Ahmad Khaliman",
+          "entity2": "Agence France-Presse",
+          "relationship": "told",
+          "NOT_relationships": []
+        },
+        {
+          "entity1": "Sumarti Ningsih",
+          "entity2": "Hong Kong",
+          "relationship": "worked in",
+          "NOT_relationships": []
+        },
+        {
+          "entity1": "Sumarti Ningsih",
+          "entity2": "domestic helper",
+          "relationship": "worked as a",
+          "NOT_relationships": [
+            "domestic helper"
+          ]
+        },
+        {
+          "entity1": "Ahmad Khaliman",
+          "entity2": "CNN affiliate Trans7",
+          "relationship": "told",
+          "NOT_relationships": []
+        },
+        {
+          "entity1": "Seneng Mujiasih",
+          "entity2": "domestic worker",
+          "relationship": "worked as a",
+          "NOT_relationships": [
+            "domestic worker"
+          ]
+        },
+        {
+          "entity1": "Seneng Mujiasih",
+          "entity2": "Hong Kong",
+          "relationship": "worked in",
+          "NOT_relationships": []
+        },
+        {
+          "entity1": "Seneng Mujiasih",
+          "entity2": "visa",
+          "relationship": "overstayed her",
+          "NOT_relationships": [
+            "overstayed visa"
+          ]
+        },
+        {
+          "entity1": "Seneng Mujiasih",
+          "entity2": "Asian Migrant Co-ordinating Body",
+          "relationship": "according to",
+          "NOT_relationships": []
+        },
+        {
+          "entity1": "Mujiasih",
+          "entity2": "Jesse Lorena",
+          "relationship": "also known as",
+          "NOT_relationships": [
+            "Jesse Lorena"
+          ]
+        },
+        {
+          "entity1": "Mujiasih",
+          "entity2": "Muna",
+          "relationship": "was from the city of",
+          "NOT_relationships": [
+            "from Muna"
+          ]
+        },
+        {
+          "entity1": "Muna",
+          "entity2": "Sulawesi province",
+          "relationship": "in",
+          "NOT_relationships": [
+            "Sulawesi province"
+          ]
+        },
+        {
+          "entity1": "Sulawesi province",
+          "entity2": "Indonesia",
+          "relationship": "in southeast",
+          "NOT_relationships": [
+            "Indonesia"
+          ]
+        },
+        {
+          "entity1": "domestic workers",
+          "entity2": "Hong Kong's Victoria Park",
+          "relationship": "held a vigil in",
+          "NOT_relationships": [
+            "in Victoria Park"
+          ]
+        },
+        {
+          "entity1": "victims' bodies",
+          "entity2": "Indonesia",
+          "relationship": "repatriated to",
+          "NOT_relationships": [
+            "to Indonesia"
+          ]
+        },
+        {
+          "entity1": "Rurik Jutting",
+          "entity2": "J Residence",
+          "relationship": "lived in",
+          "NOT_relationships": [
+            "lived in J Residence"
+          ]
+        },
+        {
+          "entity1": "J Residence",
+          "entity2": "Wan Chai",
+          "relationship": "in",
+          "NOT_relationships": [
+            "Wan Chai"
+          ]
+        },
+        {
+          "entity1": "Rurik Jutting",
+          "entity2": "scene",
+          "relationship": "was detained at the",
+          "NOT_relationships": [
+            "detained at scene"
+          ]
+        },
+        {
+          "entity1": "police",
+          "entity2": "bodies of two women",
+          "relationship": "found",
+          "NOT_relationships": [
+            "found bodies"
+          ]
+        },
+        {
+          "entity1": "police",
+          "entity2": "knife",
+          "relationship": "seized",
+          "NOT_relationships": []
+        },
+        {
+          "entity1": "Jutting",
+          "entity2": "trader",
+          "relationship": "job as a",
+          "NOT_relationships": [
+            "trader"
+          ]
+        },
+        {
+          "entity1": "Jutting",
+          "entity2": "Bank of America Merrill Lynch",
+          "relationship": "left his job at",
+          "NOT_relationships": [
+            "worked at Bank of America Merrill Lynch"
+          ]
+        },
+        {
+          "entity1": "BoA spokesman",
+          "entity2": "Bank of America Merrill Lynch",
+          "relationship": "spokesman",
+          "NOT_relationships": []
+        },
+        {
+          "entity1": "Jutting",
+          "entity2": "Bank of America Merrill Lynch",
+          "relationship": "had worked there in the past",
+          "NOT_relationships": [
+            "worked there"
+          ]
+        },
+        {
+          "entity1": "Jutting",
+          "entity2": "structured equity finance and trading division",
+          "relationship": "had been employed at",
+          "NOT_relationships": [
+            "employed at structured equity finance and trading division"
+          ]
+        },
+        {
+          "entity1": "structured equity finance and trading division",
+          "entity2": "Hong Kong",
+          "relationship": "in",
+          "NOT_relationships": [
+            "Hong Kong"
+          ]
+        },
+        {
+          "entity1": "Jutting",
+          "entity2": "structured equity finance and trading division",
+          "relationship": "worked in the same unit",
+          "NOT_relationships": [
+            "worked in unit"
+          ]
+        },
+        {
+          "entity1": "structured equity finance and trading division",
+          "entity2": "London",
+          "relationship": "in",
+          "NOT_relationships": [
+            "London"
+          ]
+        },
+        {
+          "entity1": "Jutting",
+          "entity2": "capital markets",
+          "relationship": "previously worked in",
+          "NOT_relationships": [
+            "worked in capital markets"
+          ]
+        },
+        {
+          "entity1": "Jutting",
+          "entity2": "Barclays",
+          "relationship": "worked for",
+          "NOT_relationships": []
+        },
+        {
+          "entity1": "Barclays",
+          "entity2": "British bank",
+          "relationship": "British bank",
+          "NOT_relationships": [
+            "bank"
+          ]
+        },
+        {
+          "entity1": "Jutting",
+          "entity2": "history and law",
+          "relationship": "studied",
+          "NOT_relationships": [
+            "studied law"
+          ]
+        },
+        {
+          "entity1": "Jutting",
+          "entity2": "University of Cambridge",
+          "relationship": "studied at",
+          "NOT_relationships": [
+            "at University of Cambridge"
+          ]
+        },
+        {
+          "entity1": "University of Cambridge",
+          "entity2": "prestigious",
+          "relationship": "prestigious",
+          "NOT_relationships": []
+        }
+      ]
+    },
+    "P4_numbers": {
+      "numerical_facts": [
+        {
+          "entity": "Hong Kong police",
+          "number": 1,
+          "unit": "call",
+          "describes": "quantity of calls answered",
+          "context": "When Hong Kong police answered a call in the early hours of a Saturday morning last November, they encountered a grisly scene and an alleged crime that shocked the city."
+        },
+        {
+          "entity": "woman",
+          "number": 1,
+          "unit": "woman",
+          "describes": "quantity of women found on the floor",
+          "context": "One woman was lying on the floor with cuts to her neck and buttocks."
+        },
+        {
+          "entity": "woman",
+          "number": 1,
+          "unit": "woman",
+          "describes": "quantity of women found in a suitcase",
+          "context": "Another was stuffed inside a suitcase on the balcony."
+        },
+        {
+          "entity": "Rurik Jutting",
+          "number": 29,
+          "unit": "years",
+          "describes": "age",
+          "context": "A former banker, 29-year-old Briton Rurik Jutting, was charged with two counts of murder."
+        },
+        {
+          "entity": "Rurik Jutting",
+          "number": 2,
+          "unit": "counts",
+          "describes": "quantity of murder charges",
+          "context": "A former banker, 29-year-old Briton Rurik Jutting, was charged with two counts of murder."
+        },
+        {
+          "entity": "Seneng Mujiasih",
+          "number": 29,
+          "unit": "years",
+          "describes": "age",
+          "context": "There they found a woman lying on the blood-splattered floor, later identified as 29-year-old Seneng Mujiasih."
+        },
+        {
+          "entity": "body",
+          "number": 1,
+          "unit": "body",
+          "describes": "quantity of bodies uncovered",
+          "context": "During a search of the apartment, officers uncovered another body hidden in a suitcase on the balcony."
+        },
+        {
+          "entity": "Sumarti Ningsih",
+          "number": 25,
+          "unit": "years",
+          "describes": "age",
+          "context": "It's alleged 25-year-old Sumarti Ningsih was killed on October 27, five days before her body was found."
+        },
+        {
+          "entity": "Sumarti Ningsih's body",
+          "number": 5,
+          "unit": "days",
+          "describes": "time before body was found",
+          "context": "It's alleged 25-year-old Sumarti Ningsih was killed on October 27, five days before her body was found."
+        },
+        {
+          "entity": "Sumarti Ningsih's daughter",
+          "number": 5,
+          "unit": "years",
+          "describes": "age",
+          "context": "Sumarti Ningsih was from Cilacap, in Central Java, and was the mother of a five-year-old girl."
+        },
+        {
+          "entity": "Sumarti Ningsih",
+          "number": 2,
+          "unit": "occasions",
+          "describes": "quantity of returns to Hong Kong",
+          "context": "She'd since returned on two occasions, Khaliman said."
+        },
+        {
+          "entity": "people",
+          "number": 200,
+          "unit": "people",
+          "describes": "approximate quantity of people gathered for vigil",
+          "context": "Around 200 people gathered to sing and pray, and lay flowers besides photos of the two women."
+        },
+        {
+          "entity": "victims",
+          "number": 2,
+          "unit": "women",
+          "describes": "quantity of women whose photos were displayed at vigil",
+          "context": "Around 200 people gathered to sing and pray, and lay flowers besides photos of the two women."
+        },
+        {
+          "entity": "bodies",
+          "number": 2,
+          "unit": "women",
+          "describes": "quantity of bodies found by police",
+          "context": "He was detained at the scene, where police found the bodies of two women and seized a knife during a search of the premises."
+        },
+        {
+          "entity": "Rurik Jutting",
+          "number": 3,
+          "unit": "years",
+          "describes": "duration of employment in London",
+          "context": "Before that, he worked in the same unit in London for three years."
+        },
+        {
+          "entity": "forensic and DNA evidence",
+          "number": ">200",
+          "unit": "pieces",
+          "describes": "quantity of evidence to be analyzed",
+          "context": "The case was then adjourned to allow for more than 200 pieces of forensic and DNA evidence to be analyzed."
+        }
+      ],
+      "temporal_facts": [
+        {
+          "entity": "police call",
+          "number": "last November",
+          "unit": "(relative date)",
+          "describes": "time of event",
+          "context": "When Hong Kong police answered a call in the early hours of a Saturday morning last November, they encountered a grisly scene and an alleged crime that shocked the city."
+        },
+        {
+          "entity": "court hearing",
+          "number": "Thursday",
+          "unit": "(day of week)",
+          "describes": "day of event",
+          "context": "On Thursday, a court hearing that was to determine whether there was enough evidence to proceed to trial was adjourned until May."
+        },
+        {
+          "entity": "court hearing adjournment",
+          "number": "May",
+          "unit": "(month)",
+          "describes": "month of adjournment",
+          "context": "On Thursday, a court hearing that was to determine whether there was enough evidence to proceed to trial was adjourned until May."
+        },
+        {
+          "entity": "Jutting's call to police",
+          "number": "November 1",
+          "unit": "(date)",
+          "describes": "date of event",
+          "context": "In the early hours of Saturday morning, November 1, police say Jutting called them to the apartment."
+        },
+        {
+          "entity": "Sumarti Ningsih's death",
+          "number": "October 27",
+          "unit": "(date)",
+          "describes": "date of event",
+          "context": "It's alleged 25-year-old Sumarti Ningsih was killed on October 27, five days before her body was found."
+        },
+        {
+          "entity": "Sumarti Ningsih's scheduled flight",
+          "number": "the day after her body was found",
+          "unit": "(relative date)",
+          "describes": "time of scheduled flight",
+          "context": "According to the Asian Migrant Coordinating Body, Ningsih was visiting Hong Kong as a tourist and had been due to fly back to Jakarta the day after her body was found."
+        },
+        {
+          "entity": "Ahmad Khaliman's statement",
+          "number": "Last year",
+          "unit": "(relative year)",
+          "describes": "time of statement",
+          "context": "Last year, her grieving father, Ahmad Khaliman, told Agence France-Presse that his daughter had worked in Hong Kong as a domestic helper between 2011 and 2013."
+        },
+        {
+          "entity": "Sumarti Ningsih's employment",
+          "number": "2011",
+          "unit": "year",
+          "describes": "start year of employment as domestic helper",
+          "context": "Last year, her grieving father, Ahmad Khaliman, told Agence France-Presse that his daughter had worked in Hong Kong as a domestic helper between 2011 and 2013."
+        },
+        {
+          "entity": "Sumarti Ningsih's employment",
+          "number": "2013",
+          "unit": "year",
+          "describes": "end year of employment as domestic helper",
+          "context": "Last year, her grieving father, Ahmad Khaliman, told Agence France-Presse that his daughter had worked in Hong Kong as a domestic helper between 2011 and 2013."
+        },
+        {
+          "entity": "victims' bodies",
+          "number": "November",
+          "unit": "(month)",
+          "describes": "month of repatriation and burial",
+          "context": "The victims' bodies were buried after being repatriated to Indonesia in November."
+        },
+        {
+          "entity": "Rurik Jutting's employment at Bank of America Merrill Lynch",
+          "number": "July 2013",
+          "unit": "(date)",
+          "describes": "start date of employment",
+          "context": "Jutting's profile on LinkedIn said he haad been employed at the bank's structured equity finance and trading division in Hong Kong since July 2013."
+        },
+        {
+          "entity": "Rurik Jutting's studies at University of Cambridge",
+          "number": "2004",
+          "unit": "year",
+          "describes": "start year of studies",
+          "context": "According to the profile, Jutting previously worked in capital markets for the British bank Barclays and studied history and law at the prestigious University of Cambridge, between 2004 and 2008."
+        },
+        {
+          "entity": "Rurik Jutting's studies at University of Cambridge",
+          "number": "2008",
+          "unit": "year",
+          "describes": "end year of studies",
+          "context": "According to the profile, Jutting previously worked in capital markets for the British bank Barclays and studied history and law at the prestigious University of Cambridge, between 2004 and 2008."
+        }
+      ]
+    },
+    "P5_negations": {
+      "explicit_negations": [
+        "She is good girl and did not deserve this treatment.",
+        "If not, I cannot accept it."
+      ],
+      "absent_information": [
+        "few details are known about her life and why she stayed on in Hong Kong.",
+        "It's unclear when Jutting left his job as a trader at the Bank of America Merrill Lynch"
+      ],
+      "boundaries": [
+        "a court hearing that was to determine whether there was enough evidence to proceed to trial was adjourned until May.",
+        "Here's what we know so far about the victims and their alleged attacker.",
+        "It's alleged 25-year-old Sumarti Ningsih was killed on October 27, five days before her body was found.",
+        "his daughter had worked in Hong Kong as a domestic helper between 2011 and 2013.",
+        "Seneng Mujiasih had more recently worked as a domestic worker in Hong Kong but had overstayed her visa",
+        "a BoA spokesman would only confirm that a man of the same name had worked there in the past.",
+        "Jutting's profile on LinkedIn said he haad been employed at the bank's structured equity finance and trading division in Hong Kong since July 2013.",
+        "Before that, he worked in the same unit in London for three years.",
+        "The case was then adjourned to allow for more than 200 pieces of forensic and DNA evidence to be analyzed."
+      ],
+      "corrections": [
+        "According to the Asian Migrant Coordinating Body, Ningsih was visiting Hong Kong as a tourist and had been due to fly back to Jakarta the day after her body was found.",
+        "As part of the trial process, tests were conducted to determined if Jutting was psychologically fit to enter a plea. He was."
+      ]
+    },
+    "P6_verify": {
+      "missed_facts": [
+        {
+          "fact": "Sumarti Ningsih's situation of being forced to work abroad was common, 'like many others'.",
+          "category": "Entities / Events",
+          "source_text": "In a statement, her cousin, Jumiati, described her as \"just an ordinary woman from Indonesia\" who, like many others, was \"forced to work abroad to feed her poor family and make her dream comes (sic) true.\""
+        }
+      ]
+    }
+  }
+}

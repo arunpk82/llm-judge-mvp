@@ -133,6 +133,21 @@ def _evaluate_case_all_properties(
             "gate2_decision": g2,
             "decision": decision_1_1,
         }
+        # Store full hallucination data for funnel cascade view
+        results["hallucination"] = {
+            "layer_stats": dict(hallucination_result.layer_stats),
+            "sentence_results": [
+                {
+                    "sentence_idx": sr.sentence_idx,
+                    "sentence": sr.sentence,
+                    "resolved_by": sr.resolved_by,
+                    "detail": sr.detail,
+                }
+                for sr in hallucination_result.sentence_results
+            ],
+            "risk_score": hallucination_result.risk_score,
+            "flags": hallucination_result.flags,
+        }
         results["1.2"] = {
             "ungrounded_claims": hallucination_result.ungrounded_claims,
             "decision": (
@@ -631,8 +646,18 @@ def run_benchmark(
     with_llm: bool = False,
     gate2_routing: str = "none",
     config: PipelineConfig | None = None,
+    checkpoint_every: int = 10,
+    checkpoint_dir: str = "results",
 ) -> BenchmarkRunResult:
-    """Run benchmark evaluation across all 28 properties."""
+    """Run benchmark evaluation across all 28 properties.
+
+    Checkpoints every ``checkpoint_every`` cases to
+    ``{checkpoint_dir}/benchmark_checkpoint.json``. On restart,
+    resumes from the last checkpoint automatically.
+    """
+    import json
+    from pathlib import Path
+
     # Resolve pipeline config once for the entire run
     if config is None:
         config = get_pipeline_config()
@@ -657,7 +682,50 @@ def run_benchmark(
     # Cache for post-run diagnostics
     cases_cache: list[tuple[BenchmarkCase, dict[str, Any]]] = []
 
+    # --- Checkpoint: load if exists ---
+    ckpt_path = Path(checkpoint_dir) / "benchmark_checkpoint.json"
+    completed_ids: set[str] = set()
+
+    if ckpt_path.exists():
+        try:
+            ckpt = json.loads(ckpt_path.read_text(encoding="utf-8"))
+            completed_ids = set(ckpt.get("completed_case_ids", []))
+            response_level_results = ckpt.get("response_level_results", [])
+            fire_rates = ckpt.get("fire_rates", fire_rates)
+            errors = ckpt.get("errors", [])
+            executed = set(ckpt.get("executed", []))
+            skipped = ckpt.get("skipped", {})
+            count = ckpt.get("count", 0)
+            logger.info(
+                "benchmark.checkpoint_loaded",
+                extra={"completed": len(completed_ids), "path": str(ckpt_path)},
+            )
+            print(f"  Resuming from checkpoint: {len(completed_ids)} cases already done")
+        except Exception as e:
+            logger.warning(f"benchmark.checkpoint_load_error: {str(e)[:80]}")
+            completed_ids = set()
+
+    def _save_checkpoint() -> None:
+        """Save current progress to checkpoint file."""
+        Path(checkpoint_dir).mkdir(parents=True, exist_ok=True)
+        ckpt_data = {
+            "completed_case_ids": sorted(completed_ids),
+            "response_level_results": response_level_results,
+            "fire_rates": fire_rates,
+            "errors": errors,
+            "executed": sorted(executed),
+            "skipped": skipped,
+            "count": count,
+        }
+        ckpt_path.write_text(
+            json.dumps(ckpt_data, indent=2, default=str), encoding="utf-8"
+        )
+
     for case in adapter.load_cases(split=split, max_cases=max_cases):
+        # Skip already-completed cases (checkpoint resume)
+        if case.case_id in completed_ids:
+            continue
+
         try:
             eval_results = _evaluate_case_all_properties(
                 case,
@@ -695,16 +763,18 @@ def run_benchmark(
                     predicted_decision = "fail"
                     break
 
-            response_level_results.append(
-                {
-                    "case_id": case.case_id,
-                    "predicted": predicted_decision,
-                    "expected": case.ground_truth.response_level,
-                    "match": predicted_decision == case.ground_truth.response_level,
-                    "model": case.metadata.get("model", ""),
-                    "task_type": case.metadata.get("task_type", ""),
-                }
-            )
+            rr_entry: dict[str, Any] = {
+                "case_id": case.case_id,
+                "predicted": predicted_decision,
+                "expected": case.ground_truth.response_level,
+                "match": predicted_decision == case.ground_truth.response_level,
+                "model": case.metadata.get("model", ""),
+                "task_type": case.metadata.get("task_type", ""),
+            }
+            # Include hallucination data for funnel cascade view
+            if "hallucination" in eval_results:
+                rr_entry["hallucination"] = eval_results["hallucination"]
+            response_level_results.append(rr_entry)
 
             # Per-property comparison
             for pid in ALL_PROPERTY_IDS:
@@ -729,7 +799,13 @@ def run_benchmark(
                         )
                     )
 
+            completed_ids.add(case.case_id)
             count += 1
+
+            if count % checkpoint_every == 0:
+                _save_checkpoint()
+                print(f"  Checkpoint saved: {count} cases completed")
+
             if count % 500 == 0:
                 logger.info(
                     "benchmark.progress", extra={"cases": count, "benchmark": meta.name}
@@ -737,6 +813,10 @@ def run_benchmark(
 
         except Exception as e:
             errors.append({"case_id": case.case_id, "error": str(e)[:120]})
+            completed_ids.add(case.case_id)  # Don't retry failed cases
+
+    # Save final checkpoint before diagnostics
+    _save_checkpoint()
 
     elapsed = time.time() - start_time
 
@@ -776,6 +856,11 @@ def run_benchmark(
         skipped.pop(pid, None)
 
     diagnostic_results.update(cat6_metrics)
+
+    # Clean up checkpoint on successful completion
+    if ckpt_path.exists():
+        ckpt_path.unlink()
+        print("  Checkpoint cleared (run complete)")
 
     return BenchmarkRunResult(
         benchmark_name=meta.name,

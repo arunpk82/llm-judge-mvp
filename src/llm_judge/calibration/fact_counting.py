@@ -22,7 +22,7 @@ Five-status taxonomy:
   INFERRED     — reasonable inference from context
 
 Design decisions:
-  - Model is configurable via FACT_COUNTING_MODEL env var (default: gemma-4-31b-it)
+  - Model is configurable via GEMINI_MODEL env var (default: gemini-2.5-flash)
   - Uses the same Gemini API pattern as _l4_gemini_check in hallucination.py
   - Robust JSON parser handles markdown fences, thinking tokens, partial JSON
   - Falls back gracefully: API error → ratio=0.0, sentence escalates to L4
@@ -156,8 +156,8 @@ _RETRY_BASE_WAIT = 10
 def _call_llm(prompt: str, *, model: str | None = None) -> str:
     """Call Gemini/Gemma API with retry logic.
 
-    Uses GEMINI_API_KEY env var. Model defaults to FACT_COUNTING_MODEL
-    env var, then to "gemma-4-31b-it" (validated in Exp 43).
+    Uses GEMINI_API_KEY env var. Model defaults to GEMINI_MODEL
+    env var, then to "gemini-2.5-flash".
 
     Returns raw response text. Raises on exhausted retries.
     """
@@ -168,7 +168,7 @@ def _call_llm(prompt: str, *, model: str | None = None) -> str:
         raise RuntimeError("GEMINI_API_KEY not set")
 
     if model is None:
-        model = os.environ.get("FACT_COUNTING_MODEL", "gemma-4-31b-it")
+        model = os.environ.get("GEMINI_MODEL", "gemini-2.5-flash")
 
     url = (
         f"https://generativelanguage.googleapis.com/v1beta/models/"
@@ -241,14 +241,14 @@ def check_fact_counting(
         sentence: The response sentence to verify.
         source_doc: The source document to verify against.
         threshold: Auto-clear threshold (default 0.80 from Exp 43).
-        model: LLM model to use (default from env FACT_COUNTING_MODEL).
+        model: LLM model to use (default from env GEMINI_MODEL).
         source_max_chars: Truncate source beyond this (default 6000).
 
     Returns:
         FactCountResult with ratio, auto_clear flag, and per-fact evidence.
     """
     resolved_model = model or os.environ.get(
-        "FACT_COUNTING_MODEL", "gemma-4-31b-it"
+        "GEMINI_MODEL", "gemini-2.5-flash"
     )
     start_ms = int(time.time() * 1000)
 

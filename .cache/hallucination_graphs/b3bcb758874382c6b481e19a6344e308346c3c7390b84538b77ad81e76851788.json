@@ -1,0 +1,1588 @@
+{
+  "passes": {
+    "P1_entities": {
+      "entities": [
+        {
+          "name": "Andrew Getty",
+          "type": "PERSON",
+          "aliases": [
+            "Getty",
+            "he"
+          ],
+          "attributes": {
+            "description": "one of the heirs to billions of oil money",
+            "cause_of_death_preliminary": "natural causes",
+            "relationship_to_J_Paul_Getty": "grandson of oil tycoon J. Paul Getty",
+            "age": "47",
+            "health_status": "had \"several health issues\"",
+            "location_found": "on his side near a bathroom in his home",
+            "parents": "Ann and Gordon Getty",
+            "legal_action": "had recently filed to get a restraining order against an ex-girlfriend",
+            "medical_diagnosis_year": "2013",
+            "medical_condition_statement": "\"A rise in my blood pressure places me in grave risk of substantial and irreparable injury or death\"",
+            "family_members": "three brothers and three half-sisters"
+          }
+        },
+        {
+          "name": "oil money",
+          "type": "OTHER",
+          "aliases": [],
+          "attributes": {}
+        },
+        {
+          "name": "natural causes",
+          "type": "OTHER",
+          "aliases": [],
+          "attributes": {}
+        },
+        {
+          "name": "Los Angeles Police Department",
+          "type": "ORG",
+          "aliases": [],
+          "attributes": {}
+        },
+        {
+          "name": "a Los Angeles Police Department spokesman",
+          "type": "PERSON",
+          "aliases": [],
+          "attributes": {
+            "role": "spokesman for Los Angeles Police Department"
+          }
+        },
+        {
+          "name": "The coroner",
+          "type": "PERSON",
+          "aliases": [],
+          "attributes": {
+            "assessment": "preliminary assessment is there was no foul play involved in the death of Getty"
+          }
+        },
+        {
+          "name": "foul play",
+          "type": "OTHER",
+          "aliases": [],
+          "attributes": {}
+        },
+        {
+          "name": "death of Getty",
+          "type": "OTHER",
+          "aliases": [
+            "son's death"
+          ],
+          "attributes": {}
+        },
+        {
+          "name": "J. Paul Getty",
+          "type": "PERSON",
+          "aliases": [],
+          "attributes": {
+            "occupation": "oil tycoon, oil baron",
+            "status": "thought to be the richest man in the world at the time of his death",
+            "death_year": "1976"
+          }
+        },
+        {
+          "name": "Detective Meghan Aguilar",
+          "type": "PERSON",
+          "aliases": [
+            "Aguilar",
+            "he"
+          ],
+          "attributes": {
+            "role": "Detective"
+          }
+        },
+        {
+          "name": "47",
+          "type": "OTHER",
+          "aliases": [],
+          "attributes": {
+            "context": "age of Andrew Getty"
+          }
+        },
+        {
+          "name": "several health issues",
+          "type": "OTHER",
+          "aliases": [],
+          "attributes": {
+            "context": "Andrew Getty had"
+          }
+        },
+        {
+          "name": "autopsy",
+          "type": "OTHER",
+          "aliases": [],
+          "attributes": {
+            "status": "will be conducted"
+          }
+        },
+        {
+          "name": "criminal investigation",
+          "type": "OTHER",
+          "aliases": [],
+          "attributes": {
+            "status": "no criminal investigation underway"
+          }
+        },
+        {
+          "name": "medication",
+          "type": "OTHER",
+          "aliases": [],
+          "attributes": {
+            "location": "recovered from Getty's home"
+          }
+        },
+        {
+          "name": "Getty's home",
+          "type": "PLACE",
+          "aliases": [
+            "his home"
+          ],
+          "attributes": {}
+        },
+        {
+          "name": "investigators",
+          "type": "PERSON",
+          "aliases": [],
+          "attributes": {
+            "knowledge_gap": "don't know whether Getty was taking it or what his medical history was"
+          }
+        },
+        {
+          "name": "medical history",
+          "type": "OTHER",
+          "aliases": [],
+          "attributes": {
+            "context": "of Getty"
+          }
+        },
+        {
+          "name": "Ed Winter",
+          "type": "PERSON",
+          "aliases": [],
+          "attributes": {
+            "role": "assistant chief in the Los Angeles County coroner's office"
+          }
+        },
+        {
+          "name": "Los Angeles County coroner's office",
+          "type": "ORG",
+          "aliases": [],
+          "attributes": {}
+        },
+        {
+          "name": "CNN affiliate KTLA",
+          "type": "ORG",
+          "aliases": [
+            "KTLA"
+          ],
+          "attributes": {}
+        },
+        {
+          "name": "Tuesday night",
+          "type": "OTHER",
+          "aliases": [],
+          "attributes": {
+            "context": "when Ed Winter told CNN affiliate KTLA"
+          }
+        },
+        {
+          "name": "bathroom",
+          "type": "PLACE",
+          "aliases": [],
+          "attributes": {
+            "location_relative_to_home": "in his home"
+          }
+        },
+        {
+          "name": "Getty's parents",
+          "type": "PERSON",
+          "aliases": [
+            "Ann and Gordon Getty"
+          ],
+          "attributes": {
+            "relationship_to_Andrew_Getty": "parents",
+            "action": "released a statement confirming their son's death and asking for privacy"
+          }
+        },
+        {
+          "name": "Ann Getty",
+          "type": "PERSON",
+          "aliases": [],
+          "attributes": {
+            "relationship_to_Andrew_Getty": "parent",
+            "relationship_to_Gordon_Getty": "wife"
+          }
+        },
+        {
+          "name": "Gordon Getty",
+          "type": "PERSON",
+          "aliases": [],
+          "attributes": {
+            "relationship_to_Andrew_Getty": "parent",
+            "relationship_to_J_Paul_Getty": "one of three living sons",
+            "age": "81",
+            "net_worth": "$2.1 billion",
+            "business_action": "spearheaded the controversial sale of Getty to Texaco for $10 billion in 1984"
+          }
+        },
+        {
+          "name": "statement",
+          "type": "OTHER",
+          "aliases": [],
+          "attributes": {
+            "action": "released by Ann and Gordon Getty",
+            "purpose": "confirming their son's death and asking for privacy"
+          }
+        },
+        {
+          "name": "privacy",
+          "type": "OTHER",
+          "aliases": [],
+          "attributes": {
+            "action": "asked for"
+          }
+        },
+        {
+          "name": "Getty family fortune",
+          "type": "OTHER",
+          "aliases": [],
+          "attributes": {}
+        },
+        {
+          "name": "the world",
+          "type": "PLACE",
+          "aliases": [],
+          "attributes": {}
+        },
+        {
+          "name": "1976",
+          "type": "OTHER",
+          "aliases": [],
+          "attributes": {
+            "context": "time of J. Paul Getty's death"
+          }
+        },
+        {
+          "name": "81",
+          "type": "OTHER",
+          "aliases": [],
+          "attributes": {
+            "context": "age of Gordon Getty"
+          }
+        },
+        {
+          "name": "net worth of $2.1 billion",
+          "type": "OTHER",
+          "aliases": [],
+          "attributes": {
+            "context": "Gordon Getty has",
+            "source": "Forbes"
+          }
+        },
+        {
+          "name": "Forbes",
+          "type": "ORG",
+          "aliases": [],
+          "attributes": {}
+        },
+        {
+          "name": "One other son",
+          "type": "PERSON",
+          "aliases": [],
+          "attributes": {
+            "relationship_to_J_Paul_Getty": "son",
+            "relationship_to_Gordon_Getty": "brother",
+            "death_year": "1958"
+          }
+        },
+        {
+          "name": "1958",
+          "type": "OTHER",
+          "aliases": [],
+          "attributes": {
+            "context": "year one son of J. Paul Getty died"
+          }
+        },
+        {
+          "name": "another",
+          "type": "PERSON",
+          "aliases": [],
+          "attributes": {
+            "relationship_to_J_Paul_Getty": "son",
+            "relationship_to_Gordon_Getty": "brother",
+            "death_year": "1973"
+          }
+        },
+        {
+          "name": "1973",
+          "type": "OTHER",
+          "aliases": [],
+          "attributes": {
+            "context": "year another son of J. Paul Getty died"
+          }
+        },
+        {
+          "name": "controversial sale of Getty",
+          "type": "OTHER",
+          "aliases": [],
+          "attributes": {
+            "spearheaded_by": "Gordon Getty"
+          }
+        },
+        {
+          "name": "Getty",
+          "type": "ORG",
+          "aliases": [],
+          "attributes": {
+            "description": "company sold to Texaco",
+            "sale_price": "$10 billion",
+            "sale_year": "1984"
+          }
+        },
+        {
+          "name": "Texaco",
+          "type": "ORG",
+          "aliases": [],
+          "attributes": {}
+        },
+        {
+          "name": "$10 billion",
+          "type": "OTHER",
+          "aliases": [],
+          "attributes": {
+            "context": "price for the sale of Getty to Texaco"
+          }
+        },
+        {
+          "name": "1984",
+          "type": "OTHER",
+          "aliases": [],
+          "attributes": {
+            "context": "year of the sale of Getty to Texaco"
+          }
+        },
+        {
+          "name": "list of richest American families",
+          "type": "OTHER",
+          "aliases": [],
+          "attributes": {
+            "source": "Forbes"
+          }
+        },
+        {
+          "name": "American families",
+          "type": "OTHER",
+          "aliases": [],
+          "attributes": {}
+        },
+        {
+          "name": "the Gettys",
+          "type": "PERSON",
+          "aliases": [
+            "Getty family"
+          ],
+          "attributes": {
+            "estimated_net_worth": "about $5 billion",
+            "source_of_estimate": "Forbes"
+          }
+        },
+        {
+          "name": "net worth to be about $5 billion",
+          "type": "OTHER",
+          "aliases": [],
+          "attributes": {
+            "context": "estimated for the Gettys",
+            "source": "Forbes"
+          }
+        },
+        {
+          "name": "Court records",
+          "type": "OTHER",
+          "aliases": [],
+          "attributes": {
+            "content": "show Andrew Getty had recently filed to get a restraining order against an ex-girlfriend"
+          }
+        },
+        {
+          "name": "restraining order",
+          "type": "OTHER",
+          "aliases": [],
+          "attributes": {
+            "action": "Andrew Getty filed for",
+            "against": "an ex-girlfriend"
+          }
+        },
+        {
+          "name": "ex-girlfriend",
+          "type": "PERSON",
+          "aliases": [],
+          "attributes": {
+            "relationship_to_Andrew_Getty": "ex-girlfriend",
+            "legal_action_against": "restraining order filed against"
+          }
+        },
+        {
+          "name": "hearing",
+          "type": "OTHER",
+          "aliases": [],
+          "attributes": {
+            "context": "in the case",
+            "schedule": "had been scheduled for next week"
+          }
+        },
+        {
+          "name": "the case",
+          "type": "OTHER",
+          "aliases": [],
+          "attributes": {
+            "context": "Andrew Getty's restraining order filing"
+          }
+        },
+        {
+          "name": "next week",
+          "type": "OTHER",
+          "aliases": [],
+          "attributes": {
+            "context": "when hearing was scheduled"
+          }
+        },
+        {
+          "name": "his request",
+          "type": "OTHER",
+          "aliases": [
+            "the petition"
+          ],
+          "attributes": {
+            "context": "Andrew Getty's filing for a restraining order"
+          }
+        },
+        {
+          "name": "serious medical condition",
+          "type": "OTHER",
+          "aliases": [],
+          "attributes": {
+            "context": "Andrew Getty had been diagnosed with",
+            "year_of_diagnosis": "2013"
+          }
+        },
+        {
+          "name": "2013",
+          "type": "OTHER",
+          "aliases": [],
+          "attributes": {
+            "context": "year Andrew Getty was diagnosed with a serious medical condition"
+          }
+        },
+        {
+          "name": "A rise in my blood pressure",
+          "type": "OTHER",
+          "aliases": [
+            "my blood pressure"
+          ],
+          "attributes": {
+            "risk": "places me in grave risk of substantial and irreparable injury or death",
+            "speaker": "Andrew Getty"
+          }
+        },
+        {
+          "name": "grave risk of substantial and irreparable injury or death",
+          "type": "OTHER",
+          "aliases": [],
+          "attributes": {
+            "cause": "A rise in my blood pressure",
+            "speaker": "Andrew Getty"
+          }
+        },
+        {
+          "name": "My doctors",
+          "type": "PERSON",
+          "aliases": [
+            "doctors"
+          ],
+          "attributes": {
+            "advice": "heated arguments can cause my blood pressure to rise dangerously"
+          }
+        },
+        {
+          "name": "heated arguments",
+          "type": "OTHER",
+          "aliases": [],
+          "attributes": {
+            "effect": "can cause my blood pressure to rise dangerously",
+            "source_of_advice": "My doctors"
+          }
+        },
+        {
+          "name": "three brothers",
+          "type": "PERSON",
+          "aliases": [],
+          "attributes": {
+            "relationship_to_Andrew_Getty": "brothers"
+          }
+        },
+        {
+          "name": "three half-sisters",
+          "type": "PERSON",
+          "aliases": [],
+          "attributes": {
+            "relationship_to_Andrew_Getty": "half-sisters"
+          }
+        },
+        {
+          "name": "People we've lost in 2015",
+          "type": "OTHER",
+          "aliases": [
+            "People"
+          ],
+          "attributes": {
+            "context": "title/category"
+          }
+        },
+        {
+          "name": "2015",
+          "type": "OTHER",
+          "aliases": [],
+          "attributes": {
+            "context": "year of losses mentioned in a title"
+          }
+        },
+        {
+          "name": "CNN",
+          "type": "ORG",
+          "aliases": [],
+          "attributes": {}
+        },
+        {
+          "name": "Doug Criss",
+          "type": "PERSON",
+          "aliases": [],
+          "attributes": {
+            "contribution": "contributed to this report",
+            "affiliation": "CNN"
+          }
+        },
+        {
+          "name": "Janet DiGiacomo",
+          "type": "PERSON",
+          "aliases": [],
+          "attributes": {
+            "contribution": "contributed to this report",
+            "affiliation": "CNN"
+          }
+        },
+        {
+          "name": "Mark Mooney",
+          "type": "PERSON",
+          "aliases": [],
+          "attributes": {
+            "contribution": "contributed to this report",
+            "affiliation": "CNN"
+          }
+        },
+        {
+          "name": "Mike Love",
+          "type": "PERSON",
+          "aliases": [],
+          "attributes": {
+            "contribution": "contributed to this report",
+            "affiliation": "CNN"
+          }
+        },
+        {
+          "name": "Julie In",
+          "type": "PERSON",
+          "aliases": [],
+          "attributes": {
+            "contribution": "contributed to this report",
+            "affiliation": "CNN"
+          }
+        },
+        {
+          "name": "Cheri Mossburg",
+          "type": "PERSON",
+          "aliases": [],
+          "attributes": {
+            "contribution": "contributed to this report",
+            "affiliation": "CNN"
+          }
+        },
+        {
+          "name": "this report",
+          "type": "OTHER",
+          "aliases": [],
+          "attributes": {
+            "contributors": "Doug Criss, Janet DiGiacomo, Mark Mooney, Mike Love, Julie In and Cheri Mossburg"
+          }
+        }
+      ]
+    },
+    "P2_events": {
+      "events": [
+        {
+          "who": "Andrew Getty",
+          "action": "appears to have died",
+          "target": "N/A",
+          "where": "N/A",
+          "when": "N/A",
+          "result": "N/A",
+          "sequence": 1
+        },
+        {
+          "who": "Andrew Getty",
+          "action": "died",
+          "target": "N/A",
+          "where": "N/A",
+          "when": "N/A",
+          "result": "of natural causes",
+          "sequence": 2
+        },
+        {
+          "who": "A Los Angeles Police Department spokesman",
+          "action": "said",
+          "target": "Andrew Getty... appears to have died of natural causes",
+          "where": "N/A",
+          "when": "N/A",
+          "result": "N/A",
+          "sequence": 3
+        },
+        {
+          "who": "The coroner's preliminary assessment",
+          "action": "is",
+          "target": "there was no foul play involved in the death of Getty",
+          "where": "N/A",
+          "when": "N/A",
+          "result": "N/A",
+          "sequence": 4
+        },
+        {
+          "who": "N/A",
+          "action": "was involved",
+          "target": "no foul play",
+          "where": "N/A",
+          "when": "N/A",
+          "result": "N/A",
+          "sequence": 5
+        },
+        {
+          "who": "N/A",
+          "action": "was involved",
+          "target": "the death of Getty",
+          "where": "N/A",
+          "when": "N/A",
+          "result": "N/A",
+          "sequence": 6
+        },
+        {
+          "who": "Detective Meghan Aguilar",
+          "action": "said",
+          "target": "The coroner's preliminary assessment is there was no foul play involved in the death of Getty",
+          "where": "N/A",
+          "when": "N/A",
+          "result": "N/A",
+          "sequence": 7
+        },
+        {
+          "who": "Andrew Getty",
+          "action": "had",
+          "target": "several health issues",
+          "where": "N/A",
+          "when": "N/A",
+          "result": "N/A",
+          "sequence": 8
+        },
+        {
+          "who": "Aguilar",
+          "action": "said",
+          "target": "Andrew Getty... had 'several health issues'",
+          "where": "N/A",
+          "when": "N/A",
+          "result": "N/A",
+          "sequence": 9
+        },
+        {
+          "who": "Aguilar",
+          "action": "adding",
+          "target": "that an autopsy will be conducted",
+          "where": "N/A",
+          "when": "N/A",
+          "result": "N/A",
+          "sequence": 10
+        },
+        {
+          "who": "N/A",
+          "action": "will be conducted",
+          "target": "an autopsy",
+          "where": "N/A",
+          "when": "N/A",
+          "result": "N/A",
+          "sequence": 11
+        },
+        {
+          "who": "N/A (criminal investigation)",
+          "action": "is underway",
+          "target": "no criminal investigation",
+          "where": "N/A",
+          "when": "N/A",
+          "result": "N/A",
+          "sequence": 12
+        },
+        {
+          "who": "he (Aguilar)",
+          "action": "said",
+          "target": "There is no criminal investigation underway",
+          "where": "N/A",
+          "when": "N/A",
+          "result": "N/A",
+          "sequence": 13
+        },
+        {
+          "who": "N/A (investigators)",
+          "action": "had been recovered",
+          "target": "Some medication",
+          "where": "from Getty's home",
+          "when": "N/A",
+          "result": "N/A",
+          "sequence": 14
+        },
+        {
+          "who": "investigators",
+          "action": "don't know",
+          "target": "whether Getty was taking it or what his medical history was",
+          "where": "N/A",
+          "when": "N/A",
+          "result": "N/A",
+          "sequence": 15
+        },
+        {
+          "who": "Getty",
+          "action": "was taking",
+          "target": "it (medication)",
+          "where": "N/A",
+          "when": "N/A",
+          "result": "N/A",
+          "sequence": 16
+        },
+        {
+          "who": "his medical history",
+          "action": "was",
+          "target": "N/A (what it was)",
+          "where": "N/A",
+          "when": "N/A",
+          "result": "N/A",
+          "sequence": 17
+        },
+        {
+          "who": "Ed Winter, assistant chief in the Los Angeles County coroner's office",
+          "action": "told",
+          "target": "CNN affiliate KTLA",
+          "where": "N/A",
+          "when": "Tuesday night",
+          "result": "N/A",
+          "sequence": 18
+        },
+        {
+          "who": "KTLA",
+          "action": "reported",
+          "target": "that Getty was found on his side near a bathroom in his home",
+          "where": "N/A",
+          "when": "N/A",
+          "result": "N/A",
+          "sequence": 19
+        },
+        {
+          "who": "N/A (people who found him)",
+          "action": "was found",
+          "target": "Getty",
+          "where": "on his side near a bathroom in his home",
+          "when": "N/A",
+          "result": "N/A",
+          "sequence": 20
+        },
+        {
+          "who": "Getty's parents, Ann and Gordon Getty",
+          "action": "released",
+          "target": "a statement",
+          "where": "N/A",
+          "when": "N/A",
+          "result": "N/A",
+          "sequence": 21
+        },
+        {
+          "who": "The statement",
+          "action": "confirming",
+          "target": "their son's death",
+          "where": "N/A",
+          "when": "N/A",
+          "result": "N/A",
+          "sequence": 22
+        },
+        {
+          "who": "The statement",
+          "action": "asking",
+          "target": "privacy",
+          "where": "N/A",
+          "when": "N/A",
+          "result": "N/A",
+          "sequence": 23
+        },
+        {
+          "who": "The Getty family fortune",
+          "action": "came from",
+          "target": "N/A",
+          "where": "N/A",
+          "when": "N/A",
+          "result": "N/A",
+          "sequence": 24
+        },
+        {
+          "who": "Gordon Getty",
+          "action": "is",
+          "target": "one of three living sons of J. Paul Getty",
+          "where": "N/A",
+          "when": "N/A",
+          "result": "N/A",
+          "sequence": 25
+        },
+        {
+          "who": "N/A (people)",
+          "action": "was thought to be",
+          "target": "J. Paul Getty (the richest man in the world)",
+          "where": "in the world",
+          "when": "at the time of his death in 1976",
+          "result": "N/A",
+          "sequence": 26
+        },
+        {
+          "who": "J. Paul Getty",
+          "action": "died",
+          "target": "N/A",
+          "where": "N/A",
+          "when": "1976",
+          "result": "N/A",
+          "sequence": 27
+        },
+        {
+          "who": "Gordon Getty",
+          "action": "has",
+          "target": "a net worth of $2.1 billion",
+          "where": "N/A",
+          "when": "N/A",
+          "result": "N/A",
+          "sequence": 28
+        },
+        {
+          "who": "Forbes",
+          "action": "stated/estimated",
+          "target": "Gordon Getty's net worth",
+          "where": "N/A",
+          "when": "N/A",
+          "result": "N/A",
+          "sequence": 29
+        },
+        {
+          "who": "One other son (of J. Paul Getty)",
+          "action": "died",
+          "target": "N/A",
+          "where": "N/A",
+          "when": "1958",
+          "result": "N/A",
+          "sequence": 30
+        },
+        {
+          "who": "Another son (of J. Paul Getty)",
+          "action": "died",
+          "target": "N/A",
+          "where": "N/A",
+          "when": "1973",
+          "result": "N/A",
+          "sequence": 31
+        },
+        {
+          "who": "Gordon Getty",
+          "action": "spearheaded",
+          "target": "the controversial sale of Getty",
+          "where": "N/A",
+          "when": "1984",
+          "result": "N/A",
+          "sequence": 32
+        },
+        {
+          "who": "N/A (seller of Getty)",
+          "action": "was sold",
+          "target": "Getty",
+          "where": "N/A",
+          "when": "1984",
+          "result": "Texaco acquired Getty for $10 billion",
+          "sequence": 33
+        },
+        {
+          "who": "Forbes",
+          "action": "estimated",
+          "target": "the Gettys' net worth",
+          "where": "N/A",
+          "when": "N/A",
+          "result": "to be about $5 billion",
+          "sequence": 34
+        },
+        {
+          "who": "Court records",
+          "action": "show",
+          "target": "Andrew Getty had recently filed to get a restraining order against an ex-girlfriend",
+          "where": "N/A",
+          "when": "N/A",
+          "result": "N/A",
+          "sequence": 35
+        },
+        {
+          "who": "Andrew Getty",
+          "action": "had filed",
+          "target": "N/A (to get a restraining order)",
+          "where": "N/A",
+          "when": "recently",
+          "result": "N/A",
+          "sequence": 36
+        },
+        {
+          "who": "Andrew Getty",
+          "action": "get",
+          "target": "a restraining order",
+          "where": "N/A",
+          "when": "N/A",
+          "result": "N/A",
+          "sequence": 37
+        },
+        {
+          "who": "a restraining order",
+          "action": "was against",
+          "target": "an ex-girlfriend",
+          "where": "N/A",
+          "when": "N/A",
+          "result": "N/A",
+          "sequence": 38
+        },
+        {
+          "who": "N/A (court officials)",
+          "action": "had been scheduled",
+          "target": "A hearing in the case",
+          "where": "N/A",
+          "when": "for next week",
+          "result": "N/A",
+          "sequence": 39
+        },
+        {
+          "who": "Getty",
+          "action": "said",
+          "target": "he had been diagnosed with a serious medical condition in 2013",
+          "where": "in his request",
+          "when": "N/A",
+          "result": "N/A",
+          "sequence": 40
+        },
+        {
+          "who": "N/A (medical professionals)",
+          "action": "had been diagnosed",
+          "target": "he (Andrew Getty)",
+          "where": "N/A",
+          "when": "in 2013",
+          "result": "N/A",
+          "sequence": 41
+        },
+        {
+          "who": "N/A (medical professionals)",
+          "action": "diagnosed",
+          "target": "him (Andrew Getty)",
+          "where": "N/A",
+          "when": "in 2013",
+          "result": "he had a serious medical condition",
+          "sequence": 42
+        },
+        {
+          "who": "A rise in my blood pressure",
+          "action": "places",
+          "target": "me (Andrew Getty)",
+          "where": "in grave risk of substantial and irreparable injury or death",
+          "when": "N/A",
+          "result": "N/A",
+          "sequence": 43
+        },
+        {
+          "who": "he (Andrew Getty)",
+          "action": "wrote",
+          "target": "A rise in my blood pressure places me in grave risk of substantial and irreparable injury or death",
+          "where": "in the petition",
+          "when": "N/A",
+          "result": "N/A",
+          "sequence": 44
+        },
+        {
+          "who": "My doctors",
+          "action": "have advised",
+          "target": "that heated arguments can cause my blood pressure to rise dangerously",
+          "where": "N/A",
+          "when": "N/A",
+          "result": "N/A",
+          "sequence": 45
+        },
+        {
+          "who": "heated arguments",
+          "action": "can cause",
+          "target": "my blood pressure to rise dangerously",
+          "where": "N/A",
+          "when": "N/A",
+          "result": "N/A",
+          "sequence": 46
+        },
+        {
+          "who": "Andrew Getty",
+          "action": "had",
+          "target": "three brothers and three half-sisters",
+          "where": "N/A",
+          "when": "N/A",
+          "result": "N/A",
+          "sequence": 47
+        },
+        {
+          "who": "CNN's Doug Criss, Janet DiGiacomo, Mark Mooney, Mike Love, Julie In and Cheri Mossburg",
+          "action": "contributed",
+          "target": "to this report",
+          "where": "N/A",
+          "when": "N/A",
+          "result": "N/A",
+          "sequence": 48
+        }
+      ]
+    },
+    "P3_relationships": {
+      "relationships": [
+        {
+          "entity1": "Andrew Getty",
+          "entity2": "billions of oil money",
+          "relationship": "one of the heirs to",
+          "NOT_relationships": [
+            "owner of",
+            "creator of",
+            "inherited"
+          ]
+        },
+        {
+          "entity1": "spokesman",
+          "entity2": "Los Angeles Police Department",
+          "relationship": "spokesman",
+          "NOT_relationships": [
+            "employee of",
+            "member of",
+            "leader of"
+          ]
+        },
+        {
+          "entity1": "Andrew Getty",
+          "entity2": "J. Paul Getty",
+          "relationship": "grandson of",
+          "NOT_relationships": [
+            "son of",
+            "brother of",
+            "heir of"
+          ]
+        },
+        {
+          "entity1": "J. Paul Getty",
+          "entity2": "oil tycoon",
+          "relationship": "oil tycoon",
+          "NOT_relationships": [
+            "oil heir",
+            "oil worker",
+            "oil magnate"
+          ]
+        },
+        {
+          "entity1": "Meghan Aguilar",
+          "entity2": "Detective",
+          "relationship": "Detective",
+          "NOT_relationships": [
+            "officer",
+            "chief",
+            "sergeant"
+          ]
+        },
+        {
+          "entity1": "Andrew Getty",
+          "entity2": "47",
+          "relationship": "47",
+          "NOT_relationships": [
+            "age",
+            "birthday",
+            "years old"
+          ]
+        },
+        {
+          "entity1": "Getty's home",
+          "entity2": "medication",
+          "relationship": "recovered from",
+          "NOT_relationships": [
+            "owned by",
+            "made in",
+            "stored in"
+          ]
+        },
+        {
+          "entity1": "Ed Winter",
+          "entity2": "Los Angeles County coroner's office",
+          "relationship": "assistant chief in the",
+          "NOT_relationships": [
+            "chief of",
+            "employee of",
+            "leader of"
+          ]
+        },
+        {
+          "entity1": "Ed Winter",
+          "entity2": "CNN affiliate KTLA",
+          "relationship": "told",
+          "NOT_relationships": [
+            "works for",
+            "interviewed by",
+            "spoke to"
+          ]
+        },
+        {
+          "entity1": "KTLA",
+          "entity2": "CNN affiliate",
+          "relationship": "CNN affiliate",
+          "NOT_relationships": [
+            "owned by CNN",
+            "part of CNN",
+            "subsidiary of CNN"
+          ]
+        },
+        {
+          "entity1": "Getty's home",
+          "entity2": "bathroom",
+          "relationship": "near a",
+          "NOT_relationships": [
+            "part of",
+            "next to",
+            "inside"
+          ]
+        },
+        {
+          "entity1": "Andrew Getty",
+          "entity2": "Ann Getty",
+          "relationship": "son",
+          "NOT_relationships": [
+            "brother",
+            "husband",
+            "father"
+          ]
+        },
+        {
+          "entity1": "Andrew Getty",
+          "entity2": "Gordon Getty",
+          "relationship": "son",
+          "NOT_relationships": [
+            "brother",
+            "husband",
+            "father"
+          ]
+        },
+        {
+          "entity1": "Ann Getty",
+          "entity2": "Gordon Getty",
+          "relationship": "parents",
+          "NOT_relationships": [
+            "siblings",
+            "friends",
+            "colleagues",
+            "married"
+          ]
+        },
+        {
+          "entity1": "Gordon Getty",
+          "entity2": "J. Paul Getty",
+          "relationship": "one of three living sons of",
+          "NOT_relationships": [
+            "son of",
+            "grandson of",
+            "heir of"
+          ]
+        },
+        {
+          "entity1": "J. Paul Getty",
+          "entity2": "oil baron",
+          "relationship": "oil baron",
+          "NOT_relationships": [
+            "oil worker",
+            "oil heir",
+            "oil magnate"
+          ]
+        },
+        {
+          "entity1": "J. Paul Getty",
+          "entity2": "richest man in the world",
+          "relationship": "richest man in the world",
+          "NOT_relationships": [
+            "wealthy man",
+            "billionaire",
+            "rich person"
+          ]
+        },
+        {
+          "entity1": "Gordon Getty",
+          "entity2": "81",
+          "relationship": "81",
+          "NOT_relationships": [
+            "age",
+            "birthday",
+            "years old"
+          ]
+        },
+        {
+          "entity1": "Gordon Getty",
+          "entity2": "$2.1 billion",
+          "relationship": "has a net worth of",
+          "NOT_relationships": [
+            "owns",
+            "earned",
+            "is worth"
+          ]
+        },
+        {
+          "entity1": "Gordon Getty",
+          "entity2": "Getty (company)",
+          "relationship": "spearheaded the controversial sale of",
+          "NOT_relationships": [
+            "sold",
+            "owned",
+            "managed"
+          ]
+        },
+        {
+          "entity1": "Getty (company)",
+          "entity2": "Texaco",
+          "relationship": "sale of ... to",
+          "NOT_relationships": [
+            "merged with",
+            "acquired by",
+            "partnered with"
+          ]
+        },
+        {
+          "entity1": "Gettys (family)",
+          "entity2": "$5 billion",
+          "relationship": "net worth to be about",
+          "NOT_relationships": [
+            "owns",
+            "earned",
+            "is worth"
+          ]
+        },
+        {
+          "entity1": "Andrew Getty",
+          "entity2": "ex-girlfriend",
+          "relationship": "ex-girlfriend",
+          "NOT_relationships": [
+            "girlfriend",
+            "wife",
+            "partner"
+          ]
+        },
+        {
+          "entity1": "Andrew Getty",
+          "entity2": "three brothers",
+          "relationship": "had",
+          "NOT_relationships": [
+            "is a brother of",
+            "is related to",
+            "has"
+          ]
+        },
+        {
+          "entity1": "Andrew Getty",
+          "entity2": "three half-sisters",
+          "relationship": "had",
+          "NOT_relationships": [
+            "is a half-sister of",
+            "is related to",
+            "has"
+          ]
+        },
+        {
+          "entity1": "Doug Criss",
+          "entity2": "CNN",
+          "relationship": "CNN's",
+          "NOT_relationships": [
+            "works for",
+            "employee of",
+            "reporter for"
+          ]
+        },
+        {
+          "entity1": "Doug Criss",
+          "entity2": "this report",
+          "relationship": "contributed to",
+          "NOT_relationships": [
+            "wrote",
+            "edited",
+            "authored"
+          ]
+        },
+        {
+          "entity1": "Janet DiGiacomo",
+          "entity2": "CNN",
+          "relationship": "CNN's",
+          "NOT_relationships": [
+            "works for",
+            "employee of",
+            "reporter for"
+          ]
+        },
+        {
+          "entity1": "Janet DiGiacomo",
+          "entity2": "this report",
+          "relationship": "contributed to",
+          "NOT_relationships": [
+            "wrote",
+            "edited",
+            "authored"
+          ]
+        },
+        {
+          "entity1": "Mark Mooney",
+          "entity2": "CNN",
+          "relationship": "CNN's",
+          "NOT_relationships": [
+            "works for",
+            "employee of",
+            "reporter for"
+          ]
+        },
+        {
+          "entity1": "Mark Mooney",
+          "entity2": "this report",
+          "relationship": "contributed to",
+          "NOT_relationships": [
+            "wrote",
+            "edited",
+            "authored"
+          ]
+        },
+        {
+          "entity1": "Mike Love",
+          "entity2": "CNN",
+          "relationship": "CNN's",
+          "NOT_relationships": [
+            "works for",
+            "employee of",
+            "reporter for"
+          ]
+        },
+        {
+          "entity1": "Mike Love",
+          "entity2": "this report",
+          "relationship": "contributed to",
+          "NOT_relationships": [
+            "wrote",
+            "edited",
+            "authored"
+          ]
+        },
+        {
+          "entity1": "Julie In",
+          "entity2": "CNN",
+          "relationship": "CNN's",
+          "NOT_relationships": [
+            "works for",
+            "employee of",
+            "reporter for"
+          ]
+        },
+        {
+          "entity1": "Julie In",
+          "entity2": "this report",
+          "relationship": "contributed to",
+          "NOT_relationships": [
+            "wrote",
+            "edited",
+            "authored"
+          ]
+        },
+        {
+          "entity1": "Cheri Mossburg",
+          "entity2": "CNN",
+          "relationship": "CNN's",
+          "NOT_relationships": [
+            "works for",
+            "employee of",
+            "reporter for"
+          ]
+        },
+        {
+          "entity1": "Cheri Mossburg",
+          "entity2": "this report",
+          "relationship": "contributed to",
+          "NOT_relationships": [
+            "wrote",
+            "edited",
+            "authored"
+          ]
+        }
+      ]
+    },
+    "P4_numbers": {
+      "numerical_facts": [
+        {
+          "entity": "Andrew Getty",
+          "number": "billions",
+          "unit": "dollars",
+          "describes": "amount of oil money",
+          "context": "Andrew Getty, one of the heirs to billions of oil money, appears to have died of natural causes, a Los Angeles Police Department spokesman said."
+        },
+        {
+          "entity": "Andrew Getty",
+          "number": "47",
+          "unit": "years",
+          "describes": "age",
+          "context": "Andrew Getty, 47, had \"several health issues,\" Aguilar said, adding that an autopsy will be conducted."
+        },
+        {
+          "entity": "Gordon Getty",
+          "number": "three",
+          "unit": "sons",
+          "describes": "number of living sons of J. Paul Getty",
+          "context": "Gordon Getty is one of three living sons of J. Paul Getty, the oil baron who was thought to be the richest man in the world at the time of his death in 1976."
+        },
+        {
+          "entity": "Gordon Getty",
+          "number": "81",
+          "unit": "years",
+          "describes": "age",
+          "context": "Gordon Getty, 81, has a net worth of $2.1 billion, according to Forbes."
+        },
+        {
+          "entity": "Gordon Getty",
+          "number": "$2.1 billion",
+          "unit": "dollars",
+          "describes": "net worth",
+          "context": "Gordon Getty, 81, has a net worth of $2.1 billion, according to Forbes."
+        },
+        {
+          "entity": "J. Paul Getty's son",
+          "number": "One",
+          "unit": "son",
+          "describes": "number of sons who died",
+          "context": "One other son died in 1958 and another died in 1973."
+        },
+        {
+          "entity": "Getty (company)",
+          "number": "$10 billion",
+          "unit": "dollars",
+          "describes": "sale price",
+          "context": "Gordon Getty spearheaded the controversial sale of Getty to Texaco for $10 billion in 1984."
+        },
+        {
+          "entity": "Getty family",
+          "number": "$5 billion",
+          "unit": "dollars",
+          "describes": "estimated net worth",
+          "context": "In its list of richest American families, Forbes estimated the Gettys' net worth to be about $5 billion."
+        },
+        {
+          "entity": "Andrew Getty",
+          "number": "three",
+          "unit": "brothers",
+          "describes": "number of brothers",
+          "context": "Andrew Getty had three brothers and three half-sisters."
+        },
+        {
+          "entity": "Andrew Getty",
+          "number": "three",
+          "unit": "half-sisters",
+          "describes": "number of half-sisters",
+          "context": "Andrew Getty had three brothers and three half-sisters."
+        }
+      ],
+      "temporal_facts": [
+        {
+          "entity": "KTLA",
+          "number": "Tuesday",
+          "unit": "day of the week",
+          "describes": "time of telling",
+          "context": "Some medication had also been recovered from Getty's home, though investigators don't know whether Getty was taking it or what his medical history was, Ed Winter, assistant chief in the Los Angeles County coroner's office, told CNN affiliate KTLA Tuesday night."
+        },
+        {
+          "entity": "J. Paul Getty",
+          "number": "1976",
+          "unit": "year",
+          "describes": "year of death",
+          "context": "Gordon Getty is one of three living sons of J. Paul Getty, the oil baron who was thought to be the richest man in the world at the time of his death in 1976."
+        },
+        {
+          "entity": "J. Paul Getty's son",
+          "number": "1958",
+          "unit": "year",
+          "describes": "year of death",
+          "context": "One other son died in 1958 and another died in 1973."
+        },
+        {
+          "entity": "J. Paul Getty's son",
+          "number": "1973",
+          "unit": "year",
+          "describes": "year of death",
+          "context": "One other son died in 1958 and another died in 1973."
+        },
+        {
+          "entity": "sale of Getty to Texaco",
+          "number": "1984",
+          "unit": "year",
+          "describes": "year of sale",
+          "context": "Gordon Getty spearheaded the controversial sale of Getty to Texaco for $10 billion in 1984."
+        },
+        {
+          "entity": "hearing",
+          "number": "next week",
+          "unit": "week",
+          "describes": "timing of hearing",
+          "context": "A hearing in the case had been scheduled for next week."
+        },
+        {
+          "entity": "Andrew Getty",
+          "number": "2013",
+          "unit": "year",
+          "describes": "year of diagnosis",
+          "context": "In his request, Getty said he had been diagnosed with a serious medical condition in 2013."
+        },
+        {
+          "entity": "people lost",
+          "number": "2015",
+          "unit": "year",
+          "describes": "year of loss",
+          "context": "People we've lost in 2015."
+        }
+      ]
+    },
+    "P5_negations": {
+      "explicit_negations": [
+        "no foul play involved in the death of Getty",
+        "no criminal investigation underway",
+        "investigators don't know whether Getty was taking it"
+      ],
+      "absent_information": [
+        "whether Getty was taking [the recovered medication]",
+        "what his medical history was",
+        "definitive cause of death"
+      ],
+      "boundaries": [
+        "appears to have died of natural causes",
+        "The coroner's preliminary assessment",
+        "Some medication had also been recovered",
+        "was thought to be the richest man in the world",
+        "according to Forbes",
+        "Forbes estimated the Gettys' net worth to be about $5 billion"
+      ],
+      "corrections": []
+    },
+    "P6_verify": {
+      "missed_facts": []
+    }
+  }
+}

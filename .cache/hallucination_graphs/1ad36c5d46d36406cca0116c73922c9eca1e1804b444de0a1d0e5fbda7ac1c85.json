@@ -1,0 +1,1737 @@
+{
+  "passes": {
+    "P1_entities": {
+      "entities": [
+        {
+          "name": "Anne Frank",
+          "type": "PERSON",
+          "aliases": [
+            "Anne",
+            "Jewish diarist",
+            "She",
+            "Her"
+          ],
+          "attributes": {
+            "age": "15",
+            "cause_of_death": "typhus",
+            "imprisoned_at": "Bergen-Belsen concentration camp",
+            "hiding_location": "Amsterdam secret annex",
+            "arrested": "true",
+            "sent_to_camp": "Auschwitz-Birkenau concentration camp",
+            "separated_from": "their mother",
+            "worked_as": "slave labor",
+            "classmate_name": "Nannette Blitz",
+            "had_symptoms_before": "February 7",
+            "never_gave_up": "hope",
+            "convinced_would_survive": "true"
+          }
+        },
+        {
+          "name": "typhus",
+          "type": "OTHER",
+          "aliases": [
+            "The disease",
+            "epidemic typhus"
+          ],
+          "attributes": {
+            "type": "infectious disease",
+            "caused_by": "lice",
+            "breaks_out_in": "places with poor hygiene",
+            "symptoms": [
+              "high fever",
+              "chills",
+              "skin eruptions"
+            ],
+            "deadly": "true"
+          }
+        },
+        {
+          "name": "Nazi concentration camp",
+          "type": "PLACE",
+          "aliases": [],
+          "attributes": {
+            "description": "where Anne Frank died"
+          }
+        },
+        {
+          "name": "Seventy years ago",
+          "type": "OTHER",
+          "aliases": [],
+          "attributes": {
+            "description": "time reference"
+          }
+        },
+        {
+          "name": "two weeks",
+          "type": "OTHER",
+          "aliases": [],
+          "attributes": {
+            "description": "time period after her supposed death"
+          }
+        },
+        {
+          "name": "March 31, 1945",
+          "type": "OTHER",
+          "aliases": [],
+          "attributes": {
+            "description": "supposed death date of Anne Frank"
+          }
+        },
+        {
+          "name": "Bergen-Belsen concentration camp",
+          "type": "PLACE",
+          "aliases": [
+            "Bergen-Belsen camp",
+            "the camp"
+          ],
+          "attributes": {
+            "imprisoned_person": "Anne Frank",
+            "liberated": "true",
+            "location": "Germany",
+            "condition": "overcrowded",
+            "became_more_crowded_when": "Russians advanced",
+            "brought": "more disease"
+          }
+        },
+        {
+          "name": "Holocaust",
+          "type": "OTHER",
+          "aliases": [],
+          "attributes": {}
+        },
+        {
+          "name": "research",
+          "type": "OTHER",
+          "aliases": [
+            "new research"
+          ],
+          "attributes": {
+            "released_by": "Anne Frank House"
+          }
+        },
+        {
+          "name": "Anne Frank House",
+          "type": "ORG",
+          "aliases": [],
+          "attributes": {
+            "released": "new research"
+          }
+        },
+        {
+          "name": "Margot Frank",
+          "type": "PERSON",
+          "aliases": [
+            "Margot",
+            "her older sister",
+            "sisters",
+            "They"
+          ],
+          "attributes": {
+            "relationship_to_Anne": "older sister",
+            "died_earlier_than_thought": "true",
+            "separated_from": "their mother",
+            "sent_to_work_as": "slave labor",
+            "had_symptoms_before": "February 7",
+            "died_before": "Anne"
+          }
+        },
+        {
+          "name": "month",
+          "type": "OTHER",
+          "aliases": [],
+          "attributes": {
+            "description": "time period earlier than previously thought"
+          }
+        },
+        {
+          "name": "Researchers",
+          "type": "PERSON",
+          "aliases": [
+            "They",
+            "researchers",
+            "museum researchers"
+          ],
+          "attributes": {
+            "re-examined": [
+              "archives of the Red Cross",
+              "the International Training Service",
+              "the Bergen-Belsen Memorial",
+              "testimonies of survivors"
+            ],
+            "concluded": "Anne and Margot probably did not survive to March 1945"
+          }
+        },
+        {
+          "name": "archives",
+          "type": "OTHER",
+          "aliases": [],
+          "attributes": {
+            "belonging_to": [
+              "Red Cross",
+              "International Training Service",
+              "Bergen-Belsen Memorial"
+            ]
+          }
+        },
+        {
+          "name": "Red Cross",
+          "type": "ORG",
+          "aliases": [],
+          "attributes": {}
+        },
+        {
+          "name": "International Training Service",
+          "type": "ORG",
+          "aliases": [],
+          "attributes": {}
+        },
+        {
+          "name": "Bergen-Belsen Memorial",
+          "type": "ORG",
+          "aliases": [],
+          "attributes": {}
+        },
+        {
+          "name": "testimonies",
+          "type": "OTHER",
+          "aliases": [],
+          "attributes": {
+            "from": "survivors"
+          }
+        },
+        {
+          "name": "survivors",
+          "type": "PERSON",
+          "aliases": [],
+          "attributes": {
+            "provided": "testimonies"
+          }
+        },
+        {
+          "name": "March 1945",
+          "type": "OTHER",
+          "aliases": [
+            "March"
+          ],
+          "attributes": {}
+        },
+        {
+          "name": "date of death",
+          "type": "OTHER",
+          "aliases": [],
+          "attributes": {
+            "previously_determined_by": "Dutch authorities"
+          }
+        },
+        {
+          "name": "Dutch authorities",
+          "type": "ORG",
+          "aliases": [],
+          "attributes": {
+            "determined": "date of death"
+          }
+        },
+        {
+          "name": "1944",
+          "type": "OTHER",
+          "aliases": [
+            "That same year"
+          ],
+          "attributes": {}
+        },
+        {
+          "name": "seven others",
+          "type": "PERSON",
+          "aliases": [],
+          "attributes": {
+            "hiding_location": "Amsterdam secret annex",
+            "arrested": "true",
+            "sent_to": "Auschwitz-Birkenau concentration camp"
+          }
+        },
+        {
+          "name": "Amsterdam secret annex",
+          "type": "PLACE",
+          "aliases": [],
+          "attributes": {
+            "hiding_place_for": [
+              "Anne",
+              "seven others"
+            ]
+          }
+        },
+        {
+          "name": "Auschwitz-Birkenau concentration camp",
+          "type": "PLACE",
+          "aliases": [],
+          "attributes": {
+            "destination_for": [
+              "Anne",
+              "seven others"
+            ]
+          }
+        },
+        {
+          "name": "Anne Frank's final entry",
+          "type": "OTHER",
+          "aliases": [
+            "final entry"
+          ],
+          "attributes": {
+            "belonging_to": "Anne Frank"
+          }
+        },
+        {
+          "name": "mother",
+          "type": "PERSON",
+          "aliases": [
+            "their mother"
+          ],
+          "attributes": {
+            "relationship_to": [
+              "Anne",
+              "Margot"
+            ]
+          }
+        },
+        {
+          "name": "slave labor",
+          "type": "OTHER",
+          "aliases": [],
+          "attributes": {
+            "activity_of": [
+              "Anne",
+              "Margot"
+            ]
+          }
+        },
+        {
+          "name": "Germany",
+          "type": "PLACE",
+          "aliases": [],
+          "attributes": {
+            "location_of": "Bergen-Belsen camp"
+          }
+        },
+        {
+          "name": "Days",
+          "type": "OTHER",
+          "aliases": [],
+          "attributes": {
+            "at_location": "the camp",
+            "filled_with": [
+              "terror",
+              "dread"
+            ]
+          }
+        },
+        {
+          "name": "terror",
+          "type": "OTHER",
+          "aliases": [],
+          "attributes": {}
+        },
+        {
+          "name": "dread",
+          "type": "OTHER",
+          "aliases": [],
+          "attributes": {}
+        },
+        {
+          "name": "witnesses",
+          "type": "PERSON",
+          "aliases": [],
+          "attributes": {
+            "said": "Days at the camp were filled with terror and dread",
+            "at_location": "the camp"
+          }
+        },
+        {
+          "name": "section",
+          "type": "OTHER",
+          "aliases": [],
+          "attributes": {
+            "of_location": "the camp",
+            "condition": "overcrowded",
+            "properties": [
+              "no lighting",
+              "little water",
+              "no latrine"
+            ],
+            "where_sisters_stayed": "true"
+          }
+        },
+        {
+          "name": "lighting",
+          "type": "OTHER",
+          "aliases": [],
+          "attributes": {
+            "condition_in_section": "no"
+          }
+        },
+        {
+          "name": "water",
+          "type": "OTHER",
+          "aliases": [],
+          "attributes": {
+            "condition_in_section": "little"
+          }
+        },
+        {
+          "name": "latrine",
+          "type": "OTHER",
+          "aliases": [],
+          "attributes": {
+            "condition_in_section": "no"
+          }
+        },
+        {
+          "name": "lice-ridden straw",
+          "type": "OTHER",
+          "aliases": [
+            "bedstraw"
+          ],
+          "attributes": {
+            "where_sisters_slept": "true",
+            "infested_by": "lice"
+          }
+        },
+        {
+          "name": "violent storms",
+          "type": "OTHER",
+          "aliases": [],
+          "attributes": {
+            "shredded": "tents"
+          }
+        },
+        {
+          "name": "tents",
+          "type": "OTHER",
+          "aliases": [],
+          "attributes": {
+            "shredded_by": "violent storms"
+          }
+        },
+        {
+          "name": "other prisoners",
+          "type": "PERSON",
+          "aliases": [],
+          "attributes": {
+            "endured": "long hours at roll call"
+          }
+        },
+        {
+          "name": "long hours",
+          "type": "OTHER",
+          "aliases": [],
+          "attributes": {
+            "description": "time period at roll call"
+          }
+        },
+        {
+          "name": "roll call",
+          "type": "OTHER",
+          "aliases": [],
+          "attributes": {
+            "activity": "true"
+          }
+        },
+        {
+          "name": "Nannette Blitz",
+          "type": "PERSON",
+          "aliases": [
+            "Blitz",
+            "her friend"
+          ],
+          "attributes": {
+            "relationship_to_Anne": "classmate",
+            "recalled_seeing_Anne_in": "December 1944",
+            "said": "Anne never gave up hope"
+          }
+        },
+        {
+          "name": "December 1944",
+          "type": "OTHER",
+          "aliases": [],
+          "attributes": {
+            "when_Nannette_Blitz_saw_Anne": "true"
+          }
+        },
+        {
+          "name": "skeleton",
+          "type": "OTHER",
+          "aliases": [],
+          "attributes": {
+            "description_of_Anne": "true"
+          }
+        },
+        {
+          "name": "blanket",
+          "type": "OTHER",
+          "aliases": [],
+          "attributes": {
+            "Anne_was_wrapped_in": "true"
+          }
+        },
+        {
+          "name": "clothes",
+          "type": "OTHER",
+          "aliases": [
+            "her clothes"
+          ],
+          "attributes": {
+            "crawling_with": "lice",
+            "infested_by": "lice"
+          }
+        },
+        {
+          "name": "lice",
+          "type": "OTHER",
+          "aliases": [
+            "main carrier of epidemic typhus"
+          ],
+          "attributes": {
+            "crawling_on": "clothes",
+            "cause_of": "typhus",
+            "infesting": [
+              "bedstraw",
+              "clothes"
+            ]
+          }
+        },
+        {
+          "name": "friends",
+          "type": "PERSON",
+          "aliases": [],
+          "attributes": {
+            "of": "Anne Frank",
+            "described": "her concentration camp experience"
+          }
+        },
+        {
+          "name": "concentration camp experience",
+          "type": "OTHER",
+          "aliases": [],
+          "attributes": {
+            "belonging_to": "Anne Frank"
+          }
+        },
+        {
+          "name": "Russians",
+          "type": "PERSON",
+          "aliases": [],
+          "attributes": {
+            "action": "advanced further",
+            "effect_on_camp": "became more crowded"
+          }
+        },
+        {
+          "name": "disease",
+          "type": "OTHER",
+          "aliases": [],
+          "attributes": {
+            "brought_by": "crowding"
+          }
+        },
+        {
+          "name": "deadly typhus outbreak",
+          "type": "OTHER",
+          "aliases": [],
+          "attributes": {
+            "caused": "thousands to die each day"
+          }
+        },
+        {
+          "name": "thousands",
+          "type": "PERSON",
+          "aliases": [],
+          "attributes": {
+            "died_each_day_due_to": "deadly typhus outbreak"
+          }
+        },
+        {
+          "name": "infectious disease",
+          "type": "OTHER",
+          "aliases": [],
+          "attributes": {
+            "description_of": "typhus"
+          }
+        },
+        {
+          "name": "poor hygiene",
+          "type": "OTHER",
+          "aliases": [],
+          "attributes": {
+            "where_typhus_breaks_out": "true"
+          }
+        },
+        {
+          "name": "high fever",
+          "type": "OTHER",
+          "aliases": [],
+          "attributes": {
+            "symptom_of": "typhus"
+          }
+        },
+        {
+          "name": "chills",
+          "type": "OTHER",
+          "aliases": [],
+          "attributes": {
+            "symptom_of": "typhus"
+          }
+        },
+        {
+          "name": "skin eruptions",
+          "type": "OTHER",
+          "aliases": [],
+          "attributes": {
+            "symptom_of": "typhus"
+          }
+        },
+        {
+          "name": "February 7",
+          "type": "OTHER",
+          "aliases": [],
+          "attributes": {
+            "when_sisters_had_symptoms_before": "true"
+          }
+        },
+        {
+          "name": "deaths",
+          "type": "OTHER",
+          "aliases": [],
+          "attributes": {
+            "caused_by": "typhus",
+            "occurrence_time": "around twelve days after first symptoms appear"
+          }
+        },
+        {
+          "name": "twelve days",
+          "type": "OTHER",
+          "aliases": [],
+          "attributes": {
+            "description": "time period for deaths after first symptoms"
+          }
+        },
+        {
+          "name": "first symptoms",
+          "type": "OTHER",
+          "aliases": [],
+          "attributes": {
+            "when_deaths_occur_after": "twelve days"
+          }
+        },
+        {
+          "name": "authors",
+          "type": "PERSON",
+          "aliases": [],
+          "attributes": {
+            "wrote_about": "deaths caused by typhus"
+          }
+        },
+        {
+          "name": "Erika Prins",
+          "type": "PERSON",
+          "aliases": [],
+          "attributes": {
+            "role": "author"
+          }
+        },
+        {
+          "name": "Gertjan Broek",
+          "type": "PERSON",
+          "aliases": [],
+          "attributes": {
+            "role": "author"
+          }
+        },
+        {
+          "name": "dates of death",
+          "type": "OTHER",
+          "aliases": [],
+          "attributes": {
+            "for": [
+              "Anne",
+              "Margot"
+            ],
+            "status": "unclear"
+          }
+        },
+        {
+          "name": "hope",
+          "type": "OTHER",
+          "aliases": [],
+          "attributes": {
+            "Anne_never_gave_up": "true"
+          }
+        },
+        {
+          "name": "Her diary",
+          "type": "PRODUCT",
+          "aliases": [],
+          "attributes": {
+            "belonging_to": "Anne Frank",
+            "description": "one of the world's most popular books"
+          }
+        },
+        {
+          "name": "books",
+          "type": "PRODUCT",
+          "aliases": [],
+          "attributes": {
+            "description": "popular"
+          }
+        },
+        {
+          "name": "Anne Frank's cousin",
+          "type": "PERSON",
+          "aliases": [],
+          "attributes": {
+            "relationship_to_Anne": "cousin",
+            "role": "keeper of her legacy"
+          }
+        },
+        {
+          "name": "legacy",
+          "type": "OTHER",
+          "aliases": [],
+          "attributes": {
+            "belonging_to": "Anne Frank"
+          }
+        }
+      ]
+    },
+    "P2_events": {
+      "events": [
+        {
+          "who": "Anne and seven others",
+          "action": "hiding",
+          "target": "N/A",
+          "where": "the Amsterdam secret annex",
+          "when": "1944",
+          "result": "N/A",
+          "sequence": 1
+        },
+        {
+          "who": "(Nazi authorities, implied)",
+          "action": "arrested",
+          "target": "Anne and seven others",
+          "where": "N/A",
+          "when": "1944",
+          "result": "N/A",
+          "sequence": 2
+        },
+        {
+          "who": "(Nazi authorities, implied)",
+          "action": "sent",
+          "target": "Anne and seven others",
+          "where": "to the Auschwitz-Birkenau concentration camp",
+          "when": "1944",
+          "result": "N/A",
+          "sequence": 3
+        },
+        {
+          "who": "Anne Frank",
+          "action": "made",
+          "target": "final entry (in her diary)",
+          "where": "N/A",
+          "when": "N/A (implied 1944 or early imprisonment)",
+          "result": "N/A",
+          "sequence": 4
+        },
+        {
+          "who": "(Nazi authorities, implied)",
+          "action": "separated",
+          "target": "Anne and Margot",
+          "where": "N/A (implied Auschwitz or during transport)",
+          "when": "1944",
+          "result": "from their mother",
+          "sequence": 5
+        },
+        {
+          "who": "(Nazi authorities, implied)",
+          "action": "sent away",
+          "target": "Anne and Margot",
+          "where": "to the Bergen-Belsen camp in Germany",
+          "when": "1944",
+          "result": "to work as slave labor",
+          "sequence": 6
+        },
+        {
+          "who": "Anne and Margot",
+          "action": "worked",
+          "target": "N/A",
+          "where": "Bergen-Belsen camp in Germany",
+          "when": "1944 (and into 1945)",
+          "result": "as slave labor",
+          "sequence": 7
+        },
+        {
+          "who": "The camp environment/conditions (implied)",
+          "action": "filled",
+          "target": "Days at the camp",
+          "where": "Bergen-Belsen camp",
+          "when": "N/A (during their time there, 1944-1945)",
+          "result": "with terror and dread",
+          "sequence": 8
+        },
+        {
+          "who": "The sisters (Anne and Margot)",
+          "action": "stayed",
+          "target": "N/A",
+          "where": "in a section of the overcrowded camp with no lighting, little water and no latrine (Bergen-Belsen)",
+          "when": "N/A (during their time there, 1944-1945)",
+          "result": "N/A",
+          "sequence": 9
+        },
+        {
+          "who": "The sisters (Anne and Margot)",
+          "action": "slept",
+          "target": "N/A",
+          "where": "on lice-ridden straw (in the camp)",
+          "when": "N/A (during their time there, 1944-1945)",
+          "result": "N/A",
+          "sequence": 10
+        },
+        {
+          "who": "violent storms",
+          "action": "shredded",
+          "target": "the tents",
+          "where": "(in the camp)",
+          "when": "N/A (during their time there, 1944-1945)",
+          "result": "N/A",
+          "sequence": 11
+        },
+        {
+          "who": "the sisters (Anne and Margot)",
+          "action": "endured",
+          "target": "long hours at roll call",
+          "where": "(in the camp)",
+          "when": "N/A (during their time there, 1944-1945)",
+          "result": "N/A",
+          "sequence": 12
+        },
+        {
+          "who": "Nannette Blitz",
+          "action": "saw",
+          "target": "Anne",
+          "where": "Bergen-Belsen camp",
+          "when": "December 1944",
+          "result": "N/A",
+          "sequence": 13
+        },
+        {
+          "who": "Anne",
+          "action": "was",
+          "target": "no more than a skeleton",
+          "where": "Bergen-Belsen camp",
+          "when": "December 1944",
+          "result": "N/A",
+          "sequence": 14
+        },
+        {
+          "who": "Anne",
+          "action": "was wrapped",
+          "target": "N/A",
+          "where": "Bergen-Belsen camp",
+          "when": "December 1944",
+          "result": "in a blanket",
+          "sequence": 15
+        },
+        {
+          "who": "Anne",
+          "action": "couldn't bear to wear",
+          "target": "her clothes",
+          "where": "Bergen-Belsen camp",
+          "when": "December 1944",
+          "result": "N/A",
+          "sequence": 16
+        },
+        {
+          "who": "her clothes",
+          "action": "were crawling",
+          "target": "with lice",
+          "where": "Bergen-Belsen camp",
+          "when": "December 1944",
+          "result": "N/A",
+          "sequence": 17
+        },
+        {
+          "who": "Anne",
+          "action": "never gave up",
+          "target": "hope",
+          "where": "N/A (during her imprisonment)",
+          "when": "N/A (during her imprisonment)",
+          "result": "N/A",
+          "sequence": 18
+        },
+        {
+          "who": "Anne",
+          "action": "was convinced",
+          "target": "she would survive",
+          "where": "N/A (during her imprisonment)",
+          "when": "N/A (during her imprisonment)",
+          "result": "N/A",
+          "sequence": 19
+        },
+        {
+          "who": "the Russians",
+          "action": "advanced",
+          "target": "N/A",
+          "where": "N/A (implied towards Bergen-Belsen)",
+          "when": "N/A (late 1944 - early 1945)",
+          "result": "N/A",
+          "sequence": 20
+        },
+        {
+          "who": "the Bergen-Belsen concentration camp",
+          "action": "became",
+          "target": "even more crowded",
+          "where": "Bergen-Belsen",
+          "when": "As the Russians advanced further (late 1944 - early 1945)",
+          "result": "N/A",
+          "sequence": 21
+        },
+        {
+          "who": "the crowding (implied)",
+          "action": "brought",
+          "target": "more disease",
+          "where": "Bergen-Belsen",
+          "when": "As the Russians advanced further (late 1944 - early 1945)",
+          "result": "N/A",
+          "sequence": 22
+        },
+        {
+          "who": "the lice",
+          "action": "infested",
+          "target": "the bedstraw and her clothes (Anne's)",
+          "where": "Bergen-Belsen camp",
+          "when": "N/A (during Anne's time there, late 1944 - early 1945)",
+          "result": "N/A",
+          "sequence": 23
+        },
+        {
+          "who": "The lice/environment (implied)",
+          "action": "exposed",
+          "target": "Anne",
+          "where": "Bergen-Belsen camp",
+          "when": "for an extended period (late 1944 - early 1945)",
+          "result": "N/A",
+          "sequence": 24
+        },
+        {
+          "who": "the sisters (Anne and Margot)",
+          "action": "had",
+          "target": "symptoms (of typhus)",
+          "where": "Bergen-Belsen camp",
+          "when": "before February 7 (1945)",
+          "result": "N/A",
+          "sequence": 25
+        },
+        {
+          "who": "Margot",
+          "action": "died",
+          "target": "N/A",
+          "where": "N/A (implied Bergen-Belsen)",
+          "when": "before Anne (implied early 1945, after Feb 7 + 12 days)",
+          "result": "N/A",
+          "sequence": 26
+        },
+        {
+          "who": "Anne Frank",
+          "action": "died",
+          "target": "N/A",
+          "where": "a Nazi concentration camp (Bergen-Belsen)",
+          "when": "at least a month earlier than previously thought (before March 1945, after Margot)",
+          "result": "of typhus",
+          "sequence": 27
+        },
+        {
+          "who": "a deadly typhus outbreak",
+          "action": "caused",
+          "target": "thousands to die",
+          "where": "Bergen-Belsen",
+          "when": "N/A (early 1945)",
+          "result": "N/A",
+          "sequence": 28
+        },
+        {
+          "who": "thousands",
+          "action": "died",
+          "target": "N/A",
+          "where": "Bergen-Belsen",
+          "when": "each day (during the outbreak, early 1945)",
+          "result": "N/A",
+          "sequence": 29
+        },
+        {
+          "who": "Allied forces (implied)",
+          "action": "liberated",
+          "target": "the Bergen-Belsen concentration camp",
+          "where": "Bergen-Belsen",
+          "when": "Just two weeks after her supposed death on March 31, 1945 (mid-April 1945)",
+          "result": "N/A",
+          "sequence": 30
+        },
+        {
+          "who": "the timing (of liberation)",
+          "action": "showed",
+          "target": "how close the Jewish diarist had been to surviving the Holocaust",
+          "where": "N/A",
+          "when": "Just two weeks after her supposed death on March 31, 1945 (mid-April 1945)",
+          "result": "N/A",
+          "sequence": 31
+        },
+        {
+          "who": "Nazi authorities (implied)",
+          "action": "imprisoned",
+          "target": "Anne Frank",
+          "where": "the Bergen-Belsen concentration camp",
+          "when": "before mid-April 1945",
+          "result": "N/A",
+          "sequence": 32
+        },
+        {
+          "who": "Anne Frank",
+          "action": "had been close to surviving",
+          "target": "the Holocaust",
+          "where": "N/A",
+          "when": "before mid-April 1945",
+          "result": "N/A",
+          "sequence": 33
+        },
+        {
+          "who": "Dutch authorities",
+          "action": "determined",
+          "target": "the date of death (of Anne and Margot)",
+          "where": "N/A",
+          "when": "previously (before new research)",
+          "result": "N/A",
+          "sequence": 34
+        },
+        {
+          "who": "the Anne Frank House",
+          "action": "released",
+          "target": "new research",
+          "where": "N/A",
+          "when": "N/A (recent)",
+          "result": "N/A",
+          "sequence": 35
+        },
+        {
+          "who": "Researchers",
+          "action": "re-examined",
+          "target": "archives of the Red Cross, the International Training Service and the Bergen-Belsen Memorial, along with testimonies of survivors",
+          "where": "N/A",
+          "when": "N/A (recent)",
+          "result": "N/A",
+          "sequence": 36
+        },
+        {
+          "who": "Researchers",
+          "action": "concluded",
+          "target": "that Anne and Margot probably did not survive to March 1945",
+          "where": "N/A",
+          "when": "N/A (recent)",
+          "result": "N/A",
+          "sequence": 37
+        },
+        {
+          "who": "(This conclusion, implied)",
+          "action": "contradicted",
+          "target": "the date of death which had previously been determined by Dutch authorities",
+          "where": "N/A",
+          "when": "N/A (recent)",
+          "result": "N/A",
+          "sequence": 38
+        },
+        {
+          "who": "museum researchers",
+          "action": "wrote",
+          "target": "\"Because of the lice infesting the bedstraw and her clothes, Anne was exposed to the main carrier of epidemic typhus for an extended period\"",
+          "where": "N/A",
+          "when": "N/A (recent)",
+          "result": "N/A",
+          "sequence": 39
+        },
+        {
+          "who": "museum researchers",
+          "action": "concluded",
+          "target": "that it's unlikely the sisters survived until March",
+          "where": "N/A",
+          "when": "N/A (recent)",
+          "result": "N/A",
+          "sequence": 40
+        },
+        {
+          "who": "witnesses at the camp",
+          "action": "said",
+          "target": "the sisters both had symptoms before February 7",
+          "where": "N/A",
+          "when": "N/A (recent, recalling past)",
+          "result": "N/A",
+          "sequence": 41
+        },
+        {
+          "who": "authors Erika Prins and Gertjan Broek",
+          "action": "wrote",
+          "target": "\"Most deaths caused by typhus occur around twelve days after the first symptoms appear\"",
+          "where": "N/A",
+          "when": "N/A (recent)",
+          "result": "N/A",
+          "sequence": 42
+        },
+        {
+          "who": "The exact dates of death for Anne and Margot",
+          "action": "remain",
+          "target": "unclear",
+          "where": "N/A",
+          "when": "N/A (current)",
+          "result": "N/A",
+          "sequence": 43
+        },
+        {
+          "who": "Her diary (Anne Frank's)",
+          "action": "endures",
+          "target": "N/A",
+          "where": "N/A",
+          "when": "N/A (current)",
+          "result": "as one of the world's most popular books",
+          "sequence": 44
+        },
+        {
+          "who": "Typhus",
+          "action": "is",
+          "target": "an infectious disease",
+          "where": "N/A",
+          "when": "N/A (general fact)",
+          "result": "N/A",
+          "sequence": 45
+        },
+        {
+          "who": "lice",
+          "action": "caused",
+          "target": "Typhus (as an infectious disease)",
+          "where": "N/A",
+          "when": "N/A (general fact)",
+          "result": "N/A",
+          "sequence": 46
+        },
+        {
+          "who": "Typhus",
+          "action": "breaks out",
+          "target": "N/A",
+          "where": "in places with poor hygiene",
+          "when": "N/A (general fact)",
+          "result": "N/A",
+          "sequence": 47
+        },
+        {
+          "who": "The disease (Typhus)",
+          "action": "causes",
+          "target": "high fever, chills and skin eruptions",
+          "where": "N/A",
+          "when": "N/A (general fact)",
+          "result": "N/A",
+          "sequence": 48
+        },
+        {
+          "who": "typhus",
+          "action": "caused",
+          "target": "Most deaths",
+          "where": "N/A",
+          "when": "N/A (general fact)",
+          "result": "N/A",
+          "sequence": 49
+        },
+        {
+          "who": "Most deaths (caused by typhus)",
+          "action": "occur",
+          "target": "N/A",
+          "where": "N/A",
+          "when": "around twelve days after the first symptoms appear",
+          "result": "N/A",
+          "sequence": 50
+        },
+        {
+          "who": "the first symptoms",
+          "action": "appear",
+          "target": "N/A",
+          "where": "N/A",
+          "when": "N/A (general fact)",
+          "result": "N/A",
+          "sequence": 51
+        }
+      ]
+    },
+    "P3_relationships": {
+      "relationships": [
+        {
+          "entity1": "Anne Frank",
+          "entity2": "typhus",
+          "relationship": "died of",
+          "NOT_relationships": [
+            "caused by",
+            "suffered from",
+            "infected by"
+          ]
+        },
+        {
+          "entity1": "Anne Frank",
+          "entity2": "Nazi concentration camp",
+          "relationship": "died in",
+          "NOT_relationships": [
+            "imprisoned in",
+            "lived in",
+            "worked in"
+          ]
+        },
+        {
+          "entity1": "Anne Frank",
+          "entity2": "Bergen-Belsen concentration camp",
+          "relationship": "had been imprisoned",
+          "NOT_relationships": [
+            "died in",
+            "worked in",
+            "liberated from"
+          ]
+        },
+        {
+          "entity1": "Anne Frank",
+          "entity2": "Jewish diarist",
+          "relationship": "was",
+          "NOT_relationships": [
+            "friend of",
+            "sister of",
+            "mother of"
+          ]
+        },
+        {
+          "entity1": "Anne Frank House",
+          "entity2": "research",
+          "relationship": "released",
+          "NOT_relationships": [
+            "conducted",
+            "published",
+            "funded"
+          ]
+        },
+        {
+          "entity1": "Anne",
+          "entity2": "Margot Frank",
+          "relationship": "older sister",
+          "NOT_relationships": [
+            "younger sister",
+            "friend",
+            "mother",
+            "classmate"
+          ]
+        },
+        {
+          "entity1": "Researchers",
+          "entity2": "archives of the Red Cross",
+          "relationship": "re-examined",
+          "NOT_relationships": [
+            "created",
+            "published",
+            "ignored"
+          ]
+        },
+        {
+          "entity1": "Researchers",
+          "entity2": "archives of the International Training Service",
+          "relationship": "re-examined",
+          "NOT_relationships": [
+            "created",
+            "published",
+            "ignored"
+          ]
+        },
+        {
+          "entity1": "Researchers",
+          "entity2": "archives of the Bergen-Belsen Memorial",
+          "relationship": "re-examined",
+          "NOT_relationships": [
+            "created",
+            "published",
+            "ignored"
+          ]
+        },
+        {
+          "entity1": "Researchers",
+          "entity2": "testimonies of survivors",
+          "relationship": "re-examined",
+          "NOT_relationships": [
+            "collected",
+            "published",
+            "ignored"
+          ]
+        },
+        {
+          "entity1": "Dutch authorities",
+          "entity2": "date of death",
+          "relationship": "had previously been determined by",
+          "NOT_relationships": [
+            "contradicted",
+            "confirmed",
+            "published"
+          ]
+        },
+        {
+          "entity1": "Anne",
+          "entity2": "seven others",
+          "relationship": "hiding with",
+          "NOT_relationships": [
+            "family of",
+            "friends of",
+            "classmates of"
+          ]
+        },
+        {
+          "entity1": "Anne",
+          "entity2": "Amsterdam secret annex",
+          "relationship": "hiding in",
+          "NOT_relationships": [
+            "lived in",
+            "worked in",
+            "owned"
+          ]
+        },
+        {
+          "entity1": "Anne",
+          "entity2": "Auschwitz-Birkenau concentration camp",
+          "relationship": "sent to",
+          "NOT_relationships": [
+            "died in",
+            "liberated from",
+            "worked in"
+          ]
+        },
+        {
+          "entity1": "Anne Frank",
+          "entity2": "final entry",
+          "relationship": "'s",
+          "NOT_relationships": [
+            "wrote",
+            "published",
+            "owned"
+          ]
+        },
+        {
+          "entity1": "Anne",
+          "entity2": "mother",
+          "relationship": "separated from",
+          "NOT_relationships": [
+            "lived with",
+            "died with",
+            "cared for"
+          ]
+        },
+        {
+          "entity1": "Margot",
+          "entity2": "mother",
+          "relationship": "separated from",
+          "NOT_relationships": [
+            "lived with",
+            "died with",
+            "cared for"
+          ]
+        },
+        {
+          "entity1": "Anne",
+          "entity2": "Bergen-Belsen camp",
+          "relationship": "sent away to work as slave labor at",
+          "NOT_relationships": [
+            "died in",
+            "imprisoned in",
+            "liberated from"
+          ]
+        },
+        {
+          "entity1": "Margot",
+          "entity2": "Bergen-Belsen camp",
+          "relationship": "sent away to work as slave labor at",
+          "NOT_relationships": [
+            "died in",
+            "imprisoned in",
+            "liberated from"
+          ]
+        },
+        {
+          "entity1": "sisters",
+          "entity2": "section of the overcrowded camp",
+          "relationship": "stayed in",
+          "NOT_relationships": [
+            "owned",
+            "built",
+            "managed"
+          ]
+        },
+        {
+          "entity1": "sisters",
+          "entity2": "lice-ridden straw",
+          "relationship": "slept on",
+          "NOT_relationships": [
+            "owned",
+            "made",
+            "found"
+          ]
+        },
+        {
+          "entity1": "Anne",
+          "entity2": "Nannette Blitz",
+          "relationship": "classmate",
+          "NOT_relationships": [
+            "friend",
+            "sister",
+            "mother"
+          ]
+        },
+        {
+          "entity1": "Anne Frank",
+          "entity2": "friends",
+          "relationship": "'s",
+          "NOT_relationships": [
+            "family of",
+            "classmates of",
+            "colleagues of"
+          ]
+        },
+        {
+          "entity1": "typhus outbreak",
+          "entity2": "thousands",
+          "relationship": "caused to die",
+          "NOT_relationships": [
+            "infected",
+            "cured",
+            "treated"
+          ]
+        },
+        {
+          "entity1": "Typhus",
+          "entity2": "infectious disease",
+          "relationship": "is an",
+          "NOT_relationships": [
+            "causes",
+            "cures",
+            "treats"
+          ]
+        },
+        {
+          "entity1": "Typhus",
+          "entity2": "lice",
+          "relationship": "caused by",
+          "NOT_relationships": [
+            "causes",
+            "cures",
+            "treats"
+          ]
+        },
+        {
+          "entity1": "disease",
+          "entity2": "high fever",
+          "relationship": "causes",
+          "NOT_relationships": [
+            "cures",
+            "is",
+            "treats"
+          ]
+        },
+        {
+          "entity1": "disease",
+          "entity2": "chills",
+          "relationship": "causes",
+          "NOT_relationships": [
+            "cures",
+            "is",
+            "treats"
+          ]
+        },
+        {
+          "entity1": "disease",
+          "entity2": "skin eruptions",
+          "relationship": "causes",
+          "NOT_relationships": [
+            "cures",
+            "is",
+            "treats"
+          ]
+        },
+        {
+          "entity1": "lice",
+          "entity2": "bedstraw",
+          "relationship": "infesting",
+          "NOT_relationships": [
+            "on",
+            "in",
+            "eating"
+          ]
+        },
+        {
+          "entity1": "lice",
+          "entity2": "her clothes",
+          "relationship": "infesting",
+          "NOT_relationships": [
+            "on",
+            "in",
+            "eating"
+          ]
+        },
+        {
+          "entity1": "Anne",
+          "entity2": "main carrier of epidemic typhus",
+          "relationship": "exposed to",
+          "NOT_relationships": [
+            "infected by",
+            "cured by",
+            "treated by"
+          ]
+        },
+        {
+          "entity1": "museum researchers",
+          "entity2": "quote",
+          "relationship": "wrote",
+          "NOT_relationships": [
+            "said",
+            "published",
+            "researched"
+          ]
+        },
+        {
+          "entity1": "witnesses at the camp",
+          "entity2": "sisters",
+          "relationship": "said had symptoms",
+          "NOT_relationships": [
+            "saw die",
+            "treated",
+            "cared for"
+          ]
+        },
+        {
+          "entity1": "Erika Prins",
+          "entity2": "authors",
+          "relationship": "one of the",
+          "NOT_relationships": [
+            "editor",
+            "publisher",
+            "researcher"
+          ]
+        },
+        {
+          "entity1": "Gertjan Broek",
+          "entity2": "authors",
+          "relationship": "one of the",
+          "NOT_relationships": [
+            "editor",
+            "publisher",
+            "researcher"
+          ]
+        },
+        {
+          "entity1": "Erika Prins",
+          "entity2": "quote",
+          "relationship": "wrote",
+          "NOT_relationships": [
+            "said",
+            "published",
+            "researched"
+          ]
+        },
+        {
+          "entity1": "Gertjan Broek",
+          "entity2": "quote",
+          "relationship": "wrote",
+          "NOT_relationships": [
+            "said",
+            "published",
+            "researched"
+          ]
+        },
+        {
+          "entity1": "Margot",
+          "entity2": "Anne",
+          "relationship": "died before",
+          "NOT_relationships": [
+            "died after",
+            "died with",
+            "killed by"
+          ]
+        },
+        {
+          "entity1": "Anne",
+          "entity2": "Blitz",
+          "relationship": "friend",
+          "NOT_relationships": [
+            "classmate",
+            "sister",
+            "mother"
+          ]
+        },
+        {
+          "entity1": "Anne",
+          "entity2": "diary",
+          "relationship": "Her",
+          "NOT_relationships": [
+            "wrote",
+            "published",
+            "owned"
+          ]
+        },
+        {
+          "entity1": "Anne Frank",
+          "entity2": "cousin",
+          "relationship": "'s",
+          "NOT_relationships": [
+            "sister",
+            "friend",
+            "mother"
+          ]
+        },
+        {
+          "entity1": "cousin",
+          "entity2": "keeper of her legacy",
+          "relationship": "a",
+          "NOT_relationships": [
+            "created",
+            "destroyed",
+            "ignored"
+          ]
+        }
+      ]
+    },
+    "P4_numbers": {
+      "numerical_facts": [
+        {
+          "entity": "Anne Frank's death",
+          "number": "Seventy",
+          "unit": "years",
+          "describes": "time elapsed since",
+          "context": "Seventy years ago, Anne Frank died of typhus in a Nazi concentration camp at the age of 15."
+        },
+        {
+          "entity": "Anne Frank",
+          "number": "15",
+          "unit": "years",
+          "describes": "age at death",
+          "context": "Seventy years ago, Anne Frank died of typhus in a Nazi concentration camp at the age of 15."
+        },
+        {
+          "entity": "Bergen-Belsen concentration camp liberation",
+          "number": "two",
+          "unit": "weeks",
+          "describes": "time after Anne Frank's supposed death",
+          "context": "Just two weeks after her supposed death on March 31, 1945, the Bergen-Belsen concentration camp where she had been imprisoned was liberated -- timing that showed how close the Jewish diarist had been to surviving the Holocaust."
+        },
+        {
+          "entity": "Anne and Margot Frank's death",
+          "number": "a",
+          "unit": "month",
+          "describes": "duration earlier than previously thought",
+          "context": "But new research released by the Anne Frank House shows that Anne and her older sister, Margot Frank, died at least a month earlier than previously thought."
+        },
+        {
+          "entity": "people hiding in Amsterdam secret annex",
+          "number": "seven",
+          "unit": "others",
+          "describes": "quantity of people",
+          "context": "In 1944, Anne and seven others hiding in the Amsterdam secret annex were arrested and sent to the Auschwitz-Birkenau concentration camp."
+        },
+        {
+          "entity": "typhus outbreak",
+          "number": "thousands",
+          "unit": "people",
+          "describes": "quantity of deaths each day",
+          "context": "A deadly typhus outbreak caused thousands to die each day."
+        },
+        {
+          "entity": "typhus deaths",
+          "number": "twelve",
+          "unit": "days",
+          "describes": "time after first symptoms appear",
+          "context": "\"Most deaths caused by typhus occur around twelve days after the first symptoms appear,\" wrote authors Erika Prins and Gertjan Broek."
+        },
+        {
+          "entity": "Anne Frank's diary",
+          "number": "one",
+          "unit": "book",
+          "describes": "popularity ranking",
+          "context": "Her diary endures as one of the world's most popular books."
+        }
+      ],
+      "temporal_facts": [
+        {
+          "entity": "Anne Frank's supposed death",
+          "number": "March 31, 1945",
+          "unit": "date",
+          "describes": "date of supposed death",
+          "context": "Just two weeks after her supposed death on March 31, 1945, the Bergen-Belsen concentration camp where she had been imprisoned was liberated -- timing that showed how close the Jewish diarist had been to surviving the Holocaust."
+        },
+        {
+          "entity": "Anne and Margot's survival",
+          "number": "March 1945",
+          "unit": "month/year",
+          "describes": "latest possible survival time",
+          "context": "They concluded that Anne and Margot probably did not survive to March 1945 -- contradicting the date of death which had previously been determined by Dutch authorities."
+        },
+        {
+          "entity": "arrest and transport to Auschwitz-Birkenau",
+          "number": "1944",
+          "unit": "year",
+          "describes": "year of event",
+          "context": "In 1944, Anne and seven others hiding in the Amsterdam secret annex were arrested and sent to the Auschwitz-Birkenau concentration camp."
+        },
+        {
+          "entity": "Nannette Blitz seeing Anne",
+          "number": "December 1944",
+          "unit": "month/year",
+          "describes": "date of sighting",
+          "context": "Her classmate, Nannette Blitz, recalled seeing Anne there in December 1944: \"She was no more than a skeleton by then."
+        },
+        {
+          "entity": "Anne and Margot's symptoms",
+          "number": "February 7",
+          "unit": "date",
+          "describes": "date before which symptoms appeared",
+          "context": "They concluded that it's unlikely the sisters survived until March, because witnesses at the camp said the sisters both had symptoms before February 7."
+        }
+      ]
+    },
+    "P5_negations": {
+      "explicit_negations": [
+        "did not survive to March 1945",
+        "no lighting",
+        "no latrine",
+        "no more than a skeleton",
+        "couldn't bear to wear her clothes anymore",
+        "unlikely the sisters survived until March",
+        "never gave up hope"
+      ],
+      "absent_information": [
+        "The exact dates of death for Anne and Margot remain unclear."
+      ],
+      "boundaries": [
+        "her supposed death",
+        "at least a month earlier",
+        "probably did not survive",
+        "little water",
+        "unlikely the sisters survived",
+        "Most deaths",
+        "around twelve days"
+      ],
+      "corrections": [
+        "Anne and her older sister, Margot Frank, died at least a month earlier than previously thought.",
+        "contradicting the date of death which had previously been determined by Dutch authorities."
+      ]
+    },
+    "P6_verify": {
+      "missed_facts": [
+        {
+          "fact": "Researchers reported that the sisters (Anne and Margot) slept on lice-ridden straw and that violent storms shredded the tents.",
+          "category": "Entities",
+          "source_text": "They slept on lice-ridden straw and violent storms shredded the tents, according to the researchers."
+        }
+      ]
+    }
+  }
+}
