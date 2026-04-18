@@ -91,6 +91,7 @@ def _evaluate_case_all_properties(
     response_text = case.request.candidate_answer
     context_parts = list(case.request.source_context or [])
     conversation_context = " ".join(msg.content for msg in case.request.conversation)
+    source_only = "\n".join(context_parts) if context_parts else ""  # EPIC 7.22/ADR-0025: raw source only, no conversation prefix
     if context_parts:
         context = (
             conversation_context
@@ -108,6 +109,7 @@ def _evaluate_case_all_properties(
         hallucination_result = check_hallucination(
             response=response_text,
             context=context,
+            source_context=source_only,  # EPIC 7.22/ADR-0025: fixes L2 hash mismatch — cache was keyed on concatenated context, not raw source
             case_id=case.case_id,
             grounding_threshold=0.8,
             min_sentence_threshold=0.3,
