@@ -807,14 +807,14 @@ def check_hallucination(
     has_unsupported = False
 
     if l3_enabled and l3_method == "fact_counting":
-        # ---- L3: MINICHECK → GEMMA FACT-COUNTING (ADR-0027) ----
-        # Two-phase L3:
-        #   L3a: MiniCheck (local, free, 78% coverage per Exp 17b)
-        #   L3b: Gemma fact-counting (API, for what MiniCheck doesn't clear)
-        # Exp 43: combined gives 76% auto-clear at 100% precision.
+        # ---- L3: GEMMA FACT-COUNTING (ADR-0027) ----
+        # Single-signal L3 per Exp 43: fc_ratio >= threshold → CLEAR, else cascade to L4.
+        # 76% auto-clear at 100% grounding precision on RAGTruth-50, 0 FN at threshold 0.8.
+        # MiniCheck is NOT run in this path — it lives in the legacy minicheck_deberta
+        # branch below, reachable via the l3_minicheck_enabled flag (ADR-0027 §Decision).
         from llm_judge.calibration.fact_counting import check_fact_counting
 
-        layer_stats["L3_minicheck"] = 0
+        layer_stats["L3_minicheck"] = 0  # kept at 0 for funnel-report compatibility
         layer_stats["L3_fact_counting_clear"] = 0
         layer_stats["L3_fact_counting_flag"] = 0
         layer_stats["L3_fact_counting_error"] = 0
@@ -823,23 +823,6 @@ def check_hallucination(
             if i in resolved:
                 continue
 
-            # L3a: MiniCheck first (local, no API cost)
-            try:
-                if _l3_minicheck(sent, source_doc):
-                    resolved.add(i)
-                    layer_stats["L3_minicheck"] += 1
-                    sentence_results.append(
-                        SentenceLayerResult(
-                            sentence_idx=i,
-                            sentence=sent[:120],
-                            resolved_by="L3_minicheck",
-                        )
-                    )
-                    continue
-            except Exception as e:
-                logger.debug(f"l3a_minicheck.error: {str(e)[:60]}")
-
-            # L3b: Gemma fact-counting (API, for sentences MiniCheck didn't clear)
             fc_result = check_fact_counting(
                 sent, source_doc, threshold=fc_clear_threshold,
             )
