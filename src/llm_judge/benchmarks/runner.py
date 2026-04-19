@@ -14,7 +14,7 @@ from dataclasses import dataclass, field
 from typing import Any, Literal, cast
 
 from llm_judge.benchmarks import BenchmarkAdapter, BenchmarkCase, GroundTruth
-from llm_judge.calibration.hallucination import check_hallucination
+from llm_judge.calibration.hallucination import _split_sentences, check_hallucination
 from llm_judge.calibration.pipeline_config import PipelineConfig, get_pipeline_config
 
 logger = logging.getLogger(__name__)
@@ -45,6 +45,107 @@ class BenchmarkRunResult:
     properties_skipped: dict[str, str] = field(default_factory=dict)
     fire_rates: dict[str, dict[str, int]] = field(default_factory=dict)
     diagnostic_results: dict[str, dict[str, Any]] = field(default_factory=dict)
+    sentence_level_metrics: dict[str, Any] = field(default_factory=dict)
+
+
+_FLAGGED_LAYERS = {"L3_fc_flagged", "L4_unsupported", "L2_flagged"}
+_CLEARANCE_LAYERS = {
+    "L1", "L2", "L3_fact_counting", "L3_minicheck", "L3_deberta", "L4_supported",
+}
+
+
+def _compute_sentence_level_metrics(
+    response_level_results: list[dict[str, Any]],
+) -> dict[str, Any]:
+    """Compute per-layer and overall sentence-level confusion matrix + F1.
+
+    Overall verdict per sentence: the LAST sentence_results entry for that
+    sentence_idx wins (terminal-layer cascade — e.g. L2_flagged overturned
+    by L3_fact_counting = grounded). Predicted hallucinated if resolved_by
+    in _FLAGGED_LAYERS; grounded otherwise.
+
+    Per-layer breakdown counts every record independently — for clearance
+    layers, cleared-grounded (correct) vs cleared-hallucinated (safety
+    violation); for flag layers, flagged-hallucinated (correct) vs
+    flagged-grounded (false flag).
+    """
+    tp = fp = fn = tn = 0
+    by_layer: dict[str, dict[str, int]] = {}
+
+    for rr in response_level_results:
+        hal = rr.get("hallucination") or {}
+        sr_list = hal.get("sentence_results") or []
+        terminal_by_idx: dict[int, dict[str, Any]] = {}
+        for sr in sr_list:
+            idx = sr.get("sentence_idx", -1)
+            terminal_by_idx[idx] = sr  # last write wins
+            layer = sr.get("resolved_by", "unknown")
+            gt = sr.get("ground_truth", "grounded")
+            bucket = by_layer.setdefault(
+                layer,
+                {
+                    "total": 0,
+                    "cleared_grounded": 0,
+                    "cleared_hallucinated": 0,
+                    "flagged_hallucinated": 0,
+                    "flagged_grounded": 0,
+                },
+            )
+            bucket["total"] += 1
+            if layer in _FLAGGED_LAYERS:
+                key = (
+                    "flagged_hallucinated"
+                    if gt == "hallucinated"
+                    else "flagged_grounded"
+                )
+            elif layer in _CLEARANCE_LAYERS:
+                key = (
+                    "cleared_hallucinated"
+                    if gt == "hallucinated"
+                    else "cleared_grounded"
+                )
+            else:
+                key = None
+            if key:
+                bucket[key] += 1
+
+        for sr in terminal_by_idx.values():
+            gt = sr.get("ground_truth", "grounded")
+            pred = (
+                "hallucinated"
+                if sr.get("resolved_by") in _FLAGGED_LAYERS
+                else "grounded"
+            )
+            if pred == "hallucinated" and gt == "hallucinated":
+                tp += 1
+            elif pred == "hallucinated":
+                fp += 1
+            elif gt == "hallucinated":
+                fn += 1
+            else:
+                tn += 1
+
+    precision = tp / (tp + fp) if (tp + fp) else 0.0
+    recall = tp / (tp + fn) if (tp + fn) else 0.0
+    f1 = (
+        2 * precision * recall / (precision + recall)
+        if (precision + recall)
+        else 0.0
+    )
+
+    return {
+        "overall": {
+            "TP": tp,
+            "FP": fp,
+            "FN": fn,
+            "TN": tn,
+            "precision": round(precision, 4),
+            "recall": round(recall, 4),
+            "f1": round(f1, 4),
+            "total_sentences": tp + fp + fn + tn,
+        },
+        "by_layer": by_layer,
+    }
 
 
 ALL_PROPERTY_IDS = [
@@ -773,8 +874,32 @@ def run_benchmark(
                 "model": case.metadata.get("model", ""),
                 "task_type": case.metadata.get("task_type", ""),
             }
-            # Include hallucination data for funnel cascade view
             if "hallucination" in eval_results:
+                # Re-split the full response to recover untruncated sentence text.
+                # hallucination.py stores sent[:120] in SentenceLayerResult, so the
+                # preview field would miss RAGTruth spans past char 120. Using
+                # _split_sentences (same function check_hallucination uses) keeps
+                # sentence_idx aligned 1:1 with the records we're augmenting.
+                full_sents = _split_sentences(case.request.candidate_answer)
+                for sr_dict in eval_results["hallucination"]["sentence_results"]:
+                    idx = sr_dict.get("sentence_idx", -1)
+                    sent_text = (
+                        full_sents[idx]
+                        if 0 <= idx < len(full_sents)
+                        else sr_dict.get("sentence", "")
+                    )
+                    ground_truth = "grounded"
+                    hall_type = "clean"
+                    hall_text = ""
+                    for span in case.ground_truth.span_annotations:
+                        if span.text and span.text in sent_text:
+                            ground_truth = "hallucinated"
+                            hall_type = span.label_type
+                            hall_text = span.text
+                            break
+                    sr_dict["ground_truth"] = ground_truth
+                    sr_dict["hall_type"] = hall_type
+                    sr_dict["hall_text"] = hall_text
                 rr_entry["hallucination"] = eval_results["hallucination"]
             response_level_results.append(rr_entry)
 
@@ -864,6 +989,8 @@ def run_benchmark(
         ckpt_path.unlink()
         print("  Checkpoint cleared (run complete)")
 
+    sentence_level_metrics = _compute_sentence_level_metrics(response_level_results)
+
     return BenchmarkRunResult(
         benchmark_name=meta.name,
         split=split,
@@ -876,4 +1003,5 @@ def run_benchmark(
         properties_skipped=skipped,
         fire_rates=fire_rates,
         diagnostic_results=diagnostic_results,
+        sentence_level_metrics=sentence_level_metrics,
     )
