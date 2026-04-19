@@ -371,3 +371,6 @@ funnel:
 
 calibrate: preseed benchmark funnel
 	@echo "Full calibration run complete."
+
+calibrate-l1:
+	HALLUCINATION_LAYERS=l1 $(MAKE) calibrate

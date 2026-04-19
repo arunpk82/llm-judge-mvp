@@ -181,16 +181,44 @@ def _check_and_provision_l2(
 def cmd_benchmark(args: argparse.Namespace) -> bool:
     """Run RAGTruth-50 through the benchmark runner."""
     import os
+    from dataclasses import replace
 
     from llm_judge.benchmarks.ragtruth import RAGTruthAdapter
     from llm_judge.benchmarks.runner import run_benchmark
-    from llm_judge.calibration.pipeline_config import get_pipeline_config
+    from llm_judge.calibration.pipeline_config import LayerConfig, get_pipeline_config
 
     if not os.environ.get("GEMINI_API_KEY"):
         logger.warning("GEMINI_API_KEY not set — L3 fact-counting and L4 will fail")
 
     max_cases = args.max_cases or int(os.environ.get("BENCHMARK_MAX", "0")) or None
     config = get_pipeline_config()
+
+    # Runtime layer override — HALLUCINATION_LAYERS="l1", "l1,l2", "l1,l2,l3,l4".
+    # Listed layers enabled; unlisted disabled. Avoids per-isolation yamls.
+    layers_env = os.environ.get("HALLUCINATION_LAYERS")
+    if layers_env:
+        valid = {"l1", "l2", "l3", "l4"}
+        requested = {s.strip().lower() for s in layers_env.split(",") if s.strip()}
+        unknown = requested - valid
+        if unknown:
+            raise ValueError(
+                f"HALLUCINATION_LAYERS: unknown layer(s) {sorted(unknown)}. "
+                f"Valid: {sorted(valid)}"
+            )
+        if not requested:
+            raise ValueError("HALLUCINATION_LAYERS must name at least one layer")
+        config = replace(
+            config,
+            layers=LayerConfig(
+                l1_enabled="l1" in requested,
+                l2_enabled="l2" in requested,
+                l3_enabled="l3" in requested,
+                l4_enabled="l4" in requested,
+            ),
+        )
+        print(f"  HALLUCINATION_LAYERS override: enabled={sorted(requested)}")
+        if config.l3_method == "fact_counting" and "l3" not in requested:
+            print("  Note: l3_method='fact_counting' is dormant (L3 disabled by override)")
 
     adapter = RAGTruthAdapter()
 
