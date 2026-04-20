@@ -58,6 +58,12 @@ See [adr-template.md](./adr-template.md) for the template to copy.
 - **B — Baseline & Eval** — how we measure quality, store artifacts, and gate CI
 - **C — Experiment** — decisions informed by the 43-experiment research programme
 
+## Known tech debt
+
+- Delete stale pipeline yamls (`hallucination.yaml`, `hallucination_l2_only.yaml`, `hallucination_legacy.yaml`) — dead schema, silently loaded as all-defaults.
+- Add `results/` to `.gitignore` and run `git rm --cached results/benchmark_checkpoint.json`.
+- `tools/run_ragtruth50.py` preseed path passes raw `source_info` to `compute_source_hash` — crashes on QA and Data2txt cases.
+
 ## Retroactive ADRs
 
 ADRs 0002–0023 document decisions that predate the adoption of the ADR system.
