@@ -304,6 +304,14 @@ class IntegratedJudge(JudgeEngine):
 
         context = _build_context(request, source_docs=retrieved_docs)
 
+        # EPIC 7.22/ADR-0025: provisioning hashes each doc independently; only the
+        # single-doc path (RAGTruth) produces a matchable cache key. Multi-doc left
+        # as future concern.
+        if retrieved_docs and len(retrieved_docs) == 1:
+            source_only = retrieved_docs[0]
+        else:
+            source_only = ""
+
         # =============================================================
         # Deterministic pre-checks
         # =============================================================
@@ -333,6 +341,7 @@ class IntegratedJudge(JudgeEngine):
                 hallucination_result = check_hallucination(
                     response=response_text,
                     context=context,
+                    source_context=source_only,  # EPIC 7.22/ADR-0025: L2 cache key must match provisioning hash
                     case_id=case_id,
                     grounding_threshold=gt,
                     max_ungrounded_claims=mc,
