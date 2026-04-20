@@ -268,6 +268,7 @@ def cmd_benchmark(args: argparse.Namespace) -> bool:
         "fire_rates": result.fire_rates,
         "diagnostic_results": result.diagnostic_results,
         "response_level_results": result.response_level_results,
+        "sentence_level_metrics": result.sentence_level_metrics,
     }
 
     results_path.write_text(json.dumps(summary, indent=2, default=str))
