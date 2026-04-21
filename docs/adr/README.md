@@ -42,6 +42,7 @@ See [adr-template.md](./adr-template.md) for the template to copy.
 | [0028](./0028-ci-tests-flagged-off-paths.md) | CI tests every major flag combination to prevent flag rot | Accepted | B — Baseline & Eval | 2026-04-16 |
 | [0029](./0029-layer-renaming-code-vs-cascade-names.md) | Resolve the layer-name legacy in the cascade code | Accepted | A — Pipeline | 2026-04-16 |
 | [0030](./0030-calibration-run-as-baseline-seeding-event.md) | The calibration run is the baseline-seeding event | Accepted | B — Baseline & Eval | 2026-04-16 |
+| [0031](./0031-l2-cache-miss-contract.md) | L2 graph cache miss contract | Proposed | B — Baseline & Eval | 2026-04-21 |
 
 ## Status values
 
