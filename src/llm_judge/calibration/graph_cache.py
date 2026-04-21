@@ -40,6 +40,80 @@ def compute_source_hash(source_text: str) -> str:
     return hashlib.sha256(source_text.encode("utf-8")).hexdigest()
 
 
+# P5 fields where Gemini multi-pass extraction sometimes emits bare strings
+# where the builders expect dicts. Normalizing at the cache-load boundary
+# keeps the build_g5_negations contract simple (always dict) and isolates
+# shape drift to a single, observable site. See #179.
+_P5_STR_SCHEMAS: dict[str, tuple[str, dict[str, str]]] = {
+    # field name -> (key to fill with the string, extra fixed keys)
+    "explicit_negations": ("statement", {}),
+    "absent_information": ("what", {}),
+    "corrections": ("wrong", {"right": ""}),
+}
+
+
+def _normalize_fact_table(data: dict[str, Any]) -> dict[str, Any]:
+    """
+    Normalize fact-table element shapes at the cache-load boundary.
+
+    Gemini multi-pass extraction sometimes emits bare strings where
+    ``build_g5_negations`` expects dicts. This function coerces the
+    three known shape-drift fields in P5 into canonical dicts so
+    downstream builders can rely on ``.get()`` succeeding.
+
+    Schema (P5 only — P1–P4 pass through untouched by current contract):
+      * ``P5_negations.explicit_negations``:
+          ``"no lighting"`` → ``{"statement": "no lighting"}``
+      * ``P5_negations.absent_information``:
+          ``"missing info"`` → ``{"what": "missing info"}``
+      * ``P5_negations.corrections``:
+          ``"correction text"`` →
+          ``{"wrong": "correction text", "right": ""}``
+          (The empty ``right`` causes ``build_g5_negations`` to drop
+          the entry via its ``if wrong and right`` guard — acceptable:
+          the normalizer preserves shape, not semantics. Semantic
+          recovery of bare-string corrections is out of scope.)
+
+    Unknown element types (neither str nor dict) are dropped with a
+    WARNING log — never silently — so that drift beyond these fields
+    stays observable.
+
+    In-place, idempotent. Returns the same dict.
+    """
+    passes = data.get("passes", data)
+    if not isinstance(passes, dict):
+        return data
+
+    p5 = passes.get("P5_negations")
+    if not isinstance(p5, dict):
+        return data
+
+    for field, (primary_key, extras) in _P5_STR_SCHEMAS.items():
+        raw = p5.get(field)
+        if not isinstance(raw, list):
+            continue
+        normalized: list[dict[str, Any]] = []
+        for idx, elem in enumerate(raw):
+            if isinstance(elem, dict):
+                normalized.append(elem)
+            elif isinstance(elem, str):
+                shaped: dict[str, Any] = {primary_key: elem}
+                shaped.update(extras)
+                normalized.append(shaped)
+            else:
+                logger.warning(
+                    "graph_cache.normalize_unknown_element",
+                    extra={
+                        "field": f"P5_negations.{field}",
+                        "index": idx,
+                        "type": type(elem).__name__,
+                    },
+                )
+        p5[field] = normalized
+
+    return data
+
+
 class GraphCache:
     """
     Filesystem-backed cache for L2 fact tables.
@@ -125,6 +199,7 @@ class GraphCache:
 
         try:
             data = json.loads(path.read_text(encoding="utf-8"))
+            data = _normalize_fact_table(data)
             self._hits += 1
             return data
         except (json.JSONDecodeError, OSError) as e:
@@ -143,6 +218,7 @@ class GraphCache:
             return None
         try:
             data = json.loads(path.read_text(encoding="utf-8"))
+            data = _normalize_fact_table(data)
             self._hits += 1
             return data
         except (json.JSONDecodeError, OSError):

@@ -219,13 +219,17 @@ def build_g4_numbers(p4: dict):  # returns nx.DiGraph
 
 
 def build_g5_negations(p5: dict):  # returns nx.DiGraph
-    """Graph from P5: negation statements, absent info, corrections."""
+    """Graph from P5: negation statements, absent info, corrections.
+
+    Assumes list elements are dicts — shape is guaranteed upstream by
+    ``graph_cache._normalize_fact_table``.
+    """
     import networkx as nx
 
     G = nx.DiGraph()
     G.add_node("_negation_root", node_type="root")
     for neg in _safe_list(p5.get("explicit_negations")):
-        stmt = (neg.get("statement") or str(neg) or "").lower().strip()
+        stmt = (neg.get("statement") or "").lower().strip()
         if stmt:
             G.add_node(f"neg_{hash(stmt)%99999}", node_type="negation", statement=stmt)
             G.add_edge(
@@ -235,7 +239,7 @@ def build_g5_negations(p5: dict):  # returns nx.DiGraph
                 polarity="negate",
             )
     for absent in _safe_list(p5.get("absent_information")):
-        what = (absent.get("what") or str(absent) or "").lower().strip()
+        what = (absent.get("what") or "").lower().strip()
         if what:
             G.add_node(f"absent_{hash(what)%99999}", node_type="absent", what=what)
             G.add_edge(
@@ -263,8 +267,36 @@ def build_g5_negations(p5: dict):  # returns nx.DiGraph
     return G
 
 
+def _build_graph_isolated(name: str, builder, *args):
+    """Run one graph builder; on failure return an empty DiGraph and WARN.
+
+    Isolates per-builder failures so a bug in one graph does not take
+    down the entire L2 ensemble. Surfaces the failure via a WARNING log
+    with the specific graph name and exception type (see #179).
+    """
+    import networkx as nx
+
+    try:
+        return builder(*args)
+    except Exception as e:
+        logger.warning(
+            "build_all_graphs.builder_failed",
+            extra={
+                "graph": name,
+                "error_type": type(e).__name__,
+                "error": str(e)[:120],
+            },
+        )
+        return nx.DiGraph()
+
+
 def build_all_graphs(fact_tables: dict) -> dict:
-    """Build all 5 graphs from multi-pass fact tables."""
+    """Build all 5 graphs from multi-pass fact tables.
+
+    Per-builder isolation: if one builder raises, it returns an empty
+    graph and the others still run. The failure is logged at WARNING
+    with the graph name and exception type.
+    """
     passes = fact_tables.get("passes", fact_tables)
     p1 = passes.get("P1_entities")
     p2 = passes.get("P2_events")
@@ -273,15 +305,15 @@ def build_all_graphs(fact_tables: dict) -> dict:
     p5 = passes.get("P5_negations")
     graphs = {}
     if p1:
-        graphs["G1"] = build_g1_entities(p1)
+        graphs["G1"] = _build_graph_isolated("G1", build_g1_entities, p1)
     if p2:
-        graphs["G2"] = build_g2_events(p2, p1)
+        graphs["G2"] = _build_graph_isolated("G2", build_g2_events, p2, p1)
     if p3:
-        graphs["G3"] = build_g3_relationships(p3)
+        graphs["G3"] = _build_graph_isolated("G3", build_g3_relationships, p3)
     if p4:
-        graphs["G4"] = build_g4_numbers(p4)
+        graphs["G4"] = _build_graph_isolated("G4", build_g4_numbers, p4)
     if p5:
-        graphs["G5"] = build_g5_negations(p5)
+        graphs["G5"] = _build_graph_isolated("G5", build_g5_negations, p5)
     return graphs
 
 
