@@ -90,12 +90,19 @@ def cmd_preseed(args: argparse.Namespace) -> bool:
     print(f"  Cache dir: {cache_dir}")
     print(f"  Source texts available: {len(source_texts)}")
 
-    result = preseed_from_exp31(cache, exp31_path, source_texts)
+    # RAGTruth-50 partially overlaps Exp 31's case set (#180). Accept
+    # partial coverage; the caller's benchmark runs live extraction for
+    # any case_id the preseed could not satisfy.
+    result = preseed_from_exp31(cache, exp31_path, source_texts, strict=False)
 
-    print(f"\n  Total cases in Exp 31:    {result.get('total_cases', '?')}")
-    print(f"  Unique sources seeded:    {result.get('unique_sources_seeded', '?')}")
+    failed = result.get("failed", [])
+    drift = result.get("exp31_cases_not_in_source_texts", [])
+    print(f"\n  Unique sources seeded:    {result.get('seeded', '?')}")
     print(f"  Dedup savings:            {result.get('dedup_savings', '?')}")
-    print(f"  Skipped (no source text): {result.get('skipped_no_source_text', '?')}")
+    print(f"  Preseed miss (no Exp 31): {len(failed)}")
+    if failed:
+        print(f"    sample: {failed[:5]}{'...' if len(failed) > 5 else ''}")
+    print(f"  Exp 31 drift (unused):    {len(drift)}")
     print(f"\n  Cache stats: {cache.stats()}")
     return True
 
