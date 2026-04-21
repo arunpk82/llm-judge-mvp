@@ -86,6 +86,7 @@ addopts = "--cov=src/llm_judge --cov-report=term-missing --cov-fail-under=80 --s
 testpaths = ["tests"]
 markers = [
     "nightly: long-running deterministic dataset runs (scheduled CI)",
+    "integration: end-to-end pipeline parity tests on RAGTruth-50 (~2-3 min per test)",
 ]
 
 [tool.coverage.run]
