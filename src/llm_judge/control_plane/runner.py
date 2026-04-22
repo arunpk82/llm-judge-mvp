@@ -16,7 +16,7 @@ from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
 
-from llm_judge.control_plane.envelope import ProvenanceEnvelope, new_envelope
+from llm_judge.control_plane.envelope import new_envelope
 from llm_judge.control_plane.types import (
     Integrity,
     SingleEvaluationRequest,
