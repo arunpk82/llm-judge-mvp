@@ -13,9 +13,7 @@ import json
 import logging
 import os
 from datetime import datetime
-from typing import Any
-
-from typing import Literal
+from typing import Any, Literal
 
 from pydantic import BaseModel, ConfigDict, Field, model_validator
 
@@ -186,7 +184,9 @@ class ProvenanceEnvelope(BaseModel):
         ``capability_chain`` — use :meth:`stamped` for that.
         """
         base = self.model_dump()
-        base["integrity"] = list(self.integrity) + [
+        # ``base["integrity"]`` is already a list of dicts from model_dump;
+        # append the new record's dict form so the list stays serialisable.
+        base["integrity"] = list(base.get("integrity") or []) + [
             record.model_dump()
         ]
         base["signature"] = ""
