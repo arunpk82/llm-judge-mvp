@@ -7,6 +7,7 @@ CAP-1 -> [CAP-2, CAP-7 siblings] -> CAP-5.
 
 from llm_judge.control_plane.envelope import ProvenanceEnvelope
 from llm_judge.control_plane.types import (
+    CapabilityIntegrityRecord,
     Integrity,
     MissingProvenanceError,
     SingleEvaluationRequest,
@@ -14,6 +15,7 @@ from llm_judge.control_plane.types import (
 )
 
 __all__ = [
+    "CapabilityIntegrityRecord",
     "Integrity",
     "MissingProvenanceError",
     "ProvenanceEnvelope",

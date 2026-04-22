@@ -15,7 +15,9 @@ import os
 from datetime import datetime
 from typing import Any
 
-from pydantic import BaseModel, ConfigDict, Field
+from typing import Literal
+
+from pydantic import BaseModel, ConfigDict, Field, model_validator
 
 logger = logging.getLogger(__name__)
 
@@ -68,8 +70,44 @@ def compute_signature(payload: dict[str, Any]) -> str:
     ).hexdigest()
 
 
+class CapabilityIntegrityRecord(BaseModel):
+    """Per-capability outcome record carried on the envelope (CP-1b).
+
+    ``status`` values:
+      - ``success``: the capability ran and returned normally.
+      - ``failure``: the capability raised; ``error_type`` /
+        ``error_message`` describe what happened.
+      - ``skipped_upstream_failure``: the capability did not run
+        because an earlier capability in the chain failed.
+    """
+
+    model_config = ConfigDict(frozen=True)
+
+    capability_id: str = Field(..., min_length=1)
+    status: Literal["success", "failure", "skipped_upstream_failure"]
+    error_type: str | None = None
+    error_message: str | None = None
+
+
 class ProvenanceEnvelope(BaseModel):
-    """Immutable provenance envelope. Stamp via ``stamped(...)``."""
+    """Immutable provenance envelope. Stamp via ``stamped(...)``.
+
+    CP-1b additions:
+      - ``schema_version``: ``1`` for CP-1-shape envelopes (parsed
+        from dicts that omit the field); ``2`` for CP-1b-shape
+        envelopes constructed via :func:`new_envelope` or
+        :meth:`stamped`.
+      - ``integrity``: list of :class:`CapabilityIntegrityRecord`,
+        appended via :meth:`with_integrity` as each capability's
+        outcome is known. Empty by default.
+
+    Design note on helpers: ``stamped(capability=..., ...)`` remains
+    the CP-1 contract (capability chain + field updates). A separate
+    :meth:`with_integrity` method appends an outcome record without
+    touching the chain. Two focused helpers keep CP-1 tests
+    unmodified and make Runner code explicit about *what* it's
+    recording (a stamp vs. an outcome).
+    """
 
     model_config = ConfigDict(frozen=True)
 
@@ -85,7 +123,24 @@ class ProvenanceEnvelope(BaseModel):
 
     platform_version: str = Field(..., min_length=1)
     capability_chain: list[str] = Field(default_factory=list)
+    schema_version: int = 2
+    integrity: list[CapabilityIntegrityRecord] = Field(default_factory=list)
     signature: str = ""
+
+    @model_validator(mode="before")
+    @classmethod
+    def _backfill_legacy_schema(cls, data: Any) -> Any:
+        """CP-1 envelopes (schema_version absent) parse as v1.
+
+        Only applies to dict-shaped inputs (e.g. ``model_validate`` of
+        a persisted CP-1 manifest). Direct ``ProvenanceEnvelope(...)``
+        kwargs flow through here too — new code must pass
+        ``schema_version=2`` explicitly; :func:`new_envelope` and
+        :meth:`stamped` do that.
+        """
+        if isinstance(data, dict) and "schema_version" not in data:
+            data["schema_version"] = 1
+        return data
 
     def _payload_without_signature(self) -> dict[str, Any]:
         data = self.model_dump()
@@ -122,6 +177,24 @@ class ProvenanceEnvelope(BaseModel):
         )
         return ProvenanceEnvelope(**base)
 
+    def with_integrity(
+        self,
+        record: CapabilityIntegrityRecord,
+    ) -> "ProvenanceEnvelope":
+        """Return a new envelope with ``record`` appended to
+        ``integrity`` and signature recomputed. Does NOT append to
+        ``capability_chain`` — use :meth:`stamped` for that.
+        """
+        base = self.model_dump()
+        base["integrity"] = list(self.integrity) + [
+            record.model_dump()
+        ]
+        base["signature"] = ""
+        base["signature"] = compute_signature(
+            {k: v for k, v in base.items() if k != "signature"}
+        )
+        return ProvenanceEnvelope(**base)
+
 
 def new_envelope(
     *,
@@ -141,6 +214,7 @@ def new_envelope(
         arrived_at=arrived_at,
         parent_attestation_id=parent_attestation_id,
         platform_version=platform_version,
+        schema_version=2,
     )
     payload = seed._payload_without_signature()
     sig = compute_signature(payload)
