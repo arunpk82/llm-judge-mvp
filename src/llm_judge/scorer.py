@@ -403,7 +403,7 @@ def _apply_rubric_rules(request: PredictRequest, rubric: Any) -> list[str]:
     Returns a list of flag strings (e.g. 'correctness.definition_sanity:strong').
 
     Resolution order (EPIC-2.1 — governed rule plan loading):
-      1. Config-driven plan: configs/rules/{rubric_id}_{version}.yaml
+      1. Config-driven plan: configs/rules/{rubric_id}/{version}.yaml
       2. Inline rules on the rubric object
       3. Hardcoded defaults (backward compatibility — will be removed)
 
@@ -454,7 +454,7 @@ def _apply_rubric_rules(request: PredictRequest, rubric: Any) -> list[str]:
         extra={
             "rubric_id": rubric_id,
             "version": rubric_version,
-            "hint": "Create configs/rules/{rubric_id}_{version}.yaml",
+            "hint": "Create configs/rules/{rubric_id}/{version}.yaml",
         },
     )
     default_rules: list[dict[str, Any]] = [

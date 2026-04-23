@@ -94,11 +94,11 @@ def test_rule_engine_rule_exception_does_not_crash() -> None:
 def test_load_plan_for_rubric_filters_disabled_rules_and_parses_params(
     tmp_path, monkeypatch
 ) -> None:
-    # Use cwd override because load_plan_for_rubric uses Path("configs")/...
+    # Use cwd override because load_plan_for_rubric uses config_root() / "rules" / ...
     monkeypatch.chdir(tmp_path)
-    (tmp_path / "configs" / "rules").mkdir(parents=True)
+    (tmp_path / "configs" / "rules" / "chat_quality").mkdir(parents=True)
 
-    (tmp_path / "configs" / "rules" / "chat_quality_v1.yaml").write_text(
+    (tmp_path / "configs" / "rules" / "chat_quality" / "v1.yaml").write_text(
         """
 rubric_id: chat_quality
 version: v1
@@ -126,9 +126,9 @@ def test_load_plan_for_rubric_fallback_yaml_parser(tmp_path, monkeypatch) -> Non
     Force the internal minimal YAML parser branch even if PyYAML is installed.
     """
     monkeypatch.chdir(tmp_path)
-    (tmp_path / "configs" / "rules").mkdir(parents=True)
+    (tmp_path / "configs" / "rules" / "chat_quality").mkdir(parents=True)
 
-    (tmp_path / "configs" / "rules" / "chat_quality_v1.yaml").write_text(
+    (tmp_path / "configs" / "rules" / "chat_quality" / "v1.yaml").write_text(
         """
 rubric_id: chat_quality
 version: v1
@@ -157,9 +157,9 @@ rules:
 
 def test_run_rules_returns_result_with_flags(tmp_path, monkeypatch) -> None:
     monkeypatch.chdir(tmp_path)
-    (tmp_path / "configs" / "rules").mkdir(parents=True)
+    (tmp_path / "configs" / "rules" / "chat_quality").mkdir(parents=True)
 
-    (tmp_path / "configs" / "rules" / "chat_quality_v1.yaml").write_text(
+    (tmp_path / "configs" / "rules" / "chat_quality" / "v1.yaml").write_text(
         """
 rubric_id: chat_quality
 version: v1

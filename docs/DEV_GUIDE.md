@@ -117,7 +117,7 @@ src/llm_judge/
 1. Create rule module in `src/llm_judge/rules/` (see `quality/nonsense_basic.py` for template)
 2. Use `@register("category.rule_name")` decorator
 3. Add entry to `rules/manifest.yaml` (version, owner, status, introduced, last_reviewed, review_period_days)
-4. Add to rule plan config: `configs/rules/{rubric_id}_{version}.yaml`
+4. Add to rule plan config: `configs/rules/{rubric_id}/{version}.yaml`
 5. Run `make rules-validate` to verify manifest alignment
 
 ## Registering an LLM Judge (L4)

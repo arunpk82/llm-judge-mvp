@@ -207,12 +207,12 @@ class RuleEngine:
 
 def load_plan_for_rubric(rubric_id: str, version: str) -> RulePlan:
     """
-    Load plan YAML from: configs/rules/{rubric_id}_{version}.yaml
+    Load plan YAML from: configs/rules/{rubric_id}/{version}.yaml
 
     EPIC-3.2: Rules that are deprecated AND past their warning period
     are automatically excluded from the plan.
     """
-    path = config_root() / "rules" / f"{rubric_id}_{version}.yaml"
+    path = config_root() / "rules" / rubric_id / f"{version}.yaml"
     data = _load_yaml(path)
 
     # Determine which rules are deprecated-enforced (past warning period)

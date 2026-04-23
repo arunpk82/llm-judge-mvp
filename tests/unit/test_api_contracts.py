@@ -1,5 +1,6 @@
 from fastapi.testclient import TestClient
 
+from llm_judge import rubric_store
 from llm_judge.deterministic_judge import DeterministicJudge
 from llm_judge.main import app
 from llm_judge.runtime import get_judge_engine
@@ -56,10 +57,7 @@ def test_logging_configuration_runs() -> None:
 
 
 def test_chat_quality_rubric_exists() -> None:
-    from llm_judge.rubrics import RUBRICS
-
-    assert "chat_quality" in RUBRICS
-    rubric = RUBRICS["chat_quality"]
+    rubric = rubric_store.get_rubric("chat_quality")
     assert rubric.version == "v1"
     assert "clarity" in rubric.dimensions
 
