@@ -143,13 +143,28 @@ def invoke_cap2(
     return stamped, rules_fired
 
 
+VALID_LAYERS = frozenset({"L1", "L2", "L3", "L4"})
+DEFAULT_LAYERS: tuple[str, ...] = ("L1",)
+
+
 def invoke_cap7(
     envelope: ProvenanceEnvelope,
     request: SingleEvaluationRequest,
     dataset_handle: ResolvedDataset,
+    *,
+    layers: list[str] | None = None,
 ) -> tuple[ProvenanceEnvelope, dict[str, Any]]:
-    """Run the hallucination pipeline on (response, source), return a
-    serialisable verdict dict. prompt_version stamp deferred (D3)."""
+    """Run the hallucination pipeline on (response, source).
+
+    ``layers`` selects which pipeline layers are enabled. Default is
+    ``["L1"]`` — callers must explicitly request higher layers
+    (CP-1b A1). Unknown layers raise ``ValueError`` from this
+    wrapper (input validation, not a capability failure — so it's
+    appropriate to raise here before calling the capability).
+
+    Returns a serialisable verdict dict. prompt_version stamp
+    deferred (D3).
+    """
     if not envelope.dataset_registry_id:
         raise MissingProvenanceError(
             "invoke_cap7: envelope.dataset_registry_id is absent; "
@@ -157,19 +172,26 @@ def invoke_cap7(
         )
     del dataset_handle
 
+    requested = tuple(layers) if layers else DEFAULT_LAYERS
+    unknown = set(requested) - VALID_LAYERS
+    if unknown:
+        raise ValueError(
+            f"invoke_cap7: unknown layers {sorted(unknown)}; "
+            f"valid: {sorted(VALID_LAYERS)}"
+        )
+    active = {layer: (layer in requested) for layer in VALID_LAYERS}
+
     result = check_hallucination(
         response=request.response,
         context=request.source,
         source_context=request.source,
         case_id=envelope.request_id,
-        # Keep CP-1 cheap and deterministic: L1 rules only, no embeddings,
-        # no model loads, no API calls. A full-layer invocation belongs
-        # to a later packet.
-        skip_embeddings=True,
-        l1_enabled=True,
-        l2_enabled=False,
-        l3_enabled=False,
-        l4_enabled=False,
+        # Embeddings are only needed when L2/L3 are active.
+        skip_embeddings=not (active["L2"] or active["L3"]),
+        l1_enabled=active["L1"],
+        l2_enabled=active["L2"],
+        l3_enabled=active["L3"],
+        l4_enabled=active["L4"],
     )
 
     verdict: dict[str, Any] = {
@@ -182,6 +204,7 @@ def invoke_cap7(
         "gate2_decision": result.gate2_decision,
         "flags": list(result.flags),
         "layer_stats": dict(result.layer_stats),
+        "layers_requested": list(requested),
     }
 
     stamped = envelope.stamped(capability="CAP-7")
@@ -196,17 +219,22 @@ def invoke_cap5(
     runs_root: Path | None = None,
 ) -> tuple[ProvenanceEnvelope, str]:
     """Write the governed manifest via record_evaluation_manifest, then
-    append CAP-5 to the envelope chain."""
-    chain = set(envelope.capability_chain)
-    if "CAP-1" not in chain:
+    append CAP-5 to the envelope chain.
+
+    CP-1b (horizontal CAP-5): the pre-check now requires only that the
+    envelope carries at least one integrity record — i.e. at least one
+    upstream capability outcome (success, failure, or
+    skipped_upstream_failure) has been recorded. Runner-level fields
+    (request_id, caller_id, arrived_at, platform_version) are always
+    present and are not re-checked. Total-degradation runs (CAP-1 plus
+    both siblings failed) are a legitimate manifest to write; the
+    integrity trail is the audit.
+    """
+    if not envelope.integrity:
         raise MissingProvenanceError(
-            "invoke_cap5: CAP-1 is absent from capability_chain; "
-            "CAP-1 must run before CAP-5."
-        )
-    if not (chain & {"CAP-2", "CAP-7"}):
-        raise MissingProvenanceError(
-            "invoke_cap5: neither CAP-2 nor CAP-7 present in "
-            "capability_chain; at least one sibling must run."
+            "invoke_cap5: envelope.integrity is empty; at least one "
+            "upstream capability outcome must be recorded before "
+            "writing a manifest."
         )
 
     manifest_id = record_evaluation_manifest(

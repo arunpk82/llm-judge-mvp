@@ -6,7 +6,18 @@ from typing import Any
 
 from pydantic import BaseModel, ConfigDict, Field
 
-from llm_judge.control_plane.envelope import ProvenanceEnvelope
+from llm_judge.control_plane.envelope import (
+    CapabilityIntegrityRecord,
+    ProvenanceEnvelope,
+)
+
+__all__ = [
+    "CapabilityIntegrityRecord",
+    "Integrity",
+    "MissingProvenanceError",
+    "SingleEvaluationRequest",
+    "SingleEvaluationResult",
+]
 
 
 class MissingProvenanceError(Exception):
@@ -16,7 +27,13 @@ class MissingProvenanceError(Exception):
 
 
 class Integrity(BaseModel):
-    """Result integrity record — did every required sibling succeed?"""
+    """Legacy run-level integrity summary (CP-1 shape).
+
+    Retained alongside the new per-capability
+    :class:`llm_judge.control_plane.envelope.CapabilityIntegrityRecord`
+    list on the envelope so ``SingleEvaluationResult`` remains a
+    drop-in shape for CP-1 callers. CP-1c may consolidate.
+    """
 
     model_config = ConfigDict(frozen=True)
 

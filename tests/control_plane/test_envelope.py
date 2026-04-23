@@ -8,6 +8,7 @@ import pytest
 from pydantic import ValidationError
 
 from llm_judge.control_plane.envelope import (
+    CapabilityIntegrityRecord,
     ProvenanceEnvelope,
     compute_signature,
     new_envelope,
@@ -99,3 +100,103 @@ def test_stamped_chains_multiple_capabilities() -> None:
 
     assert env.capability_chain == ["CAP-1", "CAP-2", "CAP-7", "CAP-5"]
     assert env.verify_signature()
+
+
+# -----------------------------------------------------------------
+# CP-1b: schema_version + integrity
+# -----------------------------------------------------------------
+
+
+def test_schema_version_defaults_to_2() -> None:
+    env = _make()
+    assert env.schema_version == 2
+
+
+def test_integrity_defaults_to_empty() -> None:
+    env = _make()
+    assert env.integrity == []
+
+
+def test_old_cp1_shape_envelope_parses() -> None:
+    """An envelope dict from CP-1 (no schema_version, no integrity)
+    must round-trip; the model backfills schema_version=1 and
+    integrity=[]."""
+    cp1_dict = {
+        "request_id": "old-req",
+        "caller_id": "old-caller",
+        "arrived_at": datetime(2026, 1, 1, tzinfo=timezone.utc).isoformat(),
+        "parent_attestation_id": None,
+        "dataset_registry_id": "transient_x",
+        "input_hash": "sha256:abc",
+        "rule_set_version": "v1",
+        "rules_fired": [],
+        "platform_version": "old-sha",
+        "capability_chain": ["CAP-1", "CAP-2", "CAP-7"],
+        "signature": "ignored-for-this-test",
+    }
+    parsed = ProvenanceEnvelope.model_validate(cp1_dict)
+    assert parsed.schema_version == 1
+    assert parsed.integrity == []
+    assert parsed.capability_chain == ["CAP-1", "CAP-2", "CAP-7"]
+
+
+def test_integrity_record_frozen() -> None:
+    rec = CapabilityIntegrityRecord(capability_id="CAP-1", status="success")
+    with pytest.raises(ValidationError):
+        rec.capability_id = "CAP-7"  # type: ignore[misc]
+
+
+def test_stamping_with_integrity_record_updates_signature() -> None:
+    env = _make()
+    rec = CapabilityIntegrityRecord(capability_id="CAP-1", status="success")
+    stamped = env.with_integrity(rec)
+
+    assert stamped is not env
+    assert len(stamped.integrity) == 1
+    assert stamped.integrity[0].capability_id == "CAP-1"
+    assert stamped.integrity[0].status == "success"
+    assert stamped.signature != env.signature
+    assert stamped.verify_signature()
+    # Original unchanged
+    assert env.integrity == []
+
+
+def test_with_integrity_appends_preserves_chain() -> None:
+    env = _make().stamped(capability="CAP-1", dataset_registry_id="t_x")
+    rec = CapabilityIntegrityRecord(
+        capability_id="CAP-2",
+        status="failure",
+        error_type="RuntimeError",
+        error_message="boom",
+    )
+    stamped = env.with_integrity(rec)
+    # chain is not touched by with_integrity
+    assert stamped.capability_chain == env.capability_chain
+    # record recorded
+    assert stamped.integrity[-1].status == "failure"
+    assert stamped.integrity[-1].error_type == "RuntimeError"
+    assert stamped.verify_signature()
+
+
+def test_integrity_included_in_canonical_json_for_signing() -> None:
+    env = _make().with_integrity(
+        CapabilityIntegrityRecord(capability_id="CAP-1", status="success")
+    )
+
+    # Tamper: swap in a different integrity list but keep the signature.
+    fake_record = CapabilityIntegrityRecord(
+        capability_id="CAP-1", status="failure"
+    )
+    tampered = ProvenanceEnvelope(
+        **{**env.model_dump(), "integrity": [fake_record.model_dump()]}
+    )
+    assert not tampered.verify_signature()
+
+
+def test_schema_version_included_in_canonical_json_for_signing() -> None:
+    env = _make()
+    # Force schema_version to a different value without recomputing signature.
+    tampered = ProvenanceEnvelope(
+        **{**env.model_dump(), "schema_version": 1}
+    )
+    assert not tampered.verify_signature()

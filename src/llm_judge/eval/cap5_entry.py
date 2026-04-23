@@ -43,6 +43,11 @@ def _utc_now_iso() -> str:
     )
 
 
+MANIFEST_SCHEMA_VERSION = 2
+DEGRADED_DATASET_ID = "unregistered"
+DEGRADED_DATASET_HASH = "sha256:unknown"
+
+
 def record_evaluation_manifest(
     envelope: ProvenanceEnvelope,
     verdict: dict[str, Any],
@@ -55,34 +60,36 @@ def record_evaluation_manifest(
 ) -> str:
     """Canonical CAP-5 entry for a single-evaluation manifest.
 
+    CP-1b (horizontal CAP-5): this function writes a manifest regardless
+    of whether upstream capabilities succeeded. The envelope may lack
+    ``dataset_registry_id`` / ``input_hash`` (CAP-1 failed); sentinel
+    values are substituted so governance writes always complete. The
+    per-capability integrity record on the envelope explains what
+    actually happened — that *is* the audit trail.
+
     Returns the manifest_id (equal to ``envelope.request_id``). The
     manifest lives at ``<runs_root>/<manifest_id>/manifest.json``;
     governed registry + event records are appended alongside.
     """
-    if not envelope.dataset_registry_id:
-        raise ValueError(
-            "cap5_entry: envelope.dataset_registry_id is required; "
-            "CAP-1 must have stamped the envelope before CAP-5."
-        )
-    if not envelope.input_hash:
-        raise ValueError(
-            "cap5_entry: envelope.input_hash is required; CAP-1 must "
-            "have stamped the envelope before CAP-5."
-        )
-
     manifest_id = envelope.request_id
     root = (runs_root or SINGLE_EVAL_ROOT_DEFAULT).resolve()
     run_dir = root / manifest_id
     run_dir.mkdir(parents=True, exist_ok=True)
 
+    dataset_id = envelope.dataset_registry_id or DEGRADED_DATASET_ID
+    dataset_hash = envelope.input_hash or DEGRADED_DATASET_HASH
+
     manifest: dict[str, Any] = {
-        "schema_version": "1.0",
+        "schema_version": MANIFEST_SCHEMA_VERSION,
         "artifact_type": "single_eval_manifest",
         "manifest_id": manifest_id,
         "created_at_utc": _utc_now_iso(),
         "envelope": envelope.model_dump(mode="json"),
         "verdict": verdict,
         "integrity": integrity,
+        "envelope_integrity": [
+            r.model_dump() for r in envelope.integrity
+        ],
         "git_sha": envelope.platform_version,
     }
     write_json(run_dir / "manifest.json", manifest)
@@ -100,11 +107,11 @@ def record_evaluation_manifest(
         cases_total=1,
         cases_evaluated=1,
         sampled=False,
-        dataset_id=envelope.dataset_registry_id,
+        dataset_id=dataset_id,
         dataset_version=rubric_version,
         rubric_id=rubric_id,
         judge_engine=os.environ.get("JUDGE_ENGINE", judge_engine),
-        dataset_hash=envelope.input_hash,
+        dataset_hash=dataset_hash,
     )
 
     append_event(
@@ -114,14 +121,14 @@ def record_evaluation_manifest(
         related_ids={
             "run_id": manifest_id,
             "request_id": envelope.request_id,
-            "dataset_id": envelope.dataset_registry_id,
+            "dataset_id": dataset_id,
             "rubric_id": rubric_id,
         },
         payload={
             "cases_total": 1,
             "cases_evaluated": 1,
             "sampled": False,
-            "dataset_hash": envelope.input_hash,
+            "dataset_hash": dataset_hash,
             "integrity_complete": bool(integrity.get("complete")),
             "missing_capabilities": list(
                 integrity.get("missing_capabilities") or []

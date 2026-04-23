@@ -51,7 +51,9 @@ def test_cap2_failure_returns_partial_verdict(
 
     # CAP-7 populated the verdict.
     assert "risk_score" in result.verdict
-    assert result.verdict["rule_evidence"] == []
+    # CP-1b: rule_evidence is attached only when CAP-2 ran; CAP-2
+    # failed here, so the key is absent rather than an empty list.
+    assert "rule_evidence" not in result.verdict
 
     # Manifest still written on partial verdict.
     manifest_path = tmp_path / "runs" / result.manifest_id / "manifest.json"
@@ -104,10 +106,14 @@ def test_cap7_failure_returns_minimal_verdict_with_rule_evidence(
     assert manifest_path.exists()
 
 
-def test_cap1_failure_propagates(
+def test_cap1_failure_is_captured_not_propagated(
     runner: PlatformRunner,
     monkeypatch: pytest.MonkeyPatch,
 ) -> None:
+    """CP-1b: CAP-1 is now wrapped by the Runner (D5). Its failure is
+    recorded in the envelope's integrity list and CAP-2 / CAP-7 are
+    marked skipped_upstream_failure. The Runner does not raise."""
+
     def _boom(*_args: Any, **_kwargs: Any) -> Any:
         raise RuntimeError("simulated dataset-registry failure")
 
@@ -115,8 +121,15 @@ def test_cap1_failure_propagates(
         "llm_judge.control_plane.runner.invoke_cap1", _boom
     )
 
-    with pytest.raises(RuntimeError, match="simulated dataset-registry failure"):
-        runner.run_single_evaluation(_request())
+    result = runner.run_single_evaluation(_request())
+
+    statuses = {r.capability_id: r.status for r in result.envelope.integrity}
+    assert statuses["CAP-1"] == "failure"
+    assert statuses["CAP-2"] == "skipped_upstream_failure"
+    assert statuses["CAP-7"] == "skipped_upstream_failure"
+    assert statuses["CAP-5"] == "success"
+    assert result.integrity.complete is False
+    assert result.integrity.missing_capabilities == ["CAP-1", "CAP-2", "CAP-7"]
 
 
 def test_cap5_failure_propagates(
@@ -134,15 +147,15 @@ def test_cap5_failure_propagates(
         runner.run_single_evaluation(_request())
 
 
-def test_both_siblings_fail_propagates_cap5_pre_check(
+def test_both_siblings_fail_writes_manifest(
     runner: PlatformRunner,
+    tmp_path: Path,
     monkeypatch: pytest.MonkeyPatch,
 ) -> None:
-    """When both siblings fail, CAP-5's pre-check refuses to write the
-    manifest (its guard requires at least one of CAP-2 / CAP-7). The
-    Runner does not catch CAP-5 failures, so the error propagates —
-    this is the intended loud-failure shape for a fully-degraded run.
-    """
+    """CP-1b: when both siblings fail but CAP-1 succeeded, CAP-5 still
+    writes a manifest. The integrity trail records all three failures;
+    verdict is empty. The MissingProvenanceError escape hatch in CP-1
+    is gone — the horizontal CAP-5 contract replaces it."""
 
     def _boom(*_args: Any, **_kwargs: Any) -> Any:
         raise RuntimeError("both siblings down")
@@ -150,5 +163,18 @@ def test_both_siblings_fail_propagates_cap5_pre_check(
     monkeypatch.setattr("llm_judge.control_plane.runner.invoke_cap2", _boom)
     monkeypatch.setattr("llm_judge.control_plane.runner.invoke_cap7", _boom)
 
-    with pytest.raises(MissingProvenanceError, match="CAP-2 nor CAP-7"):
-        runner.run_single_evaluation(_request())
+    # MissingProvenanceError remains a valid import but is not raised
+    # on this path anymore.
+    _ = MissingProvenanceError  # keep import resolved
+
+    result = runner.run_single_evaluation(_request())
+
+    statuses = {r.capability_id: r.status for r in result.envelope.integrity}
+    assert statuses["CAP-1"] == "success"
+    assert statuses["CAP-2"] == "failure"
+    assert statuses["CAP-7"] == "failure"
+    assert statuses["CAP-5"] == "success"
+    assert result.integrity.complete is False
+    assert result.verdict == {}
+    manifest_path = tmp_path / "runs" / result.manifest_id / "manifest.json"
+    assert manifest_path.exists()
