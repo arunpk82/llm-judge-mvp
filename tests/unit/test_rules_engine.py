@@ -10,9 +10,9 @@ from llm_judge.schemas import Message, PredictRequest
 
 def test_engine_loads_plan_and_runs_rules(tmp_path: Path, monkeypatch) -> None:
     monkeypatch.chdir(tmp_path)
-    (tmp_path / "configs" / "rules").mkdir(parents=True, exist_ok=True)
+    (tmp_path / "configs" / "rules" / "chat_quality").mkdir(parents=True, exist_ok=True)
 
-    (tmp_path / "configs" / "rules" / "chat_quality_v1.yaml").write_text(
+    (tmp_path / "configs" / "rules" / "chat_quality" / "v1.yaml").write_text(
         """
 rubric_id: chat_quality
 version: v1

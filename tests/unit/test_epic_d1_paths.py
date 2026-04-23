@@ -214,8 +214,8 @@ class TestModulePathIntegration:
         import yaml
 
         cfg = tmp_path / "configs"
-        (cfg / "rules").mkdir(parents=True)
-        (cfg / "rules" / "test_v1.yaml").write_text(
+        (cfg / "rules" / "test").mkdir(parents=True)
+        (cfg / "rules" / "test" / "v1.yaml").write_text(
             yaml.dump({"rubric_id": "test", "version": "v1", "rules": []}),
             encoding="utf-8",
         )
