@@ -3,6 +3,13 @@ version: v1
 title: Math Basic (v1)
 owner: data-ai
 created_at: "2026-01-01"
+status: production
+last_reviewed: "2026-04-23"
+audit_log:
+  - timestamp: "2026-04-23T00:00:00Z"
+    actor: cp-1c-a-migration
+    action: migrated_to_lifecycle_v1
+    details: {}
 
 scale:
   min: 1

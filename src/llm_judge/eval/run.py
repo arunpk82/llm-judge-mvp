@@ -187,6 +187,13 @@ def main() -> int:
     # Verify rubric exists and rule plan is loadable before scoring.
     # Catches mismatches early instead of failing mid-evaluation.
     preflight_notes: list[str] = []
+
+    # CP-1c-a: rubric governance preflight. Raises UngovernedRubricError
+    # on missing/invalid lifecycle fields. Propagates to the caller.
+    from llm_judge.rubrics import check_rubrics_governed
+
+    check_rubrics_governed(str(spec.rubric_id))
+
     try:
         rubric = get_rubric(str(spec.rubric_id))
         preflight_notes.append(f"rubric={rubric.rubric_id}@{rubric.version}")
