@@ -1,8 +1,0 @@
-rubric_id: math_basic
-version: v1
-
-# Math-only rubric: keep the judge focused on correctness signals
-# (avoid relevance / nonsense / tone gates that can flip "pass" to "fail"
-# on short arithmetic prompts).
-rules:
-  - correctness_basic
