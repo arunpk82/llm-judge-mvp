@@ -1,3 +1,13 @@
+"""Rubric resolution with Pydantic-validated YAML shapes.
+
+Public entry point: :func:`get_rubric`. Callers receive the same
+frozen ``Rubric`` dataclass they always have — the refactor is
+internal: registry loading validates via ``RubricRegistryConfig``
+and rubric-definition files validate their governance fields via
+``RubricLifecycleEntry``. Schema failures surface as
+:class:`RubricSchemaError` with the offending file path.
+"""
+
 from __future__ import annotations
 
 from dataclasses import dataclass
@@ -5,6 +15,19 @@ from pathlib import Path
 from typing import Any
 
 import yaml
+from pydantic import ValidationError
+
+from llm_judge.rubric_yaml import RubricRegistryConfig, rubric_definition_model
+
+
+class RubricSchemaError(ValueError):
+    """Raised when a rubric / registry YAML fails schema validation.
+
+    Subclasses ``ValueError`` so existing callers that ``except
+    ValueError:`` around ``get_rubric`` continue to work unchanged.
+    The message always names the file path so the operator can
+    correct the offending YAML without grepping.
+    """
 
 
 @dataclass(frozen=True)
@@ -26,10 +49,18 @@ def _project_root() -> Path:
 
 
 def _load_yaml(path: Path) -> dict[str, Any]:
-    with path.open("r", encoding="utf-8") as f:
-        data = yaml.safe_load(f)
+    """Low-level YAML→dict read. Raises ``RubricSchemaError`` with the
+    file path on malformed YAML; never returns non-mappings."""
+    try:
+        data = yaml.safe_load(path.read_text(encoding="utf-8"))
+    except yaml.YAMLError as exc:
+        raise RubricSchemaError(
+            f"Malformed YAML in {path}: {exc}"
+        ) from exc
     if not isinstance(data, dict):
-        raise ValueError(f"Invalid YAML structure in {path}")
+        raise RubricSchemaError(
+            f"Invalid YAML structure in {path} (expected mapping)"
+        )
     return data
 
 
@@ -37,141 +68,112 @@ def _registry_path() -> Path:
     return _project_root() / "rubrics" / "registry.yaml"
 
 
-def _load_registry() -> dict[str, Any]:
+def _load_registry() -> RubricRegistryConfig:
+    """Load and validate ``rubrics/registry.yaml`` via
+    :class:`RubricRegistryConfig`.
+
+    Returns the validated model. Raises :class:`RubricSchemaError`
+    with the file path on a malformed registry.
+    """
     path = _registry_path()
     if not path.exists():
-        raise ValueError(f"Missing rubric registry: {path}")
-    return _load_yaml(path)
+        raise RubricSchemaError(f"Missing rubric registry: {path}")
+
+    raw = _load_yaml(path)
+    try:
+        return RubricRegistryConfig.model_validate(raw)
+    except ValidationError as exc:
+        raise RubricSchemaError(
+            f"Rubric registry failed schema validation at {path}: {exc}"
+        ) from exc
 
 
 def _resolve_version(rubric_id: str) -> str:
-    """
-    Resolve latest version using registry.yaml:
+    """Resolve the latest version for ``rubric_id`` from
+    ``rubrics/registry.yaml``.
 
-    Backward-compatible contract:
-      registry.yaml must contain:
-        latest:
-          <rubric_id>: <version>
+    Raises :class:`ValueError` (a plain ``ValueError``, not
+    ``RubricSchemaError``) if the registry has no latest pointer
+    for this rubric — that is a governance gap, not a schema
+    malformation.
     """
     registry = _load_registry()
-    latest = registry.get("latest", {})
-    if not isinstance(latest, dict) or rubric_id not in latest:
-        raise ValueError(f"Rubric not registered in registry.yaml latest: {rubric_id}")
-    v = latest[rubric_id]
-    if not isinstance(v, (str, int, float)) or not str(v).strip():
-        raise ValueError(f"Invalid latest version for rubric '{rubric_id}': {v!r}")
-    return str(v)
-
-
-def _normalize_str_list(value: Any, *, ctx: str) -> list[str]:
-    if value is None:
-        return []
-    if not isinstance(value, list):
-        raise ValueError(f"{ctx} must be a list of strings")
-    out: list[str] = []
-    for i, item in enumerate(value):
-        if not isinstance(item, str) or not item.strip():
-            raise ValueError(f"{ctx}[{i}] must be a non-empty string")
-        out.append(item.strip())
-    # de-dupe while preserving order
-    seen: set[str] = set()
-    deduped: list[str] = []
-    for x in out:
-        if x not in seen:
-            seen.add(x)
-            deduped.append(x)
-    return deduped
+    if rubric_id not in registry.latest:
+        raise ValueError(
+            f"Rubric not registered in registry.yaml latest: {rubric_id}"
+        )
+    v = registry.latest[rubric_id]
+    if not v.strip():
+        raise ValueError(
+            f"Invalid latest version for rubric '{rubric_id}': {v!r}"
+        )
+    return v.strip()
 
 
 def _resolve_metrics_schema_from_registry(
     rubric_id: str, version: str
 ) -> tuple[list[str], list[str]]:
-    """
-    EPIC-2: Resolve declared metric schema for a rubric version.
+    """EPIC-2: Resolve declared metric schema for a rubric version via
+    the validated registry. Returns ``(required, optional)`` lists.
 
-    Supports extended registry.yaml format:
-
-      rubrics:
-        chat_quality:
-          versions:
-            v1:
-              metrics_schema:
-                required: [...]
-                optional: [...]
-
-    Backward compatibility:
-      - If 'rubrics' block doesn't exist, return empty schema (no enforcement possible).
-      - If rubric/version exists but metrics_schema absent, return empty lists.
-
-    Note:
-      Enforcement should happen in eval.run (or a validator) using this schema.
+    Returns empty lists when the registry does not declare a
+    schema for this version (backward compatibility).
     """
     registry = _load_registry()
-    rubrics = registry.get("rubrics")
-    if rubrics is None:
+    schema = registry.metrics_schema_for(rubric_id, version)
+    if schema is None:
         return [], []
-    if not isinstance(rubrics, dict):
-        raise ValueError("registry.yaml: 'rubrics' must be a mapping if present")
 
-    r = rubrics.get(rubric_id)
-    if r is None:
-        return [], []
-    if not isinstance(r, dict):
-        raise ValueError(f"registry.yaml: rubrics.{rubric_id} must be a mapping")
-
-    versions = r.get("versions")
-    if versions is None:
-        return [], []
-    if not isinstance(versions, dict):
-        raise ValueError(
-            f"registry.yaml: rubrics.{rubric_id}.versions must be a mapping"
-        )
-
-    v = versions.get(version)
-    if v is None:
-        return [], []
-    if not isinstance(v, dict):
-        raise ValueError(
-            f"registry.yaml: rubrics.{rubric_id}.versions.{version} must be a mapping"
-        )
-
-    ms = v.get("metrics_schema")
-    if ms is None:
-        return [], []
-    if not isinstance(ms, dict):
-        raise ValueError(
-            f"registry.yaml: rubrics.{rubric_id}.versions.{version}.metrics_schema must be a mapping"
-        )
-
-    required = _normalize_str_list(
-        ms.get("required"),
-        ctx=f"registry.yaml metrics_schema.required for {rubric_id}@{version}",
-    )
-    optional = _normalize_str_list(
-        ms.get("optional"),
-        ctx=f"registry.yaml metrics_schema.optional for {rubric_id}@{version}",
-    )
-
-    # Ensure no overlap
-    overlap = set(required) & set(optional)
+    overlap = set(schema.required) & set(schema.optional)
     if overlap:
-        raise ValueError(
-            f"registry.yaml: metrics_schema for {rubric_id}@{version} has overlap between required and optional: "
-            f"{sorted(list(overlap))}"
+        raise RubricSchemaError(
+            f"Registry metrics_schema for {rubric_id}@{version} has "
+            f"overlap between required and optional: "
+            f"{sorted(overlap)}"
         )
 
-    return required, optional
+    # Dedupe while preserving order.
+    def _dedupe(items: list[str]) -> list[str]:
+        seen: set[str] = set()
+        out: list[str] = []
+        for x in items:
+            if x and x not in seen:
+                seen.add(x)
+                out.append(x)
+        return out
+
+    return _dedupe(schema.required), _dedupe(schema.optional)
+
+
+def _validate_rubric_definition(path: Path, raw: dict[str, Any]) -> None:
+    """Run the rubric definition file's governance schema through
+    :class:`RubricLifecycleEntry`. Raises :class:`RubricSchemaError`
+    on validation failure, naming the file path.
+
+    The validation is advisory within this function: the rubric
+    definition model uses ``extra='allow'`` so scoring fields
+    (dimensions, decision_policy, scale) are accepted alongside
+    governance fields.
+    """
+    model_cls = rubric_definition_model()
+    try:
+        model_cls.model_validate(raw)
+    except ValidationError as exc:
+        raise RubricSchemaError(
+            f"Rubric definition failed schema validation at {path}: {exc}"
+        ) from exc
 
 
 def get_rubric(rubric_ref: str) -> Rubric:
-    """
-    rubric_ref formats supported:
-      - "chat_quality"      -> resolves to latest version via registry.yaml
-      - "chat_quality@v1"   -> explicit version
+    """Resolve a rubric by id or ``id@version``.
 
-    Returns a Rubric with:
-      - dimensions + decision policy (from rubrics/<id>/<version>.yaml)
-      - metrics schema contract (from registry.yaml rubrics block, if present)
+    rubric_ref formats supported:
+      - ``"chat_quality"``      → resolves to latest version via ``rubrics/registry.yaml``
+      - ``"chat_quality@v1"``   → explicit version
+
+    Returns a :class:`Rubric` with dimensions + decision policy
+    (from ``rubrics/<id>/<version>.yaml``) plus metrics schema
+    contract (from the registry if declared).
     """
     if "@" in rubric_ref:
         rubric_id, version = rubric_ref.split("@", 1)
@@ -191,22 +193,34 @@ def get_rubric(rubric_ref: str) -> Rubric:
 
     raw = _load_yaml(rubric_path)
 
+    # Governance validation via Pydantic. Raises RubricSchemaError
+    # naming the file path on malformed governance fields.
+    _validate_rubric_definition(rubric_path, raw)
+
     dims_raw = raw.get("dimensions", [])
     if not isinstance(dims_raw, list) or not dims_raw:
-        raise ValueError("Rubric dimensions must be a non-empty list")
+        raise RubricSchemaError(
+            f"Rubric dimensions must be a non-empty list in {rubric_path}"
+        )
 
     dimensions: list[str] = []
     for d in dims_raw:
         if not isinstance(d, dict) or "name" not in d:
-            raise ValueError("Each dimension must be an object with a 'name'")
+            raise RubricSchemaError(
+                f"Each dimension must be an object with a 'name' in {rubric_path}"
+            )
         name = d["name"]
         if not isinstance(name, str) or not name.strip():
-            raise ValueError("dimension.name must be a non-empty string")
+            raise RubricSchemaError(
+                f"dimension.name must be a non-empty string in {rubric_path}"
+            )
         dimensions.append(name.strip())
 
     policy = raw.get("decision_policy", {})
     if not isinstance(policy, dict):
-        raise ValueError("decision_policy must be an object")
+        raise RubricSchemaError(
+            f"decision_policy must be an object in {rubric_path}"
+        )
 
     # Rubric self-declared metadata (allow fallback to resolved id/version)
     resolved_rubric_id = str(raw.get("rubric_id", rubric_id))
