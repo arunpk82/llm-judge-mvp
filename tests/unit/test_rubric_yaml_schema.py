@@ -2,7 +2,7 @@ from pathlib import Path
 
 import yaml
 
-from llm_judge.rubric_yaml import RubricRegistryConfig
+from llm_judge.rule_plan_yaml import RubricRegistryConfig
 
 
 def _is_registry_yaml(data: object) -> bool:
