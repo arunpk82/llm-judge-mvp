@@ -11,13 +11,14 @@ Error-handling contract (CP-1b D5):
 
 from __future__ import annotations
 
-import logging
 import os
 import subprocess
 import uuid
 from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
+
+import structlog
 
 from llm_judge.control_plane.envelope import (
     CapabilityIntegrityRecord,
@@ -36,7 +37,7 @@ from llm_judge.control_plane.wrappers import (
     invoke_cap7,
 )
 
-logger = logging.getLogger(__name__)
+logger = structlog.get_logger()
 
 _PLATFORM_VERSION_ENV_VAR = "LLM_JUDGE_PLATFORM_VERSION"
 
@@ -54,9 +55,9 @@ def _resolve_platform_version() -> str:
         return out.decode("utf-8").strip()
     except (subprocess.CalledProcessError, FileNotFoundError, OSError):
         logger.warning(
-            "control_plane.platform_version.unknown — "
-            "git rev-parse HEAD failed and %s not set",
-            _PLATFORM_VERSION_ENV_VAR,
+            "control_plane.platform_version.unknown",
+            reason="git rev-parse HEAD failed and env var not set",
+            env_var=_PLATFORM_VERSION_ENV_VAR,
         )
         return "unknown"
 
@@ -148,7 +149,8 @@ class PlatformRunner:
             envelope = envelope.with_integrity(_skipped_record("CAP-7"))
             logger.warning(
                 "control_plane.cap1_failed",
-                extra={"request_id": request_id, "error": str(exc)[:200]},
+                request_id=request_id,
+                error=str(exc)[:200],
             )
 
         # --- Sibling phase: CAP-2 and CAP-7 (failures tolerated) ---
@@ -177,7 +179,8 @@ class PlatformRunner:
                 )
                 logger.warning(
                     "control_plane.cap2_failed",
-                    extra={"request_id": request_id, "error": str(exc)[:200]},
+                    request_id=request_id,
+                    error=str(exc)[:200],
                 )
 
             try:
@@ -194,7 +197,8 @@ class PlatformRunner:
                 )
                 logger.warning(
                     "control_plane.cap7_failed",
-                    extra={"request_id": request_id, "error": str(exc)[:200]},
+                    request_id=request_id,
+                    error=str(exc)[:200],
                 )
 
         # --- Aggregate: CAP-7 verdict (if any) + CAP-2 rule_hits ---
