@@ -120,6 +120,48 @@ class PlatformRunner:
 
         ``output_dir`` overrides the constructor-level ``runs_root``
         for this invocation, e.g. ``tmp_path`` in tests.
+
+        Envelope field semantics — aggregated verdict tri-state
+        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+        The ``verdict`` field on the returned
+        :class:`SingleEvaluationResult` is a ``dict[str, Any]`` whose
+        shape depends on which sibling capabilities (CAP-2, CAP-7)
+        ran successfully. The ``rule_evidence`` key is deliberately
+        **conditionally present**, not always-empty-when-unavailable:
+
+        - ``CAP-2 succeeded`` → ``verdict["rule_evidence"]`` is set to
+          ``list[str]`` (empty list when CAP-2 ran but fired zero
+          rules; populated when rules fired). Callers can rely on the
+          key's presence.
+        - ``CAP-2 failed or was skipped`` → ``verdict["rule_evidence"]``
+          is **absent** from the dict. Callers must use
+          ``verdict.get("rule_evidence")`` or check membership with
+          ``"rule_evidence" in verdict``; indexing raises
+          ``KeyError``. Absence signals "CAP-2 did not run" — distinct
+          from "CAP-2 ran and fired nothing" (empty list).
+        - ``CAP-7 succeeded`` → CAP-7's full output keys are copied
+          into the verdict (e.g. ``risk_score``, ``grounding_ratio``,
+          ``layers_requested``).
+        - ``CAP-7 failed or was skipped`` → those keys are absent.
+
+        The authoritative record of which capabilities actually ran is
+        :attr:`SingleEvaluationResult.envelope.integrity`
+        (``list[CapabilityIntegrityRecord]``) — consult it before
+        interpreting the verdict shape. The legacy
+        :attr:`SingleEvaluationResult.integrity` carries the CP-1
+        summary (``complete``, ``missing_capabilities``, ``reason``).
+
+        Default bindings — rubric_id
+        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+        :class:`SingleEvaluationRequest` does not carry a
+        ``rubric_id``; the Control Plane binds to the documented
+        default ``"chat_quality"`` / ``"v1"`` in
+        :mod:`llm_judge.control_plane.wrappers`
+        (``DEFAULT_RUBRIC_ID`` / ``DEFAULT_RUBRIC_VERSION``). This is
+        a CP-1b simplification. A future packet may either accept
+        an explicit ``rubric_id`` on the request shape or resolve the
+        default via policy — until then, every single-evaluation
+        request in this Runner exercises ``chat_quality@v1``.
         """
         active_layers = list(layers) if layers else list(DEFAULT_LAYERS)
         runs_root = output_dir if output_dir is not None else self._runs_root
