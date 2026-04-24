@@ -6,7 +6,7 @@
 .PHONY: help install lint typecheck test baseline-validate pr-gate diff baseline-dry-run baseline-promote \
         registry-list registry-show registry-trend eval preflight clean git-start git-ship git-merge validate \
         docker-build docker-deploy docker-status docker-validate docker-down docker-reset \
-        preseed benchmark funnel calibrate
+        preseed benchmark funnel calibrate demo
 
 # Defaults (override like: make SUITE=golden RUBRIC=chat_quality ...)
 SUITE ?= math_basic
@@ -25,6 +25,7 @@ RUN_ID ?=
 help:
 	@echo ""
 	@echo "Available targets:"
+	@echo "  make demo                  End-to-end Control Plane walkthrough"
 	@echo "  make install               Install dependencies"
 	@echo "  make lint                  Run Ruff"
 	@echo "  make typecheck             Run mypy"
@@ -374,3 +375,10 @@ calibrate: preseed benchmark funnel
 
 calibrate-l1:
 	HALLUCINATION_LAYERS=l1 $(MAKE) calibrate
+
+# ----------------------------------------
+# Control Plane demo (CP-2)
+# ----------------------------------------
+
+demo:
+	@poetry run python tools/demo_platform.py
