@@ -152,12 +152,24 @@ def timed(event_name: str) -> Callable[[F], F]:
 def emit_event(event_type: str, **fields: Any) -> None:
     """Emit a Control Plane event.
 
-    Commit 1: logs through structlog only (info level). Commit 2
-    extends this function to also dispatch to the in-memory
-    :class:`EventBus` so subscribers can observe the event stream.
+    Logs the event through structlog at INFO level, then dispatches
+    to the in-memory :class:`~llm_judge.control_plane.event_bus.EventBus`
+    so local subscribers (e.g. the demo CLI) can observe the stream.
 
-    Best-effort semantics: if an internal bus dispatch raises, the
-    failure is logged but never propagated to the caller — emission
-    is observability, not a control-path concern.
+    Best-effort semantics: if the bus dispatch raises, the failure is
+    logged and swallowed — emission is observability, not a
+    control-path concern.
     """
     logger.info(event_type, **fields)
+    # Lazy import so Commit 1 users who do not touch the bus path
+    # still work; in normal Control Plane use the bus is always
+    # available.
+    try:
+        from llm_judge.control_plane.event_bus import get_default_bus
+
+        get_default_bus().emit(event_type, **fields)
+    except Exception:
+        logger.exception(
+            "observability.emit_event.bus_dispatch_failed",
+            event_type=event_type,
+        )
