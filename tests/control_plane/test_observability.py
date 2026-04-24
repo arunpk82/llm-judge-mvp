@@ -51,6 +51,24 @@ def test_timer_sequential_calls_are_independent() -> None:
     assert first.duration_ms > second.duration_ms or second.duration_ms >= 0.0
 
 
+def test_timer_elapsed_ms_is_live_mid_block() -> None:
+    """``elapsed_ms`` reads the live wall time since __enter__ without
+    closing the Timer. After __exit__, it matches ``duration_ms``."""
+    t = Timer()
+    assert t.elapsed_ms == 0.0  # before __enter__
+    with t:
+        time.sleep(0.01)
+        mid = t.elapsed_ms
+        assert mid >= 9.0  # ≥ the sleep, with slack
+        time.sleep(0.01)
+        # Still live — should now be larger.
+        later = t.elapsed_ms
+        assert later >= mid
+    # After __exit__, elapsed_ms matches duration_ms.
+    assert t.elapsed_ms == t.duration_ms
+    assert t.duration_ms > 0.0
+
+
 # =====================================================================
 # @timed
 # =====================================================================

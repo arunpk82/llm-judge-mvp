@@ -74,6 +74,22 @@ class Timer:
         """Elapsed milliseconds. ``0.0`` until the ``with`` block exits."""
         return self._duration_ms
 
+    @property
+    def elapsed_ms(self) -> float:
+        """Live elapsed milliseconds (readable mid-block).
+
+        ``0.0`` before ``__enter__`` runs. Inside a ``with`` block,
+        returns the wall time since entry. After ``__exit__``, returns
+        the final locked-in duration — identical to :attr:`duration_ms`
+        once the block has exited. Useful when a caller needs to
+        report progress without closing the Timer.
+        """
+        if self._start is None:
+            return 0.0
+        if self._duration_ms > 0.0:
+            return self._duration_ms
+        return (time.perf_counter() - self._start) * 1000.0
+
 
 def _extract_request_id(args: tuple[Any, ...], kwargs: dict[str, Any]) -> str | None:
     """Look for a request_id on the wrapped function's arguments.
