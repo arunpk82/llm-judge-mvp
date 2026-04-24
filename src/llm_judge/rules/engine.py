@@ -5,9 +5,22 @@ from dataclasses import dataclass
 from pathlib import Path
 from typing import Any, Mapping, Sequence
 
+from pydantic import ValidationError
+
 from llm_judge.paths import config_root
+from llm_judge.rule_plan_yaml import RulePlanConfig
 from llm_judge.rules.registry import get_rule
 from llm_judge.rules.types import RuleContext
+
+
+class RulePlanSchemaError(ValueError):
+    """Raised when a rule-plan YAML fails Pydantic schema validation.
+
+    Subclasses ``ValueError`` so existing callers that catch
+    ``ValueError`` around ``load_plan_for_rubric`` continue to work
+    unchanged. The message names the file path so operators can
+    correct the offending YAML without grepping.
+    """
 
 logger = logging.getLogger(__name__)
 
@@ -209,11 +222,22 @@ def load_plan_for_rubric(rubric_id: str, version: str) -> RulePlan:
     """
     Load plan YAML from: configs/rules/{rubric_id}/{version}.yaml
 
+    Validates the rule-plan YAML through ``RulePlanConfig`` (CP-1d
+    Commit 2b). Schema failures raise :class:`RulePlanSchemaError`
+    naming the file path.
+
     EPIC-3.2: Rules that are deprecated AND past their warning period
     are automatically excluded from the plan.
     """
     path = config_root() / "rules" / rubric_id / f"{version}.yaml"
     data = _load_yaml(path)
+
+    try:
+        parsed = RulePlanConfig.model_validate(data)
+    except ValidationError as exc:
+        raise RulePlanSchemaError(
+            f"Rule plan failed schema validation at {path}: {exc}"
+        ) from exc
 
     # Determine which rules are deprecated-enforced (past warning period)
     excluded: set[str] = set()
@@ -224,36 +248,22 @@ def load_plan_for_rubric(rubric_id: str, version: str) -> RulePlan:
     except Exception:
         pass  # graceful — if lifecycle unavailable, skip filtering
 
-    rules_in = data.get("rules", [])
     rules: list[dict[str, Any]] = []
-    if isinstance(rules_in, list):
-        for r in rules_in:
-            if not isinstance(r, dict):
-                continue
-            if r.get("enabled", True) is False:
-                continue
-            rid = r.get("id")
-            if not isinstance(rid, str):
-                continue
-            # EPIC-3.2: Skip deprecated-enforced rules
-            if rid in excluded:
-                logger.info(
-                    "rule.excluded.deprecated",
-                    extra={"rule_id": rid, "rubric_id": rubric_id},
-                )
-                continue
-            rules.append(
-                {
-                    "id": rid,
-                    "params": (
-                        r.get("params") if isinstance(r.get("params"), dict) else {}
-                    ),
-                }
+    for rule in parsed.rules:
+        if not rule.enabled:
+            continue
+        # EPIC-3.2: Skip deprecated-enforced rules
+        if rule.id in excluded:
+            logger.info(
+                "rule.excluded.deprecated",
+                extra={"rule_id": rule.id, "rubric_id": rubric_id},
             )
+            continue
+        rules.append({"id": rule.id, "params": dict(rule.params)})
 
     return RulePlan(
-        rubric_id=str(data.get("rubric_id") or rubric_id),
-        version=str(data.get("version") or version),
+        rubric_id=parsed.rubric_id or rubric_id,
+        version=parsed.version or version,
         rules=rules,
     )
 

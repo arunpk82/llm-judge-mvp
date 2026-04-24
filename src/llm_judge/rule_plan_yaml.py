@@ -1,9 +1,13 @@
-"""Pydantic models for rubric / rule-plan / registry YAML files.
+"""Pydantic models for rule-plan and rubric-registry YAML files.
 
 Scope of each model:
-  - ``RuleConfig``, ``RubricConfig``: the rule-plan YAML at
+  - ``RulePlanRule``, ``RulePlanConfig``: the rule-plan YAML at
     ``configs/rules/<rubric_id>/<version>.yaml``. Carries the list
-    of rules to run for that rubric.
+    of rules the engine executes for that rubric. Matches the
+    actual on-disk schema (``id`` + ``enabled`` + ``params``); the
+    previous ``RuleConfig`` / ``RubricConfig`` pair required a
+    ``severity`` field that no real rule plan carries — deleted in
+    CP-1d Commit 2b.
   - ``RubricRegistryConfig``: the index at ``rubrics/registry.yaml``.
     Carries the ``latest:`` version pointer map plus the optional
     ``rubrics:`` block that declares per-version metrics-schema
@@ -22,20 +26,31 @@ from typing import Any, Optional
 from pydantic import BaseModel, ConfigDict, Field
 
 
-class RuleConfig(BaseModel):
-    """One rule entry inside a rule-plan YAML."""
+class RulePlanRule(BaseModel):
+    """One rule entry inside a rule-plan YAML.
 
-    id: str
-    description: Optional[str] = None
-    severity: int = Field(ge=1, le=5)
+    Matches the actual on-disk shape observed across
+    ``configs/rules/chat_quality/v1.yaml`` and
+    ``configs/rules/math_basic/v1.yaml``: every rule has ``id``,
+    an ``enabled`` flag (defaulting True), and an optional
+    ``params`` dict.
+    """
+
+    model_config = ConfigDict(extra="forbid")
+
+    id: str = Field(..., min_length=1)
+    enabled: bool = True
+    params: dict[str, Any] = Field(default_factory=dict)
 
 
-class RubricConfig(BaseModel):
+class RulePlanConfig(BaseModel):
     """Rule-plan YAML at ``configs/rules/<rubric_id>/<version>.yaml``."""
 
-    rubric_id: str
-    version: str
-    rules: list[RuleConfig]
+    model_config = ConfigDict(extra="forbid")
+
+    rubric_id: str = Field(..., min_length=1)
+    version: str = Field(..., min_length=1)
+    rules: list[RulePlanRule] = Field(default_factory=list)
 
 
 class RubricMetricsSchema(BaseModel):

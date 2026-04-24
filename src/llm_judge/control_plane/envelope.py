@@ -10,14 +10,14 @@ from __future__ import annotations
 import hashlib
 import hmac
 import json
-import logging
 import os
 from datetime import datetime
 from typing import Any, Literal
 
+import structlog
 from pydantic import BaseModel, ConfigDict, Field, model_validator
 
-logger = logging.getLogger(__name__)
+logger = structlog.get_logger()
 
 _DEFAULT_DEV_KEY = "dev-key-not-for-prod"
 _HMAC_ENV_VAR = "LLM_JUDGE_CONTROL_PLANE_HMAC_KEY"
@@ -30,9 +30,9 @@ def _resolve_hmac_key() -> bytes:
     if key is None or not key.strip():
         if not _DEFAULT_KEY_WARNED:
             logger.warning(
-                "control_plane.hmac.default_key_in_use — "
-                "set %s for non-development use",
-                _HMAC_ENV_VAR,
+                "control_plane.hmac.default_key_in_use",
+                env_var=_HMAC_ENV_VAR,
+                hint="set env var for non-development use",
             )
             _DEFAULT_KEY_WARNED = True
         key = _DEFAULT_DEV_KEY

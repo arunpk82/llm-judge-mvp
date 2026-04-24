@@ -17,11 +17,12 @@ migration; CP-1 only adds the new entry additively.
 
 from __future__ import annotations
 
-import logging
 import os
 from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
+
+import structlog
 
 from llm_judge.control_plane.envelope import ProvenanceEnvelope
 from llm_judge.eval.event_registry import append_event
@@ -29,7 +30,7 @@ from llm_judge.eval.io import write_json
 from llm_judge.eval.registry import append_run_registry_entry
 from llm_judge.paths import state_root
 
-logger = logging.getLogger(__name__)
+logger = structlog.get_logger()
 
 SINGLE_EVAL_ROOT_DEFAULT = state_root() / "single_eval"
 
@@ -139,6 +140,7 @@ def record_evaluation_manifest(
 
     logger.info(
         "cap5.manifest_recorded",
-        extra={"manifest_id": manifest_id, "run_dir": str(run_dir)},
+        manifest_id=manifest_id,
+        run_dir=str(run_dir),
     )
     return manifest_id

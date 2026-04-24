@@ -12,11 +12,11 @@ from __future__ import annotations
 
 import hashlib
 import json
-import logging
 import uuid
 from pathlib import Path
 from typing import Any
 
+import structlog
 import yaml
 
 from llm_judge.calibration.hallucination import check_hallucination
@@ -33,7 +33,7 @@ from llm_judge.rules.engine import load_plan_for_rubric, run_rules
 from llm_judge.rules.types import RuleContext
 from llm_judge.schemas import Message, PredictRequest
 
-logger = logging.getLogger(__name__)
+logger = structlog.get_logger()
 
 # v1 simplification: SingleEvaluationRequest does not carry a rubric.
 # The Control Plane binds to a documented default; future request

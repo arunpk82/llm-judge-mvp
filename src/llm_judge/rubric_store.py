@@ -17,7 +17,7 @@ from typing import Any
 import yaml
 from pydantic import ValidationError
 
-from llm_judge.rubric_yaml import RubricRegistryConfig, rubric_definition_model
+from llm_judge.rule_plan_yaml import RubricRegistryConfig, rubric_definition_model
 
 
 class RubricSchemaError(ValueError):
