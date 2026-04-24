@@ -48,6 +48,7 @@ types-pyyaml = "^6.0.12.20250915"
 pytest = "^9.0.2"
 pytest-cov = "^7.0.0"
 datasets = "^4.8.4"
+rich = "^13.0"
 
 
 [tool.poetry.group.experiment.dependencies]
