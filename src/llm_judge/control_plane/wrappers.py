@@ -22,6 +22,7 @@ import yaml
 from llm_judge.calibration.hallucination import check_hallucination
 from llm_judge.control_plane.envelope import ProvenanceEnvelope
 from llm_judge.control_plane.observability import (
+    emit_event,
     emit_sub_capability_skipped,
     timed,
 )
@@ -187,6 +188,105 @@ def invoke_cap1(
     return stamped, resolved
 
 
+@timed("cap2_rule_loading", sub_capability_id="rule_loading", capability_id="CAP-2")
+def _cap2_rule_loading(
+    envelope: ProvenanceEnvelope,
+    rubric_id: str,
+    rubric_version: str,
+) -> Any:
+    """CAP-2 Rule loading: resolve the rubric's rule plan."""
+    del envelope  # only here so @timed can extract request_id
+    return load_plan_for_rubric(rubric_id, rubric_version)
+
+
+@timed(
+    "cap2_input_matching",
+    sub_capability_id="input_matching",
+    capability_id="CAP-2",
+)
+def _cap2_input_matching(
+    envelope: ProvenanceEnvelope,
+    plan: Any,
+    request: SingleEvaluationRequest,
+) -> Any:
+    """CAP-2 Input matching: run the rule plan against a RuleContext
+    built from the evaluation request. Returns the rule-engine result."""
+    del envelope  # only here so @timed can extract request_id
+    req = PredictRequest(
+        conversation=[Message(role="user", content=request.source)],
+        candidate_answer=request.response,
+        rubric_id=DEFAULT_RUBRIC_ID,
+    )
+    ctx = RuleContext(request=req)
+    return run_rules(ctx, plan)
+
+
+@timed(
+    "cap2_evidence_capture",
+    sub_capability_id="evidence_capture",
+    capability_id="CAP-2",
+)
+def _cap2_evidence_capture(
+    envelope: ProvenanceEnvelope, result: Any
+) -> list[str]:
+    """CAP-2 Evidence capture: extract rule-id evidence from the
+    engine result. Returns the list of fired rule ids."""
+    del envelope  # only here so @timed can extract request_id
+    flags = list(getattr(result, "flags", []) or [])
+    rules_fired: list[str] = []
+    for flag in flags:
+        fid = getattr(flag, "id", None)
+        if isinstance(fid, str) and fid:
+            rules_fired.append(fid)
+    return rules_fired
+
+
+@timed(
+    "cap2_result_emission",
+    sub_capability_id="result_emission",
+    capability_id="CAP-2",
+)
+def _cap2_result_emission(
+    envelope: ProvenanceEnvelope,
+    plan_version: str,
+    rules_fired: list[str],
+) -> ProvenanceEnvelope:
+    """CAP-2 Result emission: stamp the envelope with rule_set_version
+    and rules_fired so downstream caps observe the rule outcomes."""
+    return envelope.stamped(
+        capability="CAP-2",
+        rule_set_version=plan_version,
+        rules_fired=rules_fired,
+    )
+
+
+def _emit_pattern_compilation_soft(envelope: ProvenanceEnvelope) -> None:
+    """Emit fire-rate signals for the SOFT pattern_compilation sub-cap.
+
+    Pattern compilation happens inside load_plan_for_rubric
+    (rules/engine.py); it cannot be timed separately without
+    refactoring the engine, which is out of scope for CP-3 (D1: do
+    not expand scope). We emit started+completed events with
+    ``duration_ms=0.0`` to keep the fire-rate aggregation honest:
+    the boundary exists logically, even though this layer cannot
+    observe its duration.
+    """
+    emit_event(
+        "sub_capability_started",
+        capability_id="CAP-2",
+        sub_capability_id="pattern_compilation",
+        request_id=envelope.request_id,
+    )
+    emit_event(
+        "sub_capability_completed",
+        capability_id="CAP-2",
+        sub_capability_id="pattern_compilation",
+        request_id=envelope.request_id,
+        duration_ms=0.0,
+        status="success",
+    )
+
+
 def invoke_cap2(
     envelope: ProvenanceEnvelope,
     request: SingleEvaluationRequest,
@@ -194,6 +294,13 @@ def invoke_cap2(
 ) -> tuple[ProvenanceEnvelope, list[str]]:
     """Load the rubric's rule plan, run rules against a RuleContext
     built from the request, stamp rule_set_version + rules_fired.
+
+    Decomposed into the 5 portal sub-capabilities (Rule loading,
+    Pattern compilation, Input matching, Evidence capture, Result
+    emission). Pattern compilation is SOFT — it lives inside
+    ``load_plan_for_rubric`` and emits fire-rate signals only.
+    Behaviour and outputs are identical to the pre-instrumentation
+    implementation.
     """
     if not envelope.dataset_registry_id:
         raise MissingProvenanceError(
@@ -202,27 +309,11 @@ def invoke_cap2(
         )
     del dataset_handle  # CAP-2 uses the request directly; kept for symmetry
 
-    plan = load_plan_for_rubric(DEFAULT_RUBRIC_ID, DEFAULT_RUBRIC_VERSION)
-    req = PredictRequest(
-        conversation=[Message(role="user", content=request.source)],
-        candidate_answer=request.response,
-        rubric_id=DEFAULT_RUBRIC_ID,
-    )
-    ctx = RuleContext(request=req)
-
-    result = run_rules(ctx, plan)
-    flags = list(getattr(result, "flags", []) or [])
-    rules_fired: list[str] = []
-    for flag in flags:
-        fid = getattr(flag, "id", None)
-        if isinstance(fid, str) and fid:
-            rules_fired.append(fid)
-
-    stamped = envelope.stamped(
-        capability="CAP-2",
-        rule_set_version=plan.version,
-        rules_fired=rules_fired,
-    )
+    plan = _cap2_rule_loading(envelope, DEFAULT_RUBRIC_ID, DEFAULT_RUBRIC_VERSION)
+    _emit_pattern_compilation_soft(envelope)
+    result = _cap2_input_matching(envelope, plan, request)
+    rules_fired = _cap2_evidence_capture(envelope, result)
+    stamped = _cap2_result_emission(envelope, plan.version, rules_fired)
     return stamped, rules_fired
 
 
