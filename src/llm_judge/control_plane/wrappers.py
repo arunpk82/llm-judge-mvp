@@ -21,6 +21,10 @@ import yaml
 
 from llm_judge.calibration.hallucination import check_hallucination
 from llm_judge.control_plane.envelope import ProvenanceEnvelope
+from llm_judge.control_plane.observability import (
+    emit_sub_capability_skipped,
+    timed,
+)
 from llm_judge.control_plane.types import (
     MissingProvenanceError,
     SingleEvaluationRequest,
@@ -52,16 +56,15 @@ def _sha256_file(path: Path) -> str:
     return f"sha256:{h.hexdigest()}"
 
 
-def invoke_cap1(
+@timed("cap1_reception", sub_capability_id="reception", capability_id="CAP-1")
+def _cap1_reception(
     envelope: ProvenanceEnvelope,
     request: SingleEvaluationRequest,
-    *,
-    transient_root: Path | None = None,
-) -> tuple[ProvenanceEnvelope, ResolvedDataset]:
-    """Construct a one-row transient dataset, pass it through CAP-1's
-    real registration path, stamp dataset_registry_id + input_hash.
-    """
-    root = (transient_root or TRANSIENT_DATASETS_ROOT).resolve()
+    root: Path,
+) -> tuple[str, Path, Path]:
+    """CAP-1 Reception: allocate transient dataset_id, create the run
+    directory, and write the one-row JSONL payload that downstream
+    sub-capabilities operate on. Returns (dataset_id, ds_dir, data_path)."""
     dataset_id = f"transient_{uuid.uuid4().hex[:12]}"
     ds_dir = root / dataset_id
     ds_dir.mkdir(parents=True, exist_ok=True)
@@ -76,8 +79,27 @@ def invoke_cap1(
     data_path.write_text(
         json.dumps(row, ensure_ascii=False) + "\n", encoding="utf-8"
     )
-    content_hash = _sha256_file(data_path)
+    return dataset_id, ds_dir, data_path
 
+
+@timed("cap1_hashing", sub_capability_id="hashing", capability_id="CAP-1")
+def _cap1_hashing(envelope: ProvenanceEnvelope, data_path: Path) -> str:
+    """CAP-1 Hashing: compute the content-addressed digest of the
+    transient dataset file. Returns the sha256 string."""
+    del envelope  # only here so @timed can extract request_id
+    return _sha256_file(data_path)
+
+
+@timed("cap1_validation", sub_capability_id="validation", capability_id="CAP-1")
+def _cap1_validation(
+    envelope: ProvenanceEnvelope,
+    dataset_id: str,
+    ds_dir: Path,
+    content_hash: str,
+) -> DatasetMetadata:
+    """CAP-1 Validation: build + persist a DatasetMetadata record
+    for the transient dataset. Returns the validated metadata."""
+    del envelope  # only here so @timed can extract request_id
     metadata = DatasetMetadata(
         dataset_id=dataset_id,
         version=DEFAULT_RUBRIC_VERSION,
@@ -90,17 +112,78 @@ def invoke_cap1(
         yaml.safe_dump(metadata.model_dump(), sort_keys=True),
         encoding="utf-8",
     )
+    return metadata
 
+
+@timed("cap1_registration", sub_capability_id="registration", capability_id="CAP-1")
+def _cap1_registration(
+    envelope: ProvenanceEnvelope,
+    dataset_id: str,
+    root: Path,
+) -> ResolvedDataset:
+    """CAP-1 Registration: register the transient dataset with the
+    DatasetRegistry and resolve the handle for downstream callers."""
+    del envelope  # only here so @timed can extract request_id
     registry = DatasetRegistry(root_dir=root)
-    resolved = registry.resolve(
+    return registry.resolve(
         dataset_id=dataset_id, version=DEFAULT_RUBRIC_VERSION
     )
 
-    stamped = envelope.stamped(
+
+@timed(
+    "cap1_lineage_tracking",
+    sub_capability_id="lineage_tracking",
+    capability_id="CAP-1",
+)
+def _cap1_lineage_tracking(
+    envelope: ProvenanceEnvelope,
+    dataset_id: str,
+    content_hash: str,
+) -> ProvenanceEnvelope:
+    """CAP-1 Lineage tracking: stamp the envelope with
+    dataset_registry_id + input_hash so downstream caps can verify
+    upstream provenance."""
+    return envelope.stamped(
         capability="CAP-1",
         dataset_registry_id=dataset_id,
         input_hash=content_hash,
     )
+
+
+def invoke_cap1(
+    envelope: ProvenanceEnvelope,
+    request: SingleEvaluationRequest,
+    *,
+    transient_root: Path | None = None,
+) -> tuple[ProvenanceEnvelope, ResolvedDataset]:
+    """Construct a one-row transient dataset, pass it through CAP-1's
+    real registration path, stamp dataset_registry_id + input_hash.
+
+    Decomposed into 5 instrumented sub-capabilities (Reception,
+    Hashing, Validation, Registration, Lineage tracking). The 6th
+    portal sub-capability — Discovery — is not engaged in the
+    single-eval flow and is reported via ``sub_capability_skipped``
+    so batch aggregation can render an honest 0/N engagement count.
+    Behaviour and outputs are identical to the pre-instrumentation
+    implementation.
+    """
+    root = (transient_root or TRANSIENT_DATASETS_ROOT).resolve()
+    dataset_id, ds_dir, data_path = _cap1_reception(envelope, request, root)
+    content_hash = _cap1_hashing(envelope, data_path)
+    _cap1_validation(envelope, dataset_id, ds_dir, content_hash)
+    resolved = _cap1_registration(envelope, dataset_id, root)
+    stamped = _cap1_lineage_tracking(envelope, dataset_id, content_hash)
+
+    # Discovery is registry-side lookup the platform exposes for ad-hoc
+    # consumers; the single-eval Runner constructs a transient dataset
+    # rather than querying the registry, so this sub-cap never engages.
+    emit_sub_capability_skipped(
+        capability_id="CAP-1",
+        sub_capability_id="discovery",
+        request_id=envelope.request_id,
+        reason="single_eval_does_not_query_registry",
+    )
+
     return stamped, resolved
 
 
