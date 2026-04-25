@@ -7,6 +7,7 @@ from typing import Any, Mapping, Sequence
 
 from pydantic import ValidationError
 
+from llm_judge.control_plane.observability import Timer, emit_event
 from llm_judge.paths import config_root
 from llm_judge.rule_plan_yaml import RulePlanConfig
 from llm_judge.rules.registry import get_rule
@@ -82,18 +83,56 @@ def _load_yaml(path: Path) -> dict[str, Any]:
     """
     Load YAML using PyYAML if available; otherwise use a minimal parser sufficient
     for our test YAML structure.
+
+    Single convergence point (CP-2 Option X): both the PyYAML branch
+    and the fallback parser return from this function. Observability
+    events (``yaml_load_started`` / ``yaml_load_completed`` /
+    ``yaml_load_failed``) are emitted here; the ``parser`` field is
+    set to ``"pyyaml"`` or ``"fallback"`` based on which branch ran.
     """
+    emit_event("yaml_load_started", file_path=str(path))
+    parser = "pyyaml"
+    timer = Timer()
     try:
-        import yaml
-    except Exception:  # pragma: no cover
-        yaml = None  # type: ignore
+        with timer:
+            try:
+                import yaml
+            except Exception:  # pragma: no cover
+                yaml = None  # type: ignore
+                parser = "fallback"
 
-    if yaml is not None:
-        data = yaml.safe_load(path.read_text(encoding="utf-8"))
-        return data if isinstance(data, dict) else {}
+            if yaml is not None:
+                data = yaml.safe_load(path.read_text(encoding="utf-8"))
+                result = data if isinstance(data, dict) else {}
+            else:
+                result = _load_yaml_fallback(path)
+    except Exception as exc:
+        emit_event(
+            "yaml_load_failed",
+            file_path=str(path),
+            duration_ms=timer.duration_ms,
+            parser=parser,
+            error_type=type(exc).__name__,
+            error_message=str(exc)[:500],
+        )
+        raise
 
-    # Minimal fallback parser (handles the exact simple structure used in tests)
-    # Not intended to be a general YAML parser.
+    emit_event(
+        "yaml_load_completed",
+        file_path=str(path),
+        duration_ms=timer.duration_ms,
+        parser=parser,
+    )
+    return result
+
+
+def _load_yaml_fallback(path: Path) -> dict[str, Any]:
+    """Minimal line-oriented parser used when PyYAML is unavailable.
+
+    Handles the simple structure of rule-plan YAMLs in tests. Not
+    intended as a general-purpose parser. Extracted from
+    :func:`_load_yaml` so the observability wrapper stays readable.
+    """
     out: dict[str, Any] = {}
     rules: list[dict[str, Any]] = []
     current: dict[str, Any] | None = None

@@ -5,11 +5,11 @@ import hashlib
 import json
 import os
 import random
-import time
 import warnings
 from pathlib import Path
 from typing import Any, Dict, List, Optional, Tuple
 
+from llm_judge.control_plane.observability import Timer
 from llm_judge.datasets.registry import DatasetRegistry
 from llm_judge.eval.event_registry import append_event
 from llm_judge.eval.registry import append_run_registry_entry
@@ -177,7 +177,8 @@ def main() -> int:
     # Force engine via env to match repo contract
     os.environ["JUDGE_ENGINE"] = spec.judge_engine
 
-    start_total = time.perf_counter()
+    total_timer = Timer()
+    total_timer.__enter__()
 
     dataset_path = _resolve_dataset_path(spec)
     rows = _load_jsonl(dataset_path)
@@ -250,17 +251,18 @@ def main() -> int:
 
     # Optional sampling for PR gate
     sampling_meta: Optional[dict[str, Any]] = None
+    sampling_seconds = 0.0
     if spec.sample is not None:
-        sampling_start = time.perf_counter()
-        # spec.py already validates strategy; keep guardrail here too.
-        if spec.sample.strategy != "stable_hash":
-            raise ValueError(f"Unsupported sample.strategy: {spec.sample.strategy}")
-        rows, sampling_meta = _sample_rows_stable_hash(
-            rows, n=spec.sample.n, seed=spec.sample.seed
-        )
-        sampling_seconds = time.perf_counter() - sampling_start
-    else:
-        sampling_seconds = 0.0
+        with Timer() as sampling_timer:
+            # spec.py already validates strategy; keep guardrail here too.
+            if spec.sample.strategy != "stable_hash":
+                raise ValueError(
+                    f"Unsupported sample.strategy: {spec.sample.strategy}"
+                )
+            rows, sampling_meta = _sample_rows_stable_hash(
+                rows, n=spec.sample.n, seed=spec.sample.seed
+            )
+        sampling_seconds = sampling_timer.duration_ms / 1000.0
 
     engine = get_judge_engine()
 
@@ -317,7 +319,8 @@ def main() -> int:
     total_cases = len(rows)
     progress_interval = max(1, total_cases // 10) if total_cases > 20 else total_cases
 
-    evaluation_start = time.perf_counter()
+    evaluation_timer = Timer()
+    evaluation_timer.__enter__()
     for i, row in enumerate(rows):
         # Convert conversation dicts to Message objects
         conv = [Message(**m) for m in row["conversation"]]
@@ -353,9 +356,10 @@ def main() -> int:
             rule_id = flag_str.split(":")[0] if ":" in flag_str else flag_str
             rule_hit_counts[rule_id] = rule_hit_counts.get(rule_id, 0) + 1
 
-        # EPIC-8.1: Streaming progress
+        # EPIC-8.1: Streaming progress — reads the live elapsed
+        # from the still-open evaluation_timer.
         if (i + 1) % progress_interval == 0 or i == total_cases - 1:
-            elapsed = time.perf_counter() - evaluation_start
+            elapsed = evaluation_timer.elapsed_ms / 1000.0
             rate = (i + 1) / elapsed if elapsed > 0 else 0
             print(
                 f"  [{i + 1}/{total_cases}] "
@@ -386,7 +390,8 @@ def main() -> int:
                 f"on first {spec.smoke_test.n} cases (threshold: {spec.smoke_test.min_pass_rate:.0%})"
             )
 
-    evaluation_seconds = time.perf_counter() - evaluation_start
+    evaluation_timer.__exit__(None, None, None)
+    evaluation_seconds = evaluation_timer.duration_ms / 1000.0
 
     write_jsonl(run_dir / "judgments.jsonl", judgments)
 
@@ -454,7 +459,8 @@ def main() -> int:
         },
     )
 
-    total_seconds = time.perf_counter() - start_total
+    total_timer.__exit__(None, None, None)
+    total_seconds = total_timer.duration_ms / 1000.0
 
     # --- Observability: timing ---
     manifest["timing"] = {

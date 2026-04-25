@@ -72,6 +72,12 @@ def test_cap2_failure_cap7_success(
     assert statuses["CAP-7"] == "success"
     assert statuses["CAP-5"] == "success"
 
+    # CP-2: every record (success OR failure) carries duration_ms.
+    by_id = {r.capability_id: r for r in result.envelope.integrity}
+    for cid in ("CAP-1", "CAP-2", "CAP-7", "CAP-5"):
+        assert by_id[cid].duration_ms is not None, cid
+        assert by_id[cid].duration_ms >= 0.0, cid
+
     # Manifest on disk under tmp_path; schema_version=2.
     manifest_path = output_dir / result.manifest_id / "manifest.json"
     assert manifest_path.exists()
@@ -90,6 +96,9 @@ def test_cap2_failure_cap7_success(
     )
     assert cap2_rec["error_type"] == "RuntimeError"
     assert "RuleSetLoadError" in (cap2_rec["error_message"] or "")
+    # CP-2: CAP-2's failure record still carries duration_ms.
+    assert cap2_rec["duration_ms"] is not None
+    assert cap2_rec["duration_ms"] >= 0.0
 
 
 def test_cap1_total_failure(

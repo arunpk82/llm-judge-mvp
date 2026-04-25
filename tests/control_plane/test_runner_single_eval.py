@@ -58,9 +58,13 @@ def test_runner_full_chain(runner: PlatformRunner, tmp_path: Path) -> None:
     assert result.integrity.missing_capabilities == []
     assert result.integrity.reason is None
 
-    # CP-1b: envelope carries per-capability integrity records.
-    assert result.envelope.schema_version == 2
+    # CP-2: envelope carries per-capability integrity records (v3).
+    assert result.envelope.schema_version == 3
     assert len(result.envelope.integrity) == 4
+    # Every successful capability carries a non-negative duration_ms.
+    for rec in result.envelope.integrity:
+        assert rec.duration_ms is not None, rec
+        assert rec.duration_ms >= 0.0, rec
     assert all(r.status == "success" for r in result.envelope.integrity)
     assert {r.capability_id for r in result.envelope.integrity} == {
         "CAP-1",

@@ -107,9 +107,13 @@ def test_stamped_chains_multiple_capabilities() -> None:
 # -----------------------------------------------------------------
 
 
-def test_schema_version_defaults_to_2() -> None:
+def test_schema_version_defaults_to_3() -> None:
+    """CP-2 bumps the schema to 3 (CapabilityIntegrityRecord gains
+    duration_ms). Old envelopes without a schema_version backfill to 1;
+    explicit v2 envelopes still parse (see
+    test_v2_envelope_dict_parses_with_duration_none)."""
     env = _make()
-    assert env.schema_version == 2
+    assert env.schema_version == 3
 
 
 def test_integrity_defaults_to_empty() -> None:
@@ -198,5 +202,79 @@ def test_schema_version_included_in_canonical_json_for_signing() -> None:
     # Force schema_version to a different value without recomputing signature.
     tampered = ProvenanceEnvelope(
         **{**env.model_dump(), "schema_version": 1}
+    )
+    assert not tampered.verify_signature()
+
+
+# -----------------------------------------------------------------
+# CP-2: schema v3 — CapabilityIntegrityRecord.duration_ms
+# -----------------------------------------------------------------
+
+
+def test_integrity_record_duration_ms_defaults_to_none() -> None:
+    """Older CP-1b-style constructions that omit duration_ms still
+    produce a valid record."""
+    rec = CapabilityIntegrityRecord(capability_id="CAP-1", status="success")
+    assert rec.duration_ms is None
+
+
+def test_integrity_record_accepts_duration_ms() -> None:
+    rec = CapabilityIntegrityRecord(
+        capability_id="CAP-1", status="success", duration_ms=12.34
+    )
+    assert rec.duration_ms == 12.34
+
+
+def test_v2_envelope_dict_parses_with_duration_ms_none_on_records() -> None:
+    """A v2-shape envelope (schema_version=2, integrity records without
+    duration_ms) continues to parse; duration_ms defaults to None on
+    each record."""
+    v2_dict = {
+        "request_id": "v2-req",
+        "caller_id": "test",
+        "arrived_at": datetime(2026, 3, 1, tzinfo=timezone.utc).isoformat(),
+        "parent_attestation_id": None,
+        "platform_version": "v2-sha",
+        "capability_chain": ["CAP-1"],
+        "schema_version": 2,
+        "integrity": [
+            {"capability_id": "CAP-1", "status": "success"},
+            {"capability_id": "CAP-2", "status": "success"},
+        ],
+        "signature": "ignored-for-this-test",
+    }
+    parsed = ProvenanceEnvelope.model_validate(v2_dict)
+    assert parsed.schema_version == 2
+    assert len(parsed.integrity) == 2
+    for rec in parsed.integrity:
+        assert rec.duration_ms is None
+
+
+def test_v3_envelope_with_duration_ms_parses_and_signs() -> None:
+    """End-to-end: construct a fresh envelope, stamp with an
+    integrity record carrying duration_ms, verify signature."""
+    env = _make().with_integrity(
+        CapabilityIntegrityRecord(
+            capability_id="CAP-1", status="success", duration_ms=7.5
+        )
+    )
+    assert env.schema_version == 3
+    assert env.integrity[0].duration_ms == 7.5
+    assert env.verify_signature()
+
+
+def test_duration_ms_included_in_canonical_json_for_signing() -> None:
+    """Tampering with a record's duration_ms after signing must
+    invalidate the envelope signature."""
+    env = _make().with_integrity(
+        CapabilityIntegrityRecord(
+            capability_id="CAP-1", status="success", duration_ms=5.0
+        )
+    )
+
+    tampered_records = list(env.model_dump()["integrity"])
+    tampered_records[0]["duration_ms"] = 5000.0
+    tampered = ProvenanceEnvelope(
+        **{**env.model_dump(), "integrity": tampered_records}
     )
     assert not tampered.verify_signature()

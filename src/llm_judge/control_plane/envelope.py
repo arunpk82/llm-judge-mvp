@@ -69,7 +69,7 @@ def compute_signature(payload: dict[str, Any]) -> str:
 
 
 class CapabilityIntegrityRecord(BaseModel):
-    """Per-capability outcome record carried on the envelope (CP-1b).
+    """Per-capability outcome record carried on the envelope.
 
     ``status`` values:
       - ``success``: the capability ran and returned normally.
@@ -77,6 +77,13 @@ class CapabilityIntegrityRecord(BaseModel):
         ``error_message`` describe what happened.
       - ``skipped_upstream_failure``: the capability did not run
         because an earlier capability in the chain failed.
+
+    ``duration_ms`` (schema v3, CP-2): wall-clock milliseconds the
+    capability's wrapper spent on this record. Optional for
+    backward compatibility with v1/v2 envelopes; populated by the
+    Runner from a :class:`~llm_judge.control_plane.observability.Timer`
+    for both success and failure outcomes. ``None`` on
+    ``skipped_upstream_failure`` records (no work ran).
     """
 
     model_config = ConfigDict(frozen=True)
@@ -85,6 +92,7 @@ class CapabilityIntegrityRecord(BaseModel):
     status: Literal["success", "failure", "skipped_upstream_failure"]
     error_type: str | None = None
     error_message: str | None = None
+    duration_ms: float | None = None
 
 
 class ProvenanceEnvelope(BaseModel):
@@ -121,7 +129,7 @@ class ProvenanceEnvelope(BaseModel):
 
     platform_version: str = Field(..., min_length=1)
     capability_chain: list[str] = Field(default_factory=list)
-    schema_version: int = 2
+    schema_version: int = 3
     integrity: list[CapabilityIntegrityRecord] = Field(default_factory=list)
     signature: str = ""
 
@@ -214,7 +222,7 @@ def new_envelope(
         arrived_at=arrived_at,
         parent_attestation_id=parent_attestation_id,
         platform_version=platform_version,
-        schema_version=2,
+        schema_version=3,
     )
     payload = seed._payload_without_signature()
     sig = compute_signature(payload)
