@@ -80,6 +80,33 @@ YAML_LOAD_FAILED_REQUIRED = {
     "error_type": str,
     "error_message": str,
 }
+SUB_CAPABILITY_STARTED_REQUIRED = {
+    "capability_id": str,
+    "sub_capability_id": str,
+    "request_id": str,
+}
+SUB_CAPABILITY_COMPLETED_REQUIRED = {
+    "capability_id": str,
+    "sub_capability_id": str,
+    "request_id": str,
+    "duration_ms": float,
+    "status": str,
+}
+SUB_CAPABILITY_FAILED_REQUIRED = {
+    "capability_id": str,
+    "sub_capability_id": str,
+    "request_id": str,
+    "duration_ms": float,
+    "status": str,
+    "error_type": str,
+    "error_message": str,
+}
+SUB_CAPABILITY_SKIPPED_REQUIRED = {
+    "capability_id": str,
+    "sub_capability_id": str,
+    "request_id": str,
+    "reason": str,
+}
 
 
 def _first_event(
@@ -285,6 +312,89 @@ def test_happy_run_emits_every_expected_event_type(
     seen = {log.get("event") for log in logs}
     missing = expected - seen
     assert not missing, f"happy run did not emit: {missing}"
+
+
+# =====================================================================
+# Sub-capability events: started / completed / failed / skipped
+# =====================================================================
+
+
+def test_sub_capability_started_event_shape() -> None:
+    from llm_judge.control_plane.observability import timed
+
+    @timed("ignored", sub_capability_id="reception", capability_id="CAP-1")
+    def _fn(request_id: str) -> int:
+        return 1
+
+    with capture_logs() as logs:
+        _fn(request_id="se-test-1")
+
+    event = _first_event(logs, "sub_capability_started")
+    _assert_contract(
+        event, SUB_CAPABILITY_STARTED_REQUIRED, "sub_capability_started"
+    )
+    assert event["capability_id"] == "CAP-1"
+    assert event["sub_capability_id"] == "reception"
+    assert event["request_id"] == "se-test-1"
+
+
+def test_sub_capability_completed_event_shape() -> None:
+    from llm_judge.control_plane.observability import timed
+
+    @timed("ignored", sub_capability_id="hashing", capability_id="CAP-1")
+    def _fn(request_id: str) -> int:
+        return 1
+
+    with capture_logs() as logs:
+        _fn(request_id="se-test-2")
+
+    event = _first_event(logs, "sub_capability_completed")
+    _assert_contract(
+        event, SUB_CAPABILITY_COMPLETED_REQUIRED, "sub_capability_completed"
+    )
+    assert event["status"] == "success"
+    assert event["duration_ms"] >= 0.0
+
+
+def test_sub_capability_failed_event_shape() -> None:
+    from llm_judge.control_plane.observability import timed
+
+    @timed("ignored", sub_capability_id="validation", capability_id="CAP-1")
+    def _boom(request_id: str) -> None:
+        raise RuntimeError("subcap injected failure")
+
+    with capture_logs() as logs:
+        with pytest.raises(RuntimeError):
+            _boom(request_id="se-test-3")
+
+    event = _first_event(logs, "sub_capability_failed")
+    _assert_contract(
+        event, SUB_CAPABILITY_FAILED_REQUIRED, "sub_capability_failed"
+    )
+    assert event["status"] == "failure"
+    assert event["error_type"] == "RuntimeError"
+    assert "subcap injected failure" in event["error_message"]
+    assert event["duration_ms"] >= 0.0
+
+
+def test_sub_capability_skipped_event_shape() -> None:
+    from llm_judge.control_plane.observability import emit_sub_capability_skipped
+
+    with capture_logs() as logs:
+        emit_sub_capability_skipped(
+            capability_id="CAP-1",
+            sub_capability_id="discovery",
+            request_id="se-test-4",
+            reason="single_eval_does_not_query_registry",
+        )
+
+    event = _first_event(logs, "sub_capability_skipped")
+    _assert_contract(
+        event, SUB_CAPABILITY_SKIPPED_REQUIRED, "sub_capability_skipped"
+    )
+    assert event["capability_id"] == "CAP-1"
+    assert event["sub_capability_id"] == "discovery"
+    assert event["reason"] == "single_eval_does_not_query_registry"
 
 
 def test_yaml_roundtrip_sanity(tmp_path: Path) -> None:
