@@ -385,6 +385,27 @@ def invoke_cap7(
     return stamped, verdict
 
 
+@timed(
+    "cap5_envelope_reception",
+    sub_capability_id="envelope_reception",
+    capability_id="CAP-5",
+)
+def _cap5_envelope_reception(envelope: ProvenanceEnvelope) -> None:
+    """CAP-5 Envelope reception: enforce that at least one upstream
+    capability outcome has been recorded before writing a manifest.
+
+    CP-1b (horizontal CAP-5) loosened the prior strict pre-check: a
+    Total-degradation run (CAP-1 plus both siblings failed) is a
+    legitimate manifest to write; the integrity trail is the audit.
+    """
+    if not envelope.integrity:
+        raise MissingProvenanceError(
+            "invoke_cap5: envelope.integrity is empty; at least one "
+            "upstream capability outcome must be recorded before "
+            "writing a manifest."
+        )
+
+
 def invoke_cap5(
     envelope: ProvenanceEnvelope,
     verdict: dict[str, Any],
@@ -395,21 +416,13 @@ def invoke_cap5(
     """Write the governed manifest via record_evaluation_manifest, then
     append CAP-5 to the envelope chain.
 
-    CP-1b (horizontal CAP-5): the pre-check now requires only that the
-    envelope carries at least one integrity record — i.e. at least one
-    upstream capability outcome (success, failure, or
-    skipped_upstream_failure) has been recorded. Runner-level fields
-    (request_id, caller_id, arrived_at, platform_version) are always
-    present and are not re-checked. Total-degradation runs (CAP-1 plus
-    both siblings failed) are a legitimate manifest to write; the
-    integrity trail is the audit.
+    Decomposed into 4 instrumented sub-capabilities (Envelope
+    reception, Manifest composition, Persistence, Lineage linking).
+    The 5th portal sub-capability — Query interface — is not engaged
+    on the write path; readers query elsewhere (run-registry walks,
+    manifest fetchers). Behaviour and outputs are unchanged.
     """
-    if not envelope.integrity:
-        raise MissingProvenanceError(
-            "invoke_cap5: envelope.integrity is empty; at least one "
-            "upstream capability outcome must be recorded before "
-            "writing a manifest."
-        )
+    _cap5_envelope_reception(envelope)
 
     manifest_id = record_evaluation_manifest(
         envelope=envelope,
@@ -419,5 +432,17 @@ def invoke_cap5(
         rubric_version=DEFAULT_RUBRIC_VERSION,
         runs_root=runs_root,
     )
+
+    # Query interface is the read-side surface (run registry queries,
+    # manifest lookups). The write path never engages it; emit the
+    # skipped signal so batch aggregation reports honest 0/N
+    # engagement rather than a missing event.
+    emit_sub_capability_skipped(
+        capability_id="CAP-5",
+        sub_capability_id="query_interface",
+        request_id=envelope.request_id,
+        reason="manifest_write_does_not_query",
+    )
+
     stamped = envelope.stamped(capability="CAP-5")
     return stamped, manifest_id
