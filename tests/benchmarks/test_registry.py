@@ -1,8 +1,9 @@
 """Tests for the adapter registry.
 
 The seven canonical connectors must be pre-registered at module
-import time. ``get`` raises :class:`BenchmarkNotFoundError` with a
-helpful "available" list for unknown names. ``list_benchmarks``
+import time. ``build`` invokes the registered factory and returns
+a configured adapter instance. ``BenchmarkNotFoundError`` is raised
+with a helpful "available" list for unknown names. ``list_benchmarks``
 returns the names alphabetically sorted.
 """
 
@@ -11,9 +12,10 @@ from __future__ import annotations
 import pytest
 
 from llm_judge.benchmarks import BenchmarkAdapter
+from llm_judge.benchmarks.ragtruth import RAGTruthAdapter
 from llm_judge.benchmarks.registry import (
     BenchmarkNotFoundError,
-    get,
+    build,
     list_benchmarks,
     register,
 )
@@ -44,17 +46,17 @@ def test_list_benchmarks_returns_sorted_names() -> None:
     )
 
 
-def test_get_returns_subclass_of_benchmark_adapter() -> None:
+def test_build_returns_instance_of_benchmark_adapter() -> None:
     for canonical in CANONICAL_NAMES:
-        cls = get(canonical)
-        assert issubclass(cls, BenchmarkAdapter), (
-            f"{canonical!r} → {cls!r} is not a BenchmarkAdapter subclass"
+        instance = build(canonical)
+        assert isinstance(instance, BenchmarkAdapter), (
+            f"{canonical!r} → {instance!r} is not a BenchmarkAdapter instance"
         )
 
 
-def test_get_unknown_name_raises_with_available_list() -> None:
+def test_build_unknown_name_raises_benchmark_not_found_error() -> None:
     with pytest.raises(BenchmarkNotFoundError) as exc_info:
-        get("nonexistent_benchmark_xyz")
+        build("nonexistent_benchmark_xyz")
     msg = str(exc_info.value)
     assert "nonexistent_benchmark_xyz" in msg
     assert "Available:" in msg
@@ -62,8 +64,8 @@ def test_get_unknown_name_raises_with_available_list() -> None:
     assert "ragtruth_50" in msg
 
 
-def test_register_and_get_round_trip() -> None:
-    """Registering a custom name resolves through get."""
+def test_register_accepts_factory() -> None:
+    """Registering a zero-arg factory resolves through build."""
 
     class _Probe(BenchmarkAdapter):
         def metadata(self):  # type: ignore[override]
@@ -72,9 +74,10 @@ def test_register_and_get_round_trip() -> None:
         def load_cases(self, *, split="test", max_cases=None):  # type: ignore[override]
             raise NotImplementedError
 
-    register("registry_test_probe", _Probe)
+    sentinel = _Probe()
+    register("registry_test_probe", lambda: sentinel)
     try:
-        assert get("registry_test_probe") is _Probe
+        assert build("registry_test_probe") is sentinel
         assert "registry_test_probe" in list_benchmarks()
     finally:
         # Clean up — registries are process-global; tests must restore state.
@@ -84,7 +87,7 @@ def test_register_and_get_round_trip() -> None:
 
 
 def test_register_last_write_wins() -> None:
-    """Re-registering a name replaces the previous class."""
+    """Re-registering a name replaces the previous factory."""
 
     class _A(BenchmarkAdapter):
         def metadata(self):  # type: ignore[override]
@@ -103,8 +106,28 @@ def test_register_last_write_wins() -> None:
     register("registry_test_overwrite", _A)
     register("registry_test_overwrite", _B)
     try:
-        assert get("registry_test_overwrite") is _B
+        assert isinstance(build("registry_test_overwrite"), _B)
     finally:
         from llm_judge.benchmarks.registry import _REGISTRY
 
         _REGISTRY.pop("registry_test_overwrite", None)
+
+
+def test_ragtruth_50_factory_applies_filter() -> None:
+    """build('ragtruth_50') returns an adapter pre-restricted to the 50-case slice.
+
+    The factory must call ``set_benchmark_filter`` with the canonical
+    benchmark JSON, leaving the adapter with a populated 50-id filter
+    set so that ``load_cases`` yields exactly the canonical slice
+    rather than the full ~1170-case test dump.
+    """
+    adapter = build("ragtruth_50")
+    assert isinstance(adapter, RAGTruthAdapter)
+    # _benchmark_ids is the internal filter populated by set_benchmark_filter.
+    # If the factory failed to apply the filter it would still be None.
+    assert adapter._benchmark_ids is not None, (
+        "ragtruth_50 factory did not apply set_benchmark_filter"
+    )
+    assert len(adapter._benchmark_ids) == 50, (
+        f"expected 50 canonical response IDs; got {len(adapter._benchmark_ids)}"
+    )

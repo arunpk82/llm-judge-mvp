@@ -23,9 +23,8 @@ from itertools import islice
 from pathlib import Path
 from typing import Iterator
 
-from llm_judge.benchmarks import BenchmarkAdapter, BenchmarkCase
-from llm_judge.benchmarks.registry import BenchmarkNotFoundError
-from llm_judge.benchmarks.registry import get as get_benchmark
+from llm_judge.benchmarks import BenchmarkCase
+from llm_judge.benchmarks.registry import BenchmarkNotFoundError, build
 from llm_judge.control_plane.batch_aggregation import aggregate_batch
 from llm_judge.control_plane.batch_input import BatchCase, load_batch_file
 from llm_judge.control_plane.batch_runner import BatchRunner
@@ -36,13 +35,6 @@ from llm_judge.control_plane.types import SingleEvaluationRequest
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from _batch_html_report import render_batch_report  # noqa: E402
 from _batch_terminal import BatchTerminalRenderer  # noqa: E402
-
-# Canonical RAGTruth-50 subset definition. When the user picks the
-# ragtruth_50 benchmark, we narrow the adapter to this 50-case set
-# rather than the full ~1170-case RAGTruth dump.
-RAGTRUTH_50_BENCHMARK_PATH = Path(
-    "datasets/benchmarks/ragtruth/ragtruth_50_benchmark.json"
-)
 
 
 def _benchmark_case_to_request(
@@ -94,26 +86,12 @@ def _batch_case_to_request(case: BatchCase) -> SingleEvaluationRequest:
     )
 
 
-def _build_benchmark_adapter(name: str) -> BenchmarkAdapter:
-    """Instantiate via the registry; apply ragtruth_50 filtering."""
-    adapter_class = get_benchmark(name)
-    adapter = adapter_class()
-    if name == "ragtruth_50" and RAGTRUTH_50_BENCHMARK_PATH.exists():
-        # The class is RAGTruthAdapter; the filter restricts load_cases
-        # to the canonical 50-id subset. Without it the adapter would
-        # iterate the full ~1170-case dump.
-        set_filter = getattr(adapter, "set_benchmark_filter", None)
-        if callable(set_filter):
-            set_filter(RAGTRUTH_50_BENCHMARK_PATH)
-    return adapter
-
-
 def _resolve_cases(
     args: argparse.Namespace,
 ) -> tuple[Iterator[SingleEvaluationRequest], str]:
     """Return ``(cases_iter, source_label)`` based on the parsed args."""
     if args.benchmark:
-        adapter = _build_benchmark_adapter(args.benchmark)
+        adapter = build(args.benchmark)
         bench_iter = adapter.load_cases()
         cases_iter: Iterator[SingleEvaluationRequest] = (
             _benchmark_case_to_request(c) for c in bench_iter

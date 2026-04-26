@@ -263,8 +263,9 @@ class TestRunRagtruth50Serializer:
                 pass
 
         monkeypatch.setattr(module, "REPO_ROOT", tmp_path)
-        monkeypatch.setattr(
-            "llm_judge.benchmarks.ragtruth.RAGTruthAdapter", lambda: _StubAdapter()
+        from llm_judge.benchmarks import registry as _registry
+        monkeypatch.setitem(
+            _registry._REGISTRY, "ragtruth_50", lambda: _StubAdapter()
         )
         monkeypatch.setattr(
             "llm_judge.benchmarks.runner.run_benchmark",
