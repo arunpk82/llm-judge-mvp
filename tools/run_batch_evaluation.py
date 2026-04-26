@@ -26,6 +26,7 @@ from typing import Iterator
 from llm_judge.benchmarks import BenchmarkAdapter, BenchmarkCase
 from llm_judge.benchmarks.registry import BenchmarkNotFoundError
 from llm_judge.benchmarks.registry import get as get_benchmark
+from llm_judge.control_plane.batch_aggregation import aggregate_batch
 from llm_judge.control_plane.batch_input import BatchCase, load_batch_file
 from llm_judge.control_plane.batch_runner import BatchRunner
 from llm_judge.control_plane.runner import PlatformRunner
@@ -33,6 +34,7 @@ from llm_judge.control_plane.types import SingleEvaluationRequest
 
 # pylint: disable=wrong-import-position
 sys.path.insert(0, str(Path(__file__).resolve().parent))
+from _batch_html_report import render_batch_report  # noqa: E402
 from _batch_terminal import BatchTerminalRenderer  # noqa: E402
 
 # Canonical RAGTruth-50 subset definition. When the user picks the
@@ -187,11 +189,21 @@ def main(argv: list[str] | None = None) -> int:
     finally:
         renderer.detach()
 
-    # Final pointer line — the terminal renderer already printed the
-    # success/failure breakdown via the Batch complete panel; this is
-    # just the artifact path so the user knows where to look.
+    aggregation = aggregate_batch(result, events=renderer.captured_events)
+    # Use a fresh Console for the report so the live-progress / structlog
+    # noise the terminal renderer captured during the run doesn't bleed
+    # into the static report. The renderer's record buffer is throwaway.
+    render_batch_report(
+        batch_result=result,
+        aggregation=aggregation,
+        output_dir=output_dir,
+        html_path=output_dir / "aggregated_report.html",
+        md_path=output_dir / "aggregated_report.md",
+    )
+
     print()
     print(f"output: {output_dir}/")
+    print(f"report: {output_dir / 'aggregated_report.html'}")
     if result.error_cases > 0:
         return 1
     return 0
