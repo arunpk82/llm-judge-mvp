@@ -1,0 +1,13 @@
+schema_version: 1
+cases:
+  - case_id: example_001
+    response: The Eiffel Tower is in Paris.
+    source: The Eiffel Tower is a wrought-iron lattice tower in Paris, France.
+  - case_id: example_002
+    response: Water boils at 100 degrees Celsius.
+    source: At standard atmospheric pressure, water boils at 100°C (212°F).
+  - case_id: example_003
+    response: The capital of France is London.
+    source: The capital of France is Paris.
+metadata:
+  description: Example batch input demonstrating the v1 schema.
