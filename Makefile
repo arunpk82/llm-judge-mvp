@@ -6,7 +6,8 @@
 .PHONY: help install lint typecheck test baseline-validate pr-gate diff baseline-dry-run baseline-promote \
         registry-list registry-show registry-trend eval preflight clean git-start git-ship git-merge validate \
         docker-build docker-deploy docker-status docker-validate docker-down docker-reset \
-        preseed benchmark funnel calibrate demo
+        preseed benchmark funnel calibrate demo \
+        demo-batch demo-batch-quick demo-batch-benchmark demo-batch-file
 
 # Defaults (override like: make SUITE=golden RUBRIC=chat_quality ...)
 SUITE ?= math_basic
@@ -26,6 +27,8 @@ help:
 	@echo ""
 	@echo "Available targets:"
 	@echo "  make demo                  End-to-end Control Plane walkthrough"
+	@echo "  make demo-batch            Full RAGTruth-50 batch run (~7-10 min)"
+	@echo "  make demo-batch-quick      First 10 RAGTruth-50 cases (~1-2 min)"
 	@echo "  make install               Install dependencies"
 	@echo "  make lint                  Run Ruff"
 	@echo "  make typecheck             Run mypy"
@@ -382,3 +385,32 @@ calibrate-l1:
 
 demo:
 	@poetry run python tools/demo_platform.py
+
+# ----------------------------------------
+# Control Plane batch demo (CP-3)
+# ----------------------------------------
+
+# `make demo-batch` is the canonical Runner-governed batch path.
+# `tools/run_ragtruth50.py` (under `make benchmark`) is a legacy
+# script that bypasses the Control Plane and is being retired —
+# prefer demo-batch / demo-batch-quick for any new work.
+
+demo-batch:
+	@poetry run python tools/run_batch_evaluation.py --benchmark ragtruth_50
+
+demo-batch-quick:
+	@poetry run python tools/run_batch_evaluation.py --benchmark ragtruth_50 --limit 10
+
+demo-batch-benchmark:
+	@if [ -z "$(BENCHMARK)" ]; then \
+		echo "ERROR: pass BENCHMARK=<name>. Example: make demo-batch-benchmark BENCHMARK=halueval"; \
+		exit 1; \
+	fi
+	@poetry run python tools/run_batch_evaluation.py --benchmark $(BENCHMARK)
+
+demo-batch-file:
+	@if [ -z "$(FILE)" ]; then \
+		echo "ERROR: pass FILE=<path>. Example: make demo-batch-file FILE=examples/batch_input_example.yaml"; \
+		exit 1; \
+	fi
+	@poetry run python tools/run_batch_evaluation.py --file $(FILE)
