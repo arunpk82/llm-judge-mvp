@@ -80,6 +80,59 @@ YAML_LOAD_FAILED_REQUIRED = {
     "error_type": str,
     "error_message": str,
 }
+SUB_CAPABILITY_STARTED_REQUIRED = {
+    "capability_id": str,
+    "sub_capability_id": str,
+    "request_id": str,
+}
+SUB_CAPABILITY_COMPLETED_REQUIRED = {
+    "capability_id": str,
+    "sub_capability_id": str,
+    "request_id": str,
+    "duration_ms": float,
+    "status": str,
+}
+SUB_CAPABILITY_FAILED_REQUIRED = {
+    "capability_id": str,
+    "sub_capability_id": str,
+    "request_id": str,
+    "duration_ms": float,
+    "status": str,
+    "error_type": str,
+    "error_message": str,
+}
+SUB_CAPABILITY_SKIPPED_REQUIRED = {
+    "capability_id": str,
+    "sub_capability_id": str,
+    "request_id": str,
+    "reason": str,
+}
+BATCH_STARTED_REQUIRED = {
+    "batch_id": str,
+    "total_cases": int,
+    "source": str,
+}
+BATCH_CASE_STARTED_REQUIRED = {
+    "batch_id": str,
+    "case_id": str,
+    "case_index": int,
+    "total_cases": int,
+}
+BATCH_CASE_COMPLETED_REQUIRED = {
+    "batch_id": str,
+    "case_id": str,
+    "case_index": int,
+    "status": str,
+    "duration_ms": float,
+}
+BATCH_COMPLETED_REQUIRED = {
+    "batch_id": str,
+    "total_cases": int,
+    "successful": int,
+    "failed": int,
+    "error": int,
+    "duration_ms": float,
+}
 
 
 def _first_event(
@@ -285,6 +338,194 @@ def test_happy_run_emits_every_expected_event_type(
     seen = {log.get("event") for log in logs}
     missing = expected - seen
     assert not missing, f"happy run did not emit: {missing}"
+
+
+# =====================================================================
+# Sub-capability events: started / completed / failed / skipped
+# =====================================================================
+
+
+def test_sub_capability_started_event_shape() -> None:
+    from llm_judge.control_plane.observability import timed
+
+    @timed("ignored", sub_capability_id="reception", capability_id="CAP-1")
+    def _fn(request_id: str) -> int:
+        return 1
+
+    with capture_logs() as logs:
+        _fn(request_id="se-test-1")
+
+    event = _first_event(logs, "sub_capability_started")
+    _assert_contract(
+        event, SUB_CAPABILITY_STARTED_REQUIRED, "sub_capability_started"
+    )
+    assert event["capability_id"] == "CAP-1"
+    assert event["sub_capability_id"] == "reception"
+    assert event["request_id"] == "se-test-1"
+
+
+def test_sub_capability_completed_event_shape() -> None:
+    from llm_judge.control_plane.observability import timed
+
+    @timed("ignored", sub_capability_id="hashing", capability_id="CAP-1")
+    def _fn(request_id: str) -> int:
+        return 1
+
+    with capture_logs() as logs:
+        _fn(request_id="se-test-2")
+
+    event = _first_event(logs, "sub_capability_completed")
+    _assert_contract(
+        event, SUB_CAPABILITY_COMPLETED_REQUIRED, "sub_capability_completed"
+    )
+    assert event["status"] == "success"
+    assert event["duration_ms"] >= 0.0
+
+
+def test_sub_capability_failed_event_shape() -> None:
+    from llm_judge.control_plane.observability import timed
+
+    @timed("ignored", sub_capability_id="validation", capability_id="CAP-1")
+    def _boom(request_id: str) -> None:
+        raise RuntimeError("subcap injected failure")
+
+    with capture_logs() as logs:
+        with pytest.raises(RuntimeError):
+            _boom(request_id="se-test-3")
+
+    event = _first_event(logs, "sub_capability_failed")
+    _assert_contract(
+        event, SUB_CAPABILITY_FAILED_REQUIRED, "sub_capability_failed"
+    )
+    assert event["status"] == "failure"
+    assert event["error_type"] == "RuntimeError"
+    assert "subcap injected failure" in event["error_message"]
+    assert event["duration_ms"] >= 0.0
+
+
+def test_sub_capability_skipped_event_shape() -> None:
+    from llm_judge.control_plane.observability import emit_sub_capability_skipped
+
+    with capture_logs() as logs:
+        emit_sub_capability_skipped(
+            capability_id="CAP-1",
+            sub_capability_id="discovery",
+            request_id="se-test-4",
+            reason="single_eval_does_not_query_registry",
+        )
+
+    event = _first_event(logs, "sub_capability_skipped")
+    _assert_contract(
+        event, SUB_CAPABILITY_SKIPPED_REQUIRED, "sub_capability_skipped"
+    )
+    assert event["capability_id"] == "CAP-1"
+    assert event["sub_capability_id"] == "discovery"
+    assert event["reason"] == "single_eval_does_not_query_registry"
+
+
+# =====================================================================
+# Batch lifecycle events: started / case_started / case_completed / completed
+# =====================================================================
+
+
+def _batch_runner(tmp_path: Path):
+    from llm_judge.control_plane.batch_runner import BatchRunner
+
+    runner = PlatformRunner(
+        platform_version="batch-contract-sha",
+        transient_root=tmp_path / "transient",
+        runs_root=tmp_path / "runs",
+    )
+    return BatchRunner(runner)
+
+
+def _two_cases() -> list[SingleEvaluationRequest]:
+    return [
+        SingleEvaluationRequest(
+            response="Paris is the capital of France.",
+            source="Paris is the capital of France and its largest city.",
+            caller_id="batch-contract-test",
+        ),
+        SingleEvaluationRequest(
+            response="Water boils at 100 C.",
+            source="Water boils at 100 C at standard pressure.",
+            caller_id="batch-contract-test",
+        ),
+    ]
+
+
+def test_batch_started_event_shape(tmp_path: Path) -> None:
+    batch_runner = _batch_runner(tmp_path)
+    with capture_logs() as logs:
+        batch_runner.run_batch(
+            cases=_two_cases(),
+            batch_id="batch-test-1",
+            output_dir=tmp_path / "batch_runs" / "b1",
+            source="benchmark:test_synthetic",
+        )
+
+    event = _first_event(logs, "batch_started")
+    _assert_contract(event, BATCH_STARTED_REQUIRED, "batch_started")
+    assert event["batch_id"] == "batch-test-1"
+    assert event["total_cases"] == 2
+    assert event["source"] == "benchmark:test_synthetic"
+
+
+def test_batch_case_started_event_shape(tmp_path: Path) -> None:
+    batch_runner = _batch_runner(tmp_path)
+    with capture_logs() as logs:
+        batch_runner.run_batch(
+            cases=_two_cases(),
+            batch_id="batch-test-2",
+            output_dir=tmp_path / "batch_runs" / "b2",
+            source="benchmark:test_synthetic",
+        )
+
+    event = _first_event(logs, "batch_case_started")
+    _assert_contract(
+        event, BATCH_CASE_STARTED_REQUIRED, "batch_case_started"
+    )
+    assert event["batch_id"] == "batch-test-2"
+    assert event["case_index"] == 0
+    assert event["total_cases"] == 2
+
+
+def test_batch_case_completed_event_shape(tmp_path: Path) -> None:
+    batch_runner = _batch_runner(tmp_path)
+    with capture_logs() as logs:
+        batch_runner.run_batch(
+            cases=_two_cases(),
+            batch_id="batch-test-3",
+            output_dir=tmp_path / "batch_runs" / "b3",
+            source="benchmark:test_synthetic",
+        )
+
+    event = _first_event(logs, "batch_case_completed")
+    _assert_contract(
+        event, BATCH_CASE_COMPLETED_REQUIRED, "batch_case_completed"
+    )
+    assert event["status"] in ("success", "failure", "error")
+    assert event["duration_ms"] >= 0.0
+
+
+def test_batch_completed_event_shape(tmp_path: Path) -> None:
+    batch_runner = _batch_runner(tmp_path)
+    with capture_logs() as logs:
+        batch_runner.run_batch(
+            cases=_two_cases(),
+            batch_id="batch-test-4",
+            output_dir=tmp_path / "batch_runs" / "b4",
+            source="benchmark:test_synthetic",
+        )
+
+    event = _first_event(logs, "batch_completed")
+    _assert_contract(event, BATCH_COMPLETED_REQUIRED, "batch_completed")
+    assert event["batch_id"] == "batch-test-4"
+    assert event["total_cases"] == 2
+    assert (
+        event["successful"] + event["failed"] + event["error"] == 2
+    ), "successful + failed + error must equal total_cases"
+    assert event["duration_ms"] >= 0.0
 
 
 def test_yaml_roundtrip_sanity(tmp_path: Path) -> None:

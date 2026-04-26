@@ -21,6 +21,11 @@ import yaml
 
 from llm_judge.calibration.hallucination import check_hallucination
 from llm_judge.control_plane.envelope import ProvenanceEnvelope
+from llm_judge.control_plane.observability import (
+    emit_event,
+    emit_sub_capability_skipped,
+    timed,
+)
 from llm_judge.control_plane.types import (
     MissingProvenanceError,
     SingleEvaluationRequest,
@@ -52,16 +57,15 @@ def _sha256_file(path: Path) -> str:
     return f"sha256:{h.hexdigest()}"
 
 
-def invoke_cap1(
+@timed("cap1_reception", sub_capability_id="reception", capability_id="CAP-1")
+def _cap1_reception(
     envelope: ProvenanceEnvelope,
     request: SingleEvaluationRequest,
-    *,
-    transient_root: Path | None = None,
-) -> tuple[ProvenanceEnvelope, ResolvedDataset]:
-    """Construct a one-row transient dataset, pass it through CAP-1's
-    real registration path, stamp dataset_registry_id + input_hash.
-    """
-    root = (transient_root or TRANSIENT_DATASETS_ROOT).resolve()
+    root: Path,
+) -> tuple[str, Path, Path]:
+    """CAP-1 Reception: allocate transient dataset_id, create the run
+    directory, and write the one-row JSONL payload that downstream
+    sub-capabilities operate on. Returns (dataset_id, ds_dir, data_path)."""
     dataset_id = f"transient_{uuid.uuid4().hex[:12]}"
     ds_dir = root / dataset_id
     ds_dir.mkdir(parents=True, exist_ok=True)
@@ -76,8 +80,27 @@ def invoke_cap1(
     data_path.write_text(
         json.dumps(row, ensure_ascii=False) + "\n", encoding="utf-8"
     )
-    content_hash = _sha256_file(data_path)
+    return dataset_id, ds_dir, data_path
 
+
+@timed("cap1_hashing", sub_capability_id="hashing", capability_id="CAP-1")
+def _cap1_hashing(envelope: ProvenanceEnvelope, data_path: Path) -> str:
+    """CAP-1 Hashing: compute the content-addressed digest of the
+    transient dataset file. Returns the sha256 string."""
+    del envelope  # only here so @timed can extract request_id
+    return _sha256_file(data_path)
+
+
+@timed("cap1_validation", sub_capability_id="validation", capability_id="CAP-1")
+def _cap1_validation(
+    envelope: ProvenanceEnvelope,
+    dataset_id: str,
+    ds_dir: Path,
+    content_hash: str,
+) -> DatasetMetadata:
+    """CAP-1 Validation: build + persist a DatasetMetadata record
+    for the transient dataset. Returns the validated metadata."""
+    del envelope  # only here so @timed can extract request_id
     metadata = DatasetMetadata(
         dataset_id=dataset_id,
         version=DEFAULT_RUBRIC_VERSION,
@@ -90,18 +113,178 @@ def invoke_cap1(
         yaml.safe_dump(metadata.model_dump(), sort_keys=True),
         encoding="utf-8",
     )
+    return metadata
 
+
+@timed("cap1_registration", sub_capability_id="registration", capability_id="CAP-1")
+def _cap1_registration(
+    envelope: ProvenanceEnvelope,
+    dataset_id: str,
+    root: Path,
+) -> ResolvedDataset:
+    """CAP-1 Registration: register the transient dataset with the
+    DatasetRegistry and resolve the handle for downstream callers."""
+    del envelope  # only here so @timed can extract request_id
     registry = DatasetRegistry(root_dir=root)
-    resolved = registry.resolve(
+    return registry.resolve(
         dataset_id=dataset_id, version=DEFAULT_RUBRIC_VERSION
     )
 
-    stamped = envelope.stamped(
+
+@timed(
+    "cap1_lineage_tracking",
+    sub_capability_id="lineage_tracking",
+    capability_id="CAP-1",
+)
+def _cap1_lineage_tracking(
+    envelope: ProvenanceEnvelope,
+    dataset_id: str,
+    content_hash: str,
+) -> ProvenanceEnvelope:
+    """CAP-1 Lineage tracking: stamp the envelope with
+    dataset_registry_id + input_hash so downstream caps can verify
+    upstream provenance."""
+    return envelope.stamped(
         capability="CAP-1",
         dataset_registry_id=dataset_id,
         input_hash=content_hash,
     )
+
+
+def invoke_cap1(
+    envelope: ProvenanceEnvelope,
+    request: SingleEvaluationRequest,
+    *,
+    transient_root: Path | None = None,
+) -> tuple[ProvenanceEnvelope, ResolvedDataset]:
+    """Construct a one-row transient dataset, pass it through CAP-1's
+    real registration path, stamp dataset_registry_id + input_hash.
+
+    Decomposed into 5 instrumented sub-capabilities (Reception,
+    Hashing, Validation, Registration, Lineage tracking). The 6th
+    portal sub-capability — Discovery — is not engaged in the
+    single-eval flow and is reported via ``sub_capability_skipped``
+    so batch aggregation can render an honest 0/N engagement count.
+    Behaviour and outputs are identical to the pre-instrumentation
+    implementation.
+    """
+    root = (transient_root or TRANSIENT_DATASETS_ROOT).resolve()
+    dataset_id, ds_dir, data_path = _cap1_reception(envelope, request, root)
+    content_hash = _cap1_hashing(envelope, data_path)
+    _cap1_validation(envelope, dataset_id, ds_dir, content_hash)
+    resolved = _cap1_registration(envelope, dataset_id, root)
+    stamped = _cap1_lineage_tracking(envelope, dataset_id, content_hash)
+
+    # Discovery is registry-side lookup the platform exposes for ad-hoc
+    # consumers; the single-eval Runner constructs a transient dataset
+    # rather than querying the registry, so this sub-cap never engages.
+    emit_sub_capability_skipped(
+        capability_id="CAP-1",
+        sub_capability_id="discovery",
+        request_id=envelope.request_id,
+        reason="single_eval_does_not_query_registry",
+    )
+
     return stamped, resolved
+
+
+@timed("cap2_rule_loading", sub_capability_id="rule_loading", capability_id="CAP-2")
+def _cap2_rule_loading(
+    envelope: ProvenanceEnvelope,
+    rubric_id: str,
+    rubric_version: str,
+) -> Any:
+    """CAP-2 Rule loading: resolve the rubric's rule plan."""
+    del envelope  # only here so @timed can extract request_id
+    return load_plan_for_rubric(rubric_id, rubric_version)
+
+
+@timed(
+    "cap2_input_matching",
+    sub_capability_id="input_matching",
+    capability_id="CAP-2",
+)
+def _cap2_input_matching(
+    envelope: ProvenanceEnvelope,
+    plan: Any,
+    request: SingleEvaluationRequest,
+) -> Any:
+    """CAP-2 Input matching: run the rule plan against a RuleContext
+    built from the evaluation request. Returns the rule-engine result."""
+    del envelope  # only here so @timed can extract request_id
+    req = PredictRequest(
+        conversation=[Message(role="user", content=request.source)],
+        candidate_answer=request.response,
+        rubric_id=DEFAULT_RUBRIC_ID,
+    )
+    ctx = RuleContext(request=req)
+    return run_rules(ctx, plan)
+
+
+@timed(
+    "cap2_evidence_capture",
+    sub_capability_id="evidence_capture",
+    capability_id="CAP-2",
+)
+def _cap2_evidence_capture(
+    envelope: ProvenanceEnvelope, result: Any
+) -> list[str]:
+    """CAP-2 Evidence capture: extract rule-id evidence from the
+    engine result. Returns the list of fired rule ids."""
+    del envelope  # only here so @timed can extract request_id
+    flags = list(getattr(result, "flags", []) or [])
+    rules_fired: list[str] = []
+    for flag in flags:
+        fid = getattr(flag, "id", None)
+        if isinstance(fid, str) and fid:
+            rules_fired.append(fid)
+    return rules_fired
+
+
+@timed(
+    "cap2_result_emission",
+    sub_capability_id="result_emission",
+    capability_id="CAP-2",
+)
+def _cap2_result_emission(
+    envelope: ProvenanceEnvelope,
+    plan_version: str,
+    rules_fired: list[str],
+) -> ProvenanceEnvelope:
+    """CAP-2 Result emission: stamp the envelope with rule_set_version
+    and rules_fired so downstream caps observe the rule outcomes."""
+    return envelope.stamped(
+        capability="CAP-2",
+        rule_set_version=plan_version,
+        rules_fired=rules_fired,
+    )
+
+
+def _emit_pattern_compilation_soft(envelope: ProvenanceEnvelope) -> None:
+    """Emit fire-rate signals for the SOFT pattern_compilation sub-cap.
+
+    Pattern compilation happens inside load_plan_for_rubric
+    (rules/engine.py); it cannot be timed separately without
+    refactoring the engine, which is out of scope for CP-3 (D1: do
+    not expand scope). We emit started+completed events with
+    ``duration_ms=0.0`` to keep the fire-rate aggregation honest:
+    the boundary exists logically, even though this layer cannot
+    observe its duration.
+    """
+    emit_event(
+        "sub_capability_started",
+        capability_id="CAP-2",
+        sub_capability_id="pattern_compilation",
+        request_id=envelope.request_id,
+    )
+    emit_event(
+        "sub_capability_completed",
+        capability_id="CAP-2",
+        sub_capability_id="pattern_compilation",
+        request_id=envelope.request_id,
+        duration_ms=0.0,
+        status="success",
+    )
 
 
 def invoke_cap2(
@@ -111,6 +294,13 @@ def invoke_cap2(
 ) -> tuple[ProvenanceEnvelope, list[str]]:
     """Load the rubric's rule plan, run rules against a RuleContext
     built from the request, stamp rule_set_version + rules_fired.
+
+    Decomposed into the 5 portal sub-capabilities (Rule loading,
+    Pattern compilation, Input matching, Evidence capture, Result
+    emission). Pattern compilation is SOFT — it lives inside
+    ``load_plan_for_rubric`` and emits fire-rate signals only.
+    Behaviour and outputs are identical to the pre-instrumentation
+    implementation.
     """
     if not envelope.dataset_registry_id:
         raise MissingProvenanceError(
@@ -119,27 +309,11 @@ def invoke_cap2(
         )
     del dataset_handle  # CAP-2 uses the request directly; kept for symmetry
 
-    plan = load_plan_for_rubric(DEFAULT_RUBRIC_ID, DEFAULT_RUBRIC_VERSION)
-    req = PredictRequest(
-        conversation=[Message(role="user", content=request.source)],
-        candidate_answer=request.response,
-        rubric_id=DEFAULT_RUBRIC_ID,
-    )
-    ctx = RuleContext(request=req)
-
-    result = run_rules(ctx, plan)
-    flags = list(getattr(result, "flags", []) or [])
-    rules_fired: list[str] = []
-    for flag in flags:
-        fid = getattr(flag, "id", None)
-        if isinstance(fid, str) and fid:
-            rules_fired.append(fid)
-
-    stamped = envelope.stamped(
-        capability="CAP-2",
-        rule_set_version=plan.version,
-        rules_fired=rules_fired,
-    )
+    plan = _cap2_rule_loading(envelope, DEFAULT_RUBRIC_ID, DEFAULT_RUBRIC_VERSION)
+    _emit_pattern_compilation_soft(envelope)
+    result = _cap2_input_matching(envelope, plan, request)
+    rules_fired = _cap2_evidence_capture(envelope, result)
+    stamped = _cap2_result_emission(envelope, plan.version, rules_fired)
     return stamped, rules_fired
 
 
@@ -211,6 +385,27 @@ def invoke_cap7(
     return stamped, verdict
 
 
+@timed(
+    "cap5_envelope_reception",
+    sub_capability_id="envelope_reception",
+    capability_id="CAP-5",
+)
+def _cap5_envelope_reception(envelope: ProvenanceEnvelope) -> None:
+    """CAP-5 Envelope reception: enforce that at least one upstream
+    capability outcome has been recorded before writing a manifest.
+
+    CP-1b (horizontal CAP-5) loosened the prior strict pre-check: a
+    Total-degradation run (CAP-1 plus both siblings failed) is a
+    legitimate manifest to write; the integrity trail is the audit.
+    """
+    if not envelope.integrity:
+        raise MissingProvenanceError(
+            "invoke_cap5: envelope.integrity is empty; at least one "
+            "upstream capability outcome must be recorded before "
+            "writing a manifest."
+        )
+
+
 def invoke_cap5(
     envelope: ProvenanceEnvelope,
     verdict: dict[str, Any],
@@ -221,21 +416,13 @@ def invoke_cap5(
     """Write the governed manifest via record_evaluation_manifest, then
     append CAP-5 to the envelope chain.
 
-    CP-1b (horizontal CAP-5): the pre-check now requires only that the
-    envelope carries at least one integrity record — i.e. at least one
-    upstream capability outcome (success, failure, or
-    skipped_upstream_failure) has been recorded. Runner-level fields
-    (request_id, caller_id, arrived_at, platform_version) are always
-    present and are not re-checked. Total-degradation runs (CAP-1 plus
-    both siblings failed) are a legitimate manifest to write; the
-    integrity trail is the audit.
+    Decomposed into 4 instrumented sub-capabilities (Envelope
+    reception, Manifest composition, Persistence, Lineage linking).
+    The 5th portal sub-capability — Query interface — is not engaged
+    on the write path; readers query elsewhere (run-registry walks,
+    manifest fetchers). Behaviour and outputs are unchanged.
     """
-    if not envelope.integrity:
-        raise MissingProvenanceError(
-            "invoke_cap5: envelope.integrity is empty; at least one "
-            "upstream capability outcome must be recorded before "
-            "writing a manifest."
-        )
+    _cap5_envelope_reception(envelope)
 
     manifest_id = record_evaluation_manifest(
         envelope=envelope,
@@ -245,5 +432,17 @@ def invoke_cap5(
         rubric_version=DEFAULT_RUBRIC_VERSION,
         runs_root=runs_root,
     )
+
+    # Query interface is the read-side surface (run registry queries,
+    # manifest lookups). The write path never engages it; emit the
+    # skipped signal so batch aggregation reports honest 0/N
+    # engagement rather than a missing event.
+    emit_sub_capability_skipped(
+        capability_id="CAP-5",
+        sub_capability_id="query_interface",
+        request_id=envelope.request_id,
+        reason="manifest_write_does_not_query",
+    )
+
     stamped = envelope.stamped(capability="CAP-5")
     return stamped, manifest_id

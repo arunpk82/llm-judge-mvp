@@ -115,10 +115,16 @@ def _extract_request_id(args: tuple[Any, ...], kwargs: dict[str, Any]) -> str | 
     return None
 
 
-def timed(event_name: str) -> Callable[[F], F]:
+def timed(
+    event_name: str,
+    *,
+    sub_capability_id: str | None = None,
+    capability_id: str | None = None,
+) -> Callable[[F], F]:
     """Decorator factory that times a function and emits events.
 
-    Emits three events:
+    Default mode (``sub_capability_id`` not set) emits three events
+    per call:
       * ``<event_name>_started`` on entry (fields: request_id if found)
       * ``<event_name>_completed`` on successful return
         (fields: duration_ms, request_id)
@@ -126,43 +132,96 @@ def timed(event_name: str) -> Callable[[F], F]:
         (fields: duration_ms, request_id, error_type, error_message),
         then re-raises.
 
+    Sub-capability mode (``sub_capability_id`` set) emits the
+    ``sub_capability_started`` / ``sub_capability_completed`` /
+    ``sub_capability_failed`` event family. ``capability_id`` is
+    required in this mode and is included on every emission alongside
+    ``sub_capability_id``. The ``event_name`` argument is ignored in
+    sub-capability mode (the event names are fixed); pass any string.
+
     The wrapped function's return value and signature are preserved.
     """
+    if sub_capability_id is not None and not capability_id:
+        raise ValueError(
+            "timed: capability_id is required when sub_capability_id is set"
+        )
 
     def decorator(func: F) -> F:
         @functools.wraps(func)
         def wrapper(*args: Any, **kwargs: Any) -> Any:
             request_id = _extract_request_id(args, kwargs)
-            start_fields: dict[str, Any] = {}
+            sub_mode = sub_capability_id is not None
+
+            if sub_mode:
+                started_event = "sub_capability_started"
+                completed_event = "sub_capability_completed"
+                failed_event = "sub_capability_failed"
+                base_fields: dict[str, Any] = {
+                    "capability_id": capability_id,
+                    "sub_capability_id": sub_capability_id,
+                }
+            else:
+                started_event = f"{event_name}_started"
+                completed_event = f"{event_name}_completed"
+                failed_event = f"{event_name}_failed"
+                base_fields = {}
+
+            start_fields: dict[str, Any] = dict(base_fields)
             if request_id is not None:
                 start_fields["request_id"] = request_id
-
-            emit_event(f"{event_name}_started", **start_fields)
+            emit_event(started_event, **start_fields)
 
             timer = Timer()
             try:
                 with timer:
                     result = func(*args, **kwargs)
             except Exception as exc:
-                fail_fields: dict[str, Any] = {
-                    "duration_ms": timer.duration_ms,
-                    "error_type": type(exc).__name__,
-                    "error_message": str(exc)[:500],
-                }
+                fail_fields: dict[str, Any] = dict(base_fields)
+                fail_fields["duration_ms"] = timer.duration_ms
+                fail_fields["status"] = "failure"
+                fail_fields["error_type"] = type(exc).__name__
+                fail_fields["error_message"] = str(exc)[:500]
                 if request_id is not None:
                     fail_fields["request_id"] = request_id
-                emit_event(f"{event_name}_failed", **fail_fields)
+                emit_event(failed_event, **fail_fields)
                 raise
 
-            done_fields: dict[str, Any] = {"duration_ms": timer.duration_ms}
+            done_fields: dict[str, Any] = dict(base_fields)
+            done_fields["duration_ms"] = timer.duration_ms
+            if sub_mode:
+                done_fields["status"] = "success"
             if request_id is not None:
                 done_fields["request_id"] = request_id
-            emit_event(f"{event_name}_completed", **done_fields)
+            emit_event(completed_event, **done_fields)
             return result
 
         return wrapper  # type: ignore[return-value]
 
     return decorator
+
+
+def emit_sub_capability_skipped(
+    *,
+    capability_id: str,
+    sub_capability_id: str,
+    request_id: str,
+    reason: str,
+) -> None:
+    """Emit a ``sub_capability_skipped`` event.
+
+    Used to mark sub-capabilities that are not engaged in the current
+    scenario (e.g. CAP-1 Discovery in single-eval). The ``reason``
+    field is a short snake_case slug documenting why the sub-cap did
+    not run; aggregation tools key off it to surface 0/N engagement
+    in batch reports.
+    """
+    emit_event(
+        "sub_capability_skipped",
+        capability_id=capability_id,
+        sub_capability_id=sub_capability_id,
+        request_id=request_id,
+        reason=reason,
+    )
 
 
 def emit_event(event_type: str, **fields: Any) -> None:
