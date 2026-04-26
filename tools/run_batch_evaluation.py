@@ -31,6 +31,10 @@ from llm_judge.control_plane.batch_runner import BatchRunner
 from llm_judge.control_plane.runner import PlatformRunner
 from llm_judge.control_plane.types import SingleEvaluationRequest
 
+# pylint: disable=wrong-import-position
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from _batch_terminal import BatchTerminalRenderer  # noqa: E402
+
 # Canonical RAGTruth-50 subset definition. When the user picks the
 # ragtruth_50 benchmark, we narrow the adapter to this 50-case set
 # rather than the full ~1170-case RAGTruth dump.
@@ -161,9 +165,13 @@ def main(argv: list[str] | None = None) -> int:
         f"batch-{datetime.now(timezone.utc).strftime('%Y-%m-%dT%H%M%S')}"
     )
     output_dir = Path("reports/batch_runs") / batch_id
+    output_dir.mkdir(parents=True, exist_ok=True)
 
     runner = PlatformRunner()
     batch_runner = BatchRunner(runner)
+
+    renderer = BatchTerminalRenderer(output_dir)
+    renderer.attach()
 
     try:
         result = batch_runner.run_batch(
@@ -176,15 +184,16 @@ def main(argv: list[str] | None = None) -> int:
         print(f"batch driver failed: {exc}", file=sys.stderr)
         traceback.print_exc()
         return 1
+    finally:
+        renderer.detach()
 
+    # Final pointer line — the terminal renderer already printed the
+    # success/failure breakdown via the Batch complete panel; this is
+    # just the artifact path so the user knows where to look.
     print()
-    print(f"Batch {batch_id} complete:")
-    print(f"  source:     {source}")
-    print(f"  successful: {result.successful_cases}/{result.total_cases}")
-    print(f"  failed:     {result.failed_cases}")
-    print(f"  errored:    {result.error_cases}")
-    print(f"  duration:   {result.duration_ms:.0f}ms")
-    print(f"  output:     {output_dir}/")
+    print(f"output: {output_dir}/")
+    if result.error_cases > 0:
+        return 1
     return 0
 
 
