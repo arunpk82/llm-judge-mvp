@@ -227,6 +227,11 @@ def check_rubrics_governed(
       5. ``last_reviewed`` is within :data:`REVIEW_PERIOD_DAYS`.
       6. ``dimensions`` is a non-empty list and each element carries
          a non-empty ``name`` (structural check; see scope note).
+      7. ``rubrics/registry.yaml`` declares a ``metrics_schema`` for
+         this version with at least one ``required`` key. Added in
+         CP-1c-b.2: a governed rubric without declared required
+         metrics cannot be validated by ``enforce_metrics_schema``,
+         so its absence is itself a governance failure.
 
     Scope note on "CAP-7 dimension set": the packet brief called
     for checking that every rubric dimension exists in CAP-7's
@@ -318,3 +323,33 @@ def check_rubrics_governed(
                 f"has no non-empty 'name'. Fix: each dimension in "
                 f"{path} must carry a string 'name'."
             )
+
+    # 7. metrics_schema presence (CP-1c-b.2)
+    # The check is delegated to the validated registry model so
+    # registry-shape errors surface with the registry path, while
+    # a successful load with no schema for this version raises an
+    # UngovernedRubricError naming the rubric.
+    registry_path = root / "registry.yaml"
+    try:
+        from llm_judge.rule_plan_yaml import RubricRegistryConfig
+    except Exception as exc:  # pragma: no cover — import failure is a setup bug
+        raise UngovernedRubricError(
+            f"Cannot load registry schema model: {exc}"
+        ) from exc
+    raw_registry = _load_yaml(registry_path)
+    try:
+        registry_model = RubricRegistryConfig.model_validate(raw_registry)
+    except ValidationError as exc:
+        raise UngovernedRubricError(
+            f"Rubric registry failed schema validation at "
+            f"{registry_path}: {exc}"
+        ) from exc
+    schema = registry_model.metrics_schema_for(rubric_id, version)
+    if schema is None or not schema.required:
+        raise UngovernedRubricError(
+            f"Rubric '{rubric_id}@{version}' has no metrics_schema "
+            f"declared (or declares no required metrics). Fix: add "
+            f"'metrics_schema.required' under "
+            f"rubrics.{rubric_id}.versions.{version} in "
+            f"{registry_path}."
+        )

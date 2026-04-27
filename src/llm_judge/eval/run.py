@@ -14,6 +14,7 @@ from llm_judge.datasets.registry import DatasetRegistry
 from llm_judge.eval.event_registry import append_event
 from llm_judge.eval.registry import append_run_registry_entry
 from llm_judge.eval.schema import EVAL_RUN_SCHEMA_VERSION
+from llm_judge.governance import enforce_metrics_schema
 from llm_judge.rubric_store import get_rubric
 from llm_judge.runtime import get_judge_engine
 from llm_judge.schemas import Message, PredictRequest
@@ -115,30 +116,6 @@ def _sample_rows_stable_hash(
         "ordering": "case_id_ascending",
     }
     return sampled_sorted, meta
-
-
-def _enforce_metrics_schema(*, rubric_ref: str, metrics: dict[str, Any]) -> None:
-    """
-    EPIC-2: enforce rubric-declared metrics schema (registry.yaml contract).
-
-    Policy:
-      - If rubric declares required metrics, all must be present in metrics.json
-      - Missing required keys => hard failure (prevents silent drift)
-    """
-    rubric = get_rubric(rubric_ref)
-    required = list(rubric.metrics_required)
-
-    if not required:
-        # Backward compatibility: registry.yaml may not yet declare metrics_schema.
-        return
-
-    missing = [k for k in required if k not in metrics]
-    if missing:
-        raise ValueError(
-            "Metrics schema violation: computed metrics.json is missing required keys "
-            f"for rubric={rubric.rubric_id}@{rubric.version}: {missing}. "
-            f"Present keys={sorted(list(metrics.keys()))}"
-        )
 
 
 def _resolve_dataset_path(spec: RunSpec) -> Path:
@@ -408,8 +385,9 @@ def main() -> int:
             for rule_id, count in sorted(rule_hit_counts.items())
         }
 
-    # EPIC-2: enforce metrics schema declared in registry.yaml (if present)
-    _enforce_metrics_schema(rubric_ref=str(spec.rubric_id), metrics=metrics)
+    # CP-1c-b.2: mandatory enforcement (no early-return opt-out).
+    # Hoisted to llm_judge.governance.enforce_metrics_schema.
+    enforce_metrics_schema(rubric_ref=str(spec.rubric_id), metrics=metrics)
 
     write_json(run_dir / "metrics.json", metrics)
 

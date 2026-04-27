@@ -81,13 +81,18 @@ def _build_eval_prompt(
     )
 
 
-def _get_system_prompt(template: PromptTemplate | None = None) -> str:
+def _get_system_prompt(
+    template: PromptTemplate | None = None,
+    *,
+    rubric_id: str | None = None,
+) -> str:
     """Get the system prompt — versioned if available, fallback otherwise."""
     if template and template.system_prompt:
         return template.system_prompt
     logger.warning(
         "llm_judge.using_fallback_prompt",
         reason="no versioned prompt provided",
+        rubric_id=rubric_id,
     )
     return _FALLBACK_SYSTEM_PROMPT
 
@@ -288,15 +293,30 @@ class LLMJudge(JudgeEngine):
         self._adapter: ProviderAdapter | None = None
         self._prompt_template = prompt_template
 
-    def evaluate(self, request: PredictRequest) -> PredictResponse:
+    def evaluate(
+        self,
+        request: PredictRequest,
+        *,
+        prompt_template: PromptTemplate | None = None,
+    ) -> PredictResponse:
+        """Evaluate a request, optionally with a per-call prompt override.
+
+        CP-1c-b.2: ``prompt_template`` lets callers (notably
+        :class:`IntegratedJudge`) supply a per-rubric template at
+        evaluation time. When omitted the constructor-supplied
+        ``self._prompt_template`` is used.
+        """
         if os.getenv("SIMULATE_LLM_TIMEOUT") == "1":
             raise TimeoutError("Simulated LLM timeout")
 
         if self._adapter is None:
             self._adapter = _get_adapter(self._engine)
 
-        system_prompt = _get_system_prompt(self._prompt_template)
-        prompt = _build_eval_prompt(request, self._prompt_template)
+        template = (
+            prompt_template if prompt_template is not None else self._prompt_template
+        )
+        system_prompt = _get_system_prompt(template, rubric_id=request.rubric_id)
+        prompt = _build_eval_prompt(request, template)
         url, headers, payload = self._adapter.build_request(prompt, system_prompt)
 
         with httpx.Client(timeout=self._timeout_s) as client:

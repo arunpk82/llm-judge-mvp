@@ -75,8 +75,24 @@ def _write_fixture(
         yaml.safe_dump(rubric_content or _valid_rubric_content()),
         encoding="utf-8",
     )
+    # CP-1c-b.2: governed rubrics require a metrics_schema in the
+    # registry. Failure-mode tests that target an earlier check still
+    # raise before reaching the metrics check, so this default keeps
+    # the happy-path fixture green without affecting them.
     reg = registry_content if registry_content is not None else {
-        "latest": {rubric_id: version}
+        "latest": {rubric_id: version},
+        "rubrics": {
+            rubric_id: {
+                "versions": {
+                    version: {
+                        "metrics_schema": {
+                            "required": ["accuracy"],
+                            "optional": [],
+                        }
+                    }
+                }
+            }
+        },
     }
     (root / "registry.yaml").write_text(
         yaml.safe_dump(reg), encoding="utf-8"
