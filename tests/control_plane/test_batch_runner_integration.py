@@ -52,6 +52,7 @@ def _payload(i: int) -> SingleEvaluationRequest:
     return SingleEvaluationRequest(
         response=f"Case {i} candidate response with a fact.",
         source=f"Case {i} source document containing the same fact.",
+        rubric_id="chat_quality",
         caller_id="batch-integration-test",
         request_id=f"int-case-{i:03d}",
     )

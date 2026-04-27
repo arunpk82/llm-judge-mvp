@@ -24,6 +24,7 @@ def test_runner_full_chain(runner: PlatformRunner, tmp_path: Path) -> None:
     req = SingleEvaluationRequest(
         response="Paris is the capital of France.",
         source="Paris is the capital of France and its largest city.",
+        rubric_id="chat_quality",
         caller_id="test-caller",
     )
     result = runner.run_single_evaluation(req)
@@ -90,6 +91,7 @@ def test_runner_signature_verifies_end_to_end(runner: PlatformRunner) -> None:
     req = SingleEvaluationRequest(
         response="A short answer.",
         source="Some reference context for the short answer.",
+        rubric_id="chat_quality",
     )
     result = runner.run_single_evaluation(req)
     assert result.envelope.verify_signature()
@@ -99,6 +101,7 @@ def test_runner_assigns_request_id_when_absent(runner: PlatformRunner) -> None:
     req = SingleEvaluationRequest(
         response="Text.",
         source="Context.",
+        rubric_id="chat_quality",
     )
     assert req.request_id is None
     result = runner.run_single_evaluation(req)
@@ -127,7 +130,7 @@ def test_runner_layers_explicit_opt_in(
         "llm_judge.control_plane.runner.invoke_cap7", _spy
     )
 
-    req = SingleEvaluationRequest(response="ans", source="ctx")
+    req = SingleEvaluationRequest(response="ans", source="ctx", rubric_id="chat_quality")
 
     # Default: Runner normalizes None → ["L1"] before dispatching.
     runner.run_single_evaluation(req)
@@ -141,7 +144,7 @@ def test_runner_layers_explicit_opt_in(
 def test_runner_default_verdict_reports_l1_only(
     runner: PlatformRunner,
 ) -> None:
-    req = SingleEvaluationRequest(response="ans", source="ctx")
+    req = SingleEvaluationRequest(response="ans", source="ctx", rubric_id="chat_quality")
     result = runner.run_single_evaluation(req)
     # CP-1b: verdict advertises which layers ran (default is L1 only).
     assert result.verdict["layers_requested"] == ["L1"]

@@ -384,6 +384,8 @@ class PlatformRunner:
                         envelope,
                         aggregated,
                         integrity.model_dump(),
+                        rubric_id=payload.rubric_id,
+                        rubric_version=payload.rubric_version,
                         runs_root=runs_root,
                     )
                 envelope = envelope.with_integrity(

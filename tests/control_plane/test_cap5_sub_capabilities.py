@@ -47,6 +47,7 @@ def _payload() -> SingleEvaluationRequest:
     return SingleEvaluationRequest(
         response="Paris is the capital of France.",
         source="Paris is the capital of France and its largest city.",
+        rubric_id="chat_quality",
         caller_id="cap5-subcap-test",
     )
 

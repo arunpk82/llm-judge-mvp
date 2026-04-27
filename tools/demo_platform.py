@@ -199,6 +199,7 @@ def main() -> int:
     payload = SingleEvaluationRequest(
         response=DEMO_RESPONSE,
         source=DEMO_SOURCE,
+        rubric_id="chat_quality",
         request_id=request_id,
         caller_id="demo_platform",
     )
