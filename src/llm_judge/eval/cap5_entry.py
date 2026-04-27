@@ -60,14 +60,23 @@ def _cap5_manifest_composition(
     verdict: dict[str, Any],
     integrity: dict[str, Any],
     manifest_id: str,
+    rubric_id: str,
+    rubric_version: str,
 ) -> dict[str, Any]:
     """CAP-5 Manifest composition: assemble the canonical
-    single-eval manifest dict from envelope + verdict + integrity."""
+    single-eval manifest dict from envelope + verdict + integrity.
+
+    CP-1c-b.1 surfaces ``rubric_id`` and ``rubric_version`` on the
+    manifest top-level so the run record reflects the actual rubric
+    the caller specified.
+    """
     return {
         "schema_version": MANIFEST_SCHEMA_VERSION,
         "artifact_type": "single_eval_manifest",
         "manifest_id": manifest_id,
         "created_at_utc": _utc_now_iso(),
+        "rubric_id": rubric_id,
+        "rubric_version": rubric_version,
         "envelope": envelope.model_dump(mode="json"),
         "verdict": verdict,
         "integrity": integrity,
@@ -187,7 +196,7 @@ def record_evaluation_manifest(
     dataset_hash = envelope.input_hash or DEGRADED_DATASET_HASH
 
     manifest = _cap5_manifest_composition(
-        envelope, verdict, integrity, manifest_id
+        envelope, verdict, integrity, manifest_id, rubric_id, rubric_version
     )
     _cap5_persistence(envelope, run_dir, manifest)
 

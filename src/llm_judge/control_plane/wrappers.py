@@ -436,12 +436,13 @@ def invoke_cap5(
     """
     _cap5_envelope_reception(envelope)
 
+    effective_version = _resolve_effective_version(rubric_id, rubric_version)
     manifest_id = record_evaluation_manifest(
         envelope=envelope,
         verdict=verdict,
         integrity=integrity,
         rubric_id=rubric_id,
-        rubric_version=rubric_version,
+        rubric_version=effective_version,
         runs_root=runs_root,
     )
 

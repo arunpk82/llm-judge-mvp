@@ -1,6 +1,7 @@
 """Tests for SingleEvaluationRequest rubric_id binding (CP-1c-b.1)."""
 import pytest
 from pydantic import ValidationError
+
 from llm_judge.control_plane.types import SingleEvaluationRequest
 
 
