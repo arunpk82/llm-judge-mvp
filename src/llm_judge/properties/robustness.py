@@ -288,7 +288,7 @@ class EdgeCaseResult:
 def check_edge_cases(
     *,
     judge: JudgeEngine,
-    rubric_id: str = "chat_quality",
+    rubric_id: str,
 ) -> EdgeCaseResult:
     """
     Check judge behavior with unusual inputs (Property 5.6).

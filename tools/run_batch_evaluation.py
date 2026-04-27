@@ -61,6 +61,7 @@ def _benchmark_case_to_request(
     return SingleEvaluationRequest(
         response=pred.candidate_answer,
         source=source,
+        rubric_id=pred.rubric_id,
         caller_id="batch-driver",
         request_id=case.case_id,
     )
@@ -81,6 +82,7 @@ def _batch_case_to_request(case: BatchCase) -> SingleEvaluationRequest:
     return SingleEvaluationRequest(
         response=case.response,
         source=case.source,
+        rubric_id="chat_quality",
         caller_id="batch-driver",
         request_id=case.case_id,
     )

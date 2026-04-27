@@ -175,15 +175,25 @@ class PlatformRunner:
 
         Default bindings — rubric_id
         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-        :class:`SingleEvaluationRequest` does not carry a
-        ``rubric_id``; the Control Plane binds to the documented
-        default ``"chat_quality"`` / ``"v1"`` in
-        :mod:`llm_judge.control_plane.wrappers`
-        (``DEFAULT_RUBRIC_ID`` / ``DEFAULT_RUBRIC_VERSION``). This is
-        a CP-1b simplification. A future packet may either accept
-        an explicit ``rubric_id`` on the request shape or resolve the
-        default via policy — until then, every single-evaluation
-        request in this Runner exercises ``chat_quality@v1``.
+        ``rubric_id`` is now a required field on
+        :class:`SingleEvaluationRequest` (CP-1c-b.1). Callers must
+        specify the rubric_id explicitly::
+
+            request = SingleEvaluationRequest(
+                response="...",
+                source="...",
+                rubric_id="chat_quality",   # required
+                rubric_version="v1",         # optional, defaults to "latest"
+            )
+
+        The ``"latest"`` sentinel is resolved against
+        ``rubrics/registry.yaml`` at the wrapper boundary so
+        downstream loaders see a concrete version.
+
+        Future: CP-1c-b.2 will tighten binding enforcement (prompt
+        loading honors rubric_id, schema enforcement becomes
+        mandatory on the eval/run.py path, governance preflight
+        rejects ungoverned rubric_ids).
         """
         active_layers = list(layers) if layers else list(DEFAULT_LAYERS)
         runs_root = output_dir if output_dir is not None else self._runs_root
@@ -384,6 +394,8 @@ class PlatformRunner:
                         envelope,
                         aggregated,
                         integrity.model_dump(),
+                        rubric_id=payload.rubric_id,
+                        rubric_version=payload.rubric_version,
                         runs_root=runs_root,
                     )
                 envelope = envelope.with_integrity(

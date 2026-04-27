@@ -34,7 +34,7 @@ def _fresh_envelope() -> Any:
 
 
 def _request() -> SingleEvaluationRequest:
-    return SingleEvaluationRequest(response="r", source="s")
+    return SingleEvaluationRequest(response="r", source="s", rubric_id="chat_quality")
 
 
 def test_invoke_cap2_rejects_missing_dataset_stamp() -> None:
@@ -58,7 +58,14 @@ def test_invoke_cap5_rejects_empty_integrity(tmp_path: Path) -> None:
     env = _fresh_envelope()
     assert env.integrity == []
     with pytest.raises(MissingProvenanceError, match="integrity is empty"):
-        invoke_cap5(env, {}, {"complete": True}, runs_root=tmp_path)
+        invoke_cap5(
+            env,
+            {},
+            {"complete": True},
+            rubric_id="chat_quality",
+            rubric_version="v1",
+            runs_root=tmp_path,
+        )
 
 
 def test_invoke_cap5_accepts_one_integrity_record(tmp_path: Path) -> None:
@@ -73,7 +80,12 @@ def test_invoke_cap5_accepts_one_integrity_record(tmp_path: Path) -> None:
         )
     )
     env_out, manifest_id = invoke_cap5(
-        env, {}, {"complete": False}, runs_root=tmp_path
+        env,
+        {},
+        {"complete": False},
+        rubric_id="chat_quality",
+        rubric_version="v1",
+        runs_root=tmp_path,
     )
     assert manifest_id == "bypass-test"
     assert env_out.capability_chain[-1] == "CAP-5"
@@ -94,7 +106,12 @@ def test_invoke_cap5_accepts_success_chain(tmp_path: Path) -> None:
         )
     )
     env_out, manifest_id = invoke_cap5(
-        env, {"risk_score": 0.1}, {"complete": False}, runs_root=tmp_path
+        env,
+        {"risk_score": 0.1},
+        {"complete": False},
+        rubric_id="chat_quality",
+        rubric_version="v1",
+        runs_root=tmp_path,
     )
     assert manifest_id == "bypass-test"
     assert env_out.capability_chain[-1] == "CAP-5"

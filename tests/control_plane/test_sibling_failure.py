@@ -25,7 +25,7 @@ def runner(tmp_path: Path) -> PlatformRunner:
 
 
 def _request() -> SingleEvaluationRequest:
-    return SingleEvaluationRequest(response="ans", source="ctx")
+    return SingleEvaluationRequest(response="ans", source="ctx", rubric_id="chat_quality")
 
 
 def test_cap2_failure_returns_partial_verdict(

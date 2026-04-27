@@ -189,6 +189,7 @@ def _happy_payload() -> SingleEvaluationRequest:
     return SingleEvaluationRequest(
         response="Paris is the capital of France.",
         source="Paris is the capital of France and its largest city.",
+        rubric_id="chat_quality",
         caller_id="contract-test",
     )
 
@@ -444,11 +445,13 @@ def _two_cases() -> list[SingleEvaluationRequest]:
         SingleEvaluationRequest(
             response="Paris is the capital of France.",
             source="Paris is the capital of France and its largest city.",
+            rubric_id="chat_quality",
             caller_id="batch-contract-test",
         ),
         SingleEvaluationRequest(
             response="Water boils at 100 C.",
             source="Water boils at 100 C at standard pressure.",
+            rubric_id="chat_quality",
             caller_id="batch-contract-test",
         ),
     ]

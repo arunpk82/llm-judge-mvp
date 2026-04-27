@@ -161,7 +161,7 @@ class TestEdgeCases:
     def test_deterministic_judge_handles_edges(self) -> None:
         from llm_judge.properties.robustness import check_edge_cases
 
-        result = check_edge_cases(judge=_MockJudge())
+        result = check_edge_cases(judge=_MockJudge(), rubric_id="chat_quality")
         assert result.tested == 4
         assert result.handled_gracefully == 4
         assert result.crashed == 0
@@ -173,7 +173,7 @@ class TestEdgeCases:
             def evaluate(self, request: PredictRequest) -> PredictResponse:
                 raise RuntimeError("boom")
 
-        result = check_edge_cases(judge=CrashJudge())
+        result = check_edge_cases(judge=CrashJudge(), rubric_id="chat_quality")
         assert result.crashed == 4
         assert result.status == "FAIL"
         assert any("edge_case_crashes" in f for f in result.flags)

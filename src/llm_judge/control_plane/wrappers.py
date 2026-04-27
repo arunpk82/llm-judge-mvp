@@ -40,13 +40,20 @@ from llm_judge.schemas import Message, PredictRequest
 
 logger = structlog.get_logger()
 
-# v1 simplification: SingleEvaluationRequest does not carry a rubric.
-# The Control Plane binds to a documented default; future request
-# shapes may specify an explicit rubric_id.
-DEFAULT_RUBRIC_ID = "chat_quality"
-DEFAULT_RUBRIC_VERSION = "v1"
-
 TRANSIENT_DATASETS_ROOT = state_root() / "transient_datasets"
+
+
+def _resolve_effective_version(rubric_id: str, rubric_version: str) -> str:
+    """Resolve the ``"latest"`` sentinel against the rubric registry.
+
+    Pass-through for explicit versions like ``"v1"``. CP-1c-b.1 only
+    plumbs the binding; full governance preflight is CP-1c-b.2 scope.
+    """
+    if rubric_version != "latest":
+        return rubric_version
+    from llm_judge.rubric_store import _resolve_version
+
+    return _resolve_version(rubric_id)
 
 
 def _sha256_file(path: Path) -> str:
@@ -75,7 +82,7 @@ def _cap1_reception(
         "case_id": f"{envelope.request_id}_row_0",
         "conversation": [{"role": "user", "content": request.source}],
         "candidate_answer": request.response,
-        "rubric_id": DEFAULT_RUBRIC_ID,
+        "rubric_id": request.rubric_id,
     }
     data_path.write_text(
         json.dumps(row, ensure_ascii=False) + "\n", encoding="utf-8"
@@ -103,7 +110,7 @@ def _cap1_validation(
     del envelope  # only here so @timed can extract request_id
     metadata = DatasetMetadata(
         dataset_id=dataset_id,
-        version=DEFAULT_RUBRIC_VERSION,
+        version="v1",
         data_file="dataset.jsonl",
         owner="control-plane",
         task_type="single_eval",
@@ -127,7 +134,7 @@ def _cap1_registration(
     del envelope  # only here so @timed can extract request_id
     registry = DatasetRegistry(root_dir=root)
     return registry.resolve(
-        dataset_id=dataset_id, version=DEFAULT_RUBRIC_VERSION
+        dataset_id=dataset_id, version="v1"
     )
 
 
@@ -215,7 +222,7 @@ def _cap2_input_matching(
     req = PredictRequest(
         conversation=[Message(role="user", content=request.source)],
         candidate_answer=request.response,
-        rubric_id=DEFAULT_RUBRIC_ID,
+        rubric_id=request.rubric_id,
     )
     ctx = RuleContext(request=req)
     return run_rules(ctx, plan)
@@ -309,7 +316,10 @@ def invoke_cap2(
         )
     del dataset_handle  # CAP-2 uses the request directly; kept for symmetry
 
-    plan = _cap2_rule_loading(envelope, DEFAULT_RUBRIC_ID, DEFAULT_RUBRIC_VERSION)
+    effective_version = _resolve_effective_version(
+        request.rubric_id, request.rubric_version
+    )
+    plan = _cap2_rule_loading(envelope, request.rubric_id, effective_version)
     _emit_pattern_compilation_soft(envelope)
     result = _cap2_input_matching(envelope, plan, request)
     rules_fired = _cap2_evidence_capture(envelope, result)
@@ -411,6 +421,8 @@ def invoke_cap5(
     verdict: dict[str, Any],
     integrity: dict[str, Any],
     *,
+    rubric_id: str,
+    rubric_version: str,
     runs_root: Path | None = None,
 ) -> tuple[ProvenanceEnvelope, str]:
     """Write the governed manifest via record_evaluation_manifest, then
@@ -424,12 +436,13 @@ def invoke_cap5(
     """
     _cap5_envelope_reception(envelope)
 
+    effective_version = _resolve_effective_version(rubric_id, rubric_version)
     manifest_id = record_evaluation_manifest(
         envelope=envelope,
         verdict=verdict,
         integrity=integrity,
-        rubric_id=DEFAULT_RUBRIC_ID,
-        rubric_version=DEFAULT_RUBRIC_VERSION,
+        rubric_id=rubric_id,
+        rubric_version=effective_version,
         runs_root=runs_root,
     )
 

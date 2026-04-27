@@ -30,6 +30,7 @@ def _request() -> SingleEvaluationRequest:
     return SingleEvaluationRequest(
         response="answer candidate",
         source="reference context",
+        rubric_id="chat_quality",
         caller_id="degradation-tests",
     )
 
