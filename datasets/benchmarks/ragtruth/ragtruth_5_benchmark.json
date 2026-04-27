@@ -1,0 +1,20 @@
+{
+  "benchmark_id": "ragtruth_5",
+  "version": "1.0",
+  "created": "2026-04-27",
+  "description": "5-response slice of RAGTruth (the first 5 response IDs of ragtruth_50). Used for fast integration tests of the platform-as-harness verification flow (--isolate-layer plumbing test in Phase 1; future per-layer integration tests in L2-L5).",
+  "source_file": "datasets/benchmarks/ragtruth/response.jsonl",
+  "response_ids": [
+    "0",
+    "1",
+    "2",
+    "3",
+    "4"
+  ],
+  "usage": "from llm_judge.benchmarks.registry import build; build('ragtruth_5')",
+  "rules": [
+    "Composes with ragtruth_50: response_ids is a strict prefix subset",
+    "Test-only — never compare F1 against published baselines on this slice",
+    "Add new IDs only if a verification test legitimately needs them"
+  ]
+}

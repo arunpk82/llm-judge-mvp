@@ -7,7 +7,8 @@
         registry-list registry-show registry-trend eval preflight clean git-start git-ship git-merge validate \
         docker-build docker-deploy docker-status docker-validate docker-down docker-reset \
         preseed benchmark funnel calibrate demo \
-        demo-batch demo-batch-quick demo-batch-benchmark demo-batch-file
+        demo-batch demo-batch-quick demo-batch-benchmark demo-batch-file \
+        verify-l1
 
 # Defaults (override like: make SUITE=golden RUBRIC=chat_quality ...)
 SUITE ?= math_basic
@@ -29,6 +30,7 @@ help:
 	@echo "  make demo                  End-to-end Control Plane walkthrough"
 	@echo "  make demo-batch            Full RAGTruth-50 batch run (~7-10 min)"
 	@echo "  make demo-batch-quick      First 10 RAGTruth-50 cases (~1-2 min)"
+	@echo "  make verify-l1             Run L1-isolated batch + render verification report"
 	@echo "  make install               Install dependencies"
 	@echo "  make lint                  Run Ruff"
 	@echo "  make typecheck             Run mypy"
@@ -414,3 +416,24 @@ demo-batch-file:
 		exit 1; \
 	fi
 	@poetry run python tools/run_batch_evaluation.py --file $(FILE)
+
+# ----------------------------------------
+# Layer-by-layer verification (CAP-7)
+# ----------------------------------------
+# Each verify-LN target runs a standard batch with --isolate-layer LN
+# then renders a verification report against the layer's exit-criteria
+# spec. Verification reads only existing batch_run + single_eval
+# artifacts (platform-as-harness — no pipeline bypass).
+
+.PHONY: verify-l1
+
+verify-l1:
+	@poetry run python tools/run_batch_evaluation.py --benchmark ragtruth_50 --isolate-layer L1
+	@LATEST=$$(ls -1dt reports/batch_runs/batch-* | head -n 1) && \
+		poetry run python experiments/render_layer_verification_report.py \
+			--batch-run $$LATEST \
+			--layer L1 \
+			--target-detection 0.074 \
+			--tolerance-detection 0.005 \
+			--target-precision 1.0 \
+			--benchmark ragtruth_50

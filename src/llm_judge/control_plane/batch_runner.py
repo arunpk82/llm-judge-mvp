@@ -84,6 +84,8 @@ class BatchRunner:
         batch_id: str,
         output_dir: Path,
         source: str,
+        *,
+        layers: list[str] | None = None,
     ) -> BatchResult:
         """Run every case in ``cases`` through the PlatformRunner.
 
@@ -99,6 +101,12 @@ class BatchRunner:
         It is included in ``batch_started`` and on the returned
         BatchResult so downstream reports can show where the cases
         came from.
+
+        ``layers`` is forwarded to ``PlatformRunner.run_single_evaluation``
+        and constrains which CAP-7 hallucination-pipeline layers run for
+        every case in the batch. ``None`` (the default) preserves the
+        Runner's default layer selection. Used by the verification flow
+        (``--isolate-layer``) to run a single layer in isolation.
         """
         cases_list = list(cases)
         total = len(cases_list)
@@ -139,6 +147,7 @@ class BatchRunner:
                         case=case,
                         case_id=case_id,
                         manifest_path=manifest_path,
+                        layers=layers,
                     )
 
                 # ``case_timer.duration_ms`` is the authoritative wall
@@ -208,6 +217,7 @@ class BatchRunner:
         case: SingleEvaluationRequest,
         case_id: str,
         manifest_path: Path,
+        layers: list[str] | None = None,
     ) -> tuple[CaseResult, str]:
         """Run one case through the PlatformRunner.
 
@@ -216,9 +226,11 @@ class BatchRunner:
         capability success), ``"failure"`` (one or more tolerated
         capability failures), or ``"error"`` (CAP-5 propagated or an
         unexpected exception).
+
+        ``layers`` is passed through to the Runner unchanged.
         """
         try:
-            result = self._runner.run_single_evaluation(case)
+            result = self._runner.run_single_evaluation(case, layers=layers)
         except Exception as exc:
             manifest_path.write_text("{}", encoding="utf-8")
             return (

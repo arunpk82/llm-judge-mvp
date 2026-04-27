@@ -631,6 +631,7 @@ def check_hallucination(
         "L3_deberta": 0,
         "L4_supported": 0,
         "L4_unsupported": 0,
+        "total_sentences": len(resp_sents),
     }
 
     if not resp_sents or not ctx_sents:
