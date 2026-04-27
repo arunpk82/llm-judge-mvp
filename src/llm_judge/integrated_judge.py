@@ -204,7 +204,10 @@ class IntegratedJudge(JudgeEngine):
         self._context_retriever = context_retriever
         self._pipeline_config = pipeline_config
         self._llm_judge: LLMJudge | None = None
-        self._prompt: PromptTemplate | None = None
+        # CP-1c-b.2: per-rubric prompt cache. Each rubric's template is
+        # loaded once on first request and cached thereafter. Closes the
+        # binding gap where chat_quality was hardcoded at init.
+        self._prompts: dict[str, PromptTemplate] = {}
 
     def _ensure_initialized(self) -> None:
         if self._registry is None:
@@ -212,16 +215,13 @@ class IntegratedJudge(JudgeEngine):
                 self._registry = load_property_config()
             except FileNotFoundError:
                 self._registry = PropertyRegistry({})
-        if self._prompt is None:
-            try:
-                self._prompt = load_latest_prompt("chat_quality")
-            except FileNotFoundError:
-                self._prompt = None
         if self._llm_judge is None:
+            # IntegratedJudge owns prompt resolution per-rubric and passes
+            # the resolved template at evaluate() time, so LLMJudge is
+            # constructed without a hardcoded prompt template.
             self._llm_judge = LLMJudge(
                 engine=self._engine,
                 timeout_ms=self._timeout_ms,
-                prompt_template=self._prompt,
             )
         if self._context_retriever is None:
             try:
@@ -248,6 +248,32 @@ class IntegratedJudge(JudgeEngine):
         if self._pipeline_config is None:
             self._pipeline_config = get_pipeline_config()
 
+    def _ensure_prompt_loaded(self, rubric_id: str) -> PromptTemplate:
+        """Lazy-load and cache the prompt template for a rubric_id.
+
+        Raises FileNotFoundError if no versioned prompt exists for the
+        rubric. Callers that wish to fall back to a system default
+        should catch and recover (see :meth:`_resolve_prompt`).
+        """
+        if rubric_id not in self._prompts:
+            self._prompts[rubric_id] = load_latest_prompt(rubric_id)
+        return self._prompts[rubric_id]
+
+    def _resolve_prompt(self, rubric_id: str) -> PromptTemplate | None:
+        """Resolve a prompt for a rubric, returning None on missing prompt.
+
+        Logs a warning that names the rubric_id so an operator reading
+        logs can correlate the fallback to a specific request.
+        """
+        try:
+            return self._ensure_prompt_loaded(rubric_id)
+        except FileNotFoundError:
+            logger.warning(
+                "integrated_judge.prompt_not_found",
+                extra={"rubric_id": rubric_id, "fallback": "system_default"},
+            )
+            return None
+
     def evaluate(self, request: PredictRequest) -> PredictResponse:
         enriched = self.evaluate_enriched(request)
         return PredictResponse(
@@ -268,6 +294,11 @@ class IntegratedJudge(JudgeEngine):
         self._ensure_initialized()
         assert self._registry is not None
         reg = self._registry
+
+        # CP-1c-b.2: resolve the prompt template per request.rubric_id.
+        # Missing prompt → None → LLMJudge falls back to its built-in
+        # system prompt, with the rubric_id captured in the warning.
+        prompt = self._resolve_prompt(request.rubric_id)
 
         evidence: dict[str, PropertyEvidence] = {}
         query = _build_query(request)
@@ -466,7 +497,7 @@ class IntegratedJudge(JudgeEngine):
         # LLM evaluation with versioned prompt (Cat 2)
         # =============================================================
         assert self._llm_judge is not None
-        predict_response = self._llm_judge.evaluate(request)
+        predict_response = self._llm_judge.evaluate(request, prompt_template=prompt)
 
         for pn, pc in reg.get_enabled_by_category("semantic_quality").items():
             score = predict_response.scores.get(pn)
@@ -545,8 +576,8 @@ class IntegratedJudge(JudgeEngine):
             from llm_judge.properties.performance import check_explainability
 
             dims = (
-                self._prompt.dimensions
-                if self._prompt
+                prompt.dimensions
+                if prompt
                 else ["relevance", "clarity", "correctness", "tone"]
             )
             ex_result = check_explainability(
@@ -619,8 +650,8 @@ class IntegratedJudge(JudgeEngine):
         return EnrichedResponse(
             predict_response=predict_response,
             prompt_version=(
-                f"{self._prompt.prompt_id}/{self._prompt.version}"
-                if self._prompt
+                f"{prompt.prompt_id}/{prompt.version}"
+                if prompt
                 else None
             ),
             hallucination_result=hallucination_result,
