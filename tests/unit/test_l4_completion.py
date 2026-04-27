@@ -172,7 +172,7 @@ class TestCaseGeneration:
     def test_generate_happy_path(self) -> None:
         from llm_judge.calibration.testgen import generate_template_cases
 
-        cases = generate_template_cases(categories=["happy_path"])
+        cases = generate_template_cases(rubric_id="chat_quality", categories=["happy_path"])
         assert len(cases) > 0
         for c in cases:
             assert c.category == "happy_path"
@@ -182,7 +182,7 @@ class TestCaseGeneration:
     def test_generate_adversarial(self) -> None:
         from llm_judge.calibration.testgen import generate_template_cases
 
-        cases = generate_template_cases(categories=["adversarial"])
+        cases = generate_template_cases(rubric_id="chat_quality", categories=["adversarial"])
         assert len(cases) > 0
         for c in cases:
             assert c.category == "adversarial"
@@ -191,13 +191,13 @@ class TestCaseGeneration:
     def test_generate_edge_cases(self) -> None:
         from llm_judge.calibration.testgen import generate_template_cases
 
-        cases = generate_template_cases(categories=["edge_case"])
+        cases = generate_template_cases(rubric_id="chat_quality", categories=["edge_case"])
         assert len(cases) > 0
 
     def test_generate_all_categories(self) -> None:
         from llm_judge.calibration.testgen import generate_template_cases
 
-        cases = generate_template_cases()
+        cases = generate_template_cases(rubric_id="chat_quality")
         categories = {c.category for c in cases}
         assert "happy_path" in categories
         assert "edge_case" in categories
@@ -212,14 +212,16 @@ class TestCaseGeneration:
             "Python is widely used in data science and machine learning applications. "
             "The language has a large standard library and active community."
         )
-        cases = generate_from_document(document_text=doc, max_cases=3)
+        cases = generate_from_document(
+            document_text=doc, rubric_id="chat_quality", max_cases=3
+        )
         assert len(cases) > 0
         assert cases[0].category == "rag_verification"
 
     def test_unique_case_ids(self) -> None:
         from llm_judge.calibration.testgen import generate_template_cases
 
-        cases = generate_template_cases()
+        cases = generate_template_cases(rubric_id="chat_quality")
         ids = [c.case_id for c in cases]
         assert len(ids) == len(set(ids)), "Case IDs must be unique"
 
@@ -229,7 +231,7 @@ class TestCaseGeneration:
             generate_template_cases,
         )
 
-        cases = generate_template_cases(max_per_category=3)
+        cases = generate_template_cases(rubric_id="chat_quality", max_per_category=3)
         ds_dir = export_generated_dataset(
             cases,
             dataset_id="test_gen",

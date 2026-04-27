@@ -38,7 +38,7 @@ class GeneratedCase:
     expected_decision: str  # pass | fail
     generation_method: str  # template | llm
     source: str  # what generated this case
-    rubric_id: str = "chat_quality"
+    rubric_id: str
 
 
 def _make_case_id(content: str, prefix: str = "gen") -> str:
@@ -134,10 +134,10 @@ _ADVERSARIAL_TEMPLATES: list[dict[str, Any]] = [
 
 def generate_template_cases(
     *,
+    rubric_id: str,
     categories: list[str] | None = None,
     seed: int = 42,
     max_per_category: int = 10,
-    rubric_id: str = "chat_quality",
 ) -> list[GeneratedCase]:
     """
     Generate test cases from deterministic templates.
@@ -195,6 +195,7 @@ def generate_template_cases(
 def generate_from_document(
     *,
     document_text: str,
+    rubric_id: str,
     source_name: str = "document",
     max_cases: int = 5,
     seed: int = 42,
@@ -243,6 +244,7 @@ def generate_from_document(
                 expected_decision="pass",
                 generation_method="document_extraction",
                 source=f"document:{source_name}",
+                rubric_id=rubric_id,
             )
         )
 

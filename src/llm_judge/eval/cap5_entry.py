@@ -154,8 +154,8 @@ def record_evaluation_manifest(
     verdict: dict[str, Any],
     integrity: dict[str, Any],
     *,
-    rubric_id: str = "chat_quality",
-    rubric_version: str = "v1",
+    rubric_id: str,
+    rubric_version: str,
     judge_engine: str = "control-plane-v1",
     runs_root: Path | None = None,
 ) -> str:
