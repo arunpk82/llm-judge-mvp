@@ -49,6 +49,15 @@ class SingleEvaluationRequest(BaseModel):
 
     response: str = Field(..., min_length=1)
     source: str = Field(..., min_length=1)
+    rubric_id: str = Field(
+        ...,
+        min_length=1,
+        description="Governed rubric identifier",
+    )
+    rubric_version: str = Field(
+        default="latest",
+        description="Rubric version, or 'latest' for current",
+    )
     caller_id: str | None = None
     request_id: str | None = None
 
