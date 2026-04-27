@@ -183,7 +183,7 @@ def cmd_benchmark(args: argparse.Namespace) -> bool:
     import os
     from dataclasses import replace
 
-    from llm_judge.benchmarks.ragtruth import RAGTruthAdapter
+    from llm_judge.benchmarks.registry import RAGTRUTH_50_BENCHMARK_PATH, build
     from llm_judge.benchmarks.runner import run_benchmark
     from llm_judge.calibration.pipeline_config import LayerConfig, get_pipeline_config
 
@@ -220,19 +220,12 @@ def cmd_benchmark(args: argparse.Namespace) -> bool:
         if config.l3_method == "fact_counting" and "l3" not in requested:
             print("  Note: l3_method='fact_counting' is dormant (L3 disabled by override)")
 
-    adapter = RAGTruthAdapter()
-
-    # Lock to the fixed RAGTruth-50 benchmark set
-    benchmark_path = Path("datasets/benchmarks/ragtruth/ragtruth_50_benchmark.json")
-    if benchmark_path.exists():
-        adapter.set_benchmark_filter(benchmark_path)
-        print("  Benchmark: RAGTruth-50 (fixed 50 responses)")
-    else:
-        print("  WARNING: No benchmark definition found — loading ALL test cases")
+    adapter = build("ragtruth_50")
+    print("  Benchmark: RAGTruth-50 (fixed 50 responses)")
 
     # ── Prerequisite Check: L2 Graph Cache ──
-    if benchmark_path.exists() and config.layers.l2_enabled:
-        prereq = _check_and_provision_l2(str(benchmark_path), args)
+    if config.layers.l2_enabled:
+        prereq = _check_and_provision_l2(str(RAGTRUTH_50_BENCHMARK_PATH), args)
         if prereq is False:
             return False
 
