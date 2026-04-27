@@ -31,6 +31,12 @@ from dataclasses import dataclass, field
 from difflib import SequenceMatcher
 from typing import TYPE_CHECKING, Any
 
+from llm_judge.control_plane.observability import (
+    Timer,
+    emit_event,
+    emit_sub_capability_skipped,
+)
+
 if TYPE_CHECKING:
     from llm_judge.calibration.pipeline_config import PipelineConfig
 
@@ -640,20 +646,59 @@ def check_hallucination(
         )
 
     # -- L1: Rules — exact substring match (cheapest, runs first) --
-    l1_resolved = set()
+    l1_resolved: set[int] = set()
     if l1_enabled:
-        for i, sent in enumerate(resp_sents):
-            if _l1_substring_match(sent, ctx_sents, source_doc):
-                l1_resolved.add(i)
-                layer_stats["L1"] += 1
-                sentence_results.append(
-                    SentenceLayerResult(
-                        sentence_idx=i,
-                        sentence=sent[:120],
-                        resolved_by="L1",
-                        detail="exact_match",
+        # CAP-7 L1 sub-capability instrumentation (CAP-7 phase 1).
+        # Four conceptual boundaries; one CLEAN, three SOFT. Soft
+        # boundaries emit ``sub_capability_skipped`` with explicit
+        # reasons rather than 0ms-duration events (D5).
+        emit_sub_capability_skipped(
+            capability_id="CAP-7",
+            sub_capability_id="l1_input_preparation",
+            request_id=case_id,
+            reason="sentence_segmentation_shared_across_layers",
+        )
+
+        emit_event(
+            "sub_capability_started",
+            capability_id="CAP-7",
+            sub_capability_id="l1_substring_matching",
+            request_id=case_id,
+        )
+        with Timer() as _t_l1_match:
+            for i, sent in enumerate(resp_sents):
+                if _l1_substring_match(sent, ctx_sents, source_doc):
+                    l1_resolved.add(i)
+                    layer_stats["L1"] += 1
+                    sentence_results.append(
+                        SentenceLayerResult(
+                            sentence_idx=i,
+                            sentence=sent[:120],
+                            resolved_by="L1",
+                            detail="exact_match",
+                        )
                     )
-                )
+        emit_event(
+            "sub_capability_completed",
+            capability_id="CAP-7",
+            sub_capability_id="l1_substring_matching",
+            request_id=case_id,
+            duration_ms=_t_l1_match.duration_ms,
+            status="success",
+        )
+
+        emit_sub_capability_skipped(
+            capability_id="CAP-7",
+            sub_capability_id="l1_aggregation",
+            request_id=case_id,
+            reason="interleaved_with_substring_matching_loop",
+        )
+        emit_sub_capability_skipped(
+            capability_id="CAP-7",
+            sub_capability_id="l1_result_emission",
+            request_id=case_id,
+            reason="no_discrete_emit_step_layer_stats_flow_through_hallucination_result",
+        )
 
     # If ALL sentences resolved by L1, skip everything else
     if len(l1_resolved) == len(resp_sents):
