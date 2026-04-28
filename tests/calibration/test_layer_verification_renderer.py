@@ -37,7 +37,6 @@ if str(REPO_ROOT) not in sys.path:
 from experiments.render_layer_verification_report import (  # noqa: E402
     CASE_STATE_L1_VERDICT_MISSING,
     CASE_STATE_PLATFORM_FAULT,
-    CASE_STATE_SUCCESS,
     CaseClassification,
     CaseEvidence,
     VerificationMetrics,
