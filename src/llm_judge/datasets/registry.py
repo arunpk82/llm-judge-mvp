@@ -142,12 +142,14 @@ class DatasetRegistry:
             security_warnings = _check_security(raw_cases, data_path)
             if security_warnings:
                 for sw in security_warnings[:5]:
+                    # ``extra`` keys cannot shadow LogRecord built-ins
+                    # ("message" is reserved); use warning_message instead.
                     logger.warning(
                         "dataset.security_warning",
                         extra={
                             "dataset_id": dataset_id,
                             "code": sw.code,
-                            "message": sw.message,
+                            "warning_message": sw.message,
                         },
                     )
         except ImportError:

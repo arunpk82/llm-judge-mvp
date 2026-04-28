@@ -90,6 +90,43 @@ class CaseEvidence:
     span_annotations: list[dict[str, Any]]
 
 
+# Three states a case can land in for the verification flow.
+#  * "success"             — CAP-1/2/7 all succeeded, verdict is valid;
+#                            included in the metrics aggregation.
+#  * "platform_fault"      — CAP-1 or CAP-2 (or both) failed before
+#                            CAP-7 ran (or CAP-7 itself errored).
+#                            Excluded from metrics. Surfaced in the
+#                            Platform Faults panel — NOT silently
+#                            dropped.
+#  * "l1_verdict_missing"  — CAP-7 ran but produced no usable L1
+#                            verdict (e.g. the manifest is shaped from
+#                            an older run that predates the
+#                            sentence_results / total_sentences
+#                            surfacing change). Also excluded;
+#                            distinguished from platform_fault because
+#                            the cause is renderer / wrapper plumbing,
+#                            not the upstream platform.
+CASE_STATE_SUCCESS = "success"
+CASE_STATE_PLATFORM_FAULT = "platform_fault"
+CASE_STATE_L1_VERDICT_MISSING = "l1_verdict_missing"
+
+
+@dataclass
+class CaseDisposition:
+    """Per-case outcome at the verification layer.
+
+    ``state`` is one of the ``CASE_STATE_*`` constants. ``evidence`` is
+    populated for ``success`` cases and is ``None`` otherwise. ``reason``
+    is a short human-readable string suitable for the Platform Faults
+    panel.
+    """
+
+    case_id: str
+    state: str
+    reason: str
+    evidence: CaseEvidence | None = None
+
+
 @dataclass
 class CaseClassification:
     """Per-case TP/FP/TN/FN counts (sentence-level)."""
@@ -152,33 +189,76 @@ def _read_json(path: Path) -> dict[str, Any]:
         return json.load(f)
 
 
-def _gather_case_evidence(
+def _classify_disposition(
     *,
     case_id: str,
     batch_run_dir: Path,
     single_eval_root: Path,
     benchmark_case: BenchmarkCase,
-) -> CaseEvidence:
-    """Assemble per-case evidence from batch_run + single_eval artifacts.
+) -> CaseDisposition:
+    """Classify a case into success / platform_fault / l1_verdict_missing.
 
-    Surfaces a ``ValueError`` with a concrete artifact path on missing
-    fields rather than silently coercing — surprising data shapes should
-    fail loud, not produce a report with hidden zeros.
+    The decision walks the per-case batch envelope first (cheapest
+    signal — captures CAP-1/2/7 status without parsing the verdict),
+    then the CAP-5 manifest (for verdict shape). A platform fault
+    short-circuits before any verdict parsing.
     """
     case_dir = batch_run_dir / "cases" / case_id
     events_path = case_dir / "events.jsonl"
+    envelope_path = case_dir / "manifest.json"
     sub_cap_events = [
         e
         for e in _read_jsonl(events_path)
         if e.get("event", "").startswith("sub_capability_")
     ]
 
+    # Walk the per-case envelope first. Its ``integrity[]`` records the
+    # status of every capability that ran (or was skipped upstream).
+    if not envelope_path.exists():
+        return CaseDisposition(
+            case_id=case_id,
+            state=CASE_STATE_PLATFORM_FAULT,
+            reason=f"per-case envelope missing at {envelope_path}",
+        )
+    envelope = _read_json(envelope_path)
+    integrity_records = envelope.get("integrity", [])
+    by_cap = {r.get("capability_id"): r for r in integrity_records}
+
+    # Platform fault: any of CAP-1, CAP-2, CAP-7 didn't reach success.
+    # ``status`` values are "success", "failure", "skipped_upstream_failure".
+    # We treat anything other than "success" on these three caps as a
+    # fault (CAP-2 is in the list because a CAP-2 failure leaves CAP-7
+    # in an unclear state for verification).
+    for cap_id in ("CAP-1", "CAP-2", "CAP-7"):
+        record = by_cap.get(cap_id)
+        if record is None:
+            return CaseDisposition(
+                case_id=case_id,
+                state=CASE_STATE_PLATFORM_FAULT,
+                reason=f"{cap_id} missing from envelope.integrity",
+            )
+        status = record.get("status", "")
+        if status != "success":
+            err = record.get("error_type") or status
+            err_msg = (record.get("error_message") or "")[:120]
+            reason = f"{cap_id} status={status}"
+            if err and err != status:
+                reason += f" ({err})"
+            if err_msg:
+                reason += f": {err_msg}"
+            return CaseDisposition(
+                case_id=case_id,
+                state=CASE_STATE_PLATFORM_FAULT,
+                reason=reason,
+            )
+
+    # All caps green: read the CAP-5 manifest for the verdict.
     cap5_manifest_path = single_eval_root / case_id / "manifest.json"
     if not cap5_manifest_path.exists():
-        raise FileNotFoundError(
-            f"renderer: CAP-5 manifest missing at {cap5_manifest_path}; "
-            f"the renderer needs verdict data from the single_eval store. "
-            f"Was this batch run with case_id={case_id!r}?"
+        return CaseDisposition(
+            case_id=case_id,
+            state=CASE_STATE_L1_VERDICT_MISSING,
+            reason=f"CAP-5 manifest missing at {cap5_manifest_path}",
         )
     manifest = _read_json(cap5_manifest_path)
     verdict = manifest.get("verdict", {})
@@ -186,20 +266,28 @@ def _gather_case_evidence(
     layers_requested = list(verdict.get("layers_requested", []))
     sentence_results = list(verdict.get("sentence_results", []))
 
-    if "total_sentences" not in layer_stats:
-        raise ValueError(
-            f"renderer: verdict.layer_stats missing 'total_sentences' "
-            f"in {cap5_manifest_path}; refresh the batch run after the "
-            f"CAP-7 wrapper change that surfaces total_sentences."
+    if not verdict:
+        return CaseDisposition(
+            case_id=case_id,
+            state=CASE_STATE_L1_VERDICT_MISSING,
+            reason="CAP-5 manifest has empty verdict (likely written before CAP-7 succeeded)",
         )
-    sentence_count = int(layer_stats["total_sentences"])
+    if "total_sentences" not in layer_stats:
+        return CaseDisposition(
+            case_id=case_id,
+            state=CASE_STATE_L1_VERDICT_MISSING,
+            reason=(
+                "verdict.layer_stats missing 'total_sentences' — "
+                "manifest predates the CAP-7 wrapper change that surfaces it"
+            ),
+        )
 
+    sentence_count = int(layer_stats["total_sentences"])
     cleared_indices = {
         int(sr["sentence_idx"])
         for sr in sentence_results
         if sr.get("resolved_by") == "L1"
     }
-
     response_text = benchmark_case.request.candidate_answer
     span_annotations = [
         {
@@ -210,8 +298,7 @@ def _gather_case_evidence(
         }
         for ann in benchmark_case.ground_truth.span_annotations
     ]
-
-    return CaseEvidence(
+    evidence = CaseEvidence(
         case_id=case_id,
         response_text=response_text,
         sentence_count=sentence_count,
@@ -220,6 +307,12 @@ def _gather_case_evidence(
         cleared_indices=cleared_indices,
         sub_capability_events=sub_cap_events,
         span_annotations=span_annotations,
+    )
+    return CaseDisposition(
+        case_id=case_id,
+        state=CASE_STATE_SUCCESS,
+        reason="",
+        evidence=evidence,
     )
 
 
@@ -405,6 +498,9 @@ def _render_summary(
     target_detection: float,
     tolerance_detection: float,
     target_precision: float,
+    cases_included: int,
+    cases_total: int,
+    cases_excluded: int,
 ) -> None:
     detection_low = target_detection - tolerance_detection
     detection_high = target_detection + tolerance_detection
@@ -446,6 +542,53 @@ def _render_summary(
     )
     table.add_row("Recall", f"{metrics.recall:.4f}", "—", "[dim]informational[/dim]")
     table.add_row("F1", f"{metrics.f1:.4f}", "—", "[dim]informational[/dim]")
+    console.print(table)
+
+    if cases_excluded > 0:
+        console.print(
+            f"[yellow]L1 metrics computed on {cases_included}/{cases_total} "
+            f"cases; {cases_excluded} cases excluded — see Platform Faults "
+            f"panel.[/yellow]"
+        )
+    else:
+        console.print(
+            f"[dim]L1 metrics computed on {cases_included}/{cases_total} cases "
+            f"(no exclusions).[/dim]"
+        )
+
+
+def _render_platform_faults(
+    console: Console, faults: list[CaseDisposition]
+) -> None:
+    """Surface non-success cases prominently. Honest reporting — these
+    cases never reach the metrics aggregation, so without this panel
+    they would silently disappear from the report."""
+    if not faults:
+        console.print(
+            "[dim]No platform faults — every case produced a usable L1 verdict.[/dim]"
+        )
+        return
+    by_state: Counter[str] = Counter(f.state for f in faults)
+    title = (
+        f"Platform Faults — {len(faults)} case(s) excluded "
+        f"({by_state.get(CASE_STATE_PLATFORM_FAULT, 0)} platform_fault, "
+        f"{by_state.get(CASE_STATE_L1_VERDICT_MISSING, 0)} l1_verdict_missing)"
+    )
+    table = Table(
+        title=title,
+        show_header=True,
+        header_style="bold red",
+    )
+    table.add_column("case_id")
+    table.add_column("state")
+    table.add_column("reason")
+    for f in faults:
+        state_label = (
+            f"[red]{f.state}[/red]"
+            if f.state == CASE_STATE_PLATFORM_FAULT
+            else f"[yellow]{f.state}[/yellow]"
+        )
+        table.add_row(f.case_id, state_label, f.reason)
     console.print(table)
 
 
@@ -615,16 +758,20 @@ def render_verification_report(
             f"benchmark pair."
         )
 
-    evidence_list: list[CaseEvidence] = []
-    for cid in case_ids:
-        evidence_list.append(
-            _gather_case_evidence(
-                case_id=cid,
-                batch_run_dir=batch_run_dir,
-                single_eval_root=single_eval_root,
-                benchmark_case=benchmark_cases[cid],
-            )
+    dispositions: list[CaseDisposition] = [
+        _classify_disposition(
+            case_id=cid,
+            batch_run_dir=batch_run_dir,
+            single_eval_root=single_eval_root,
+            benchmark_case=benchmark_cases[cid],
         )
+        for cid in case_ids
+    ]
+    successes = [d for d in dispositions if d.state == CASE_STATE_SUCCESS]
+    faults = [d for d in dispositions if d.state != CASE_STATE_SUCCESS]
+    evidence_list: list[CaseEvidence] = [
+        d.evidence for d in successes if d.evidence is not None
+    ]
 
     classifications = [_classify_case(e) for e in evidence_list]
     metrics = _aggregate_metrics(classifications)
@@ -634,6 +781,15 @@ def render_verification_report(
         tolerance_detection=tolerance_detection,
         target_precision=target_precision,
     )
+    if faults:
+        # Surface in findings too, not just the panel — verdict
+        # consumers reading just the findings list shouldn't be left
+        # in the dark about excluded cases.
+        findings.append(
+            f"{len(faults)} case(s) excluded from metrics due to "
+            f"upstream platform faults / missing verdicts; see Platform "
+            f"Faults panel for per-case detail."
+        )
 
     boundary_summary: dict[str, Counter[str]] = {}
     for ev in evidence_list:
@@ -663,7 +819,11 @@ def render_verification_report(
         target_detection=target_detection,
         tolerance_detection=tolerance_detection,
         target_precision=target_precision,
+        cases_included=len(evidence_list),
+        cases_total=len(case_ids),
+        cases_excluded=len(faults),
     )
+    _render_platform_faults(console, faults)
     _render_metrics_detail(console, metrics)
     _render_per_case_attribution(console, classifications)
     _render_subcap_events(console, layer, sample_evidence, boundary_summary)
@@ -708,6 +868,19 @@ def render_verification_report(
                 "findings": findings,
                 "batch_run_dir": str(batch_run_dir),
                 "single_eval_root": str(single_eval_root),
+                "case_inclusion": {
+                    "included": len(evidence_list),
+                    "total": len(case_ids),
+                    "excluded": len(faults),
+                    "excluded_cases": [
+                        {
+                            "case_id": f.case_id,
+                            "state": f.state,
+                            "reason": f.reason,
+                        }
+                        for f in faults
+                    ],
+                },
             },
             indent=2,
         ),

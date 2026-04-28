@@ -35,11 +35,15 @@ if str(REPO_ROOT) not in sys.path:
     sys.path.insert(0, str(REPO_ROOT))
 
 from experiments.render_layer_verification_report import (  # noqa: E402
+    CASE_STATE_L1_VERDICT_MISSING,
+    CASE_STATE_PLATFORM_FAULT,
+    CASE_STATE_SUCCESS,
     CaseClassification,
     CaseEvidence,
     VerificationMetrics,
     _aggregate_metrics,
     _classify_case,
+    _classify_disposition,
     _compute_verdict,
     render_verification_report,
 )
@@ -361,3 +365,313 @@ def test_render_verification_report_produces_html_md_and_summary(
     assert summary["benchmark"] == "ragtruth_5"
     assert summary["verdict"] == verdict
     assert summary["metrics"]["precision"] == 1.0
+    # Three-state inclusion ledger present.
+    assert "case_inclusion" in summary
+    assert summary["case_inclusion"]["total"] == summary["case_inclusion"]["included"]
+    assert summary["case_inclusion"]["excluded"] == 0
+
+
+# ----------------------------------------------------------------------
+# Three-state classification — fixture-driven, no real batch run
+# ----------------------------------------------------------------------
+#
+# These tests build minimal batch_run + single_eval directory layouts
+# under tmp_path and run the renderer against them. They exercise the
+# disposition logic directly without paying spaCy startup more than
+# the renderer would on its successful-case path.
+
+
+def _write_envelope(case_dir: Path, *, integrity: list[dict[str, Any]]) -> None:
+    """Write a per-case batch_run envelope with the supplied integrity list."""
+    case_dir.mkdir(parents=True, exist_ok=True)
+    (case_dir / "manifest.json").write_text(
+        json.dumps(
+            {
+                "request_id": case_dir.name,
+                "caller_id": "test",
+                "integrity": integrity,
+                "capability_chain": ["CAP-1", "CAP-2", "CAP-7", "CAP-5"],
+            }
+        ),
+        encoding="utf-8",
+    )
+    (case_dir / "events.jsonl").write_text("", encoding="utf-8")
+
+
+def _write_cap5_manifest(
+    single_eval_root: Path,
+    case_id: str,
+    *,
+    verdict: dict[str, Any] | None,
+) -> None:
+    """Write a CAP-5 manifest with the supplied verdict shape (or empty)."""
+    case_dir = single_eval_root / case_id
+    case_dir.mkdir(parents=True, exist_ok=True)
+    (case_dir / "manifest.json").write_text(
+        json.dumps({"verdict": verdict or {}, "manifest_id": case_id}),
+        encoding="utf-8",
+    )
+
+
+def _benchmark_case_for_id(case_id: str) -> Any:
+    """Build the smallest BenchmarkCase the renderer needs for a fault path —
+    only ``request.candidate_answer`` and ``ground_truth.span_annotations``
+    are read by ``_classify_disposition``, both of which can be empty for
+    fault cases since classification short-circuits before reading them."""
+    from llm_judge.benchmarks import BenchmarkCase, GroundTruth
+    from llm_judge.schemas import Message, PredictRequest
+
+    return BenchmarkCase(
+        case_id=case_id,
+        request=PredictRequest(
+            conversation=[Message(role="user", content="q")],
+            candidate_answer="The capital of France is Paris.",
+            rubric_id="chat_quality",
+        ),
+        ground_truth=GroundTruth(
+            response_level="pass",
+            property_labels={},
+            span_annotations=[],
+            hallucination_types={},
+        ),
+    )
+
+
+def test_renderer_classifies_platform_fault_when_cap1_failed(tmp_path: Path) -> None:
+    case_dir = tmp_path / "batch_run" / "cases" / "case_a"
+    _write_envelope(
+        case_dir,
+        integrity=[
+            {
+                "capability_id": "CAP-1",
+                "status": "failure",
+                "error_type": "KeyError",
+                "error_message": "boom",
+                "duration_ms": 1.0,
+            },
+            {"capability_id": "CAP-2", "status": "skipped_upstream_failure"},
+            {"capability_id": "CAP-7", "status": "skipped_upstream_failure"},
+        ],
+    )
+    # CAP-5 manifest has empty verdict (matches what the platform writes
+    # when CAP-1 fails) — disposition classifier should short-circuit on
+    # the envelope and not depend on the CAP-5 file.
+    _write_cap5_manifest(tmp_path / "single_eval", "case_a", verdict={})
+
+    disposition = _classify_disposition(
+        case_id="case_a",
+        batch_run_dir=tmp_path / "batch_run",
+        single_eval_root=tmp_path / "single_eval",
+        benchmark_case=_benchmark_case_for_id("case_a"),
+    )
+    assert disposition.state == CASE_STATE_PLATFORM_FAULT
+    assert "CAP-1" in disposition.reason
+    assert "failure" in disposition.reason
+    assert disposition.evidence is None
+
+
+def test_renderer_classifies_l1_verdict_missing_when_cap5_lacks_verdict(
+    tmp_path: Path,
+) -> None:
+    case_dir = tmp_path / "batch_run" / "cases" / "case_b"
+    # CAP-1/2/7 all green — no platform fault.
+    _write_envelope(
+        case_dir,
+        integrity=[
+            {"capability_id": "CAP-1", "status": "success", "duration_ms": 1.0},
+            {"capability_id": "CAP-2", "status": "success", "duration_ms": 1.0},
+            {"capability_id": "CAP-7", "status": "success", "duration_ms": 1.0},
+        ],
+    )
+    # ...but the CAP-5 verdict is empty (e.g. shape regression / older
+    # manifest predating the surfacing change).
+    _write_cap5_manifest(tmp_path / "single_eval", "case_b", verdict={})
+
+    disposition = _classify_disposition(
+        case_id="case_b",
+        batch_run_dir=tmp_path / "batch_run",
+        single_eval_root=tmp_path / "single_eval",
+        benchmark_case=_benchmark_case_for_id("case_b"),
+    )
+    assert disposition.state == CASE_STATE_L1_VERDICT_MISSING
+    assert "verdict" in disposition.reason.lower()
+    assert disposition.evidence is None
+
+
+def test_renderer_classifies_l1_verdict_missing_when_total_sentences_absent(
+    tmp_path: Path,
+) -> None:
+    """Older manifests can carry a ``verdict`` dict but lack
+    ``layer_stats['total_sentences']`` — that's the canonical sign the
+    manifest predates the CAP-7 wrapper change. Renderer should classify
+    as l1_verdict_missing rather than crash."""
+    case_dir = tmp_path / "batch_run" / "cases" / "case_c"
+    _write_envelope(
+        case_dir,
+        integrity=[
+            {"capability_id": "CAP-1", "status": "success", "duration_ms": 1.0},
+            {"capability_id": "CAP-2", "status": "success", "duration_ms": 1.0},
+            {"capability_id": "CAP-7", "status": "success", "duration_ms": 1.0},
+        ],
+    )
+    _write_cap5_manifest(
+        tmp_path / "single_eval",
+        "case_c",
+        verdict={
+            "risk_score": 0.0,
+            "layer_stats": {"L1": 0, "L2": 0},  # no 'total_sentences'
+            "layers_requested": ["L1"],
+        },
+    )
+
+    disposition = _classify_disposition(
+        case_id="case_c",
+        batch_run_dir=tmp_path / "batch_run",
+        single_eval_root=tmp_path / "single_eval",
+        benchmark_case=_benchmark_case_for_id("case_c"),
+    )
+    assert disposition.state == CASE_STATE_L1_VERDICT_MISSING
+    assert "total_sentences" in disposition.reason
+
+
+def test_renderer_metrics_only_aggregate_successful_dispositions(
+    tmp_path: Path,
+) -> None:
+    """Build a 3-case batch where one case is a platform fault and two
+    succeed. Render and verify (a) the Platform Faults panel surfaces
+    the fault, (b) metrics are computed only on the two successful
+    cases, (c) summary JSON's ``case_inclusion`` ledger reflects the
+    split.
+    """
+    batch_dir = tmp_path / "batch_run"
+    single_eval_root = tmp_path / "single_eval"
+
+    # Case A: success — short, clean, all-grounded response.
+    _write_envelope(
+        batch_dir / "cases" / "case_a",
+        integrity=[
+            {"capability_id": "CAP-1", "status": "success", "duration_ms": 1.0},
+            {"capability_id": "CAP-2", "status": "success", "duration_ms": 1.0},
+            {"capability_id": "CAP-7", "status": "success", "duration_ms": 1.0},
+        ],
+    )
+    _write_cap5_manifest(
+        single_eval_root,
+        "case_a",
+        verdict={
+            "risk_score": 0.0,
+            "grounding_ratio": 1.0,
+            "layers_requested": ["L1"],
+            "layer_stats": {"L1": 1, "total_sentences": 1},
+            "sentence_results": [
+                {
+                    "sentence_idx": 0,
+                    "sentence": "The capital of France is Paris.",
+                    "resolved_by": "L1",
+                    "detail": "exact_match",
+                }
+            ],
+        },
+    )
+
+    # Case B: same shape — ensures aggregation across multiple cases.
+    _write_envelope(
+        batch_dir / "cases" / "case_b",
+        integrity=[
+            {"capability_id": "CAP-1", "status": "success", "duration_ms": 1.0},
+            {"capability_id": "CAP-2", "status": "success", "duration_ms": 1.0},
+            {"capability_id": "CAP-7", "status": "success", "duration_ms": 1.0},
+        ],
+    )
+    _write_cap5_manifest(
+        single_eval_root,
+        "case_b",
+        verdict={
+            "risk_score": 0.0,
+            "grounding_ratio": 1.0,
+            "layers_requested": ["L1"],
+            "layer_stats": {"L1": 1, "total_sentences": 1},
+            "sentence_results": [
+                {
+                    "sentence_idx": 0,
+                    "sentence": "The capital of France is Paris.",
+                    "resolved_by": "L1",
+                    "detail": "exact_match",
+                }
+            ],
+        },
+    )
+
+    # Case C: platform fault — CAP-1 failed, no verdict.
+    _write_envelope(
+        batch_dir / "cases" / "case_c",
+        integrity=[
+            {
+                "capability_id": "CAP-1",
+                "status": "failure",
+                "error_type": "KeyError",
+                "error_message": 'Attempt to overwrite "message" in LogRecord',
+                "duration_ms": 1.0,
+            },
+            {"capability_id": "CAP-2", "status": "skipped_upstream_failure"},
+            {"capability_id": "CAP-7", "status": "skipped_upstream_failure"},
+        ],
+    )
+    _write_cap5_manifest(single_eval_root, "case_c", verdict={})
+
+    # Patch the benchmark loader to return all three synthetic cases.
+    import experiments.render_layer_verification_report as mod
+
+    monkey_cases = {
+        cid: _benchmark_case_for_id(cid) for cid in ("case_a", "case_b", "case_c")
+    }
+    original_loader = mod._load_benchmark_cases
+    mod._load_benchmark_cases = lambda _b: monkey_cases  # type: ignore[assignment]
+    try:
+        output_dir = tmp_path / "verification_out"
+        verdict = render_verification_report(
+            batch_run_dir=batch_dir,
+            single_eval_root=single_eval_root,
+            benchmark="synthetic",
+            layer="L1",
+            target_detection=0.5,
+            tolerance_detection=0.5,
+            target_precision=1.0,
+            output_dir=output_dir,
+        )
+    finally:
+        mod._load_benchmark_cases = original_loader  # type: ignore[assignment]
+
+    summary = json.loads(
+        (output_dir / "verification_summary.json").read_text(encoding="utf-8")
+    )
+    # case_a + case_b included, case_c excluded.
+    inclusion = summary["case_inclusion"]
+    assert inclusion["total"] == 3
+    assert inclusion["included"] == 2
+    assert inclusion["excluded"] == 1
+    excluded_ids = [e["case_id"] for e in inclusion["excluded_cases"]]
+    assert excluded_ids == ["case_c"]
+    assert inclusion["excluded_cases"][0]["state"] == CASE_STATE_PLATFORM_FAULT
+
+    # Metrics computed on 2 cases × 1 sentence each = 2 sentences total.
+    assert summary["metrics"]["total_sentences"] == 2
+    assert summary["metrics"]["total_responses"] == 2
+    # Both sentences cleared, both grounded → TP=2, FP=0, precision=1.0.
+    assert summary["metrics"]["tp"] == 2
+    assert summary["metrics"]["fp"] == 0
+    assert summary["metrics"]["precision"] == 1.0
+
+    # Verdict reflects metrics on included cases only — precision passes
+    # (1.0), detection rate is 1.0 which lands inside the [0.0, 1.0]
+    # tolerance window we set up. Either PASS or PARTIAL is acceptable
+    # depending on tolerance bounds; FAIL is not.
+    assert verdict in ("PASS", "PARTIAL")
+    # Findings mention the excluded case.
+    assert any("excluded" in f.lower() for f in summary["findings"])
+
+    # Report markdown includes a Platform Faults section.
+    md = (output_dir / "verification_report.md").read_text(encoding="utf-8")
+    assert "Platform Faults" in md
+    assert "case_c" in md
+
