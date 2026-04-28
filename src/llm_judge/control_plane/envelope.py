@@ -21,20 +21,32 @@ logger = structlog.get_logger()
 
 _DEFAULT_DEV_KEY = "dev-key-not-for-prod"
 _HMAC_ENV_VAR = "LLM_JUDGE_CONTROL_PLANE_HMAC_KEY"
-_DEFAULT_KEY_WARNED = False
 
 
 def _resolve_hmac_key() -> bytes:
-    global _DEFAULT_KEY_WARNED
+    """Return the HMAC key bytes for envelope signing.
+
+    Mode-aware (CP-F2 closure): production mode without
+    ``LLM_JUDGE_CONTROL_PLANE_HMAC_KEY`` raises
+    :class:`ConfigurationError` here as defense-in-depth — the primary
+    gate is :func:`validate_configuration` invoked from
+    ``PlatformRunner.__init__``, but envelopes can be constructed
+    outside that path (test isolation, partial mocks, future
+    direct-construction call sites). Pure: no module-level mutable
+    state; warning emission lives in ``validate_configuration``.
+    """
+    from llm_judge.control_plane import configuration
+    from llm_judge.control_plane.types import ConfigurationError
+
+    mode = configuration.get_mode()
     key = os.environ.get(_HMAC_ENV_VAR)
     if key is None or not key.strip():
-        if not _DEFAULT_KEY_WARNED:
-            logger.warning(
-                "control_plane.hmac.default_key_in_use",
-                env_var=_HMAC_ENV_VAR,
-                hint="set env var for non-development use",
+        if mode == "production":
+            raise ConfigurationError(
+                f"{_HMAC_ENV_VAR} must be set in production mode "
+                f"(LLM_JUDGE_MODE=production); refusing to sign with "
+                f"the development default key"
             )
-            _DEFAULT_KEY_WARNED = True
         key = _DEFAULT_DEV_KEY
     return key.encode("utf-8")
 
