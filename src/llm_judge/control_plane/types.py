@@ -13,6 +13,7 @@ from llm_judge.control_plane.envelope import (
 
 __all__ = [
     "CapabilityIntegrityRecord",
+    "ConfigurationError",
     "Integrity",
     "MissingProvenanceError",
     "SingleEvaluationRequest",
@@ -24,6 +25,14 @@ class MissingProvenanceError(Exception):
     """Raised when a wrapper's pre-check finds a required upstream
     stamp absent from the envelope. The message names the missing
     stamp so bypass attempts fail loudly at the wrapper boundary."""
+
+
+class ConfigurationError(Exception):
+    """Raised at platform startup when a required configuration value
+    is missing or invalid for the current mode. Production mode without
+    an HMAC key is the first instance; subsequent packets extend
+    ``validate_configuration()`` to cover layer vocabulary alignment,
+    artifact root validation, and governance preflight reachability."""
 
 
 class Integrity(BaseModel):
