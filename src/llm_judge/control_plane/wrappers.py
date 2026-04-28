@@ -389,6 +389,15 @@ def invoke_cap7(
         "flags": list(result.flags),
         "layer_stats": dict(result.layer_stats),
         "layers_requested": list(requested),
+        "sentence_results": [
+            {
+                "sentence_idx": sr.sentence_idx,
+                "sentence": sr.sentence,
+                "resolved_by": sr.resolved_by,
+                "detail": sr.detail,
+            }
+            for sr in result.sentence_results
+        ],
     }
 
     stamped = envelope.stamped(capability="CAP-7")

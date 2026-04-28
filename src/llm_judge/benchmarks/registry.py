@@ -44,6 +44,12 @@ RAGTRUTH_50_BENCHMARK_PATH = Path(
     "datasets/benchmarks/ragtruth/ragtruth_50_benchmark.json"
 )
 
+# RAGTruth-5 — strict 5-id prefix of ragtruth_50, used as a fast slice
+# for integration tests of the platform-as-harness verification flow.
+RAGTRUTH_5_BENCHMARK_PATH = Path(
+    "datasets/benchmarks/ragtruth/ragtruth_5_benchmark.json"
+)
+
 
 class BenchmarkNotFoundError(Exception):
     """Raised by :func:`build` when a benchmark name is not registered."""
@@ -105,7 +111,15 @@ def _build_ragtruth_50() -> BenchmarkAdapter:
     return adapter
 
 
+def _build_ragtruth_5() -> BenchmarkAdapter:
+    """Build a RAGTruthAdapter restricted to the 5-case test slice."""
+    adapter = RAGTruthAdapter()
+    adapter.set_benchmark_filter(RAGTRUTH_5_BENCHMARK_PATH)
+    return adapter
+
+
 register("ragtruth_50", _build_ragtruth_50)
+register("ragtruth_5", _build_ragtruth_5)
 register("halueval", HaluEvalAdapter)
 register("fever", FEVERAdapter)
 register("ifeval", IFEvalAdapter)

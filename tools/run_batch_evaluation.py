@@ -131,6 +131,21 @@ def _build_argparser() -> argparse.ArgumentParser:
         default=None,
         help="Truncate to the first N cases. Default: no limit.",
     )
+    parser.add_argument(
+        "--isolate-layer",
+        type=str,
+        default=None,
+        choices=["L1", "L2", "L3", "L4", "L5"],
+        help=(
+            "Constrain CAP-7 to a single hallucination-pipeline layer. "
+            "Used by the layer-by-layer verification flow "
+            "(make verify-l1, etc.). Default: None (uses CAP-7 default "
+            "DEFAULT_LAYERS=['L1']). NOTE: L5 is in the choice list to "
+            "keep argparse stable across the level-by-level arc — it "
+            "currently raises ValueError from invoke_cap7 until "
+            "VALID_LAYERS is extended in Phase 5."
+        ),
+    )
     return parser
 
 
@@ -155,12 +170,15 @@ def main(argv: list[str] | None = None) -> int:
     renderer = BatchTerminalRenderer(output_dir)
     renderer.attach()
 
+    layers = [args.isolate_layer] if args.isolate_layer else None
+
     try:
         result = batch_runner.run_batch(
             cases=cases_iter,
             batch_id=batch_id,
             output_dir=output_dir,
             source=source,
+            layers=layers,
         )
     except Exception as exc:
         print(f"batch driver failed: {exc}", file=sys.stderr)
