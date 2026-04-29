@@ -9,11 +9,20 @@ Currently absorbed checks:
   - HMAC key in production mode (closes CP-F2 and CP-F11): when
     ``LLM_JUDGE_MODE=production``, ``LLM_JUDGE_CONTROL_PLANE_HMAC_KEY``
     must be set; otherwise :class:`ConfigurationError` is raised.
+  - Layer vocabulary alignment (closes CP-F4): the cascade-layer
+    string set declared in
+    :data:`llm_judge.control_plane.wrappers.VALID_LAYERS` plus
+    :data:`STUB_LAYERS` must equal the ``--isolate-layer`` choice list
+    accepted by ``tools/run_batch_evaluation.py``. ``L5`` is in the
+    argparse choices and in :data:`STUB_LAYERS` but not yet in
+    ``VALID_LAYERS`` — argparse keeps it stable across the
+    level-by-level arc, ``invoke_cap7`` rejects it as unwired (see
+    ``tools/run_batch_evaluation.py`` ``--isolate-layer`` help text).
+    Capturing the gap in :data:`STUB_LAYERS` makes the asymmetry a
+    documented architecture decision rather than silent drift.
 
 Expected future extensions (declared here for governance continuity;
 not yet implemented):
-  - Layer vocabulary alignment between :mod:`wrappers` ``DEFAULT_LAYERS``
-    and ``eval/run.py`` argparse choices (CP-F4, target packet L1-Pkt-2).
   - Artifact root validation: writability of ``runs_root`` /
     ``transient_root`` at startup rather than at first persistence.
   - Governance preflight reachability: ``rubrics/registry.yaml`` exists
@@ -49,6 +58,19 @@ _HMAC_ENV_VAR = "LLM_JUDGE_CONTROL_PLANE_HMAC_KEY"
 _DEFAULT_MODE = "development"
 _VALID_MODES = frozenset({"development", "production"})
 
+STUB_LAYERS: frozenset[str] = frozenset({"L5"})
+"""Cascade-layer identifiers that are accepted at the argparse boundary
+but not yet wired into ``invoke_cap7``. Listed here so layer-vocabulary
+alignment treats the gap as documented architecture rather than drift."""
+
+_ARGPARSE_LAYER_CHOICES: frozenset[str] = frozenset({"L1", "L2", "L3", "L4", "L5"})
+"""The cascade-layer choices that ``tools/run_batch_evaluation.py``
+``--isolate-layer`` accepts. Mirrored here so :func:`validate_layer_vocabulary`
+can verify alignment without importing the script. A separate test
+(``tests/control_plane/test_configuration.py``) loads the actual parser
+and asserts the live choices equal this set, catching drift in the tool
+file even when configuration.py is unchanged."""
+
 _resolved_mode: str | None = None
 
 
@@ -65,16 +87,50 @@ def _read_mode() -> str:
     return candidate
 
 
+def validate_layer_vocabulary() -> None:
+    """Validate cascade-layer vocabulary alignment at startup.
+
+    The ``--isolate-layer`` argparse choice list in
+    ``tools/run_batch_evaluation.py`` MUST equal
+    :data:`llm_judge.control_plane.wrappers.VALID_LAYERS` ∪
+    :data:`STUB_LAYERS`. The split distinguishes wired layers (rejected
+    by ``invoke_cap7`` only when truly unknown) from stub layers
+    (rejected by ``invoke_cap7`` as not-yet-implemented). When a stub
+    layer becomes wired, the developer moves it from :data:`STUB_LAYERS`
+    into ``VALID_LAYERS``; this function verifies the split stays
+    coherent so neither set silently drifts.
+
+    Raises:
+        ConfigurationError: ``VALID_LAYERS ∪ STUB_LAYERS`` does not
+            equal the argparse choice set declared here.
+    """
+    from llm_judge.control_plane.wrappers import VALID_LAYERS
+
+    expected = VALID_LAYERS | STUB_LAYERS
+    if _ARGPARSE_LAYER_CHOICES != expected:
+        raise ConfigurationError(
+            f"layer vocabulary misalignment: argparse choices "
+            f"{sorted(_ARGPARSE_LAYER_CHOICES)} != "
+            f"VALID_LAYERS ∪ STUB_LAYERS {sorted(expected)}; "
+            f"if wiring a stub, move it from STUB_LAYERS into "
+            f"VALID_LAYERS; if adding a layer, update both "
+            f"_ARGPARSE_LAYER_CHOICES and the choice list in "
+            f"tools/run_batch_evaluation.py"
+        )
+
+
 def validate_configuration() -> None:
     """Validate platform configuration; raise on production gaps.
 
     Called once near the top of ``PlatformRunner.__init__``. After a
     successful return, :func:`get_mode` reflects the validated mode for
     the lifetime of the process (or until :func:`_reset_for_tests` runs).
+    Validators run in sequence: HMAC mode first, then layer vocabulary.
 
     Raises:
-        ConfigurationError: production mode without an HMAC key, or an
-            unknown ``LLM_JUDGE_MODE`` value.
+        ConfigurationError: production mode without an HMAC key, an
+            unknown ``LLM_JUDGE_MODE`` value, or layer vocabulary
+            misalignment (see :func:`validate_layer_vocabulary`).
     """
     global _resolved_mode
 
@@ -95,6 +151,8 @@ def validate_configuration() -> None:
             env_var=_HMAC_ENV_VAR,
             hint="set env var for non-development use",
         )
+
+    validate_layer_vocabulary()
 
     _resolved_mode = mode
 
