@@ -20,6 +20,7 @@ from typing import Any
 
 import structlog
 
+from llm_judge.control_plane.configuration import validate_configuration
 from llm_judge.control_plane.envelope import (
     CapabilityIntegrityRecord,
     new_envelope,
@@ -120,6 +121,7 @@ class PlatformRunner:
         transient_root: Path | None = None,
         runs_root: Path | None = None,
     ) -> None:
+        validate_configuration()
         self._platform_version = platform_version or _resolve_platform_version()
         self._transient_root = transient_root
         self._runs_root = runs_root
