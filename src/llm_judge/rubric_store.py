@@ -17,6 +17,7 @@ from typing import Any
 import yaml
 from pydantic import ValidationError
 
+from llm_judge.control_plane.types import RubricNotInRegistryError
 from llm_judge.rule_plan_yaml import RubricRegistryConfig, rubric_definition_model
 
 
@@ -92,14 +93,21 @@ def _resolve_version(rubric_id: str) -> str:
     """Resolve the latest version for ``rubric_id`` from
     ``rubrics/registry.yaml``.
 
-    Raises :class:`ValueError` (a plain ``ValueError``, not
-    ``RubricSchemaError``) if the registry has no latest pointer
-    for this rubric — that is a governance gap, not a schema
-    malformation.
+    Raises :class:`llm_judge.control_plane.types.RubricNotInRegistryError`
+    (a subclass of :class:`ValueError`) if ``rubric_id`` is absent from
+    the registry's ``latest:`` map — a registry-membership gap, neither
+    a schema malformation nor a malformed pointer for a known rubric.
+
+    Raises plain :class:`ValueError` if the rubric IS registered but its
+    ``latest:`` pointer is empty or whitespace-only — registry
+    malformation for a known rubric, closer to
+    :class:`RubricSchemaError`'s territory than to
+    :class:`RubricNotInRegistryError`'s. Migration of that case is
+    deferred to a future packet.
     """
     registry = _load_registry()
     if rubric_id not in registry.latest:
-        raise ValueError(
+        raise RubricNotInRegistryError(
             f"Rubric not registered in registry.yaml latest: {rubric_id}"
         )
     v = registry.latest[rubric_id]
