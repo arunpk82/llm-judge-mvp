@@ -191,11 +191,6 @@ class PlatformRunner:
         The ``"latest"`` sentinel is resolved against
         ``rubrics/registry.yaml`` at the wrapper boundary so
         downstream loaders see a concrete version.
-
-        Future: CP-1c-b.2 will tighten binding enforcement (prompt
-        loading honors rubric_id, schema enforcement becomes
-        mandatory on the eval/run.py path, governance preflight
-        rejects ungoverned rubric_ids).
         """
         active_layers = list(layers) if layers else list(DEFAULT_LAYERS)
         runs_root = output_dir if output_dir is not None else self._runs_root

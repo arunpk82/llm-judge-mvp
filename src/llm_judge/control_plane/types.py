@@ -16,6 +16,7 @@ __all__ = [
     "ConfigurationError",
     "Integrity",
     "MissingProvenanceError",
+    "RubricNotInRegistryError",
     "SingleEvaluationRequest",
     "SingleEvaluationResult",
 ]
@@ -33,6 +34,28 @@ class ConfigurationError(Exception):
     an HMAC key is the first instance; subsequent packets extend
     ``validate_configuration()`` to cover layer vocabulary alignment,
     artifact root validation, and governance preflight reachability."""
+
+
+class RubricNotInRegistryError(ValueError):
+    """Raised when ``rubric_store._resolve_version`` is asked for a
+    rubric_id that is absent from ``rubrics/registry.yaml``'s
+    ``latest:`` map.
+
+    Subclasses :class:`ValueError` so existing callers that
+    ``except ValueError:`` around rubric resolution continue to work
+    unchanged; new callers can catch this class specifically when they
+    want to distinguish "unknown rubric" from other ValueError causes
+    without inspecting the message string.
+
+    Scope note: the sibling raise site at
+    ``rubric_store._resolve_version`` line 106-109 ("invalid latest
+    version for rubric '<id>': <value>") describes a known rubric
+    whose ``latest:`` pointer is empty/whitespace — registry
+    malformation rather than a registry-membership gap. That case
+    remains a plain :class:`ValueError`; it is closer to
+    :class:`llm_judge.rubric_store.RubricSchemaError`'s territory than
+    to :class:`RubricNotInRegistryError`'s and may be migrated
+    separately in a future packet."""
 
 
 class Integrity(BaseModel):

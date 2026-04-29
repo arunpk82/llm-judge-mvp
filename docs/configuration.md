@@ -58,12 +58,26 @@ defense-in-depth: any envelope construction that bypasses
 direct-construction call sites) still refuses to sign with the development
 default in production mode.
 
+## Layer vocabulary alignment
+
+`validate_configuration()` runs `validate_layer_vocabulary()` after the
+HMAC-mode check. The cascade-layer string set declared in
+`wrappers.VALID_LAYERS` plus `configuration.STUB_LAYERS` must equal the
+`--isolate-layer` choice list accepted by `tools/run_batch_evaluation.py`
+(`L1`, `L2`, `L3`, `L4`, `L5`); a mismatch raises `ConfigurationError` at
+startup.
+
+`L5` is in the argparse choices and in `STUB_LAYERS` but not yet in
+`VALID_LAYERS` — argparse keeps it stable across the level-by-level arc,
+`invoke_cap7` rejects it as not-yet-wired. Capturing the gap in
+`STUB_LAYERS` makes the asymmetry a documented architecture decision
+rather than silent drift. Wiring a stub layer is an explicit move from
+`STUB_LAYERS` to `VALID_LAYERS`.
+
 ## Future extensions
 
 `validate_configuration()` is the platform's startup-time configuration
 surface. Subsequent packets absorb additional checks here:
 
-- Layer vocabulary alignment between `wrappers.DEFAULT_LAYERS` and
-  `eval/run.py` argparse choices (CP-F4, target packet L1-Pkt-2).
 - Artifact root writability (`runs_root`, `transient_root`).
 - Governance preflight reachability (`rubrics/registry.yaml`).
