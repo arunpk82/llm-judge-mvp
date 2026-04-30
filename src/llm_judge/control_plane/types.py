@@ -14,6 +14,7 @@ from llm_judge.control_plane.envelope import (
 __all__ = [
     "CapabilityIntegrityRecord",
     "ConfigurationError",
+    "FieldOwnershipViolationError",
     "Integrity",
     "MissingProvenanceError",
     "RubricNotInRegistryError",
@@ -34,6 +35,23 @@ class ConfigurationError(Exception):
     an HMAC key is the first instance; subsequent packets extend
     ``validate_configuration()`` to cover layer vocabulary alignment,
     artifact root validation, and governance preflight reachability."""
+
+
+class FieldOwnershipViolationError(ValueError):
+    """Raised by :meth:`ProvenanceEnvelope.stamped` when a capability
+    attempts to stamp a field that is not in
+    :data:`llm_judge.control_plane.field_ownership.FIELD_OWNERSHIP`
+    for its capability id (CP-F3 closure of End-State property A3.3).
+
+    Subclasses :class:`ValueError` so callers that already
+    ``except ValueError:`` around envelope construction continue to
+    work unchanged; new callers can catch this class specifically when
+    they want to distinguish "stamped a field outside its territory"
+    from other ValueError causes without inspecting the message string.
+
+    The message names the offending capability id and the disallowed
+    field key so the bypass attempt fails loudly at the wrapper
+    boundary."""
 
 
 class RubricNotInRegistryError(ValueError):
