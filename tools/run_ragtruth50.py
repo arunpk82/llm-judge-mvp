@@ -1,21 +1,26 @@
 #!/usr/bin/env python3
 """
-RAGTruth-50 Operator CLI — preseed, benchmark, funnel.
+RAGTruth-50 Operator CLI — preseed, funnel.
+
+The ``benchmark`` subcommand was retired in L1-Pkt-A (CP-F1 closure):
+it was the parallel orchestration entry point that bypassed the
+Control Plane Runner. Running benchmarks now happens via
+``tools/run_batch_evaluation.py`` (``make demo-batch-quick`` /
+``make benchmark`` aliases). This script is preserved for the two
+non-orchestration utilities it provides:
+
+  * ``preseed`` — seed the L2 hallucination graph cache from Exp 31
+    fact tables.
+  * ``funnel`` — pretty-print a funnel report from the last
+    benchmark results JSON in ``results/ragtruth50_results.json``.
 
 Usage:
-    python tools/run_ragtruth50.py preseed          # seed graph cache from Exp 31
-    python tools/run_ragtruth50.py benchmark         # run RAGTruth-50 benchmark
-    python tools/run_ragtruth50.py funnel            # print funnel from last run
-    python tools/run_ragtruth50.py all               # preseed → benchmark → funnel
-
-Environment:
-    GEMINI_API_KEY  — required for benchmark (L3 fact-counting, L4 Gemini)
-    BENCHMARK_MAX   — optional, limit cases (default: all 50)
+    python tools/run_ragtruth50.py preseed
+    python tools/run_ragtruth50.py funnel
 
 Output:
-    results/ragtruth50_results.json   — benchmark results
-    results/ragtruth50_funnel.txt     — funnel report
-    .cache/hallucination_graphs/      — graph cache directory
+    results/ragtruth50_funnel.txt     — funnel report (read input)
+    .cache/hallucination_graphs/      — graph cache directory (preseed)
 """
 
 from __future__ import annotations
@@ -24,7 +29,6 @@ import argparse
 import json
 import logging
 import sys
-import time
 from pathlib import Path
 
 REPO_ROOT = Path(__file__).resolve().parent.parent
@@ -97,183 +101,6 @@ def cmd_preseed(args: argparse.Namespace) -> bool:
     print(f"  Dedup savings:            {result.get('dedup_savings', '?')}")
     print(f"  Skipped (no source text): {result.get('skipped_no_source_text', '?')}")
     print(f"\n  Cache stats: {cache.stats()}")
-    return True
-
-
-# =====================================================================
-# Prerequisite Check — L2 Graph Cache
-# =====================================================================
-
-
-def _check_and_provision_l2(
-    benchmark_path: str,
-    args: argparse.Namespace,
-) -> bool | None:
-    """Check L2 cache coverage and auto-provision missing sources.
-
-    Returns:
-        True if ready (all sources cached).
-        None if provisioning succeeded (continue to benchmark).
-        False if provisioning failed (abort).
-    """
-    import os
-
-    from llm_judge.calibration.kg_extraction import (
-        check_benchmark_prerequisites,
-        provision_missing_sources,
-    )
-
-    print("\n  ── Prerequisite Check: L2 Graph Cache ──")
-    prereq = check_benchmark_prerequisites(benchmark_path)
-
-    if prereq["ready"]:
-        print(
-            f"  ✓ All {prereq['total_sources']} sources cached — L2 ready"
-        )
-        return True
-
-    print(
-        f"  ✗ {len(prereq['missing'])}/{prereq['total_sources']} sources "
-        f"missing: {prereq['missing']}"
-    )
-
-    if not os.environ.get("GEMINI_API_KEY"):
-        print("  ✗ GEMINI_API_KEY not set — cannot extract. L2 will be skipped.")
-        return True  # Continue without L2
-
-    if getattr(args, "skip_provision", False):
-        print("  Skipping provisioning (--skip-provision). L2 will have gaps.")
-        return True
-
-    # Auto-provision missing sources
-    print("  Auto-provisioning missing sources...")
-    result = provision_missing_sources(prereq["missing_texts"])
-
-    if result["sources_failed"] > 0:
-        print(f"  ⚠ {result['sources_failed']} sources failed extraction")
-        for err in result["errors"]:
-            print(f"    {err}")
-
-    if result["sources_extracted"] > 0:
-        print(
-            f"  ✓ {result['sources_extracted']} sources extracted "
-            f"({result['api_calls']} API calls)"
-        )
-
-    # Re-check
-    recheck = check_benchmark_prerequisites(benchmark_path)
-    if recheck["ready"]:
-        print(f"  ✓ All {recheck['total_sources']} sources now cached — L2 ready")
-    else:
-        print(
-            f"  ⚠ Still missing {len(recheck['missing'])} sources — "
-            f"L2 will have partial coverage"
-        )
-
-    return None  # Continue to benchmark
-
-
-# =====================================================================
-# Benchmark
-# =====================================================================
-
-
-def cmd_benchmark(args: argparse.Namespace) -> bool:
-    """Run RAGTruth-50 through the benchmark runner."""
-    import os
-    from dataclasses import replace
-
-    from llm_judge.benchmarks.registry import RAGTRUTH_50_BENCHMARK_PATH, build
-    from llm_judge.benchmarks.runner import run_benchmark
-    from llm_judge.calibration.pipeline_config import LayerConfig, get_pipeline_config
-
-    if not os.environ.get("GEMINI_API_KEY"):
-        logger.warning("GEMINI_API_KEY not set — L3 fact-counting and L4 will fail")
-
-    max_cases = args.max_cases or int(os.environ.get("BENCHMARK_MAX", "0")) or None
-    config = get_pipeline_config()
-
-    # Runtime layer override — HALLUCINATION_LAYERS="l1", "l1,l2", "l1,l2,l3,l4".
-    # Listed layers enabled; unlisted disabled. Avoids per-isolation yamls.
-    layers_env = os.environ.get("HALLUCINATION_LAYERS")
-    if layers_env:
-        valid = {"l1", "l2", "l3", "l4"}
-        requested = {s.strip().lower() for s in layers_env.split(",") if s.strip()}
-        unknown = requested - valid
-        if unknown:
-            raise ValueError(
-                f"HALLUCINATION_LAYERS: unknown layer(s) {sorted(unknown)}. "
-                f"Valid: {sorted(valid)}"
-            )
-        if not requested:
-            raise ValueError("HALLUCINATION_LAYERS must name at least one layer")
-        config = replace(
-            config,
-            layers=LayerConfig(
-                l1_enabled="l1" in requested,
-                l2_enabled="l2" in requested,
-                l3_enabled="l3" in requested,
-                l4_enabled="l4" in requested,
-            ),
-        )
-        print(f"  HALLUCINATION_LAYERS override: enabled={sorted(requested)}")
-        if config.l3_method == "fact_counting" and "l3" not in requested:
-            print("  Note: l3_method='fact_counting' is dormant (L3 disabled by override)")
-
-    adapter = build("ragtruth_50")
-    print("  Benchmark: RAGTruth-50 (fixed 50 responses)")
-
-    # ── Prerequisite Check: L2 Graph Cache ──
-    if config.layers.l2_enabled:
-        prereq = _check_and_provision_l2(str(RAGTRUTH_50_BENCHMARK_PATH), args)
-        if prereq is False:
-            return False
-
-    print("Running RAGTruth-50 benchmark...")
-    print(f"  Config: l3_method={config.l3_method}")
-    print(f"  Max cases: {max_cases or 'all'}")
-    print(f"  gate2_routing: {args.gate2_routing}")
-    print(f"  with_llm: {args.with_llm}")
-
-    start = time.time()
-    result = run_benchmark(
-        adapter,
-        split="test",
-        max_cases=max_cases,
-        gate2_routing=args.gate2_routing,
-        with_llm=args.with_llm,
-        config=config,
-    )
-    elapsed = time.time() - start
-
-    # Save results
-    results_dir = REPO_ROOT / "results"
-    results_dir.mkdir(exist_ok=True)
-    results_path = results_dir / "ragtruth50_results.json"
-
-    summary = {
-        "benchmark": result.benchmark_name,
-        "cases_evaluated": result.cases_evaluated,
-        "elapsed_seconds": round(elapsed, 1),
-        "properties_executed": result.properties_executed,
-        "properties_skipped": result.properties_skipped,
-        "errors_count": len(result.errors),
-        "fire_rates": result.fire_rates,
-        "diagnostic_results": result.diagnostic_results,
-        "response_level_results": result.response_level_results,
-        "sentence_level_metrics": result.sentence_level_metrics,
-    }
-
-    results_path.write_text(json.dumps(summary, indent=2, default=str))
-    print(f"\n  Results saved: {results_path}")
-    print(f"  Cases: {result.cases_evaluated}, Elapsed: {elapsed:.1f}s")
-    print(f"  Errors: {len(result.errors)}")
-
-    if result.errors:
-        print("\n  First 3 errors:")
-        for e in result.errors[:3]:
-            print(f"    {e.get('case_id', '?')}: {e.get('error', '?')[:80]}")
-
     return True
 
 
@@ -519,65 +346,15 @@ def main() -> None:
     p_pre.add_argument("--cache-dir", default=None, help="Cache directory override")
     p_pre.add_argument("--ttl-hours", type=int, default=168, help="Cache TTL in hours")
 
-    # benchmark
-    p_bench = sub.add_parser("benchmark", help="Run RAGTruth-50 benchmark")
-    p_bench.add_argument("--max-cases", type=int, default=None, help="Limit cases")
-    p_bench.add_argument(
-        "--gate2-routing", default="pass",
-        help="Gate 2 routing: none, pass, all (default: pass)",
-    )
-    p_bench.add_argument(
-        "--with-llm", action="store_true", default=True,
-        help="Enable LLM scoring for Cat 2 + Cat 6.3/6.4 (default: on)",
-    )
-    p_bench.add_argument(
-        "--no-llm", dest="with_llm", action="store_false",
-        help="Disable LLM scoring (Cat 1/3/4/5/6.1/6.2 only)",
-    )
-    p_bench.add_argument(
-        "--skip-provision", action="store_true", default=False,
-        help="Skip L2 cache auto-provisioning (run with gaps)",
-    )
-
     # funnel
     sub.add_parser("funnel", help="Print funnel from last benchmark run")
-
-    # all
-    p_all = sub.add_parser("all", help="preseed → benchmark → funnel")
-    p_all.add_argument("--cache-dir", default=None, help="Cache directory override")
-    p_all.add_argument("--ttl-hours", type=int, default=168, help="Cache TTL in hours")
-    p_all.add_argument("--max-cases", type=int, default=None, help="Limit cases")
-    p_all.add_argument(
-        "--gate2-routing", default="pass",
-        help="Gate 2 routing: none, pass, all (default: pass)",
-    )
-    p_all.add_argument(
-        "--with-llm", action="store_true", default=True,
-        help="Enable LLM scoring for Cat 2 + Cat 6.3/6.4 (default: on)",
-    )
-    p_all.add_argument(
-        "--no-llm", dest="with_llm", action="store_false",
-        help="Disable LLM scoring (Cat 1/3/4/5/6.1/6.2 only)",
-    )
-    p_all.add_argument(
-        "--skip-provision", action="store_true", default=False,
-        help="Skip L2 cache auto-provisioning (run with gaps)",
-    )
 
     args = parser.parse_args()
 
     if args.command == "preseed":
         ok = cmd_preseed(args)
-    elif args.command == "benchmark":
-        ok = cmd_benchmark(args)
     elif args.command == "funnel":
         ok = cmd_funnel(args)
-    elif args.command == "all":
-        ok = cmd_preseed(args)
-        if ok:
-            ok = cmd_benchmark(args)
-        if ok:
-            ok = cmd_funnel(args)
     else:
         parser.print_help()
         ok = False

@@ -1,0 +1,7 @@
+{
+  "benchmark_content_hash": "sha256:d8aa92e13c9413c4a8b20eb5ee7899979ffb88f1747bce13c87f1fbdf1b234b6",
+  "benchmark_id": "ragtruth_5",
+  "benchmark_registration_timestamp": "2026-04-30T11:56:57.937128+00:00",
+  "benchmark_version": "1.0",
+  "source_file": "ragtruth_5_benchmark.json"
+}

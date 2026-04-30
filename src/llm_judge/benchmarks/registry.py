@@ -15,9 +15,9 @@ construction setup (currently only ``ragtruth_50``, which must apply
 instance. ``build(name)`` invokes the factory and returns the instance.
 
 The registry is additive: existing direct-instantiation call sites
-(``RAGTruthAdapter()`` and friends in ``benchmarks/*_science_gate.py``,
-``benchmarks/run_all.py``) keep working unchanged. The registry only
-adds the lookup function — it does not replace direct construction.
+(``RAGTruthAdapter()`` and friends in ``benchmarks/*_science_gate.py``)
+keep working unchanged. The registry only adds the lookup function —
+it does not replace direct construction.
 
 Canonical names registered at module import:
 
