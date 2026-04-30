@@ -168,6 +168,13 @@ class SingleEvaluationRequest(BaseModel):
     caller_id: str | None = None
     request_id: str | None = None
 
+    # CP-F1: when populated by the batch adapter, ``_cap1_lineage_tracking``
+    # stamps the four benchmark provenance fields onto the envelope under
+    # CAP-1's allowlist. Optional + default-None so existing per-case
+    # callers (single-eval, demo, manually-constructed requests) are
+    # unaffected.
+    benchmark_reference: BenchmarkReference | None = None
+
 
 class SingleEvaluationResult(BaseModel):
     """Runner output: verdict + manifest pointer + stamped envelope."""
