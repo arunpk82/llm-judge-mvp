@@ -27,6 +27,7 @@ from llm_judge.control_plane.observability import (
     timed,
 )
 from llm_judge.control_plane.types import (
+    BenchmarkReference,
     MissingProvenanceError,
     SingleEvaluationRequest,
 )
@@ -147,14 +148,33 @@ def _cap1_lineage_tracking(
     envelope: ProvenanceEnvelope,
     dataset_id: str,
     content_hash: str,
+    benchmark_reference: BenchmarkReference | None = None,
 ) -> ProvenanceEnvelope:
     """CAP-1 Lineage tracking: stamp the envelope with
     dataset_registry_id + input_hash so downstream caps can verify
-    upstream provenance."""
+    upstream provenance.
+
+    CP-F1: when ``benchmark_reference`` is populated (set by the
+    batch adapter via :func:`register_benchmark`), also stamp the
+    four benchmark provenance fields under CAP-1's allowlist. The
+    field-ownership runtime gate (CP-F3) verifies the field set
+    against ``FIELD_OWNERSHIP['CAP-1']`` by construction."""
+    if benchmark_reference is None:
+        return envelope.stamped(
+            capability="CAP-1",
+            dataset_registry_id=dataset_id,
+            input_hash=content_hash,
+        )
     return envelope.stamped(
         capability="CAP-1",
         dataset_registry_id=dataset_id,
         input_hash=content_hash,
+        benchmark_id=benchmark_reference.benchmark_id,
+        benchmark_version=benchmark_reference.benchmark_version,
+        benchmark_content_hash=benchmark_reference.benchmark_content_hash,
+        benchmark_registration_timestamp=(
+            benchmark_reference.benchmark_registration_timestamp
+        ),
     )
 
 
@@ -180,7 +200,12 @@ def invoke_cap1(
     content_hash = _cap1_hashing(envelope, data_path)
     _cap1_validation(envelope, dataset_id, ds_dir, content_hash)
     resolved = _cap1_registration(envelope, dataset_id, root)
-    stamped = _cap1_lineage_tracking(envelope, dataset_id, content_hash)
+    stamped = _cap1_lineage_tracking(
+        envelope,
+        dataset_id,
+        content_hash,
+        benchmark_reference=request.benchmark_reference,
+    )
 
     # Discovery is registry-side lookup the platform exposes for ad-hoc
     # consumers; the single-eval Runner constructs a transient dataset

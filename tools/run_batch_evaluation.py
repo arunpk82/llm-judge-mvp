@@ -24,12 +24,32 @@ from pathlib import Path
 from typing import Iterator
 
 from llm_judge.benchmarks import BenchmarkCase
-from llm_judge.benchmarks.registry import BenchmarkNotFoundError, build
+from llm_judge.benchmarks.registry import (
+    RAGTRUTH_5_BENCHMARK_PATH,
+    RAGTRUTH_50_BENCHMARK_PATH,
+    BenchmarkNotFoundError,
+    build,
+)
 from llm_judge.control_plane.batch_aggregation import aggregate_batch
 from llm_judge.control_plane.batch_input import BatchCase, load_batch_file
 from llm_judge.control_plane.batch_runner import BatchRunner
 from llm_judge.control_plane.runner import PlatformRunner
-from llm_judge.control_plane.types import SingleEvaluationRequest
+from llm_judge.control_plane.types import (
+    BenchmarkReference,
+    SingleEvaluationRequest,
+)
+from llm_judge.datasets.benchmark_registry import register_benchmark
+
+# Map registered adapter names → benchmark JSON definition path.
+# Only benchmarks with a JSON definition file participate in CAP-1
+# benchmark registration (CP-F1). Other adapters (halueval, fever, ...)
+# load directly from raw data files; their per-case requests carry
+# ``benchmark_reference=None`` and the envelope's benchmark provenance
+# fields stay empty.
+_BENCHMARK_DEFINITION_PATHS: dict[str, Path] = {
+    "ragtruth_50": RAGTRUTH_50_BENCHMARK_PATH,
+    "ragtruth_5": RAGTRUTH_5_BENCHMARK_PATH,
+}
 
 # pylint: disable=wrong-import-position
 sys.path.insert(0, str(Path(__file__).resolve().parent))
@@ -39,6 +59,7 @@ from _batch_terminal import BatchTerminalRenderer  # noqa: E402
 
 def _benchmark_case_to_request(
     case: BenchmarkCase,
+    benchmark_reference: BenchmarkReference | None = None,
 ) -> SingleEvaluationRequest:
     """Map a BenchmarkCase onto SingleEvaluationRequest.
 
@@ -47,6 +68,9 @@ def _benchmark_case_to_request(
                    else the last user-message content.
     ``request_id`` ← case_id, so per-case manifests live under the
                      case_id directory in batch_runs/.
+    ``benchmark_reference`` (CP-F1): when non-None, flows onto the
+    request and is stamped into envelope provenance by
+    ``_cap1_lineage_tracking`` under CAP-1's allowlist.
     """
     pred = case.request
     if pred.source_context:
@@ -64,6 +88,7 @@ def _benchmark_case_to_request(
         rubric_id=pred.rubric_id,
         caller_id="batch-driver",
         request_id=case.case_id,
+        benchmark_reference=benchmark_reference,
     )
 
 
@@ -95,8 +120,16 @@ def _resolve_cases(
     if args.benchmark:
         adapter = build(args.benchmark)
         bench_iter = adapter.load_cases()
+        # CP-F1: benchmarks with a JSON definition are registered once
+        # per batch via the benchmark registry. Failures (missing file,
+        # content collision) raise ValueError-subclass exceptions and
+        # fail the adapter at entry — no partial-batch execution.
+        json_path = _BENCHMARK_DEFINITION_PATHS.get(args.benchmark)
+        benchmark_ref = (
+            register_benchmark(json_path) if json_path is not None else None
+        )
         cases_iter: Iterator[SingleEvaluationRequest] = (
-            _benchmark_case_to_request(c) for c in bench_iter
+            _benchmark_case_to_request(c, benchmark_ref) for c in bench_iter
         )
         source = f"benchmark:{args.benchmark}"
     else:
