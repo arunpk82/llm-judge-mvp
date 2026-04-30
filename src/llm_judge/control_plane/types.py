@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+from datetime import datetime
 from typing import Any
 
 from pydantic import BaseModel, ConfigDict, Field
@@ -12,6 +13,9 @@ from llm_judge.control_plane.envelope import (
 )
 
 __all__ = [
+    "BenchmarkContentCollisionError",
+    "BenchmarkFileNotFoundError",
+    "BenchmarkReference",
     "CapabilityIntegrityRecord",
     "ConfigurationError",
     "FieldOwnershipViolationError",
@@ -35,6 +39,59 @@ class ConfigurationError(Exception):
     an HMAC key is the first instance; subsequent packets extend
     ``validate_configuration()`` to cover layer vocabulary alignment,
     artifact root validation, and governance preflight reachability."""
+
+
+class BenchmarkFileNotFoundError(ValueError):
+    """Raised by
+    :func:`llm_judge.datasets.benchmark_registry.register_benchmark`
+    when the benchmark JSON definition file does not exist on disk
+    (CP-F1 closure).
+
+    Subclasses :class:`ValueError` so callers that already
+    ``except ValueError:`` around adapter setup continue to work
+    unchanged. The message names the missing path so the operator can
+    fix the input quickly."""
+
+
+class BenchmarkContentCollisionError(ValueError):
+    """Raised by
+    :func:`llm_judge.datasets.benchmark_registry.register_benchmark`
+    when an existing sidecar registration record's content hash does
+    not match the SHA-256 of the benchmark JSON definition file
+    currently on disk (CP-F1 closure).
+
+    Subclasses :class:`ValueError` so callers that already
+    ``except ValueError:`` around adapter setup continue to work
+    unchanged. The message names the benchmark id, the recorded
+    hash, and the observed hash so the divergence is obvious from
+    the failure alone."""
+
+
+class BenchmarkReference(BaseModel):
+    """Typed reference to a registered benchmark (CP-F1 closure).
+
+    Returned by
+    :func:`llm_judge.datasets.benchmark_registry.register_benchmark`
+    and carried on
+    :attr:`SingleEvaluationRequest.benchmark_reference`. The four
+    fields are the same shape that ``_cap1_lineage_tracking`` stamps
+    onto the envelope under CAP-1's allowlist
+    (``benchmark_id``/``benchmark_version``/
+    ``benchmark_content_hash``/``benchmark_registration_timestamp``)
+    so that envelope provenance and the in-memory request agree by
+    construction.
+
+    Lives in ``types.py`` rather than the registry module per
+    Pre-flight 6 recon (cleanest direction; avoids a registry → types
+    circular import). The registry module imports this class plus
+    the two exception classes above and re-exports nothing."""
+
+    model_config = ConfigDict(frozen=True)
+
+    benchmark_id: str = Field(..., min_length=1)
+    benchmark_version: str = Field(..., min_length=1)
+    benchmark_content_hash: str = Field(..., min_length=1)
+    benchmark_registration_timestamp: datetime
 
 
 class FieldOwnershipViolationError(ValueError):
