@@ -9,13 +9,12 @@ from __future__ import annotations
 
 import logging
 import random
-import time
 from dataclasses import dataclass, field
 from typing import Any, Literal, cast
 
-from llm_judge.benchmarks import BenchmarkAdapter, BenchmarkCase, GroundTruth
-from llm_judge.calibration.hallucination import _split_sentences, check_hallucination
-from llm_judge.calibration.pipeline_config import PipelineConfig, get_pipeline_config
+from llm_judge.benchmarks import BenchmarkCase, GroundTruth
+from llm_judge.calibration.hallucination import check_hallucination
+from llm_judge.calibration.pipeline_config import PipelineConfig
 
 logger = logging.getLogger(__name__)
 
