@@ -19,6 +19,7 @@ __all__ = [
     "CapabilityIntegrityRecord",
     "ConfigurationError",
     "FieldOwnershipViolationError",
+    "GuardrailDeniedError",
     "Integrity",
     "MissingProvenanceError",
     "RubricNotInRegistryError",
@@ -39,6 +40,30 @@ class ConfigurationError(Exception):
     an HMAC key is the first instance; subsequent packets extend
     ``validate_configuration()`` to cover layer vocabulary alignment,
     artifact root validation, and governance preflight reachability."""
+
+
+class GuardrailDeniedError(ConfigurationError):
+    """Raised by the guardrail substrate when a registered guardrail's
+    pre_call or post_call hook returns a Deny decision (CP-F8 substrate
+    + CP-F12 timeout closure, L1-Pkt-B).
+
+    Subclasses :class:`ConfigurationError` so existing
+    ``except ConfigurationError:`` handlers continue to catch denial
+    events — the runner's per-capability ``except Exception`` arms
+    pick up these denials as capability failures alongside other
+    operational errors (for CAP-1/CAP-2/CAP-7) or propagate them
+    (for CAP-5, per the D5 contract). New callers can ``except
+    GuardrailDeniedError:`` specifically to distinguish guardrail-
+    initiated denials from other configuration errors.
+
+    The message names the offending guardrail, capability_id, and
+    decision reason so the failure is self-describing in logs and
+    integrity records.
+
+    Reserved namespace: future guardrails (rate limit, circuit
+    breaker, kill switch) raise more specific subclasses of this
+    class so handlers can discriminate by guardrail family without
+    parsing message strings."""
 
 
 class BenchmarkFileNotFoundError(ValueError):
