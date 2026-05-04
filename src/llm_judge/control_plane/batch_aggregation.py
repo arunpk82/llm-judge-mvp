@@ -19,11 +19,17 @@ from typing import Any
 from pydantic import BaseModel, ConfigDict, Field
 
 from llm_judge.control_plane.batch_runner import BatchResult
+from llm_judge.control_plane.capability_registry import CAPABILITY_REGISTRY
 
-# The four vertical capabilities the Runner orchestrates today.
-# CAP-7 stays capability-level (D1: no layer cascade refactor); the
-# other three carry sub-capability instrumentation.
-VERTICAL_CAPABILITIES: tuple[str, ...] = ("CAP-1", "CAP-2", "CAP-7", "CAP-5")
+# Vertical capabilities derived from CAPABILITY_REGISTRY (CP-F9
+# closure, L1-Pkt-B). Adding a capability requires a registry
+# change; this rollup picks it up automatically rather than via a
+# parallel hard-coded enumeration. CAP-7 stays capability-level
+# (D1: no layer cascade refactor); the other three carry
+# sub-capability instrumentation.
+VERTICAL_CAPABILITIES: tuple[str, ...] = tuple(
+    spec.capability_id for spec in CAPABILITY_REGISTRY
+)
 
 # Horizontal capabilities reported as 0/N until they are wired (D4).
 HORIZONTAL_CAPABILITIES: tuple[str, ...] = ("CAP-6", "CAP-10")
