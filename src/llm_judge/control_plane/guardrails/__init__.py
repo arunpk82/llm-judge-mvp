@@ -28,12 +28,22 @@ from llm_judge.control_plane.guardrails.substrate import (
     guardrail_context,
     register_guardrail,
 )
+from llm_judge.control_plane.guardrails.timeout import TimeoutGuardrail
 
 __all__ = [
     "Guardrail",
     "GuardrailContext",
     "GuardrailDecision",
+    "TimeoutGuardrail",
     "_reset_for_tests",
     "guardrail_context",
     "register_guardrail",
 ]
+
+
+# Production wiring: TimeoutGuardrail fires for every capability
+# invocation through the runner (CP-F12 closure, L1-Pkt-B Commit 5).
+# Tests that need an empty registry call _reset_for_tests() and
+# either pass guardrails= explicitly to guardrail_context() or
+# re-register a tailored set.
+register_guardrail(TimeoutGuardrail())
