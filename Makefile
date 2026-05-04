@@ -371,15 +371,17 @@ preseed:
 	@echo "Pre-seeding graph cache from Exp 31..."
 	poetry run python tools/run_ragtruth50.py preseed
 
-benchmark:
-	@echo "Running RAGTruth-50 benchmark..."
-	poetry run python tools/run_ragtruth50.py benchmark
+# CP-F1 closure (L1-Pkt-A): make benchmark now aliases the
+# Control-Plane-governed batch driver. The legacy
+# tools/run_ragtruth50.py benchmark subcommand was retired together
+# with run_benchmark and the parallel entry surface.
+benchmark: demo-batch-quick
 
 funnel:
 	@echo "Printing funnel from last benchmark run..."
 	poetry run python tools/run_ragtruth50.py funnel
 
-calibrate: preseed benchmark funnel
+calibrate: preseed demo-batch-quick funnel
 	@echo "Full calibration run complete."
 
 calibrate-l1:
@@ -397,9 +399,8 @@ demo:
 # ----------------------------------------
 
 # `make demo-batch` is the canonical Runner-governed batch path.
-# `tools/run_ragtruth50.py` (under `make benchmark`) is a legacy
-# script that bypasses the Control Plane and is being retired —
-# prefer demo-batch / demo-batch-quick for any new work.
+# `make benchmark` aliases `make demo-batch-quick` (CP-F1 closure
+# in L1-Pkt-A retired the legacy parallel-entry script).
 
 demo-batch:
 	@poetry run python tools/run_batch_evaluation.py --benchmark ragtruth_50

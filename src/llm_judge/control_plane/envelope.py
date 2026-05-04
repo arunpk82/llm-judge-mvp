@@ -139,6 +139,14 @@ class ProvenanceEnvelope(BaseModel):
     rule_set_version: str | None = None
     rules_fired: list[str] | None = None
 
+    # Benchmark provenance (CAP-1 extension — CP-F1 closure). Populated
+    # by ``_cap1_lineage_tracking`` when the SingleEvaluationRequest
+    # carries a ``benchmark_reference``; otherwise remain ``None``.
+    benchmark_id: str | None = None
+    benchmark_version: str | None = None
+    benchmark_content_hash: str | None = None
+    benchmark_registration_timestamp: datetime | None = None
+
     platform_version: str = Field(..., min_length=1)
     capability_chain: list[str] = Field(default_factory=list)
     schema_version: int = 3
@@ -182,9 +190,35 @@ class ProvenanceEnvelope(BaseModel):
 
         The original is not mutated (Pydantic frozen model raises on
         attribute assignment).
+
+        CP-F3: every key in ``fields`` must be in
+        :data:`llm_judge.control_plane.field_ownership.FIELD_OWNERSHIP`
+        for ``capability``. Keys outside that allowlist raise
+        :class:`FieldOwnershipViolationError` (a ``ValueError``
+        subclass). Late-import pattern matches
+        :func:`_resolve_hmac_key` so the leaf module
+        ``field_ownership`` and the leaf module ``types`` can both
+        depend on this module's symbols without a circular import.
         """
         if not capability:
             raise ValueError("capability must be a non-empty string")
+
+        from llm_judge.control_plane.field_ownership import FIELD_OWNERSHIP
+        from llm_judge.control_plane.types import FieldOwnershipViolationError
+
+        allowed = FIELD_OWNERSHIP.get(capability)
+        if allowed is None:
+            raise FieldOwnershipViolationError(
+                f"{capability!r} has no FIELD_OWNERSHIP entry; "
+                f"add it to llm_judge.control_plane.field_ownership "
+                f"before stamping."
+            )
+        disallowed = sorted(k for k in fields if k not in allowed)
+        if disallowed:
+            raise FieldOwnershipViolationError(
+                f"{capability!r} cannot stamp field(s) {disallowed}; "
+                f"allowed for {capability!r}: {sorted(allowed) or '<chain only>'}."
+            )
 
         base = self.model_dump()
         base.update(fields)
