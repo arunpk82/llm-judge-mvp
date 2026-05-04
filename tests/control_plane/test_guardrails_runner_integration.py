@@ -9,6 +9,7 @@ this file covers the wiring assertion.
 
 from __future__ import annotations
 
+from collections.abc import Iterator
 from pathlib import Path
 
 import pytest
@@ -18,16 +19,22 @@ from llm_judge.control_plane.guardrails import (
     Guardrail,
     GuardrailContext,
     GuardrailDecision,
-    _reset_for_tests,
     register_guardrail,
 )
+from llm_judge.control_plane.guardrails import substrate as _substrate
 from llm_judge.control_plane.runner import PlatformRunner
 from llm_judge.control_plane.types import SingleEvaluationRequest
 
 
 @pytest.fixture(autouse=True)
-def reset_guardrail_registry() -> None:
-    _reset_for_tests()
+def isolated_guardrail_registry() -> Iterator[None]:
+    saved = list(_substrate._REGISTERED_GUARDRAILS)
+    _substrate._REGISTERED_GUARDRAILS.clear()
+    try:
+        yield
+    finally:
+        _substrate._REGISTERED_GUARDRAILS.clear()
+        _substrate._REGISTERED_GUARDRAILS.extend(saved)
 
 
 class _RecordingGuardrail(Guardrail):

@@ -7,6 +7,8 @@ Commit 4's tests; concrete guardrails (timeout) by Commit 5.
 
 from __future__ import annotations
 
+from collections.abc import Iterator
+
 import pytest
 
 from llm_judge.control_plane.capability_registry import CapabilitySpec
@@ -14,10 +16,10 @@ from llm_judge.control_plane.guardrails import (
     Guardrail,
     GuardrailContext,
     GuardrailDecision,
-    _reset_for_tests,
     guardrail_context,
     register_guardrail,
 )
+from llm_judge.control_plane.guardrails import substrate as _substrate
 from llm_judge.control_plane.types import GuardrailDeniedError
 
 
@@ -28,9 +30,17 @@ def _spec() -> CapabilitySpec:
 
 
 @pytest.fixture(autouse=True)
-def reset_guardrail_registry() -> None:
-    """Each test runs against an empty module-level registry."""
-    _reset_for_tests()
+def isolated_guardrail_registry() -> Iterator[None]:
+    """Each test runs against an empty module-level registry; the
+    production-default registry is restored on teardown so tests
+    that don't override fixtures see the real wiring."""
+    saved = list(_substrate._REGISTERED_GUARDRAILS)
+    _substrate._REGISTERED_GUARDRAILS.clear()
+    try:
+        yield
+    finally:
+        _substrate._REGISTERED_GUARDRAILS.clear()
+        _substrate._REGISTERED_GUARDRAILS.extend(saved)
 
 
 # ---------------------------------------------------------------------
@@ -167,6 +177,8 @@ def test_register_guardrail_adds_to_module_registry() -> None:
 
 
 def test_reset_for_tests_clears_registry() -> None:
+    from llm_judge.control_plane.guardrails import _reset_for_tests
+
     register_guardrail(_AllowSpy())
     _reset_for_tests()
     spy = _AllowSpy()
