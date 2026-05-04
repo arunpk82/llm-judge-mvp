@@ -93,3 +93,37 @@ def test_get_spec_returns_matching_entry() -> None:
 def test_get_spec_raises_key_error_for_unknown_id() -> None:
     with pytest.raises(KeyError, match="CAP-99"):
         get_spec("CAP-99")
+
+
+# ---------------------------------------------------------------------
+# Iteration order drives orchestrator (CP-F9 closure check)
+# ---------------------------------------------------------------------
+
+
+def test_runner_invocation_order_matches_registry(tmp_path: object) -> None:
+    """End-to-end: the per-capability integrity records on the envelope
+    after a successful run appear in the same order as the registry,
+    proving the registry drives the orchestrator's iteration. Reordering
+    the registry's tuple would flip this assertion."""
+    from pathlib import Path
+
+    from llm_judge.control_plane.runner import PlatformRunner
+    from llm_judge.control_plane.types import SingleEvaluationRequest
+
+    assert isinstance(tmp_path, Path)
+    runner = PlatformRunner(
+        platform_version="registry-iter-sha",
+        transient_root=tmp_path / "transient",
+        runs_root=tmp_path / "runs",
+    )
+    result = runner.run_single_evaluation(
+        SingleEvaluationRequest(
+            response="Paris is the capital of France.",
+            source="Paris is the capital of France and its largest city.",
+            rubric_id="chat_quality",
+            caller_id="registry-iter-test",
+        )
+    )
+    invoked = [rec.capability_id for rec in result.envelope.integrity]
+    expected = [spec.capability_id for spec in CAPABILITY_REGISTRY]
+    assert invoked == expected

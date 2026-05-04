@@ -7,6 +7,17 @@ Error-handling contract (CP-1b D5):
   (CAP-1, CAP-2, CAP-7) and records the outcome in the envelope's
   per-capability integrity list. CAP-5 is NOT wrapped — its failures
   still propagate.
+
+Registry-driven iteration (CP-F9 closure, L1-Pkt-B):
+  :data:`CAPABILITY_REGISTRY` defines the capability sequence and
+  per-capability operational metadata. ``run_single_evaluation``
+  iterates the registry and dispatches by ``capability_id`` to the
+  matching arm (Option A from L1-Pkt-B Layer 1 chat checkpoint).
+  Per-arm logic is preserved verbatim — heterogeneous signatures
+  and conditional dispatch on CAP-1 failure / aggregation between
+  CAP-7 and CAP-5 make a uniform-signature refactor out of scope.
+  Adding a fifth capability requires both a registry entry and a
+  new dispatch arm here.
 """
 
 from __future__ import annotations
@@ -20,6 +31,7 @@ from typing import Any
 
 import structlog
 
+from llm_judge.control_plane.capability_registry import CAPABILITY_REGISTRY
 from llm_judge.control_plane.configuration import validate_configuration
 from llm_judge.control_plane.envelope import (
     CapabilityIntegrityRecord,
@@ -214,208 +226,246 @@ class PlatformRunner:
             platform_version=self._platform_version,
         )
 
+        # State accumulated across registry iterations. Declared above
+        # the loop so dispatch arms can read prior-arm output (e.g.
+        # CAP-2/CAP-7 read ``dataset_handle`` from CAP-1; CAP-5's
+        # aggregation reads ``rule_hits``/``verdict_from_cap7``).
+        # ``integrity`` and ``manifest_id`` are populated by CAP-5's
+        # arm; the placeholders satisfy the type checker on the
+        # never-reached path where CAP-5 is absent from the registry
+        # (registry is strict-from-day-one — CAP-5 is always last).
+        dataset_handle: Any = None
+        cap1_failed = False
+        missing: list[str] = []
+        reasons: list[str] = []
+        rule_hits: list[str] = []
+        cap2_succeeded = False
+        verdict_from_cap7: dict[str, Any] = {}
+        cap7_succeeded = False
+        aggregated: dict[str, Any] = {}
+        integrity = Integrity(complete=False)
+        manifest_id = ""
+
         with run_timer:
-            # --- CAP-1 (wrapped; failure is captured, not propagated) ---
-            dataset_handle: Any = None
-            cap1_failed = False
-            emit_event(
-                "capability_started",
-                capability_id="CAP-1",
-                request_id=request_id,
-                timestamp=_utc_now_iso(),
-            )
-            cap1_timer = Timer()
-            try:
-                with cap1_timer:
-                    envelope, dataset_handle = invoke_cap1(
-                        envelope, payload, transient_root=self._transient_root
-                    )
-                envelope = envelope.with_integrity(
-                    _success_record("CAP-1", duration_ms=cap1_timer.duration_ms)
-                )
-                emit_event(
-                    "capability_completed",
-                    capability_id="CAP-1",
-                    request_id=request_id,
-                    duration_ms=cap1_timer.duration_ms,
-                    status="success",
-                )
-            except Exception as exc:
-                cap1_failed = True
-                envelope = envelope.with_integrity(
-                    _failure_record("CAP-1", exc, duration_ms=cap1_timer.duration_ms)
-                )
-                envelope = envelope.with_integrity(_skipped_record("CAP-2"))
-                envelope = envelope.with_integrity(_skipped_record("CAP-7"))
-                emit_event(
-                    "capability_failed",
-                    capability_id="CAP-1",
-                    request_id=request_id,
-                    duration_ms=cap1_timer.duration_ms,
-                    status="failure",
-                    error_type=type(exc).__name__,
-                    error_message=str(exc)[:500],
-                )
-                logger.warning(
-                    "control_plane.cap1_failed",
-                    request_id=request_id,
-                    error=str(exc)[:200],
-                )
+            for spec in CAPABILITY_REGISTRY:
+                cap_id = spec.capability_id
 
-            # --- Sibling phase: CAP-2 and CAP-7 (failures tolerated) ---
-            missing: list[str] = []
-            reasons: list[str] = []
-            rule_hits: list[str] = []
-            cap2_succeeded = False
-            verdict_from_cap7: dict[str, Any] = {}
-            cap7_succeeded = False
-
-            if cap1_failed:
-                missing.extend(["CAP-2", "CAP-7"])
-                reasons.append("CAP-1 failed; siblings skipped")
-            else:
-                emit_event(
-                    "capability_started",
-                    capability_id="CAP-2",
-                    request_id=request_id,
-                    timestamp=_utc_now_iso(),
-                )
-                cap2_timer = Timer()
-                try:
-                    with cap2_timer:
-                        envelope, rule_hits = invoke_cap2(
-                            envelope, payload, dataset_handle
-                        )
-                    envelope = envelope.with_integrity(
-                        _success_record("CAP-2", duration_ms=cap2_timer.duration_ms)
-                    )
-                    cap2_succeeded = True
+                if cap_id == "CAP-1":
+                    # CAP-1 (wrapped; failure is captured, not propagated)
                     emit_event(
-                        "capability_completed",
+                        "capability_started",
+                        capability_id="CAP-1",
+                        request_id=request_id,
+                        timestamp=_utc_now_iso(),
+                    )
+                    cap1_timer = Timer()
+                    try:
+                        with cap1_timer:
+                            envelope, dataset_handle = invoke_cap1(
+                                envelope, payload, transient_root=self._transient_root
+                            )
+                        envelope = envelope.with_integrity(
+                            _success_record("CAP-1", duration_ms=cap1_timer.duration_ms)
+                        )
+                        emit_event(
+                            "capability_completed",
+                            capability_id="CAP-1",
+                            request_id=request_id,
+                            duration_ms=cap1_timer.duration_ms,
+                            status="success",
+                        )
+                    except Exception as exc:
+                        cap1_failed = True
+                        envelope = envelope.with_integrity(
+                            _failure_record(
+                                "CAP-1", exc, duration_ms=cap1_timer.duration_ms
+                            )
+                        )
+                        # Sibling-skip reason recorded once at the
+                        # CAP-1 failure boundary; CAP-2 and CAP-7 arms
+                        # only stamp their own skipped records.
+                        reasons.append("CAP-1 failed; siblings skipped")
+                        emit_event(
+                            "capability_failed",
+                            capability_id="CAP-1",
+                            request_id=request_id,
+                            duration_ms=cap1_timer.duration_ms,
+                            status="failure",
+                            error_type=type(exc).__name__,
+                            error_message=str(exc)[:500],
+                        )
+                        logger.warning(
+                            "control_plane.cap1_failed",
+                            request_id=request_id,
+                            error=str(exc)[:200],
+                        )
+
+                elif cap_id == "CAP-2":
+                    # CAP-2 (wrapped; failure is captured, not propagated)
+                    if cap1_failed:
+                        envelope = envelope.with_integrity(_skipped_record("CAP-2"))
+                        missing.append("CAP-2")
+                        continue
+                    emit_event(
+                        "capability_started",
                         capability_id="CAP-2",
                         request_id=request_id,
-                        duration_ms=cap2_timer.duration_ms,
-                        status="success",
+                        timestamp=_utc_now_iso(),
                     )
-                except Exception as exc:
-                    missing.append("CAP-2")
-                    reasons.append(f"CAP-2: {type(exc).__name__}: {exc}")
-                    envelope = envelope.with_integrity(
-                        _failure_record("CAP-2", exc, duration_ms=cap2_timer.duration_ms)
-                    )
-                    emit_event(
-                        "capability_failed",
-                        capability_id="CAP-2",
-                        request_id=request_id,
-                        duration_ms=cap2_timer.duration_ms,
-                        status="failure",
-                        error_type=type(exc).__name__,
-                        error_message=str(exc)[:500],
-                    )
-                    logger.warning(
-                        "control_plane.cap2_failed",
-                        request_id=request_id,
-                        error=str(exc)[:200],
-                    )
-
-                emit_event(
-                    "capability_started",
-                    capability_id="CAP-7",
-                    request_id=request_id,
-                    timestamp=_utc_now_iso(),
-                )
-                cap7_timer = Timer()
-                try:
-                    with cap7_timer:
-                        envelope, verdict_from_cap7 = invoke_cap7(
-                            envelope, payload, dataset_handle, layers=active_layers
+                    cap2_timer = Timer()
+                    try:
+                        with cap2_timer:
+                            envelope, rule_hits = invoke_cap2(
+                                envelope, payload, dataset_handle
+                            )
+                        envelope = envelope.with_integrity(
+                            _success_record("CAP-2", duration_ms=cap2_timer.duration_ms)
                         )
-                    envelope = envelope.with_integrity(
-                        _success_record("CAP-7", duration_ms=cap7_timer.duration_ms)
-                    )
-                    cap7_succeeded = True
+                        cap2_succeeded = True
+                        emit_event(
+                            "capability_completed",
+                            capability_id="CAP-2",
+                            request_id=request_id,
+                            duration_ms=cap2_timer.duration_ms,
+                            status="success",
+                        )
+                    except Exception as exc:
+                        missing.append("CAP-2")
+                        reasons.append(f"CAP-2: {type(exc).__name__}: {exc}")
+                        envelope = envelope.with_integrity(
+                            _failure_record(
+                                "CAP-2", exc, duration_ms=cap2_timer.duration_ms
+                            )
+                        )
+                        emit_event(
+                            "capability_failed",
+                            capability_id="CAP-2",
+                            request_id=request_id,
+                            duration_ms=cap2_timer.duration_ms,
+                            status="failure",
+                            error_type=type(exc).__name__,
+                            error_message=str(exc)[:500],
+                        )
+                        logger.warning(
+                            "control_plane.cap2_failed",
+                            request_id=request_id,
+                            error=str(exc)[:200],
+                        )
+
+                elif cap_id == "CAP-7":
+                    # CAP-7 (wrapped; failure is captured, not propagated)
+                    if cap1_failed:
+                        envelope = envelope.with_integrity(_skipped_record("CAP-7"))
+                        missing.append("CAP-7")
+                        continue
                     emit_event(
-                        "capability_completed",
+                        "capability_started",
                         capability_id="CAP-7",
                         request_id=request_id,
-                        duration_ms=cap7_timer.duration_ms,
-                        status="success",
+                        timestamp=_utc_now_iso(),
                     )
-                except Exception as exc:
-                    missing.append("CAP-7")
-                    reasons.append(f"CAP-7: {type(exc).__name__}: {exc}")
-                    envelope = envelope.with_integrity(
-                        _failure_record("CAP-7", exc, duration_ms=cap7_timer.duration_ms)
+                    cap7_timer = Timer()
+                    try:
+                        with cap7_timer:
+                            envelope, verdict_from_cap7 = invoke_cap7(
+                                envelope, payload, dataset_handle, layers=active_layers
+                            )
+                        envelope = envelope.with_integrity(
+                            _success_record("CAP-7", duration_ms=cap7_timer.duration_ms)
+                        )
+                        cap7_succeeded = True
+                        emit_event(
+                            "capability_completed",
+                            capability_id="CAP-7",
+                            request_id=request_id,
+                            duration_ms=cap7_timer.duration_ms,
+                            status="success",
+                        )
+                    except Exception as exc:
+                        missing.append("CAP-7")
+                        reasons.append(f"CAP-7: {type(exc).__name__}: {exc}")
+                        envelope = envelope.with_integrity(
+                            _failure_record(
+                                "CAP-7", exc, duration_ms=cap7_timer.duration_ms
+                            )
+                        )
+                        emit_event(
+                            "capability_failed",
+                            capability_id="CAP-7",
+                            request_id=request_id,
+                            duration_ms=cap7_timer.duration_ms,
+                            status="failure",
+                            error_type=type(exc).__name__,
+                            error_message=str(exc)[:500],
+                        )
+                        logger.warning(
+                            "control_plane.cap7_failed",
+                            request_id=request_id,
+                            error=str(exc)[:200],
+                        )
+
+                elif cap_id == "CAP-5":
+                    # Aggregate CAP-7 verdict (if any) + CAP-2 rule_hits,
+                    # then build the run-level Integrity summary that CAP-5
+                    # consumes as input.
+                    if cap7_succeeded:
+                        aggregated.update(verdict_from_cap7)
+                    if cap2_succeeded:
+                        aggregated["rule_evidence"] = list(rule_hits)
+                    integrity = Integrity(
+                        complete=not missing and not cap1_failed,
+                        missing_capabilities=(
+                            ["CAP-1", "CAP-2", "CAP-7"] if cap1_failed else missing
+                        ),
+                        reason="; ".join(reasons) if reasons else None,
                     )
+
+                    # CAP-5 (propagates; not wrapped per D5)
                     emit_event(
-                        "capability_failed",
-                        capability_id="CAP-7",
+                        "capability_started",
+                        capability_id="CAP-5",
                         request_id=request_id,
-                        duration_ms=cap7_timer.duration_ms,
-                        status="failure",
-                        error_type=type(exc).__name__,
-                        error_message=str(exc)[:500],
+                        timestamp=_utc_now_iso(),
                     )
-                    logger.warning(
-                        "control_plane.cap7_failed",
-                        request_id=request_id,
-                        error=str(exc)[:200],
+                    cap5_timer = Timer()
+                    try:
+                        with cap5_timer:
+                            envelope, manifest_id = invoke_cap5(
+                                envelope,
+                                aggregated,
+                                integrity.model_dump(),
+                                rubric_id=payload.rubric_id,
+                                rubric_version=payload.rubric_version,
+                                runs_root=runs_root,
+                            )
+                        envelope = envelope.with_integrity(
+                            _success_record("CAP-5", duration_ms=cap5_timer.duration_ms)
+                        )
+                        emit_event(
+                            "capability_completed",
+                            capability_id="CAP-5",
+                            request_id=request_id,
+                            duration_ms=cap5_timer.duration_ms,
+                            status="success",
+                        )
+                    except Exception as exc:
+                        emit_event(
+                            "capability_failed",
+                            capability_id="CAP-5",
+                            request_id=request_id,
+                            duration_ms=cap5_timer.duration_ms,
+                            status="failure",
+                            error_type=type(exc).__name__,
+                            error_message=str(exc)[:500],
+                        )
+                        raise
+
+                else:
+                    raise RuntimeError(
+                        f"PlatformRunner has no dispatch arm for "
+                        f"capability_id={cap_id!r}; CAPABILITY_REGISTRY "
+                        f"and runner.py disagree."
                     )
-
-            # --- Aggregate: CAP-7 verdict (if any) + CAP-2 rule_hits ---
-            aggregated: dict[str, Any] = {}
-            if cap7_succeeded:
-                aggregated.update(verdict_from_cap7)
-            if cap2_succeeded:
-                aggregated["rule_evidence"] = list(rule_hits)
-
-            integrity = Integrity(
-                complete=not missing and not cap1_failed,
-                missing_capabilities=(
-                    ["CAP-1", "CAP-2", "CAP-7"] if cap1_failed else missing
-                ),
-                reason="; ".join(reasons) if reasons else None,
-            )
-
-            # --- CAP-5 (propagates; not wrapped per D5) ---
-            emit_event(
-                "capability_started",
-                capability_id="CAP-5",
-                request_id=request_id,
-                timestamp=_utc_now_iso(),
-            )
-            cap5_timer = Timer()
-            try:
-                with cap5_timer:
-                    envelope, manifest_id = invoke_cap5(
-                        envelope,
-                        aggregated,
-                        integrity.model_dump(),
-                        rubric_id=payload.rubric_id,
-                        rubric_version=payload.rubric_version,
-                        runs_root=runs_root,
-                    )
-                envelope = envelope.with_integrity(
-                    _success_record("CAP-5", duration_ms=cap5_timer.duration_ms)
-                )
-                emit_event(
-                    "capability_completed",
-                    capability_id="CAP-5",
-                    request_id=request_id,
-                    duration_ms=cap5_timer.duration_ms,
-                    status="success",
-                )
-            except Exception as exc:
-                emit_event(
-                    "capability_failed",
-                    capability_id="CAP-5",
-                    request_id=request_id,
-                    duration_ms=cap5_timer.duration_ms,
-                    status="failure",
-                    error_type=type(exc).__name__,
-                    error_message=str(exc)[:500],
-                )
-                raise
 
         emit_event(
             "run_completed",
