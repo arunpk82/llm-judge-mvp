@@ -18,6 +18,18 @@ Registry-driven iteration (CP-F9 closure, L1-Pkt-B):
   CAP-7 and CAP-5 make a uniform-signature refactor out of scope.
   Adding a fifth capability requires both a registry entry and a
   new dispatch arm here.
+
+Guardrail substrate (CP-F8 closure, L1-Pkt-B):
+  Each ``invoke_capN`` call inside this Runner executes within a
+  :func:`guardrail_context`. The substrate iterates registered
+  guardrails: pre-call hooks fire before the capability runs;
+  post-call hooks fire after. A guardrail's Deny decision raises
+  :class:`GuardrailDeniedError`, which the per-arm ``except
+  Exception`` handlers (CAP-1/CAP-2/CAP-7) record as a capability
+  failure or which (CAP-5) propagates per the D5 contract. Concrete
+  guardrails register via
+  :func:`llm_judge.control_plane.guardrails.register_guardrail`;
+  L1-Pkt-B Commit 5 registers TimeoutGuardrail as the first.
 """
 
 from __future__ import annotations
@@ -37,6 +49,7 @@ from llm_judge.control_plane.envelope import (
     CapabilityIntegrityRecord,
     new_envelope,
 )
+from llm_judge.control_plane.guardrails import guardrail_context
 from llm_judge.control_plane.observability import Timer, emit_event
 from llm_judge.control_plane.types import (
     Integrity,
@@ -260,7 +273,7 @@ class PlatformRunner:
                     )
                     cap1_timer = Timer()
                     try:
-                        with cap1_timer:
+                        with guardrail_context(spec, request_id), cap1_timer:
                             envelope, dataset_handle = invoke_cap1(
                                 envelope, payload, transient_root=self._transient_root
                             )
@@ -314,7 +327,7 @@ class PlatformRunner:
                     )
                     cap2_timer = Timer()
                     try:
-                        with cap2_timer:
+                        with guardrail_context(spec, request_id), cap2_timer:
                             envelope, rule_hits = invoke_cap2(
                                 envelope, payload, dataset_handle
                             )
@@ -366,7 +379,7 @@ class PlatformRunner:
                     )
                     cap7_timer = Timer()
                     try:
-                        with cap7_timer:
+                        with guardrail_context(spec, request_id), cap7_timer:
                             envelope, verdict_from_cap7 = invoke_cap7(
                                 envelope, payload, dataset_handle, layers=active_layers
                             )
@@ -429,7 +442,7 @@ class PlatformRunner:
                     )
                     cap5_timer = Timer()
                     try:
-                        with cap5_timer:
+                        with guardrail_context(spec, request_id), cap5_timer:
                             envelope, manifest_id = invoke_cap5(
                                 envelope,
                                 aggregated,
