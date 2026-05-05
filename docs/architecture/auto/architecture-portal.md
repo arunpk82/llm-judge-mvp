@@ -444,19 +444,24 @@ Tracked outside source comments — listed here for portal completeness:
 
 ## 9. v1.0 status
 
-*Architect chat editorial — synthesized from §1-§8 portal data + v1.0 scope document (`docs/decisions/v1.0-scope-document.md`).*
+*Architect chat editorial — synthesized from §1-§8 portal data + v1.0 scope document (`docs/decisions/v1.0-scope-document.md`). Updated 2026-05-05 post-L1-Pkt-B merge.*
 
 ### What v1.0 ships
 
-The end-of-week v1.0 demo is grounded in three operational capabilities and the orchestration substrate that governs them:
+The end-of-week v1.0 demo is grounded in three operational capabilities and a hardened orchestration substrate:
 
-**Substrate (Layer 1) — operational and hardened.** Phase 1 + Phase 2 Category 1 closed: HMAC integrity (CP-F2), startup validation (CP-F11), parallel-entry elimination (CP-F1), field-ownership runtime gate (CP-F3), exception taxonomy cleanup (CP-F4, CP-F5, CP-F14). Reproducibility narrative for the demo builds on this hardening — the audit trail (§5) records every capability invocation with provenance.
+**Substrate (Layer 1) — operational and hardened.** Phase 1 + Phase 2 Categories 1 and 2 closed:
+- Phase 1: HMAC integrity (CP-F2), startup validation (CP-F11)
+- Phase 2 Category 1: parallel-entry elimination (CP-F1), field-ownership runtime gate (CP-F3), exception taxonomy cleanup (CP-F4, CP-F5, CP-F14)
+- Phase 2 Category 2 (L1-Pkt-B, merged at `b3eaf56`): capability registry (CP-F9), guardrail substrate (CP-F8 partial — substrate complete, additional guardrails deferred), timeout enforcement (CP-F12 partial — Option β post-completion denial pattern)
+
+Reproducibility narrative for the demo builds on this hardening — the audit trail (§5) records every capability invocation with provenance, the orchestrator now iterates the formal registry (§3), and per-capability timeouts enforce bounded execution.
 
 **Capabilities (Layer 2 + 3 + 5) — operational for the demo path.**
-- CAP-1 (Dataset Governance): operational with sub-cap instrumentation. Benchmark-as-governed-artifact closed via CP-F1.
-- CAP-2 (Rule Engine): operational with sub-cap tests. Produces deterministic rule verdicts.
-- CAP-7 (Hallucination Detection): L1 instrumentation operational. **L2-L5 layers have F-numbered gaps** (F13 default cascade L1-only, F17 L2 silent no-op, F12 L5 unwired) — this is v1.0's critical path remaining work for Tuesday-Wednesday.
-- CAP-5 (Artifact Governance): operational. Manifests + lineage records + integrity trail.
+- CAP-1 (Dataset Governance): operational with sub-cap instrumentation. Benchmark-as-governed-artifact closed via CP-F1. Registry-listed at 5s timeout.
+- CAP-2 (Rule Engine): operational with sub-cap tests. Produces deterministic rule verdicts. Registry-listed at 5s timeout.
+- CAP-7 (Hallucination Detection): L1 instrumentation operational. **L2-L5 layers have F-numbered gaps** (F13 default cascade L1-only, F17 L2 silent no-op, F12 L5 unwired) — this is v1.0's critical path remaining work for Tuesday-Wednesday. Registry-listed at 30s timeout (longest of the four).
+- CAP-5 (Artifact Governance): operational. Manifests + lineage records + integrity trail. Registry-listed at 5s timeout.
 
 **Demo surface (Layer 6 + 8) — operational, expanded this week.** 28 make targets exist (§8). For v1.0, the demo flow combines `make demo`, `make demo-batch-quick`, and `make verify-l1` plus the new post-batch report module (Wednesday deliverable).
 
@@ -466,7 +471,7 @@ Sequenced against the v1.0 scope document's day-by-day plan:
 
 | Day | Critical-path work | Portal-data anchor |
 |---|---|---|
-| **Mon** | L1-Pkt-A confirmation (already merged at `85c7e5c`); 28-metric reproducibility audit by QA chat | §5 confirms L1-Pkt-A on master; §3 confirms CAP-7 cascade has F-numbered gaps |
+| **Mon** | L1-Pkt-A confirmation (merged at `85c7e5c`); L1-Pkt-B confirmation (merged at `b3eaf56`); 28-metric reproducibility audit by QA chat | §5 confirms both packets on master; §3 confirms CAP-7 cascade has F-numbered gaps |
 | **Tue** | Wire CAP-7 L4 (Gemini API) + L5 (adjudication); verify CAP-2 + CAP-7 match experimental baseline | §3 capability inventory shows CAP-7 partial (L1 only, L2-L5 gaps); §6 confirms Gemini integration exists in `main.py`/`runtime.py` (not yet wired into CAP-7 cascade) |
 | **Wed** | Build post-batch report module computing 28 property metrics from `BatchResult` | §3 + §10 surface 5 of 11 capabilities operational; report module aggregates metrics from existing capability outputs |
 | **Thu** | Build demo CLI/notebook surface; curate 3-5 demo examples | §8 shows existing `make demo*` targets as foundation; new CLI extends rather than replaces |
@@ -477,9 +482,10 @@ Sequenced against the v1.0 scope document's day-by-day plan:
 Portal data confirms what's NOT v1.0-blocking:
 
 **Architectural quality work paused this week:**
-- L1-Pkt-B (capability registry CP-F9; substrate timeout CP-F8/CP-F12) — branch exists (`layer-1/l1-pkt-b-substrate-timeout-registry`), not on master. Resumes post-v1.0.
-- L1-Pkt-C (exception taxonomy refactor — CP-F10, CP-F20, CP-F22) — not started.
+- L1-Pkt-C (exception taxonomy refactor — CP-F10, CP-F20 structural fix, CP-F22) — not started.
 - L1-Pkt-D (event vocabulary + governance preflight — CP-F7, CP-F13, CP-F18) — not started.
+- CP-F8 remaining substrate work: rate limits, circuit breakers, kill switch — deferred to future packets that use the substrate built in L1-Pkt-B.
+- CP-F23 (resource-interruption gap from Option β timeout decision) — newly filed candidate for v1.5+ scope.
 
 **Capability gaps deferred:**
 - CAP-3 (Rule Governance): absent from code. Future packet.
@@ -498,9 +504,9 @@ Portal data confirms what's NOT v1.0-blocking:
 
 Per the v1.0 scope document's expanded definition of "trustworthy" (three layers):
 
-**Layer 1 (orchestration trustworthiness):** Achieved via Phase 1 + Phase 2 Category 1 closures on master. Audit trail records every CAP invocation with provenance (§5 evidence: 26 test files, HMAC integrity preservation tests, field-ownership gap-absence tests).
+**Layer 1 (orchestration trustworthiness):** Achieved via Phase 1 + Phase 2 Categories 1 and 2 closures on master. Audit trail records every CAP invocation with provenance (§5 evidence: 26+ Layer 1 test files, HMAC integrity preservation tests, field-ownership gap-absence tests, capability registry now formal, per-capability timeout enforcement, 1092 site-wide tests at 83.67% coverage post-L1-Pkt-B).
 
-**Layer 2 (capability trustworthiness):** Tuesday's verification work — CAP-2 + CAP-7 results matching experimental baseline. QA chat owns the protocol; Layer 1 chat verifies substantive correctness.
+**Layer 2 (capability trustworthiness):** Tuesday's verification work — CAP-2 + CAP-7 results matching experimental baseline. QA chat owns the protocol; Layer 1 chat verifies substantive correctness. Capability identity now formal (registry-driven), so verification has unambiguous capability boundaries.
 
 **Layer 3 (helper function trustworthiness):** Reproducibility configuration for the 28 property check functions preserved as library per L1-Pkt-A Option (c). External LLM calls (Gemini, OpenAI) need temperature=0 + caching for demo consistency. Local model calls (MiniCheck, NLI fallback, SentenceTransformer) need explicit seeding.
 
@@ -510,13 +516,17 @@ The reproducibility-and-integrity narrative for the executive demo: same input �
 
 These are not v1.0-blocking but worth flagging for post-v1.0 strategic planning:
 
-1. **Capability registry placement.** CP-F9 closure (capability_registry.py introduction) is on the L1-Pkt-B branch but not on master. Should the registry concept land before strategic capability expansion (CAP-3, CAP-4, CAP-6, CAP-9, CAP-11)? Likely yes — the registry is the canonical source of capability identity for future expansion.
+1. **Capability registration sequencing.** The registry now exists and lists 4 capabilities (CAP-1, CAP-2, CAP-7, CAP-5). Of the 7 unregistered capabilities specified in the architecture map (CAP-3, CAP-4, CAP-6, CAP-8, CAP-9, CAP-10, CAP-11), which is next to be formally registered? Strategic priority depends on v1.0 demo feedback — executive interest in reporting (CAP-11), drift detection (CAP-6), or governance expansion (CAP-3, CAP-4) drives different next-packet sequencing.
 
 2. **CAP-7 cascade completion.** L4 + L5 wired this week for v1.0. F13/F17/F18 represent deeper cascade gaps; do these become priorities post-v1.0 or do current L4 + L5 wiring satisfy the demonstration need?
 
-3. **Layer 6 / CAP-11 spawn timing.** Reporting capability is "committed not yet filed." Components exist in `tools/` and `experiments/`. Post-v1.0 demo feedback may make CAP-11 a high priority if executives or QA folks request reporting features.
+3. **CP-F8 remaining guardrails.** Substrate now exists. Rate limits, circuit breakers, kill switch can be added as small additive packets that consult the substrate. Sequencing depends on operational pressure surfaced by v1.0 demo audiences (do ML engineers ask for rate limits? do QA folks ask for circuit breakers?).
 
-4. **Architectural debt: rubric governance Layer 7 → Layer 2.** Documented in ADR but not scheduled. Resolves itself in proportion to how much rubric work happens; if v1.0 demo doesn't surface rubric authoring needs, this stays deferred.
+4. **CP-F23 disposition.** Resource-interruption gap from Option β timeout decision is a newly filed v1.5+ candidate. Worth understanding when this becomes critical versus acceptable as documented residual risk.
+
+5. **Layer 6 / CAP-11 spawn timing.** Reporting capability is "committed not yet filed." Components exist in `tools/` and `experiments/`. Post-v1.0 demo feedback may make CAP-11 a high priority if executives or QA folks request reporting features.
+
+6. **Architectural debt: rubric governance Layer 7 → Layer 2.** Documented in ADR but not scheduled. Resolves itself in proportion to how much rubric work happens; if v1.0 demo doesn't surface rubric authoring needs, this stays deferred.
 
 These questions are for the post-v1.0 strategic planning cycle, not this week's work.
 
