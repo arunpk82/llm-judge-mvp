@@ -2,19 +2,19 @@ schema_version: "1"
 policy_id: "drift_default"
 
 # Metrics to monitor for drift
-monitored_metrics:
+required_metrics:
   - f1_fail
   - f1_pass
   - precision_fail
   - recall_fail
 
-# Max allowed change between runs
-max_drift:
+# Max allowed change between runs (per-metric thresholds)
+max_metric_drop:
   f1_fail: 0.05
   f1_pass: 0.05
 
-# Minimum runs needed for drift analysis
-min_runs: 2
+# Minimum runs needed for drift analysis (loader: trend_window)
+trend_window: 2
 
 # EPIC-6.1: Heartbeat — alert if no eval_run events within this many hours
 # Set to null/remove to disable heartbeat check
