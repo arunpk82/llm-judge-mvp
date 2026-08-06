@@ -322,62 +322,114 @@ class GraphCache:
 # =====================================================================
 
 
+class FactTableValidationError(ValueError):
+    """Raised when preseed cannot satisfy its coverage contract.
+
+    Surfaces the gap between the caller's declared case universe
+    (``source_texts`` keys) and the Exp 31 fact-table catalog. Silent
+    skips here masked a 48/50 RAGTruth-50 preseed gap for two quarters
+    (see #180). Loud-by-default is the fix.
+    """
+
+
 def preseed_from_exp31(
     cache: GraphCache,
     exp31_path: Path | str,
     source_texts: dict[str, str],
+    *,
+    strict: bool = False,
 ) -> dict[str, Any]:
     """
     Pre-seed the graph cache from Exp 31 multipass fact tables.
+
+    Iterates the caller's ``source_texts`` (the declared case universe),
+    not the Exp 31 file, so every miss is surfaced by case_id. The prior
+    behavior iterated Exp 31 and silently skipped source_texts entries
+    with no matching fact table (#180).
 
     Args:
         cache: The GraphCache instance to seed.
         exp31_path: Path to exp31_multipass_fact_tables.json.
         source_texts: Mapping from case_id (e.g. "ragtruth_24") to
-            source document text. Used to compute the content hash.
-            Multiple case_ids can share the same source text — dedup
-            happens automatically via the hash.
+            source document text. Every key here must have a
+            corresponding entry in the Exp 31 file when ``strict=True``.
+        strict: If True, raise ``FactTableValidationError`` when any
+            case_id in ``source_texts`` has no Exp 31 fact table.
+            Callers running a benchmark whose subset partially overlaps
+            Exp 31 (e.g., RAGTruth-50) should pass ``strict=False`` and
+            route failed case_ids to live extraction.
 
     Returns:
-        Summary dict with seeded_sources, skipped (no source text),
-        and dedup count.
+        ``{"seeded": int, "failed": list[str], "dedup_savings": int,
+           "exp31_cases_not_in_source_texts": list[str]}``.
+
+        - ``seeded``: count of unique source_hashes written to cache.
+        - ``failed``: case_ids present in ``source_texts`` with no Exp 31
+          entry. Non-empty + strict ⇒ raises.
+        - ``dedup_savings``: source_texts case_ids that mapped to an
+          already-seeded hash (siblings sharing a source).
+        - ``exp31_cases_not_in_source_texts``: reverse-direction drift —
+          Exp 31 case_ids the caller did not declare. Informational.
+
+    Raises:
+        FactTableValidationError: if ``strict`` and ``failed`` is non-empty.
+        FileNotFoundError: if ``exp31_path`` does not exist.
     """
     exp31_path = Path(exp31_path)
     if not exp31_path.exists():
-        logger.warning(
-            "preseed.file_not_found",
-            extra={"path": str(exp31_path)},
-        )
-        return {"error": f"file not found: {exp31_path}"}
+        raise FileNotFoundError(f"Exp 31 fact tables not found: {exp31_path}")
 
     data = json.loads(exp31_path.read_text(encoding="utf-8"))
 
     seeded_hashes: set[str] = set()
-    skipped: list[str] = []
+    failed: list[str] = []
+    dedup_savings = 0
 
-    for case_id, tables in data.items():
-        source_text = source_texts.get(case_id)
-        if source_text is None:
-            skipped.append(case_id)
+    for case_id, source_text in source_texts.items():
+        tables = data.get(case_id)
+        if tables is None:
+            failed.append(case_id)
             continue
 
         source_hash = compute_source_hash(source_text)
         if source_hash in seeded_hashes:
-            continue  # Already seeded from a sibling case
+            dedup_savings += 1
+            continue
 
-        # Store the passes (not the wrapper with source_len/pass_times)
         fact_data = {"passes": tables.get("passes", tables)}
         cache.put_by_hash(source_hash, fact_data)
         seeded_hashes.add(source_hash)
 
-    result = {
-        "total_cases": len(data),
-        "unique_sources_seeded": len(seeded_hashes),
-        "skipped_no_source_text": len(skipped),
-        "dedup_savings": len(data) - len(seeded_hashes) - len(skipped),
+    drift_cases = [cid for cid in data.keys() if cid not in source_texts]
+
+    result: dict[str, Any] = {
+        "seeded": len(seeded_hashes),
+        "failed": failed,
+        "dedup_savings": dedup_savings,
+        "exp31_cases_not_in_source_texts": drift_cases,
     }
 
-    logger.info("preseed.complete", extra=result)
+    if failed:
+        logger.warning(
+            "preseed.incomplete_coverage",
+            extra={
+                "failed_count": len(failed),
+                "failed_sample": failed[:5],
+                "seeded": len(seeded_hashes),
+                "strict": strict,
+            },
+        )
+        if strict:
+            raise FactTableValidationError(
+                f"preseed missing fact tables for {len(failed)} case_id(s) "
+                f"declared in source_texts. sample={failed[:5]}. "
+                f"exp31_path={exp31_path}. "
+                f"Set strict=False to accept partial coverage, or populate "
+                f"fact tables for the listed case_ids."
+            )
+    else:
+        logger.info("preseed.complete", extra={"seeded": len(seeded_hashes)})
+
     return result
 
 

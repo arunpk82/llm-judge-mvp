@@ -55,7 +55,7 @@ class TestPreseedToCache:
         cache = GraphCache(tmp_path / "cache")
         result = preseed_from_exp31(cache, exp31_path, source_texts)
 
-        assert result["unique_sources_seeded"] == 1
+        assert result["seeded"] == 1
         assert result["dedup_savings"] == 1
 
         # Retrieve by source text

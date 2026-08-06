@@ -21,6 +21,7 @@ from unittest.mock import MagicMock, patch
 import pytest
 
 from llm_judge.calibration.graph_cache import (
+    FactTableValidationError,
     GraphCache,
     compute_source_hash,
     get_graph_cache,
@@ -227,7 +228,6 @@ class TestClear:
 
 class TestPreseedFromExp31:
     def test_preseed_basic(self, cache: GraphCache, tmp_path: Path) -> None:
-        # Create a minimal Exp 31 file
         exp31_data = {
             "ragtruth_24": {
                 "source_len": 100,
@@ -249,43 +249,20 @@ class TestPreseedFromExp31:
         exp31_path = tmp_path / "exp31.json"
         exp31_path.write_text(json.dumps(exp31_data))
 
-        # Same source text for both cases (dedup test)
         source_texts = {
             "ragtruth_24": "Same source document.",
             "ragtruth_25": "Same source document.",
         }
 
         result = preseed_from_exp31(cache, exp31_path, source_texts)
-        assert result["total_cases"] == 2
-        assert result["unique_sources_seeded"] == 1  # deduped
+        assert result["seeded"] == 1  # dedup
         assert result["dedup_savings"] == 1
-        assert result["skipped_no_source_text"] == 0
-
-    def test_preseed_skips_missing_sources(
-        self, cache: GraphCache, tmp_path: Path
-    ) -> None:
-        exp31_data = {
-            "ragtruth_24": {"passes": {"P1_entities": {}}},
-            "ragtruth_25": {"passes": {"P1_entities": {}}},
-        }
-        exp31_path = tmp_path / "exp31.json"
-        exp31_path.write_text(json.dumps(exp31_data))
-
-        # Only provide source for one case
-        source_texts = {"ragtruth_24": "Some text."}
-
-        result = preseed_from_exp31(cache, exp31_path, source_texts)
-        assert result["unique_sources_seeded"] == 1
-        assert result["skipped_no_source_text"] == 1
-
-    def test_preseed_file_not_found(self, cache: GraphCache) -> None:
-        result = preseed_from_exp31(cache, "/nonexistent.json", {})
-        assert "error" in result
+        assert result["failed"] == []
+        assert result["exp31_cases_not_in_source_texts"] == []
 
     def test_preseed_data_retrievable(
         self, cache: GraphCache, tmp_path: Path
     ) -> None:
-        """After pre-seeding, cache.get returns the stored fact tables."""
         source_text = "Unique source document for retrieval test."
         exp31_data = {
             "case_1": {
@@ -300,6 +277,82 @@ class TestPreseedFromExp31:
         result = cache.get(source_text)
         assert result is not None
         assert result["passes"]["P1_entities"]["entities"][0]["name"] == "Test"
+
+    # Silence contract (#180): partial-coverage misses must surface.
+
+    def test_missing_fact_table_listed_in_failed(
+        self, cache: GraphCache, tmp_path: Path
+    ) -> None:
+        """case_ids declared by the caller but absent from Exp 31 → failed list."""
+        exp31_data = {"ragtruth_24": {"passes": {"P1_entities": {}}}}
+        exp31_path = tmp_path / "exp31.json"
+        exp31_path.write_text(json.dumps(exp31_data))
+
+        # Caller declares two cases; Exp 31 has one.
+        source_texts = {"ragtruth_24": "a", "ragtruth_99": "b"}
+
+        result = preseed_from_exp31(cache, exp31_path, source_texts)
+        assert result["seeded"] == 1
+        assert result["failed"] == ["ragtruth_99"]
+
+    def test_strict_raises_on_any_miss(
+        self, cache: GraphCache, tmp_path: Path
+    ) -> None:
+        """With strict=True, any miss raises with actionable detail."""
+        exp31_data = {"ragtruth_24": {"passes": {"P1_entities": {}}}}
+        exp31_path = tmp_path / "exp31.json"
+        exp31_path.write_text(json.dumps(exp31_data))
+
+        source_texts = {"ragtruth_24": "a", "ragtruth_99": "b"}
+
+        with pytest.raises(FactTableValidationError) as exc_info:
+            preseed_from_exp31(cache, exp31_path, source_texts, strict=True)
+        msg = str(exc_info.value)
+        assert "ragtruth_99" in msg
+        assert "1 case_id" in msg
+
+    def test_strict_passes_on_full_coverage(
+        self, cache: GraphCache, tmp_path: Path
+    ) -> None:
+        """strict=True is a no-op when every declared case has a fact table."""
+        exp31_data = {
+            "ragtruth_24": {"passes": {"P1_entities": {}}},
+            "ragtruth_25": {"passes": {"P1_entities": {}}},
+        }
+        exp31_path = tmp_path / "exp31.json"
+        exp31_path.write_text(json.dumps(exp31_data))
+
+        source_texts = {"ragtruth_24": "a", "ragtruth_25": "b"}
+
+        result = preseed_from_exp31(
+            cache, exp31_path, source_texts, strict=True
+        )
+        assert result["seeded"] == 2
+        assert result["failed"] == []
+
+    def test_drift_cases_reported_separately(
+        self, cache: GraphCache, tmp_path: Path
+    ) -> None:
+        """Exp 31 entries the caller didn't declare are informational drift,
+        not a failure."""
+        exp31_data = {
+            "ragtruth_24": {"passes": {"P1_entities": {}}},
+            "ragtruth_999": {"passes": {"P1_entities": {}}},  # not declared
+        }
+        exp31_path = tmp_path / "exp31.json"
+        exp31_path.write_text(json.dumps(exp31_data))
+
+        source_texts = {"ragtruth_24": "a"}
+
+        result = preseed_from_exp31(cache, exp31_path, source_texts)
+        assert result["seeded"] == 1
+        assert result["failed"] == []
+        assert result["exp31_cases_not_in_source_texts"] == ["ragtruth_999"]
+
+    def test_preseed_file_not_found_raises(self, cache: GraphCache) -> None:
+        """Missing Exp 31 file is a setup error; must be loud."""
+        with pytest.raises(FileNotFoundError):
+            preseed_from_exp31(cache, "/nonexistent.json", {})
 
 
 # =====================================================================
